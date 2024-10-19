@@ -1,4 +1,4 @@
-# Vetcamp 2
+# Vetcamp Front (Front end Side for the platform)
 Implementation for the new platform.
 ## Requirements
 It is important that you are not running any version higher than the `7.3.33` php version
