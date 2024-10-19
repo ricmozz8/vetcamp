@@ -1,0 +1,104 @@
+/* This is the style for the home.php page */
+
+.header_undconst{
+    background-color: var(--main-color-default);
+    padding: 3rem;
+    margin-top: 15vh;
+
+    animation: breathe 8s infinite;
+}
+
+body{
+  background-color: var(--secondary-color-default);
+}
+
+.content_undconst {
+  
+  font-weight: 700;
+  color: var(--color-1);
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+
+
+  img{
+    width: 100px;
+    height: 100px
+  }
+
+  h1 {
+    font-size: 6vw;
+  }
+  p{
+    font-size: 1rem;
+  }
+}
+
+.dev_resources{
+    display: flex;
+
+    width: fit-content;
+    gap: 15px;
+    margin: 1rem auto;
+}
+
+a{
+    position: relative;
+    top: 0px;
+    padding: 15px 20px;
+    border-radius: 28px;
+    background-color: var(--white-color);
+    color: var(--secondary-color-default);
+    box-shadow: var(--shadow-soft);
+    font-weight: 300;
+    border: 1px solid var(--secondary-color-default);
+    border-bottom: 4px solid var(--secondary-color-default);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all .25s ease;
+}
+
+a:hover{
+    top: -5px;
+    box-shadow: none;
+    background-color: var(--white-color-shade-1);
+}
+
+
+.logo{
+    cursor: pointer;
+    border-radius: 50rem;
+    transition: all .25s ease-in-out;
+}
+
+
+.logo:hover{
+    transform: scale(1.1);
+    animation: __rot_easter_egg 1s infinite;
+}
+
+@keyframes __rot_easter_egg {
+    0% {
+        transform: rotate(0deg); /* Start at 0 degrees */
+        
+    }
+
+    100% {
+        transform: rotate(360deg); /* End at 360 degrees */
+    }
+    
+}
+
+@keyframes breathe {
+    0%{
+        box-shadow: 0px 10px 10px var(--main-color-default);
+    }
+
+    50%{
+        box-shadow: 0px 10px 100px var(--main-color-default);
+    }
+
+    100%{
+        box-shadow: 0px 10px 10px var(--main-color-default);
+    }
+}

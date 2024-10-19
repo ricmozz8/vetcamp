@@ -1,0 +1,74 @@
+/* This is the main css file that will only include type declarations such as: 
+
+    - Font Family
+        - Font Size
+        - Font Weight
+    - Brand Colors
+    - Background Colors
+
+*/
+
+@import url('home.css');
+
+
+:root {
+
+    /* Font Family */
+    --display-font-family: 'Livvic', sans-serif;
+    --text-font: 'Schibsted Grotesk', sans-serif;
+
+    /* Font Size */
+    --font-size-xxs: 0.625rem;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-xxl: 2rem;
+    --font-size-xxxl: 2.5rem;
+
+    /* Font Weight */
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+
+    /* Brand Colors */  
+    --main-color-default: #FFE900;
+    --main-color-shade-1: #FFD700;
+    --main-color-shade-2: #FFB300;
+    --main-color-shade-3: #FFA500;
+
+    --secondary-color-default: #000000;
+    --secondary-color-shade-1: #333333;
+    --secondary-color-shade-2: #666666;
+    --secondary-color-shade-3: #999999;
+
+    --white-color: #f5f5f5;
+    --white-color-shade-1: #dadada;
+    --white-color-shade-2: #c0c0c0;
+    --white-color-shade-3: #b6b6b6;
+    
+
+    --shadow-soft: 0px 3px 10px rgba(0, 0, 0, 0.253);
+    --shadow-hard: 0px 6px 15px rgba(0, 0, 0, 0.425);
+
+
+}
+
+::selection{
+    background-color: var(--secondary-color-default);
+    color: var(--main-color-default);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: var(--text-font);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-regular);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--display-font-family);
+    font-weight: 600;
+    letter-spacing: -.2vw;
+}
