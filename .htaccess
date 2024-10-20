@@ -12,7 +12,7 @@ RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
     RewriteRule ^(storage|tests)/ - [F,L]
 
     # Deny access for files (autocode.php and .env)
-    RewriteRule ^.*\.(php|env)$ - [F,L]
+    RewriteRule ^.*\.(env)$ - [F,L]
 
 </IfModule>
 
