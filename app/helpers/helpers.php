@@ -1,9 +1,9 @@
 <?php
-define('ASSETS_FOLDER_ABSOLUTE', __DIR__ . '/resources/assets/');
-define('ASSETS_FOLDER', '/resources/assets/');
+define('ASSETS_FOLDER_ABSOLUTE', __DIR__ . 'resources/assets/');
+define('ASSETS_FOLDER', 'resources/assets/');
 
 
-define('WEB_RESOURCES_FOLDER', '/resources/views/');
+define('WEB_RESOURCES_FOLDER', 'resources/views/');
 
 /**
  * This is the helpers file, it will define some helper functions that need to be 
