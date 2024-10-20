@@ -19,6 +19,8 @@ require __DIR__ . '/partials/header.php';
             <a target="_blank" href="https://www.mysql.com">Learn MySQL</a>
             <a target="_blank" href="https://maheshsamudra.medium.com/creating-a-simple-php-mvc-framework-from-scratch-7158f12340a0">Learn MVC</a>
         </div>
+
+        <p style="text-align: center">Frontend</p>
     </div>
 
 </body>
