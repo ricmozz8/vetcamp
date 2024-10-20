@@ -8,6 +8,10 @@
 */
 
 
+define('VIEWS_DIR', __DIR__ . '/resources/views/');
+
+
+
 // DEBUG ONLY ---
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -16,19 +20,16 @@ error_reporting(E_ALL);
 // DEBUG ONLY ---
 
 
-
 require 'app/helpers/helpers.php';
+require 'bootstrap/router.php';
+require 'app/models/User.php';
 
-$request = $_GET['q'] ?? '';
+// Controllers here
+
+// --
+
+$request = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
-
-
-define('VIEWS_DIR', __DIR__ . '/resources/views/');
-
-
-
-
-
 $page_title = "Vetcamp";
 
 
@@ -36,24 +37,16 @@ $page_title = "Vetcamp";
 switch ($request) {
 
     // GET VIEWS
-
-    case '':
-        // customizing the page title
-        $page_title .= ' | Home';
-
-        // serving the view
-        include VIEWS_DIR . 'home.php';
+    case '/':
+        render_view('home', ['page_title' => $page_title . ' | Home']);
+        break;
+    case '/users':
+        $users = User::all();
+        render_view('users', ['users' => $users]);
         break;
 
-
-    case 'about':
-        include VIEWS_DIR . 'about.php';
-        break;
-    case 'contact':
-        include VIEWS_DIR . 'contact.php';
-        break;
     default:
-        include VIEWS_DIR . '404.php';
+        echo '404';
         break;
 
     // POST VIEWS

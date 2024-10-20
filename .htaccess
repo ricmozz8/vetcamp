@@ -10,4 +10,14 @@ RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
 
     # Deny access to the storage and tests directories
     RewriteRule ^(storage|tests)/ - [F,L]
+
+    # Deny access for files (autocode.php and .env)
+    RewriteRule ^.*\.(php|env)$ - [F,L]
+
 </IfModule>
+
+<Files "craft">
+    Order Allow,Deny
+    Deny from all
+</Files>
+

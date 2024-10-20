@@ -1,0 +1,111 @@
+<?php
+/**
+ * 
+ * This is the handy code generator for 
+ * the controllers, models and views. This is created with
+ * the purpose of automating the process of creating the base 
+ * code for implementations.
+ * 
+ * 
+ * Example:
+ * 
+ * 1. Open the terminal
+ * 2. Navigate to the root directory of the project
+ * 3. Run the following command
+ *    php autocode.php make:controller UsersController
+ * 4. The controller will be created in the app/controllers folder
+ * 
+ */
+
+// Prevent direct access from website
+if (php_sapi_name() !== 'cli') {
+    die('Access denied.');
+}
+
+
+define('CONTROLLERS_FOLDER', 'app/controllers/');
+define('MODELS_FOLDER', 'app/models/');
+define('VIEWS_FOLDER', 'resources/views/');
+define('SCAFFOLDING_FOLDER', 'bootstrap/scaffolding/');
+
+
+
+// reading the parameters from the command line
+if (count($argv) < 2) {
+    echo "Usage: php craft controller|model|view <controller_name> | <model_name> | <view_name>\n";
+    exit(1);
+}
+
+$action = $argv[1];
+
+$name = '';
+
+if(isset($argv[2])) {
+    $name = $argv[2];
+} else {
+    // prompting for the name
+    if ($action != 'server') {
+    echo "Enter the name for the $action: ";
+    } else {
+        echo "Enter the port for the server: ";
+    }
+    $name = trim(fgets(STDIN));
+    
+}
+
+// creating the files
+switch($action) {
+    case 'controller':
+
+        // creating the controller file
+
+        if(strpos($name, 'Controller') === false) {
+            $name = ucfirst($name) . 'Controller';
+        }
+
+        $controller_file = CONTROLLERS_FOLDER . $name . '.php';
+        $controller_content = file_get_contents(SCAFFOLDING_FOLDER . 'controller.tpl');
+        $controller_content = str_replace('{name}', $name, $controller_content);
+
+        // writting the file
+        file_put_contents($controller_file, $controller_content);
+
+        echo "Created $name $action at $controller_file";
+        break;
+    case 'model':
+
+        // creating the model file
+        $model_file = MODELS_FOLDER . ucfirst($name) . '.php';
+        $model_content = file_get_contents(SCAFFOLDING_FOLDER . 'model.tpl');
+        $model_content = str_replace('{name}', $name, $model_content);
+
+        // writting the file
+        file_put_contents($model_file, $model_content);
+
+        echo "Created $name $action at $model_file\n";
+
+        break;
+    case 'view':
+
+        // creating the view file
+        $view_file = VIEWS_FOLDER . $name . '.php';
+        $view_content = file_get_contents(SCAFFOLDING_FOLDER . 'view.tpl');
+
+        // writting the file
+        file_put_contents($view_file, $view_content);
+
+        echo "Created $name $action at $view_file\n";
+
+        break;
+    case 'server':
+        $h = '127.0.0.1';
+        $msg = 'Starting server on http://' . $h . ':' . $name;
+        echo "\n" . $msg . "\n";
+
+        $command = "php -S $h:$name";
+        passthru($command);
+        break;
+    default:
+        echo "Unknown action: $action\n";
+        break;
+}
