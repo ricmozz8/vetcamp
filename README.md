@@ -16,12 +16,11 @@ If you have a newer version you must allow the downgrade by using the following 
 choco install php --version=7.3 --allow-downgrade 
 ```
 ## Running the project
-If you wish to run the project on a Windows 
-machine, you may use [Laragon](https://laragon.org/download/) to run 
-the Apache, Mysql and PHP installations.
-
-Extract or clone this project under the `www/` folder before starting laragon. Once
-you've placed the project on the correct folder you can run laragon, and it will provide a custom URL via dnsmasq. Simply type on the browser `vetcamp_front.test`
+In order to run the project you may do so by using the craft command:
+```bash
+php craft server 8000
+```
+This will start a server on port 8000.
 
 ### Accessing the database
 First, in order to access the database, **you must
