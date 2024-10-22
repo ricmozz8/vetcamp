@@ -1,0 +1,25 @@
+<?php
+
+echo "[INFO] Running tests!\n" . str_repeat('-', 40) . "\n\n";
+
+
+require_once 'unit/Unit.php';
+
+$test_files = glob('unit/*.php');
+
+
+foreach ($test_files as $test_file) {
+    require_once $test_file;
+}
+
+foreach ($test_files as $test_file) {
+
+
+
+    $class_name = basename($test_file, '.php');
+
+    if(class_exists($class_name) && strpos ($class_name, 'Test') === 0) {
+        $test = new $class_name();
+        $test->start_test();
+    }
+}

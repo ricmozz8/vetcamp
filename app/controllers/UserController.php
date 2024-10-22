@@ -1,15 +1,19 @@
 <?php
-require 'Controller.php';
-require 'app/models/User.php';
-require __DIR__ . '/../../bootstrap/router.php';
+require_once 'Controller.php';
+require_once 'app/models/User.php';
+
 
 class UserController extends Controller{
 
-    // define your methods here
+    
+    /**
+     * Serves the index view.
+     *
+     * @return void
+     */
     public static function index() {
-        $users = User::all();
-        render_view('users', ['users' => $users]);
-
+        $users = User::find(1);
+        render_view('users', ['users' => $users] , 'Users');
     }
     
 }

@@ -1,9 +1,9 @@
 <?php
 define('ASSETS_FOLDER_ABSOLUTE', __DIR__ . 'resources/assets/');
 define('ASSETS_FOLDER', 'resources/assets/');
-
-
-define('WEB_RESOURCES_FOLDER', 'resources/views/');
+define('VIEWS_DIR', __DIR__ . '/../../resources/views/');
+define('WEB_RESOURCES_FOLDER', '/../../resources/views/');
+define('CONFIG', require('bootstrap/config.php'));
 
 /**
  * This is the helpers file, it will define some helper functions that need to be 
@@ -72,4 +72,77 @@ function web_resource(string $subdirectory): string {
   
 
     return $final_path;
+}
+
+
+/**
+ * Serves a view file.
+ *
+ * @param string $view The name of the view to serve. The .php extension
+ *                     should be omitted.
+ * @param array $data An associative array of variables to extract into the
+ *                    view file's scope.
+ */
+function render_view(string $view, array $data = [], string $title = ''): void {
+    // serves the view file
+
+    extract($data);
+    $page_title = get_config('app', 'name', '') . ' - ' . $title;
+    require VIEWS_DIR . $view . '.php';
+    exit;
+}
+
+/**
+ * Redirect to a given URL.
+ *
+ * The function uses the `header` function to send a Location header to the
+ * client, and then exits the script.
+ *
+ * @param string $url The URL to redirect to.
+ */
+function redirect(string $url) {
+    header('Location: ' . $url);
+    exit;
+}
+
+/**
+ * Dumps the given variables and ends the script.
+ *
+ * This function is useful for debugging purposes. It prints the contents
+ * of the given variables in a readable format using `var_dump`, then 
+ * terminates the script execution.
+ *
+ * @param mixed ...$args One or more variables to dump.
+ */
+function dd(...$args) {
+    echo '<pre style="font-size: 1.2em; background-color: black; color: white; padding: 15px">';
+    var_dump(...$args);
+    echo '</pre>';
+    die();
+}
+
+
+function abort(int $code, string $message = '') {
+    http_response_code($code);
+    render_view('error', ['code' => $code, 'message' => $message], 'Error ' . $code);
+    die();
+}
+
+
+/**
+ * Retrieves a configuration value from the CONFIG array.
+ *
+ * This function accesses the CONFIG array using the specified type and title
+ * to retrieve a configuration value. If the value is not found, the provided
+ * default value is returned.
+ *
+ * @param string $type The category or section of the configuration.
+ * @param string $title The specific configuration key within the category.
+ * @param string|null $default The default value to return if the configuration
+ *                             value is not found. Defaults to null.
+ * 
+ * @return mixed The configuration value or the default value if not found.
+ */
+function get_config(string $type, string $title, string $default = null) {
+    return CONFIG[$type][$title] ?? $default;
 }

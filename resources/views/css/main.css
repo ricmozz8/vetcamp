@@ -9,6 +9,7 @@
 */
 
 @import url('home.css');
+@import url('generics.css');
 
 
 :root {
@@ -63,12 +64,10 @@
     margin: 0;
     padding: 0;
     font-family: var(--text-font);
-    font-size: var(--font-size-md);
     font-weight: var(--font-weight-regular);
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--display-font-family);
-    font-weight: 600;
-    letter-spacing: -.2vw;
+
 }

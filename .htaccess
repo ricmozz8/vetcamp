@@ -9,7 +9,7 @@ RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
     RewriteEngine On
 
     # Deny access to the storage and tests directories
-    RewriteRule ^(storage|tests)/ - [F,L]
+    RewriteRule ^(storage|tests|bootstrap)/ - [F,L]
 
     # Deny access for files (autocode.php and .env)
     RewriteRule ^.*\.(env)$ - [F,L]

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 
  * This is the handy code generator for 
@@ -26,6 +27,7 @@ if (php_sapi_name() !== 'cli') {
 define('CONTROLLERS_FOLDER', 'app/controllers/');
 define('MODELS_FOLDER', 'app/models/');
 define('VIEWS_FOLDER', 'resources/views/');
+define('TESTS_FOLDER', 'tests/unit/');
 define('SCAFFOLDING_FOLDER', 'bootstrap/scaffolding/');
 
 
@@ -40,26 +42,26 @@ $action = $argv[1];
 
 $name = '';
 
-if(isset($argv[2])) {
+if (isset($argv[2])) {
     $name = $argv[2];
 } else {
     // prompting for the name
     if ($action != 'server') {
-    echo "Enter the name for the $action: ";
+        echo "Enter the name for the $action: ";
+        $name = trim(fgets(STDIN));
+
     } else {
-        echo "Enter the port for the server: ";
+        $name = 8000;
     }
-    $name = trim(fgets(STDIN));
-    
 }
 
 // creating the files
-switch($action) {
+switch ($action) {
     case 'controller':
 
         // creating the controller file
 
-        if(strpos($name, 'Controller') === false) {
+        if (strpos(strtolower($name), 'controller') === false) {
             $name = ucfirst($name) . 'Controller';
         }
 
@@ -108,4 +110,17 @@ switch($action) {
     default:
         echo "Unknown action: $action\n";
         break;
+    
+    case 'test':
+        // creating the test file
+        $test_file = TESTS_FOLDER . ucfirst($name) . '.php';
+        $test_content = file_get_contents(SCAFFOLDING_FOLDER . 'test.tpl');
+        $test_content = str_replace('{name}', $name, $test_content);
+
+        // writting the file
+        file_put_contents($test_file, $test_content);
+
+        echo "Created $name $action at $test_file\n";
+        break;
+
 }

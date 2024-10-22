@@ -8,9 +8,7 @@
     animation: breathe 8s infinite;
 }
 
-body{
-  background-color: var(--secondary-color-default);
-}
+
 
 .content_undconst {
   
@@ -28,6 +26,8 @@ body{
 
   h1 {
     font-size: 6vw;
+    font-weight: 400;
+    letter-spacing: -1.5px;
   }
   p{
     font-size: 1rem;
@@ -42,7 +42,7 @@ body{
     margin: 1rem auto;
 }
 
-a{
+a, .main-action-bright{
     position: relative;
     top: 0px;
     padding: 15px 20px;
@@ -58,7 +58,7 @@ a{
     transition: all .25s ease;
 }
 
-a:hover{
+a:hover, .main-action-bright:hover{
     top: -5px;
     box-shadow: none;
     background-color: var(--white-color-shade-1);

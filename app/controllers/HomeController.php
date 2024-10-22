@@ -1,7 +1,7 @@
 <?php
 require_once 'Controller.php';
 
-class {name} extends Controller
+class HomeController extends Controller
 {
 
     /**
@@ -13,7 +13,7 @@ class {name} extends Controller
     public static function index()
     {
         // your index view here
-
+        render_view('home', [], 'Home');
     }
 
     // define your other methods here

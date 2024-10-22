@@ -1,5 +1,5 @@
 <?php
-require 'Model.php';
+require_once 'Model.php';
 
 class {name} extends Model{
 

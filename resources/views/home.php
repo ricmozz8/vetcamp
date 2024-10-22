@@ -4,7 +4,7 @@
 require __DIR__ . '/partials/header.php';
 ?>
 
-<body>
+<body style="background-color: var(--secondary-color-default);">
 
     <div class="header_undconst">
         <div class="content_undconst">
