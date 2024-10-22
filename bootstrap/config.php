@@ -8,7 +8,7 @@ return [
         'port' => 3306,
         'dbname' => 'vetcampdb',
         'user' => 'root',
-        'pass' => '',
+        'pass' => 'root', // change the password to your own (default is empty)
     ],
     'app' => [
 

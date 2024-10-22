@@ -36,7 +36,7 @@ class Model
      */
     private static function init()
     {
-        DB::connect(CONFIG['database']);
+        DB::connect(CONFIG['database'], CONFIG['database']['user'], CONFIG['database']['pass']);
 
         if (self::$initialized) {
             return;
