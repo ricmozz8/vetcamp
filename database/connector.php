@@ -139,7 +139,9 @@ final class DB
         // Prepare the SQL statement
         $columns = implode(", ", array_keys($data));
         $placeholders = ":" . implode(", :", array_keys($data));
-        $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+        $sql = "INSERT IF NOT EXISTS INTO $table ($columns) VALUES ($placeholders)";
+
+        ;
 
         try {
             $stmt = self::$database->prepare($sql);
@@ -148,6 +150,8 @@ final class DB
             foreach ($data as $key => $value) {
                 $stmt->bindValue(":$key", $value);
             }
+
+            dd($stmt);
 
             // Execute the statement
             return $stmt->execute();

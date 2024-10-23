@@ -9,6 +9,7 @@
 */
 
 @import url('home.css');
+@import url('components.css');
 @import url('generics.css');
 
 
@@ -43,14 +44,19 @@
     --secondary-color-shade-2: #666666;
     --secondary-color-shade-3: #999999;
 
+   
+
     --white-color: #f5f5f5;
     --white-color-shade-1: #dadada;
     --white-color-shade-2: #c0c0c0;
     --white-color-shade-3: #b6b6b6;
     
-
+    /* Shadows */
     --shadow-soft: 0px 3px 10px rgba(0, 0, 0, 0.253);
     --shadow-hard: 0px 6px 15px rgba(0, 0, 0, 0.425);
+
+    /* margins */
+    --main-margin: 4rem;
 
 
 }

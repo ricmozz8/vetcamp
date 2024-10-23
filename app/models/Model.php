@@ -81,10 +81,13 @@ class Model
      *               column, and the value is the value of that column in the
      *               database.
      */
-    public static function findAll(int $id, string $column = null) : array {
+    public static function findAll(int $id, string $column = null) : Model {
         self::init();
 
-        return DB::whereAll(static::$table, $column ?? static::$primary_key, $id);
+        $data = DB::whereAll(static::$table, $column ?? static::$primary_key, $id);
+
+        return new Model($data, self::sanitize($data));
+
     }
 
     /**
@@ -94,8 +97,7 @@ class Model
      * @param string|int $id The value to match in the specified column.
      * @param string $column The column to use for matching the value. Defaults to 'id'.
      *
-     * @return array An associative array where the keys are the column names and
-     *               the values are the values of the columns in the database.
+     * @return Model An instance of the model class.
      */
     public static function find(int $id, string $column = null) : Model {
         self::init();
@@ -170,7 +172,7 @@ class Model
      */
     public function store() : bool
     {   
-        throw new NotImplementedException('create method not implemented');
+        return DB::insert(static::$table, $this->attributes);
     }
 
     /**

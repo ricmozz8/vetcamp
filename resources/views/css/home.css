@@ -1,104 +1,135 @@
-/* This is the style for the home.php page */
 
-.header_undconst{
-    background-color: var(--main-color-default);
-    padding: 3rem;
-    margin-top: 15vh;
-
-    animation: breathe 8s infinite;
-}
-
-
-
-.content_undconst {
-  
-  font-weight: 700;
-  color: var(--color-1);
-  text-align: center;
-  width: fit-content;
-  margin: auto;
-
-
-  img{
-    width: 100px;
-    height: 100px
-  }
-
-  h1 {
-    font-size: 6vw;
-    font-weight: 400;
-    letter-spacing: -1.5px;
-  }
-  p{
-    font-size: 1rem;
-  }
-}
-
-.dev_resources{
-    display: flex;
-
-    width: fit-content;
-    gap: 15px;
-    margin: 1rem auto;
-}
-
-a, .main-action-bright{
+/* Navbar Section */
+.navbar {
     position: relative;
-    top: 0px;
-    padding: 15px 20px;
-    border-radius: 28px;
-    background-color: var(--white-color);
-    color: var(--secondary-color-default);
-    box-shadow: var(--shadow-soft);
-    font-weight: 300;
-    border: 1px solid var(--secondary-color-default);
-    border-bottom: 4px solid var(--secondary-color-default);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all .25s ease;
+    margin: auto;
+    text-align: center;
+    padding: 1em;
+    background-color: var(--main-color-default);
+
 }
 
-a:hover, .main-action-bright:hover{
-    top: -5px;
-    box-shadow: none;
-    background-color: var(--white-color-shade-1);
-}
-
-
-.logo{
+.navbar .logotype{
+    width: 10rem;
     cursor: pointer;
-    border-radius: 50rem;
-    transition: all .25s ease-in-out;
 }
 
-
-.logo:hover{
-    transform: scale(1.1);
-    animation: __rot_easter_egg 1s infinite;
+/* Hero Section */
+.hero{
+    padding: 23vh 3em;
+    background-color: var(--main-color-default);
+    text-align: center;
+    background-image: url(../../assets/img/doggo_png.png);
+    background-repeat: no-repeat;
+    background-size: 80vh;
+    background-position: left;
 }
 
-@keyframes __rot_easter_egg {
-    0% {
-        transform: rotate(0deg); /* Start at 0 degrees */
-        
-    }
+.hero h1{
+    font-size: 3.3em;
+    font-weight: 600;
+    letter-spacing: -2px;
+    line-height: 1em;
+    max-width: 600px;
+    margin:  1em auto;
+    color: var(--white-color);
+    text-shadow: var(--shadow-hard);
 
-    100% {
-        transform: rotate(360deg); /* End at 360 degrees */
-    }
-    
 }
 
-@keyframes breathe {
-    0%{
-        box-shadow: 0px 10px 10px var(--main-color-default);
-    }
+.hero a{
+    width: fit-content;
+    text-align: center;
+    margin: auto;
+}
 
-    50%{
-        box-shadow: 0px 10px 100px var(--main-color-default);
-    }
+/* Informational First Section */
 
-    100%{
-        box-shadow: 0px 10px 10px var(--main-color-default);
-    }
+.splitted-header{
+    padding: var(--main-margin);
+    display: block;
+    text-align: center;
+}
+
+.splitted-header h3{
+    font-size: 1.6em;
+    font-weight: 700;
+}
+
+.splitted-header p{
+    margin: 1em auto;
+}
+
+/* Objectives Section */
+
+.objectives-carroussel{
+    background-color: var(--secondary-color-default);
+    color: var(--white-color);
+    padding: 1rem;
+
+}
+
+.carroussel{
+    display: flex;
+    gap: 1em;
+    max-width: 120%;
+    margin-bottom: 1em;
+    overflow-x: scroll;
+    padding: 2rem;
+}
+
+.carroussel img{
+    width: 100% ;
+    border-radius: 7px;
+}
+
+.objectives{
+    padding: var(--main-margin);
+}
+
+.objectives h3{
+    font-size: 1.6em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.objectives ul{
+    list-style-type: none;
+}
+
+.objectives ul li{
+    margin: 15px 0;
+    text-align: center;
+}
+
+.objectives ul li::before{
+    content: '- ';
+
+}
+
+/* sections */
+
+.block{
+    display: block;
+}
+
+.section-block{
+    padding: 1rem;
+}
+
+.shade-1{
+    background-color: var(--main-color-default);
+}
+.shade-2{
+    background-color: var(--main-color-shade-1);
+}
+.shade-3{
+    background-color: var(--main-color-shade-2);
+}
+.shade-4{
+    background-color: var(--main-color-shade-3);
+}
+
+.min-margin{
+    margin: 1rem;
 }
