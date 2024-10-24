@@ -9,6 +9,7 @@ error_reporting(E_ALL);
 // GLOBAL IMPORTS REQUIRED IN ALL FILES
 require 'app/helpers/helpers.php';
 require 'bootstrap/exceptions.php';
+require 'kernel/auth.php';
 
 
 
