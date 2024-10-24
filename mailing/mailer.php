@@ -7,13 +7,13 @@
 class Mailer{
 
     // attributes
-    private $mailer;
-    private $host ;
-    private $port;
-    private $username;
-    private $password;
-    private $from;
-    private $to;
+    private static $mailer;
+    private static $host ;
+    private static $port;
+    private static $username;
+    private static $password;
+    private static $from;
+    private static $to;
 
 
 
