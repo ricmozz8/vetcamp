@@ -10,6 +10,7 @@ error_reporting(E_ALL);
 require 'app/helpers/helpers.php';
 require 'bootstrap/exceptions.php';
 require 'kernel/auth.php';
+require 'mailing/mailer.php';
 
 
 
