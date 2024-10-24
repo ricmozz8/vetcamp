@@ -1,23 +1,22 @@
 RewriteEngine On
 
-# Redirect all requests to index.php
+# Deny access to the storage and tests directories
+RewriteRule ^(storage|tests|bootstrap)/ - [F,L]
+
+# Deny access for files (autocode.php and .env)
+RewriteRule ^.*\.(env)$ - [F,L]
+
+# Redirect all requests to index.php if the requested file or directory does not exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
 
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-
-    # Deny access to the storage and tests directories
-    RewriteRule ^(storage|tests|bootstrap)/ - [F,L]
-
-    # Deny access for files (autocode.php and .env)
-    RewriteRule ^.*\.(env)$ - [F,L]
-
-</IfModule>
+# If the requested file or directory does not exist, return a 404 error
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ - [R=404,L]
 
 <Files "craft">
     Order Allow,Deny
     Deny from all
 </Files>
-
