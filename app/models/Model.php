@@ -106,18 +106,21 @@ class Model
         return new static($data, self::sanitize($data));
     }
 
+  
     /**
-     * Inserts a new record into the associated table.
+     * Creates a new model and saves it to the database.
      *
-     * @param array $data The data to be inserted, where the keys are the column
-     *                    names and the values are the values of the columns.
+     * @param array $data The data to create the model with.
      *
-     * @return bool Returns true if the record was successfully inserted, otherwise
-     *              false.
+     * @return Model The newly created model instance.
      */
-    public static function create(array $data) : bool
+    public static function create(array $data) : Model
     {
-        return DB::insert(static::$table, $data);
+        $newModel = new static($data, self::sanitize($data));
+        $newModel->save();
+
+        return $newModel;
+        
     }
 
     
