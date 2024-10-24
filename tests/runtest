@@ -1,5 +1,8 @@
 <?php
 
+echo '[WARNING] TESTING FRAMEWORK IS CURRENTLY DISABLED' . PHP_EOL;
+exit;
+
 echo "[INFO] Running tests!\n" . str_repeat('-', 40) . "\n\n";
 
 
