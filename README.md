@@ -1,4 +1,8 @@
-# Vetcamp Front (Front end Side for the platform)
+<img src="resources/assets/logo/PNG/vetcamp_full_hoz_w.png" style="width: 100%; margin: auto; text-align: center"/>
+
+<br>
+
+# Vetcamp Platform
 Implementation for the new platform.
 ## Requirements
 It is important that you are not running any version higher than the `7.3.33` php version

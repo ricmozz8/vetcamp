@@ -11,6 +11,13 @@ class Auth
      * @param array $user The user to be logged in
      */
     public static function login($user){
+
+        // if trying to login with a user that is already logged in
+        if(isset($_SESSION['user'])) return;
+
+
+        session_start();
+
         $_SESSION['user'] = $user;
         self::$user = $user;
     }
@@ -19,6 +26,10 @@ class Auth
      * Unset the user as logged in, and remove it from the session
      */
     public static function logout(){
+
+        // if trying to logout when not logged in
+        if (!isset($_SESSION['user'])) return;
+        session_abort();
         unset($_SESSION['user']);
         self::$user = null;
     }
