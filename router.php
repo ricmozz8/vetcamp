@@ -25,6 +25,9 @@ switch ($request) {
     case '/users':
         UserController::index();
         break;
+    case '/users/all':
+        UserController::all();
+        break;
     case '/users/update':
         UserController::update();
         break;

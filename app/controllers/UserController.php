@@ -18,6 +18,11 @@ class UserController extends Controller{
         render_view('users', ['user' => $userObject] , 'Users');
     }
 
+    public static function all() {
+        $users = User::all();
+        dd($users);
+    }
+
     public static function update()
     {
         $userObject = User::find(1);

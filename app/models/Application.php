@@ -5,6 +5,6 @@ class Application extends Model{
 
     // define your methods here
 
-    protected static $primary_key = 'id_solicitud';
-    protected static $table = 'solicitud';
+    protected static $primary_key = 'application_id';
+    protected static $table = 'applications';
 }
