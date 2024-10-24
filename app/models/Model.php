@@ -117,7 +117,7 @@ class Model
      */
     public static function create(array $data) : bool
     {
-        throw new NotImplementedException('create method not implemented');
+        return DB::insert(static::$table, $data);
     }
 
     
@@ -135,6 +135,7 @@ class Model
         }
 
         $this->attributes[$attribute] = $value;
+        $this->values[$attribute] = $value;
 
         return true;
     }
@@ -161,42 +162,11 @@ class Model
 
             $this->set($key, $value);
         }
-        
+
+        $this->save();
+    
         return true;
         
-    }
-
-
-    /**
-     * Gets a related model from the database.
-     *
-     * This method uses the static `find` method of the given model to
-     * retrieve the related model from the database. The method will
-     * look for a column in the current model with the name of the given
-     * model or the table name of the model with 'id_' prepended. If
-     * the column does not exist, the method will look for a column with
-     * the name of the given model. If that column also does not exist,
-     * the method will throw an Error exception.
-     *
-     * @param mixed $model The model class or an instance of it to retrieve.
-     * @param mixed $id The value of the column to match in the WHERE clause.
-     *                   If not provided, the method will look for a column with
-     *                   the name of the given model or the table name of the model
-     *                   with 'id_' prepended.
-     *
-     * @return mixed The related model instance.
-     *
-     * @throws Error If the column does not exist in the current model.
-     */
-    public function has_one($model, $id = null)
-    {
-        $relation_value = $model::find($id ?? 'id_' . static::$table);
-
-        $model_name = get_class($model);
-
-        $this->attributes[$model_name] = $relation_value->values;
-
-        return $this;
     }
 
 
@@ -205,9 +175,9 @@ class Model
      *
      * @return bool Returns true if the record was successfully inserted, otherwise false.
      */
-    public function store() : bool
+    public function save() : bool
     {   
-        return DB::insert(static::$table, $this->attributes);
+        return DB::update(static::$table, $this->values, static::$primary_key, $this->attributes[static::$primary_key]);
     }
 
     /**

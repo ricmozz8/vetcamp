@@ -17,5 +17,15 @@ class UserController extends Controller{
 
         render_view('users', ['user' => $userObject] , 'Users');
     }
+
+    public static function update()
+    {
+        $userObject = User::find(1);
+
+        // $userObject->update(['primer_nombre' => 'Aoaoe Ie Ueaoe']);
+
+        dd($userObject);
+
+    }
     
 }

@@ -121,7 +121,7 @@ final class DB
         if (is_array($results)) {
             return $results;
         }
-        
+
         return [];
     }
 
@@ -192,24 +192,36 @@ final class DB
 
         // Prepare the SQL statement
         $columns = implode(", ", array_keys($data));
-        $placeholders = ":" . implode(", :", array_keys($data));
-        $sql = "UPDATE $table SET $columns = $placeholders WHERE $where = $equal";
+        $values = ":" . implode(", ", array_values($data));
+      
+        $sql = "UPDATE $table SET";
 
-        dd($sql);
+        foreach ($data as $key => $value) {
+            
+            $sql .= " $key = :$key, ";
+        }
 
+        $sql = substr($sql, 0, -2);
+        $where = " WHERE $where = $equal";
+        $sql .= $where;
+
+        
         try {
             $stmt = self::$database->prepare($sql);
 
             // Bind the values to the placeholders
             foreach ($data as $key => $value) {
-                $stmt->bindValue(":$key", $value);
+
+                // placing the adequate filter:
+                $pdo_param = is_numeric($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+                $stmt->bindValue(":$key", $value, $pdo_param);
             }
 
             // Execute the statement
             return $stmt->execute();
         } catch (PDOException $e) {
             // Handle the exception (you can log it or display a message)
-            error_log($e->getMessage());
+            echo($e->getMessage());
             return false;
         }
     }

@@ -18,19 +18,27 @@ $method = $_SERVER['REQUEST_METHOD'];
 // Define your views/urls here
 switch ($request) {
 
-    // GET VIEWS
+    // GET FRONT VIEWS
     case '/':
         HomeController::index();
         break;
     case '/users':
         UserController::index();
         break;
+    case '/users/update':
+        UserController::update();
+        break;
+
+
+    // POST FRONT VIEWS
+
+
+
+    // GET BACK VIEWS
+    case '/admin':
+        echo 'WORK IN PROGRESS';
+        break;
     default:
         abort(404, 'Page was not found');
         break;
-
-    // POST VIEWS
-
-
 }
-
