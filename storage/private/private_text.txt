@@ -1,0 +1,2 @@
+this should be hidden from common users 
+(Make sure the view that shows these files are under Auth)
