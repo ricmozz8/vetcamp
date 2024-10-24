@@ -9,13 +9,17 @@ require __DIR__ . '/partials/header.php';
     <h1 style="font-size: 6em;">Users</h1>
     <?php
    
-    echo "<ul>";
-    foreach($users as $columns){
-        foreach($columns as $k => $v){
-            echo "<li>$k: $v</li>";
-        }
-        echo "<hr>";
-    }
+    // echo "<ul>";
+    // echo "User name: " . $user['primer_nombre']  . " " . $user['apellidos'] . "<br>";
+    // echo "User email: " . $user['correo'] . "<br>";
+    // echo "User phone: " . format_phone($user['telefono']) . "<br>";
+    // echo "Registered on: " . $user['fecha_registro'] . "<br>";
+
+
+    $application = $user->application();
+
+    dd($application);
+    echo "</ul>";
     
     ?>
 </body>

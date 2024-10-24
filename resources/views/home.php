@@ -5,6 +5,9 @@ require __DIR__ . '/partials/header.php';
 ?>
 
 <body>
+    <div class="top-lbl">
+        <p style="font-weight: bold;">DO NOT SHOW TO STAKEHOLDERS | WEBSITE UNDER CONSTRUCTION</p>
+    </div>
     <header class="navbar">
         <img class="logotype" src="<?= asset('logo/SVG/vetcamp_full_hoz_b.svg') ?>" alt="Vetcamp Logo">
     </header>

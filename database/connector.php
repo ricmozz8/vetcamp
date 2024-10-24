@@ -116,7 +116,13 @@ final class DB
 
         $statement = self::$database->prepare($sql);
         $statement->execute();
-        return $statement->fetch();
+        $results = $statement->fetch();
+
+        if (is_array($results)) {
+            return $results;
+        }
+        
+        return [];
     }
 
     /**
@@ -252,6 +258,42 @@ final class DB
 
         $statement->execute();
         return array_column($statement->fetchAll(PDO::FETCH_ASSOC), 'Field');
+    }
+
+
+    /**
+     * Executes an SQL query and returns true if the query affected at least one row.
+     *
+     * @param string $sql The SQL query to execute.
+     * @param array $data The data to bind to the query.
+     *
+     * @return bool Returns true if the query affected at least one row, otherwise false.
+     */
+    public static function execute(string $sql, array $data = null): bool
+    {
+        $statement = self::$database->prepare($sql);
+        $statement->execute($data);
+        return $statement->rowCount() > 0;
+    }
+
+    /**
+     * Executes an SQL query and returns the results as an array of associative arrays.
+     *
+     * This method is similar to {@see execute}, but instead of returning a boolean
+     * indicating whether the query affected at least one row, it returns the results
+     * of the query as an array of associative arrays, where each key is the name of
+     * a column, and the value is the value of that column in the database.
+     *
+     * @param string $sql The SQL query to execute.
+     * @param array $data The data to bind to the query.
+     *
+     * @return array The results of the query as an array of associative arrays.
+     */
+    public static function execute_and_fetch(string $sql, array $data = null): array
+    {
+        $statement = self::$database->prepare($sql);
+        $statement->execute($data);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
 

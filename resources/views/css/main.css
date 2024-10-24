@@ -77,3 +77,13 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--display-font-family);
 
 }
+
+.top-lbl{
+    padding: 5px; 
+    text-align: center; 
+    position: sticky; 
+    top: 0; 
+    background-color: var(--main-color-default); 
+    box-shadow: var(--shadow-hard);
+     z-index: 3;
+}

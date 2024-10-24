@@ -10,6 +10,17 @@ define('CONFIG', require('bootstrap/config.php'));
  * used on the entire website. Only define here GLOBAL functions.
 */
 
+/**
+ * Format a given phone number string into the format XXX-XXX-XXXX.
+ *
+ * @param string $phone The phone number string without any separators.
+ * @return string The formatted phone number.
+ */
+function format_phone(string $phone): string {
+    return substr($phone, 0, 3) . '-' . substr($phone, 3, 3) . '-' . substr($phone, 6, 4);
+}
+
+
 
 /**
  * This function will return a valid path for the assets

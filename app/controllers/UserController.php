@@ -12,9 +12,10 @@ class UserController extends Controller{
      * @return void
      */
     public static function index() {
-        $user = User::find(1);
+        $userObject = User::find(3);
+        
 
-        render_view('users', ['users' => $user] , 'Users');
+        render_view('users', ['user' => $userObject] , 'Users');
     }
     
 }

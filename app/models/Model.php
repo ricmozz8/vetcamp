@@ -6,7 +6,7 @@ require_once __DIR__ . '/../../database/connector.php';
 class Model
 {
     protected static $table;
-    private $attributes = [];
+    protected $attributes = [];
     public $values = [];
     private static $initialized = false;
 
@@ -20,7 +20,7 @@ class Model
      *
      * @return void
      */
-    public function __construct(array $attributes, array $sanitized){
+    protected function __construct(array $attributes, array $sanitized){
         self::init();
         self::set_attributes($attributes);
         $this->values = $sanitized;
@@ -62,7 +62,7 @@ class Model
 
         $model_list = [];
         foreach(DB::select(static::$table, '*') as $model) {
-            $model_list[] = new Model($model, self::sanitize($model));
+            $model_list[] = new static($model, self::sanitize($model));
         }
 
         return $model_list;
@@ -86,7 +86,7 @@ class Model
 
         $data = DB::whereAll(static::$table, $column ?? static::$primary_key, $id);
 
-        return new Model($data, self::sanitize($data));
+        return new static($data, self::sanitize($data));
 
     }
 
@@ -101,8 +101,9 @@ class Model
      */
     public static function find(int $id, string $column = null) : Model {
         self::init();
+
         $data = DB::where(static::$table, $column ?? static::$primary_key, $id);
-        return new Model($data, self::sanitize($data));
+        return new static($data, self::sanitize($data));
     }
 
     /**
@@ -164,6 +165,40 @@ class Model
         return true;
         
     }
+
+
+    /**
+     * Gets a related model from the database.
+     *
+     * This method uses the static `find` method of the given model to
+     * retrieve the related model from the database. The method will
+     * look for a column in the current model with the name of the given
+     * model or the table name of the model with 'id_' prepended. If
+     * the column does not exist, the method will look for a column with
+     * the name of the given model. If that column also does not exist,
+     * the method will throw an Error exception.
+     *
+     * @param mixed $model The model class or an instance of it to retrieve.
+     * @param mixed $id The value of the column to match in the WHERE clause.
+     *                   If not provided, the method will look for a column with
+     *                   the name of the given model or the table name of the model
+     *                   with 'id_' prepended.
+     *
+     * @return mixed The related model instance.
+     *
+     * @throws Error If the column does not exist in the current model.
+     */
+    public function has_one($model, $id = null)
+    {
+        $relation_value = $model::find($id ?? 'id_' . static::$table);
+
+        $model_name = get_class($model);
+
+        $this->attributes[$model_name] = $relation_value->values;
+
+        return $this;
+    }
+
 
     /**
      * Inserts a new record into the associated table using the current model attributes.
