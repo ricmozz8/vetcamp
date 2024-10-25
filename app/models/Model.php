@@ -68,7 +68,13 @@ class Model
         return $model_list;
     }
 
-
+     /**
+     * Returns sttributes by key (getter function)
+     */
+    public function __get($key)
+    {
+        return $this->attributes[$key] ?? null; // Retorna el atributo o null si no existe
+    }
 
 
     /**
