@@ -6,9 +6,9 @@ require_once __DIR__ . '/partials/header.php';
 
 
 
-<body class="error-body">
+<body>
 
-    <div class="error-box">
+    <div class="error-box by-engine">
         <h1><?= $exception_name ?></h1>
         <p class="error-message"><?= $exception_message ?></p>
 
@@ -24,22 +24,21 @@ require_once __DIR__ . '/partials/header.php';
             <br>
 
             <div class="trace">
-
                 <div class="trace-files">
                     <?php
                     foreach ($exception_trace as $trace) {
-                        echo '<div class="error-trace-file">' . $trace . '</div>';
+                        echo '<div class="error-trace-file">' . $trace['file'] . '</div>';
                     }
                     ?>
                 </div>
-<!-- 
+
                 <div class="file-contents">
                     <?php
                     foreach ($exception_trace as $trace) {
-                        echo '<div class="error-trace-file">' . $trace . '</div>';
+                        echo '<div class="error-trace-line"> Line ' . $trace['line'] . '</div>';
                     }
                     ?>
-                </div> -->
+                </div>
 
             </div>
 

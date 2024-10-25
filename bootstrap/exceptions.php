@@ -36,10 +36,6 @@ function exceptionHandler( $exception) {
    $exception_file = $exception->getFile();
    $exception_line = $exception->getLine();
 
-   $exception_trace_files = [];
-   foreach ($exception_trace as $trace) {
-       $exception_trace_files[] = $trace['file'];
-   }
 
    // getting the file contents to show at the view
 
@@ -50,7 +46,7 @@ function exceptionHandler( $exception) {
    render_view('crash', [
         'exception_name' => $exception_name, 
         'exception_message' => $exception_message,
-        'exception_trace' => $exception_trace_files,
+        'exception_trace' => $exception_trace,
         'exception_file' => $exception_file,
         'exception_line' => $exception_line,
 

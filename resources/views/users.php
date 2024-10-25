@@ -15,8 +15,12 @@ require __DIR__ . '/partials/header.php';
     // echo "User phone: " . format_phone($user['telefono']) . "<br>";
     // echo "Registered on: " . $user['fecha_registro'] . "<br>";
 
-
-    $application = $user->application();
+    if($user)
+    {
+        $application = $user->application();
+    } else {
+        $application = null;
+    }
 
     dd($application);
     echo "</ul>";

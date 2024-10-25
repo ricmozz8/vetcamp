@@ -12,7 +12,12 @@ class UserController extends Controller{
      * @return void
      */
     public static function index() {
-        $userObject = User::find(1);
+        try{
+            $userObject = User::find(1);
+        } catch (ModelNotFoundException $notFound) {
+            // handle here when the user is not found
+            $userObject = null;
+        }
         
 
         render_view('users', ['user' => $userObject] , 'Users');
@@ -25,11 +30,15 @@ class UserController extends Controller{
 
     public static function update()
     {
-        $userObject = User::find(1);
+        try{
+            $userObject = User::find(1);
+        }  catch (ModelNotFoundException $notFound) {
+            // handle here when the user is not found
+            $userObject = null;
+        }
 
         // $userObject->update(['primer_nombre' => 'Aoaoe Ie Ueaoe']);
-
-        dd($userObject);
+        echo json_encode($userObject);
 
     }
     

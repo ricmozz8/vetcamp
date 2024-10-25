@@ -16,7 +16,13 @@
     color: rgb(198, 203, 228);
     background-color: rgb(54, 22, 22);
     font-family: var(--text-font);
-    
+    transition: all .25s ease;
+}
+
+.error-box:hover{
+    box-shadow: 0px 10px 50px rgba(87, 16, 16, 1);
+    background-color: rgb(74, 34, 34);
+    transform: scale(1.05);
 }
 
 .error-box *{
@@ -80,8 +86,20 @@
     font-size: 1.2em;
     padding: 10px 4px;
     cursor: pointer;
+    font-family: monospace;
 }
 
 .error-trace-file:hover{
     background-color: rgb(32, 18, 18);
+}
+
+.error-trace-line{
+
+    border-radius: 5px;
+    color: rgb(198, 203, 228);
+    margin: 5px;
+    font-size: 1.2em;
+    padding: 10px 4px;
+    cursor: pointer;
+    font-family: monospace;
 }
