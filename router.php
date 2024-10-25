@@ -32,6 +32,9 @@ switch ($request) {
         UserController::update();
         break;
 
+    case '/exception':
+        require VIEWS_DIR . $view . '.php';
+
 
     // POST FRONT VIEWS
 

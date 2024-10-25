@@ -70,40 +70,56 @@ class Model
 
 
 
+
     /**
      * Returns all records from the associated table where the specified column
      * matches the given value.
      *
-     * @param string|int $id The value to match in the database.
-     * @param string $column The column to use in the WHERE clause.
+     * @param int $id The value to match in the database.
+     * @param string|null $column The column to use in the WHERE clause. If not
+     *                            specified, the primary key column is used.
      *
-     * @return array An array of associative arrays, where each key is the name of a
-     *               column, and the value is the value of that column in the
-     *               database.
+     * @return Model An instance of the Model class containing the matching records.
+     *
+     * @throws ModelNotFoundException If no records are found with the specified id.
      */
     public static function findAll(int $id, string $column = null) : Model {
         self::init();
 
         $data = DB::whereAll(static::$table, $column ?? static::$primary_key, $id);
 
-        return new static($data, self::sanitize($data));
+        if (empty($data)) {
+            throw new ModelNotFoundException('There is no record with the id given:  ' . $id);
+        } else {
+            return new static($data, self::sanitize($data));
+        }
+        
 
     }
 
+
     /**
-     * Returns the record from the associated table where the specified column
-     * matches the given value.
+     * Returns a single record from the associated table where the specified
+     * column matches the given value.
      *
-     * @param string|int $id The value to match in the specified column.
-     * @param string $column The column to use for matching the value. Defaults to 'id'.
+     * @param int $id The value to match in the database.
+     * @param string $column The column to use in the WHERE clause.
      *
-     * @return Model An instance of the model class.
+     * @return Model The model instance with the matching record.
+     *
+     * @throws ModelNotFoundException If the record is not found.
      */
     public static function find(int $id, string $column = null) : Model {
         self::init();
 
         $data = DB::where(static::$table, $column ?? static::$primary_key, $id);
-        return new static($data, self::sanitize($data));
+
+        if (empty($data)) {
+            throw new ModelNotFoundException('There is no record with the id given: ' . $id);
+        } else {
+            return new static($data, self::sanitize($data));
+        }
+  
     }
 
   
