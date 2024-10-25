@@ -43,6 +43,7 @@ return [
     'app' => [
 
         'name' => 'Vetcamp',
+        'debug' => true,
     ],
     'mailer' => [
         'mail_mailer'=>'smtp',

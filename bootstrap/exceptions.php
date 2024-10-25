@@ -20,6 +20,15 @@ class ModelNotFoundException extends Exception
 
 // handling exceptions and adding a style
 function exceptionHandler( $exception) {
+
+    $is_prod = (bool) get_config('app', 'debug');
+
+    if (!$is_prod) {    
+        // return error 500 
+        http_response_code(500);
+        die();
+    }
+
     // Stylize the error message
    $exception_name = get_class($exception);
    $exception_message = $exception->getMessage();
