@@ -19,7 +19,7 @@ class ModelNotFoundException extends Exception
 }
 
 // handling exceptions and adding a style
-function exceptionHandler(Exception $exception) {
+function exceptionHandler( $exception) {
     // Stylize the error message
    $exception_name = get_class($exception);
    $exception_message = $exception->getMessage();
