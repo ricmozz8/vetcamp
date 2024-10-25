@@ -16,13 +16,13 @@
 
 /* Hero Section */
 .hero{
-    padding: 23vh 3em;
+    padding: 50% 2em;
     background-color: var(--main-color-default);
     text-align: center;
     background-image: url(../../assets/img/doggo_png.png);
     background-repeat: no-repeat;
     background-size: 80vh;
-    background-position: left;
+    background-position: bottom;
 }
 
 .hero h1{
@@ -78,9 +78,45 @@
     padding: 2rem;
 }
 
+.carroussel::-webkit-scrollbar{
+    display: none;
+}
+
 .carroussel img{
     width: 100% ;
     border-radius: 7px;
+}
+
+.carrousel-actions{
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    margin: 1em auto;
+}
+
+.c-action{
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: var(--white-color);
+    color: var(--secondary-color-default);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5em;
+    text-align: center;
+    border: 1px solid var(--secondary-color-default);
+    border-bottom: 4px solid var(--secondary-color-default);
+    transition: all .25s ease;
+}
+
+.c-action i{
+    line-height: 40px;
+    text-align: center;
+
+}
+
+.c-action:hover{
+    background-color: var(--white-color-shade-1);
 }
 
 .objectives{
@@ -115,6 +151,14 @@
 
 .section-block{
     padding: 1rem;
+
+}
+
+.section-block h1{
+    margin-bottom: 1em;
+    font-weight: bold;
+    line-height: .8em;
+    font-size: 2em;
 }
 
 .shade-1{
@@ -132,4 +176,71 @@
 
 .min-margin{
     margin: 1rem;
+}
+.min-margin b{
+    font-weight: bold;
+}
+
+/* Requisites section */
+
+.req-card{
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 7px;
+    border: 1px solid var(--secondary-color-default);
+    text-align: center;
+    
+}
+
+.req-card i{
+    font-size: 3.5em;
+}
+
+.req-card h4{
+    margin: 1em 0;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.req-card a{
+    display: block;
+    margin: 1em auto;
+}
+
+/* Contact Section */
+
+.contact-section{
+    padding: 2em;
+    background-color: var(--main-color-default);
+    text-align: center;
+}
+
+.contact-section h2{
+
+    margin: 1em auto;
+    font-weight: bold;
+}
+
+.contact-section iframe{
+    width: 100%;
+    height: 300px;
+    border-radius: 7px;
+    margin: 2em auto;
+}
+
+/* footer */
+
+footer{
+    padding: 1em;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    background-color: var(--main-color-default);
+    justify-content: space-between;
+
+}
+footer .university-logo{
+    width: 100px;
+    height: auto;
+    object-fit: contain;
 }
