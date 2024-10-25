@@ -25,8 +25,9 @@ class UserController extends Controller{
 
     public static function all() {
         $users = User::all();
-        dd($users);
-    }
+       // dd($users);
+       render_view('allSolicitants', ['users' => $users] , 'All Users');
+      }
 
     public static function update()
     {
