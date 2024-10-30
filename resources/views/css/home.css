@@ -70,7 +70,8 @@
   max-width: 120%;
   margin-bottom: 1em;
   overflow-x: scroll;
-  padding: 2rem;
+  padding: 2rem 0;
+  margin: 0 var(--main-margin);
 }
 
 .carroussel::-webkit-scrollbar {
