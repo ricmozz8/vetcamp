@@ -35,31 +35,21 @@ class UserController extends Controller{
             // Retrieve all users
             $users = User::all();
             // Retrieve all applications to link each user's status
-            $applications = Application::all();
-    
-            // Initialize an array to store the registered users with required fields
-            $registered = [];
-    
-            // Loop through each user and match them with their application status
+
+            $result = [];
+
             foreach ($users as $user) {
-                // Find the corresponding application for the user
-                $application = array_filter($applications, function($app) use ($user) {
-                    return $app->user_id === $user->id;
-                });
-                
-                // Extract the status if an application exists, otherwise default to "Not Registered"
-                $status = $application ? $application[0]->status : 'Not Registered';
-    
-                // Add the combined data to the registered array
-                $registered[] = [
-                    'email' => $user->email,
-                    'status' => $status,
-                    'created_at' => $user->created_at,
-                ];
+                try{
+                    $application = $user->application();
+                    // application found
+                    $result[] = $user;
+                } catch (ModelNotFoundException $notFound) {
+                    continue;
+                }
             }
-    
+            
             // Render the view with registered data
-            render_view('allUsers', ['registered' => $registered], 'All Users'); 
+            render_view('allSolicitants', ['registered' => $result], 'All Users'); 
         } catch (Exception $e) {
             echo "An error occurred: " . $e->getMessage();
         }

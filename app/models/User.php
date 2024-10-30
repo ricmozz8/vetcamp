@@ -6,7 +6,7 @@ class User extends Model{
 
     // define your methods here
     // protected static $table = 'usuarios'; // change here the table name
-    protected static $hidden = ['password', 'status', 'user_id'];
+    protected static $hidden = ['password', 'user_id'];
     protected static $primary_key = 'user_id';
 
     public function __construct(array $attributes, array $sanitized){
