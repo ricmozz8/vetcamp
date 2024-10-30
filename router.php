@@ -31,6 +31,9 @@ switch ($request) {
     case '/users/update':
         UserController::update();
         break;
+    case '/users/all':
+        UserController::allRegistered();
+        break;
 
 
     // POST FRONT VIEWS
