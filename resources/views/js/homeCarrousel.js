@@ -1,12 +1,24 @@
-let scroll = document.querySelector(".scroll");
 
-function scrollLeft() {
-    scroll.scrollBy(-500, 0);
+
+
+
+/**
+ * Scroll the carrousel to the right by the width of one image
+ * @function scrollRight
+ */
+
+function scroll_by_right() {
+    let carroussel = document.querySelector(".carroussel");
+    carroussel.scrollBy({ left: 600, behavior: "smooth" });
+    // scroll by the size of the images
 }
 
-function scrollRight() {
-    scroll.scrollBy(500, 0);
+/**
+ * Scrolls the carousel to the left by the width of one image.
+ * Utilizes smooth scrolling behavior to enhance user experience.
+ */
+function scroll_by_left() {
+    let carroussel = document.querySelector(".carroussel");
+    carroussel.scrollBy({ left: -600, behavior: "smooth" });
+    // scroll by the size of the images
 }
-
-document.querySelector(".scroll-left").addEventListener("click", scrollLeft);
-document.querySelector(".scroll-right").addEventListener("click", scrollRight);

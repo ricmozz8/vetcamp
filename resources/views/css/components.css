@@ -19,5 +19,5 @@ a, .main-action-bright{
 a:hover, .main-action-bright:hover{
     top: -5px;
     box-shadow: none;
-    background-color: var(--white-color-shade-1);
+    filter: brightness(.8);
 }

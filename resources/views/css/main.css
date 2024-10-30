@@ -67,6 +67,39 @@
     color: var(--main-color-default);
 }
 
+/* Stylizing Scrollbar */
+
+::-webkit-scrollbar /* the scrollbar */{
+    width: 10px;
+    background-color:transparent
+}
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    border: 1px solid var(--secondary-color-default);
+    transition: all 0.25s ease;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color-shade-2);
+    border: 1px solid var(--secondary-color-shade-1);
+    border-bottom: 4px solid var(--secondary-color-shade-1);
+    cursor: grab;
+    box-shadow: var(--shadow-hard);
+    transition: all 0.25s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--secondary-color-shade-2);
+}
+
+::-webkit-scrollbar-thumb:active {
+    border-bottom: 1px solid var(--secondary-color-default);
+    cursor: grabbing;
+}
+
+::-webkit-file-upload-button {
+    cursor: pointer;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -96,4 +129,62 @@ h1, h2, h3, h4, h5, h6 {
     width: 70px;
     opacity: 0.5;
     margin-bottom: 2em;
+}
+
+.block{
+    display: block;
+}
+
+.no-deco-action{
+    text-decoration: underline;
+    padding: 2px;
+    background-color: transparent;
+    color: var(--secondary-color-default);
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
+
+}
+
+
+
+
+/* media queries */
+
+/* Tablet */
+
+@media only screen and (min-width: 768px) {  
+
+    :root{
+
+        /* Font Size */
+        --font-size-xxs: 0.7rem;
+        --font-size-xs: 0.8rem; 
+        --font-size-sm: 0.9rem;
+        --font-size-md: 1rem;
+        --font-size-lg: 1.1rem;
+        --font-size-xl: 1.2rem;
+        --font-size-xxl: 1.5rem;
+
+        /* margins */
+        --main-margin: 2rem;
+    }
+}
+
+/* Desktop Large */
+
+@media only screen and (min-width: 1024px) {
+    :root{  
+        /* margins */
+        --main-margin: 8rem;
+    }
+}
+
+/* Desktop ExtraLarge */
+
+@media only screen and (min-width: 1200px) {
+    :root{  
+        /* margins */
+        --main-margin: 12rem;
+    }
 }

@@ -44,12 +44,14 @@ require __DIR__ . '/partials/header.php';
             </div>
         </div>
         <div class="carrousel-actions">
-            <div onclick="scrollLeft" id="scroll-action-l" class="c-action scroll-left"><i class="las la-angle-left"></i>
+            <div onclick="scroll_by_left()" id="scroll-action-l" class="c-action scroll-left">
+                <i class="las la-angle-left"></i>
             </div>
-            <div onclick="scrollRight" id="scroll-action-r" class="c-action scroll-right"><i class="las la-angle-right"></i>
+            <div onclick="scroll_by_right()" id="scroll-action-r" class="c-action scroll-right">
+                <i class="las la-angle-right"></i>
             </div>
         </div>
-        <div class="objectives">
+        <div class="splitted-header">
             <h3>Nuestros objetivos</h3>
             <ul>
                 <li>Exponer a estudiantes de escuela superior interesados en el área
@@ -70,9 +72,9 @@ require __DIR__ . '/partials/header.php';
 
     <div class="sections-dynamic">
         <div class="splitted-header">
-            <div class="block centered">
+            <div class="block">
                 <h3>Secciones abiertas</h3>
-                <p>14 estudiantes por sección</p>
+                <p>*14 estudiantes por sección</p>
             </div>
 
             <p>¡Solicita entre el 15 de febrero hasta el 8 de marzo de 2024!</p>
@@ -111,29 +113,35 @@ require __DIR__ . '/partials/header.php';
 
         <div class="requirement-cards-grid">
             <div class="req-card">
-                <i class="las la-file-alt"></i>
+                <div class="flex-min">
+                    <i class="las la-file-alt"></i>
+                    <i class="las la-play-circle"></i>
+                </div>
                 <h4>Ensayo (Escrito Y Vídeo)</h4>
                 <p>Indicando porqué te interesa participar en el campamento</p>
             </div>
             <div class="req-card">
-                <i class="las la-file-alt"></i>
-                <h4>Ensayo (Escrito Y Vídeo)</h4>
-                <p>Indicando porqué te interesa participar en el campamento</p>
+                <i class="las la-envelope-open"></i>
+                <h4>Carta de autorización</h4>
+                <p>de tus padres o tutor legal</p>
             </div>
             <div class="req-card">
-                <i class="las la-file-alt"></i>
-                <h4>Ensayo (Escrito Y Vídeo)</h4>
-                <p>Indicando porqué te interesa participar en el campamento</p>
+                <i class="las la-file"></i>
+                <h4>Transcripción de crédito</h4>
             </div>
             <div class="req-card">
-                <i class="las la-file-alt"></i>
-                <h4>Ensayo (Escrito Y Vídeo)</h4>
-                <p>Indicando porqué te interesa participar en el campamento</p>
+                <i class="las la-portrait"></i>
+                <h4>Foto 2x2</h4>
+                <p>que debe estar adjunta en la solicitud</p>
             </div>
-            <div class="req-card">
-                <i class="las la-file-alt"></i>
-                <h4>Ensayo (Escrito Y Vídeo)</h4>
-                <p>Indicando porqué te interesa participar en el campamento</p>
+            <div class="req-card last-card-grid">
+                <i class="las la-clipboard-list"></i>
+                <h4>Solicitud Escrita</h4>
+                <p>Firmada por estudiante, encargado y director de la escuela.
+                    En caso de que el estudiante sea educado en el hogar, deberá
+                    llenar la Certificación de Estudiante Educado en el Hogar
+                    (certificación de la UPR - Administración Central) y
+                    entregarla junto a la solicitud del VetCamp.</p>
                 <a href="">Descargar</a>
             </div>
         </div>
@@ -145,8 +153,9 @@ require __DIR__ . '/partials/header.php';
                 <h2>¿Tienes preguntas? ¡Contáctanos!</h2>
             </div>
             <div class="bottom-flex">
-                <p>Universidad de Puerto Rico en AreciboCarr. 653 Km. 0.8 Sector Las Dunas, AreciboP.O. Box 4010 Arecibo P.R. 00614-4010
-                    787-815-0000 Ext. 3475vetcamp.arecibo@upr.edu</p>
+                <p>Universidad de Puerto Rico en Arecibo Carr. 653 Km. 0.8 Sector Las Dunas, Arecibo P.O. Box 4010 Arecibo P.R. 00614-4010</p>
+                <p>787-815-0000 Ext. 3475</p>
+                <a class="no-deco-action" href="mailto:vetcamp.arecibo@upr.edu">vetcamp.arecibo@upr.edu</a>  
             </div>
         </div>
 

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<?= web_resource("css/main.css") ?>">
 
     <!-- JAVASCRIPT -->
-    <link rel="stylesheet" href="<?= web_resource("js/homeCarrousel.js") ?>">
+    <script src="<?= web_resource("js/homeCarrousel.js") ?>"></script>
 
     <!-- TYPEFACES -->
 
