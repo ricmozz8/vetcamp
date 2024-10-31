@@ -4,8 +4,7 @@
 require_once __DIR__ . '/partials/header.php';
 
 // Obtaining all users from the database
-$solicitants = User::allRegistered();
-
+$users = User::all();
 ?>
 <head>
     <meta charset="UTF-8">
@@ -43,12 +42,13 @@ $solicitants = User::allRegistered();
             width: 15%;
         }
     </style>
-    <title>Solicitants List</title>
+    <title>User List</title>
 </head>
 <body>
     <table>
         <thead>
             <tr>
+                <th>Name</th>
                 <th class="email-col">Email</th>
                 <th>Status</th>
                 <th class="date-col">Created At</th>
@@ -56,9 +56,12 @@ $solicitants = User::allRegistered();
         </thead>
         <tbody>
             <?php
-            // Loop throught the solicitants returned by the User::allRegistered() method
-            foreach ($solicitants as $user) {
+            // Loop through the users returned by the User::all() method
+            foreach ($users as $user) {
+                // Get the full name
+                $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
                 echo "<tr>";
+                echo "<td>" . $full_name . "</td>";
                 echo "<td>" . htmlspecialchars($user->email) . "</td>";
                 echo "<td>" . htmlspecialchars($user->status) . "</td>";
                 echo "<td>" . htmlspecialchars($user->created_at) . "</td>";
@@ -69,3 +72,4 @@ $solicitants = User::allRegistered();
     </table>
 </body>
 </html>
+

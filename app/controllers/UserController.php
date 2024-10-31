@@ -24,35 +24,14 @@ class UserController extends Controller{
     }
 
     public static function all() {
-        $users = User::all();
-       // dd($users);
-       render_view('allSolicitants', ['users' => $users] , 'All Users');
+        $users = User::all(); // Retrieve all users
+       render_view('allUsers', ['users' => $users] , 'All Users');
       }
 
 
       public static function allRegistered() {
-        try {
-            // Retrieve all users
-            $users = User::all();
-            // Retrieve all applications to link each user's status
-
-            $result = [];
-
-            foreach ($users as $user) {
-                try{
-                    $application = $user->application();
-                    // application found
-                    $result[] = $user;
-                } catch (ModelNotFoundException $notFound) {
-                    continue;
-                }
-            }
-            
-            // Render the view with registered data
-            render_view('allSolicitants', ['registered' => $result], 'All Users'); 
-        } catch (Exception $e) {
-            echo "An error occurred: " . $e->getMessage();
-        }
+       $solicitants = User::allRegistered();
+       render_view('allSolicitants', ['solicitants' => $solicitants], 'All Solicitants'); 
     }
 
 
