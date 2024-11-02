@@ -1,0 +1,307 @@
+/* Back Dashboard CSS */
+/* CSS Custom Properties for consistent theming */
+:root {
+    --yellow-accent: #f6c34f;    /* Primary accent color */
+    --sidebar-bg: #f8f8f8;       /* Sidebar background color */
+    --text-dark: #2c2c2c;        /* Primary text color */
+}
+
+/* Reset default styles and set base font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Schibsted Grotesk";
+    font-weight: 400;
+}
+
+/* Base layout styles */
+body {
+    min-height: 100vh;
+    display: flex;
+    background: white;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 350px;
+    min-width: 350px;
+    background: var(--sidebar-bg);
+    height: 90vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+/* Logo styling */
+.logo {
+    width: 144px;
+    height: 62px;
+    margin: 62px 0 0 45px;
+}
+
+/* Navigation menu styles */
+.nav-links {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Navigation item styling */
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 45px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -1.92px;
+    transition: all 0.3s ease;
+}
+
+/* Navigation item hover effect */
+.nav-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Active navigation item styling */
+.nav-item.active {
+    background: var(--yellow-accent);
+    margin-right: -50px;
+    border-radius: 0 50px 50px 0;
+}
+
+/* Navigation item icon styling */
+.nav-item img {
+    margin-right: 12px;
+    width: 40px;
+    height: 40px;
+}
+
+/* User profile section styles */
+.user-profile {
+    margin-top: auto;
+    background: #e7e7e7;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* User avatar styling */
+.user-avatar {
+    width: 58px;
+    height: 58px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+/* User information container */
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* User email text styling */
+.user-email {
+    font-size: 20px;
+    color: var(--text-dark);
+}
+
+/* Logout link styling */
+.logout {
+    color: var(--text-dark);
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+/* Main content area styles */
+.main-content {
+    margin-left: 365px;
+    padding: 40px;
+    width: calc(100% - 416px);
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 100px;
+}
+
+/* Header section styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0;
+}
+
+/* Welcome text styling */
+.welcome {
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -3.84px;
+    color: var(--text-dark);
+}
+
+/* Send message button styling */
+.send-message {
+    background: #000;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    border: none;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+/* Send message button hover effect */
+.send-message:hover {
+    opacity: 0.9;
+}
+
+/* Statistics grid layout */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 45px;
+    margin-bottom: 20px;
+}
+
+/* Statistics card styling */
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Statistics card header styling */
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Statistics card title styling */
+.stat-title {
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* "View all" link styling */
+.view-all {
+    color: var(--text-dark);
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+/* Statistics number styling */
+.stat-number {
+    font-size: 96px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* Recent items list container */
+.recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Recent item styling */
+.recent-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+/* Avatar image styling */
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #ddd;
+    overflow: hidden;
+}
+
+/* Recent item information container */
+.recent-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Recent item name styling */
+.recent-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* Recent item email styling */
+.recent-email {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Footer styling */
+.footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 10%;
+    width: 100%;
+    background: var(--yellow-accent);
+    padding: 30px;
+    text-align: left;
+    font-size: 16px;
+    color: var(--text-dark);
+}
+
+/* Recent registrations list specific styling */
+.registros-list .recent-item {
+    justify-content: space-between;
+    padding: 15px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Timestamp styling */
+.time-stamp {
+    color: #666;
+    font-size: 14px;
+}
+
+/* View all button styling */
+.view-all-button {
+    background: var(--yellow-accent);
+    color: var(--text-dark);
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: opacity 0.3s ease;
+}
+
+/* View all button hover effect */
+.view-all-button:hover {
+    opacity: 0.9;
+}
+/* ends back dashboard css */
