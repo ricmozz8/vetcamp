@@ -13,6 +13,7 @@ require 'app/controllers/UserController.php';
 require 'app/controllers/HomeController.php';
 require 'app/controllers/BackDashboardController.php';
 require 'app/controllers/BackSettingsController.php';
+require 'app/controllers/BackRequestsController.php';
 
 $request = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
@@ -51,6 +52,9 @@ switch ($request) {
         break;
     case '/BackSettings':
         BackSettingsController::index();
+        break;
+    case '/BackRequests':
+        BackRequestsController::index();
         break;
     default:
         abort(404, 'Page was not found');
