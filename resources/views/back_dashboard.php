@@ -1,39 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <?php
-require __DIR__ . '/partials/header.php';
+require_once __DIR__ . '/partials/header.php';
 ?>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vetcamp-Login</title>
-    
-    <!-- External CSS stylesheet for dashboard styling -->
-    <link rel="stylesheet" href="css/back_dash_style.css" />
-    
-    <!-- Google Fonts imports for Schibsted Grotesk and Livvic typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-</head>
 <body>
+    <div class="back_dash">
       <!-- Left sidebar navigation -->
       <aside class="sidebar">
         <!-- Logo section -->
         <img src="/api/placeholder/144/62" alt="UPR Arecibo" class="logo" />
-        
+
         <!-- Main navigation menu -->
         <nav class="nav-links">
           <!-- Navigation items with icons -->
-          <a href="/inicio" class="nav-item active">
+          <a href="/" class="nav-item active">
             <img src="/api/placeholder/40/40" alt="Home" />Inicio</a>
-            
+
           <a href="/solicitudes" class="nav-item">
             <img src="/api/placeholder/40/40" alt="Requests" />Solicitudes</a>
-            
+
           <a href="/registrados" class="nav-item">
             <img src="/api/placeholder/40/40" alt="Users" />Registrados</a>
-            
+
           <a href="/ajustes" class="nav-item">
             <img src="/api/placeholder/40/40" alt="Settings" />Ajustes</a>
         </nav>
@@ -80,7 +68,7 @@ require __DIR__ . '/partials/header.php';
         <div class="stats-grid">
           <!-- Recent applications list card -->
           <div class="stat-card">
-            <h2 class="stat-title">Solicitudes más recientes</h2>
+            <h2 class="stat-title">Solicitudes mÃ¡s recientes</h2>
             <div class="recent-list">
               <!-- Recent application items with avatar and user info -->
               <div class="recent-item">
@@ -110,10 +98,11 @@ require __DIR__ . '/partials/header.php';
           </div>
         </div>
       </main>
-
-      <!-- Footer with copyright information -->
-      <footer class="footer">
-        Copyright 2024 | Universidad de Puerto Rico Arecibo
-      </footer>
+    </div>
+    <!-- Footer with copyright information -->
+    <footer>
+     <p>&copy; <?php echo date('Y'); ?> | Universidad de Puerto Rico Arecibo</p>
+     <img class="university-logo" src="https://upra.edu/wp-content/uploads/2015/08/arecibo.png" alt="logo upra">
+    </footer>
 </body>
 </html>
