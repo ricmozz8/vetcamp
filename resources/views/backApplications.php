@@ -52,9 +52,10 @@
             </div>
         <header class="header">
             <h1 class="welcome"> Solicitudes </h1>
+            <button>
         </header>
 
-        <!--  -->
+        <!-- Table header area -->
 
      </main>
     </div>

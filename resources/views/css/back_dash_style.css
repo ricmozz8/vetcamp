@@ -366,8 +366,15 @@
 /* Applications list styling */
 .back-dash .applications-list {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr; /* Define column widths */
-    border: 1px solid #ccc;
+    grid-template-columns: 60px 300px 300px 150px 200px 300px 150px; /* Define different column widths */
+    grid-template-rows: 60px; /* Define different row heights */
+    gap: 15px; /* Gap between cells */
     padding: 10px;
-    gap: 10px; /* Gap between columns */
+}
+
+/* Application element styling */
+.back-dash .application-element {
+    /* border: 1px solid #aaa; */
+    padding: 10px;
+    resize: both; /* Allows resizing both horizontally and vertically */
 }
