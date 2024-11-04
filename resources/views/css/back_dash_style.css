@@ -1,295 +1,326 @@
 /* Back Dashboard CSS */
-/* CSS Custom Properties for consistent theming */
+/*******************************
+ * CSS CUSTOM PROPERTIES
+ * Define global variables for consistent theming across components
+ *******************************/
 :root {
-    --yellow-accent: #f6c34f;    /* Primary accent color */
-    --sidebar-bg: #f8f8f8;       /* Sidebar background color */
-    --text-dark: #2c2c2c;        /* Primary text color */
+    --yellow-accent: #f6c34f;    /* Primary accent color for highlights and active states */
+    --sidebar-bg: #f8f8f8;       /* Light gray background for sidebar */
+    --text-dark: #2c2c2c;        /* Dark gray for primary text content */
 }
 
-/* Reset default styles and set base font */
+/*******************************
+ * RESET & BASE STYLES
+ * Establish consistent base styling across browsers
+ *******************************/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Schibsted Grotesk";
-    font-weight: 400;
+    font-family: "Schibsted Grotesk", sans-serif; /* Modern, clean font for the entire app */
 }
 
-/* Base layout styles */
-.back_dash {
+/*******************************
+ * LAYOUT CONTAINERS
+ * Primary structural elements that define the app's layout
+ *******************************/
+/* Main dashboard container - uses flex for sidebar and main content layout */
+.back-dash {
     min-height: 100vh;
     display: flex;
     background: white;
 }
 
-/* Sidebar styles */
-.back_dash .sidebar {
-    width: 17.5%;
-    min-width:17.5%;
+/* Main content area - fills remaining space next to sidebar */
+.back-dash .main-content {
+    flex: 1;
+    margin-left: 280px;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    min-height: 100vh;
+}
+
+/*******************************
+ * SIDEBAR STYLES
+ * Navigation and branding elements
+ *******************************/
+/* Fixed sidebar container */
+.back-dash .sidebar {
+    width: 280px;
     background: var(--sidebar-bg);
-    height: 100%;
+    height: 100vh;
     position: absolute;
     left: 0;
     top: 0;
     display: flex;
     flex-direction: column;
-    z-index: 10;
+    padding: 20px 0;
 }
 
-/* Logo styling */
-.back_dash .logo {
-    width: 144px;
-    height: 62px;
-    margin: 62px 0 0 45px;
-}
-
-/* Navigation menu styles */
-.back_dash .nav-links {
-    margin-top: 60px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* Navigation item styling */
-.back_dash .nav-item {
+/* Logo container - houses branding elements */
+.back-dash .logo-container {
     display: flex;
     align-items: center;
-    padding: 15px 45px;
-    text-decoration: none;
-    color: var(--text-dark);
-    font-size: 32px;
-    font-weight: 500;
-    letter-spacing: -1.92px;
-    transition: all 0.3s ease;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding: 0 20px;
 }
 
-/* Navigation item hover effect */
-.back_dash .nav-item:hover {
+/* Logo image sizing and constraints */
+.back-dash .logo {
+    height: 40px;
+    width: auto;
+}
+
+/* Right-aligned logo positioning */
+.back-dash .logo-right {
+    position: fixed;
+    margin-right: -10px;
+}
+
+/* Vertical navigation menu */
+.back-dash .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 20px;
+}
+
+/* Individual navigation items */
+.back-dash .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 18px;
+    font-weight: 500;
+    width: 280px;
+    border-radius: 0 25px 25px 0;
+    transition: background-color 0.3s ease;
+    margin-left: -20px;
+}
+
+/* Interactive states for nav items */
+.back-dash .nav-item:hover {
     background: rgba(0, 0, 0, 0.05);
 }
 
-/* Active navigation item styling */
-.back_dash .nav-item.active {
+.back-dash .nav-item.active {
     background: var(--yellow-accent);
-    margin-right: -50px;
-    border-radius: 0 50px 50px 0;
 }
 
-/* Navigation item icon styling */
-.back_dash .nav-item img {
+/* Navigation icons */
+.back-dash .nav-item svg {
     margin-right: 12px;
-    width: 40px;
-    height: 40px;
+    width: 24px;
+    height: 24px;
 }
 
-/* User profile section styles */
-.back_dash .user-profile {
+/*******************************
+ * USER PROFILE SECTION
+ * User information and controls at bottom of sidebar
+ *******************************/
+.back-dash .user-profile {
     margin-top: auto;
     background: #e7e7e7;
     padding: 20px;
     display: flex;
     align-items: center;
     gap: 15px;
+    width: 100%;
+    height: 15%;
 }
 
-/* User avatar styling */
-.back_dash .user-avatar {
-    width: 58px;
-    height: 58px;
+/* Circular user avatar */
+.back-dash .user-avatar {
+    width: 40px;
+    height: 40px;
     background: #fff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 /* User information container */
-.back_dash .user-info {
+.back-dash .user-info {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-/* User email text styling */
-.back_dash .user-email {
-    font-size: 20px;
+/* User email display */
+.back-dash .user-email {
+    font-size: 16px;
     color: var(--text-dark);
 }
 
 /* Logout link styling */
-.back_dash .logout {
+.back-dash .logout {
     color: var(--text-dark);
     text-decoration: underline;
-    font-size: 20px;
+    font-size: 16px;
 }
 
-/* Main content area styles */
-.back_dash .main-content {
-    margin-left: 365px;
-    padding: 40px;
-    width: calc(100% - 416px);
-    min-height: 100vh;
-    position: relative;
-    padding-bottom: 100px;
-}
-
-/* Header section styles */
-.back_dash .header {
+/*******************************
+ * HEADER SECTION
+ * Welcome message and primary action button
+ *******************************/
+.back-dash .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 40px 0;
+    margin-bottom: 30px;
 }
 
-/* Welcome text styling */
-.back_dash .welcome {
-    font-size: 64px;
+/* Welcome message styling */
+.back-dash .welcome {
+    font-size: 36px;
     font-weight: 700;
-    letter-spacing: -3.84px;
     color: var(--text-dark);
 }
 
-/* Send message button styling */
-.back_dash .send-message {
+/* Primary action button */
+.back-dash .send-message {
     background: #000;
     color: white;
-    padding: 15px 30px;
-    border-radius: 50px;
+    padding: 10px 20px;
+    border-radius: 25px;
     border: none;
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
     transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* Send message button hover effect */
-.back_dash .send-message:hover {
-    opacity: 0.9;
+.back-dash .send-message:hover {
+    opacity: 0.9; /* Subtle hover effect */
 }
 
-/* Statistics grid layout */
-.back_dash .stats-grid {
+/*******************************
+ * STATISTICS GRID & CARDS
+ * Layout and styling for metric displays
+ *******************************/
+/* Two-column grid layout for statistics */
+.back-dash .stats-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 45px;
+    gap: 20px;
     margin-bottom: 20px;
 }
 
-/* Statistics card styling */
-.back_dash .stat-card {
+/* Individual statistic cards */
+.back-dash .stat-card {
     background: white;
-    border-radius: 15px;
-    padding: 30px;
+    border-radius: 10px;
+    padding: 20px;
     border: 1px solid rgba(0,0,0,0.1);
 }
 
-/* Statistics card header styling */
-.back_dash .stat-header {
+/* Card header with title and action link */
+.back-dash .stat-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-/* Statistics card title styling */
-.stat-title {
-    font-size: 32px;
+/* Card title styling */
+.back-dash .stat-title {
+    font-size: 24px;
     font-weight: 500;
     color: var(--text-dark);
 }
 
-/* "View all" link styling */
-.back_dash .view-all {
-    color: var(--text-dark);
-    text-decoration: underline;
-    font-size: 20px;
-}
-
-/* Statistics number styling */
-.back_dash .stat-number {
+/* Large number display for statistics */
+.back-dash .stat-number {
     font-size: 96px;
     font-weight: 700;
     color: var(--text-dark);
 }
 
-/* Recent items list container */
-.back_dash .recent-list {
+/*******************************
+ * RECENT ACTIVITY LISTS
+ * Styling for activity feeds and lists
+ *******************************/
+/* Vertical list container */
+.back-dash .recent-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* Recent item styling */
-.back_dash .recent-item {
+/* Individual list items */
+.back-dash .recent-item {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 10px 0;
+    padding: 15px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    justify-content: space-between;
 }
 
-/* Avatar image styling */
-.back_dash .avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: #ddd;
-    overflow: hidden;
-}
-
-/* Recent item information container */
-.back_dash .recent-info {
+/* Container for item details */
+.back-dash .recent-info {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-/* Recent item name styling */
-.back_dash .recent-name {
+/* Item title/name styling */
+.back-dash .recent-name {
     font-size: 18px;
     font-weight: 500;
     color: var(--text-dark);
 }
 
-/* Recent item email styling */
-.back_dash .recent-email {
+/* Email address styling */
+.back-dash .recent-email {
     font-size: 16px;
     color: #666;
 }
 
-/* Footer styling */
-.back_dash .footer {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    height: 10%;
-    width: 100%;
-    background: var(--yellow-accent);
-    padding: 30px;
-    text-align: left;
-    font-size: 16px;
-    color: var(--text-dark);
-}
-
-/* Recent registrations list specific styling */
-.back_dash .registros-list,
-.back_dash .recent-item {
-    justify-content: space-between;
-    padding: 15px;
-    background: #f8f8f8;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
 /* Timestamp styling */
-.back_dash .time-stamp {
+.back-dash .time-stamp {
     color: #666;
     font-size: 14px;
 }
 
-/* View all button styling */
-.back_dash .view-all-button {
+/* User avatars in lists */
+.back-dash .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #ddd;
+}
+
+/*******************************
+ * BUTTONS & INTERACTIVE ELEMENTS
+ * Common button styles and interactive elements
+ *******************************/
+/* "View all" link styling */
+.back-dash .view-all {
+    color: var(--text-dark);
+    text-decoration: underline;
+    font-size: 16px;
+}
+
+/* Button container for alignment */
+.back-dash .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* Secondary action button styling */
+.back-dash .view-all-button {
     background: var(--yellow-accent);
     color: var(--text-dark);
     padding: 10px 25px;
@@ -297,13 +328,16 @@
     border: none;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 20px;
     transition: opacity 0.3s ease;
 }
 
+.back-dash .view-all-button:hover {
+    opacity: 0.9; /* Subtle hover effect */
+}
+
 /* Edit button styling */
-.back_dash .edit-button {
-    background: var(--yellow-accent);
+.back-dash .edit-button {
+    background: var(--main-color-default);
     color: var(--text-dark);
     padding: 10px 25px;
     border-radius: 50px;
@@ -316,7 +350,7 @@
 }
 
 /* Erase button styling */
-.back_dash .erase-button {
+.back-dash .erase-button {
     background: #FF5F5F;
     color: var(--text-dark);
     padding: 10px 25px;
@@ -329,8 +363,11 @@
     right: 2.5%;
 }
 
-/* View all button hover effect */
-.back_dash .view-all-button:hover {
-    opacity: 0.9;
+/* Applications list styling */
+.back-dash .applications-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* Define column widths */
+    border: 1px solid #ccc;
+    padding: 10px;
+    gap: 10px; /* Gap between columns */
 }
-/* ends back dashboard css */

@@ -13,7 +13,7 @@ class BackSettingsController extends Controller
     public static function index()
     {
         // your index view here
-        render_view('backEndSettings', [], 'BackSettings');
+        render_view('backSettings', [], 'BackSettings');
     }
 
     // define your other methods here

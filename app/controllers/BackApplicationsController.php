@@ -1,7 +1,7 @@
 <?php
 require_once 'Controller.php';
 
-class BackRequestsController extends Controller
+class BackApplicationsController extends Controller
 {
 
     /**
@@ -13,7 +13,7 @@ class BackRequestsController extends Controller
     public static function index()
     {
         // your index view here
-        render_view('backRequests', [], 'BackRequests');
+        render_view('backApplications', [], 'BackApplications');
     }
 
     // define your other methods here
