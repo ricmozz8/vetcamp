@@ -128,6 +128,13 @@ class Model
   
     }
 
+
+    public static function findBy(array $data) : Model {
+        self::init();
+        $data = DB::whereColumns(static::$table, $data);
+        return new static($data, self::sanitize($data));
+    }
+
   
     /**
      * Creates a new model and saves it to the database.
