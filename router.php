@@ -15,6 +15,11 @@ require 'app/controllers/HomeController.php';
 $request =  $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 
+// Remove trailing slash
+if (substr($request, -1) === '/') {
+    $request = substr($request, 0, -1);
+}
+
 // Define your views/urls here
 switch (strtolower($request)) {
 
