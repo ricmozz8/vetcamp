@@ -16,7 +16,7 @@ $request =  $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 
 // Remove trailing slash
-if (substr($request, -1) === '/') {
+if (substr($request, -1) === '/' && $request !== '/') {
     $request = substr($request, 0, -1);
 }
 
