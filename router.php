@@ -64,6 +64,9 @@ switch (strtolower($request)) {
     case '/admin':
         echo 'WORK IN PROGRESS';
         break;
+    case '/admin/profile':
+        render_view('profile', [], 'Profile');
+        break;
     default:
         abort(404, 'Page was not found');
         break;
