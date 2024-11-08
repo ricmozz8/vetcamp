@@ -125,6 +125,34 @@ final class DB
         return [];
     }
 
+
+    public static function whereColumns(string $table, array $conditions, string $column = '*'): array
+    {
+        // conditions is the associative array with the column and its value to search
+
+        $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ';
+
+
+        $index = 0;
+        // getting the length of conditions
+
+        $length = count($conditions);
+        foreach ($conditions as $key => $value) {
+
+            $sql .= $key . ' = ' . $value;
+
+            if ($index < $length - 1) {
+                $sql .= ' AND ';
+            }
+            $index++;
+        }
+
+        $statement = self::$database->prepare($sql);
+        $statement->execute();
+        return $statement->fetchAll();
+            
+    }
+
     /**
      * Insert a new record into the specified table.
      *
