@@ -67,13 +67,13 @@ switch (strtolower($request)) {
     case '/admin':
         echo 'WORK IN PROGRESS';
         break;
-    case '/BackDashboard':
+    case '/backdashboard':
         BackDashboardController::index();
         break;
-    case '/BackSettings':
+    case '/backsettings':
         BackSettingsController::index();
         break;
-    case '/BackApplications':
+    case '/backapplications':
         BackApplicationsController::index();
         break;
     default:

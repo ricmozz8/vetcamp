@@ -12,8 +12,11 @@ class BackApplicationsController extends Controller
      */
     public static function index()
     {
+        // storing users
+        $users = User::all();
+
         // your index view here
-        render_view('backApplications', [], 'BackApplications');
+        render_view('backApplications', ["users" => $users], 'backapplications');
     }
 
     // define your other methods here
