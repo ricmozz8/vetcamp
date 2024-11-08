@@ -12,11 +12,11 @@
 require 'app/controllers/UserController.php';
 require 'app/controllers/HomeController.php';
 
-$request = $_SERVER['REQUEST_URI'];
+$request =  $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 
 // Define your views/urls here
-switch ($request) {
+switch (strtolower($request)) {
 
     // GET FRONT VIEWS
     case '/':
@@ -34,6 +34,21 @@ switch ($request) {
     case '/users/solicitants/all':
         UserController::allRegistered();
         break;
+
+    case '/apply':
+        render_view('application/dashboard', [], 'Aplica');
+        break;
+    case '/apply/application':
+        if($method == 'POST'){
+            $stage = $_POST['stage'] ?? '1';
+            render_view('application/stage'.$stage  , [], 'Aplica');
+        } else {
+            redirect('/apply');
+        }
+        
+        break;
+    
+    
 
 
     // POST FRONT VIEWS

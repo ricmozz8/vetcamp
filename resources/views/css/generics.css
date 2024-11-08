@@ -7,3 +7,42 @@
     text-align: center;
     width: fit-content;
 }
+
+.left-margin{
+    margin-left: var(--main-margin);
+}
+
+.margin{
+    margin: 1em var(--main-margin);
+}
+
+.title{
+    font-size: 2.5em;
+    font-weight: 600;
+    letter-spacing: -2px;
+    line-height: 1em;
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex *{
+    display: block;
+    width: 100%;
+}
+
+/* tablet */
+
+@media only screen and (min-width: 768px) {
+    .title{
+        font-size: 3em;
+    }
+    .flex{
+        display: flex;
+        gap: 1em;
+        align-items: center;
+    }
+}
+

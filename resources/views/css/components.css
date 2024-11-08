@@ -1,6 +1,7 @@
 a, .main-action-bright{
     position: relative;
     top: 0px;
+    font-size: 1em;
     padding: 15px 20px;
     border-radius: 28px;
     background-color: var(--white-color);
@@ -14,6 +15,13 @@ a, .main-action-bright{
     transition: all .25s ease;
     display: block;
     width: fit-content;
+    cursor: pointer;
+}
+.main-action-bright.secondary{
+    background-color: var(--main-color-default);
+    color: var(--secondary-color-default);
+    box-shadow: none;
+    border: none;
 }
 
 a:hover, .main-action-bright:hover{
