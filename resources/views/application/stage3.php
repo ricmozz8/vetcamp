@@ -33,13 +33,13 @@ require __DIR__ . '../../partials/header.php';
 
 
         <!-- Document upload section -->
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             <div class="document-section">
                 <!-- Document upload boxes -->
                 <div class="document-group">
                     <div class="upload-box">
-                        <label for="solicitud_escrita"><i class="las la-file"></i> Seleccionar archivo</label>
-                        <input type="file" id="solicitud_escrita" name="solicitud_escrita">
+                        <label for="solicitud_escrita"> <span> Selecciona un archivo</span></label>
+                        <input accept="application/pdf" type="file" id="solicitud_escrita" name="solicitud_escrita" onchange="updateFileName(this)">
                     </div>
                     <div class="flex">
                         <label>Solicitud Escrita</label>
@@ -50,16 +50,16 @@ require __DIR__ . '../../partials/header.php';
 
                 <div class="document-group">
                     <div class="upload-box">
-                        <label for="credito"><i class="las la-file"></i> Seleccionar archivo</label>
-                        <input type="file" id="credito" name="credito">
+                        <label for="credito"> <span> Selecciona un archivo</span></label>
+                        <input accept="application/pdf" type="file" id="credito" name="credito" onchange="updateFileName(this)">
                     </div>
                     <label>Transcripción de crédito</label>
                 </div>
 
                 <div class="document-group">
                     <div class="upload-box">
-                        <label for="escrito"><i class="las la-file"></i> Seleccionar archivo</label>
-                        <input type="file" id="escrito" name="escrito">
+                        <label for="escrito"><span> Selecciona un archivo</span></label>
+                        <input accept="application/pdf" type="file" id="escrito" name="escrito" onchange="updateFileName(this)">
                     </div>
                     <label>Ensayo escrito</label>
                 </div>
@@ -67,8 +67,8 @@ require __DIR__ . '../../partials/header.php';
                 <div class="document-group">
                     <div class="upload-box">
 
-                        <label for="foto"><i class="las la-file"></i> Seleccionar archivo</label>
-                        <input type="file" id="foto" name="foto">
+                        <label for="foto"> <span> Selecciona un archivo</span></label>
+                        <input accept="image/*" type="file" id="foto" name="foto" onchange="updateFileName(this)">
                     </div>
                     <label>Foto 2x2</label>
                 </div>
@@ -76,8 +76,8 @@ require __DIR__ . '../../partials/header.php';
                 <div class="document-group">
                     <div class="upload-box">
 
-                        <label for="ensayo_video"><i class="las la-file"></i> Seleccionar archivo</label>
-                        <input type="file" id="ensayo_video" name="ensayo_video">
+                        <label for="ensayo_video"> <span> Selecciona un archivo</span></label>
+                        <input accept="video/*" type="file" id="ensayo_video" name="ensayo_video" onchange="updateFileName(this)">
                     </div>
                     <label>Ensayo en video</label>
                 </div>
@@ -86,8 +86,8 @@ require __DIR__ . '../../partials/header.php';
                     <div class="upload-box">
 
 
-                        <label for="carta_autorizacion"><i class="las la-file"></i> Seleccionar archivo</label>
-                        <input type="file" id="carta_autorizacion" name="carta_autorizacion">
+                        <label for="carta_autorizacion"><span> Selecciona un archivo</span> </label>
+                        <input accept="application/pdf" type="file" id="carta_autorizacion" name="carta_autorizacion" onchange="updateFileName(this)">
                     </div>
                     <label>Carta de Autorización</label>
                 </div>
