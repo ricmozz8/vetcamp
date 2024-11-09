@@ -11,6 +11,12 @@
 
 require 'app/controllers/UserController.php';
 require 'app/controllers/HomeController.php';
+require 'app/controllers/BackDashboardController.php';
+require 'app/controllers/ForgotPassController.php';
+require 'app/controllers/LoginController.php';
+require 'app/controllers/PassResetController.php';
+require 'app/controllers/RegisterController.php';
+
 
 $request =  $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
@@ -26,6 +32,18 @@ switch (strtolower($request)) {
     // GET FRONT VIEWS
     case '/':
         HomeController::index();
+        break;
+    case '/register':
+        RegisterController::index();
+        break;
+    case '/login':
+        LoginController::index();
+        break;
+    case '/forgotpass':
+        ForgotPassController::index();
+        break;
+    case '/passreset':
+        PassResetController::index();
         break;
     case '/users':
         UserController::index();
@@ -66,6 +84,9 @@ switch (strtolower($request)) {
         break;
     case '/admin/profile':
         render_view('profile', [], 'Profile');
+        break;
+    case '/admin/backdashboard':
+        BackDashboardController::index();
         break;
     default:
         abort(404, 'Page was not found');

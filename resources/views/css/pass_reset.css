@@ -1,0 +1,138 @@
+/* Password Reset page CSS */
+
+/*******************************
+ * LAYOUT CONTAINERS
+ * Primary structural elements that define the app's layout
+ *******************************/
+/* Main container styles */
+.pass-reset {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    font-size: calc(0.8vw + 0.4vh);
+}
+
+/*******************************
+ * FORM ELEMENTS
+ * Styles for input fields, labels, and form layout
+ *******************************/
+/* Form Styling */
+.pass-reset form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 22%;
+}
+
+/* Page title styles */
+.pass-reset .page-title {
+    position: relative;
+    width: calc(20.3vw + 8.6vh);
+    font-weight: 600;
+    color: #2c2c2c;
+    font-size: calc(2.3vw + 1vh);
+    letter-spacing: calc(-0.18vw - 0.08vh);
+    line-height: calc(3vw + 1.3vh);
+    white-space: nowrap;
+    margin-bottom: 2%;
+}
+
+/* Common input field styles */
+.pass-reset .input-field {
+    width: calc(23.8vw + 10.1vh);
+    height: calc(3.3vw + 1.4vh);
+    left: calc(3vw + 1.3vh);
+    border-radius: calc(3.1vw + 1.3vh);
+    border: 1px solid #000000;
+    font-size: calc(1vw + 0.4vh);
+    padding: 0 calc(2.8vw + 1.2vh) 0 calc(0.9vw + 0.4vh);
+    margin-top: 2%;
+    outline: none;
+}
+
+/* Input field focus state */
+.pass-reset .input-field:focus {
+    border-color: #ECC802;
+}
+
+/* Password Toggle Button */
+.pass-reset .password-toggle {
+    position: relative;
+    right: 7%;
+    cursor: pointer;
+    color: #666;
+    font-size: calc(0.9vw + 0.4vh);
+}
+
+.pass-reset .password-toggle:hover {
+    color: #333;
+}
+
+/* Input label styles */
+.pass-reset .text-wrapper-2,
+.pass-reset .text-wrapper-3 {
+    font-size: calc(1.3vw + 0.5vh);
+    letter-spacing: calc(-0.06vw - 0.02vh);
+    line-height: calc(1.5vw + 0.6vh);
+}
+
+/*******************************
+ * BUTTONS AND ACTIONS
+ * Styles for buttons, links, and interactive elements
+ *******************************/
+/* Main button container */
+.pass-reset .mainbutton {
+    position: relative;
+    width: calc(11.6vw + 4.9vh);
+    height: calc(3vw + 1.3vh);
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+/* Button overlap group for hover effect */
+.pass-reset .overlap-group {
+    position: relative;
+    width: calc(11.9vw + 5vh);
+    height: calc(3.4vw + 1.4vh);
+    background-color: #ffffff;
+    border-radius: calc(3.1vw + 1.3vh);
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-color: #000000;
+    transition: transform 0.2s;
+}
+
+/* Button hover animation */
+.pass-reset .overlap-group:hover {
+    transform: translateY(2px);
+}
+
+/* Button background rectangle */
+.pass-reset .button-rectangle {
+    width: calc(12vw + 5.1vh);
+    height: calc(3.3vw + 1.4vh);
+    top: -1px;
+    left: -1px;
+    background-color: #ffffff;
+    position: absolute;
+    border-radius: calc(3.1vw + 1.3vh);
+    border: 1px solid;
+    border-color: #000000;
+}
+
+/* Button text styles */
+.pass-reset .secondary-action {
+    position: absolute;
+    width: calc(8.6vw + 3.7vh);
+    top: calc(0.7vw + 0.3vh);
+    left: calc(1.6vw + 0.7vh);
+    color: #181818;
+    font-size: calc(1.5vw + 0.6vh);
+    text-align: center;
+    letter-spacing: calc(-0.09vw - 0.04vh);
+}
+
+/*Ends Password Reset CSS*/

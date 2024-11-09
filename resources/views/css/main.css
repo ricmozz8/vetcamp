@@ -9,6 +9,13 @@
 */
 
 @import url('home.css');
+@import url('auth_pages.css');
+@import url('login.css');
+@import url('register.css');
+@import url('forgot_pass.css');
+@import url('pass_reset.css');
+@import url('back_dash.css');
+@import url('backMessageModal.css');
 @import url('components.css');
 @import url('crash.css');
 @import url('generics.css');
