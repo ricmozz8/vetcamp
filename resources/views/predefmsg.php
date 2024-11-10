@@ -13,7 +13,14 @@
 
     ?>
     <body>
+
+    <?php
+        if (session_has('success')) {
+            echo '<p class="success">' . session_get('success') . '</p>';
+        }
+    ?>
     <form action="/admin/predef/update" method="POST">
+        
         <?php foreach ($messages as $message) { ?>
             <label for="<?= $message->category; ?>">
                 <?=$categoryES[$message->category]?>

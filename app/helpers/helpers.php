@@ -116,6 +116,50 @@ function redirect(string $url) {
     exit;
 }
 
+
+/**
+ * Redirect to a given URL and set a cookie for each value in the data array
+ *
+ * If the cookie does not exist, it will be created with a 2 second expiration
+ * time. If the cookie does exist, it will be deleted.
+ *
+ * @param string $url The URL to redirect to.
+ * @param array $data An associative array of key - value pairs to set as
+ *                    cookies.
+ */
+function redirect_with(string $url, array $data) {
+    
+    foreach ($data as $key => $value) {
+        if (!isset($_COOKIE[$key])) {
+            setcookie($key, $value, time() + 2);
+        } else {
+            setcookie($key, $value, time() - 3600);
+        }
+    }
+
+    header('Location: ' . $url);
+    exit;
+}
+
+
+/**
+ * Checks if the given key exists in the session.
+ *
+ * @param string $key The key to search for in the session.
+ * @return bool True if the key exists, false otherwise.
+ */
+function session_has(string $key) {
+    return isset($_SESSION[$key]);
+}
+
+
+function session_get(string $key) {
+    if (!session_has($key)) {
+        return null;
+    }
+    return $_SESSION[$key];
+}
+
 /**
  * Dumps the given variables and ends the script.
  *
