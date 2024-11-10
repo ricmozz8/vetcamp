@@ -378,3 +378,36 @@
     padding: 10px;
     resize: both; /* Allows resizing both horizontally and vertically */
 }
+
+/* Temporary style for the table in requests.php */
+.back-dash .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+.back-dash .table, th, td {
+     border: 1px solid #ddd;
+}
+.back-dash th, td {
+    padding: 10px;
+    text-align: left;
+}
+.back-dash tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.back-dash tr:hover {
+    background-color: #f1f1f1;
+}
+.back-dash th {
+    background-color: #4CAF50;
+    color: white;
+}
+.back-dash .email-col {
+    width: 20%;
+}
+.back-dash .status-col {
+    width: 10%;
+}
+.back-dash .date-col {
+    width: 15%;
+}

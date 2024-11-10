@@ -12,8 +12,8 @@
 require 'app/controllers/UserController.php';
 require 'app/controllers/HomeController.php';
 require 'app/controllers/BackDashboardController.php';
-require 'app/controllers/BackSettingsController.php';
-require 'app/controllers/BackApplicationsController.php';
+require 'app/controllers/SettingsController.php';
+require 'app/controllers/RequestsController.php';
 
 $request =  $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
@@ -65,16 +65,13 @@ switch (strtolower($request)) {
 
     // GET BACK VIEWS
     case '/admin':
-        echo 'WORK IN PROGRESS';
-        break;
-    case '/backdashboard':
         BackDashboardController::index();
         break;
-    case '/backsettings':
-        BackSettingsController::index();
+    case '/admin/settings':
+        SettingsController::index();
         break;
-    case '/backapplications':
-        BackApplicationsController::index();
+    case '/admin/requests':
+        RequestsController::index();
         break;
     default:
         abort(404, 'Page was not found');
