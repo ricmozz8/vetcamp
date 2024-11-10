@@ -8,8 +8,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(20px);
+    background-color: rgb(0 0 0 / 38%);
+    backdrop-filter: blur(5px);
     z-index: 999;
 }
 
@@ -48,11 +48,10 @@
 
 .message-title {
     color: rgba(45, 45, 45, 1);
-    letter-spacing: -3.84px;
+    letter-spacing: -1.84px;
     margin-top: 10px;
     font-weight: 700;
-    font-size: 56px;
-    line-height: 1;
+    font-size: 2.3em;
 }
 
 /*******************************
@@ -74,7 +73,7 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
     justify-content: center;
-    padding: 14px 13px;
+    padding: 10px 13px;
     border: 1px solid rgba(0, 0, 0, 1);
     background-color: transparent;
 }
@@ -107,7 +106,7 @@
     align-self: center;
     flex-basis: auto;
     transition: color 0.2s ease;
-    font-size: 22px;  
+    font-size: 1.3em;
     line-height: 1;
 }
 
@@ -117,7 +116,7 @@
  *******************************/
 .dropdown-container {
     position: relative;
-    width: 35%%;
+    width: 35%;
 }
 
 .dropdown-select {
@@ -129,9 +128,9 @@
     letter-spacing: -1.44px;
     justify-content: center;
     gap: 8px;
-    padding: 18px 40px; 
+    padding: 11px 15px; 
     border: 1px solid rgba(0, 0, 0, 1);
-    font-size: 22px;  
+    font-size: 1.3em;  
     line-height: 1;
     cursor: pointer;
 }
@@ -167,7 +166,7 @@
     display: flex;
     align-items: center;
     margin: -4px 0 0 -8px;
-    height: 28px;
+    height: 1em;
 }
 
 /*******************************
@@ -180,14 +179,14 @@
     gap: 12px;
     color: rgba(129, 129, 129, 1);
     letter-spacing: -1.44px;
-    font-size: 22px;  
+    font-size: 1.3em; 
     line-height: 1;
     align-items: center; 
 }
 
 .preset-checkbox {
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
     cursor: pointer;
     filter: hue-rotate(200deg)
 }
@@ -211,7 +210,7 @@
     outline: none;
     border: 1px solid rgba(0, 0, 0, 1);
     width: 100%;
-    font-size: 18px;  
+    font-size: 1.3em;  
     line-height: 1.5;
     font-weight: 500;
 }

@@ -56,7 +56,7 @@ require __DIR__ . '/partials/header.php';
             <!-- Header with welcome message and action button -->
             <header class="header">
                 <h1 class="welcome">Bienvenido, Usuario</h1>
-                    <button class="send-message" id="openModalButton"><img src="https://img.icons8.com/?size=100&id=UpjOluXJf7xW&format=png&color=FFFFFF" class="main-icons">Enviar mensaje</button>
+                    <button class="tertiary main-action-bright" id="openModalButton"><img src="https://img.icons8.com/?size=100&id=UpjOluXJf7xW&format=png&color=FFFFFF" class="main-icons">Enviar mensaje</button>
             </header>
             
             
@@ -124,7 +124,7 @@ require __DIR__ . '/partials/header.php';
                     </div>
                     
                     <div class="button-container">
-                        <a href="#" class="view-all-button">Ver todos</a>
+                        <a href="#" class="secondary main-action-bright">Ver todos</a>
                     </div>
                 </div>
 
@@ -153,7 +153,7 @@ require __DIR__ . '/partials/header.php';
                     </div>
                     
                     <div class="button-container">
-                        <a href="#" class="view-all-button">Ver todos</a>
+                        <a href="#" class="secondary main-action-bright">Ver todos</a>
                     </div>
                 </div>
             </div>
@@ -163,10 +163,12 @@ require __DIR__ . '/partials/header.php';
                     <div class="popup-overlay" id="popupOverlay" style="display: none"></div>
 
                     <!-- Main popup container with the form -->
+                     
                     <div class="message-popup" id="messagePopup" style="display: none">
                         <!-- Close button in the top-right corner -->
-                        <img src="https://img.icons8.com/?size=100&id=71200&format=png&color=1A1A1A" alt="Close" class="close-icon" id="closePopup">
-
+                        <!-- <img src="https://img.icons8.com/?size=100&id=71200&format=png&color=1A1A1A" alt="Close" class="close-icon" id="closePopup"> -->
+                        <a href="#" class="plain-action" id="closePopup"><i class="las la-times"></i></a>
+                        
                         <!-- Popup title -->
                         <h2 class="message-title">Enviar mensaje</h2>
 
@@ -192,19 +194,14 @@ require __DIR__ . '/partials/header.php';
                                 <span class="option-text">Todos</span>
                             </button>
 
-                             <!-- Section dropdown (initially hidden) -->
-                            <div class="dropdown-container">
-                                <div class="dropdown-select" id="sectionDropdown" style="display: none;">
-                                    <img src="https://img.icons8.com/?size=100&id=99977&format=png&color=737373" class="dropdown-icon">
-                                    <span>Seleccione una sección</span>
-                                </div>
-                                <div class="dropdown-menu" id="dropdownMenu" style="display: none;">
-                                    <div class="dropdown-item">Sección 1</div>
-                                    <div class="dropdown-item">Sección 2</div>
-                                    <div class="dropdown-item">Sección 3</div>
-                                    <div class="dropdown-item">Sección 4</div>
-                                </div>
-                            </div>
+
+                            <select class="form-rounded" name="section" id="sectionDropdown" style="display: none;">
+                                <option value="">Seleccione una sección</option>
+                                <option value="1">Sección 1</option>
+                                <option value="2">Sección 2</option>
+                                <option value="3">Sección 3</option>
+                                <option value="4">Sección 4</option>
+                            </select>
                         </div>
 
                         <!-- Preset message option -->
@@ -217,7 +214,7 @@ require __DIR__ . '/partials/header.php';
                         <textarea class="message-textarea" placeholder="Escriba su mensaje aquí..." aria-label="Message input"></textarea>
 
                         <!-- Send button -->
-                        <button class="send-button">Enviar</button>
+                        <button class="secondary main-action-bright">Enviar</button>
                     </div>
         </div>
     </div>

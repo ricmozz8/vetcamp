@@ -58,6 +58,7 @@
 .back-dash .logo-upr {
     width: 40%;
     height: 75%;
+    object-fit: contain;
 }
 
 /* Right-aligned logo positioning */

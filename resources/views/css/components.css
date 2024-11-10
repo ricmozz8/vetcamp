@@ -16,6 +16,10 @@ a, .main-action-bright{
     display: block;
     width: fit-content;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
 }
 .main-action-bright.secondary{
     background-color: var(--main-color-default);
@@ -24,8 +28,27 @@ a, .main-action-bright{
     border: none;
 }
 
+.main-action-bright.tertiary{
+    background-color: var(--secondary-color-default);
+    color: var(--white-color);
+    box-shadow: none;
+    border: none;
+}
+
 a:hover, .main-action-bright:hover{
     top: -5px;
     box-shadow: none;
     filter: brightness(.8);
+}
+
+a.plain-action{
+    background-color: transparent;
+    color: black;
+    box-shadow: none;
+    border: none;
+    text-decoration: none;
+    padding: 0;
+    font-weight: 400;
+    font-size: 1.6em;
+
 }
