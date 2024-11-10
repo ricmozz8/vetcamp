@@ -5,13 +5,13 @@ require_once __DIR__ . '/../../database/connector.php';
 
 class Model
 {
-    protected static $table;
-    protected $attributes = [];
-    public $values = [];
-    private static $initialized = false;
+    protected static $table; // The name of the table associated with the model
+    protected $attributes = []; // The attributes of the model
+    public $values = []; // The sanitized values of the model
+    private static $initialized = false; // A flag indicating whether the model has been initialized
 
-    protected static $primary_key = 'id';
-    protected static $hidden = []; // attributes that should not be serialized
+    protected static $primary_key = 'id'; // The primary key of the model
+    protected static $hidden = [];  // An array of attributes that should not be serialized
 
     /**
      * Sets the table name for the model based on the class name.
@@ -73,7 +73,7 @@ class Model
      */
     public function __get($key)
     {
-        return $this->attributes[$key] ?? null; // Retorna el atributo o null si no existe
+        return $this->attributes[$key] ?? null;
     }
 
 
@@ -129,6 +129,16 @@ class Model
     }
 
 
+    /**
+     * Finds a record in the associated table with the given data
+     *
+     * @param array $data An associative array with the column(s) to search as
+     *                    the key(s) and the value(s) as the value(s) to match
+     *
+     * @return Model The model instance with the matching record.
+     *
+     * @throws ModelNotFoundException If the record is not found.
+     */
     public static function findBy(array $data) : Model {
         self::init();
         $data = DB::whereColumns(static::$table, $data);
