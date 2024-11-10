@@ -13,6 +13,7 @@
     <script src="<?= web_resource("js/homeCarrousel.js") ?>"></script>
     <script src="<?= web_resource("js/fileupload.js") ?>"></script>
     <script src="<?= web_resource("js/modals.js") ?>"></script>
+    <script src="<?= web_resource("js/backendDashboard.js")?>"></script>
 
     <!-- TYPEFACES -->
 
