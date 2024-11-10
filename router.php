@@ -80,13 +80,10 @@ switch (strtolower($request)) {
 
     // GET BACK VIEWS
     case '/admin':
-        echo 'WORK IN PROGRESS';
+        BackDashboardController::index();
         break;
     case '/admin/profile':
         render_view('profile', [], 'Profile');
-        break;
-    case '/admin/backdashboard':
-        BackDashboardController::index();
         break;
     default:
         abort(404, 'Page was not found');
