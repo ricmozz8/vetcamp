@@ -42,21 +42,17 @@ class SettingsController extends Controller
      */
     public static function updateMessages($request_method)
     {
-        $success = ['content' => 'Could not edit messages'];
-
 
         if ($request_method == 'POST') {
             $messages = Message::all();
             
             foreach ($messages as $message) {
                 // update the message and save it to the database
-                $message->update(['content' => $_POST[$message->category]]);
+                $message->update(['success' => $_POST[$message->category]]);
             }
-
-            $success['content'] = 'Updated messages successfully';
         } 
 
-        redirect_with('/admin/predefmsg', $success);
+        redirect('/admin/predefmsg');
         
     }
     // ---

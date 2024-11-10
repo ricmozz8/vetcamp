@@ -118,29 +118,21 @@ function redirect(string $url) {
 
 
 /**
- * Redirect to a given URL and set a cookie for each value in the data array
+ * Stores a value in the session.
  *
- * If the cookie does not exist, it will be created with a 2 second expiration
- * time. If the cookie does exist, it will be deleted.
+ * If the session is not already started, this function will start it.
  *
- * @param string $url The URL to redirect to.
- * @param array $data An associative array of key - value pairs to set as
- *                    cookies.
+ * @param string $key The key to store the value with.
+ * @param mixed $value The value to store.
  */
-function redirect_with(string $url, array $data) {
-    
-    foreach ($data as $key => $value) {
-        if (!isset($_COOKIE[$key])) {
-            setcookie($key, $value, time() + 2);
-        } else {
-            setcookie($key, $value, time() - 3600);
-        }
+function session_store(string $key, $value) {
+
+    if(!isset($_SESSION)) {
+        session_start();
     }
 
-    header('Location: ' . $url);
-    exit;
+    $_SESSION[$key] = $value;
 }
-
 
 /**
  * Checks if the given key exists in the session.
@@ -149,7 +141,34 @@ function redirect_with(string $url, array $data) {
  * @return bool True if the key exists, false otherwise.
  */
 function session_has(string $key) {
-    return isset($_SESSION[$key]);
+    return isset($_SESSION[$key]) ?? false;
+}
+
+/**
+ * Checks if the given key exists in the superglobal $_COOKIE array.
+ *
+ * @param string $key The key to search for in the $_COOKIE array.
+ * @return bool True if the key exists, false otherwise.
+ */
+function cookie_exists(string $key) {
+    return isset($_COOKIE[$key]) ?? false;
+}
+
+
+/**
+ * Retrieves the value of a cookie by its key.
+ *
+ * Checks if the cookie exists using the `cookie_exists` function.
+ * Returns the cookie value if it exists, otherwise returns null.
+ *
+ * @param string $key The key of the cookie to retrieve.
+ * @return mixed The value of the cookie if it exists, null otherwise.
+ */
+function get_cookie(string $key) {
+    if (!cookie_exists($key)) {
+        return null;
+    }
+    return $_COOKIE[$key];
 }
 
 

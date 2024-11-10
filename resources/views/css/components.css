@@ -66,3 +66,49 @@ a.plain-action{
     font-size: 1.6em;
 
 }
+
+.system-message{
+    padding: 10px 15px;
+    background-color: var(--main-color-default);
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 1em;
+    position: absolute;
+    top: 2em;
+    box-shadow: var(--shadow-soft);
+    left: 0;
+    right: 0;
+    margin: auto;
+    justify-content: flex-start;
+    border-radius: 12px;
+    
+    animation: fadeDown .52s ease;
+    width: fit-content;
+    transition: all .25s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.message-close-button{
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--main-color-default);
+    transition: all .25s ease;
+}
+
+.message-close-button:hover{
+    filter: brightness(.9);
+}
+
+@keyframes fadeDown {
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
