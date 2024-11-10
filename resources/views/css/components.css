@@ -1,4 +1,9 @@
-a, .main-action-bright{
+a{
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+a.main-action-bright{
     position: relative;
     top: 0px;
     font-size: 1em;
@@ -15,7 +20,6 @@ a, .main-action-bright{
     transition: all .25s ease;
     display: block;
     width: fit-content;
-    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 10px;
