@@ -48,7 +48,7 @@ class SettingsController extends Controller
             
             foreach ($messages as $message) {
                 // update the message and save it to the database
-                $message->update(['success' => $_POST[$message->category]]);
+                $message->update(['content' => $_POST[$message->category]]);
             }
         } 
 
