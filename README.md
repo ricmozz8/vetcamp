@@ -50,7 +50,7 @@ The same will work for views.
 
 *PD: Feel free to extend this script to autogenerate files*
 
-## Testing
+## Testing (Disabled)
 In order to run tests you must execute the following command
 under the `tests` folder:
 ```bash
