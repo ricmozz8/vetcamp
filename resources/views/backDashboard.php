@@ -195,7 +195,7 @@ require __DIR__ . '/partials/header.php';
                              <!-- Section dropdown (initially hidden) -->
                             <div class="dropdown-container">
                                 <div class="dropdown-select" id="sectionDropdown" style="display: none;">
-                                    <img src="https://img.icons8.com/?size=100&id=99977&format=png&color=1A1A1A" class="dropdown-icon">
+                                    <img src="https://img.icons8.com/?size=100&id=99977&format=png&color=737373" class="dropdown-icon">
                                     <span>Seleccione una sección</span>
                                 </div>
                                 <div class="dropdown-menu" id="dropdownMenu" style="display: none;">
@@ -221,6 +221,8 @@ require __DIR__ . '/partials/header.php';
                     </div>
         </div>
     </div>
+
+    <script src="<?= web_resource("js/backendDashboard.js")?>"></script>
 
     <?php require_once('partials/footer.php'); ?>
 

@@ -164,10 +164,10 @@
 }
 
 .dropdown-icon {
-    color: rgba(128, 128, 128, 1);
     display: flex;
     align-items: center;
     margin: -4px 0 0 -8px;
+    height: 28px;
 }
 
 /*******************************
@@ -220,9 +220,9 @@
  * SEND BUTTON
  * Submit button styling 
  *******************************/
-.send-button {
+.back-dash .send-button {
     border-radius: 50px;
-    background-color: (--main-color-default);
+    background: var(--main-color-default);
     align-self: end;
     margin-top: 20px;
     color: rgba(0, 0, 0, 1);
@@ -237,6 +237,6 @@
     font-weight: 600;
 }
 
-send-button::hover {
+.back-dash .send-button::hover {
     background-color: (--main-color-shade-1);
 }
