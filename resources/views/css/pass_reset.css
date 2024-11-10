@@ -6,11 +6,8 @@
  *******************************/
 /* Main container styles */
 .pass-reset {
-    display: grid;
-    grid-template-columns: 45% 55%;
     width: auto;
     height: auto;
-    overflow: hidden;
     font-size: calc(0.8vw + 0.4vh);
 }
 

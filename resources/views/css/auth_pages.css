@@ -16,6 +16,8 @@
     flex-direction: column;
     padding: calc(2.5vw + 1vh) calc(2.8vw + 1vh);
     position: relative;
+    height: 100%;
+    width: 45%;
 }
 
 /*******************************
@@ -35,6 +37,7 @@
 
 /* Side Content Container */
  .side-content {
+    display: flex;
     position: absolute;
     width: 55%;
     height: 100%;
