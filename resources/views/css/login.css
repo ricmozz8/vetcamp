@@ -6,11 +6,8 @@
  *******************************/
 /* Main Container */
 .login {
-    display: grid;
-    grid-template-columns: 45% 55%;
     width: auto;
     height: auto;
-    overflow: hidden;
     font-size: calc(0.8vw + 0.4vh);
 }
 
@@ -20,8 +17,6 @@
  *******************************/
 /* Form Styling */
 .login form {
-    display: flex;
-    flex-direction: column;
     margin-top: calc(5vw + 2vh);
 }
 
@@ -39,10 +34,7 @@
 
 /* Input Fields Container */
  .input-group {
-    display: flex;
-    flex-direction: column;
     gap: calc(1vw + 1vh);
-    margin-bottom: calc(2vw + 1vh);
 }
 
 /* Input Labels */
@@ -91,7 +83,6 @@
  *******************************/
 /* Actions Container */
 .login .actions {
-    display: flex;
     align-items: center;
     gap: calc(1.1vw + 0.5vh);
     margin-bottom: calc(1vw + 0.8vh);
