@@ -19,11 +19,7 @@
     transition: all .25s ease;
 }
 
-.error-box:hover{
-    box-shadow: 0px 10px 50px rgba(87, 16, 16, 1);
-    background-color: rgb(74, 34, 34);
-    transform: scale(1.05);
-}
+
 
 .error-box *{
     font-family: var(--text-font);

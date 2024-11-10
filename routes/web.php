@@ -16,6 +16,7 @@ require 'app/controllers/ForgotPassController.php';
 require 'app/controllers/LoginController.php';
 require 'app/controllers/PassResetController.php';
 require 'app/controllers/RegisterController.php';
+require 'app/controllers/SettingsController.php';
 
 
 $request =  $_SERVER['REQUEST_URI'];
@@ -62,6 +63,7 @@ switch (strtolower($request)) {
         render_view('application/dashboard', [], 'Aplica');
         break;
     case '/apply/application':
+        // IMPORTANT: IT IS REQUIRED TO MOVE THIS TO A CONTROLLER WHEN IMPLEMENTING FUNCTIONALITY
         if($method == 'POST'){
             $stage = $_POST['stage'] ?? '1';
             render_view('application/stage'.$stage  , [], 'Aplica');
@@ -71,11 +73,17 @@ switch (strtolower($request)) {
         
         break;
     
-    
+    // ADAPT THESE VIEWS TO SETTINGS PAGE
+    case '/admin/predefmsg':
+        SettingsController::editMessages();
+        break;
+    case '/admin/predef/update':
+        SettingsController::updateMessages($method);
+        break;
 
 
     // POST FRONT VIEWS
-
+    
 
 
     // GET BACK VIEWS
