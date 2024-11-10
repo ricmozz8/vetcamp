@@ -69,7 +69,7 @@ class Model
     }
 
      /**
-     * Returns sttributes by key (getter function)
+     * Returns attributes by key (getter function)
      */
     public function __get($key)
     {

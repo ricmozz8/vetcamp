@@ -3,9 +3,6 @@
 <?php
 require_once __DIR__ . '/partials/header.php';
 
-// Obtaining all users from the database
-$solicitants = User::allRegistered();
-
 ?>
 <head>
     <meta charset="UTF-8">

@@ -40,26 +40,15 @@ class User extends Model{
         return Application::find($this->attributes[self::$primary_key], self::$primary_key);
     }
 
-    /**
-     * Finds all registered users.
-     *
-     * This method returns all registered users and their
-     * application status. Users without an application are
-     * not included in the result.
-     *
-     * @return User[] An array of User objects with the "status" attribute
-     *                filled with the application status if any.
-     *
-     * @throws Exception If an error occurs while fetching the users or
-     *                   applications.
-     */
-    public static function allRegistered() {
+   
+    public static function allApplicants() {
         try {
-            $users = self::all();
+            $type = 'user';
+            $users = self::allof($type);
             $applications = Application::all(); 
             $applicationsByUserId = [];
     
-            
+
             foreach ($applications as $application) {
                 $applicationsByUserId[$application->user_id] = $application;
             }
@@ -85,7 +74,27 @@ class User extends Model{
         }
     }
 
-
+    /**
+     * Retrieves all users of the given type from the database.
+     *
+     * This method works the same way as the parent class's all() method, but
+     * it filters the results to only include users of the given type.
+     *
+     * @param string $type The type of users to retrieve. The only valid
+     *                     value currently is 'user', but more types may
+     *                     be added in the future.
+     *
+     * @return User[] An array of User objects of the given type.
+     *
+     * @throws Exception If an error occurs while fetching the users.
+     */
+    public static function allof(string $type){
+        $all_users = parent::all();
+        $filtered_users = array_filter($all_users, function ($user) use ($type) {
+            return $user->type === $type;
+        });
+        return $filtered_users;
+    }
 
 
 }

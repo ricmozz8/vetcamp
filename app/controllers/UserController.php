@@ -33,7 +33,7 @@ class UserController extends Controller{
      * @return void
      */
     public static function all() {
-        $users = User::all(); // Retrieve all users
+        $users = User::allof('user'); // Retrieve all users
        render_view('allUsers', ['users' => $users] , 'All Users');
       }
 
@@ -47,8 +47,8 @@ class UserController extends Controller{
      *
      * @return void
      */
-      public static function allRegistered() {
-       $solicitants = User::allRegistered();
+      public static function allApplicants() {
+       $solicitants = User::allApplicants();
        render_view('allSolicitants', ['solicitants' => $solicitants], 'All Solicitants'); 
     }
 

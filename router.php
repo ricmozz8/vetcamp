@@ -55,7 +55,7 @@ switch (strtolower($request)) {
         UserController::update();
         break;
     case '/users/solicitants/all':
-        UserController::allRegistered();
+        UserController::allApplicants();
         break;
 
     case '/apply':

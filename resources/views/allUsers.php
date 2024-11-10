@@ -2,9 +2,6 @@
 <html lang="en">
 <?php
 require_once __DIR__ . '/partials/header.php';
-
-// Obtaining all users from the database
-$users = User::all();
 ?>
 <head>
     <meta charset="UTF-8">
