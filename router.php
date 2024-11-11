@@ -36,8 +36,29 @@ switch (strtolower($request)) {
     case '/register':
         RegisterController::index();
         break;
+    case '/register/insertuser':
+        RegisterController::insertuser();
+        break;
     case '/login':
         LoginController::index();
+        break;
+    case '/login/auth':
+        LoginController::auten();
+        break;
+    case '/login/auth/form1':
+        LoginController::form1();
+        break;
+    case '/login/auth/form2':
+        LoginController::form2();
+        break;
+    case '/login/auth/form3':
+        LoginController::form3();
+        break;
+    case '/login/auth/form4':
+        LoginController::form4();
+        break;
+    case '/login/auth/form5':
+        LoginController::form5();
         break;
     case '/forgotpass':
         ForgotPassController::index();

@@ -16,5 +16,10 @@ class RegisterController extends Controller
         render_view('register', [], 'Register');
     }
 
+    public static function insertuser()
+    {
+        render_view('insertuser', [], 'Register');
+    }
+
     // define your other methods here
 }

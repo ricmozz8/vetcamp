@@ -14,7 +14,7 @@ require __DIR__ . '/partials/header.php';
                 <a class="logo" href="/"><img src="resources/assets/logo/PNG/vetcamp_full_hoz_b.png" alt="Vetcamp" class="logo"></a>
 
                 <!-- Sign-up form -->
-                <form action="#" method="POST"> <!-- Update -->
+                <form action="/register/insertuser" method="POST"> <!-- Update -->
                     <!-- Page Title -->
                     <div class="page-title">Regístrate</div>
 
