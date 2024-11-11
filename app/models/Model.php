@@ -156,7 +156,7 @@ class Model
     public static function create(array $data) : Model
     {
         $newModel = new static($data, self::sanitize($data));
-        $newModel->save();
+        $newModel->store();
 
         return $newModel;
         
@@ -220,6 +220,16 @@ class Model
     public function save() : bool
     {   
         return DB::update(static::$table, $this->values, static::$primary_key, $this->attributes[static::$primary_key]);
+    }
+
+
+    /**
+     * Creates a new record in the associated table using the current model attributes.
+     *
+     * @return bool Returns true if the record was successfully inserted, otherwise false.
+     */
+    public function store() : bool {
+        return DB::insert(static::$table, $this->values);
     }
 
     /**
