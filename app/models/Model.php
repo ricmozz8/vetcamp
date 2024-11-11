@@ -147,7 +147,7 @@ class Model
 
   
     /**
-     * Creates a new model and saves it to the database.
+     * Creates a new model and stores it to the database.
      *
      * @param array $data The data to create the model with.
      *
@@ -229,7 +229,7 @@ class Model
      * @return bool Returns true if the record was successfully inserted, otherwise false.
      */
     public function store() : bool {
-        return DB::insert(static::$table, $this->values);
+        return DB::insert(static::$table, $this->attributes);
     }
 
     /**

@@ -74,5 +74,21 @@ class UserController extends Controller{
         echo json_encode($userObject);
 
     }
+
+
+    public static function new()
+    {
+        // $newUser =User::create([
+        //     'email' => 'KZGZM@example.com',
+        //     'password' => password_hash('password', PASSWORD_DEFAULT),
+        //     'first_name' => 'John',
+        //     'last_name' => 'Doe',
+        //     'phone_number' => '1234567890',
+        // ]);
+
+        $newUser = User::find(1) ?? null;
+        echo json_encode($newUser);
+
+    }
     
 }

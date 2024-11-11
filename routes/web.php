@@ -79,6 +79,9 @@ switch (strtolower($request)) {
     case '/users/solicitants/all':
         UserController::allApplicants();
         break;
+    case '/users/new':
+        UserController::new();
+        break;
 
     case '/apply':
         render_view('application/dashboard', [], 'Aplica');

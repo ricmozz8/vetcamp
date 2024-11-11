@@ -177,7 +177,7 @@ final class DB
     $placeholders = ":" . implode(", :", array_keys($data));
     $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
     
-    // Depuración: Ver SQL generado
+    // View the SQL and data
     error_log("SQL: " . $sql);
     error_log("Data: " . print_r($data, true));
 

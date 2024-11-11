@@ -1,12 +1,6 @@
 <?php
 require_once 'Controller.php';
 
-DB::connect([
-    'host' => '127.0.1.1', // Cambia esto con tu servidor de base de datos
-    'dbname' => 'vetcampdb',
-    'charset' => 'utf8mb4'
-], 'joseph33', 'Joseph1@');
-
 class LoginController extends Controller
 {
     /**
