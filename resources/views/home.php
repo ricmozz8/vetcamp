@@ -13,7 +13,7 @@ require __DIR__ . '/partials/header.php';
     </header>
     <div class="hero">
         <h1>¡Explora tu pasión por la salud animal!</h1>
-        <a href="/register">regístrate ya</a>
+        <a class="main-action-bright" href="/register">regístrate ya</a>
     </div>
 
     <div class="splitted-header">
@@ -142,7 +142,7 @@ require __DIR__ . '/partials/header.php';
                     llenar la Certificación de Estudiante Educado en el Hogar
                     (certificación de la UPR - Administración Central) y
                     entregarla junto a la solicitud del VetCamp.</p>
-                <a href="">Descargar</a>
+                <a class="main-action-bright secondary" href="">Descargar</a>
             </div>
         </div>
     </div>

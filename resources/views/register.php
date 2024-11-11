@@ -87,29 +87,24 @@ require __DIR__ . '/partials/header.php';
                             </div>
                         </div>
 
-                    <!-- Submit button -->
-                    <button type="submit" class="mainbutton">
-                        <div class="overlap-group">
-                            <div class="rectangle"></div>
-                            <div class="secondary-action">regístrate</div>
-                        </div>
-                    </button>
+                    <div class="actions">
+                        <!-- Submit button -->
+                        <button type="submit" class="mainbutton">
+                            <div class="overlap-group">
+                                <div class="rectangle"></div>
+                                <div class="secondary-action">regístrate</div>
+                            </div>
+                        </button>
 
-                    <!-- Login link -->
-                    <a class="secondary-action-2" href="/login" >ya tienes cuenta?</a>
+                        <!-- Login link -->
+                        <a class="secondary-action-2" href="/login" >ya tienes cuenta?</a>
+                    </div>
                 </form>
         </div>
 
         <!-- Right Side Image Container -->
-        <div class="side-content">
-                <img src="resources/assets/img/gemma-regalado-3O801cdcLPc-unsplash-satUP.jpg" alt="Gemma Regalado" class="side-image">
-                <!-- Image Attribution -->
-                <div class="text-wrapper">Gemma Regalado, Unsplash</div>
-        </div>
-            <!-- Dark Overlay + Icon-->
-            <div class="overlay">
-            <img src="resources/assets/logo/SVG/logo_icon.svg" alt="Vetcamp Icon" class="icon">
-            </div>
+        <?php require_once('partials/authPagesRightSide.php'); ?>
+
     </div>
 
     <!-- Password Visibility Toggle Script -->

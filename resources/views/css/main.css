@@ -133,14 +133,6 @@ h1, h2, h3, h4, h5, h6 {
      z-index: 3;
 }
 
-.by-engine::before{
-    display: block;
-    content:url(../../assets/engine/craft_med_w.svg);
-    margin-right: 5px;
-    width: 70px;
-    opacity: 0.5;
-    margin-bottom: 2em;
-}
 
 .block{
     display: block;

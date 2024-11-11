@@ -33,6 +33,13 @@
     width: 100%;
 }
 
+.form-rounded{
+    border-radius: 28px;
+    padding: 10px 15px; 
+    border: 1px solid black;
+    cursor: pointer;
+}
+
 /* tablet */
 
 @media only screen and (min-width: 768px) {

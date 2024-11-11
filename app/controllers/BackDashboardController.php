@@ -13,7 +13,7 @@ class BackDashboardController extends Controller
     public static function index()
     {
         // your index view here
-        render_view('backdashboard', [], 'BackDashboard');
+        render_view('backDashboard', [], 'BackDashboard');
     }
 
     // define your other methods here
