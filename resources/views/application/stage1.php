@@ -48,12 +48,12 @@ require __DIR__ . '../../partials/header.php';
                     <div class="form-block">
                         <div class="form-group">
                             <label for="street">Calle</label>
-                            <input type="text" placeholder="123 Main St" name="street">
+                            <input type="text" placeholder="123 Main St" name="school_street">
                         </div>
 
                         <div class="form-group">
                             <label for="city">Ciudad</label>
-                            <select name="city" id="city">
+                            <select name="city" id="school_city">
                                 <option value="">Seleccione una ciudad</option>
                                 <option value="Adjuntas">Adjuntas</option>
                                 <option value="Aguada">Aguada</option>
@@ -139,7 +139,7 @@ require __DIR__ . '../../partials/header.php';
                         <div class="form-group">
 
                             <label for="zipcode">Código Postal</label>
-                            <input type="text" placeholder="0000" name="zipcode">
+                            <input type="text" placeholder="0000" name="school_zipcode">
                         </div>
 
                         <div class="form-group">
@@ -148,6 +148,9 @@ require __DIR__ . '../../partials/header.php';
 
                             <select name="schoolType">
                                 <option value="">Selecciona una</option>
+                                <option value="public">Publica</option>
+                                <option value="private">Privada</option>
+                                <option value="homeschooled">Homeschooled</option>
                                 <!-- Add more options here -->
                             </select>
                         </div>
