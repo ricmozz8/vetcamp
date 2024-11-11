@@ -87,21 +87,23 @@ require __DIR__ . '/partials/header.php';
                             </div>
                         </div>
 
-                    <!-- Submit button -->
-                    <button type="submit" class="mainbutton">
-                        <div class="overlap-group">
-                            <div class="rectangle"></div>
-                            <div class="secondary-action">regístrate</div>
-                        </div>
-                    </button>
+                    <div class="actions">
+                        <!-- Submit button -->
+                        <button type="submit" class="mainbutton">
+                            <div class="overlap-group">
+                                <div class="rectangle"></div>
+                                <div class="secondary-action">regístrate</div>
+                            </div>
+                        </button>
 
-                    <!-- Login link -->
-                    <a class="secondary-action-2" href="/login" >ya tienes cuenta?</a>
+                        <!-- Login link -->
+                        <a class="secondary-action-2" href="/login" >ya tienes cuenta?</a>
+                    </div>
                 </form>
         </div>
 
         <!-- Right Side Image Container -->
-        <?php require_once('partials/authPagesRIghtSide.php'); ?>
+        <?php require_once('partials/authPagesRightSide.php'); ?>
 
     </div>
 

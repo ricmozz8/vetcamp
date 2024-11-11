@@ -43,6 +43,7 @@
     padding: 0 calc(0.9vw + 0.4vh);
     margin-bottom: 5%;
     outline: none;
+    padding-right: 45px;
 }
 
 /* Input field focus state */
@@ -71,6 +72,7 @@
  /* Actions Container */
 .forgot-pass .actions {
     gap: calc(1.1vw + 0.5vh);
+    margin-top: calc(1vw + 0.8vh);
 }
 
 /* Submit button container styling */
@@ -83,7 +85,7 @@
     border: none;
     background: none;
     padding: 0;
-    margin-top: -2%;
+    margin-top: -2.5%;
 }
 
 /* Button hover effect container */
@@ -133,7 +135,6 @@
 .forgot-pass .back-button {
     width: calc(3.4vw + 1.4vh);
     height: calc(3.4vw + 1.4vh);
-    margin-bottom: -50%;
 }
 
 /* Back button hover effect */
@@ -141,6 +142,81 @@
     transform: translateY(2px);
 }
 
-/*Ends Forgot Password CSS */
 
+/*WORK IN PROGRESS*/
+/* Mobile Media Query for Password Reset Form */
+@media screen and (max-width: 689px) {
+    /* Main Container */
+    .forgot-pass {
+        font-size: calc(2vw + 1vh);
+    }
+
+    /* Page Title */
+    .forgot-pass .page-title {
+        font-size: calc(3vw + 2vh);
+        margin-bottom: calc(2vw + 1vh);
+        width: calc(38vw + 16vh);
+        margin-top: -10%;
+    }
+
+    /* Input Labels */
+    .forgot-pass .text-wrapper-2 {
+        font-size: calc(2.4vw + 1vh);
+        margin-bottom: 2%;
+    }
+
+    .forgot-pass .text-wrapper-3 {
+        font-size: calc(2vw + 1vh);
+        margin-bottom: 2%;
+        line-height: calc(2.3vw + 1vh);
+    }
+
+    .forgot-pass .input-field {
+        width: 100%;
+        max-width: 400px;
+        height: clamp(40px, calc(4vw + 2vh), 50px);
+        font-size: clamp(14px, calc(1.8vw + 0.8vh), 16px);
+        padding: 8px 40px 8px 16px;
+    }
+
+    /* Main Button Styling */
+    .forgot-pass .mainbutton {
+        width: calc(20vw + 9vh);
+        height: calc(5vw + 2vh);
+        margin-left: 4%;
+        margin-top: -15%;
+    }
+
+    /* Back Button Styling */
+    .forgot-pass .back-button {
+        width: calc(5vw + 2vh);
+        height: calc(5vw + 2vh);
+        margin-top: -25%;
+    }
+
+    /* Button Overlap Group */
+    .forgot-pass .overlap-group {
+        width: calc(20vw + 9vh);
+        height: calc(5vw + 2vh);
+        transform: translate(calc(-0.46vw - 0.2vh), calc(-0.46vw - 0.2vh));
+    }
+
+    .forgot-pass .overlap-group:hover {
+        transform: translate(calc(-0.46vw - 0.2vh), calc(-0.24vw - 0.1vh));
+    }
+
+    /* Button Rectangle */
+    .forgot-pass .button-rectangle {
+        width: calc(20vw + 9vh);
+        height: calc(5vw + 2vh);
+    }
+
+    /* Button Text */
+    .forgot-pass .secondary-action {
+        width: calc(14vw + 6vh);
+        top: calc(0.2vw + 0.4vh);
+        left: calc(2.8vw + 1.4vh);
+        font-size: calc(2.2vw + 1.2vh);
+    }
+}
 

@@ -16,7 +16,6 @@
 .back-dash {
     width: auto;
     height: auto;
-    overflow: hidden;
     font-size: calc(0.8vw + 0.4vh);
     background: #ffffff;
     display: flex;
@@ -281,14 +280,12 @@
 
 /* Item title/name styling */
 .back-dash .recent-name {
-    font-size: 16px;
     font-weight: 500;
     color: var(--text-dark);
 }
 
 /* Email address styling */
 .back-dash .recent-email {
-    font-size: 14px;
     color: #666;
 }
 

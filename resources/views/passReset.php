@@ -64,7 +64,7 @@ require __DIR__ . '/partials/header.php';
         </div>
         
         <!-- Right Side Image Container -->
-        <?php require_once('partials/authPagesRIghtSide.php'); ?>
+        <?php require_once('partials/authPagesRightSide.php'); ?>
 
 
     </div>

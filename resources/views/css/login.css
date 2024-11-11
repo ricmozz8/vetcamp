@@ -53,6 +53,7 @@
     font-size: calc(0.9vw + 0.4vh);
     padding: 0 calc(0.9vw + 0.4vh);
     outline: none;
+    padding-right: 45px;
 }
 
 .login .input-field:focus {
@@ -67,7 +68,6 @@
 /* Password Toggle Button */
 .login .password-toggle {
     position: relative;
-    transform: translateY(-50%);
     cursor: pointer;
     color: #666;
     font-size: calc(0.9vw + 0.4vh);
@@ -160,4 +160,97 @@
     color: #ECC802;
 }
 
-/* Ends Login CSS */
+
+/*WORK IN PROGRESS*/
+/* Mobile Media Query for Login Form */
+@media screen and (max-width: 689px) {
+    /* Main Container */
+    .login {
+        font-size: calc(2vw + 1vh);
+    }
+
+    /* Form Styling */
+    .login form {
+        margin-top: -5%;
+    }
+
+    /* Page Title */
+    .login .page-title {
+        font-size: calc(5vw + 2vh);
+        margin-bottom: calc(2vw + 1vh);
+        width: calc(38vw + 16vh);
+    }
+
+    /* Input Labels */
+    .login .text-wrapper-2 {
+        font-size: calc(2.4vw + 1vh);
+    }
+
+    .login .input-field {
+        width: 100%;
+        max-width: 400px;
+        height: clamp(40px, calc(4vw + 2vh), 50px);
+        padding: 8px 40px 8px 16px;
+        font-size: clamp(14px, calc(1.8vw + 0.8vh), 16px);
+    }
+
+    /* Password Toggle Button */
+    .login .password-toggle {
+         position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: clamp(14px, calc(1.8vw + 0.5vh), 18px);
+    }
+
+    /* Actions Container */
+    .login .actions {
+        gap: calc(2.2vw + 1vh);
+        margin-top: 5%;
+    }
+
+    /* Main Button Styling */
+    .login .mainbutton {
+        width: calc(20vw + 9vh);
+        height: calc(5vw + 2vh);
+        margin-top: calc(2vw + 0.2vh);
+        margin-left: 2%;
+        margin-bottom: -2%;
+    }
+
+    /* Button Overlap Group */
+    .login .overlap-group {
+        width: calc(20vw + 9vh);
+        height: calc(5vw + 2vh);
+        transform: translate(calc(-0.46vw - 0.2vh), calc(-0.46vw - 0.2vh));
+    }
+
+    .login .overlap-group:hover {
+        transform: translate(calc(-0.46vw - 0.2vh), calc(-0.24vw - 0.1vh));
+    }
+
+    /* Button Rectangle */
+    .login .button-rectangle {
+        width: calc(20vw + 9vh);
+        height: calc(5vw + 2vh);
+    }
+
+    /* Button Text */
+    .login .secondary-action {
+        width: calc(14vw + 6vh);
+        top: calc(0.2vw + 0.4vh);
+        left: calc(2.8vw + 1.4vh);
+        font-size: calc(2.2vw + 1.2vh);
+    }
+
+    /* Links Styling */
+    .login .signup-link,
+    .login .pass-reset-link {
+        font-size: calc(2vw + 1vh);
+        margin-bottom: -2%;
+    }
+
+    .login .signup-link {
+        right: 5%;
+    }
+}
