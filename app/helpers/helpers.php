@@ -99,7 +99,14 @@ function render_view(string $view, array $data = [], string $title = ''): void {
 
     extract($data);
     $page_title = get_config('app', 'name', '') . ' - ' . $title;
-    require VIEWS_DIR . $view . '.php';
+
+    try{
+        require VIEWS_DIR . $view . '.php';
+    } catch (Error $e) {
+        // check if the file exists
+        throw new ViewNotFoundException('The view file does not exist: ' . VIEWS_DIR . $view . '.php');
+    }
+    
     exit;
 }
 
