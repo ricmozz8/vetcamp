@@ -6,7 +6,15 @@ error_reporting(E_ALL);
 
 // DEBUG ONLY ---
 
-// GLOBAL IMPORTS REQUIRED IN ALL FILES
+/**
+ * 
+ * Main Application Bootstrapper
+ * 
+ * This is the main entry point of the application, it will import all the required files
+ * and start the application.
+ */
+
+// GLOBAL IMPORTS AVAILABLE ON ALL FILES
 require 'app/helpers/helpers.php';
 require 'bootstrap/exceptions.php';
 require 'kernel/auth.php';
@@ -15,6 +23,6 @@ require 'mailing/mailer.php';
 
 
 // Let the router handle all requests
-include 'router.php';
+include 'routes/web.php';
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 require_once 'Controller.php';
 
-class BackDashboardController extends Controller
+class ForgotPassController extends Controller
 {
 
     /**
@@ -13,7 +13,7 @@ class BackDashboardController extends Controller
     public static function index()
     {
         // your index view here
-        render_view('backDashboard', [], 'BackDashboard');
+        render_view('forgotpass', [], 'ForgotPass');
     }
 
     // define your other methods here

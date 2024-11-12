@@ -4,21 +4,28 @@ require_once 'Application.php';
 
 class User extends Model{
 
-    // define your methods here
-    // protected static $table = 'usuarios'; // change here the table name
-    protected static $hidden = ['password', 'user_id'];
-    protected static $primary_key = 'user_id';
+    protected static $hidden = ['password', 'user_id']; // Attributes that should not be serialized
+    protected static $primary_key = 'user_id'; // The primary key of the model
 
+    /**
+     * Initializes a new instance of the User class
+     * 
+     * @param array $attributes The attributes of the user
+     * @param array $sanitized The sanitized values of the user
+     */
     public function __construct(array $attributes, array $sanitized){
         parent::__construct($attributes, $sanitized);
     }
 
 
+    /**
+     * Returns the sanitized values of the user model
+     * 
+     * @return array An associative array with the sanitized values of the user
+     */
     public function get_values(){
         return $this->values;
     }
-
-    // relationships
     
     /**
      * Finds the application that belongs to the user
@@ -33,24 +40,25 @@ class User extends Model{
         return Application::find($this->attributes[self::$primary_key], self::$primary_key);
     }
 
-    public static function allRegistered() {
+   
+    public static function allApplicants() {
         try {
-            $users = self::all(); // Recupera todos los usuarios
-            $applications = Application::all(); // Recupera todas las aplicaciones
+            $type = 'user';
+            $users = self::allof($type);
+            $applications = Application::all(); 
             $applicationsByUserId = [];
     
-            // Organiza las aplicaciones por user_id para un acceso rápido
+
             foreach ($applications as $application) {
                 $applicationsByUserId[$application->user_id] = $application;
             }
     
-            $result = []; // Resultado final
+            $result = []; 
     
             foreach ($users as $user) {
                 try {
                     $userApplication = $user->application();
                     
-                    // Verifica si el usuario tiene una aplicación y asigna el estado
                     if ($userApplication) {
                         $user->status = $userApplication->status;
                         $result[] = $user;
@@ -66,7 +74,27 @@ class User extends Model{
         }
     }
 
-
+    /**
+     * Retrieves all users of the given type from the database.
+     *
+     * This method works the same way as the parent class's all() method, but
+     * it filters the results to only include users of the given type.
+     *
+     * @param string $type The type of users to retrieve. The only valid
+     *                     value currently is 'user', but more types may
+     *                     be added in the future.
+     *
+     * @return User[] An array of User objects of the given type.
+     *
+     * @throws Exception If an error occurs while fetching the users.
+     */
+    public static function allof(string $type){
+        $all_users = parent::all();
+        $filtered_users = array_filter($all_users, function ($user) use ($type) {
+            return $user->type === $type;
+        });
+        return $filtered_users;
+    }
 
 
 }

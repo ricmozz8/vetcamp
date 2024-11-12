@@ -25,8 +25,10 @@ require __DIR__ . '../../partials/header.php';
 
         <div class="status-actions">
             <form action="/apply/application" method="POST">
-            <input type="hidden" name="stage" value="1">
-            <button class="main-action-bright" type="submit">Llenar solicitud</button>
+                <input type="hidden" name="stage" value="1">
+           
+                    <button class="main-action-bright secondary" type="submit">Llenar solicitud</button>
+              
             </form>
         </div>
 

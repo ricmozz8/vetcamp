@@ -9,11 +9,19 @@
 */
 
 @import url('home.css');
+@import url('auth_pages.css');
+@import url('login.css');
+@import url('register.css');
+@import url('forgot_pass.css');
+@import url('pass_reset.css');
+@import url('back_dash.css');
+@import url('backMessageModal.css');
 @import url('components.css');
 @import url('crash.css');
 @import url('generics.css');
 @import url('applications.css');
-@import url('back_dash_style.css');
+@import url('profile.css');
+@import url('modals.css');
 
 
 :root {
@@ -125,14 +133,6 @@ h1, h2, h3, h4, h5, h6 {
      z-index: 3;
 }
 
-.by-engine::before{
-    display: block;
-    content:url(../../assets/engine/craft_med_w.svg);
-    margin-right: 5px;
-    width: 70px;
-    opacity: 0.5;
-    margin-bottom: 2em;
-}
 
 .block{
     display: block;

@@ -5,13 +5,13 @@ require_once __DIR__ . '/../../database/connector.php';
 
 class Model
 {
-    protected static $table;
-    protected $attributes = [];
-    public $values = [];
-    private static $initialized = false;
+    protected static $table; // The name of the table associated with the model
+    protected $attributes = []; // The attributes of the model
+    public $values = []; // The sanitized values of the model
+    private static $initialized = false; // A flag indicating whether the model has been initialized
 
-    protected static $primary_key = 'id';
-    protected static $hidden = []; // attributes that should not be serialized
+    protected static $primary_key = 'id'; // The primary key of the model
+    protected static $hidden = [];  // An array of attributes that should not be serialized
 
     /**
      * Sets the table name for the model based on the class name.
@@ -69,11 +69,11 @@ class Model
     }
 
      /**
-     * Returns sttributes by key (getter function)
+     * Returns attributes by key (getter function)
      */
     public function __get($key)
     {
-        return $this->attributes[$key] ?? null; // Retorna el atributo o null si no existe
+        return $this->attributes[$key] ?? null;
     }
 
 
@@ -129,6 +129,16 @@ class Model
     }
 
 
+    /**
+     * Finds a record in the associated table with the given data
+     *
+     * @param array $data An associative array with the column(s) to search as
+     *                    the key(s) and the value(s) as the value(s) to match
+     *
+     * @return Model The model instance with the matching record.
+     *
+     * @throws ModelNotFoundException If the record is not found.
+     */
     public static function findBy(array $data) : Model {
         self::init();
         $data = DB::whereColumns(static::$table, $data);
@@ -137,7 +147,7 @@ class Model
 
   
     /**
-     * Creates a new model and saves it to the database.
+     * Creates a new model and stores it to the database.
      *
      * @param array $data The data to create the model with.
      *
@@ -146,7 +156,7 @@ class Model
     public static function create(array $data) : Model
     {
         $newModel = new static($data, self::sanitize($data));
-        $newModel->save();
+        $newModel->store();
 
         return $newModel;
         
@@ -210,6 +220,16 @@ class Model
     public function save() : bool
     {   
         return DB::update(static::$table, $this->values, static::$primary_key, $this->attributes[static::$primary_key]);
+    }
+
+
+    /**
+     * Creates a new record in the associated table using the current model attributes.
+     *
+     * @return bool Returns true if the record was successfully inserted, otherwise false.
+     */
+    public function store() : bool {
+        return DB::insert(static::$table, $this->attributes);
     }
 
     /**

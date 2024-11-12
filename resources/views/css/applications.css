@@ -85,6 +85,7 @@
     border-radius: 8px;
     border: 1px solid black;
     box-shadow: var(--shadow-soft);
+    background-color: white;
 }
 
 /* Progress Bar */
@@ -249,7 +250,14 @@
 
 input[type="file"] {
     display: none;
-  }
+}
+
+
+
+
+
+
+
 
   /* Style the label as a custom button */
   label[for="file"] {

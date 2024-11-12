@@ -1,0 +1,164 @@
+/*******************************
+ * RESET & BASE STYLES
+ * Establish consistent base styling across browsers
+ *******************************/
+* {
+    box-sizing: border-box;
+}
+
+/*******************************
+ * LAYOUT CONTAINERS
+ * Primary structural elements that define the app's layout
+ *******************************/
+/* Authentication pages Left Side Content Container */
+ .content-left {
+    display: flex;
+    flex-direction: column;
+    padding: calc(2.5vw + 1vh) calc(2.8vw + 1vh);
+    position: relative;
+    height: 100%;
+    width: 45%;
+}
+
+/*******************************
+ * IMAGES AND DECORATIVE ELEMENTS
+ * Styles for background images, overlays, and decorative components
+ *******************************/
+/* Company logo styles */
+ .logo {
+    width: calc(11vw + 5vh);
+    height: calc(2vw + 1vh);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
+    left: calc(-1.4vw + -0.4vh);
+}
+
+/* Side Content Container */
+ .side-content {
+    display: flex;
+    position: absolute;
+    width: 55%;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
+
+/* Side Image Styling */
+ .side-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 6% 25%;
+}
+
+/* Dark Overlay */
+ .overlay {
+    position: absolute;
+    width: 55%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Icon Overlay */
+ .icon {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 30%;
+    width: calc(12.9vw + 5.5vh);
+    height: calc(9.4vw + 4vh);
+}
+
+/* Image Attribution */
+ .text-wrapper {
+    position: absolute;
+    bottom: calc(1.2vw + 0.5vh);
+    left: calc(2.6vw + 1.1vh);
+    color: #ffffff;
+    font-size: calc(0.9vw + 0.4vh);
+    letter-spacing: -0.075em;
+    z-index: 3;
+}
+
+/*******************************
+ * FORM ELEMENTS
+ * Styles for input fields, labels, and form layout
+ *******************************/
+/* Input Fields Container */
+ .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: calc(1vw + 1vh);
+    margin-bottom: calc(2vw + 1vh);
+}
+
+/* Input Field Wrapper */
+ .field-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.3vw + 0.15vh);
+}
+
+/*WORK IN PROGRESS*/
+@media screen and (max-width: 689px) {
+   /* Adjust main content layout */
+   .content-left {
+       width: 100%;
+       padding: calc(6vw + 3vh) calc(5vw + 2.5vh);
+       height: 55vh;
+       margin-top: -5%;
+       padding-left: 6%;
+   }
+
+   /* Adjust logo */
+    .logo {
+        width: calc(11.44vw + 5.2vh);
+        height: calc(2.08vw + 1.04vh);
+        margin-bottom: calc(4.16vw + 2.08vh);
+        margin-left: -4%;
+    }
+
+   /* Move side content to bottom */
+   .side-content {
+       position: fixed;
+       bottom: 0;
+       top: auto;
+       right: 0;
+       width: 100%;
+       height: 42vh;
+   }
+
+   /* Adjust image to fill bottom space */
+   .side-image {
+       width: 100%;
+       height: 100%;
+       object-position: center center;
+   }
+
+   /* Adjust overlay to match */
+   .overlay {
+       position: absolute;
+       bottom: 0;
+       top: auto;
+       width: 100%;
+       height: 42vh;
+   }
+
+   /* Adjust icon */
+   .icon {
+       width: calc(12.9vw + 5.5vh);
+       height: calc(9.4vw + 4vh);
+   }
+
+   /* Adjust attribution text */
+   .text-wrapper {
+       bottom: calc(2.5vw + 1.2vh);
+       left: calc(4vw + 2vh);
+       font-size: calc(1.4vw + 0.7vh);
+   }
+}

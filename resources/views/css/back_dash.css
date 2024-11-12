@@ -1,0 +1,381 @@
+/* Back Dashboard CSS */
+/*******************************
+ * CSS CUSTOM PROPERTIES
+ * Define global variables for consistent theming across components
+ *******************************/
+:root {
+    --sidebar-bg: #f8f8f8;       /* Light gray background for sidebar */
+    --text-dark: #2c2c2c;        /* Dark gray for primary text content */
+}
+
+/*******************************
+ * LAYOUT CONTAINERS
+ * Primary structural elements that define the app's layout
+ *******************************/
+/* Main dashboard container - uses flex for sidebar and main content layout */
+.back-dash {
+    width: auto;
+    height: auto;
+    font-size: calc(0.8vw + 0.4vh);
+    background: #ffffff;
+    display: flex;
+}
+
+/* Main content area - fills remaining space next to sidebar */
+.back-dash .main-content {
+    flex: 1;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+/*******************************
+ * SIDEBAR STYLES
+ * Navigation and branding elements
+ *******************************/
+/* Fixed sidebar container */
+.back-dash .sidebar {
+    width: 280px;
+    background: var(--sidebar-bg);
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+}
+
+/* Logo container - houses branding elements */
+.back-dash .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+/* UPR Logo style */
+.back-dash .logo-upr {
+    width: 40%;
+    height: 75%;
+    object-fit: contain;
+}
+
+/* Right-aligned logo positioning */
+.back-dash .logo-right {
+    position: relative;
+    margin-right: 20px;
+    margin-top: -15px;
+}
+
+/* Vertical navigation menu */
+.back-dash .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 20px;
+}
+
+/* Individual navigation items */
+.back-dash .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 18px;
+    font-weight: 500;
+    width: 280px;
+    border-radius: 0 25px 25px 0;
+    margin-left: -20px;
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+/* Interactive states for nav items */
+.back-dash .nav-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.back-dash .nav-item.active {
+    background: var(--main-color-default);
+}
+
+/* Navigation and Main Content icons */
+.back-dash .nav-icon,
+.back-dash .main-icons {
+    width: 24px;
+    height: 24px;
+}
+
+.back-dash .nav-icon {
+    margin-right: 2%;
+}
+
+
+/*******************************
+ * USER PROFILE SECTION
+ * User information and controls at bottom of sidebar
+ *******************************/
+.back-dash .user-profile {
+    position:relative;
+    background: #e7e7e7;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    height: 15%;
+    margin-top: auto;
+}
+
+/* Circular user avatar */
+.back-dash .user-avatar {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+/* User information container */
+.back-dash .user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+/* User email display */
+.back-dash .user-email {
+    font-size: 16px;
+    color: var(--text-dark);
+}
+
+/* Logout link styling */
+.back-dash .logout {
+    color: var(--text-dark);
+    text-decoration: underline;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+/*******************************
+ * HEADER SECTION
+ * Welcome message and primary action button
+ *******************************/
+.back-dash .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Welcome message styling */
+.back-dash .welcome {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* Primary action button */
+.back-dash .send-message {
+    position: relative;
+    background: #000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-dash .send-message:hover {
+    opacity: 0.9; 
+}
+
+/*******************************
+ * STATISTICS GRID & CARDS
+ * Layout and styling for metric displays
+ *******************************/
+/* Two-column grid layout for statistics */
+.back-dash .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* Individual statistic cards */
+.back-dash .stat-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid rgba(0,0,0,0.5);
+}
+
+/* Card header with title and action link */
+.back-dash .stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+}
+
+/* Card title styling */
+.back-dash .stat-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* Large number display for statistics */
+.back-dash .stat-number {
+    font-size: 86px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-top: -5px;
+}
+
+/*******************************
+ * RECENT ACTIVITY LISTS
+ * Styling for activity feeds and lists
+ *******************************/
+/* Vertical list container */
+.back-dash .recent-list {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Individual list items */
+.back-dash .recent-application,
+.back-dash .recent-registered {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+
+.back-dash .recent-registered {
+    justify-content: space-between;
+    padding: 18px;
+}
+
+/* Container for item details */
+.back-dash .recent-info {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Item title/name styling */
+.back-dash .recent-name {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* Email address styling */
+.back-dash .recent-email {
+    color: #666;
+}
+
+/* Timestamp styling */
+.back-dash .time-stamp {
+    color: #666;
+    font-size: 12px;
+}
+
+/* User avatars in lists */
+.back-dash .avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #ffffff;
+    margin-right: 2%;
+}
+
+/*******************************
+ * BUTTONS & INTERACTIVE ELEMENTS
+ * Common button styles and interactive elements
+ *******************************/
+/* "View all" link styling */
+.back-dash .view-all {
+    color: var(--text-dark);
+    text-decoration: underline;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+/* Button container for alignment */
+.back-dash .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6px;
+}
+
+/* Secondary action button styling */
+.back-dash .view-all-button {
+    background: var(--main-color-default);
+    color: var(--text-dark);
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    box-shadow: none;
+}
+
+.back-dash .view-all-button:hover {
+    background-color: rgba(0, 0, 0, .2) 
+}
+
+/* Edit button styling */
+.back-dash .edit-button {
+    background: var(--main-color-default);
+    color: var(--text-dark);
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    right: 2.5%;
+}
+
+/* Erase button styling */
+.back-dash .erase-button {
+    background: #FF5F5F;
+    color: var(--text-dark);
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    right: 2.5%;
+}
+
+/* Applications list styling */
+.back-dash .applications-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; 
+    border: 1px solid #ccc;
+    padding: 10px;
+    gap: 10px;
+}

@@ -112,16 +112,18 @@ final class DB
      */
     public static function where(string $table, string $where, string $equal, string $column = '*', string $operator = '='): array{
 
-        $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ' . $where .  ' ' . $operator . ' ' . $equal;
+        $operator = in_array($operator, ['=', '>', '<', '>=', '<=', '!=']) ? $operator : '=';
+        $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ' . $where . ' ' . $operator . ' :equal';
 
+        // Preparar la consulta SQL
         $statement = self::$database->prepare($sql);
+        $statement->bindValue(':equal', $equal, PDO::PARAM_STR);
         $statement->execute();
         $results = $statement->fetch();
 
         if (is_array($results)) {
             return $results;
         }
-
         return [];
     }
 
@@ -170,31 +172,46 @@ final class DB
      */
     public static function insert(string $table, array $data): bool
     {
-        // Prepare the SQL statement
-        $columns = implode(", ", array_keys($data));
-        $placeholders = ":" . implode(", :", array_keys($data));
-        $sql = "INSERT IF NOT EXISTS INTO $table ($columns) VALUES ($placeholders)";
+    // Prepare the SQL statement
+    $columns = implode(", ", array_keys($data));
+    $placeholders = ":" . implode(", :", array_keys($data));
+    $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+    
+    // View the SQL and data
+    error_log("SQL: " . $sql);
+    error_log("Data: " . print_r($data, true));
 
-        ;
+    try {
+        // Prepare the statement
+        $stmt = self::$database->prepare($sql);
 
-        try {
-            $stmt = self::$database->prepare($sql);
+        // Bind the values to the placeholders
+        foreach ($data as $key => $value) {
+            $stmt->bindValue(":$key", $value);
+        }
 
-            // Bind the values to the placeholders
-            foreach ($data as $key => $value) {
-                $stmt->bindValue(":$key", $value);
+        // Execute the statement
+        if ($stmt->execute()) {
+            // Verificar si hubo alguna fila afectada
+            if ($stmt->rowCount() > 0) {
+                return true;  // Inserción exitosa
+            } else {
+                error_log("No se insertó ningún registro (posiblemente por un duplicado).");
+                return false; // No se insertó nada
             }
-
-            dd($stmt);
-
-            // Execute the statement
-            return $stmt->execute();
-        } catch (PDOException $e) {
-            // Handle the exception (you can log it or display a message)
-            error_log($e->getMessage());
+        } else {
+            // Mostrar el error si falla la ejecución
+            error_log("Error al ejecutar la consulta: " . implode(" ", $stmt->errorInfo()));
             return false;
         }
+
+    } catch (PDOException $e) {
+        // Manejo de errores de la base de datos
+        error_log("Error en la consulta: " . $e->getMessage());
+        return false;
     }
+}
+
 
 
     /**

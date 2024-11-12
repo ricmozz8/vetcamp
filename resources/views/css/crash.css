@@ -1,6 +1,6 @@
 
 .error-body{
-    background-color: rgb(10, 6, 6);
+    background-color: rgb(11, 9, 19);
 }
 .error-body::selection{
     background-color: rgb(255, 80, 80) !important;
@@ -10,20 +10,13 @@
 .error-box{
     padding: 50px;
     margin: 10vh auto;
-    box-shadow: 0px 10px 50px rgba(87, 16, 16, 0.75);
-    border-radius: 8px;
-    width: fit-content;
     color: rgb(198, 203, 228);
-    background-color: rgb(54, 22, 22);
+    background-color: rgb(19, 19, 34);
     font-family: var(--text-font);
     transition: all .25s ease;
 }
 
-.error-box:hover{
-    box-shadow: 0px 10px 50px rgba(87, 16, 16, 1);
-    background-color: rgb(74, 34, 34);
-    transform: scale(1.05);
-}
+
 
 .error-box *{
     font-family: var(--text-font);
@@ -54,7 +47,7 @@
     font-family: monospace;
     font-size: 1.2em;
     padding: 5px;
-    background-color: rgb(26, 10, 10);
+    background-color: rgb(27, 27, 51);
     border-radius: 5px;
     color: rgb(198, 203, 228);
 }
@@ -63,7 +56,7 @@
     font-family: monospace;
     font-size: 1.2em;
     padding: 5px;
-    background-color: rgb(26, 10, 10);
+    background-color: rgb(27, 27, 51);
     border-radius: 5px;
     color: rgb(198, 203, 228);
 }
@@ -79,7 +72,7 @@
 }
 
 .error-trace-file{
-    background-color: rgb(26, 10, 10);
+    background-color: rgb(27, 27, 51);
     border-radius: 5px;
     color: rgb(198, 203, 228);
     margin: 5px;
@@ -90,7 +83,7 @@
 }
 
 .error-trace-file:hover{
-    background-color: rgb(32, 18, 18);
+    background-color: rgb(49, 49, 95);
 }
 
 .error-trace-line{
