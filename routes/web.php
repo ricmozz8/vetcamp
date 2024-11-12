@@ -114,7 +114,7 @@ switch (strtolower($request)) {
     case '/admin':
         BackDashboardController::index();
         break;
-    case '/admin/profile':
+    case '/admin/requests/r':
         render_view('profile', [], 'Profile');
         break;
     default:
