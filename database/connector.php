@@ -334,7 +334,7 @@ final class DB
      *
      * @return array The results of the query as an array of associative arrays.
      */
-    public static function execute_and_fetch(string $sql, array $data = null): array
+    private static function execute_and_fetch(string $sql, array $data = null): array
     {
         $statement = self::$database->prepare($sql);
         $statement->execute($data);
