@@ -17,6 +17,8 @@ require 'app/controllers/LoginController.php';
 require 'app/controllers/PassResetController.php';
 require 'app/controllers/RegisterController.php';
 require 'app/controllers/SettingsController.php';
+require 'app/controllers/RegisteredController.php';
+require 'app/controllers/RequestsController.php';
 require 'app/controllers/SessionController.php';
 require 'app/controllers/EvaluateController.php';
 require 'app/controllers/TrackingController.php';
@@ -106,6 +108,8 @@ switch (strtolower($request)) {
     case '/admin/predef/update':
         SettingsController::updateMessages($method);
         break;
+
+
     // POST FRONT VIEWS
     
 
@@ -114,8 +118,18 @@ switch (strtolower($request)) {
     case '/admin':
         BackDashboardController::index();
         break;
+    case '/admin/profile':
     case '/admin/requests/r':
         render_view('profile', [], 'Profile');
+        break;
+    case '/admin/requests':
+        RequestsController::index();
+        break;
+    case '/admin/registered':
+        RegisteredController::index();
+        break;
+    case '/admin/settings':
+        SettingsController::index();
         break;
     case '/admin/update': # need correct url
         SessionController::updateSession($method);
@@ -125,7 +139,7 @@ switch (strtolower($request)) {
         break;
     case '/admin/profile/track': # need correct url
         TrackingController::TrackingEvaluation($method);
-        break;    
+        break;
     default:
         abort(404, 'Page was not found');
         break;

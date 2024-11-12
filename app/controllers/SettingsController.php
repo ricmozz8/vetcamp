@@ -15,7 +15,7 @@ class SettingsController extends Controller
     public static function index()
     {
         // your index view here
-
+        render_view('settings', [], 'Settings');
     }
 
     // CHANGE THESE TWO METHODS TO SETTINGS PAGE AND ADAPT TO EDIT MODAL

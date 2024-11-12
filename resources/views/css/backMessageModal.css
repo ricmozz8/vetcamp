@@ -32,6 +32,12 @@
     transform: translate(-50%, -50%);
     max-width: 900px;
     margin: auto;
+    box-shadow: var(--shadow-soft);
+}
+
+/* may be deleted */
+.message-popup form {
+    width: 100%;
 }
 
 /*******************************
