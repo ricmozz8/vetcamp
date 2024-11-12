@@ -100,21 +100,12 @@ switch (strtolower($request)) {
         }
         
         break;
-    
-    // ADAPT THESE VIEWS TO SETTINGS PAGE
-    case '/admin/predefmsg':
-        SettingsController::editMessages();
-        break;
-    case '/admin/predef/update':
-        SettingsController::updateMessages($method);
-        break;
 
 
     // POST FRONT VIEWS
     
 
-
-    // GET BACK VIEWS
+   // GET BACK VIEWS
     case '/admin':
         BackDashboardController::index();
         break;
@@ -130,6 +121,12 @@ switch (strtolower($request)) {
         break;
     case '/admin/settings':
         SettingsController::index();
+        break;
+    case '/admin/settings/e/approved':
+        SettingsController::updateMessage($method);
+        break;
+    case '/admin/settings/e/denied':
+        SettingsController::updateMessage($method);
         break;
     case '/admin/update': # need correct url
         SessionController::updateSession($method);
