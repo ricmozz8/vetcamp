@@ -17,7 +17,11 @@ require 'app/controllers/LoginController.php';
 require 'app/controllers/PassResetController.php';
 require 'app/controllers/RegisterController.php';
 require 'app/controllers/SettingsController.php';
-
+require 'app/controllers/RegisteredController.php';
+require 'app/controllers/RequestsController.php';
+require 'app/controllers/SessionController.php';
+require 'app/controllers/EvaluateController.php';
+require 'app/controllers/TrackingController.php';
 
 $request =  $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
@@ -115,16 +119,26 @@ switch (strtolower($request)) {
         BackDashboardController::index();
         break;
     case '/admin/profile':
+    case '/admin/requests/r':
         render_view('profile', [], 'Profile');
         break;
     case '/admin/requests':
-        render_view('requests', [], 'Requests');
+        RequestsController::index();
         break;
     case '/admin/registered':
-        render_view('registered', [], 'Registered');
+        RegisteredController::index();
         break;
     case '/admin/settings':
-        render_view('settings', [], 'Settings');
+        SettingsController::index();
+        break;
+    case '/admin/update': # need correct url
+        SessionController::updateSession($method);
+        break;    
+    case '/admin/profile/update': # need correct url
+        EvaluateController::updateStatus($method);
+        break;
+    case '/admin/profile/track': # need correct url
+        TrackingController::TrackingEvaluation($method);
         break;
     default:
         abort(404, 'Page was not found');

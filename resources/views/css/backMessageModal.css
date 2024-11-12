@@ -243,5 +243,5 @@
 }
 
 .back-dash .send-button::hover {
-    background-color: (--main-color-shade-1);
+    background-color: var(--main-color-shade-1);
 }

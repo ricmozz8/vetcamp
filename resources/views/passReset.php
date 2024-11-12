@@ -11,7 +11,7 @@ require __DIR__ . '/partials/header.php';
         <div class="content-left">
 
            <!-- Logo with link to home page -->
-           <a class="logo" href="/"><img src="resources/assets/logo/PNG/vetcamp_full_hoz_b.png" alt="Vetcamp" class="logo"></a>
+           <a class="logo" href="/"><img src="resources/assets/logo/SVG/vetcamp_full_hoz_b.svg" alt="Vetcamp" class="logo"></a>
 
             <!-- Password reset form -->
             <form action="login.php" method="POST">
@@ -54,12 +54,11 @@ require __DIR__ . '/partials/header.php';
                 </div>
 
                 <!-- Submit button with hover effect -->
-                <button type="submit" class="mainbutton">
-                    <div class="overlap-group">
-                        <div class="button-rectangle"></div>
-                        <div class="secondary-action">restablecer</div>
-                    </div>
-                </button>
+                <div class="mainbutton">
+                    <button type="submit" class="main-action-bright">
+                            <div class="secondary-action">restablecer</div>
+                    </button>
+                </div>
             </form>
         </div>
         
