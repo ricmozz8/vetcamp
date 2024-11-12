@@ -99,8 +99,7 @@
 /* Main Button Styling */
 .login .mainbutton {
     position: relative;
-    width: calc(10.8vw + 4.6vh);
-    height: calc(2.8vw + 1.2vh);
+    right: 120px;
     cursor: pointer;
     padding: 0;
 }
@@ -181,9 +180,8 @@
 
     /* Main Button Styling */
     .login .mainbutton {
-        width: calc(20vw + 9vh);
-        height: calc(5vw + 2vh);
-        margin-left: 2%;
+        position: absolute;
+        left: 25px;
         margin-bottom: -2%;
     }
 
@@ -201,7 +199,7 @@
     }
 
     .login .signup-link {
-        right: 5%;
+        left: 6%;
     }
 }
 
@@ -210,12 +208,30 @@
     .login {
         font-size: 0.55em;
     }
+
+    /* Main Button Styling */
+    .login .mainbutton {
+        position: absolute;
+        left: 25px;
+        margin-bottom: -2%;
+    }
+
+    .login .signup-link {
+        left: 6%;
+    }
 }
 
 @media screen and (min-width: 1024px) {
     /* Main Container */
     .login {
-        font-size: 0.75em;
+        font-size: 0.80em;
+    }
+
+    /* Main Button Styling */
+    .login .mainbutton {
+        position: absolute;
+        left: 50px;
+        margin-bottom: -2%;
     }
 }
 
@@ -223,5 +239,12 @@
     /* Main Container */
     .login {
         font-size: 2em;
+    }
+
+    /* Main Button Styling */
+    .login .mainbutton {
+        position: absolute;
+        left: 100px;
+        margin-bottom: -2%;
     }
 }

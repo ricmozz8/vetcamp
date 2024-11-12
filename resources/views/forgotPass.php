@@ -48,9 +48,9 @@ require __DIR__ . '/partials/header.php';
                         <div class="actions">
                             <!-- Submit button -->
                             <div class="mainbutton">
-                            <button type="submit" class="main-action-bright">
-                                    <div class="secondary-action">restablecer</div>
-                            </button>
+                                <button type="submit" class="main-action-bright">
+                                        <div class="secondary-action">restablecer</div>
+                                </button>
                             </div>
                         </div>
             </form>

@@ -77,7 +77,7 @@
 
 /* Submit button container styling */
 .forgot-pass .mainbutton {
-    position: relative;
+    position: absolute;
     width: calc(11.6vw + 4.9vh);
     height: calc(3vw + 1.3vh);
     left: 3%;
