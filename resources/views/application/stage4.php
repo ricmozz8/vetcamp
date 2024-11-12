@@ -36,7 +36,7 @@ require __DIR__ . '../../partials/header.php';
             <!-- Document upload section -->
          
             <div class="form-actions">
-                
+                <input type="hidden" name="stage" value="confirm">
                 <p>Se guardará la información una vez pulses 'siguiente'.</p>
                 <button class="main-action-bright  secondary">Confirmar</button>
             </div>

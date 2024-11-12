@@ -11,12 +11,12 @@ body {
 }
 
 .profile-wrapper {
-    max-width: 800px;
+
     margin: 0 auto;
-    background-color: #fff;
+    background-color: var(--white-color);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
 
 .header-logo {
@@ -54,7 +54,7 @@ body {
 
 .applicant-details p {
     font-size: 14px;
-    color: #666;
+
 }
 
 .data-section {
@@ -73,7 +73,7 @@ body {
 }
 
 .data-grid div, .documents-grid div {
-    background: #f9f9f9;
+
     padding: 10px;
     border-radius: 4px;
 }
@@ -107,8 +107,9 @@ body {
 .actions {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
+    justify-content: flex-end;
+    gap: 15px;
+    margin: 10px 0;
 }
 
 .actions label {
