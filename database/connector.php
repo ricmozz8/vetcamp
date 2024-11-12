@@ -176,10 +176,6 @@ final class DB
     $columns = implode(", ", array_keys($data));
     $placeholders = ":" . implode(", :", array_keys($data));
     $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
-    
-    // View the SQL and data
-    error_log("SQL: " . $sql);
-    error_log("Data: " . print_r($data, true));
 
     try {
         // Prepare the statement
@@ -191,19 +187,11 @@ final class DB
         }
 
         // Execute the statement
-        if ($stmt->execute()) {
-            // Verificar si hubo alguna fila afectada
-            if ($stmt->rowCount() > 0) {
-                return true;  // Inserción exitosa
-            } else {
-                error_log("No se insertó ningún registro (posiblemente por un duplicado).");
-                return false; // No se insertó nada
-            }
-        } else {
-            // Mostrar el error si falla la ejecución
-            error_log("Error al ejecutar la consulta: " . implode(" ", $stmt->errorInfo()));
-            return false;
-        }
+        $stmt->execute();
+
+        // Check for affected rows
+        $stmt->rowCount() > 0 ? true : false;
+        
 
     } catch (PDOException $e) {
         // Manejo de errores de la base de datos
