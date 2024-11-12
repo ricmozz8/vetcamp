@@ -128,6 +128,9 @@ switch (strtolower($request)) {
     case '/admin/settings/e/rejected':
         SettingsController::updateMessage($method);
         break;
+    case '/admin/settings/e/all':
+        SettingsController::updateMessage($method);
+        break;
     case '/admin/update': # need correct url
         SessionController::updateSession($method);
         break;    

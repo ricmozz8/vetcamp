@@ -80,6 +80,10 @@ require __DIR__ . '/partials/header.php';
                 <h3> Editar mensaje para denegados </h3>
                 <button class="edit-button" onclick="openModal('rejectedPopup')"> Editar </button>
             </div>
+            <div class="settings-block">
+                <h3> Editar mensaje masivo  </h3>
+                <button class="edit-button" onclick="openModal('genericPopup')"> Editar </button>
+            </div>
         </div>
 
         <!-- Request management area -->
@@ -267,6 +271,25 @@ require __DIR__ . '/partials/header.php';
         </form>
     </div>
 
+    <!-- genericPopup -->
+
+    <div class="message-popup" id="genericPopup" style="display: none">
+        <!-- Close button in the top-right corner -->
+        <!-- <img src="https://img.icons8.com/?size=100&id=71200&format=png&color=1A1A1A" alt="Close" class="close-icon" id="closePopup"> -->
+        <a href="#" class="plain-action" id="closePopup" onclick="closeModal('genericPopup')"><i class="las la-times"></i></a>
+
+        <!-- Popup title -->
+        <h2 class="message-title">Editar mensaje predeterminado para todos</h2>
+
+        <!-- Form area -->
+        <form method="post" action="settings/e/all">
+            <!-- Message input area -->
+            <textarea name="content" class="message-textarea" placeholder="Escriba su mensaje aquí..." aria-label="Message input"><?= $messages['all']['content'] ?></textarea>
+            <input name="id" type="hidden" value="<?= $messages['all']['id'] ?>">
+            <!-- Send button -->
+            <button class="secondary main-action-bright" onclick="closeModal('rejectedPopup')"><i class="las la-envelope"> </i>Guardar</button>
+        </form>
+    </div>
 
     <!-- Main popup container with the form -->
     <div class="message-popup" id="allRequestsPopup" style="display: none">
