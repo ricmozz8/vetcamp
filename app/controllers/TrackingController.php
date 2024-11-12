@@ -20,7 +20,7 @@ class TrackingController extends Controller
                     'application_id' => $applicationId,     // The ID of the application being evaluated
                 ]);
             
-            redirect(url: '/admin');
+            // redirect(url: '/admin');         // COMMENTED TO PREVENT CRASH
             }
         }
     } 
