@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
-<?php
-require __DIR__ . '/partials/header.php';
-?>
-<body>
+<html lang="en">
+    <?php
+    require_once __DIR__ . '/partials/header.php';
+    ?>
+    <body>
     <!--- Define your structure here --->
     <div class="back-dash">
 
@@ -20,11 +20,11 @@ require __DIR__ . '/partials/header.php';
                     <img src="https://img.icons8.com/?size=100&id=kzcQaYg7aTjb&format=png&color=1A1A1A" alter="Home Icon" class="nav-icon">
                     <span>Inicio</span>
                 </a>
-                <a href="requests" class="nav-item active">
+                <a href="requests" class="nav-item">
                     <img src="https://img.icons8.com/?size=100&id=tfnuCxzS4iEn&format=png&color=1A1A1A" alter="Applicants Icon" class="nav-icon">
                     <span>Solicitudes</span>
                 </a>
-                <a href="registered" class="nav-item">
+                <a href="registered" class="nav-item active">
                     <img src="https://img.icons8.com/?size=100&id=aPUUXqLMszEs&format=png&color=1A1A1A" alter="Registered Icon" class="nav-icon">
                     <span>Registrados</span>
                 </a>
