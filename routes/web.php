@@ -117,6 +117,15 @@ switch (strtolower($request)) {
     case '/admin/profile':
         render_view('profile', [], 'Profile');
         break;
+    case '/admin/requests':
+        render_view('requests', [], 'Requests');
+        break;
+    case '/admin/registered':
+        render_view('registered', [], 'Registered');
+        break;
+    case '/admin/settings':
+        render_view('settings', [], 'Settings');
+        break;
     default:
         abort(404, 'Page was not found');
         break;

@@ -13,10 +13,10 @@ class RequestsController extends Controller
     public static function index()
     {
         // storing users
-        //$users = User::all();
+        $users = User::all();
 
         // your index view here
-        render_view('requests', ["users" => $users], '/admin/requests');
+        render_view('requests', ["users" => $users], 'Requests');
     }
 
     // define your other methods here
