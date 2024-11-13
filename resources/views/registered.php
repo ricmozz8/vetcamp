@@ -51,7 +51,7 @@
                 <img src="/resources/assets/logo/PNG/vetcamp_full_hoz_b.png" alt="Vetcamp" class="logo logo-right">
             </div>
         <header class="header">
-            <h1 class="welcome"> Ajustes </h1>
+            <h1 class="welcome"> Registrados </h1>
         </header>
 
     <!-- Table header area -->

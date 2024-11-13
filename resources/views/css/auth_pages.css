@@ -27,7 +27,6 @@
 /* Company logo styles */
  .logo {
     width: 200px;
-    height: calc(2vw + 1vh);
     background-color: transparent;
     border: none;
     cursor: pointer;

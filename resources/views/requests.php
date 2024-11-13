@@ -51,7 +51,7 @@ require __DIR__ . '/partials/header.php';
                 <img src="/resources/assets/logo/PNG/vetcamp_full_hoz_b.png" alt="Vetcamp" class="logo logo-right">
             </div>
         <header class="header">
-            <h1 class="welcome"> Ajustes </h1>
+            <h1 class="welcome"> Solicitudes </h1>
         </header>
 
     <!-- Table header area -->
