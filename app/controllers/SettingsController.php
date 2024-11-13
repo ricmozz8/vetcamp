@@ -14,24 +14,24 @@ class SettingsController extends Controller
      */
     public static function index()
     {
-        // your index view here
-
-    }
-
-    // CHANGE THESE TWO METHODS TO SETTINGS PAGE AND ADAPT TO EDIT MODAL
-
-    /**
-     * Shows the form for all messages
-     *
-     * @return void
-     */
-    public static function editMessages()
-    {
-        // shows the form for all messages
         $messages = Message::all();
+        $message_array = [];
 
-        render_view('predefmsg', ['messages' => $messages], 'Messages');
+        foreach ($messages as $message) {
+           $message_array[$message->category] = 
+            [
+                    'content' => $message->content,
+                    'id' => $message->id_message
+            ];     
+            }
+
+
+        render_view('settings', [
+            'messages' => $message_array
+        ], 'Settings');
     }
+
+
 
     /**
      * Updates all the messages in the database with the new content in the corresponding POST keys.
@@ -40,21 +40,18 @@ class SettingsController extends Controller
      *
      * @return void
      */
-    public static function updateMessages($request_method)
+    public static function updateMessage($request_method)
     {
-
         if ($request_method == 'POST') {
-            $messages = Message::all();
-            
-            foreach ($messages as $message) {
-                // update the message and save it to the database
-                $message->update(['content' => $_POST[$message->category]]);
-            }
-        } 
+            $message = Message::find($_POST['id']);
 
-        redirect('/admin/predefmsg');
-        
+            // update the message and save it to the database
+            $message->update(['content' => $_POST['content']]);
+        }
+
+        redirect('/admin/settings');
     }
+
     // ---
 
     // define your other methods here
