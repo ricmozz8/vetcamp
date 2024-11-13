@@ -35,6 +35,11 @@ require __DIR__ . '/partials/header.php';
                         </div>
                     </div>
 
+                    <?php
+                    if (isset($_POST['error'])) {
+                        echo '<div class="error-message">' . $_POST['error'] . '</div>';
+                    }
+                    ?>
                 </div>
 
                 <div class="actions">

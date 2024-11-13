@@ -151,6 +151,21 @@ function session_has(string $key) {
     return isset($_SESSION[$key]) ?? false;
 }
 
+
+/**
+ * Wraps a string in double quotes.
+ *
+ * @param string $string The string to wrap with double quotes.
+ *
+ * @return string The wrapped string.
+ */
+function quote($string) {
+    if (gettype($string) !== 'string') {
+        return $string;
+    }
+    return '\'' . $string . '\'';
+}
+
 /**
  * Checks if the given key exists in the superglobal $_COOKIE array.
  *

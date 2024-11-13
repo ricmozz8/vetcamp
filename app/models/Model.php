@@ -142,6 +142,11 @@ class Model
     public static function findBy(array $data) : Model {
         self::init();
         $data = DB::whereColumns(static::$table, $data);
+
+        if (empty($data)) {
+            throw new ModelNotFoundException('There is no record with the data given');
+        }
+        
         return new static($data, self::sanitize($data));
     }
 
