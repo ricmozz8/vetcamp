@@ -68,30 +68,30 @@ require __DIR__ . '/partials/header.php';
                         <h2 class="stat-title">Solicitantes</h2>
                         <a href="/admin/requests" class="view-all">ver todos</a>
                     </div>
-                    <div class="stat-number">75</div>
+                    <div class="stat-number"><?php echo $all_applicants; ?></div>
                        <img src="https://img.icons8.com/?size=100&id=tfnuCxzS4iEn&format=png&color=1A1A1A" alter="Applicants Icon" class="main-icons">
                 </div>
-                
+
                 <!-- Registered users stats card -->
                 <div class="stat-card">
                     <div class="stat-header">
                         <h2 class="stat-title">Registrados</h2>
                         <a href="/admin/registered" class="view-all">ver todos</a>
                     </div>
-                    <div class="stat-number">129</div>
+                    <div class="stat-number"><?php echo $all_users; ?></div>
                        <img src="https://img.icons8.com/?size=100&id=aPUUXqLMszEs&format=png&color=1A1A1A" alter="Registered Icon" class="main-icons">
                 </div>
             </div>
 
-            
+
             <!-- Recent activity section -->
             <div class="stats-grid">
-                
+
                 <!-- Recent applications card -->
                 <div class="stat-card">
                     <h2 class="stat-title">Solicitudes más recientes</h2>
                     <br>
-            
+
                     <div class="recent-list">
                         <div class="recent-application">
                             <img src="/placeholder.svg" alt="" class="avatar">
@@ -122,7 +122,7 @@ require __DIR__ . '/partials/header.php';
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="button-container">
                         <a href="#" class="secondary main-action-bright">Ver todos</a>
                     </div>
@@ -132,7 +132,7 @@ require __DIR__ . '/partials/header.php';
                 <div class="stat-card">
                     <h2 class="stat-title">Registros Recientes</h2>
                     <br>
-                    
+
                     <div class="recent-list">
                         <div class="recent-registered">
                             <span class="recent-email">smitchell@icloud.com</span>

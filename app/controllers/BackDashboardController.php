@@ -1,5 +1,6 @@
 <?php
 require_once 'Controller.php';
+require_once 'app/models/User.php';
 
 class BackDashboardController extends Controller
 {
@@ -12,9 +13,14 @@ class BackDashboardController extends Controller
      */
     public static function index()
     {
+        // Get registered and applicant stats
+        $all_users = count(User::allOf('user'));
+        $all_applicants = count(User::allApplicants());
+
         // your index view here
-        render_view('backDashboard', [], 'BackDashboard');
+        render_view('backDashboard', [    'all_users' => $all_users,
+                                          'all_applicants' => $all_applicants ],
+                    'BackDashboard');
     }
 
-    // define your other methods here
 }
