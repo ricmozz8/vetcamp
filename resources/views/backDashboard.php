@@ -83,7 +83,6 @@ require __DIR__ . '/partials/header.php';
                 </div>
             </div>
 
-
             <!-- Recent activity section -->
             <div class="stats-grid">
 
@@ -93,38 +92,19 @@ require __DIR__ . '/partials/header.php';
                     <br>
 
                     <div class="recent-list">
+                        <?php foreach ($recent_applications as $application): ?>
                         <div class="recent-application">
-                            <img src="/placeholder.svg" alt="" class="avatar">
+                                <img src="<?php echo $application->url_pictures; ?>" alt="" class="avatar">
                             <div class="recent-info">
-                                <span class="recent-name">Talan Rhiel Madsen</span>
-                                <span class="recent-email">nombre@correo.com</span>
+                                <span class="recent-name"><?php echo $application->first_name;?> <?php echo $application->last_name?></span>
+                                <span class="recent-email"><?php echo $application->email; ?></span>
                             </div>
                         </div>
-                        <div class="recent-application" style="background: transparent">
-                            <img src="/placeholder.svg" alt="" class="avatar">
-                            <div class="recent-info">
-                                <span class="recent-name">Charlie Donin</span>
-                                <span class="recent-email">nombre@correo.com</span>
-                            </div>
-                        </div>
-                        <div class="recent-application">
-                            <img src="/placeholder.svg" alt="" class="avatar">
-                            <div class="recent-info">
-                                <span class="recent-name">Talan Rhiel Madsen</span>
-                                <span class="recent-email">nombre@correo.com</span>
-                            </div>
-                        </div>
-                        <div class="recent-application" style="background: transparent">
-                            <img src="/placeholder.svg" alt="" class="avatar">
-                            <div class="recent-info">
-                                <span class="recent-name">Charlie Donin</span>
-                                <span class="recent-email">nombre@correo.com</span>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
 
                     <div class="button-container">
-                        <a href="#" class="secondary main-action-bright">Ver todos</a>
+                        <a href="/admin/requests" class="secondary main-action-bright">Ver todos</a>
                     </div>
                 </div>
 
@@ -134,26 +114,16 @@ require __DIR__ . '/partials/header.php';
                     <br>
 
                     <div class="recent-list">
+                        <?php foreach ($recent_registered as $user): ?>
                         <div class="recent-registered">
-                            <span class="recent-email">smitchell@icloud.com</span>
-                            <span class="time-stamp">hoy a las 9:57pm</span>
+                            <span class="recent-email"><?php echo $user->email; ?></span>
+                            <span class="time-stamp"><?php echo $user->formatted_created_at; ?></span>
                         </div>
-                        <div class="recent-registered"style="background: transparent">
-                            <span class="recent-email">jnguyen@email.com</span>
-                            <span class="time-stamp">ayer a las 2:22pm</span>
-                        </div>
-                         <div class="recent-registered">
-                            <span class="recent-email">smitchell@icloud.com</span>
-                            <span class="time-stamp">hoy a las 9:57pm</span>
-                        </div>
-                        <div class="recent-registered" style="background: transparent">
-                            <span class="recent-email">jnguyen@email.com</span>
-                            <span class="time-stamp">ayer a las 2:22pm</span>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
-                    
+
                     <div class="button-container">
-                        <a href="#" class="secondary main-action-bright">Ver todos</a>
+                        <a href="/admin/registered" class="secondary main-action-bright">Ver todos</a>
                     </div>
                 </div>
             </div>
