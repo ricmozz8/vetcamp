@@ -35,11 +35,6 @@
     box-shadow: var(--shadow-soft);
 }
 
-/* may be deleted */
-.message-popup form {
-    width: 100%;
-}
-
 /*******************************
  * MODAL HEADER
  * Close icon and title styling

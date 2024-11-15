@@ -27,7 +27,6 @@
 /* Company logo styles */
  .logo {
     width: 200px;
-    height: calc(2vw + 1vh);
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -80,7 +79,7 @@
     bottom: calc(1.2vw + 0.5vh);
     left: calc(2.6vw + 1.1vh);
     color: #ffffff;
-    font-size: 1em;
+    font-size: 14px;
     letter-spacing: -0.075em;
     z-index: 3;
 }
@@ -157,8 +156,6 @@
 
    /* Adjust attribution text */
    .text-wrapper {
-       bottom: calc(2.5vw + 1.2vh);
-       left: calc(4vw + 2vh);
-       font-size: 0.75em;
+       font-size: 10px;
    }
 }

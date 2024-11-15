@@ -276,6 +276,7 @@
 .back-dash .recent-info {
     display: flex;
     flex-direction: column;
+    margin-left: 12px;
 }
 
 /* Item title/name styling */

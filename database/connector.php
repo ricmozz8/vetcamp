@@ -115,6 +115,7 @@ final class DB
         $operator = in_array($operator, ['=', '>', '<', '>=', '<=', '!=']) ? $operator : '=';
         $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ' . $where . ' ' . $operator . ' :equal';
 
+        
         // Preparar la consulta SQL
         $statement = self::$database->prepare($sql);
         $statement->bindValue(':equal', $equal, PDO::PARAM_STR);
@@ -141,7 +142,8 @@ final class DB
         $length = count($conditions);
         foreach ($conditions as $key => $value) {
 
-            $sql .= $key . ' = ' . $value;
+            
+            $sql .= $key . ' = ' . quote($value);
 
             if ($index < $length - 1) {
                 $sql .= ' AND ';

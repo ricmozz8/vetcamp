@@ -48,7 +48,7 @@ switch (strtolower($request)) {
         LoginController::index();
         break;
     case '/login/auth':
-        LoginController::auten();
+        LoginController::authenticate($method);
         break;
     case '/login/auth/form1':
         LoginController::form1();
