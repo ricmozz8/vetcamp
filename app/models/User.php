@@ -96,5 +96,38 @@ class User extends Model{
         return $filtered_users;
     }
 
+    /**
+     * Retrieves all approved users from the database.
+     *
+     * This method queries the database to fetch all users whose status is 'approved'.
+     *
+     * @return User[] An array of User objects whose applications were approved.
+     *
+     * @throws Exception If an error occurs while fetching the users.
+     */
+    public static function getApprovedUsers()
+    {
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("SELECT * FROM users WHERE status = 'approved'");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Retrieves all denied users from the database.
+     *
+     * This method queries the database to fetch all users whose status is 'denied'.
+     *
+     * @return User[] An array of User objects whose applications were denied.
+     *
+     * @throws Exception If an error occurs while fetching the users.
+     */
+    public static function getDeniedUsers()
+    {
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("SELECT * FROM users WHERE status = 'denied'");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
 }

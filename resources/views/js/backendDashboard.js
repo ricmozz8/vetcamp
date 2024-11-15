@@ -1,10 +1,4 @@
 // JavaScript for User Section Functionality
-// User information placeholders
-const user = {
-    name: 'John Doe',
-    email: 'john@example.com',
-    avatar: 'JD'
-};
 
 // Function to update user information in the sidebar
 function updateUserInfo() {

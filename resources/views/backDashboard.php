@@ -37,9 +37,9 @@ require __DIR__ . '/partials/header.php';
 
             <!-- User profile section -->
             <div class="user-profile">
-                <div class="user-avatar" id="userAvatar">U</div>
+                <div class="user-avatar" id="userAvatar"><?php echo Auth::$user->url_pictures; ?></div>
                 <div class="user-info">
-                    <span class="user-email" id="userEmail">usuario@correo.com</span>
+                    <span class="user-email" id="userEmail"><?php echo Auth::$user->email; ?></span>
                     <a href="#" class="logout">Salir</a>
                 </div>
             </div>
@@ -183,7 +183,7 @@ require __DIR__ . '/partials/header.php';
                         <textarea class="message-textarea" placeholder="Escriba su mensaje aquí..." aria-label="Message input"></textarea>
 
                         <!-- Send button -->
-                        <button class="secondary main-action-bright">Enviar</button>
+                        <button class="secondary main-action-bright" id="sendButton">Enviar</button>
                     </div>
         </div>
     </div>
