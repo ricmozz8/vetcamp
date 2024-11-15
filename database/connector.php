@@ -21,7 +21,7 @@ final class DB
     public static function connect($connection, $user = 'root', $password = '')
     {
 
-        $dsn = 'mysql:' . http_build_query($connection, '', ';');
+        $dsn = CONFIG['database']['service']. ':' . http_build_query($connection, '', ';');
 
         try {
 
