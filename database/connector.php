@@ -36,7 +36,7 @@ final class DB
 
 
         } catch (PDOException $e) {
-            throw new Error('Failed to connect to the database: ' . $e->getMessage());
+            throw new DatabaseConnectionException("Error connecting to the database with driver '". CONFIG['database']['service'] . "': " . $e->getMessage(), 0, $e);
         }
     }
 
