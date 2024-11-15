@@ -61,6 +61,9 @@
     --white-color-shade-1: #dadada;
     --white-color-shade-2: #c0c0c0;
     --white-color-shade-3: #b6b6b6;
+
+    /* selection color */
+    --main-color-selection: #f8cf3a71;
     
     /* Shadows */
     --shadow-soft: 0px 3px 10px rgba(0, 0, 0, 0.253);
@@ -73,8 +76,8 @@
 }
 
 ::selection{
-    background-color: var(--secondary-color-default);
-    color: var(--main-color-default);
+    background-color: var(--main-color-selection);
+    
 }
 
 /* Stylizing Scrollbar */
