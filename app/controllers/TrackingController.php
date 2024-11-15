@@ -5,25 +5,24 @@ require_once 'app/models/Tracking.php';
 
 class TrackingController extends Controller
 {
-
     public static function TrackingEvaluation($request_method)
     {
-        // Check if the request method is POST
+        // Ensure the request method is POST
         if ($request_method === 'POST') {
-            // Get the application ID from the POST data
+            // Retrieve the application ID from the POST data
             $applicationId = $_POST['application_id'] ?? null;
 
+            // Check if the application ID exists
             if ($applicationId !== null) {
-                // Create a tracking entry with user_id (the evaluator) and application_id
+                // Create a record in the evaluated_by table
                 Tracking::create([
-                    'user_id' => Auth::$user->__get('id'),  // The evaluator's user ID
-                    'application_id' => $applicationId,     // The ID of the application being evaluated
+                    'application_id' => $applicationId,       // Application ID from POST data
+                    'user_id' => Auth::$user->__get('id'),   // Admin's user ID (evaluator)
                 ]);
-            
-            redirect('/admin');
+                redirect('/admin/application?id=' . $applicationId . '&tracking=success');
             }
         }
-    } 
+    }
 }
 
 
