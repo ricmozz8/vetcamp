@@ -67,7 +67,7 @@ require_once __DIR__ . '/partials/header.php';
                         <a href="/admin/requests" class=" main-action-bright"><i class="las la-arrow-left"></i></a>
                         <img src="/<?= asset("logo/SVG/vetcamp_full_hoz_b.svg") ?>" alt="Vetcamp Logo" class="h-logo">
                     </header>
-                    
+
                     <section class="applicant-info">
                         <img src="<?= $application->url_picture ?>" alt="Applicant" class="applicant-photo">
                         <div class="applicant-details">
@@ -83,26 +83,26 @@ require_once __DIR__ . '/partials/header.php';
                         <div class="data-grid">
                             <div><strong>Dirección Postal</strong>
                                 <p>
-                                    <?= $postal_address->aline1 . " " 
-                                    . $postal_address->aline2 . " " 
-                                    . $postal_address->city . ", " 
-                                    . $postal_address->zip_code ?>
+                                    <?= $postal_address->aline1 . " "
+                                        . $postal_address->aline2 . " "
+                                        . $postal_address->city . ", "
+                                        . $postal_address->zip_code ?>
                                 </p>
                             </div>
                             <div><strong>Dirección Física</strong>
                                 <p>
-                                <?= $physical_address->aline1 . " " 
-                                    . $physical_address->aline2 . " " 
-                                    . $physical_address->city . ", " 
-                                    . $physical_address->zip_code ?>
+                                    <?= $physical_address->aline1 . " "
+                                        . $physical_address->aline2 . " "
+                                        . $physical_address->city . ", "
+                                        . $physical_address->zip_code ?>
                                 </p>
                             </div>
                             <div><strong>Escuela de procedencia</strong>
                                 <p>
-                                <?= $school_address->street . " " 
-                                    . $school_address->city . " " 
-                                    . $school_address->zip_code . " ($school_address->school_type)"
-                                     ?>
+                                    <?= $school_address->street . " "
+                                        . $school_address->city . " "
+                                        . $school_address->zip_code . " ($school_address->school_type)"
+                                    ?>
                                 </p>
                             </div>
                             <div><strong>Fecha de Nacimiento</strong>
@@ -120,27 +120,35 @@ require_once __DIR__ . '/partials/header.php';
                     <section class="data-section">
                         <h2>Documentos subidos</h2>
                         <div class="documents-grid">
-                            <div><a class="no-deco-action" href="<?=$application->url_written_essay ?>">Ensayo Escrito</a></div>
-                            <div><a class="no-deco-action" href="<?=$application->url_video_essay ?>">Ensayo en Video</a></div>
-                            <div><a class="no-deco-action" href="<?=$application->url_authorization_letter ?>">Carta de Autorización</a></div>
-                            <div><a class="no-deco-action" href="<?=$application->url_transcript ?>">Transcripción de créditos</a></div>
-                            <div><a class="no-deco-action" href="<?=$application->url_written_application ?>">Solicitud Escrita</a></div>
-                            <div><a class="no-deco-action" href="<?=$application->url_picture ?>">Foto 2x2</a></div>
+                            <div><a class="no-deco-action" href="<?= $application->url_written_essay ?>">Ensayo Escrito</a></div>
+                            <div><a class="no-deco-action" href="<?= $application->url_video_essay ?>">Ensayo en Video</a></div>
+                            <div><a class="no-deco-action" href="<?= $application->url_authorization_letter ?>">Carta de Autorización</a></div>
+                            <div><a class="no-deco-action" href="<?= $application->url_transcript ?>">Transcripción de créditos</a></div>
+                            <div><a class="no-deco-action" href="<?= $application->url_written_application ?>">Solicitud Escrita</a></div>
+                            <div><a class="no-deco-action" href="<?= $application->url_picture ?>">Foto 2x2</a></div>
                         </div>
                     </section>
 
                     <section class="manage-section">
                         <h2>Manejar Solicitud</h2>
                         <div class="status-options">
-                            <label class="radio-option"><input type="radio" name="status" checked> Sometida</label>
-                            <label class="radio-option"><input type="radio" name="status"> Necesita Cambios</label>
-                            <label class="radio-option"><input type="radio" name="status"> Denegada</label>
-                            <label class="radio-option"><input type="radio" name="status"> Aprobada</label>
+                            <label class="radio-option">
+                                <input type="radio" name="status" value="Sometida" <?php echo ($application->status === 'submitted') ? 'checked' : ''; ?>> Sometida
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="status" value="Necesita Cambios" <?php echo ($application->status === 'need_changes') ? 'checked' : ''; ?>> Necesita Cambios
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="status" value="Denegada" <?php echo ($application->status === 'denied') ? 'checked' : ''; ?>> Denegada
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="status" value="Aprobada" <?php echo ($application->status === 'approved') ? 'checked' : ''; ?>> Aprobada
+                            </label>
                         </div>
                         <button class="main-action-bright tertiary" onclick="openModal('messageModal')">
                             <i class="las la-envelope"></i>
                             Enviar mensaje</button><br>
-<hr><br>
+                        <hr><br>
                         <div class="actions">
                             <label>
                                 <input type="checkbox"> Notificar al solicitante
