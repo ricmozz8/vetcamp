@@ -5,4 +5,5 @@ class Session extends Model{
 
    // define your methods here
     protected static $primary_key = 'id_session';
+    protected static $table = 'sessions';
 }

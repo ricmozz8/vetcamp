@@ -22,9 +22,16 @@ require 'app/controllers/RequestsController.php';
 require 'app/controllers/SessionController.php';
 require 'app/controllers/EvaluateController.php';
 require 'app/controllers/TrackingController.php';
+require 'app/controllers/ApplicationController.php';
 
-$request =  $_SERVER['REQUEST_URI'];
+$request = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
+
+$parsedUrl = parse_url($request);
+$path = strtolower($parsedUrl['path']);
+$queryParams = [];
+parse_str($parsedUrl['query'] ?? '', $queryParams); // Parse query string into an associative array
+
 
 // Remove trailing slash
 if (substr($request, -1) === '/' && $request !== '/') {
@@ -32,7 +39,7 @@ if (substr($request, -1) === '/' && $request !== '/') {
 }
 
 // Define your views/urls here
-switch (strtolower($request)) {
+switch ($path) {
 
     // GET FRONT VIEWS
     case '/':
@@ -111,7 +118,8 @@ switch (strtolower($request)) {
         break;
     case '/admin/profile':
     case '/admin/requests/r':
-        render_view('profile', [], 'Profile');
+        $application_id = $_GET['id'] ?? null;
+        ApplicationController::editApplication($application_id);
         break;
     case '/admin/requests':
         RequestsController::index();

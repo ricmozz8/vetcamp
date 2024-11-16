@@ -1,6 +1,9 @@
 <?php
 require_once 'Model.php';
 require_once 'Application.php';
+require_once 'SchoolAddress.php';
+require_once 'PostalAddress.php';
+require_once 'PhysicalAddress.php';
 
 class User extends Model{
 
@@ -96,15 +99,59 @@ class User extends Model{
         return $filtered_users;
     }
 
+
     /**
-     * Retrieves all approved users from the database.
+     * Retrieves the school address associated with the user.
      *
-     * This method queries the database to fetch all users whose status is 'approved'.
+     * This method queries the SchoolAddress model to find the address
+     * record linked to the user based on the primary key.
      *
-     * @return User[] An array of User objects whose applications were approved.
-     *
-     * @throws Exception If an error occurs while fetching the users.
+     * @return SchoolAddress|null The SchoolAddress instance associated
+     *                            with the user, or null if not found.
      */
+    public function school_address(){
+        return SchoolAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+    }
+
+
+    /**
+     * Retrieves the postal address associated with the user.
+     *
+     * This method queries the PostalAddress model to find the address
+     * record linked to the user based on the primary key.
+     *
+     * @return PostalAddress|null The PostalAddress instance associated
+     *                            with the user, or null if not found.
+     */
+    public function postal_address(){
+        return PostalAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+    }
+
+    /**
+     * Retrieves the physical address associated with the user.
+     *
+     * This method queries the PhysicalAddress model to find the address
+     * record linked to the user based on the primary key.
+     *
+     * @return PhysicalAddress|null The PhysicalAddress instance associated
+     *                              with the user, or null if not found.
+     */
+    public function physical_address(){
+        return PhysicalAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+    }
+
+
+    public function get_age()
+    {
+        $birth_date = new DateTime($this->birthdate);
+        $current_date = new DateTime(date('Y-m-d'));
+        $interval = $birth_date->diff($current_date);
+        return $interval->y;
+    }
+
+
+    /*
+    Note: Wont work as intended, check architecture.
     public static function getApprovedUsers()
     {
         $db = Database::getInstance()->getConnection();
@@ -113,21 +160,13 @@ class User extends Model{
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    /**
-     * Retrieves all denied users from the database.
-     *
-     * This method queries the database to fetch all users whose status is 'denied'.
-     *
-     * @return User[] An array of User objects whose applications were denied.
-     *
-     * @throws Exception If an error occurs while fetching the users.
-     */
+
     public static function getDeniedUsers()
     {
         $db = Database::getInstance()->getConnection();
         $stmt = $db->prepare("SELECT * FROM users WHERE status = 'denied'");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }
+    }*/
 
 }
