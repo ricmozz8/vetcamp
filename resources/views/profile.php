@@ -132,11 +132,10 @@ require_once __DIR__ . '/partials/header.php';
                     <section class="manage-section">
                         <h2>Manejar Solicitud</h2>
                         <div class="status-options">
-                            
-                            <label class="radio-option"><input type="radio" name="submitted" checked> Sometida</label>
-                            <label class="radio-option"><input type="radio" name="need_changes"> Necesita Cambios</label>
-                            <label class="radio-option"><input type="radio" name="denied"> Denegada</label>
-                            <label class="radio-option"><input type="radio" name="approved"> Aprobada</label>
+                            <label class="radio-option"><input type="radio" name="status" checked> Sometida</label>
+                            <label class="radio-option"><input type="radio" name="status"> Necesita Cambios</label>
+                            <label class="radio-option"><input type="radio" name="status"> Denegada</label>
+                            <label class="radio-option"><input type="radio" name="status"> Aprobada</label>
                         </div>
                         <button class="main-action-bright tertiary" onclick="openModal('messageModal')">
                             <i class="las la-envelope"></i>
