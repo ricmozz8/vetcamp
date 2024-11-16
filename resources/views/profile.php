@@ -130,32 +130,34 @@ require_once __DIR__ . '/partials/header.php';
                     </section>
 
                     <section class="manage-section">
-                        <h2>Manejar Solicitud</h2>
-                        <div class="status-options">
-                            <label class="radio-option">
-                                <input type="radio" name="status" value="Sometida" <?php echo ($application->status === 'submitted') ? 'checked' : ''; ?>> Sometida
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="status" value="Necesita Cambios" <?php echo ($application->status === 'need_changes') ? 'checked' : ''; ?>> Necesita Cambios
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="status" value="Denegada" <?php echo ($application->status === 'denied') ? 'checked' : ''; ?>> Denegada
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="status" value="Aprobada" <?php echo ($application->status === 'approved') ? 'checked' : ''; ?>> Aprobada
-                            </label>
-                        </div>
-                        <button class="main-action-bright tertiary" onclick="openModal('messageModal')">
-                            <i class="las la-envelope"></i>
-                            Enviar mensaje</button><br>
-                        <hr><br>
-                        <div class="actions">
-                            <label>
-                                <input type="checkbox"> Notificar al solicitante
-                            </label>
-                            <button class="secondary main-action-bright">Guardar</button>
-                        </div>
+                        <form action="/admin/requests/update" method="POST">
+                            <h2>Manejar Solicitud</h2>
+                            <div class="status-options">
+                                <label class="radio-option">
+                                    <input type="radio" name="status" value="Sometida" <?php echo ($application->status === 'submitted') ? 'checked' : ''; ?>> Sometida
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="status" value="Necesita Cambios" <?php echo ($application->status === 'need_changes') ? 'checked' : ''; ?>> Necesita Cambios
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="status" value="Denegada" <?php echo ($application->status === 'denied') ? 'checked' : ''; ?>> Denegada
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="status" value="Aprobada" <?php echo ($application->status === 'approved') ? 'checked' : ''; ?>> Aprobada
+                                </label>
+                            </div>
+                            <button class="main-action-bright tertiary" onclick="openModal('messageModal')">
+                                <i class="las la-envelope"></i>
+                                Enviar mensaje</button><br>
+                            <hr><br>
+                            <div class="actions">
+                                <label>
+                                    <input name="notify" type="checkbox"> Notificar al solicitante
+                                </label>
+                                <button class="secondary main-action-bright">Guardar</button>
+                            </div>
                     </section>
+                    </form>
                 </div>
             </div>
         </div>

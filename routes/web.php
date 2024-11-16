@@ -121,6 +121,10 @@ switch ($path) {
         $application_id = $_GET['id'] ?? null;
         ApplicationController::editApplication($application_id);
         break;
+    case '/admin/requests/update':
+        echo "MANAGE STATUSES HERE";
+        dd($_POST);
+        break;
     case '/admin/requests':
         RequestsController::index();
         break;
