@@ -151,22 +151,19 @@ class User extends Model{
 
 
     /*
-    Note: Wont work as intended, check architecture.
+    Note: WIP
     public static function getApprovedUsers()
     {
-        $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM users WHERE status = 'approved'");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+
     }
 
 
     public static function getDeniedUsers()
     {
-        $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM users WHERE status = 'denied'");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }*/
 
+    }
+    public function getPictureUrl() {
+
+    }
+    */
 }

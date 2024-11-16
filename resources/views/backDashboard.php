@@ -37,7 +37,7 @@ require __DIR__ . '/partials/header.php';
 
             <!-- User profile section -->
             <div class="user-profile">
-                <div class="user-avatar" id="userAvatar"><?php echo Auth::$user->url_pictures; ?></div>
+                <div class="user-avatar" id="userAvatar"><img src="<?php echo Auth::$user->url_picture; ?>"></div>
                 <div class="user-info">
                     <span class="user-email" id="userEmail"><?php echo Auth::$user->email; ?></span>
                     <a href="#" class="logout">Salir</a>
@@ -94,9 +94,9 @@ require __DIR__ . '/partials/header.php';
                     <div class="recent-list">
                         <?php foreach ($recent_applications as $application): ?>
                         <div class="recent-application">
-                                <img src="<?php echo $application->url_pictures; ?>" alt="" class="avatar">
+                                <img src="<?php echo $application->url_picture; ?>" alt="" class="avatar">
                             <div class="recent-info">
-                                <span class="recent-name"><?php echo $application->first_name;?> <?php echo $application->last_name?></span>
+                                <span class="recent-name"><?php echo $application->first_name;?> <?php echo $application->last_name;?></span>
                                 <span class="recent-email"><?php echo $application->email; ?></span>
                             </div>
                         </div>

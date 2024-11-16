@@ -1,6 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once 'app/models/User.php';
+require_once 'app/models/Application.php';
 
 class BackDashboardController extends Controller
 {
@@ -39,6 +40,14 @@ class BackDashboardController extends Controller
             return $timeB - $timeA;
         });
         $recent_applications = array_slice($recent_applications, 0, 5);
+
+        foreach ($recent_applications as $application) {
+            if ($application->user) {
+                $application->url_picture = $application->$user->User::getPictureUrl(); // getPictureUrl() to be added
+            } else {
+                $application->url_picture = 'https://img.icons8.com/?size=100&id=7819&format=png&color=737373';
+            }
+        }
 
         // Now call render_view with the defined variables
         render_view('backDashboard', [
