@@ -146,9 +146,9 @@ require_once __DIR__ . '/partials/header.php';
                                     <input type="radio" name="status" value="Aprobada" <?php echo ($application->status === 'approved') ? 'checked' : ''; ?>> Aprobada
                                 </label>
                             </div>
-                            <button class="main-action-bright tertiary" onclick="openModal('messageModal')">
+                            <a class="main-action-bright tertiary" onclick="openModal('messageModal')">
                                 <i class="las la-envelope"></i>
-                                Enviar mensaje</button><br>
+                                Enviar mensaje</a><br>
                             <hr><br>
                             <div class="actions">
                                 <label>
