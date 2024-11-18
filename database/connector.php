@@ -201,6 +201,26 @@ final class DB
         return false;
     }
 }
+public static function insertUser(array $data): bool
+    {
+    $placeholders = ":" . implode(", :", array_keys($data));
+    $sql = "INSERT INTO users (email, password, first_name, last_name, phone_number, status, type, created_at) VALUES ($placeholders)";
+
+    try {
+        // Prepare the statement
+        $stmt = self::$database->prepare($sql);
+        foreach ($data as $key => $value) {
+            $stmt->bindValue(":$key", $value);
+        }
+        $stmt->execute();
+
+        // Check for affected rows
+        return $stmt->rowCount() > 0;
+    } catch (PDOException $e) {
+        error_log("Error en la consulta: " . $e->getMessage());
+        return false;
+    }
+}
 
 
 

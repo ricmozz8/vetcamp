@@ -166,6 +166,14 @@ class Model
         return $newModel;
         
     }
+    public static function createUser(array $data) : Model
+    {
+        $newModel = new static($data, self::sanitize($data));
+        $newModel->storeUser();
+
+        return $newModel;
+        
+    }
 
     
     /**
@@ -235,6 +243,10 @@ class Model
      */
     public function store() : bool {
         return DB::insert(static::$table, $this->attributes);
+    }
+
+    public function storeUser() : bool {
+        return DB::insertUser($this->attributes);
     }
 
     /**

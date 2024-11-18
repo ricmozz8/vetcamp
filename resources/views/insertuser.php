@@ -4,9 +4,11 @@
 
 // Incluir la clase Auth
 require_once 'kernel/auth.php';
+require_once 'app/models/User.php';
 require __DIR__ . '/partials/header.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+{
     // Obtener los datos del formulario
     $nombre = trim($_POST['nombre']);
     $telefono = trim($_POST['telefono']);
@@ -16,16 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if($password != $confirmPassword)
     {
-        echo "La contra esta mala";
+        echo "Los password no son iguales <br>";
         exit();
     }
 
-    // Validación básica (puedes agregar más validaciones según necesites)
-    if (empty($nombre) || empty($telefono) || empty($correo) || empty($password) || empty($confirmPassword) ){
-        echo "Todos los campos son obligatorios.";
-        exit;
-    }
-}
     // Encriptar la contraseña
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -43,21 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'status' => "active",
         'type' => "user",
         'created_at'=> date('Y-m-d H:i:s'),
-
     ];
-    try {
-        $table = 'users'; 
-        $insertResult = DB::insert($table, $data);
-
-        if ($insertResult) {
-            echo "¡Usuario registrado con éxito!";
-            // Redirigir al usuario a la página de inicio de sesión, por ejemplo
-            header("Location: /");
-            exit;
-        } else {
-            echo "Hubo un problema al registrar el usuario. Por favor, intenta de nuevo.";
-        }
-    } catch (Exception $e) {
-        echo "Error al registrar el usuario: " . $e->getMessage();
-    }
+    ob_clean();
+    header('Location: /login');
+    $userCreated = User::register($data);
+    
+}
 ?>

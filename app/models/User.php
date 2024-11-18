@@ -166,4 +166,17 @@ class User extends Model{
 
     }
     */
+
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     * 
+     * @param array $data Los datos del usuario, como nombre, correo, contraseña, etc.
+     * 
+     * @return bool Retorna true si el usuario fue registrado exitosamente, de lo contrario false.
+     */
+    public static function register(array $data): bool 
+    {
+        $user = self::createUser($data);
+        return $user;
+    }
 }
