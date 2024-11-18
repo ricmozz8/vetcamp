@@ -29,7 +29,8 @@ class BackDashboardController extends Controller
 
         // Format timestamps for recent registered users
         foreach ($recent_registered as $user) {
-            $user->formatted_created_at = self::formatTimestamp($user->created_at);
+            // careful with dynamic properties, it is deprecated
+            $user->set('formatted_created_at', self::formatTimestamp($user->created_at));
         }
 
         // Get recent applications
@@ -43,9 +44,11 @@ class BackDashboardController extends Controller
 
         foreach ($recent_applications as $application) {
             if ($application->user) {
-                $application->url_picture = $application->$user->User::getPictureUrl(); // getPictureUrl() to be added
+                // dynamic property here
+                $application->set('url_picture', $application->$user->User::getPictureUrl()); // getPictureUrl() to be added
             } else {
-                $application->url_picture = 'https://img.icons8.com/?size=100&id=7819&format=png&color=737373';
+                // dynamic property here
+                $application->set('url_picture', 'https://img.icons8.com/?size=100&id=7819&format=png&color=737373');
             }
         }
 
