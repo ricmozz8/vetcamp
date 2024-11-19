@@ -122,8 +122,7 @@ switch ($path) {
         ApplicationController::editApplication($application_id);
         break;
     case '/admin/requests/update':
-        echo "MANAGE STATUSES HERE";
-        dd($_POST);
+        ApplicationController::updateStatus($_SERVER['REQUEST_METHOD']);
         break;
     case '/admin/requests':
         RequestsController::index();
