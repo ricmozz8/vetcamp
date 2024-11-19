@@ -19,6 +19,7 @@ class TrackingController extends Controller
                     'application_id' => $applicationId,       // Application ID from POST data
                     'user_id' => Auth::$user->__get('id'),   // Admin's user ID (evaluator)
                 ]);
+                redirect('/admin/application?id=' . $applicationId . '&tracking=success');
             }
         }
     }
