@@ -152,23 +152,36 @@ require __DIR__ . '/partials/header.php';
             </div>
 
             <!-- Session modification area -->
-            <div class="session-modal-edit">
+            <div class="session-modal-edit-area">
 
-                <!-- This is where the loop through the different sessions should go... -->
+                <!-- Individual line area (this is where the loop would be placed) -->
+                <div class="session-modal-edit">
+                    <textarea class="session-title" value="Escriba su mensaje aquí..." aria-label="Session name"></textarea>
+                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session start date"></textarea>
+                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session end date"></textarea>
+                </div>
 
-                <textarea class="session-title" value="Escriba su mensaje aquí..." aria-label="Session name"></textarea>
-                <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session start date"></textarea>
-                <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session end date"></textarea>
 
-            </div>
 
-            <div class="session-modal-edit">
-
-                <!-- This is where the loop through the different sessions should go... -->
-
-                <textarea class="session-title" value="Escriba su mensaje aquí..." aria-label="Session name"></textarea>
-                <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session start date"></textarea>
-                <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session end date"></textarea>
+                <!-- FOR TEST PURPOSES (Repeating same format to test if they stack) -->
+                <div class="session-modal-edit">
+                    <textarea class="session-title" value="Escriba su mensaje aquí..." aria-label="Session name"></textarea>
+                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session start date"></textarea>
+                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session end date"></textarea>
+                </div>
+                <!-- FOR TEST PURPOSES (Repeating same format to test if they stack) -->
+                <div class="session-modal-edit">
+                    <textarea class="session-title" value="Escriba su mensaje aquí..." aria-label="Session name"></textarea>
+                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session start date"></textarea>
+                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session end date"></textarea>
+                </div>
+                <!-- FOR TEST PURPOSES (Repeating same format to test if they stack) -->
+                <div class="session-modal-edit">
+                    <textarea class="session-title" value="Escriba su mensaje aquí..." aria-label="Session name"></textarea>
+                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session start date"></textarea>
+                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session end date"></textarea>
+                </div>
+                
 
             </div>
         </div>
