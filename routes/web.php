@@ -17,12 +17,21 @@ require 'app/controllers/LoginController.php';
 require 'app/controllers/PassResetController.php';
 require 'app/controllers/RegisterController.php';
 require 'app/controllers/SettingsController.php';
+require 'app/controllers/RegisteredController.php';
+require 'app/controllers/RequestsController.php';
 require 'app/controllers/SessionController.php';
 require 'app/controllers/EvaluateController.php';
 require 'app/controllers/TrackingController.php';
+require 'app/controllers/ApplicationController.php';
 
-$request =  $_SERVER['REQUEST_URI'];
+$request = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
+
+$parsedUrl = parse_url($request);
+$path = strtolower($parsedUrl['path']);
+$queryParams = [];
+parse_str($parsedUrl['query'] ?? '', $queryParams); // Parse query string into an associative array
+
 
 // Remove trailing slash
 if (substr($request, -1) === '/' && $request !== '/') {
@@ -30,7 +39,7 @@ if (substr($request, -1) === '/' && $request !== '/') {
 }
 
 // Define your views/urls here
-switch (strtolower($request)) {
+switch ($path) {
 
     // GET FRONT VIEWS
     case '/':
@@ -46,7 +55,7 @@ switch (strtolower($request)) {
         LoginController::index();
         break;
     case '/login/auth':
-        LoginController::auten();
+        LoginController::authenticate($method);
         break;
     case '/login/auth/form1':
         LoginController::form1();
@@ -98,24 +107,41 @@ switch (strtolower($request)) {
         }
         
         break;
-    
-    // ADAPT THESE VIEWS TO SETTINGS PAGE
-    case '/admin/predefmsg':
-        SettingsController::editMessages();
-        break;
-    case '/admin/predef/update':
-        SettingsController::updateMessages($method);
-        break;
+
+
     // POST FRONT VIEWS
     
 
-
-    // GET BACK VIEWS
+   // GET BACK VIEWS
     case '/admin':
         BackDashboardController::index();
         break;
+    case '/admin/profile':
     case '/admin/requests/r':
-        render_view('profile', [], 'Profile');
+        $application_id = $_GET['id'] ?? null;
+        ApplicationController::editApplication($application_id);
+        break;
+    case '/admin/requests/update':
+        echo "MANAGE STATUSES HERE";
+        dd($_POST);
+        break;
+    case '/admin/requests':
+        RequestsController::index();
+        break;
+    case '/admin/registered':
+        RegisteredController::index();
+        break;
+    case '/admin/settings':
+        SettingsController::index();
+        break;
+    case '/admin/settings/e/approved':
+        SettingsController::updateMessage($method);
+        break;
+    case '/admin/settings/e/rejected':
+        SettingsController::updateMessage($method);
+        break;
+    case '/admin/settings/e/all':
+        SettingsController::updateMessage($method);
         break;
     case '/admin/update': # need correct url
         SessionController::updateSession($method);
@@ -125,7 +151,7 @@ switch (strtolower($request)) {
         break;
     case '/admin/profile/track': # need correct url
         TrackingController::TrackingEvaluation($method);
-        break;    
+        break;
     default:
         abort(404, 'Page was not found');
         break;

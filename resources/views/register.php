@@ -11,7 +11,7 @@ require __DIR__ . '/partials/header.php';
         <div class="content-left">
 
                 <!-- Logo with link to home page -->
-                <a class="logo" href="/"><img src="resources/assets/logo/PNG/vetcamp_full_hoz_b.png" alt="Vetcamp" class="logo"></a>
+                <a class="logo" href="/"><img src="resources/assets/logo/SVG/vetcamp_full_hoz_b.svg" alt="Vetcamp" class="logo"></a>
 
                 <!-- Sign-up form -->
                 <form action="/register/insertuser" method="POST"> <!-- Update -->
@@ -88,13 +88,12 @@ require __DIR__ . '/partials/header.php';
                         </div>
 
                     <div class="actions">
-                        <!-- Submit button -->
-                        <button type="submit" class="mainbutton">
-                            <div class="overlap-group">
-                                <div class="rectangle"></div>
-                                <div class="secondary-action">regístrate</div>
-                            </div>
-                        </button>
+                           <!-- Submit button -->
+                           <div class="mainbutton">
+                                <button type="submit" class="main-action-bright">
+                                     <div class="secondary-action">regístrate</div>
+                                </button>
+                           </div>
 
                         <!-- Login link -->
                         <a class="secondary-action-2" href="/login" >ya tienes cuenta?</a>

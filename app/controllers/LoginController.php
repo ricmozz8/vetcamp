@@ -13,45 +13,47 @@ class LoginController extends Controller
         render_view('login', [], 'Login');
     }
 
+
     /**
-     * Returns all records from the associated table where the specified column
-     * matches the given value.
+     * Authenticate a user.
      *
-     * @param string getvalue from html input name = email
-     * @param string getvalue from html input name = password
+     * @param string $method The HTTP method of the request.
+     *
+     * @return void
      */
-    public static function auten()
+    public static function authenticate($method)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'] ?? null;
-            $password = $_POST['password'] ?? null;
+        if ($method == 'POST') {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
 
-            if ($email && $password) {
-                $user = DB::where("users", "email", $email);
+            if (isset($email) && isset($password)) {
+                try{ 
+                    $user = User::findBy(['email' => $email, 'status' => 'active']);
 
-                if ($user) {
-                    if (password_verify($password, $user['password'])) {
-                        if ($user['type'] == 'user') {
-                            echo 'soy usuario';
-                            Auth::login($user);
-                            header("Location: /login/auth/form1");
-                            exit();
-                        }
-
-                        if ($user['type'] == 'admin') {
-                            echo 'soy admin';
-                            Auth::login($user);
-                            render_view('backDashboard', [], 'Login');
-                            exit();
-                        }
-                    } else {
-                        echo "Contraseña incorrecta.";
-                    }
-                } else {
-                    echo "El correo no está registrado.";
+                } catch (ModelNotFoundException $e) {
+                    // User was not found
+                    $_POST['error'] = 'Incorrect credentials';
+                    redirect('/login');
                 }
+
+                if (password_verify($password, $user->values[0]['password'])) {
+                    // Authentication successful
+                    Auth::login($user);
+
+                    if (Auth::$user->type == 'admin') {
+                        redirect('/admin');
+                    } else {
+                        redirect('/apply');
+                    }
+
+                } else {
+                    // Authentication failed
+                    $_POST['error'] = 'Incorrect credentials';
+                    redirect('/login');
+                }   
             }
-        }
+        }  
     }
 
     //Metodos de las vistas 

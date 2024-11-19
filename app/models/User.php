@@ -1,6 +1,9 @@
 <?php
 require_once 'Model.php';
 require_once 'Application.php';
+require_once 'SchoolAddress.php';
+require_once 'PostalAddress.php';
+require_once 'PhysicalAddress.php';
 
 class User extends Model{
 
@@ -60,7 +63,7 @@ class User extends Model{
                     $userApplication = $user->application();
                     
                     if ($userApplication) {
-                        $user->status = $userApplication->status;
+                        $user->set('status', $userApplication->status);
                         $result[] = $user;
                     }
                 } catch (ModelNotFoundException $notFound) {
@@ -97,4 +100,109 @@ class User extends Model{
     }
 
 
+    /**
+     * Retrieves the school address associated with the user.
+     *
+     * This method queries the SchoolAddress model to find the address
+     * record linked to the user based on the primary key.
+     *
+     * @return SchoolAddress|null The SchoolAddress instance associated
+     *                            with the user, or null if not found.
+     */
+    public function school_address(){
+        return SchoolAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+    }
+
+
+    /**
+     * Retrieves the postal address associated with the user.
+     *
+     * This method queries the PostalAddress model to find the address
+     * record linked to the user based on the primary key.
+     *
+     * @return PostalAddress|null The PostalAddress instance associated
+     *                            with the user, or null if not found.
+     */
+    public function postal_address(){
+        return PostalAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+    }
+
+    /**
+     * Retrieves the physical address associated with the user.
+     *
+     * This method queries the PhysicalAddress model to find the address
+     * record linked to the user based on the primary key.
+     *
+     * @return PhysicalAddress|null The PhysicalAddress instance associated
+     *                              with the user, or null if not found.
+     */
+    public function physical_address(){
+        return PhysicalAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+    }
+
+
+    public function get_age()
+    {
+        $birth_date = new DateTime($this->birthdate);
+        $current_date = new DateTime(date('Y-m-d'));
+        $interval = $birth_date->diff($current_date);
+        return $interval->y;
+    }
+
+
+    /*
+    Note: WIP
+    public static function getApprovedUsers()
+    {
+
+    }
+
+
+    public static function getDeniedUsers()
+    {
+
+    }
+    public function getPictureUrl() {
+
+    }
+    */
+
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     * 
+     * @param array $data Los datos del usuario, como nombre, correo, contraseña, etc.
+     * 
+     * @return bool Retorna true si el usuario fue registrado exitosamente, de lo contrario false.
+     */
+    public static function register(array $data): bool 
+    {
+
+        if($data['password'] != $data['confirm_password'])
+        {
+            echo "Los password no son iguales <br>";
+            exit();
+        }
+        
+        // Encriptar la contraseña
+        $passwordHash = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        //colocar el nombre y el apellido
+        $partesNombre = explode(" ", $data['nombre']);
+        $primerNombre = $partesNombre[0];
+        $apellido = isset($partesNombre[1]) ? $partesNombre[1] : '';
+
+        $dataUser = [
+            'email' => $data['correo'],
+            'password' => $passwordHash,
+            'first_name' => $primerNombre,
+            'last_name' => $apellido,
+            'phone_number' => $data['telefono'],
+            'status' => "active",
+            'type' => "user",
+            'created_at'=> date('Y-m-d H:i:s'),
+        ];
+
+        $user = self::create($dataUser);
+        return $user;
+    }
 }

@@ -200,7 +200,7 @@
 }
 
 .back-dash .send-message:hover {
-    opacity: 0.9; 
+    opacity: 0.9;
 }
 
 /*******************************
@@ -276,6 +276,7 @@
 .back-dash .recent-info {
     display: flex;
     flex-direction: column;
+    margin-left: 12px;
 }
 
 /* Item title/name styling */
@@ -353,29 +354,112 @@
     font-weight: 600;
     cursor: pointer;
     transition: opacity 0.3s ease;
-    position: absolute;
-    right: 2.5%;
 }
 
 /* Erase button styling */
 .back-dash .erase-button {
     background: #FF5F5F;
-    color: var(--text-dark);
+    color: var(--white-color);
     padding: 10px 25px;
     border-radius: 50px;
     border: none;
     font-weight: 600;
     cursor: pointer;
     transition: opacity 0.3s ease;
-    position: absolute;
-    right: 2.5%;
 }
 
-/* Applications list styling */
-.back-dash .applications-list {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr; 
-    border: 1px solid #ccc;
-    padding: 10px;
+/* Settings block styling */
+.back-dash .settings-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 0;
+}
+
+/* Modal actions styling */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1em 0;
     gap: 10px;
+    width: 100%;
+}
+
+/* Sessions modal styling */
+.session-modal-area {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%
+}
+
+/* Delete button column styling */
+.session-modal-delete {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    padding: 1em 0;
+}
+
+/* Delete button for modal styling */
+.trash-button {
+    background: #FF5F5F;
+    color: var(--white-color);
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+/* Session date area styling */
+.session-modal-edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Session title text box styling */
+.session-title {
+    border-radius: 10px;
+    align-self: stretch;
+    display: flex;
+    margin-top: 20px;
+    padding: 7px;
+    flex-direction: column;
+    align-items: start;
+    color: rgba(0, 0, 0, 1);
+    letter-spacing: -1.2px;
+    resize: vertical;
+    min-height: 180px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 1);
+    width: 26%;
+    font-size: 1.3em;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* Session dates text box styling */
+.session-date {
+    border-radius: 10px;
+    align-self: stretch;
+    display: flex;
+    margin-top: 20px;
+    padding: 7px;
+    flex-direction: column;
+    align-items: start;
+    color: rgba(0, 0, 0, 1);
+    letter-spacing: -1.2px;
+    min-height: 180px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 1);
+    width: 37%;
+    font-size: 1.3em;
+    line-height: 1.5;
+    font-weight: 500;
 }

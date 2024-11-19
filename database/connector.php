@@ -21,7 +21,7 @@ final class DB
     public static function connect($connection, $user = 'root', $password = '')
     {
 
-        $dsn = 'mysql:' . http_build_query($connection, '', ';');
+        $dsn = CONFIG['database']['service']. ':' . http_build_query($connection, '', ';');
 
         try {
 
@@ -36,7 +36,7 @@ final class DB
 
 
         } catch (PDOException $e) {
-            throw new Error('Failed to connect to the database: ' . $e->getMessage());
+            throw new DatabaseConnectionException("Error connecting to the database with driver '". CONFIG['database']['service'] . "': " . $e->getMessage(), 0, $e);
         }
     }
 
@@ -115,6 +115,7 @@ final class DB
         $operator = in_array($operator, ['=', '>', '<', '>=', '<=', '!=']) ? $operator : '=';
         $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ' . $where . ' ' . $operator . ' :equal';
 
+        
         // Preparar la consulta SQL
         $statement = self::$database->prepare($sql);
         $statement->bindValue(':equal', $equal, PDO::PARAM_STR);
@@ -141,7 +142,8 @@ final class DB
         $length = count($conditions);
         foreach ($conditions as $key => $value) {
 
-            $sql .= $key . ' = ' . $value;
+            
+            $sql .= $key . ' = ' . quote($value);
 
             if ($index < $length - 1) {
                 $sql .= ' AND ';
@@ -176,10 +178,6 @@ final class DB
     $columns = implode(", ", array_keys($data));
     $placeholders = ":" . implode(", :", array_keys($data));
     $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
-    
-    // View the SQL and data
-    error_log("SQL: " . $sql);
-    error_log("Data: " . print_r($data, true));
 
     try {
         // Prepare the statement
@@ -191,19 +189,11 @@ final class DB
         }
 
         // Execute the statement
-        if ($stmt->execute()) {
-            // Verificar si hubo alguna fila afectada
-            if ($stmt->rowCount() > 0) {
-                return true;  // Inserción exitosa
-            } else {
-                error_log("No se insertó ningún registro (posiblemente por un duplicado).");
-                return false; // No se insertó nada
-            }
-        } else {
-            // Mostrar el error si falla la ejecución
-            error_log("Error al ejecutar la consulta: " . implode(" ", $stmt->errorInfo()));
-            return false;
-        }
+        $stmt->execute();
+
+        // Check for affected rows
+        $stmt->rowCount() > 0 ? true : false;
+        
 
     } catch (PDOException $e) {
         // Manejo de errores de la base de datos
@@ -211,8 +201,6 @@ final class DB
         return false;
     }
 }
-
-
 
     /**
      * Update a record in the specified table.
@@ -346,7 +334,7 @@ final class DB
      *
      * @return array The results of the query as an array of associative arrays.
      */
-    public static function execute_and_fetch(string $sql, array $data = null): array
+    private static function execute_and_fetch(string $sql, array $data = null): array
     {
         $statement = self::$database->prepare($sql);
         $statement->execute($data);
