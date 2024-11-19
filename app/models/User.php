@@ -167,16 +167,42 @@ class User extends Model{
     }
     */
 
-    // /**
-    //  * Registra un nuevo usuario en la base de datos.
-    //  * 
-    //  * @param array $data Los datos del usuario, como nombre, correo, contraseña, etc.
-    //  * 
-    //  * @return bool Retorna true si el usuario fue registrado exitosamente, de lo contrario false.
-    //  */
-    // public static function register(array $data): bool 
-    // {
-    //     $user = self::createUser($data);
-    //     return $user;
-    // }
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     * 
+     * @param array $data Los datos del usuario, como nombre, correo, contraseña, etc.
+     * 
+     * @return bool Retorna true si el usuario fue registrado exitosamente, de lo contrario false.
+     */
+    public static function register(array $data): bool 
+    {
+
+        if($data['password'] != $data['confirm_password'])
+        {
+            echo "Los password no son iguales <br>";
+            exit();
+        }
+        
+        // Encriptar la contraseña
+        $passwordHash = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        //colocar el nombre y el apellido
+        $partesNombre = explode(" ", $data['nombre']);
+        $primerNombre = $partesNombre[0];
+        $apellido = isset($partesNombre[1]) ? $partesNombre[1] : '';
+
+        $dataUser = [
+            'email' => $data['correo'],
+            'password' => $passwordHash,
+            'first_name' => $primerNombre,
+            'last_name' => $apellido,
+            'phone_number' => $data['telefono'],
+            'status' => "active",
+            'type' => "user",
+            'created_at'=> date('Y-m-d H:i:s'),
+        ];
+
+        $user = self::create($dataUser);
+        return $user;
+    }
 }

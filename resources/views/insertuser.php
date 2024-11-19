@@ -16,33 +16,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm_password'];
 
-    if($password != $confirmPassword)
-    {
-        echo "Los password no son iguales <br>";
-        exit();
-    }
-
-    // Encriptar la contraseña
-    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-    //colocar el nombre y el apellido
-    $partesNombre = explode(" ", $nombre);
-    $primerNombre = $partesNombre[0];
-    $apellido = isset($partesNombre[1]) ? $partesNombre[1] : '';
-
-    $data = [
-        'email' => $correo,
-        'password' => $passwordHash,
-        'first_name' => $primerNombre,
-        'last_name' => $apellido,
-        'phone_number' => $telefono,
-        'status' => "active",
-        'type' => "user",
-        'created_at'=> date('Y-m-d H:i:s'),
+    $dataFormulario = [
+        'nombre' => $nombre,
+        'telefono' => $telefono,
+        'correo' => $correo,
+        'password' => $password,
+        'confirm_password' => $confirmPassword,
     ];
     ob_clean();
     header('Location: /login');
-    $userCreated = User::register($data);
+    $userCreated = User::register($dataFormulario);
     
 }
 ?>
