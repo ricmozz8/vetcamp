@@ -40,7 +40,16 @@ class User extends Model{
         if (!isset($this->attributes[self::$primary_key])) {
             return null;
         }
-        return Application::find($this->attributes[self::$primary_key], self::$primary_key);
+          try
+          {
+          $apply = Application::find($this->attributes[self::$primary_key], self::$primary_key);
+          }
+          catch (ModelNotFoundException $notFound)
+          {
+            return null;
+          }
+          
+        return  $apply;
     }
 
    
