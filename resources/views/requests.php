@@ -54,7 +54,7 @@ require __DIR__ . '/partials/header.php';
         <main class="main-content">
         <!-- Secondary logo container -->
             <div class="logo-container">
-                <img src="/resources/assets/logo/PNG/vetcamp_full_hoz_b.png" alt="Vetcamp" class="logo logo-right">
+                <img src="/resources/assets/logo/SVG/vetcamp_full_hoz_b.svg" alt="Vetcamp" class="logo logo-right">
             </div>
 
             <div class="all_sol">

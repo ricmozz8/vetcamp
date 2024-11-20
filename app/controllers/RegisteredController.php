@@ -12,8 +12,11 @@ class RegisteredController extends Controller
      */
     public static function index()
     {
+        // storing users
+        $users = User::all();
+
         // your index view here
-        render_view('registered', [], 'Registered');
+        render_view('registered', ["users" => $users], 'Registered');
     }
 
     // define your other methods here
