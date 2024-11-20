@@ -84,7 +84,7 @@ require __DIR__ . '/partials/header.php';
                                 // Get the full name
                                 $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
                                 echo "<tr>";
-                                echo "<td><img src='$profile_pic' alt='Profile Picture' style='width: 100px; height: 100px; border-radius: 50%; object-fit: cover;'></td>";
+                                echo "<td><img src='$user->application->profile_pic' alt='Profile Picture' style='width: 100px; height: 100px; border-radius: 50%; object-fit: cover;'></td>";
                                 echo "<td>" . $full_name . "</td>";
                                 echo "<td>" . htmlspecialchars($user->email) . "</td>";
                                 echo "<td>" . htmlspecialchars($user->application()->documentCount()) . "/6</td>";
