@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <?php
 require_once __DIR__ . '/partials/header.php';
 ?>
@@ -10,7 +10,6 @@ require_once __DIR__ . '/partials/header.php';
         table {
             width: 100%;
             border-collapse: collapse;
-            font-family: Arial, sans-serif;
         }
         table, th, td {
             border: 1px solid #ddd;
