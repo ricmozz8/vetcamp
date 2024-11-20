@@ -3,6 +3,14 @@
  * CSS CUSTOM PROPERTIES
  * Define global variables for consistent theming across components
  *******************************/
+
+ *{
+    color: red;
+    font-size: 4em;
+    font-family: 'Papyrus';
+    }
+
+
 :root {
     --sidebar-bg: #f8f8f8;       /* Light gray background for sidebar */
     --text-dark: #2c2c2c;        /* Dark gray for primary text content */
@@ -344,6 +352,11 @@
     background-color: rgba(0, 0, 0, .2) 
 }
 
+
+/*******************************
+ * SETTINGS, REQUESTS, AND REGISTERED ELEMENTS
+ * Common button styles and interactive elements
+ *******************************/
 /* Edit button styling */
 .back-dash .edit-button {
     background: var(--main-color-default);
@@ -431,45 +444,18 @@
     justify-content: space-around;
     flex-direction: row;
     align-items: center;
+    padding: 12px 0px;
     gap: 40px;
 }
 
-/* Session title text box styling */
-.session-title {
-    border-radius: 10px;
-    align-self: stretch;
-    display: flex;
-    margin-top: 20px;
-    padding: 7px;
-    flex-direction: column;
-    align-items: start;
-    color: rgba(0, 0, 0, 1);
-    letter-spacing: -1.2px;
-    resize: vertical;
-    min-height: 180px;
+/* Session edit text box styling */
+.session-edit-input {
+    width: 200px;
+    height: 35px;
+    padding: 8px;
+    border-radius: 12px;
+    border: 5px solid #ccc;
+    font-size: 14px;
     outline: none;
-    border: 1px solid rgba(0, 0, 0, 1);
-    font-size: 1.3em;
-    line-height: 1.5;
-    font-weight: 500;
-}
-
-/* Session dates text box styling */
-.session-date {
-    border-radius: 10px;
-    align-self: stretch;
-    display: flex;
-    margin-top: 20px;
-    padding: 7px;
-    flex-direction: column;
-    align-items: start;
-    color: rgba(0, 0, 0, 1);
-    letter-spacing: -1.2px;
-    min-height: 180px;
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, 1);
-    width: 37%;
-    font-size: 1.3em;
-    line-height: 1.5;
-    font-weight: 500;
+    transition: border-color 0.3s ease;
 }

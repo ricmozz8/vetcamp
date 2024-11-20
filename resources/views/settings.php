@@ -140,46 +140,44 @@ require __DIR__ . '/partials/header.php';
             <h3> Año 2024 </h3>
         </div>
 
+        <br>
+
         <!-- Main modal area -->
         <div class="session-modal-area">
-
-            <!-- Delete session button area -->
-            <div class="session-modal-delete">
-                <button class="trash-button"><i class="las la-trash"></i></button>
-                <button class="trash-button"><i class="las la-trash"></i></button>
-                <button class="trash-button"><i class="las la-trash"></i></button>
-                <button class="trash-button"><i class="las la-trash"></i></button>
-            </div>
 
             <!-- Session modification area -->
             <div class="session-modal-edit-area">
 
                 <!-- Individual line area (this is where the loop would be placed) -->
                 <div class="session-modal-edit">
-                    <textarea class="session-title" value="Escriba su mensaje aquí..." aria-label="Session name"></textarea>
-                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session start date"></textarea>
-                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session end date"></textarea>
+                    <button class="trash-button"><i class="las la-trash"></i></button>
+                    <input type="text" class="session-edit-input" name="NAME"/>
+                    <input class="session-edit-input" type="text" name="NAME"/>
+                    <input class="session-edit-input" type="text" name="NAME"/>
                 </div>
 
 
 
                 <!-- FOR TEST PURPOSES (Repeating same format to test if they stack) -->
                 <div class="session-modal-edit">
-                    <textarea class="session-title" value="Escriba su mensaje aquí..." aria-label="Session name"></textarea>
-                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session start date"></textarea>
-                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session end date"></textarea>
+                <button class="trash-button"><i class="las la-trash"></i></button>
+                    <input type="text" class="input-field" name="NAME"/></input>
+                    <input class="input-field" type="text" name="NAME"/></input>
+                    <input class="input-field" type="text" name="NAME"/></input>
                 </div>
                 <!-- FOR TEST PURPOSES (Repeating same format to test if they stack) -->
                 <div class="session-modal-edit">
-                    <textarea class="session-title" value="Escriba su mensaje aquí..." aria-label="Session name"></textarea>
-                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session start date"></textarea>
-                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session end date"></textarea>
+                <button class="trash-button"><i class="las la-trash"></i></button>
+                    <input type="text" class="session-edit-input" name="NAME"/></input>
+                    <input class="session-edit-input" type="text" name="NAME"/></input>
+                    <input class="session-edit-input" type="text" name="NAME"/></input>
                 </div>
                 <!-- FOR TEST PURPOSES (Repeating same format to test if they stack) -->
                 <div class="session-modal-edit">
-                    <textarea class="session-title" value="Escriba su mensaje aquí..." aria-label="Session name"></textarea>
-                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session start date"></textarea>
-                    <textarea class="session-dates" value="Escriba su mensaje aquí..." aria-label="Session end date"></textarea>
+                <button class="trash-button"><i class="las la-trash"></i></button>
+                    <input type="text" class="session-edit-input" name="NAME"/></input>
+                    <input class="session-edit-input" type="text" name="NAME"/></input>
+                    <input class="session-edit-input" type="text" name="NAME"/></input>
                 </div>
                 
 
