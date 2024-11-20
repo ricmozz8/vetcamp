@@ -27,7 +27,7 @@ class ApplicationController extends Controller
             'physical_address' => $user->physical_address(),
             'school_address' => $user->school_address(),
             'preferred_session' => $application->preferred_session(true),
-            'profile_pic'=> $application->url_picture(),
+            'profile_pic'=> $application->url_picture,
             'document_count' => $application->documentCount(),
         ], 'Aplicación');
 
