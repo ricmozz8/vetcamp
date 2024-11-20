@@ -152,35 +152,10 @@ require __DIR__ . '/partials/header.php';
                 <div class="session-modal-edit">
                     <button class="trash-button"><i class="las la-trash"></i></button>
                     <input type="text" class="session-edit-input" name="NAME"/>
-                    <input class="session-edit-input" type="date" name="NAME"/>
-                    <input class="session-edit-input" type="date" name="NAME"/>
-                </div>
-
-
-
-                <!-- FOR TEST PURPOSES (Repeating same format to test if they stack) -->
-                <div class="session-modal-edit">
-                <button class="trash-button"><i class="las la-trash"></i></button>
-                    <input type="text" class="session-edit-input" name="NAME"/></input>
-                    <input class="session-edit-input" type="date" name="NAME"/></input>
-                    <input class="session-edit-input" type="date" name="NAME"/></input>
-                </div>
-                <!-- FOR TEST PURPOSES (Repeating same format to test if they stack) -->
-                <div class="session-modal-edit">
-                <button class="trash-button"><i class="las la-trash"></i></button>
-                    <input type="text" class="session-edit-input" name="NAME"/></input>
-                    <input class="session-edit-input" type="date" name="NAME"/></input>
-                    <input class="session-edit-input" type="date" name="NAME"/></input>
-                </div>
-                <!-- FOR TEST PURPOSES (Repeating same format to test if they stack) -->
-                <div class="session-modal-edit">
-                <button class="trash-button"><i class="las la-trash"></i></button>
-                    <input type="text" class="session-edit-input" name="NAME"/></input>
-                    <input class="session-edit-input" type="date" name="NAME"/></input>
-                    <input class="session-edit-input" type="date" name="NAME"/></input>
+                    <input type="date" class="session-edit-input" name="NAME"/>
+                    <input type="date" class="session-edit-input" name="NAME"/>
                 </div>
                 
-
             </div>
         </div>
 
@@ -194,51 +169,37 @@ require __DIR__ . '/partials/header.php';
         <a href="#" class="plain-action" id="closePopup" onclick="closeModal('datesPopup')"><i class="las la-times"></i></a>
 
         <!-- Popup title -->
-        <h2 class="message-title">Manejar fechas limites</h2>
+        <h2 class="message-title">Manejar fechas límite</h2>
 
-        <!-- Message filter options -->
-        <div class="message-options">
-            <!-- Filter buttons for different message states -->
-            <button id="approvedButton" class="option-button">
-                <div class="option-indicator">
-                    <div class="indicator-dot"></div>
-                </div>
-                <span class="option-text">Aprobados</span>
-            </button>
-            <button class="option-button" id="deniedButton">
-                <div class="option-indicator">
-                    <div class="indicator-dot"></div>
-                </div>
-                <span class="option-text">Denegados</span>
-            </button>
-            <button class="option-button" id="allButton">
-                <div class="option-indicator">
-                    <div class="indicator-dot"></div>
-                </div>
-                <span class="option-text">Todos</span>
-            </button>
+        <br>
 
+        <!-- Main modal area -->
+        <div class="session-modal-area">
 
-            <select class="form-rounded" name="section" id="sectionDropdown" style="display: none;">
-                <option value="">Seleccione una sección</option>
-                <option value="1">Sección 1</option>
-                <option value="2">Sección 2</option>
-                <option value="3">Sección 3</option>
-                <option value="4">Sección 4</option>
-            </select>
+            <!-- Session modification area -->
+            <div class="session-modal-edit-area">
+
+                <!-- Individual line area (this is where the loop would be placed) -->
+                <div class="session-modal-dates">
+                    <label for="startDate">Inicio:</label>
+                    <input class="session-date-input" type="date" name="startDate"/>
+
+                    <label for="endDate">Cierre:</label>
+                    <input class="session-date-input" type="date" name="endDate"/>
+                </div>
+                
+            </div>
         </div>
 
-        <!-- Preset message option -->
-        <label class="preset-message">
-            <input type="checkbox" class="preset-checkbox" id="usePresetMessage">
-            <span>Utilizar Mensajes Predefinidos</span>
-        </label>
+        <!-- Buttons area -->
+        <div class="modal-actions">
+            <!-- Cancel button -->
+            <button class="primary main-action-bright" onclick="closeModal('datesPopup')">Cancelar</button>
 
-        <!-- Message input area -->
-        <textarea class="message-textarea" placeholder="Escriba su mensaje aquí..." aria-label="Message input"></textarea>
+            <!-- Confirm button -->
+            <button class="secondary main-action-bright" onclick="closeModal('datesPopup')">Guardar</button>
+        </div>
 
-        <!-- Send button -->
-        <button class="secondary main-action-bright">Enviar</button>
     </div>
 
 

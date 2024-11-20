@@ -3,8 +3,6 @@
  * CSS CUSTOM PROPERTIES
  * Define global variables for consistent theming across components
  *******************************/
-
-
 :root {
     --sidebar-bg: #f8f8f8;       /* Light gray background for sidebar */
     --text-dark: #2c2c2c;        /* Dark gray for primary text content */
@@ -440,6 +438,16 @@
     align-items: center;
     padding: 12px 0px;
     gap: 40px;
+}
+
+/* Session dates modal styling */
+.session-modal-dates {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 0px;
+    gap: 10px;
 }
 
 /* Session edit text box styling */
