@@ -122,7 +122,7 @@ switch ($path) {
         ApplicationController::editApplication($application_id);
         break;
     case '/admin/requests/update':
-        ApplicationController::updateStatus($_SERVER['REQUEST_METHOD']);
+        ApplicationController::updateStatus($method);
         break;
     case '/admin/requests':
         RequestsController::index();
@@ -145,9 +145,6 @@ switch ($path) {
     case '/admin/update': # need correct url
         SessionController::updateSession($method);
         break;    
-    case '/admin/profile/update': # need correct url
-        EvaluateController::updateStatus($method);
-        break;
     case '/admin/profile/track': # need correct url
         TrackingController::TrackingEvaluation($method);
         break;
