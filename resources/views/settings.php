@@ -152,8 +152,8 @@ require __DIR__ . '/partials/header.php';
                 <div class="session-modal-edit">
                     <button class="trash-button"><i class="las la-trash"></i></button>
                     <input type="text" class="session-edit-input" name="NAME"/>
-                    <input class="session-edit-input" type="text" name="NAME"/>
-                    <input class="session-edit-input" type="text" name="NAME"/>
+                    <input class="session-edit-input" type="date" name="NAME"/>
+                    <input class="session-edit-input" type="date" name="NAME"/>
                 </div>
 
 
@@ -161,23 +161,23 @@ require __DIR__ . '/partials/header.php';
                 <!-- FOR TEST PURPOSES (Repeating same format to test if they stack) -->
                 <div class="session-modal-edit">
                 <button class="trash-button"><i class="las la-trash"></i></button>
-                    <input type="text" class="input-field" name="NAME"/></input>
-                    <input class="input-field" type="text" name="NAME"/></input>
-                    <input class="input-field" type="text" name="NAME"/></input>
+                    <input type="text" class="session-edit-input" name="NAME"/></input>
+                    <input class="session-edit-input" type="date" name="NAME"/></input>
+                    <input class="session-edit-input" type="date" name="NAME"/></input>
                 </div>
                 <!-- FOR TEST PURPOSES (Repeating same format to test if they stack) -->
                 <div class="session-modal-edit">
                 <button class="trash-button"><i class="las la-trash"></i></button>
                     <input type="text" class="session-edit-input" name="NAME"/></input>
-                    <input class="session-edit-input" type="text" name="NAME"/></input>
-                    <input class="session-edit-input" type="text" name="NAME"/></input>
+                    <input class="session-edit-input" type="date" name="NAME"/></input>
+                    <input class="session-edit-input" type="date" name="NAME"/></input>
                 </div>
                 <!-- FOR TEST PURPOSES (Repeating same format to test if they stack) -->
                 <div class="session-modal-edit">
                 <button class="trash-button"><i class="las la-trash"></i></button>
                     <input type="text" class="session-edit-input" name="NAME"/></input>
-                    <input class="session-edit-input" type="text" name="NAME"/></input>
-                    <input class="session-edit-input" type="text" name="NAME"/></input>
+                    <input class="session-edit-input" type="date" name="NAME"/></input>
+                    <input class="session-edit-input" type="date" name="NAME"/></input>
                 </div>
                 
 
