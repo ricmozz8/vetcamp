@@ -1,10 +1,11 @@
 RewriteEngine On
 
 # Deny access to the storage and tests directories
-RewriteRule ^(storage|tests|bootstrap)/ - [F,L]
+RewriteRule ^(storage|tests|bootstrap|mailing|kernel|bootstrap)/ - [F,L]
 
-# Deny access for files (autocode.php and .env)
+# Deny access for files (craft.php and .env)
 RewriteRule ^.*\.(env)$ - [F,L]
+RewriteRule ^.*\.(envtype)$ - [F,L]
 
 # Redirect all requests to index.php if the requested file or directory does not exist
 RewriteCond %{REQUEST_FILENAME} !-f
