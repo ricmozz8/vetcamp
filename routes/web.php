@@ -57,21 +57,6 @@ switch ($path) {
     case '/login/auth':
         LoginController::authenticate($method);
         break;
-    case '/login/auth/form1':
-        LoginController::form1();
-        break;
-    case '/login/auth/form2':
-        LoginController::form2();
-        break;
-    case '/login/auth/form3':
-        LoginController::form3();
-        break;
-    case '/login/auth/form4':
-        LoginController::form4();
-        break;
-    case '/login/auth/form5':
-        LoginController::form5();
-        break;
     case '/forgotpass':
         ForgotPassController::index();
         break;
@@ -107,12 +92,6 @@ switch ($path) {
         }
         
         break;
-
-
-    // POST FRONT VIEWS
-    
-
-   // GET BACK VIEWS
     case '/admin':
         BackDashboardController::index();
         break;

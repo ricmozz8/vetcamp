@@ -5,7 +5,8 @@ require_once 'SchoolAddress.php';
 require_once 'PostalAddress.php';
 require_once 'PhysicalAddress.php';
 
-class User extends Model{
+class User extends Model
+{
 
     protected static $hidden = ['password', 'user_id']; // Attributes that should not be serialized
     protected static $primary_key = 'user_id'; // The primary key of the model
@@ -16,7 +17,8 @@ class User extends Model{
      * @param array $attributes The attributes of the user
      * @param array $sanitized The sanitized values of the user
      */
-    public function __construct(array $attributes, array $sanitized){
+    public function __construct(array $attributes, array $sanitized)
+    {
         parent::__construct($attributes, $sanitized);
     }
 
@@ -26,10 +28,11 @@ class User extends Model{
      * 
      * @return array An associative array with the sanitized values of the user
      */
-    public function get_values(){
+    public function get_values()
+    {
         return $this->values;
     }
-    
+
     /**
      * Finds the application that belongs to the user
      * 
@@ -40,37 +43,35 @@ class User extends Model{
         if (!isset($this->attributes[self::$primary_key])) {
             return null;
         }
-          try
-          {
-          $apply = Application::find($this->attributes[self::$primary_key], self::$primary_key);
-          }
-          catch (ModelNotFoundException $notFound)
-          {
+        try {
+            $apply = Application::find($this->attributes[self::$primary_key], self::$primary_key);
+        } catch (ModelNotFoundException $notFound) {
             return null;
-          }
-          
+        }
+
         return  $apply;
     }
 
-   
-    public static function allApplicants() {
+
+    public static function allApplicants()
+    {
         try {
             $type = 'user';
             $users = self::allof($type);
-            $applications = Application::all(); 
+            $applications = Application::all();
             $applicationsByUserId = [];
-    
+
 
             foreach ($applications as $application) {
                 $applicationsByUserId[$application->user_id] = $application;
             }
-    
-            $result = []; 
-    
+
+            $result = [];
+
             foreach ($users as $user) {
                 try {
                     $userApplication = $user->application();
-                    
+
                     if ($userApplication) {
                         $user->set('status', $userApplication->status);
                         $result[] = $user;
@@ -80,7 +81,6 @@ class User extends Model{
                 }
             }
             return $result;
-    
         } catch (Exception $e) {
             throw new Exception("An error occurred: " . $e->getMessage());
         }
@@ -100,7 +100,8 @@ class User extends Model{
      *
      * @throws Exception If an error occurs while fetching the users.
      */
-    public static function allof(string $type){
+    public static function allof(string $type)
+    {
         $all_users = parent::all();
         $filtered_users = array_filter($all_users, function ($user) use ($type) {
             return $user->type === $type;
@@ -118,7 +119,8 @@ class User extends Model{
      * @return SchoolAddress|null The SchoolAddress instance associated
      *                            with the user, or null if not found.
      */
-    public function school_address(){
+    public function school_address()
+    {
         return SchoolAddress::find($this->attributes[self::$primary_key], self::$primary_key);
     }
 
@@ -132,7 +134,8 @@ class User extends Model{
      * @return PostalAddress|null The PostalAddress instance associated
      *                            with the user, or null if not found.
      */
-    public function postal_address(){
+    public function postal_address()
+    {
         return PostalAddress::find($this->attributes[self::$primary_key], self::$primary_key);
     }
 
@@ -145,7 +148,8 @@ class User extends Model{
      * @return PhysicalAddress|null The PhysicalAddress instance associated
      *                              with the user, or null if not found.
      */
-    public function physical_address(){
+    public function physical_address()
+    {
         return PhysicalAddress::find($this->attributes[self::$primary_key], self::$primary_key);
     }
 
@@ -183,15 +187,14 @@ class User extends Model{
      * 
      * @return bool Retorna true si el usuario fue registrado exitosamente, de lo contrario false.
      */
-    public static function register(array $data): bool 
+    public static function register(array $data): bool
     {
 
-        if($data['password'] != $data['confirm_password'])
-        {
+        if ($data['password'] != $data['confirm_password']) {
             echo "Los password no son iguales <br>";
             exit();
         }
-        
+
         // Encriptar la contraseña
         $passwordHash = password_hash($data['password'], PASSWORD_DEFAULT);
 
@@ -208,7 +211,7 @@ class User extends Model{
             'phone_number' => $data['telefono'],
             'status' => "active",
             'type' => "user",
-            'created_at'=> date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s'),
         ];
 
         $user = self::create($dataUser);
