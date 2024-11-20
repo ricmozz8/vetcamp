@@ -33,7 +33,7 @@ class UserController extends Controller{
      * @return void
      */
     public static function all() {
-        $users = User::allof('user'); // Retrieve all users
+        $users = User::allof('user');
        render_view('allUsers', ['users' => $users] , 'All Users');
       }
 

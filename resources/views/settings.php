@@ -3,6 +3,19 @@
 <?php
 require __DIR__ . '/partials/header.php';
 ?>
+<?php if (isset($_SESSION['success_message'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['success_message']; ?>
+        <?php unset($_SESSION['success_message']); ?>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['error_message'])): ?>
+    <div class="alert alert-danger">
+        <?= $_SESSION['error_message']; ?>
+        <?php unset($_SESSION['error_message']); ?>
+    </div>
+<?php endif; ?>
 <body>
     <!--- Define your structure here --->
     <div class="back-dash">
@@ -198,25 +211,44 @@ require __DIR__ . '/partials/header.php';
 
         <!-- Message filter options -->
         <div class="message-options">
-            <!-- Filter buttons for different message states -->
-            <button id="approvedButton" class="option-button">
+        <!-- Approved Status -->
+        <form action="/admin/requests/update" method="POST" style="display:inline-block;">
+            <input type="hidden" name="status" value="approved">
+            <label for="approvedInput">Application ID:</label>
+            <input type="number" id="approvedInput" name="application_id" placeholder="Enter Application ID" required>
+            <button type="submit" id="approvedButton" class="option-button">
                 <div class="option-indicator">
                     <div class="indicator-dot"></div>
                 </div>
                 <span class="option-text">Aprobados</span>
             </button>
-            <button class="option-button" id="deniedButton">
+        </form>
+
+        <!-- Denied Status -->
+        <form action="/admin/requests/update" method="POST" style="display:inline-block;">
+            <input type="hidden" name="status" value="denied">
+            <label for="deniedInput">Application ID:</label>
+            <input type="number" id="deniedInput" name="application_id" placeholder="Enter Application ID" required>
+            <button type="submit" id="deniedButton" class="option-button">
                 <div class="option-indicator">
                     <div class="indicator-dot"></div>
                 </div>
                 <span class="option-text">Denegados</span>
             </button>
-            <button class="option-button" id="allButton">
+        </form>
+
+        <!-- All Status -->
+        <form action="/admin/requests/update" method="POST" style="display:inline-block;">
+            <input type="hidden" name="status" value="all">
+            <label for="allInput">Application ID:</label>
+            <input type="number" id="allInput" name="application_id" placeholder="Enter Application ID" required>
+            <button type="submit" id="allButton" class="option-button">
                 <div class="option-indicator">
                     <div class="indicator-dot"></div>
                 </div>
                 <span class="option-text">Todos</span>
             </button>
+        </form>
 
 
             <select class="form-rounded" name="section" id="sectionDropdown" style="display: none;">

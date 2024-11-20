@@ -19,4 +19,19 @@ class Application extends Model{
         return $session;
     }
 
+    public function documentCount()
+    {
+        $count = 0;
+        
+        foreach ($this->attributes as $key=>$value) 
+        {
+            if (strpos($key, 'url') !== false and $value != null) 
+            {
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
 }
