@@ -182,57 +182,35 @@ require __DIR__ . '/partials/header.php';
         <a href="#" class="plain-action" id="closePopup" onclick="closeModal('datesPopup')"><i class="las la-times"></i></a>
 
         <!-- Popup title -->
-        <h2 class="message-title">Manejar fechas limites</h2>
+        <h2 class="message-title">Manejar fechas límite</h2>
 
-        <!-- Message filter options -->
-        <div class="message-options">
-        <!-- Approved Status -->
-        <form action="/admin/requests/update" method="POST" style="display:inline-block;">
-            <input type="hidden" name="status" value="approved">
-            <label for="approvedInput">Application ID:</label>
-            <input type="number" id="approvedInput" name="application_id" placeholder="Enter Application ID" required>
-            <button type="submit" id="approvedButton" class="option-button">
-                <div class="option-indicator">
-                    <div class="indicator-dot"></div>
+        <br>
+
+        <!-- Main modal area -->
+        <div class="session-modal-area">
+
+            <!-- Session modification area -->
+            <div class="session-modal-edit-area">
+
+                <!-- Individual line area (this is where the loop would be placed) -->
+                <div class="session-modal-dates">
+                    <label for="startDate">Inicio:</label>
+                    <input class="session-date-input" type="date" name="startDate"/>
+
+                    <label for="endDate">Cierre:</label>
+                    <input class="session-date-input" type="date" name="endDate"/>
                 </div>
-                <span class="option-text">Aprobados</span>
-            </button>
-        </form>
+                
+            </div>
+        </div>
 
-        <!-- Denied Status -->
-        <form action="/admin/requests/update" method="POST" style="display:inline-block;">
-            <input type="hidden" name="status" value="denied">
-            <label for="deniedInput">Application ID:</label>
-            <input type="number" id="deniedInput" name="application_id" placeholder="Enter Application ID" required>
-            <button type="submit" id="deniedButton" class="option-button">
-                <div class="option-indicator">
-                    <div class="indicator-dot"></div>
-                </div>
-                <span class="option-text">Denegados</span>
-            </button>
-        </form>
+        <!-- Buttons area -->
+        <div class="modal-actions">
+            <!-- Cancel button -->
+            <button class="primary main-action-bright" onclick="closeModal('datesPopup')">Cancelar</button>
 
-        <!-- All Status -->
-        <form action="/admin/requests/update" method="POST" style="display:inline-block;">
-            <input type="hidden" name="status" value="all">
-            <label for="allInput">Application ID:</label>
-            <input type="number" id="allInput" name="application_id" placeholder="Enter Application ID" required>
-            <button type="submit" id="allButton" class="option-button">
-                <div class="option-indicator">
-                    <div class="indicator-dot"></div>
-                </div>
-                <span class="option-text">Todos</span>
-            </button>
-        </form>
-
-
-            <select class="form-rounded" name="section" id="sectionDropdown" style="display: none;">
-                <option value="">Seleccione una sección</option>
-                <option value="1">Sección 1</option>
-                <option value="2">Sección 2</option>
-                <option value="3">Sección 3</option>
-                <option value="4">Sección 4</option>
-            </select>
+            <!-- Save button -->
+            <button class="secondary main-action-bright" onclick="closeModal('datesPopup')">Guardar</button>
         </div>
 
     </div>
