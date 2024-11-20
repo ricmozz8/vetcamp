@@ -3,6 +3,19 @@
 <?php
 require __DIR__ . '/partials/header.php';
 ?>
+<?php if (isset($_SESSION['success_message'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['success_message']; ?>
+        <?php unset($_SESSION['success_message']); ?>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['error_message'])): ?>
+    <div class="alert alert-danger">
+        <?= $_SESSION['error_message']; ?>
+        <?php unset($_SESSION['error_message']); ?>
+    </div>
+<?php endif; ?>
 <body>
     <!--- Define your structure here --->
     <div class="back-dash">
@@ -169,35 +182,57 @@ require __DIR__ . '/partials/header.php';
         <a href="#" class="plain-action" id="closePopup" onclick="closeModal('datesPopup')"><i class="las la-times"></i></a>
 
         <!-- Popup title -->
-        <h2 class="message-title">Manejar fechas límite</h2>
+        <h2 class="message-title">Manejar fechas limites</h2>
 
-        <br>
-
-        <!-- Main modal area -->
-        <div class="session-modal-area">
-
-            <!-- Session modification area -->
-            <div class="session-modal-edit-area">
-
-                <!-- Individual line area (this is where the loop would be placed) -->
-                <div class="session-modal-dates">
-                    <label for="startDate">Inicio:</label>
-                    <input class="session-date-input" type="date" name="startDate"/>
-
-                    <label for="endDate">Cierre:</label>
-                    <input class="session-date-input" type="date" name="endDate"/>
+        <!-- Message filter options -->
+        <div class="message-options">
+        <!-- Approved Status -->
+        <form action="/admin/requests/update" method="POST" style="display:inline-block;">
+            <input type="hidden" name="status" value="approved">
+            <label for="approvedInput">Application ID:</label>
+            <input type="number" id="approvedInput" name="application_id" placeholder="Enter Application ID" required>
+            <button type="submit" id="approvedButton" class="option-button">
+                <div class="option-indicator">
+                    <div class="indicator-dot"></div>
                 </div>
-                
-            </div>
-        </div>
+                <span class="option-text">Aprobados</span>
+            </button>
+        </form>
 
-        <!-- Buttons area -->
-        <div class="modal-actions">
-            <!-- Cancel button -->
-            <button class="primary main-action-bright" onclick="closeModal('datesPopup')">Cancelar</button>
+        <!-- Denied Status -->
+        <form action="/admin/requests/update" method="POST" style="display:inline-block;">
+            <input type="hidden" name="status" value="denied">
+            <label for="deniedInput">Application ID:</label>
+            <input type="number" id="deniedInput" name="application_id" placeholder="Enter Application ID" required>
+            <button type="submit" id="deniedButton" class="option-button">
+                <div class="option-indicator">
+                    <div class="indicator-dot"></div>
+                </div>
+                <span class="option-text">Denegados</span>
+            </button>
+        </form>
 
-            <!-- Confirm button -->
-            <button class="secondary main-action-bright" onclick="closeModal('datesPopup')">Guardar</button>
+        <!-- All Status -->
+        <form action="/admin/requests/update" method="POST" style="display:inline-block;">
+            <input type="hidden" name="status" value="all">
+            <label for="allInput">Application ID:</label>
+            <input type="number" id="allInput" name="application_id" placeholder="Enter Application ID" required>
+            <button type="submit" id="allButton" class="option-button">
+                <div class="option-indicator">
+                    <div class="indicator-dot"></div>
+                </div>
+                <span class="option-text">Todos</span>
+            </button>
+        </form>
+
+
+            <select class="form-rounded" name="section" id="sectionDropdown" style="display: none;">
+                <option value="">Seleccione una sección</option>
+                <option value="1">Sección 1</option>
+                <option value="2">Sección 2</option>
+                <option value="3">Sección 3</option>
+                <option value="4">Sección 4</option>
+            </select>
         </div>
 
     </div>

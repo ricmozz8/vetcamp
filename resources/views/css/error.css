@@ -1,0 +1,64 @@
+.server-error-body {
+  background-color: var(--secondary-color-default);
+  color: var(--white-color);
+}
+
+.server-error-body * {
+  font-family: var(--text-font);
+}
+
+.error-container {
+  margin: 10vh auto;
+  width: fit-content;
+  text-align: center;
+  padding: 50px;
+  transition: all 0.25s ease;
+}
+
+.error-container .iso-centered img {
+  width: 100px;
+  transition: all 0.25s ease;
+
+}
+
+.error-container .iso-centered img:hover {
+  cursor: pointer;
+  animation: spin 1s linear infinite;
+  width: 120px;
+  filter: hue-rotate(180deg); 
+}
+
+.error-container .iso-centered h2 {
+  font-size: 3.6rem;
+  font-weight: bold;
+  line-height: 3rem;
+  margin: 1em 0;
+}
+
+.error-container .iso-centered p {
+  font-size: 1.6rem;
+}
+
+.error-content {
+  width: fit-content;
+  margin: auto;
+  display: block;
+  text-align: center;
+  padding: 5em 0;
+  transition: all 0.25s ease;
+}
+
+.error-container a {
+  display: block;
+  margin: 2em auto;
+  text-align: center;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

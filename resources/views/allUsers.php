@@ -53,7 +53,6 @@ require_once __DIR__ . '/partials/header.php';
     <table>
         <thead>
             <tr>
-                <th class="profile-col">Perfil</th>
                 <th class="email-col">Correo</th>
                 <th class="status-col">¿Ha solicitado?</th>
                 <th class="date-col">Fecha de registro</th>
@@ -66,16 +65,16 @@ require_once __DIR__ . '/partials/header.php';
 
             foreach ($users as $user) {
                 $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
-                $profile_image = "https://via.placeholder.com/40"; // Placeholder image
     
             // Convert the created_at date to "day month year" format in Spanish (e.g., "10 de Julio 2025")
             $date = new DateTime($user->created_at);
             $formatted_date = strftime('%e %B %Y', $date->getTimestamp()); 
 
+            $has_application = $user->application() ? 'Sí' : 'No';
+
             echo "<tr>";
-            echo "<td><img src='$profile_image' alt='Profile Picture' class='profile-pic'></td>";
             echo "<td>" . htmlspecialchars($user->email) . "</td>";
-            echo "<td>" . (htmlspecialchars($user->status) ? 'Sí' : 'No') . "</td>";
+            echo "<td>" . ($has_application) . "</td>";
             echo "<td>" . htmlspecialchars(ucfirst($formatted_date)) . "</td>"; // Capitalize the first letter of the month
             echo "</tr>";       
             }

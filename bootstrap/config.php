@@ -1,10 +1,37 @@
 <?php
 
+// check the environment type
+
+$config_file_path = __DIR__ . '/../.envtype';
+$env_path = "";
+
+
+if (file_exists($config_file_path)) {
+    $content = file($config_file_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($content as $line) {
+        if (strpos($line, '#') === 0) {
+            continue;
+        }
+        $type = trim($line);
+
+        if($type == "development" || $type == "testing" ){
+            $env_path = __DIR__ . '/../.env';
+        }
+        elseif($type == "production" ){
+            $env_path = __DIR__ . '/../.env.production';
+        }
+    }
+
+    
+}
+
 // try to load the env file
-if (file_exists(__DIR__ . '/../.env')) {
+
+
+if (file_exists($env_path)) {
     $env = [];
 
-    $filePath = __DIR__ . '/../.env';
+    $filePath = $env_path;
     $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     
     foreach ($lines as $line) {
@@ -43,7 +70,7 @@ return [
     'app' => [
 
         'name' => 'Vetcamp',
-        'debug' => true,
+        'debug' => "true",
     ],
     'mailer' => [
         'mail_mailer'=>'smtp',
