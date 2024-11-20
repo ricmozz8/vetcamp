@@ -1,0 +1,179 @@
+/* Password Reset page CSS */
+
+/*******************************
+ * LAYOUT CONTAINERS
+ * Primary structural elements that define the app's layout
+ *******************************/
+/* Main container styles */
+.pass-reset {
+    width: auto;
+    height: auto;
+    font-size: 0.9em;
+}
+
+/*******************************
+ * FORM ELEMENTS
+ * Styles for input fields, labels, and form layout
+ *******************************/
+/* Form Styling */
+.pass-reset form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 115px;
+}
+
+/* Page title styles */
+.pass-reset .page-title {
+    position: relative;
+    width: calc(20.3vw + 8.6vh);
+    font-weight: 600;
+    color: #2c2c2c;
+    font-size: 2.70em;
+    letter-spacing: calc(-0.18vw - 0.08vh);
+    line-height: calc(3vw + 1.3vh);
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+/* Common input field styles */
+.pass-reset .input-field {
+    width: 100%;
+    height: calc(3.3vw + 1.4vh);
+    left: calc(3vw + 1.3vh);
+    border-radius: calc(3.1vw + 1.3vh);
+    border: 1px solid #000000;
+    font-size: 1.2em;
+    padding: 0 calc(2.8vw + 1.2vh) 0 calc(0.9vw + 0.4vh);
+    margin-top: 10px;
+    outline: none;
+    padding-right: 45px;
+}
+
+/* Input field focus state */
+.pass-reset .input-field:focus {
+    border-color: var(--main-color-default);
+}
+
+/* Password Toggle Button */
+.pass-reset .password-toggle {
+      position: absolute;
+      right: 4.5em;
+      transform: translateY(-235%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #666;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+
+.pass-reset .password-toggle:hover {
+    color: #333;
+}
+
+/* Input label styles */
+.pass-reset .text-wrapper-2,
+.pass-reset .text-wrapper-3 {
+    font-size: 1.6em;
+    letter-spacing: calc(-0.06vw - 0.02vh);
+    line-height: calc(1.5vw + 0.6vh);
+}
+
+/*******************************
+ * BUTTONS AND ACTIONS
+ * Styles for buttons, links, and interactive elements
+ *******************************/
+/* Main button container */
+.pass-reset .mainbutton {
+    position: relative;
+    width: calc(11.6vw + 4.9vh);
+    height: calc(3vw + 1.3vh);
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Button text styles */
+.pass-reset .secondary-action {
+    position: relative;
+    width: calc(14.6vw + 3.7vh);
+    color: #181818;
+    font-size: 1.8em;
+    text-align: center;
+    letter-spacing: calc(-0.09vw - 0.04vh);
+}
+
+
+/*WORK IN PROGRESS*/
+/* Mobile Media Query for Password Reset Form */
+@media screen and (max-width: 689px) {
+    /* Main Container */
+    .pass-reset {
+        font-size: 0.2em;
+    }
+
+    /* Form Styling */
+    .pass-reset form {
+        margin-top: 8%;
+    }
+
+    /* Page Title */
+    .pass-reset .page-title {
+        font-size: 7.5em;
+        margin-bottom: calc(2vw + 1vh);
+        width: calc(38vw + 16vh);
+    }
+
+    /* Input Labels */
+    .pass-reset .text-wrapper-2,
+    .pass-reset .text-wrapper-3 {
+        font-size: 4.8em;
+    }
+
+    .pass-reset .input-field {
+        height: clamp(40px, calc(4vw + 2vh), 50px);
+        font-size: clamp(3.8em, 4.2em, 4.4em);
+    }
+
+    /* Password Toggle Button */
+    .pass-reset .password-toggle {
+        font-size: clamp(3em, 3.2em, 3.4em);
+    }
+
+    /* Main Button Styling */
+    .pass-reset .mainbutton {
+        width: calc(20vw + 9vh);
+        height: calc(5vw + 2vh);
+        margin-top: calc(2vw + 0.2vh);
+        margin-left: 2%;
+        margin-bottom: -2%;
+    }
+
+    /* Button Text */
+    .pass-reset .secondary-action {
+        width: calc(29.6vw + 3.7vh);
+        font-size: 4em;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    /* Main Container */
+    .pass-reset {
+        font-size: 0.62em;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    /* Main Container */
+    .pass-reset {
+        font-size: 0.88em;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    /* Main Container */
+    .pass-reset {
+        font-size: 1.8em;
+    }
+}

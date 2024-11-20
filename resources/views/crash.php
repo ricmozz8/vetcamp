@@ -2,14 +2,22 @@
 <html lang="en">
 <?php
 require_once __DIR__ . '/partials/header.php';
+
+
+// crafting google search for error url
+
+$helpURL = "https://www.php.net/search.php?q=" . urlencode($exception_name);
+
 ?>
 
 
 
-<body>
+<body class="error-body">
 
     <div class="error-box by-engine">
+        <a href="<?= $helpURL ?>" target="_blank">
         <h1><?= $exception_name ?></h1>
+        </a>
         <p class="error-message"><?= $exception_message ?></p>
 
         <div class="error-desc">

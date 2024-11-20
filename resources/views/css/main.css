@@ -9,11 +9,19 @@
 */
 
 @import url('home.css');
+@import url('auth_pages.css');
+@import url('login.css');
+@import url('register.css');
+@import url('forgot_pass.css');
+@import url('pass_reset.css');
+@import url('back_dash.css');
+@import url('backMessageModal.css');
 @import url('components.css');
 @import url('crash.css');
 @import url('generics.css');
 @import url('applications.css');
-@import url('back_dash_style.css');
+@import url('profile.css');
+@import url('modals.css');
 
 
 :root {
@@ -37,7 +45,7 @@
     --font-weight-bold: 700;
 
     /* Brand Colors */  
-    --main-color-default: #ffec1e;
+    --main-color-default: #F8CE3A;
     --main-color-shade-1: #FFD700;
     --main-color-shade-2: #FFB300;
     --main-color-shade-3: #FFA500;
@@ -53,6 +61,9 @@
     --white-color-shade-1: #dadada;
     --white-color-shade-2: #c0c0c0;
     --white-color-shade-3: #b6b6b6;
+
+    /* selection color */
+    --main-color-selection: #f8cf3a71;
     
     /* Shadows */
     --shadow-soft: 0px 3px 10px rgba(0, 0, 0, 0.253);
@@ -65,8 +76,8 @@
 }
 
 ::selection{
-    background-color: var(--secondary-color-default);
-    color: var(--main-color-default);
+    background-color: var(--main-color-selection);
+    
 }
 
 /* Stylizing Scrollbar */
@@ -125,14 +136,6 @@ h1, h2, h3, h4, h5, h6 {
      z-index: 3;
 }
 
-.by-engine::before{
-    display: block;
-    content:url(../../assets/engine/craft_med_w.svg);
-    margin-right: 5px;
-    width: 70px;
-    opacity: 0.5;
-    margin-bottom: 2em;
-}
 
 .block{
     display: block;

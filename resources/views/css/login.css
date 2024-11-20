@@ -1,0 +1,250 @@
+/* Login CSS styles */
+
+/*******************************
+ * LAYOUT CONTAINERS
+ * Primary structural elements that define the app's layout
+ *******************************/
+/* Main Container */
+.login {
+    width: auto;
+    height: auto;
+    font-size: 1em;
+}
+
+/*******************************
+ * FORM ELEMENTS
+ * Styles for input fields, labels, and form layout
+ *******************************/
+/* Form Styling */
+.login form {
+    margin-top: calc(5vw + 2vh);
+
+}
+
+/* Page Title */
+.login .page-title {
+    font-family: "Livvic";
+    font-weight: 600;
+    color: #2c2c2c;
+    font-size: 3.5em;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    margin-bottom: calc(1.4vw + 0.6vh);
+    width: calc(19vw + 8vh);
+}
+
+/* Input Fields Container */
+ .input-group {
+    gap: calc(1vw + 1vh);
+}
+
+/* Input Labels */
+.login .text-wrapper-2 {
+    font-size: 1.5em;
+    letter-spacing: -0.045em;
+    line-height: 1.2;
+}
+
+/* Input Fields */
+.login .input-field {
+    width: 100%;
+    height: calc(3vw + 1.3vh);
+    border-radius: 50px;
+    border: 1px solid #000000;
+    font-size: 1.2em;
+    padding: 0 calc(0.9vw + 0.4vh);
+    outline: none;
+    padding-right: 45px;
+}
+
+.login .input-field:focus {
+    border-color: var(--main-color-default);
+}
+
+/* Password Field Container */
+.login .password-container {
+    position: relative;
+}
+
+/* Password Toggle Button */
+.login .password-toggle {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #666;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+
+.login .password-toggle:hover {
+    color: #333;
+}
+
+/*******************************
+ * BUTTONS AND ACTIONS
+ * Styles for buttons, links, and interactive elements
+ *******************************/
+/* Actions Container */
+.login .actions {
+    align-items: center;
+    gap: calc(1.1vw + 0.5vh);
+    margin-bottom: calc(1vw + 0.8vh);
+}
+
+/* Main Button Styling */
+.login .mainbutton {
+    position: relative;
+    right: 120px;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Button Text */
+.login .secondary-action {
+    width: calc(8.1vw + 3.4vh);
+    color: #181818;
+    font-size: 1.8em;
+    letter-spacing: -0.06em;
+}
+
+/* Links Styling */
+.login .signup-link,
+.login .pass-reset-link {
+    text-decoration: underline;
+    color: #181818;
+    font-size: calc(1.4vw + 0.6vh);
+    letter-spacing: -0.038em;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.login .signup-link {
+    right: 8%;
+}
+
+.login .signup-link:hover,
+.login .pass-reset-link:hover {
+    border-color: var(--main-color-default);
+}
+
+
+/*WORK IN PROGRESS*/
+/* Mobile Media Query for Login Form */
+@media screen and (max-width: 689px) {
+    /* Main Container */
+    .login {
+        font-size: 0.95em;
+    }
+
+    /* Form Styling */
+    .login form {
+        margin-top: -5%;
+    }
+
+    /* Page Title */
+    .login .page-title {
+        font-size: 2em;
+        margin-bottom: calc(2vw + 1vh);
+        width: calc(38vw + 16vh);
+    }
+
+    /* Input Labels */
+    .login .text-wrapper-2 {
+        font-size: 1.2em;
+    }
+
+    .login .input-field {
+        height: clamp(40px, calc(4vw + 2vh), 50px);
+        padding: 8px 40px 8px 16px;
+        font-size: clamp(0.50em, 0.85em, 1.2em);
+    }
+
+    /* Password Toggle Button */
+    .login .password-toggle {
+        transform: translateY(-50%);
+        font-size: clamp(0.50em, 0.85em, 1.2em);
+    }
+
+    /* Actions Container */
+    .login .actions {
+        gap: calc(2.2vw + 1vh);
+        margin-top: 5%;
+    }
+
+    /* Main Button Styling */
+    .login .mainbutton {
+        position: absolute;
+        left: 25px;
+        margin-bottom: -2%;
+    }
+
+    /* Button Text */
+    .login .secondary-action {
+        width: calc(14vw + 6vh);
+        font-size: 1.2em;
+    }
+
+    /* Links Styling */
+    .login .signup-link,
+    .login .pass-reset-link {
+        font-size: 1em;
+        margin-bottom: -2%;
+    }
+
+    .login .signup-link {
+        left: 6%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    /* Main Container */
+    .login {
+        font-size: 0.55em;
+    }
+
+    /* Main Button Styling */
+    .login .mainbutton {
+        position: absolute;
+        left: 25px;
+        margin-bottom: -2%;
+    }
+
+    .login .signup-link {
+        left: 6%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    /* Main Container */
+    .login {
+        font-size: 0.80em;
+    }
+
+    /* Main Button Styling */
+    .login .mainbutton {
+        position: absolute;
+        left: 50px;
+        margin-bottom: -2%;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    /* Main Container */
+    .login {
+        font-size: 2em;
+    }
+
+    /* Main Button Styling */
+    .login .mainbutton {
+        position: absolute;
+        left: 100px;
+        margin-bottom: -2%;
+    }
+}

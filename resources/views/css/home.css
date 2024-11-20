@@ -17,10 +17,13 @@
   padding: 14.3rem 2em;
   background-color: var(--main-color-default);
   text-align: center;
-  background-image: url(../../assets/img/doggo_png.png);
+  background-image: url(../../assets/img/doggo4.webp);
   background-repeat: no-repeat;
-  background-size: 80vh;
+  background-size: 200vh;
   background-position: bottom;
+  transform-style: preserve-3d;
+  
+  
 }
 
 .hero h1 {
@@ -101,7 +104,7 @@
   font-size: 1.5em;
   text-align: center;
   border: 1px solid var(--secondary-color-default);
-  border-bottom: 4px solid var(--secondary-color-default);
+
   transition: all 0.25s ease;
 }
 
@@ -387,9 +390,10 @@ footer .university-logo {
 @media only screen and (min-width: 1024px) {
   .hero {
     padding: 10rem 2em;
-    background-size: 782px;
-    background-position-y: top;
-    background-position-x: center;
+    background-size: 250vh;
+    background-position-y: center;
+    background-position-x: bottom;
+    background-attachment: fixed;
   }
 
   .hero h1 {
@@ -416,7 +420,7 @@ footer .university-logo {
 
 @media only screen and (min-width: 1440px) {
   .hero {
-    background-size: 900px;
+    background-size: 240vh;
   }
 
   .requirement-cards-grid {

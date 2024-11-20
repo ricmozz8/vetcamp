@@ -47,7 +47,7 @@ class Mailer{
      * @param string $to The recipient's email address.
      * @param string $subject The subject of the email.
      * @param string $message The body of the email.
-     * 
+     *
      * @return bool Returns true if the email was successfully sent, otherwise false.
      */
     public static function send($to, $subject, $message): bool

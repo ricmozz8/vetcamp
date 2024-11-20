@@ -2,10 +2,6 @@
 <html lang="en">
 <?php
 require_once __DIR__ . '/partials/header.php';
-
-// Obtaining all users from the database
-$solicitants = User::allRegistered();
-
 ?>
 <head>
     <meta charset="UTF-8">
@@ -33,14 +29,33 @@ $solicitants = User::allRegistered();
             background-color: #4CAF50;
             color: white;
         }
+        .profile-col {
+            width: 10%;
+        }
+        .name-col {
+            width: 20%;
+        }
         .email-col {
             width: 20%;
         }
-        .status-col {
+        .documents-col {
             width: 10%;
+        }
+        .status-col {
+            width: 15%;
         }
         .date-col {
             width: 15%;
+        }
+        img.profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .review-link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
         }
     </style>
     <title>Solicitants List</title>
@@ -49,19 +64,35 @@ $solicitants = User::allRegistered();
     <table>
         <thead>
             <tr>
-                <th class="email-col">Email</th>
-                <th>Status</th>
-                <th class="date-col">Created At</th>
+                <th class="profile-col">Perfil</th>
+                <th class="name-col">Nombre</th>
+                <th class="email-col">Correo</th>
+                <th class="documents-col">Documentos</th>
+                <th class="status-col">Estado</th>
+                <th class="date-col">Fecha</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            // Loop throught the solicitants returned by the User::allRegistered() method
+            // Placeholder profile image URL
+            $placeholder_image = "https://via.placeholder.com/40";
+
+            // Loop through the solicitants returned by the User::allRegistered() method
             foreach ($solicitants as $user) {
+                // Get the full name and formatted date
+                $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
+                $date = new DateTime($user->created_at);
+                $formatted_date = strftime('%e %B %Y', $date->getTimestamp());
+
                 echo "<tr>";
+                echo "<td><img src='$placeholder_image' alt='Profile Picture' class='profile-pic'></td>";
+                echo "<td>" . $full_name . "</td>";
                 echo "<td>" . htmlspecialchars($user->email) . "</td>";
+                echo "<td>" . htmlspecialchars($user->documents) . "</td>";
                 echo "<td>" . htmlspecialchars($user->status) . "</td>";
-                echo "<td>" . htmlspecialchars($user->created_at) . "</td>";
+                echo "<td>" . ucfirst($formatted_date) . "</td>"; // Capitalize the first letter of the month
+                echo "<td><a href='#' class='review-link'>revisar</a></td>";
                 echo "</tr>";
             }
             ?>

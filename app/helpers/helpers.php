@@ -99,7 +99,14 @@ function render_view(string $view, array $data = [], string $title = ''): void {
 
     extract($data);
     $page_title = get_config('app', 'name', '') . ' - ' . $title;
-    require VIEWS_DIR . $view . '.php';
+
+    try{
+        require VIEWS_DIR . $view . '.php';
+    } catch (Error $e) {
+        // check if the file exists
+        throw new ViewNotFoundException('The view file does not exist: ' . VIEWS_DIR . $view . '.php');
+    }
+    
     exit;
 }
 
@@ -114,6 +121,84 @@ function render_view(string $view, array $data = [], string $title = ''): void {
 function redirect(string $url) {
     header('Location: ' . $url);
     exit;
+}
+
+
+/**
+ * Stores a value in the session.
+ *
+ * If the session is not already started, this function will start it.
+ *
+ * @param string $key The key to store the value with.
+ * @param mixed $value The value to store.
+ */
+function session_store(string $key, $value) {
+
+    if(!isset($_SESSION)) {
+        session_start();
+    }
+
+    $_SESSION[$key] = $value;
+}
+
+/**
+ * Checks if the given key exists in the session.
+ *
+ * @param string $key The key to search for in the session.
+ * @return bool True if the key exists, false otherwise.
+ */
+function session_has(string $key) {
+    return isset($_SESSION[$key]) ?? false;
+}
+
+
+/**
+ * Wraps a string in double quotes.
+ *
+ * @param string $string The string to wrap with double quotes.
+ *
+ * @return string The wrapped string.
+ */
+function quote($string) {
+    if (gettype($string) !== 'string') {
+        return $string;
+    }
+    return '\'' . $string . '\'';
+}
+
+/**
+ * Checks if the given key exists in the superglobal $_COOKIE array.
+ *
+ * @param string $key The key to search for in the $_COOKIE array.
+ * @return bool True if the key exists, false otherwise.
+ */
+function cookie_exists(string $key) {
+    return isset($_COOKIE[$key]) ?? false;
+}
+
+
+/**
+ * Retrieves the value of a cookie by its key.
+ *
+ * Checks if the cookie exists using the `cookie_exists` function.
+ * Returns the cookie value if it exists, otherwise returns null.
+ *
+ * @param string $key The key of the cookie to retrieve.
+ * @return mixed The value of the cookie if it exists, null otherwise.
+ */
+function get_cookie(string $key) {
+    if (!cookie_exists($key)) {
+        return null;
+    }
+    return $_COOKIE[$key];
+}
+
+
+function session_get(string $key) {
+    if (!session_has($key)) {
+        return null;
+    }
+    return $_SESSION[$key];
 }
 
 /**

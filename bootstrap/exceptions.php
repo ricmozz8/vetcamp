@@ -18,6 +18,22 @@ class ModelNotFoundException extends Exception
 
 }
 
+class ViewNotFoundException extends Exception
+{
+    public function __construct($message = "", $code = 0, Throwable $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
+}
+
+class DatabaseConnectionException extends Exception
+{
+    public function __construct($message = "", $code = 0, Throwable $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
+}
+
 // handling exceptions and adding a style
 function exceptionHandler( $exception) {
 

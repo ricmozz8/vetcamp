@@ -1,0 +1,242 @@
+/*******************************
+ * MODAL OVERLAY
+ * Full-screen dark background behind the modal
+ *******************************/
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(0 0 0 / 38%);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+}
+
+/*******************************
+ * MODAL CONTAINER
+ * Main popup window styling
+ *******************************/
+.message-popup {
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 1000;
+    display: flex;
+    width: 65%;
+    padding: 40px;
+    flex-direction: column;
+    align-items: start;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 900px;
+    margin: auto;
+    box-shadow: var(--shadow-soft);
+}
+
+/*******************************
+ * MODAL HEADER
+ * Close icon and title styling
+ *******************************/
+.close-icon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 28px;
+    cursor: pointer;
+}
+
+.message-title {
+    color: rgba(45, 45, 45, 1);
+    letter-spacing: -1.84px;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 2.3em;
+}
+
+/*******************************
+ * FILTER OPTIONS
+ * Styling for filter buttons and options container
+ *******************************/
+.message-options {
+    display: flex;
+    margin-top: 28px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.option-button {
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    justify-content: center;
+    padding: 10px 13px;
+    border: 1px solid rgba(0, 0, 0, 1);
+    background-color: transparent;
+}
+
+/* Filter button indicator styling */
+.option-indicator {
+    background-color: rgba(235, 235, 235, 1);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0 6px;
+}
+
+.indicator-dot {
+    background-color: rgba(235, 235, 235, 1);
+    border-radius: 50%;
+    display: flex;
+    width: 12px;  
+    height: 12px; 
+    transition: background-color 0.2s ease;
+}
+
+.option-text {
+    color: rgba(129, 129, 129, 1);
+    letter-spacing: -1.44px;
+    align-self: center;
+    flex-basis: auto;
+    transition: color 0.2s ease;
+    font-size: 1.3em;
+    line-height: 1;
+}
+
+/*******************************
+ * DROPDOWN SELECT
+ * Styling for the section dropdown in Message Modal
+ *******************************/
+.dropdown-container {
+    position: relative;
+    width: 30%;
+}
+
+.dropdown-select {
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--main-color-default);
+    letter-spacing: -1.44px;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 15px; 
+    border: 1px solid rgba(0, 0, 0, 1);
+    font-size: 1.3em;  
+    line-height: 1;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    margin-top: 5px;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: var(--main-color-default);
+}
+
+.dropdown-select.visible {
+    display: flex;
+}
+
+.dropdown-icon {
+    display: flex;
+    align-items: center;
+    margin: -4px 0 0 -8px;
+    height: 1em;
+}
+
+/*******************************
+ * PRESET MESSAGE
+ * Checkbox and label styling for preset message option in Message Modal
+ *******************************/
+.preset-message {
+    display: flex;
+    margin-top: 23px;
+    gap: 12px;
+    color: rgba(129, 129, 129, 1);
+    letter-spacing: -1.44px;
+    font-size: 1.3em; 
+    line-height: 1;
+    align-items: center; 
+}
+
+.preset-checkbox {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    filter: hue-rotate(200deg)
+}
+
+/*******************************
+ * MESSAGE INPUT
+ * Textarea styling for message input in Message Modal
+ *******************************/
+.message-textarea {
+    border-radius: 10px;
+    align-self: stretch;
+    display: flex;
+    margin-top: 20px;
+    padding: 18px;
+    flex-direction: column;
+    align-items: start;
+    color: rgba(0, 0, 0, 1);
+    letter-spacing: -1.2px;
+    resize: vertical;
+    min-height: 180px;  
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 1);
+    width: 100%;
+    font-size: 1.3em;  
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/*******************************
+ * SEND BUTTON
+ * Submit button styling 
+ *******************************/
+.back-dash .send-button {
+    border-radius: 50px;
+    background: var(--main-color-default);
+    align-self: end;
+    margin-top: 20px;
+    color: rgba(0, 0, 0, 1);
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: -1.92px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    padding: 15px 40px;  
+    font-size: 28px;  
+    line-height: 1;
+    font-weight: 600;
+}
+
+.back-dash .send-button::hover {
+    background-color: var(--main-color-shade-1);
+}

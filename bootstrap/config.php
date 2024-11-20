@@ -33,7 +33,7 @@ if (file_exists(__DIR__ . '/../.env')) {
 return [
 
     'database' => [
-
+        'service' => 'mysql',
         'host' => '127.0.0.1',
         'port' => 3306,
         'dbname' => 'vetcampdb',

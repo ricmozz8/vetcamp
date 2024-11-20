@@ -1,24 +1,34 @@
 <?php
 require_once 'Model.php';
 require_once 'Application.php';
+require_once 'SchoolAddress.php';
+require_once 'PostalAddress.php';
+require_once 'PhysicalAddress.php';
 
 class User extends Model{
 
-    // define your methods here
-    // protected static $table = 'usuarios'; // change here the table name
-    protected static $hidden = ['password', 'user_id'];
-    protected static $primary_key = 'user_id';
+    protected static $hidden = ['password', 'user_id']; // Attributes that should not be serialized
+    protected static $primary_key = 'user_id'; // The primary key of the model
 
+    /**
+     * Initializes a new instance of the User class
+     * 
+     * @param array $attributes The attributes of the user
+     * @param array $sanitized The sanitized values of the user
+     */
     public function __construct(array $attributes, array $sanitized){
         parent::__construct($attributes, $sanitized);
     }
 
 
+    /**
+     * Returns the sanitized values of the user model
+     * 
+     * @return array An associative array with the sanitized values of the user
+     */
     public function get_values(){
         return $this->values;
     }
-
-    // relationships
     
     /**
      * Finds the application that belongs to the user
@@ -33,26 +43,27 @@ class User extends Model{
         return Application::find($this->attributes[self::$primary_key], self::$primary_key);
     }
 
-    public static function allRegistered() {
+   
+    public static function allApplicants() {
         try {
-            $users = self::all(); // Recupera todos los usuarios
-            $applications = Application::all(); // Recupera todas las aplicaciones
+            $type = 'user';
+            $users = self::allof($type);
+            $applications = Application::all(); 
             $applicationsByUserId = [];
     
-            // Organiza las aplicaciones por user_id para un acceso rápido
+
             foreach ($applications as $application) {
                 $applicationsByUserId[$application->user_id] = $application;
             }
     
-            $result = []; // Resultado final
+            $result = []; 
     
             foreach ($users as $user) {
                 try {
                     $userApplication = $user->application();
                     
-                    // Verifica si el usuario tiene una aplicación y asigna el estado
                     if ($userApplication) {
-                        $user->status = $userApplication->status;
+                        $user->set('status', $userApplication->status);
                         $result[] = $user;
                     }
                 } catch (ModelNotFoundException $notFound) {
@@ -66,7 +77,132 @@ class User extends Model{
         }
     }
 
+    /**
+     * Retrieves all users of the given type from the database.
+     *
+     * This method works the same way as the parent class's all() method, but
+     * it filters the results to only include users of the given type.
+     *
+     * @param string $type The type of users to retrieve. The only valid
+     *                     value currently is 'user', but more types may
+     *                     be added in the future.
+     *
+     * @return User[] An array of User objects of the given type.
+     *
+     * @throws Exception If an error occurs while fetching the users.
+     */
+    public static function allof(string $type){
+        $all_users = parent::all();
+        $filtered_users = array_filter($all_users, function ($user) use ($type) {
+            return $user->type === $type;
+        });
+        return $filtered_users;
+    }
 
 
+    /**
+     * Retrieves the school address associated with the user.
+     *
+     * This method queries the SchoolAddress model to find the address
+     * record linked to the user based on the primary key.
+     *
+     * @return SchoolAddress|null The SchoolAddress instance associated
+     *                            with the user, or null if not found.
+     */
+    public function school_address(){
+        return SchoolAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+    }
 
+
+    /**
+     * Retrieves the postal address associated with the user.
+     *
+     * This method queries the PostalAddress model to find the address
+     * record linked to the user based on the primary key.
+     *
+     * @return PostalAddress|null The PostalAddress instance associated
+     *                            with the user, or null if not found.
+     */
+    public function postal_address(){
+        return PostalAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+    }
+
+    /**
+     * Retrieves the physical address associated with the user.
+     *
+     * This method queries the PhysicalAddress model to find the address
+     * record linked to the user based on the primary key.
+     *
+     * @return PhysicalAddress|null The PhysicalAddress instance associated
+     *                              with the user, or null if not found.
+     */
+    public function physical_address(){
+        return PhysicalAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+    }
+
+
+    public function get_age()
+    {
+        $birth_date = new DateTime($this->birthdate);
+        $current_date = new DateTime(date('Y-m-d'));
+        $interval = $birth_date->diff($current_date);
+        return $interval->y;
+    }
+
+
+    /*
+    Note: WIP
+    public static function getApprovedUsers()
+    {
+
+    }
+
+
+    public static function getDeniedUsers()
+    {
+
+    }
+    public function getPictureUrl() {
+
+    }
+    */
+
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     * 
+     * @param array $data Los datos del usuario, como nombre, correo, contraseña, etc.
+     * 
+     * @return bool Retorna true si el usuario fue registrado exitosamente, de lo contrario false.
+     */
+    public static function register(array $data): bool 
+    {
+
+        if($data['password'] != $data['confirm_password'])
+        {
+            echo "Los password no son iguales <br>";
+            exit();
+        }
+        
+        // Encriptar la contraseña
+        $passwordHash = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        //colocar el nombre y el apellido
+        $partesNombre = explode(" ", $data['nombre']);
+        $primerNombre = $partesNombre[0];
+        $apellido = isset($partesNombre[1]) ? $partesNombre[1] : '';
+
+        $dataUser = [
+            'email' => $data['correo'],
+            'password' => $passwordHash,
+            'first_name' => $primerNombre,
+            'last_name' => $apellido,
+            'phone_number' => $data['telefono'],
+            'status' => "active",
+            'type' => "user",
+            'created_at'=> date('Y-m-d H:i:s'),
+        ];
+
+        $user = self::create($dataUser);
+        return $user;
+    }
 }

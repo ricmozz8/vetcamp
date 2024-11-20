@@ -23,18 +23,44 @@ class UserController extends Controller{
         render_view('users', ['user' => $userObject] , 'Users');
     }
 
+    /**
+     * Retrieves all users and renders the 'allUsers' view.
+     *
+     * This method fetches all user records from the database and
+     * passes them to the 'allUsers' view for rendering. It provides
+     * a comprehensive list of all users to be displayed.
+     *
+     * @return void
+     */
     public static function all() {
-        $users = User::all(); // Retrieve all users
+        $users = User::allof('user'); // Retrieve all users
        render_view('allUsers', ['users' => $users] , 'All Users');
       }
 
 
-      public static function allRegistered() {
-       $solicitants = User::allRegistered();
+    /**
+     * Retrieves all registered solicitants and renders the 'allSolicitants' view.
+     *
+     * This method fetches all solicitants from the database and
+     * passes them to the 'allSolicitants' view for rendering. It provides
+     * a comprehensive list of all registered solicitants to be displayed.
+     *
+     * @return void
+     */
+      public static function allApplicants() {
+       $solicitants = User::allApplicants();
        render_view('allSolicitants', ['solicitants' => $solicitants], 'All Solicitants'); 
     }
 
 
+    /**
+     * Updates a user record in the database and returns the user object.
+     *
+     * This method updates a user record in the database and returns the user object
+     * in JSON format. If the user is not found, it will return null.
+     *
+     * @return string|null The user object in JSON format or null if the user is not found.
+     */
     public static function update()
     {
         try{
@@ -46,6 +72,22 @@ class UserController extends Controller{
 
         // $userObject->update(['primer_nombre' => 'Aoaoe Ie Ueaoe']);
         echo json_encode($userObject);
+
+    }
+
+
+    public static function new()
+    {
+        // $newUser =User::create([
+        //     'email' => 'KZGZM@example.com',
+        //     'password' => password_hash('password', PASSWORD_DEFAULT),
+        //     'first_name' => 'John',
+        //     'last_name' => 'Doe',
+        //     'phone_number' => '1234567890',
+        // ]);
+
+        $newUser = User::find(1) ?? null;
+        echo json_encode($newUser);
 
     }
     
