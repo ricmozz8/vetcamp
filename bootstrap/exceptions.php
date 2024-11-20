@@ -37,12 +37,10 @@ class DatabaseConnectionException extends Exception
 // handling exceptions and adding a style
 function exceptionHandler( $exception) {
 
-    $is_prod = (bool) get_config('app', 'debug');
+    $is_debug = get_config('app', 'debug');
 
-    if (!$is_prod) {    
-        // return error 500 
-        http_response_code(500);
-        die();
+    if ($is_debug == "false") {    
+        abort(500);
     }
 
     // Stylize the error message
