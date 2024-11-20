@@ -84,10 +84,10 @@ require __DIR__ . '/partials/header.php';
                                 // Get the full name
                                 $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
                                 echo "<tr>";
-                                echo "<td>" . " " . "</td>";                                //To add user avatar
+                                echo "<td><img src='$profile_pic' alt='Profile Picture' style='width: 100px; height: 100px; border-radius: 50%; object-fit: cover;'></td>";
                                 echo "<td>" . $full_name . "</td>";
                                 echo "<td>" . htmlspecialchars($user->email) . "</td>";
-                                echo "<td>" . " " . "</td>";                                //To add document count
+                                echo "<td>" . htmlspecialchars($user->application()->documentCount()) . "/6</td>";
                                 echo "<td>" . htmlspecialchars($user->status) . "</td>";
                                 echo "<td>" . htmlspecialchars($user->created_at) . "</td>";
                                 echo "<td>" . '<a href="#">revisar</a>' . "</td>";          //To add "revisar" link
