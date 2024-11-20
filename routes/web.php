@@ -63,22 +63,6 @@ switch ($path) {
     case '/passreset':
         PassResetController::index();
         break;
-    case '/users':
-        UserController::index();
-        break;
-    case '/users/all':
-        UserController::all();
-        break;
-    case '/users/update':
-        UserController::update();
-        break;
-    case '/users/solicitants/all':
-        UserController::allApplicants();
-        break;
-    case '/users/new':
-        UserController::new();
-        break;
-
     case '/apply':
         render_view('application/dashboard', [], 'Aplica');
         break;
