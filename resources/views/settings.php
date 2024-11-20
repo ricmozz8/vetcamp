@@ -16,6 +16,7 @@ require __DIR__ . '/partials/header.php';
         <?php unset($_SESSION['error_message']); ?>
     </div>
 <?php endif; ?>
+
 <body>
     <!--- Define your structure here --->
     <div class="back-dash">
@@ -59,77 +60,81 @@ require __DIR__ . '/partials/header.php';
 
         <!-- Main content area -->
         <main class="main-content">
-        <!-- Secondary logo container -->
+            <!-- Secondary logo container -->
             <div class="logo-container">
                 <img src="/resources/assets/logo/PNG/vetcamp_full_hoz_b.png" alt="Vetcamp" class="logo logo-right">
             </div>
-        <header class="header">
-            <h1 class="welcome"> Ajustes </h1>
-        </header>
+            <header class="header">
+                <h1 class="welcome"> Ajustes </h1>
+            </header>
 
-        <!-- Vetcamp dates area -->
-        <div>
-            <h2 class="stat-title"> Manejar fechas del campamento </h2>
-            <br><hr size="2" color=000000>
-            <div class="settings-block">
-                <h3> Manejar sesiones del campamento </h3>
-                <button class="edit-button" onclick="openModal('sessionsPopup')"> Editar </button>
+            <!-- Vetcamp dates area -->
+            <div>
+                <h2 class="stat-title"> Manejar fechas del campamento </h2>
+                <br>
+                <hr size="2" color=000000>
+                <div class="settings-block">
+                    <h3> Manejar sesiones del campamento </h3>
+                    <button class="edit-button" onclick="openModal('sessionsPopup')"> Editar </button>
+                </div>
+                <div class="settings-block">
+                    <h3> Manejar fechas limites de registros </h3>
+                    <button class="edit-button" onclick="openModal('datesPopup')"> Editar </button>
+                </div>
             </div>
-            <div class="settings-block">
-                <h3> Manejar fechas limites de registros </h3>
-                <button class="edit-button" onclick="openModal('datesPopup')"> Editar </button>
-            </div>
-        </div>
 
-        <!-- Predefined messages area -->
-        <div>
-            <h2 class="stat-title"> Manejar mensajes predefinidos </h2>
-            <br><hr size="2" color=000000>
-            <div class="settings-block">
-                <h3> Editar mensaje para aprobados </h3>
-                <button class="edit-button" onclick="openModal('approvedPopup')"> Editar </button>
+            <!-- Predefined messages area -->
+            <div>
+                <h2 class="stat-title"> Manejar mensajes predefinidos </h2>
+                <br>
+                <hr size="2" color=000000>
+                <div class="settings-block">
+                    <h3> Editar mensaje para aprobados </h3>
+                    <button class="edit-button" onclick="openModal('approvedPopup')"> Editar </button>
+                </div>
+                <div class="settings-block">
+                    <h3> Editar mensaje para denegados </h3>
+                    <button class="edit-button" onclick="openModal('rejectedPopup')"> Editar </button>
+                </div>
+                <div class="settings-block">
+                    <h3> Editar mensaje masivo </h3>
+                    <button class="edit-button" onclick="openModal('genericPopup')"> Editar </button>
+                </div>
             </div>
-            <div class="settings-block">
-                <h3> Editar mensaje para denegados </h3>
-                <button class="edit-button" onclick="openModal('rejectedPopup')"> Editar </button>
-            </div>
-            <div class="settings-block">
-                <h3> Editar mensaje masivo  </h3>
-                <button class="edit-button" onclick="openModal('genericPopup')"> Editar </button>
-            </div>
-        </div>
 
-        <!-- Request management area -->
-        <div>
-            <h2 class="stat-title"> Administrar solicitudes </h2>
-            <br><hr size="2" color=000000>
-            <div class="settings-block">
-                <h3> Archivar solicitudes </h3>
-                <button class="edit-button" onclick="openModal('archivePopup')"> Archivar </button>
+            <!-- Request management area -->
+            <div>
+                <h2 class="stat-title"> Administrar solicitudes </h2>
+                <br>
+                <hr size="2" color=000000>
+                <div class="settings-block">
+                    <h3> Archivar solicitudes </h3>
+                    <button class="edit-button" onclick="openModal('archivePopup')"> Archivar </button>
+                </div>
+                <div class="settings-block">
+                    <h3> Eliminar todas las solicitudes </h3>
+                    <button class="erase-button" onclick="openModal('allRequestsPopup')"> Borrar </button>
+                </div>
+                <div class="settings-block">
+                    <h3> Eliminar las solicitudes denegadas </h3>
+                    <button class="erase-button" onclick="openModal('rejectedRequestsPopup')"> Borrar </button>
+                </div>
             </div>
-            <div class="settings-block">
-                <h3> Eliminar todas las solicitudes </h3>
-                <button class="erase-button" onclick="openModal('allRequestsPopup')"> Borrar </button>
-            </div>
-            <div class="settings-block">
-                <h3> Eliminar las solicitudes denegadas </h3>
-                <button class="erase-button" onclick="openModal('rejectedRequestsPopup')"> Borrar </button>
-            </div>
-        </div>
 
-        <!-- Account management area -->
-        <div>
-            <h2 class="stat-title"> Administrar cuentas </h2>
-            <br><hr size="2" color=000000>
-            <div class="settings-block">
-                <h3> Desactivar cuentas que no solicitaron </h3>
-                <button class="erase-button" onclick="openModal('unsolicitedPopup')"> Desactivar </button>
+            <!-- Account management area -->
+            <div>
+                <h2 class="stat-title"> Administrar cuentas </h2>
+                <br>
+                <hr size="2" color=000000>
+                <div class="settings-block">
+                    <h3> Desactivar cuentas que no solicitaron </h3>
+                    <button class="erase-button" onclick="openModal('unsolicitedPopup')"> Desactivar </button>
+                </div>
+                <div class="settings-block">
+                    <h3> Desactivar todas las cuentas </h3>
+                    <button class="erase-button" onclick="openModal('allPopup')"> Desactivar </button>
+                </div>
             </div>
-            <div class="settings-block">
-                <h3> Desactivar todas las cuentas </h3>
-                <button class="erase-button" onclick="openModal('allPopup')"> Desactivar </button>
-            </div>
-        </div>
 
 
         </main>
@@ -164,11 +169,11 @@ require __DIR__ . '/partials/header.php';
                 <!-- Individual line area (this is where the loop would be placed) -->
                 <div class="session-modal-edit">
                     <button class="trash-button"><i class="las la-trash"></i></button>
-                    <input type="text" class="session-edit-input" name="NAME"/>
-                    <input type="date" class="session-edit-input" name="NAME"/>
-                    <input type="date" class="session-edit-input" name="NAME"/>
+                    <input type="text" class="session-edit-input" name="NAME" />
+                    <input type="date" class="session-edit-input" name="NAME" />
+                    <input type="date" class="session-edit-input" name="NAME" />
                 </div>
-                
+
             </div>
         </div>
 
@@ -181,37 +186,40 @@ require __DIR__ . '/partials/header.php';
         <!-- <img src="https://img.icons8.com/?size=100&id=71200&format=png&color=1A1A1A" alt="Close" class="close-icon" id="closePopup"> -->
         <a href="#" class="plain-action" id="closePopup" onclick="closeModal('datesPopup')"><i class="las la-times"></i></a>
 
+
         <!-- Popup title -->
         <h2 class="message-title">Manejar fechas límite</h2>
+        <p>Manejar las fechas límite para el registro del campamento.</p>
 
         <br>
 
-        <!-- Main modal area -->
-        <div class="session-modal-area">
+        <form action="settings/e/dates" style="width: 100%;" method="POST">
+            <!-- Main modal area -->
+            <div class="session-modal-area">
+                <!-- Session modification area -->
+                <div class="session-modal-edit-area">
 
-            <!-- Session modification area -->
-            <div class="session-modal-edit-area">
+                    <!-- Individual line area (this is where the loop would be placed) -->
+                    <div class="session-modal-dates">
+                        <label for="startDate">Inicio:</label>
+                        <input value="<?= $limit_dates->start_date ?>" class="session-edit-input" type="date" name="startDate" />
 
-                <!-- Individual line area (this is where the loop would be placed) -->
-                <div class="session-modal-dates">
-                    <label for="startDate">Inicio:</label>
-                    <input class="session-date-input" type="date" name="startDate"/>
+                        <label for="endDate">Cierre:</label>
+                        <input value="<?= $limit_dates->end_date ?>" class="session-edit-input" type="date" name="endDate" />
+                    </div>
 
-                    <label for="endDate">Cierre:</label>
-                    <input class="session-date-input" type="date" name="endDate"/>
                 </div>
-                
             </div>
-        </div>
 
-        <!-- Buttons area -->
-        <div class="modal-actions">
-            <!-- Cancel button -->
-            <button class="primary main-action-bright" onclick="closeModal('datesPopup')">Cancelar</button>
+            <!-- Buttons area -->
+            <div class="modal-actions">
+                <!-- Cancel button -->
+                <button class="primary main-action-bright" onclick="closeModal('datesPopup')">Cancelar</button>
 
-            <!-- Save button -->
-            <button class="secondary main-action-bright" onclick="closeModal('datesPopup')">Guardar</button>
-        </div>
+                <!-- Save button -->
+                <button class="secondary main-action-bright" onclick="closeModal('datesPopup')">Guardar</button>
+            </div>
+        </form>
 
     </div>
 
@@ -460,9 +468,10 @@ require __DIR__ . '/partials/header.php';
         </div>
     </div>
 
-    <!--<script src="<?= web_resource("js/backendDashboard.js")?>"></script>-->
+    <!--<script src="<?= web_resource("js/backendDashboard.js") ?>"></script>-->
 
     <!-- Footer with copyright information -->
     <?php require_once('partials/footer.php'); ?>
 </body>
+
 </html>
