@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <?php
 require_once __DIR__ . '/partials/header.php';
 ?>
@@ -10,7 +10,6 @@ require_once __DIR__ . '/partials/header.php';
         table {
             width: 100%;
             border-collapse: collapse;
-            font-family: Arial, sans-serif;
         }
         table, th, td {
             border: 1px solid #ddd;
@@ -75,21 +74,23 @@ require_once __DIR__ . '/partials/header.php';
         </thead>
         <tbody>
             <?php
-            // Placeholder profile image URL
-            $placeholder_image = "https://via.placeholder.com/40";
+
+            // Set locale to Spanish
+            setlocale(LC_TIME, 'es_ES.UTF-8');
 
             // Loop through the solicitants returned by the User::allRegistered() method
             foreach ($solicitants as $user) {
                 // Get the full name and formatted date
+                $profile_pic = $user->application->profile_pic ?? 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Sagrado_Cora%C3%A7%C3%A3o_de_Jesus_-_escola_portuguesa%2C_s%C3%A9culo_XIX.png';  // Default image path
                 $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
                 $date = new DateTime($user->created_at);
                 $formatted_date = strftime('%e %B %Y', $date->getTimestamp());
 
                 echo "<tr>";
-                echo "<td><img src='$placeholder_image' alt='Profile Picture' class='profile-pic'></td>";
+                echo "<td><img src='$profile_pic' alt='Profile Picture' style='width: 100px; height: 100px; border-radius: 50%; object-fit: cover;'></td>";
                 echo "<td>" . $full_name . "</td>";
                 echo "<td>" . htmlspecialchars($user->email) . "</td>";
-                echo "<td>" . htmlspecialchars($user->documents) . "</td>";
+                echo "<td>" . htmlspecialchars($user->application()->documentCount()) . "/6</td>";                
                 echo "<td>" . htmlspecialchars($user->status) . "</td>";
                 echo "<td>" . ucfirst($formatted_date) . "</td>"; // Capitalize the first letter of the month
                 echo "<td><a href='#' class='review-link'>revisar</a></td>";

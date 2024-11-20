@@ -26,12 +26,16 @@ require __DIR__ . '/partials/header.php';
                     </div>
 
                     <div class="field-wrapper">
-                        <label for="password" class="text-wrapper-2">Contraseña</label>
+                        <div class="flex">
+                            <label for="password" class="text-wrapper-2">Contraseña</label>
+                            <span class="password-toggle" onclick="togglePassword()">
+                                Alternar mostrar <i class="fas fa-eye"></i>
+                            </span>
+                        </div>
+
                         <div class="password-container">
                             <input type="password" id="password" name="password" required class="input-field input-password" placeholder="Ingrese su contraseña">
-                            <span class="password-toggle" onclick="togglePassword()" style="right: 8%">
-                                <i class="fas fa-eye"></i>
-                            </span>
+
                         </div>
                     </div>
 
@@ -41,19 +45,14 @@ require __DIR__ . '/partials/header.php';
                     }
                     ?>
                 </div>
-
-                <div class="actions">
-                    <!-- Submit Button -->
-                    <div class="mainbutton">
-                        <button type="submit" class="main-action-bright">
-                                <div class="secondary-action">entrar</div>
-                        </button>
-                    </div>
-
-                    <a href="/register" class="signup-link">no tienes cuenta?</a>
-                </div>
-                <a href="/forgotPass" class="pass-reset-link">olvidé mi contraseña</a>
+                <button type="submit" class="main-action-bright">
+                    Iniciar Sesión
+                </button>
             </form>
+            <div class="other-options">
+            <a href="/forgotPass" class="main-action-bright plain-action">olvidé mi contraseña</a>
+            <a href="/register" class="main-action-bright plain-action">no tienes cuenta?</a>
+            </div>
         </div>
 
         <!-- Right Side Image Container -->
@@ -80,4 +79,5 @@ require __DIR__ . '/partials/header.php';
     </script>
 
 </body>
+
 </html>

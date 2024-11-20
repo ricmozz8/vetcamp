@@ -48,46 +48,61 @@
         <main class="main-content">
         <!-- Secondary logo container -->
             <div class="logo-container">
-                <img src="/resources/assets/logo/PNG/vetcamp_full_hoz_b.png" alt="Vetcamp" class="logo logo-right">
+            <img src="/resources/assets/logo/SVG/vetcamp_full_hoz_b.svg" alt="Vetcamp" class="logo logo-right">
             </div>
-        <header class="header">
-            <h1 class="welcome"> Registrados </h1>
-        </header>
 
-    <!-- Table header area -->
-    <table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th class="email-col">Email</th>
-            <th>Status</th>
-            <th class="date-col">Created At</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        // Loop through the users returned by the User::all() method
-        foreach ($users as $user) {
-            // Get the full name
-            $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
-            echo "<tr>";
-            echo "<td>" . $full_name . "</td>";
-            echo "<td>" . htmlspecialchars($user->email) . "</td>";
-            echo "<td>" . htmlspecialchars($user->status) . "</td>";
-            echo "<td>" . htmlspecialchars($user->created_at) . "</td>";
-            echo "</tr>";
-        }
-        ?>
-    </tbody>
-    </table>
+            <div class="all_sol">
+                <div class="header">
+                    <div class="welcome">Solicitudes</div>
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Busca correos, nombres, fechas">
+                        <span class="search-icon"><img src="https://img.icons8.com/?size=100&id=84039&format=png&color=000000" class="main-icons"></span>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Perfil</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Documentos</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            // Loop through the users returned by the User::all() method
+                            foreach ($users as $user) {
+                                // Get the full name
+                                $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
+                                echo "<tr>";
+                                echo "<td><img src='$user->application->profile_pic' alt='Profile Picture' style='width: 100px; height: 100px; border-radius: 50%; object-fit: cover;'></td>";
+                                echo "<td>" . $full_name . "</td>";
+                                echo "<td>" . htmlspecialchars($user->email) . "</td>";
+                                echo "<td>" . htmlspecialchars($user->application()->documentCount()) . "/6</td>";
+                                echo "<td>" . htmlspecialchars($user->status) . "</td>";
+                                echo "<td>" . htmlspecialchars($user->created_at) . "</td>";
+                                echo "<td>" . '<a href="#">revisar</a>' . "</td>";          //To add "revisar" link
+                                echo "</tr>";
+                            }
+                        ?>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <a href="#" class="page-number">1</a>
+                    <a href="#" class="page-number">2</a>
+                    <a href="#" class="page-number">3</a>
+                    <a href="#" class="page-number">4</a>
+                </div>
+            </div>
 
-    </main>
-    </div>
+        </main>
+        </div>
 
-    <!-- Footer with copyright information -->
-    <footer>
-    <p>&copy; <?php echo date('Y'); ?> | Universidad de Puerto Rico Arecibo</p>
-    <img class="university-logo" src="https://upra.edu/wp-content/uploads/2015/08/arecibo.png" alt="logo upra">
-    </footer>
+        <!-- Footer with copyright information -->
+        <?php require_once('partials/footer.php'); ?>
+
     </body>
 </html>
