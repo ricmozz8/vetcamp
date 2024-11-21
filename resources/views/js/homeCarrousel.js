@@ -9,7 +9,7 @@
 
 function scroll_by_right() {
     let carroussel = document.querySelector(".carroussel");
-    carroussel.scrollBy({ left: 350, behavior: "smooth" });
+    carroussel.scrollBy({ left: 600, behavior: "smooth" });
 }
 
 /**
@@ -18,6 +18,6 @@ function scroll_by_right() {
  */
 function scroll_by_left() {
     let carroussel = document.querySelector(".carroussel");
-    carroussel.scrollBy({ left: -350, behavior: "smooth" });
+    carroussel.scrollBy({ left: -600, behavior: "smooth" });
 
 }

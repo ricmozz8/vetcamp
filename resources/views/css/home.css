@@ -70,16 +70,18 @@
 .carroussel {
   display: flex;
   gap: 1em;
-  max-width: 120%;
+  max-width: 100%;
+  width: fit-content;
+  object-fit: cover;
   margin-bottom: 1em;
   overflow-x: scroll;
   padding: 2rem 0;
-  margin: 0 var(--main-margin);
+  margin: 0 auto;
 }
 
 .carroussel::-webkit-scrollbar {
   display: none;
-}
+} 
 
 .carroussel img {
   width: 100%;

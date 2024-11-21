@@ -104,7 +104,7 @@ function render_view(string $view, array $data = [], string $title = ''): void {
         require VIEWS_DIR . $view . '.php';
     } catch (Error $e) {
         // check if the file exists
-        throw new ViewNotFoundException('The view file does not exist: ' . VIEWS_DIR . $view . '.php');
+        throw new ViewNotFoundException('The view file does not exist: ' . VIEWS_DIR . $view . '.php' . PHP_EOL . $e->getMessage());
     }
     
     exit;

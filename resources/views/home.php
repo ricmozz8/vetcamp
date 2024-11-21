@@ -34,13 +34,10 @@ require __DIR__ . '/partials/header.php';
     <div class="objectives-carroussel">
 
         <div class="carroussel-wrapper">
-
-
             <div class="carroussel">
-                <img src="https://placehold.co/600x400" alt="a python snake">
-                <img src="https://placehold.co/600x400" alt="a python snake">
-                <img src="https://placehold.co/600x400" alt="a python snake">
-                <img src="https://placehold.co/600x400" alt="a python snake">
+                <img src="resources/assets/img/imageSnake.png">
+                <img src="resources/assets/img/imageDogBlack.png">
+                <!-- <img src="resources/assets/img/imageLab.png"> -->
             </div>
         </div>
         <div class="carrousel-actions">
@@ -50,6 +47,8 @@ require __DIR__ . '/partials/header.php';
             <div onclick="scroll_by_right()" id="scroll-action-r" class="c-action scroll-right">
                 <i class="las la-angle-right"></i>
             </div>
+
+
         </div>
         <div class="splitted-header">
             <h3>Nuestros objetivos</h3>
@@ -81,22 +80,17 @@ require __DIR__ . '/partials/header.php';
         </div>
 
         <div class="sections-blocked-dynamic ">
-            <div class="section-block shade-1">
-                <h1>3 al 7 de junio de 2024</h1>
-                <p>Sección 1</p>
-            </div>
-            <div class="section-block shade-2">
-                <h1>3 al 7 de junio de 2024</h1>
-                <p>Sección 2</p>
-            </div>
-            <div class="section-block shade-3">
-                <h1>3 al 7 de junio de 2024</h1>
-                <p>Sección 3</p>
-            </div>
-            <div class="section-block shade-4">
-                <h1>3 al 7 de junio de 2024</h1>
-                <p>Sección 4</p>
-            </div>
+            <?php
+            $loop = 1;
+            foreach ($sessions as $session) {
+            ?>
+                <div class="section-block shade-<?php echo $loop ?>">
+                    <h1><?= $session->get_formatted_date('start_date') . ' a ' . $session->get_formatted_date('end_date'); ?></h1>
+                    <p><?= $session->title ?></p>
+                </div>
+
+            <?php $loop++;
+            } ?>
         </div>
         <p class="min-margin">Vetcamp tendrá un costo de participación de <b>$500.00 por estudiante</b></p>
     </div>
@@ -155,7 +149,7 @@ require __DIR__ . '/partials/header.php';
             <div class="bottom-flex">
                 <p>Universidad de Puerto Rico en Arecibo Carr. 653 Km. 0.8 Sector Las Dunas, Arecibo P.O. Box 4010 Arecibo P.R. 00614-4010</p>
                 <p>787-815-0000 Ext. 3475</p>
-                <a class="no-deco-action" href="mailto:vetcamp.arecibo@upr.edu">vetcamp.arecibo@upr.edu</a>  
+                <a class="no-deco-action" href="mailto:vetcamp.arecibo@upr.edu">vetcamp.arecibo@upr.edu</a>
             </div>
         </div>
 

@@ -294,7 +294,7 @@ require __DIR__ . '/partials/header.php';
         <h2 class="message-title">Editar mensaje predeterminado para aceptados</h2>
 
         <!-- Form area -->
-        <form method="post" action="settings/e/approved">
+        <form method="post" action="settings/e/approved" style="width: 100%;">
             <!-- Message input area -->
             <textarea name="content" class="message-textarea" placeholder="Escriba su mensaje aquí..." aria-label="Message input"><?= $messages['approved']['content'] ?></textarea>
             <input name="id" type="hidden" value="<?= $messages['approved']['id'] ?>">
@@ -315,7 +315,7 @@ require __DIR__ . '/partials/header.php';
         <h2 class="message-title">Editar mensaje predeterminado para denegados</h2>
 
         <!-- Form area -->
-        <form method="post" action="settings/e/rejected">
+        <form method="post" action="settings/e/rejected" style="width: 100%;">
             <!-- Message input area -->
             <textarea name="content" class="message-textarea" placeholder="Escriba su mensaje aquí..." aria-label="Message input"><?= $messages['denied']['content'] ?></textarea>
             <input name="id" type="hidden" value="<?= $messages['denied']['id'] ?>">
@@ -335,7 +335,7 @@ require __DIR__ . '/partials/header.php';
         <h2 class="message-title">Editar mensaje predeterminado para todos</h2>
 
         <!-- Form area -->
-        <form method="post" action="settings/e/all">
+        <form method="post" action="settings/e/all" style="width: 100%;">
             <!-- Message input area -->
             <textarea name="content" class="message-textarea" placeholder="Escriba su mensaje aquí..." aria-label="Message input"><?= $messages['all']['content'] ?></textarea>
             <input name="id" type="hidden" value="<?= $messages['all']['id'] ?>">

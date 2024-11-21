@@ -13,7 +13,7 @@ class RequestsController extends Controller
     public static function index()
     {
         // storing users
-        $users = User::all();
+        $users = User::allApplicants();   
 
         // your index view here
         render_view('requests', ["users" => $users], 'Requests');

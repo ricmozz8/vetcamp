@@ -62,13 +62,12 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Perfil</th>
+                            
                             <th>Nombre</th>
                             <th>Correo</th>
-                            <th>Documentos</th>
                             <th>Estado</th>
                             <th>Fecha</th>
-                            <th>Acción</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -77,14 +76,12 @@
                             foreach ($users as $user) {
                                 // Get the full name
                                 $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
+                                $date = new DateTime($user->created_at);
                                 echo "<tr>";
-                                echo "<td><img src='$user->application->profile_pic' alt='Profile Picture' style='width: 100px; height: 100px; border-radius: 50%; object-fit: cover;'></td>";
                                 echo "<td>" . $full_name . "</td>";
                                 echo "<td>" . htmlspecialchars($user->email) . "</td>";
-                                echo "<td>" . htmlspecialchars($user->application()->documentCount()) . "/6</td>";
                                 echo "<td>" . htmlspecialchars($user->status) . "</td>";
-                                echo "<td>" . htmlspecialchars($user->created_at) . "</td>";
-                                echo "<td>" . '<a href="#">revisar</a>' . "</td>";          //To add "revisar" link
+                                echo "<td>" . htmlspecialchars($date->format('d-m-Y')) . "</td>";
                                 echo "</tr>";
                             }
                         ?>

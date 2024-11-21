@@ -15,10 +15,9 @@ class Auth
         // if trying to login with a user that is already logged in
         if(isset($_SESSION['user'])) return;
 
-
         session_start();
 
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = true;
         self::$user = $user;
     }
 

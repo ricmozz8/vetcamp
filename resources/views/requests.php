@@ -79,18 +79,24 @@ require __DIR__ . '/partials/header.php';
                     </thead>
                     <tbody>
                         <?php
+
+                           // Set locale to Spanish
+                            
                             // Loop through the users returned by the User::all() method
                             foreach ($users as $user) {
                                 // Get the full name
+                                setlocale(LC_TIME, 'es_ES.UTF-8');
                                 $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
+                                $date = new DateTime($user->created_at);
+                                
                                 echo "<tr>";
                                 echo "<td><img src='$user->application->profile_pic' alt='Profile Picture' style='width: 100px; height: 100px; border-radius: 50%; object-fit: cover;'></td>";
                                 echo "<td>" . $full_name . "</td>";
                                 echo "<td>" . htmlspecialchars($user->email) . "</td>";
                                 echo "<td>" . htmlspecialchars($user->application()->documentCount()) . "/6</td>";
                                 echo "<td>" . htmlspecialchars($user->status) . "</td>";
-                                echo "<td>" . htmlspecialchars($user->created_at) . "</td>";
-                                echo "<td>" . '<a href="#">revisar</a>' . "</td>";          //To add "revisar" link
+                                echo "<td>" . htmlspecialchars($date->format('d-m-Y')) . "</td>";
+                                echo "<td>" . '<a href="requests/r?id=' . $user->user_id . '" class="review-link">revisar</a>' . "</td>";          //To add "revisar" link
                                 echo "</tr>";
                             }
                         ?>
