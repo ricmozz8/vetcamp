@@ -82,6 +82,7 @@ require __DIR__ . '/partials/header.php';
                     <button class="edit-button" onclick="openModal('datesPopup')"> Editar </button>
                 </div>
             </div>
+            <br>
 
             <!-- Predefined messages area -->
             <div>
@@ -101,6 +102,7 @@ require __DIR__ . '/partials/header.php';
                     <button class="edit-button" onclick="openModal('genericPopup')"> Editar </button>
                 </div>
             </div>
+            <br>
 
             <!-- Request management area -->
             <div>
@@ -120,6 +122,7 @@ require __DIR__ . '/partials/header.php';
                     <button class="erase-button" onclick="openModal('rejectedRequestsPopup')"> Borrar </button>
                 </div>
             </div>
+            <br>
 
             <!-- Account management area -->
             <div>
@@ -177,6 +180,63 @@ require __DIR__ . '/partials/header.php';
             </div>
         </div>
 
+        <!-- Buttons area -->
+        <div class="modal-actions">
+            <!-- Add another session button -->
+            <button class="primary main-action-bright" onclick="openModal('addSessionsPopup')">Crear sesión</button>
+
+            <!-- Cancel button -->
+            <button class="primary main-action-bright" onclick="closeModal('sessionsPopup')">Cancelar</button>
+
+            <!-- Save button -->
+            <button class="secondary main-action-bright" onclick="closeModal('sessionsPopup')">Guardar</button>
+        </div>
+
+    </div>
+
+
+    <!-- Main popup container with the form -->
+    <div class="message-popup" id="addSessionsPopup" style="display: none">
+        <!-- Close button in the top-right corner -->
+        <!-- <img src="https://img.icons8.com/?size=100&id=71200&format=png&color=1A1A1A" alt="Close" class="close-icon" id="closePopup"> -->
+        <a href="#" class="plain-action" id="closePopup" onclick="closeModal('addSessionsPopup')"><i class="las la-times"></i></a>
+
+        <!-- Popup title -->
+        <h2 class="message-title">Añadir nueva sesión</h2>
+
+        <!-- Message area -->
+        <div class="message-options">
+            <h3> Escriba un título para la sesión y establezca las fechas </h3>
+        </div>
+
+        <br>
+
+        <!-- Main modal area -->
+        <div class="session-modal-area">
+
+            <!-- Session modification area -->
+            <div class="session-modal-edit-area">
+
+                <!-- Individual line area -->
+                <div class="session-modal-edit">
+                    <button class="trash-button"><i class="las la-trash"></i></button>
+                    <input type="text" class="session-edit-input" name="NAME" />
+                    <input type="date" class="session-edit-input" name="NAME" />
+                    <input type="date" class="session-edit-input" name="NAME" />
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Buttons area -->
+        <div class="modal-actions">
+            <!-- Cancel button -->
+            <button class="primary main-action-bright" onclick="closeModal('addSessionsPopup')">Cancelar</button>
+
+            <!-- Save button -->
+            <button class="secondary main-action-bright" onclick="closeModal('addSessionsPopup')">Guardar</button>
+        </div>
+
     </div>
 
 
@@ -199,7 +259,7 @@ require __DIR__ . '/partials/header.php';
                 <!-- Session modification area -->
                 <div class="session-modal-edit-area">
 
-                    <!-- Individual line area (this is where the loop would be placed) -->
+                    <!-- Individual line area -->
                     <div class="session-modal-dates">
                         <label for="startDate">Inicio:</label>
                         <input value="<?= $limit_dates->start_date ?>" class="session-edit-input" type="date" name="startDate" />
