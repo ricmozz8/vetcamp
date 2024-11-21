@@ -118,7 +118,7 @@ class SettingsController extends Controller
                         }
 
                         // Fetch the session using its ID
-                        $session = Session::find($session_data['id']);
+                        $session = Session::find((int)$session_data['id']);
 
                         if ($session) {
                             // Update session data

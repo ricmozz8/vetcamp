@@ -130,13 +130,13 @@ require __DIR__ . '/partials/header.php';
         <form action="/sessions/update" method="POST">
             <div class="session-modal-edit-area">
             <?php $session_array = [];?>
-                <?php foreach ($sessions as $session): ?>
+                <?php foreach ($sessions as $index => $session): ?>
                 <div class="session-modal-edit">
                     <button type="button" class="trash-button"> <i class="las la-trash"></i> </button>
-                    <input type="hidden" name="sessions[0][id]" value="<?php echo $session->session_id?>" />
-                    <input type="text" class="session-edit-input" name="sessions[0][title]" value="<?php echo $session->title ?>"/>
-                    <input type="date" class="session-edit-input" name="sessions[0][start_date]" value="<?php echo $session->start_date ?>"/>
-                    <input type="date" class="session-edit-input" name="sessions[0][end_date]" value="<?php echo $session->end_date ?>"/>
+                    <input type="hidden" name="sessions[<?php echo $index; ?>][id]" value="<?php echo $session->session_id ?>" />
+                    <input type="text" class="session-edit-input" name="sessions[<?php echo $index; ?>][title]" value="<?php echo $session->title ?>"/>
+                    <input type="date" class="session-edit-input" name="sessions[<?php echo $index; ?>][start_date]" value="<?php echo $session->start_date ?>"/>
+                    <input type="date" class="session-edit-input" name="sessions[<?php echo $index; ?>][end_date]" value="<?php echo $session->end_date ?>"/>
                 </div>
             <?php 
             {$session_array[$session->session_id] =
