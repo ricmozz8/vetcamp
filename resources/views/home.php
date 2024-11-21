@@ -85,7 +85,7 @@ require __DIR__ . '/partials/header.php';
             foreach ($sessions as $session) {
             ?>
                 <div class="section-block shade-<?php echo $loop ?>">
-                    <h1><?= $session->start_date . ' a ' . $session->end_date; ?></h1>
+                    <h1><?= $session->get_formatted_date('start_date') . ' a ' . $session->get_formatted_date('end_date'); ?></h1>
                     <p><?= $session->title ?></p>
                 </div>
 

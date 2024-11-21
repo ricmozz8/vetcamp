@@ -79,9 +79,9 @@
   margin: 0 auto;
 }
 
-/* .carroussel::-webkit-scrollbar {
+.carroussel::-webkit-scrollbar {
   display: none;
-} */
+} 
 
 .carroussel img {
   width: 100%;
