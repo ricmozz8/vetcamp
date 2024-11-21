@@ -20,7 +20,7 @@ class RegisteredController extends Controller
         $users = User::allof('user');
 
         // your index view here
-        render_view('registered', ["users" => $users], 'Registered');
+        render_view('registered', ["users" => $users,'selected' => 'registered'], 'Registered');
     }
 
     // define your other methods here

@@ -62,7 +62,8 @@ class BackDashboardController extends Controller
             'all_users' => $all_users,
             'all_applicants' => $all_applicants,
             'recent_registered' => $recent_registered,
-            'recent_applications' => $recent_applications
+            'recent_applications' => $recent_applications,
+            'selected' => 'start'
         ], 'BackDashboard');
     }
 

@@ -13,42 +13,7 @@ require __DIR__ . '/partials/header.php';
     <!--- Define your structure here --->
     <div class="back-dash">
 
-        <!-- Sidebar navigation -->
-        <aside class="sidebar">
-            <!-- Logo section -->
-            <div class="logo-container">
-                <img src="https://upra.edu/wp-content/uploads/2015/08/arecibo.png" alt="logo upra" class="logo-upr">
-            </div>
-
-            <!-- Main navigation menu -->
-            <nav class="nav-links">
-                <a href="/admin" class="nav-item">
-                    <img src="https://img.icons8.com/?size=100&id=kzcQaYg7aTjb&format=png&color=1A1A1A" alter="Home Icon" class="nav-icon">
-                    <span>Inicio</span>
-                </a>
-                <a href="requests" class="nav-item active">
-                    <img src="https://img.icons8.com/?size=100&id=tfnuCxzS4iEn&format=png&color=1A1A1A" alter="Applicants Icon" class="nav-icon">
-                    <span>Solicitudes</span>
-                </a>
-                <a href="registered" class="nav-item">
-                    <img src="https://img.icons8.com/?size=100&id=aPUUXqLMszEs&format=png&color=1A1A1A" alter="Registered Icon" class="nav-icon">
-                    <span>Registrados</span>
-                </a>
-                <a href="settings" class="nav-item">
-                    <img src="https://img.icons8.com/?size=100&id=4511GGVppfIx&format=png&color=1A1A1A" alter="Settings Icon" class="nav-icon">
-                    <span>Ajustes</span>
-                </a>
-            </nav>
-
-            <!-- User profile section -->
-            <div class="user-profile">
-                <div class="user-avatar" id="userAvatar">U</div>
-                <div class="user-info">
-                    <span class="user-email" id="userEmail">usuario@correo.com</span>
-                    <a href="#" class="logout">Salir</a>
-                </div>
-            </div>
-        </aside>
+        <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
         <!-- Main content area -->
         <main class="main-content">

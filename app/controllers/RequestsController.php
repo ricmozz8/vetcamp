@@ -20,7 +20,7 @@ class RequestsController extends Controller
         $users = User::allApplicants();   
 
         // your index view here
-        render_view('requests', ["users" => $users], 'Requests');
+        render_view('requests', ["users" => $users,'selected' => 'requests'], 'Requests');
     }
 
     // define your other methods here
