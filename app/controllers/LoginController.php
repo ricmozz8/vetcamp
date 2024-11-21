@@ -57,25 +57,4 @@ class LoginController extends Controller
         }  
     }
 
-    //Metodos de las vistas 
-    public static function form1()
-    {
-        render_view('form1', [], 'Form');    
-    }
-    public static function form2()
-    {
-        render_view('form2', [], 'Form');    
-    }
-    public static function form3()
-    {
-        render_view('form3', [], 'Form');    
-    }
-    public static function form4()
-    {
-        render_view('form4', [], 'Form');    
-    }
-    public static function form5()
-    {
-        render_view('form5', [], 'Form');    
-    }
 }
