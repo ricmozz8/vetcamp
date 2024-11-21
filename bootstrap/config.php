@@ -70,7 +70,7 @@ return [
     'app' => [
 
         'name' => 'Vetcamp',
-        'debug' => true,
+        'debug' => "true",
     ],
     'mailer' => [
         'mail_mailer'=>'smtp',

@@ -131,6 +131,7 @@ require_once __DIR__ . '/partials/header.php';
 
                     <section class="manage-section">
                         <form action="/admin/requests/update" method="POST">
+                        <input type="hidden" name="application_id" value="<?php echo $application->id_application; ?>">
                             <h2>Manejar Solicitud</h2>
                             <div class="status-options">
                                 <label class="radio-option">

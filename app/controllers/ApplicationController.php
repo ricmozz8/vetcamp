@@ -27,7 +27,7 @@ class ApplicationController extends Controller
             'physical_address' => $user->physical_address(),
             'school_address' => $user->school_address(),
             'preferred_session' => $application->preferred_session(true),
-            'profile_pic'=> $application->url_picture(),
+            'profile_pic'=> $application->url_picture,
             'document_count' => $application->documentCount(),
         ], 'Aplicación');
 
@@ -35,37 +35,49 @@ class ApplicationController extends Controller
     public static function updateStatus($request_method)
     {
         if ($request_method === 'POST') {
-            // Extract POST data
-            $applicationId = $_POST['application_id'] ?? null;
-            $newStatus = $_POST['status'] ?? null;
+            $application_id = $_POST['application_id'] ?? null;
+            $new_status = $_POST['status'] ?? null;
+            $notify = isset($_POST['notify']) && $_POST['notify'] === 'on';
 
-            if ($applicationId && $newStatus) {
-                // Attempt to find the application
-                $application = Application::find($applicationId);
+            // Mapeo de estados en español a inglés
+            $status_map = [
+                'Sometida' => 'submitted',
+                'Necesita Cambios' => 'need_changes',
+                'Denegada' => 'denied',
+                'Aprobada' => 'approved',
+                'Incompleta' => 'incomplete',
+                'No Sometida' => 'unsubmitted',
+            ];
 
-                if ($application) {
-                    // Update the application's status
-                    $application->update(['status' => $newStatus]);
+            // Convertir estado al valor en inglés
+            $new_status = $status_map[$new_status] ?? null;
 
-                    // Set success feedback
-                    $_SESSION['success_message'] = "Application status updated successfully.";
-                } else {
-                    // Application not found
-                    $_SESSION['error_message'] = "Application not found.";
+            if ($application_id && $new_status) {
+                // Buscar la aplicación usando el modelo
+                try {
+                    $application = Application::find($application_id);
+
+                    // Actualizar el estado
+                    $application->update(['status' => $new_status]);
+
+                    if ($notify) {
+                        $_SESSION['success_message'] = "Estado actualizado y notificación enviada.";
+                    } else {
+                        $_SESSION['success_message'] = "Estado actualizado correctamente.";
+                    }
+                } catch (ModelNotFoundException $e) {
+                    $_SESSION['error_message'] = "No se encontró la solicitud con el ID proporcionado.";
                 }
             } else {
-                // Missing or invalid input
-                $_SESSION['error_message'] = "Invalid input. Please provide both application ID and status.";
+                $_SESSION['error_message'] = "ID de aplicación o estado inválido.";
             }
         } else {
-            // Invalid request method
             http_response_code(405);
-            $_SESSION['error_message'] = "Invalid request method.";
+            $_SESSION['error_message'] = "Método de solicitud no permitido.";
         }
 
-        // Redirect back to the settings page
-        header('Location: /admin/settings');
+        // Redirigir de vuelta a la página de la solicitud
+        redirect('/admin/requests/r');
         exit;
     }
-    // define your other methods here
 }
