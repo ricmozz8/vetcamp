@@ -50,7 +50,6 @@ require __DIR__ . '/partials/header.php';
 
             <!-- User profile section -->
             <div class="user-profile">
-                <div class="user-avatar" id="userAvatar">U</div>
                 <div class="user-info">
                     <span class="user-email" id="userEmail">usuario@correo.com</span>
                     <a href="#" class="logout">Salir</a>
