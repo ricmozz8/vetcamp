@@ -82,7 +82,7 @@ require __DIR__ . '/partials/header.php';
                         <?php foreach ($recent_registered as $user): ?>
                         <div class="recent-registered">
                             <span class="recent-email"><?php echo $user->email; ?></span>
-                            <span class="time-stamp"><?php echo $user->formatted_created_at; ?></span>
+                            <span class="time-stamp"><?php echo $user->created_at; ?></span> <!-- Will update soon... $user->formatted_created_at -->
                         </div>
                         <?php endforeach; ?>
                     </div>
