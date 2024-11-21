@@ -114,96 +114,81 @@ require __DIR__ . '/partials/header.php';
 
     <!-- Main popup container with the form -->
     <div class="message-popup" id="sessionsPopup" style="display: none">
-        <!-- Close button in the top-right corner -->
-        <!-- <img src="https://img.icons8.com/?size=100&id=71200&format=png&color=1A1A1A" alt="Close" class="close-icon" id="closePopup"> -->
-        <a href="#" class="plain-action" id="closePopup" onclick="closeModal('sessionsPopup')"><i class="las la-times"></i></a>
+        <a href="#" class="plain-action" id="closePopup" onclick="closeModal('sessionsPopup')">
+            <i class="las la-times"></i>
+        </a>
 
-        <!-- Popup title -->
         <h2 class="message-title">Manejar sesiones</h2>
 
         <!-- Message area -->
         <div class="message-options">
-            <h3> Año 2024 </h3>
+            <h3>Año 2024</h3>
         </div>
-
         <br>
 
-        <!-- Main modal area -->
-        <div class="session-modal-area">
-
-            <!-- Session modification area -->
+        <!-- Form for managing existing sessions -->
+        <form action="/sessions/update" method="POST">
             <div class="session-modal-edit-area">
-
-                <!-- Individual line area (this is where the loop would be placed) -->
+            <?php $session_array = [];?>
+                <?php foreach ($sessions as $session): ?>
                 <div class="session-modal-edit">
-                    <button class="trash-button"><i class="las la-trash"></i></button>
-                    <input type="text" class="session-edit-input" name="NAME" />
-                    <input type="date" class="session-edit-input" name="NAME" />
-                    <input type="date" class="session-edit-input" name="NAME" />
+                    <button type="button" class="trash-button"> <i class="las la-trash"></i> </button>
+                    <input type="hidden" name="sessions[0][id]" value="<?php echo $session->session_id?>" />
+                    <input type="text" class="session-edit-input" name="sessions[0][title]" value="<?php echo $session->title ?>"/>
+                    <input type="date" class="session-edit-input" name="sessions[0][start_date]" value="<?php echo $session->start_date ?>"/>
+                    <input type="date" class="session-edit-input" name="sessions[0][end_date]" value="<?php echo $session->end_date ?>"/>
                 </div>
-
+            <?php 
+            {$session_array[$session->session_id] =
+                [
+                    'title' => $session->title,
+                    'start_date' => $session->start_date,
+                    'end_date' => $session->end_date
+                ];
+            }
+            ?>
+                <?php endforeach; ?>
             </div>
-        </div>
 
-        <!-- Buttons area -->
-        <div class="modal-actions">
-            <!-- Add another session button -->
-            <button class="primary main-action-bright" onclick="openModal('addSessionsPopup')">Crear sesión</button>
-
-            <!-- Cancel button -->
-            <button class="primary main-action-bright" onclick="closeModal('sessionsPopup')">Cancelar</button>
-
-            <!-- Save button -->
-            <button class="secondary main-action-bright" onclick="closeModal('sessionsPopup')">Guardar</button>
-        </div>
-
+            <!-- Buttons area -->
+            <div class="modal-actions">
+                <button type="button" class="primary main-action-bright" onclick="openModal('addSessionsPopup')">Crear sesión</button>
+                <button type="button" class="primary main-action-bright" onclick="closeModal('sessionsPopup')">Cancelar</button>
+                <button type="input" type = "hidden" name="" class="secondary main-action-bright">Guardar</button>
+            </div>
+        </form>
     </div>
 
-
-    <!-- Main popup container with the form -->
+    <!-- Popup for adding a new session -->
     <div class="message-popup" id="addSessionsPopup" style="display: none">
-        <!-- Close button in the top-right corner -->
-        <!-- <img src="https://img.icons8.com/?size=100&id=71200&format=png&color=1A1A1A" alt="Close" class="close-icon" id="closePopup"> -->
-        <a href="#" class="plain-action" id="closePopup" onclick="closeModal('addSessionsPopup')"><i class="las la-times"></i></a>
+        <a href="#" class="plain-action" id="closePopup" onclick="closeModal('addSessionsPopup')">
+            <i class="las la-times"></i>
+        </a>
 
-        <!-- Popup title -->
         <h2 class="message-title">Añadir nueva sesión</h2>
 
-        <!-- Message area -->
         <div class="message-options">
-            <h3> Escriba un título para la sesión y establezca las fechas </h3>
+            <h3>Escriba un título para la sesión y establezca las fechas</h3>
         </div>
-
         <br>
 
-        <!-- Main modal area -->
-        <div class="session-modal-area">
-
-            <!-- Session modification area -->
+        <!-- Form for adding a new session -->
+        <form action="/sessions/create" method="POST">
             <div class="session-modal-edit-area">
-
-                <!-- Individual line area -->
                 <div class="session-modal-edit">
-                    <input type="text" class="session-edit-input" name="NAME" />
-                    <input type="date" class="session-edit-input" name="NAME" />
-                    <input type="date" class="session-edit-input" name="NAME" />
+                    <input type="text" class="session-edit-input" name="new_sessions[0][title]" placeholder="Título de la nueva sesión" />
+                    <input type="date" class="session-edit-input" name="new_sessions[0][start_date]" />
+                    <input type="date" class="session-edit-input" name="new_sessions[0][end_date]" />
                 </div>
-
             </div>
-        </div>
 
-        <!-- Buttons area -->
-        <div class="modal-actions">
-            <!-- Cancel button -->
-            <button class="primary main-action-bright" onclick="closeModal('addSessionsPopup')">Cancelar</button>
-
-            <!-- Save button -->
-            <button class="secondary main-action-bright" onclick="closeModal('addSessionsPopup')">Guardar</button>
-        </div>
-
+            <!-- Buttons area -->
+            <div class="modal-actions">
+                <button type="button" class="primary main-action-bright" onclick="closeModal('addSessionsPopup')">Cancelar</button>
+                <button type="submit" class="secondary main-action-bright">Guardar</button>
+            </div>
+        </form>
     </div>
-
-
     <!-- Main popup container with the form -->
     <div class="message-popup" id="datesPopup" style="display: none">
         <!-- Close button in the top-right corner -->
