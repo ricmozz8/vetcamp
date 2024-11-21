@@ -153,7 +153,7 @@ final class DB
 
         $statement = self::$database->prepare($sql);
         $statement->execute();
-        return $statement->fetchAll();
+        return $statement->fetch();
             
     }
 
