@@ -13,7 +13,7 @@ class RegisteredController extends Controller
     public static function index()
     {
         // storing users
-        $users = User::all();
+        $users = User::allof('user');
 
         // your index view here
         render_view('registered', ["users" => $users], 'Registered');
