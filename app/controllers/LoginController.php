@@ -31,13 +31,14 @@ class LoginController extends Controller
                 try{ 
                     $user = User::findBy(['email' => $email, 'status' => 'active']);
 
+
                 } catch (ModelNotFoundException $e) {
                     // User was not found
-                    $_POST['error'] = 'Incorrect credentials';
+                    $error= 'Incorrect credentials';
                     redirect('/login');
                 }
 
-                if (password_verify($password, $user->values['password'])) {
+                if (password_verify($password, $user->__get('password'))) {
                     // Authentication successful
                     Auth::login($user);
 
@@ -49,7 +50,9 @@ class LoginController extends Controller
 
                 } else {
                     // Authentication failed
-                    $_POST['error'] = 'Incorrect credentials';
+                    $error = 'Incorrect credentials';
+
+                    dd("iNcorrect credentials");
                     redirect('/login');
                 }   
             }

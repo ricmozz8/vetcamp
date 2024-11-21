@@ -153,7 +153,12 @@ final class DB
 
         $statement = self::$database->prepare($sql);
         $statement->execute();
-        return $statement->fetch();
+        $results = $statement->fetch();
+
+        if (is_array($results)) {
+            return $results;
+        }
+        return [];
             
     }
 
