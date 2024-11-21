@@ -6,7 +6,7 @@ class ApplicationController extends Controller
 
     public static function index()
     {
-        dd(Auth::user());
+        // dd(Auth::user()); use this for showing the user
         if (!Auth::check()) {
             redirect('/login');
         }
