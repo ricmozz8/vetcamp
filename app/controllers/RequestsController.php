@@ -12,15 +12,17 @@ class RequestsController extends Controller
      */
     public static function index()
     {
-        if (!Auth::check() or Auth::user()->type != 'admin') {
+        if (!Auth::check()) {
             redirect('/login');
         }
-        
+        if (Auth::user()->type != 'admin') {
+            redirect('/login');
+        }
         // storing users
-        $users = User::allApplicants();   
+        $users = User::allApplicants();
 
         // your index view here
-        render_view('requests', ["users" => $users,'selected' => 'requests'], 'Requests');
+        render_view('requests', ["users" => $users, 'selected' => 'requests'], 'Requests');
     }
 
     // define your other methods here

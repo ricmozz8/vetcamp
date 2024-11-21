@@ -14,9 +14,13 @@ require __DIR__ . '/partials/header.php';
                 <a class="logo" href="/"><img src="resources/assets/logo/SVG/vetcamp_full_hoz_b.svg" alt="Vetcamp" class="logo"></a>
 
                 <!-- Sign-up form -->
-                <form action="/register/insertuser" method="POST"> <!-- Update -->
+                <form action="/register/new" method="POST"> <!-- Update -->
                     <!-- Page Title -->
                     <div class="page-title">Regístrate</div>
+                    <?php 
+                        if (isset($error))
+                            echo '<div class="alert alert-danger">' . $error . '</div>';
+                    ?>
 
                         <div class="input-group">
 
@@ -25,17 +29,27 @@ require __DIR__ . '/partials/header.php';
                                     <!-- Name input field -->
                                     <div class="text-wrapper-3">Nombre</div>
                                     <input type="text"
-                                           name="nombre"
+                                           name="first_name"
                                            id="nombre"
                                            class="input-field input-name"
-                                           placeholder="Juan del Pueblo"
+                                           placeholder="Juan"
+                                           required>
+                                </div>
+                                <div class="field-wrapper">
+                                    <!-- Name input field -->
+                                    <div class="text-wrapper-3">Apellidos</div>
+                                    <input type="text"
+                                           name="last_name"
+                                           id="nombre"
+                                           class="input-field input-name"
+                                           placeholder="del Pueblo"
                                            required>
                                 </div>
                                 <div class="field-wrapper">
                                     <!-- Phone input field -->
                                     <div class="text-wrapper-4">Teléfono</div>
                                     <input type="tel"
-                                           name="telefono"
+                                           name="phone"
                                            id="telefono"
                                            class="input-field input-phone"
                                            placeholder="(000)-000-0000"
@@ -43,11 +57,12 @@ require __DIR__ . '/partials/header.php';
                                 </div>
                             </div>
 
+                         
                             <div class="field-wrapper">
                                 <!-- Email input field -->
                                 <div class="text-wrapper-2">Correo</div>
                                 <input type="email"
-                                       name="correo"
+                                       name="email"
                                        id="correo"
                                        class="input-field input-email"
                                        placeholder="juan.delpueblo@upr.edu"

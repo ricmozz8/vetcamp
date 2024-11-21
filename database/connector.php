@@ -7,7 +7,7 @@ final class DB
 
 
     private static $database_name; /* The name of the database.*/
-    
+
 
     /**
      * Connects to the database using the environment variables, or the default values
@@ -21,7 +21,7 @@ final class DB
     public static function connect($connection, $user = 'root', $password = '')
     {
 
-        $dsn = CONFIG['database']['service']. ':' . http_build_query($connection, '', ';');
+        $dsn = CONFIG['database']['service'] . ':' . http_build_query($connection, '', ';');
 
         try {
 
@@ -31,12 +31,10 @@ final class DB
             ]);
 
             // defining class properties
-            
+
             self::$database_name = $connection['dbname'];
-
-
         } catch (PDOException $e) {
-            throw new DatabaseConnectionException("Error connecting to the database with driver '". CONFIG['database']['service'] . "': " . $e->getMessage(), 0, $e);
+            throw new DatabaseConnectionException("Error connecting to the database with driver '" . CONFIG['database']['service'] . "': " . $e->getMessage(), 0, $e);
         }
     }
 
@@ -81,11 +79,12 @@ final class DB
      *
      * @return array The results of the query as an array of associative arrays.
      */
-    public static function whereAll(string $table, string $where, string $equal, string $column = '*'): array{
+    public static function whereAll(string $table, string $where, string $equal, string $column = '*'): array
+    {
 
         $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ' . $where . ' = ' . $equal;
 
-   
+
         $statement = self::$database->prepare($sql);
         $statement->execute();
         return $statement->fetchAll();
@@ -110,12 +109,13 @@ final class DB
      *
      * @return array The results of the query as an associative array.
      */
-    public static function where(string $table, string $where, string $equal, string $column = '*', string $operator = '='): array{
+    public static function where(string $table, string $where, string $equal, string $column = '*', string $operator = '='): array
+    {
 
         $operator = in_array($operator, ['=', '>', '<', '>=', '<=', '!=']) ? $operator : '=';
         $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ' . $where . ' ' . $operator . ' :equal';
 
-        
+
         // Preparar la consulta SQL
         $statement = self::$database->prepare($sql);
         $statement->bindValue(':equal', $equal, PDO::PARAM_STR);
@@ -142,7 +142,7 @@ final class DB
         $length = count($conditions);
         foreach ($conditions as $key => $value) {
 
-            
+
             $sql .= $key . ' = ' . quote($value);
 
             if ($index < $length - 1) {
@@ -159,7 +159,6 @@ final class DB
             return $results;
         }
         return [];
-            
     }
 
     /**
@@ -177,35 +176,39 @@ final class DB
      * @return bool Returns true if the record was successfully inserted, 
      *              otherwise false.
      */
-    public static function insert(string $table, array $data): bool
+    public static function insert(string $table, array $data)
     {
-    // Prepare the SQL statement
-    $columns = implode(", ", array_keys($data));
-    $placeholders = ":" . implode(", :", array_keys($data));
-    $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+        // Prepare the SQL statement
+        $columns = implode(", ", array_keys($data));
+        $placeholders = ":" . implode(", :", array_keys($data));
+        $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
 
-    try {
-        // Prepare the statement
-        $stmt = self::$database->prepare($sql);
 
-        // Bind the values to the placeholders
-        foreach ($data as $key => $value) {
-            $stmt->bindValue(":$key", $value);
+
+        try {
+            // Prepare the statement
+            $stmt = self::$database->prepare($sql);
+
+            // Bind the values to the placeholders
+            foreach ($data as $key => $value) {
+                $stmt->bindValue(":$key", $value);
+            }
+
+
+            // Execute the statement
+            $stmt->execute();
+
+            // Check for affected rows
+            $stmt->rowCount() > 0 ? true : false;
+
+            return true;
+        } catch (Error $e) {
+            // Manejo de errores de la base de datos
+            error_log("Error en la consulta: " . $e->getMessage());
+            throw $e;
+            return false;
         }
-
-        // Execute the statement
-        $stmt->execute();
-
-        // Check for affected rows
-        $stmt->rowCount() > 0 ? true : false;
-        
-
-    } catch (PDOException $e) {
-        // Manejo de errores de la base de datos
-        error_log("Error en la consulta: " . $e->getMessage());
-        return false;
     }
-}
 
     /**
      * Update a record in the specified table.
@@ -231,11 +234,11 @@ final class DB
         // Prepare the SQL statement
         $columns = implode(", ", array_keys($data));
         $values = ":" . implode(", ", array_values($data));
-      
+
         $sql = "UPDATE $table SET";
 
         foreach ($data as $key => $value) {
-            
+
             $sql .= " $key = :$key, ";
         }
 
@@ -243,7 +246,7 @@ final class DB
         $where = " WHERE $where = $equal";
         $sql .= $where;
 
-        
+
         try {
             $stmt = self::$database->prepare($sql);
 
@@ -259,7 +262,7 @@ final class DB
             return $stmt->execute();
         } catch (PDOException $e) {
             // Handle the exception (you can log it or display a message)
-            echo($e->getMessage());
+            echo ($e->getMessage());
             return false;
         }
     }

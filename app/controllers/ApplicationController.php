@@ -7,8 +7,11 @@ class ApplicationController extends Controller
     public static function index()
     {
         // dd(Auth::user()); use this for showing the user
-        if (!Auth::check() or Auth::user()->type != 'user') {
+        if (!Auth::check()) {
             redirect('/login');
+        }
+        if (Auth::user()->type == 'admin') {
+            redirect('/admin');
         }
         render_view('application/dashboard', [], 'Aplica');
     }

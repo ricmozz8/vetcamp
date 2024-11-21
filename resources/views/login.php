@@ -17,6 +17,10 @@ require __DIR__ . '/partials/header.php';
             <form action="/login/auth" method="POST"> <!-- Update -->
                 <!-- Page Title -->
                 <div class="page-title">Inicia Sesión</div>
+                <?php
+                if (isset($error) && !empty($error))
+                    echo '<div class="alert alert-danger">' . $error . '</div>';
+                ?>
 
                 <div class="input-group">
 
@@ -50,8 +54,8 @@ require __DIR__ . '/partials/header.php';
                 </button>
             </form>
             <div class="other-options">
-            <a href="/forgotPass" class="main-action-bright plain-action">olvidé mi contraseña</a>
-            <a href="/register" class="main-action-bright plain-action">no tienes cuenta?</a>
+                <a href="/forgotPass" class="main-action-bright plain-action">olvidé mi contraseña</a>
+                <a href="/register" class="main-action-bright plain-action">no tienes cuenta?</a>
             </div>
         </div>
 

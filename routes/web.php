@@ -48,8 +48,8 @@ switch ($path) {
     case '/register':
         RegisterController::index();
         break;
-    case '/register/insertuser':
-        RegisterController::insertuser();
+    case '/register/new':
+        RegisterController::create($method);
         break;
     case '/login':
         LoginController::index();

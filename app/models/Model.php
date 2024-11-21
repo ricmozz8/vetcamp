@@ -158,12 +158,17 @@ class Model
      *
      * @return Model The newly created model instance.
      */
-    public static function create(array $data) : Model
+    public static function create(array $data)
     {
         $newModel = new static($data, self::sanitize($data));
-        $newModel->store();
+        
+        $stored = $newModel->store();
 
-        return $newModel;
+        if ($stored) {
+            return $newModel;
+        } else {
+            throw new Error('Error creating model');
+        }
         
     }
     // public static function createUser(array $data) : Model
