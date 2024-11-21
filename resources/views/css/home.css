@@ -43,6 +43,14 @@
   margin: auto;
 }
 
+.hero-buttons{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  width: fit-content;
+  margin: auto;
+}
+
 /* Informational First Section */
 
 .splitted-header {

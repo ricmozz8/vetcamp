@@ -13,7 +13,10 @@ require __DIR__ . '/partials/header.php';
     </header>
     <div class="hero">
         <h1>¡Explora tu pasión por la salud animal!</h1>
-        <a class="main-action-bright" href="/register">regístrate ya</a>
+        <div class="hero-buttons">
+            <a class="main-action-bright" href="/register">regístrate ya</a>
+            <a class="main-action-bright tertiary" href="/login">O inicia sesión</a>
+        </div>
     </div>
 
     <div class="splitted-header">
@@ -76,7 +79,7 @@ require __DIR__ . '/partials/header.php';
                 <p>*14 estudiantes por sección</p>
             </div>
 
-            <p>¡Solicita entre el <?=get_date_spanish($limit_dates->start_date, false) ?> y el <?=get_date_spanish($limit_dates->end_date) ?>!</p>
+            <p>¡Solicita entre el <?= get_date_spanish($limit_dates->start_date, false) ?> y el <?= get_date_spanish($limit_dates->end_date) ?>!</p>
         </div>
 
         <div class="sections-blocked-dynamic ">
