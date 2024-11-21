@@ -219,7 +219,6 @@ require __DIR__ . '/partials/header.php';
 
                 <!-- Individual line area -->
                 <div class="session-modal-edit">
-                    <button class="trash-button"><i class="las la-trash"></i></button>
                     <input type="text" class="session-edit-input" name="NAME" />
                     <input type="date" class="session-edit-input" name="NAME" />
                     <input type="date" class="session-edit-input" name="NAME" />
