@@ -66,6 +66,7 @@ switch ($path) {
 
     case '/logout':
         Auth::logout();
+        redirect('/');
         break;
     case '/apply':
         ApplicationController::index();
