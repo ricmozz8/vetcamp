@@ -51,8 +51,6 @@ class LoginController extends Controller
                 } else {
                     // Authentication failed
                     $error = 'Incorrect credentials';
-
-                    dd("iNcorrect credentials");
                     redirect('/login');
                 }   
             }
