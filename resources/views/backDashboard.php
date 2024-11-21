@@ -20,7 +20,7 @@ require __DIR__ . '/partials/header.php';
             
             <!-- Header with welcome message and action button -->
             <header class="header">
-                <h1 class="welcome">Bienvenido, Usuario</h1>
+                <h1 class="welcome">Bienvenido, <?= Auth::user()->first_name ?></h1>
                     <button class="tertiary main-action-bright" id="openModalButton"><img src="https://img.icons8.com/?size=100&id=UpjOluXJf7xW&format=png&color=FFFFFF" class="main-icons">Enviar mensaje</button>
             </header>
             
