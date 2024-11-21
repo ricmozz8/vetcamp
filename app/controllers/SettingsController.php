@@ -15,7 +15,7 @@ class SettingsController extends Controller
      */
     public static function index()
     {
-        if (!Auth::check() and !Auth::user()->type == 'admin') {
+        if (!Auth::check() or Auth::user()->type != 'admin') {
             redirect('/login');
         }
         

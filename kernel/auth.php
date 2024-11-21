@@ -30,7 +30,7 @@ class Auth
      * @return bool True if the user is logged in, false otherwise
      */
     public static function check(){
-        return $_SESSION['user'] !== null;
+        return isset($_SESSION['user']);
     }
 
     /**

@@ -10,6 +10,15 @@ class LoginController extends Controller
      */ 
     public static function index()
     {
+        if (Auth::check()) {
+            if (Auth::user()->type == 'admin') {
+                redirect('/admin');
+            }  else {
+                redirect('/apply');
+            }
+            
+        }
+
         render_view('login', [], 'Login');
     }
 
