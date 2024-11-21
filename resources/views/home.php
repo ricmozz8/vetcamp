@@ -76,7 +76,7 @@ require __DIR__ . '/partials/header.php';
                 <p>*14 estudiantes por sección</p>
             </div>
 
-            <p>¡Solicita entre el 15 de febrero hasta el 8 de marzo de 2024!</p>
+            <p>¡Solicita entre el <?=get_date_spanish($limit_dates->start_date, false) ?> y el <?=get_date_spanish($limit_dates->end_date) ?>!</p>
         </div>
 
         <div class="sections-blocked-dynamic ">
@@ -85,7 +85,7 @@ require __DIR__ . '/partials/header.php';
             foreach ($sessions as $session) {
             ?>
                 <div class="section-block shade-<?php echo $loop; ?>">
-                    <h1><?= $session->get_formatted_date('start_date') . ' a ' . $session->get_formatted_date('end_date'); ?></h1>
+                    <h1><?= get_date_spanish($session->start_date, false, false) . ' al ' . get_date_spanish($session->end_date); ?></h1>
                     <p><?= $session->title ?></p>
                 </div>
                 <?php

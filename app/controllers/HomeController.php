@@ -1,6 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once 'app/models/Session.php';
+require_once 'app/models/LimitDate.php';
 
 class HomeController extends Controller
 {
@@ -14,7 +15,7 @@ class HomeController extends Controller
     public static function index()
     {
         // your index view here
-        render_view('home', ['sessions'=>Session::all()], 'Home');
+        render_view('home', ['sessions' => Session::all(), 'limit_dates' => LimitDate::find(1)], 'Home');
     }
 
     // define your other methods here
