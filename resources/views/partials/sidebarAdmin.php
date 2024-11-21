@@ -29,6 +29,7 @@
         <div class="user-profile">
                 <!-- <div class="user-avatar" id="userAvatar"><img src="<?php echo Auth::user()->url_picture; ?>"></div> -->
                 <div class="user-info">
+                        <span><?php echo Auth::user()->first_name . ' ' . Auth::user()->last_name; ?></span>
                         <span class="user-email" id="userEmail"><?php echo Auth::user()->email; ?></span>
                         <a href="/logout" class="logout">Salir</a>
                 </div>
