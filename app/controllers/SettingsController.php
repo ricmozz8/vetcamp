@@ -147,7 +147,7 @@ class SettingsController extends Controller
                     }
                 }
 
-                $_SESSION['success_message'] = "Sessions updated and new sessions created successfully.";
+                //$_SESSION['success_message'] = "Sessions updated and new sessions created successfully.";
             } catch (Exception $e) {
                 $_SESSION['error_message'] = "An error occurred: " . $e->getMessage();
             }
