@@ -37,10 +37,9 @@ require __DIR__ . '/partials/header.php';
 
 
             <div class="carroussel">
-                <img src="https://placehold.co/600x400" alt="a python snake">
-                <img src="https://placehold.co/600x400" alt="a python snake">
-                <img src="https://placehold.co/600x400" alt="a python snake">
-                <img src="https://placehold.co/600x400" alt="a python snake">
+                <img src="resources/assets/img/imageSnake.png">
+                <img src="resources/assets/img/imageDogBlack.png">
+                <img src="resources/assets/img/imageLab.png">
             </div>
         </div>
         <div class="carrousel-actions">
@@ -50,6 +49,8 @@ require __DIR__ . '/partials/header.php';
             <div onclick="scroll_by_right()" id="scroll-action-r" class="c-action scroll-right">
                 <i class="las la-angle-right"></i>
             </div>
+            
+
         </div>
         <div class="splitted-header">
             <h3>Nuestros objetivos</h3>
