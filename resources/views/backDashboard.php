@@ -37,9 +37,9 @@ require __DIR__ . '/partials/header.php';
 
             <!-- User profile section -->
             <div class="user-profile">
-                <div class="user-avatar" id="userAvatar"><img src="<?php echo Auth::$user->url_picture; ?>"></div>
+                <!-- <div class="user-avatar" id="userAvatar"><img src="<?php echo Auth::user()->url_picture; ?>"></div> -->
                 <div class="user-info">
-                    <span class="user-email" id="userEmail"><?php echo Auth::$user->email; ?></span>
+                    <span class="user-email" id="userEmail"><?php echo Auth::user()->email; ?></span>
                     <a href="#" class="logout">Salir</a>
                 </div>
             </div>

@@ -15,6 +15,10 @@ class SettingsController extends Controller
      */
     public static function index()
     {
+        if (!Auth::check() and !Auth::user()->type == 'admin') {
+            redirect('/login');
+        }
+        
         $messages = Message::all();
         $message_array = [];
 

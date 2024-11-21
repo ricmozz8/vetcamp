@@ -42,7 +42,7 @@ class LoginController extends Controller
                     // Authentication successful
                     Auth::login($user);
 
-                    if (Auth::$user->type == 'admin') {
+                    if (Auth::user()->type == 'admin') {
                         redirect('/admin');
                     } else {
                         redirect('/apply');
