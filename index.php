@@ -20,7 +20,7 @@ require 'bootstrap/exceptions.php';
 require 'kernel/auth.php';
 require 'mailing/mailer.php';
 
-
+session_start();
 
 // Let the router handle all requests
 include 'routes/web.php';

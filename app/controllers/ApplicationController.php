@@ -4,6 +4,15 @@ require_once 'Controller.php';
 class ApplicationController extends Controller
 {
 
+    public static function index()
+    {
+        dd(Auth::user());
+        if (!Auth::check()) {
+            redirect('/login');
+        }
+        render_view('application/dashboard', [], 'Aplica');
+    }
+
     /**
      * This renders the index view.
      *

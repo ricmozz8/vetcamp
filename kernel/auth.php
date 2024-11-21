@@ -1,8 +1,7 @@
 <?php 
+require_once 'app/models/User.php';
 class Auth
 {
-
-    public static $user = null;
 
     private function __construct() {} // prevent instantiation
 
@@ -10,15 +9,10 @@ class Auth
      * Set the user as logged in, and store it in the session
      * @param array $user The user to be logged in
      */
-    public static function login($user){
-
+    public static function login(User $user){
         // if trying to login with a user that is already logged in
         if(isset($_SESSION['user'])) return;
-
-        session_start();
-
-        $_SESSION['user'] = true;
-        self::$user = $user;
+        $_SESSION['user'] = $user;
     }
 
     /**
@@ -28,9 +22,7 @@ class Auth
 
         // if trying to logout when not logged in
         if (!isset($_SESSION['user'])) return;
-        session_abort();
-        unset($_SESSION['user']);
-        self::$user = null;
+        session_destroy();
     }
 
     /**
@@ -38,6 +30,17 @@ class Auth
      * @return bool True if the user is logged in, false otherwise
      */
     public static function check(){
-        return isset($_SESSION['user']);
+        return $_SESSION['user'] !== null;
     }
+
+    /**
+     * Get the user currently logged in
+     * @return User|null The user if logged in, null otherwise
+     */
+    public static function user()
+    {
+        return $_SESSION['user'];
+    }
+
+    
 }

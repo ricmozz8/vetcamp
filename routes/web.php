@@ -63,8 +63,12 @@ switch ($path) {
     case '/passreset':
         PassResetController::index();
         break;
+
+    case '/logout':
+        Auth::logout();
+        break;
     case '/apply':
-        render_view('application/dashboard', [], 'Aplica');
+        ApplicationController::index();
         break;
     case '/apply/application':
         // IMPORTANT: IT IS REQUIRED TO MOVE THIS TO A CONTROLLER WHEN IMPLEMENTING FUNCTIONALITY
