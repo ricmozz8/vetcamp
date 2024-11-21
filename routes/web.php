@@ -19,7 +19,6 @@ require 'app/controllers/RegisterController.php';
 require 'app/controllers/SettingsController.php';
 require 'app/controllers/RegisteredController.php';
 require 'app/controllers/RequestsController.php';
-require 'app/controllers/SessionController.php';
 require 'app/controllers/EvaluateController.php';
 require 'app/controllers/TrackingController.php';
 require 'app/controllers/ApplicationController.php';
@@ -113,9 +112,12 @@ switch ($path) {
     case '/admin/settings/e/dates':
         SettingsController::updateLimitDate($method);
         break;
-    case '/admin/update': # need correct url
-        SessionController::updateSession($method);
-        break;    
+    case '/sessions/update':
+        SettingsController::updateSession($method);
+        break;
+    case '/sessions/create':
+        SettingsController::updateSession($method);
+        break;
     case '/admin/profile/track': # need correct url
         TrackingController::TrackingEvaluation($method);
         break;
