@@ -49,7 +49,7 @@ require __DIR__ . '/partials/header.php';
                                     <!-- Phone input field -->
                                     <div class="text-wrapper-4">Teléfono</div>
                                     <input type="tel"
-                                           name="phone"
+                                           name="phone_number"
                                            id="telefono"
                                            class="input-field input-phone"
                                            placeholder="(000)-000-0000"

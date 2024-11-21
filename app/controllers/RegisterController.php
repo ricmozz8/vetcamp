@@ -48,10 +48,11 @@ class RegisterController extends Controller
             } catch (ModelNotFoundException $e) {
                 // User was not found
                 $user = User::create([
-                    'first_name' => $_POST['first_name'],
+                'first_name' => $_POST['first_name'],
                     'last_name' => $_POST['last_name'],
                     'email' => $_POST['email'],
                     'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+                    'phone_number' => deformat_phone($_POST['phone_number']),
                 ]);
                 Auth::login($user);
 

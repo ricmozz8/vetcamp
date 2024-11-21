@@ -125,6 +125,19 @@ function redirect(string $url) {
 
 
 /**
+ * Removes the separators from a phone number string in the format (XXX)-XXX-XXXX
+ *
+ * @param string $phone The phone number string with separators.
+ * @return string The phone number without separators.
+ */
+function deformat_phone(string $phone) {
+    // removing all the separators
+    return str_replace(['(', ')', '-', ' '], '', $phone);
+
+}
+
+
+/**
  * Stores a value in the session.
  *
  * If the session is not already started, this function will start it.
