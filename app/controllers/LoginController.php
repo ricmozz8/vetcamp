@@ -37,7 +37,7 @@ class LoginController extends Controller
                     redirect('/login');
                 }
 
-                if (password_verify($password, $user->values[0]['password'])) {
+                if (password_verify($password, $user->values['password'])) {
                     // Authentication successful
                     Auth::login($user);
 
