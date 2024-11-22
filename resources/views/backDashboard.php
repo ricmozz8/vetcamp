@@ -57,15 +57,18 @@ require __DIR__ . '/partials/header.php';
                     <br>
 
                     <div class="recent-list">
-                        <?php foreach ($recent_applications as $application): ?>
-                        <div class="recent-application">
-                                <img src="<?php echo $application->url_picture; ?>" alt="" class="avatar">
-                            <div class="recent-info">
-                                <span class="recent-name"><?php echo $application->first_name;?> <?php echo $application->last_name;?></span>
-                                <span class="recent-email"><?php echo $application->email; ?></span>
-                            </div>
-                        </div>
-                        <?php endforeach; ?>
+                    <?php
+                            foreach ($recent_applications as $application) {
+                                // Get the full name
+                                $full_name = htmlspecialchars($application->first_name . ' ' . $application->last_name);
+
+                                echo "<div class='recent-application'>";
+                                echo "<img src=" . htmlspecialchars($application->application()->url_picture) . " alt='Profile Picture' class='avatar';>";
+                                echo "<td>" . $full_name . "</td>";
+                                echo "<td>" . htmlspecialchars($application->email) . "</td>";
+                                echo "</div>";
+                            }
+                    ?>
                     </div>
 
                     <div class="button-container">

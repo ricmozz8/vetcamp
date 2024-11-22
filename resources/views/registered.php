@@ -3,10 +3,100 @@
 <?php
 require_once __DIR__ . '/partials/header.php';
 ?>
-
+<head>
+    <style>
+        /*******************************
+         * Requests Table
+         * Primary structural elements that define the requests/registered tables
+         * NOTE: Styles won't load if moved outside the view as of right now, will update soon
+         *******************************/
+        .requests {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .requests .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .requests h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .requests .search-container {
+            position: relative;
+        }
+        .requests .search-input {
+            padding: 8px 8px 8px 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            font-size: 14px;
+            width: 300px;
+        }
+        .requests .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+        .requests table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .requests th, .requests td {
+            text-align: left;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .requests th {
+            background-color: #f9f9f9;
+            font-weight: bold;
+            color: #333;
+        }
+        .requests .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .requests .status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .requests .action:hover {
+            text-decoration: underline;
+        }
+        .requests .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .requests .page-number {
+            margin: 0 4px;
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+        }
+        .requests .page-number:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
 <body>
-    <!--- Define your structure here --->
-    <div class="back-dash">
+<!--- Define your structure here --->
+<div class="back-dash">
 
         <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
@@ -17,27 +107,27 @@ require_once __DIR__ . '/partials/header.php';
                 <img src="/resources/assets/logo/SVG/vetcamp_full_hoz_b.svg" alt="Vetcamp" class="logo logo-right">
             </div>
 
-            <div class="all_sol">
-                <div class="header">
-                    <div class="welcome">Solicitudes</div>
-                    <div class="search-container">
-                        <input type="text" class="search-input" placeholder="Busca correos, nombres, fechas">
-                        <span class="search-icon"><img src="https://img.icons8.com/?size=100&id=84039&format=png&color=000000" class="main-icons"></span>
-                    </div>
+        <div class="requests">
+            <div class="header">
+                <div class="welcome">Registrados</div>
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Busca correos, nombres, fechas">
+                    <span class="search-icon"><img src="https://img.icons8.com/?size=100&id=84039&format=png&color=000000" class="main-icons"></span>
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Estado</th>
-                            <th>Fecha</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                         // Loop through the users returned by the User::all() method
                         foreach ($users as $user) {
                             // Get the full name
@@ -50,16 +140,16 @@ require_once __DIR__ . '/partials/header.php';
                             echo "<td>" . htmlspecialchars($date->format('d-m-Y')) . "</td>";
                             echo "</tr>";
                         }
-                        ?>
-                    </tbody>
-                </table>
-                <div class="pagination">
-                    <a href="#" class="page-number">1</a>
-                    <a href="#" class="page-number">2</a>
-                    <a href="#" class="page-number">3</a>
-                    <a href="#" class="page-number">4</a>
-                </div>
+                    ?>
+                </tbody>
+            </table>
+            <div class="pagination">
+                <a href="#" class="page-number">1</a>
+                <a href="#" class="page-number">2</a>
+                <a href="#" class="page-number">3</a>
+                <a href="#" class="page-number">4</a>
             </div>
+        </div>
 
         </main>
     </div>

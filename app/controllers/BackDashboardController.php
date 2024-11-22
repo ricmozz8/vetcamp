@@ -50,6 +50,7 @@ class BackDashboardController extends Controller
         });
         $recent_applications = array_slice($recent_applications, 0, 5);
 
+/*
         foreach ($recent_applications as $application) {
             if ($application->user) {
                 // dynamic property here
@@ -59,7 +60,7 @@ class BackDashboardController extends Controller
                 $application->set('url_picture', 'https://img.icons8.com/?size=100&id=7819&format=png&color=737373');
             }
         }
-
+*/
         // Now call render_view with the defined variables
         render_view('backDashboard', [
             'all_users' => $all_users,
