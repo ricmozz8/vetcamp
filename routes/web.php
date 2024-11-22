@@ -12,10 +12,7 @@
 require 'app/controllers/UserController.php';
 require 'app/controllers/HomeController.php';
 require 'app/controllers/BackDashboardController.php';
-require 'app/controllers/ForgotPassController.php';
-require 'app/controllers/LoginController.php';
-require 'app/controllers/PassResetController.php';
-require 'app/controllers/RegisterController.php';
+require 'app/controllers/AuthController.php';
 require 'app/controllers/SettingsController.php';
 require 'app/controllers/RegisteredController.php';
 require 'app/controllers/RequestsController.php';
@@ -46,27 +43,25 @@ switch ($path) {
         HomeController::index();
         break;
     case '/register':
-        RegisterController::index();
+        AuthController::register();
         break;
     case '/register/new':
-        RegisterController::create($method);
+        AuthController::registerUser($method);
         break;
     case '/login':
-        LoginController::index();
+        AuthController::login();
         break;
     case '/login/auth':
-        LoginController::authenticate($method);
+        AuthController::loginUser($method);
         break;
     case '/forgotpass':
-        ForgotPassController::index();
+        AuthController::forgotPassword();
         break;
     case '/passreset':
-        PassResetController::index();
+        AuthController::resetPassword();
         break;
-
     case '/logout':
-        Auth::logout();
-        redirect('/');
+        AuthController::logoutUser();
         break;
     case '/apply':
         ApplicationController::index();
