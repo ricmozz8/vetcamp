@@ -37,12 +37,14 @@
 .back-dash .sidebar {
     width: 280px;
     background: var(--sidebar-bg);
+
     height: 100vh;
     min-height: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
     padding: 20px 0;
+    
 }
 
 /* Logo container - houses branding elements */
@@ -50,23 +52,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
-    padding: 0 20px;
+}
+
+.sidebar-logo img{
+    
+    width: 150px;
+    margin: 15px;
 }
 
 /* UPR Logo style */
 .back-dash .logo-upr {
-    width: 40%;
-    height: 75%;
+    width: 30%;
+    margin-left: 20px;
+    margin-bottom: 20px;
     object-fit: contain;
 }
 
-/* Right-aligned logo positioning */
-.back-dash .logo-right {
-    position: relative;
-    margin-right: 20px;
-    margin-top: -15px;
-}
+
 
 /* Vertical navigation menu */
 .back-dash .nav-links {

@@ -22,7 +22,7 @@ require __DIR__ . '/partials/header.php';
     <div class="splitted-header">
         <h3>¿Qué es Vetcamp?</h3>
         <p>
-            El VetCamp de la Universidad de Puerto Rico Recinto de Arecibo (UPRA)
+            Vetcamp de la Universidad de Puerto Rico Recinto de Arecibo (UPRA)
             es un campamento genial para estudiantes de escuela superior que aman
             los animales y quieren aprender sobre salud animal.
             <br> <br>

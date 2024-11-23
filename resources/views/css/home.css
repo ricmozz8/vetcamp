@@ -33,7 +33,7 @@
   line-height: 1em;
   max-width: 600px;
   margin: 1em auto;
-  color: var(--white-color);
+  color: var(--bright-text-color);
   text-shadow: var(--shadow-hard);
 }
 
@@ -71,7 +71,7 @@
 
 .objectives-carroussel {
   background-color: var(--secondary-color-default);
-  color: var(--white-color);
+  color: var(--bright-text-color);
   padding: 1rem;
 }
 
@@ -108,7 +108,7 @@
   width: 40px;
   height: 40px;
   background-color: var(--white-color);
-  color: var(--secondary-color-default);
+  color: var(--dark-text-color);
   border-radius: 50%;
   cursor: pointer;
   font-size: 1.5em;
@@ -210,7 +210,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  color: var(--secondary-color-default);
+  color: var(--dark-text-color);
   gap: 1em;
   text-align: left;
   transition: all 0.2s ease;

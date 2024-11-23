@@ -1,0 +1,96 @@
+/*******************************
+* Requests Table
+* Primary structural elements that define the requests/registered tables
+*******************************/
+.listed-table .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.listed-table h1 {
+  font-size: 24px;
+  margin: 0;
+}
+.listed-table .search-container {
+  position: relative;
+}
+.listed-table .search-input {
+  padding: 8px 8px 8px 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 14px;
+  width: 300px;
+}
+.listed-table .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+.listed-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  overflow: scroll;
+}
+.listed-table th,
+.listed-table td {
+  text-align: left;
+  padding: 12px 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+
+.listed-table th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+  color: #333;
+}
+.listed-table .avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.listed-table .status {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.listed-table .action:hover {
+  text-decoration: underline;
+}
+.listed-table .pagination {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+.listed-table .page-number {
+  margin: 0 4px;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #333;
+}
+.listed-table .page-number:hover {
+  background-color: #f5f5f5;
+}
+.profile-picture{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: border 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.profile-picture:hover{
+    border: 1px solid var(--white-color-shade-2);
+}

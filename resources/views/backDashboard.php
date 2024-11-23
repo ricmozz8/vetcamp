@@ -13,15 +13,16 @@ require __DIR__ . '/partials/header.php';
         
          <!-- Main content area -->
         <div class="main-content">
-            <!-- Secondary logo container -->
-            <div class="logo-container">
-                <img src="/resources/assets/logo/SVG/vetcamp_full_hoz_b.svg" alt="Vetcamp" class="logo logo-right">
-            </div>
+
+            
             
             <!-- Header with welcome message and action button -->
             <header class="header">
                 <h1 class="welcome">Bienvenido, <?= Auth::user()->first_name ?></h1>
-                    <button class="tertiary main-action-bright" id="openModalButton"><img src="https://img.icons8.com/?size=100&id=UpjOluXJf7xW&format=png&color=FFFFFF" class="main-icons">Enviar mensaje</button>
+                    <button class="tertiary main-action-bright" id="openModalButton">
+                        <i class="las la-envelope"></i>
+                        Enviar mensaje
+                    </button>
             </header>
             
             
@@ -60,7 +61,7 @@ require __DIR__ . '/partials/header.php';
                     <?php
                             foreach ($recent_applications as $application) {
                                 // Get the full name
-                                $full_name = htmlspecialchars($application->first_name . ' ' . $application->last_name);
+                                $full_name = htmlspecialchars($application->first_name . ' ' . $application->last_name . ' ');
 
                                 echo "<div class='recent-application'>";
                                 echo "<img src=" . htmlspecialchars($application->application()->url_picture) . " alt='Profile Picture' class='avatar';>";

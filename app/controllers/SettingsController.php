@@ -55,7 +55,8 @@ class SettingsController extends Controller
         render_view('settings', [
             'messages' => $message_array,
             'limit_dates' => $limit_dates,
-            'sessions' => $sessions
+            'sessions' => $sessions,
+            'selected' => 'settings'
         ], 'Settings');
     }
 

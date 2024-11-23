@@ -23,18 +23,16 @@ a, button{
     border-bottom: 4px solid var(--secondary-color-default);
     font-weight: 600;
     width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
 }
 .main-action-bright.negative{
     background-color: var(--secondary-color-default);
     color: var(--white-color);
-    padding: 15px 25px;
-    box-shadow: var(--shadow-soft);
-    font-weight: 300;
     border: 1px solid var(--white-color);
     border-bottom: 4px solid var(--white-color);
-    font-weight: 600;
-    width: fit-content;
 
 }
 .main-action-bright.secondary{
@@ -60,6 +58,12 @@ a, button{
 .main-action-bright.negative:hover{
     top: 5px;
     border-bottom: 1px solid var(--white-color);
+}
+
+.main-action-bright.secondary:hover{
+    border: none;
+    box-shadow: none;
+    border: none;
 }
 
 
@@ -118,6 +122,13 @@ a.plain-action:hover{
 
 .message-close-button:hover{
     filter: brightness(.9);
+}
+
+.no-deco-action:hover{
+    filter: brightness(.5);
+    top: 0px;
+    box-shadow: none;
+    border: none;
 }
 
 @keyframes fadeDown {

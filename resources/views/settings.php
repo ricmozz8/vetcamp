@@ -26,18 +26,16 @@ require __DIR__ . '/partials/header.php';
         <!-- Main content area -->
         <main class="main-content">
             <!-- Secondary logo container -->
-            <div class="logo-container">
-                <img src="/resources/assets/logo/SVG/vetcamp_full_hoz_b.svg" alt="Vetcamp" class="logo logo-right">
-            </div>
+            
             <header class="header">
                 <h1 class="welcome"> Ajustes </h1>
             </header>
 
             <!-- Vetcamp dates area -->
             <div>
-                <h2 class="stat-title"> Manejar fechas del campamento </h2>
+                <h2 class="setting-title"> Manejar fechas del campamento </h2>
                 <br>
-                <hr size="2" color=000000>
+                <hr>
                 <div class="settings-block">
                     <h3> Manejar sesiones del campamento </h3>
                     <button class="edit-button" onclick="openModal('sessionsPopup')"> Editar </button>
@@ -51,9 +49,9 @@ require __DIR__ . '/partials/header.php';
 
             <!-- Predefined messages area -->
             <div>
-                <h2 class="stat-title"> Manejar mensajes predefinidos </h2>
+                <h2 class="setting-title"> Manejar mensajes predefinidos </h2>
                 <br>
-                <hr size="2" color=000000>
+                <hr>
                 <div class="settings-block">
                     <h3> Editar mensaje para aprobados </h3>
                     <button class="edit-button" onclick="openModal('approvedPopup')"> Editar </button>
@@ -71,9 +69,9 @@ require __DIR__ . '/partials/header.php';
 
             <!-- Request management area -->
             <div>
-                <h2 class="stat-title"> Administrar solicitudes </h2>
+                <h2 class="setting-title"> Administrar solicitudes </h2>
                 <br>
-                <hr size="2" color=000000>
+                <hr>
                 <div class="settings-block">
                     <h3> Archivar solicitudes </h3>
                     <button class="edit-button" onclick="openModal('archivePopup')"> Archivar </button>
@@ -91,9 +89,9 @@ require __DIR__ . '/partials/header.php';
 
             <!-- Account management area -->
             <div>
-                <h2 class="stat-title"> Administrar cuentas </h2>
+                <h2 class="setting-title"> Administrar cuentas </h2>
                 <br>
-                <hr size="2" color=000000>
+                <hr>
                 <div class="settings-block">
                     <h3> Desactivar cuentas que no solicitaron </h3>
                     <button class="erase-button" onclick="openModal('unsolicitedPopup')"> Desactivar </button>
