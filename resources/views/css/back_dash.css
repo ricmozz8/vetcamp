@@ -208,6 +208,8 @@
   animation: notification .3s ;
   box-shadow: var(--shadow-soft);
   z-index: 6;
+  transition: .2s ease;
+  cursor: pointer;
 }
 
 .notification-error{
@@ -226,6 +228,14 @@
     animation: notification .3s ;
     box-shadow: var(--shadow-soft);
     z-index: 6;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.notification-error:hover, .notification:hover 
+{
+
+    filter: brightness(.8);
 }
 
 /*******************************

@@ -26,7 +26,7 @@ require __DIR__ . '/partials/header.php';
 
                     <div class="field-wrapper">
                         <label for="email" class="text-wrapper-2">Correo</label>
-                        <input type="email" id="email" name="email" required class="input-field input-email" placeholder="juan.delpueblo@upr.edu">
+                        <input autocomplete="off"  type="email" id="email" name="email" required class="input-field input-email" placeholder="juan.delpueblo@upr.edu">
                     </div>
 
                     <div class="field-wrapper">
@@ -38,7 +38,7 @@ require __DIR__ . '/partials/header.php';
                         </div>
 
                         <div class="password-container">
-                            <input type="password" id="password" name="password" required class="input-field input-password" placeholder="Ingrese su contraseña">
+                            <input autocomplete="off"  type="password" id="password" name="password" required class="input-field input-password" placeholder="Ingrese su contraseña">
 
                         </div>
                     </div>

@@ -38,14 +38,14 @@
 </head>
 
 <?php if (isset($_SESSION['message'])) { ?>
-                <div class="notification">
+                <div id='notification' class="notification" onclick="closeModal('notification')">
                     <i class="las la-exclamation-circle"></i>
                     <p class="notification-content"><?=$_SESSION['message'] ?> </p>
                 </div>
 <?php unset($_SESSION['message']); } ?>
 
 <?php if (isset($_SESSION['error'])) { ?>
-                <div class="notification-error">
+                <div id='notification' class="notification-error" onclick="closeModal('notification')">
                 <i class="las la-exclamation-triangle"></i>
                     <p class="notification-content"><?=$_SESSION['error'] ?> </p>
                 </div>
