@@ -2,9 +2,9 @@
 .profile-wrapper {
 
     margin: 0 auto;
-    background-color: var(--white-color);
     padding: 20px;
     border-radius: 8px;
+    max-width: 1024px;
 
 }
 
@@ -37,7 +37,8 @@
 }
 
 .applicant-details h1 {
-    font-size: 20px;
+    font-size: 2em;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
@@ -51,7 +52,7 @@
 }
 
 .data-section h2 {
-    font-size: 18px;
+    font-size: 1.3em;
     margin-bottom: 10px;
 }
 

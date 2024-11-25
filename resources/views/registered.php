@@ -5,37 +5,45 @@ require_once __DIR__ . '/partials/header.php';
 ?>
 
 <body>
-<!--- Define your structure here --->
-<div class="back-dash">
+    <!--- Define your structure here --->
+    <div class="back-dash">
 
         <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
         <!-- Main content area -->
         <main class="main-content">
             <!-- Secondary logo container -->
-            
 
-        <div class="listed-table">
-            <div class="header">
-                <div class="welcome">Registrados</div>
-                <div class="search-container">
-                    <input type="text" class="search-input" placeholder="Busca correos, nombres, fechas">
-                    <span class="search-icon"><img src="https://img.icons8.com/?size=100&id=84039&format=png&color=000000" class="main-icons"></span>
+
+            <div class="listed-table">
+                <div class="header">
+                    <h2 class="welcome">Registrados</h2>
+                    <div class="table-actions">
+                        <button class="main-action-bright tertiary">
+                            <i class="las la-filter"></i>
+                            Filtrar
+                        </button>
+                        <div class="search-container">
+                            <input type="text" class="search-input" placeholder="Busca correos, nombres, fechas">
+                            <a href="#">
+                                <i class="las la-search"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Estado</th>
-                        <th>Fecha</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
+                <table>
+                    <thead>
+                        <tr>
+
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
                         // Loop through the users returned by the User::all() method
                         foreach ($users as $user) {
                             // Get the full name
@@ -48,16 +56,16 @@ require_once __DIR__ . '/partials/header.php';
                             echo "<td>" . htmlspecialchars($date->format('d-m-Y')) . "</td>";
                             echo "</tr>";
                         }
-                    ?>
-                </tbody>
-            </table>
-            <div class="pagination">
-                <a href="#" class="page-number">1</a>
-                <a href="#" class="page-number">2</a>
-                <a href="#" class="page-number">3</a>
-                <a href="#" class="page-number">4</a>
+                        ?>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <a href="#" class="page-number">1</a>
+                    <a href="#" class="page-number">2</a>
+                    <a href="#" class="page-number">3</a>
+                    <a href="#" class="page-number">4</a>
+                </div>
             </div>
-        </div>
 
         </main>
     </div>

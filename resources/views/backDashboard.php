@@ -2,6 +2,17 @@
 <html lang="es">
 <?php
 require __DIR__ . '/partials/header.php';
+
+// greeting personalizer by time of day (SPANISH)
+
+$hour = date('G');
+if ($hour >= 5 && $hour < 12) {
+    $greeting = 'Buenos días';
+} elseif ($hour >= 12 && $hour < 18) {
+    $greeting = 'Buenas tardes';
+} else {
+    $greeting = 'Buenas noches';
+}
 ?>
 
 <body>
@@ -18,7 +29,7 @@ require __DIR__ . '/partials/header.php';
             
             <!-- Header with welcome message and action button -->
             <header class="header">
-                <h1 class="welcome">Bienvenido, <?= Auth::user()->first_name ?></h1>
+                <h1 class="welcome"><?= $greeting ?>, <?= Auth::user()->first_name ?></h1>
                     <button class="tertiary main-action-bright" id="openModalButton">
                         <i class="las la-envelope"></i>
                         Enviar mensaje
@@ -32,7 +43,7 @@ require __DIR__ . '/partials/header.php';
                 <div class="stat-card">
                     <div class="stat-header">
                         <h2 class="stat-title">Solicitantes</h2>
-                        <a href="/admin/requests" class="view-all">ver todos</a>
+                        
                     </div>
                     <div class="stat-number"><?php echo $all_applicants; ?></div>
                        <img src="https://img.icons8.com/?size=100&id=tfnuCxzS4iEn&format=png&color=1A1A1A" alter="Applicants Icon" class="main-icons">
@@ -42,7 +53,7 @@ require __DIR__ . '/partials/header.php';
                 <div class="stat-card">
                     <div class="stat-header">
                         <h2 class="stat-title">Registrados</h2>
-                        <a href="/admin/registered" class="view-all">ver todos</a>
+                        
                     </div>
                     <div class="stat-number"><?php echo $all_users; ?></div>
                        <img src="https://img.icons8.com/?size=100&id=aPUUXqLMszEs&format=png&color=1A1A1A" alter="Registered Icon" class="main-icons">

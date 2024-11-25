@@ -25,6 +25,7 @@
 @import url('error.css');
 @import url('requests.css');
 @import url('auth.css');
+@import url('settings.css');
 
 
 
@@ -77,8 +78,15 @@
     --white-color-shade-2: #c0c0c0;
     --white-color-shade-3: #b6b6b6;
 
+
+    --danger-color: rgb(255, 59, 59);
+    --danger-color-shade-1: rgb(255, 80, 80);
+    --danger-color-shade-2: rgb(255, 100, 100);
+    
+
     /* selection color */
     --main-color-selection: #ffea9f71;
+
     
     /* Shadows */
     --shadow-soft: 0px 3px 10px rgba(0, 0, 0, 0.253);

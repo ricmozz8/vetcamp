@@ -13,7 +13,7 @@ class Application extends Model{
         $session = Session::find($this->attributes['id_preferred_session'], 'session_id');
 
         if ($human_readable) {
-            return $session->title . ' (' . $session->start_date . ' - ' . $session->end_date . ')';
+            return $session->title . ' (' . get_date_spanish($session->start_date, false, false) . ' al ' . get_date_spanish($session->end_date) . ')';
         }
 
         return $session;

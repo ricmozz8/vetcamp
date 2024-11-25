@@ -5,7 +5,6 @@
  *******************************/
 :root {
     --sidebar-bg: #f8f8f8;       /* Light gray background for sidebar */
-    --text-dark: #2c2c2c;        /* Dark gray for primary text content */
 }
 
 /*******************************
@@ -16,9 +15,12 @@
 .back-dash {
     width: auto;
     height: auto;
-    font-size: calc(0.8vw + 0.4vh);
-    background: #ffffff;
     display: flex;
+}
+
+.user-name{
+    font-weight: bold;
+
 }
 
 /* Main content area - fills remaining space next to sidebar */
@@ -56,18 +58,9 @@
 
 .sidebar-logo img{
     
-    width: 150px;
-    margin: 15px;
+    width: 80px;
+    margin: 12px 20px;;
 }
-
-/* UPR Logo style */
-.back-dash .logo-upr {
-    width: 30%;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    object-fit: contain;
-}
-
 
 
 /* Vertical navigation menu */
@@ -84,12 +77,9 @@
     align-items: center;
     padding: 12px 20px;
     text-decoration: none;
-    color: var(--text-dark);
+    color: var(--dark-text-color);
     font-size: 18px;
     font-weight: 500;
-    width: 280px;
-    border-radius: 0 25px 25px 0;
-    margin-left: -20px;
     border: none;
     cursor: pointer;
     box-shadow: none;
@@ -153,12 +143,12 @@
 /* User email display */
 .back-dash .user-email {
     font-size: 16px;
-    color: var(--text-dark);
+    color: var(--dark-text-color);
 }
 
 /* Logout link styling */
 .back-dash .logout {
-    color: var(--text-dark);
+    color: var(--dark-text-color);
     text-decoration: underline;
     font-size: 16px;
     background-color: transparent;
@@ -182,7 +172,7 @@
 .back-dash .welcome {
     font-size: 36px;
     font-weight: 700;
-    color: var(--text-dark);
+    color: var(--dark-text-color);
 }
 
 /* Primary action button */
@@ -238,14 +228,14 @@
 .back-dash .stat-title {
     font-size: 24px;
     font-weight: 500;
-    color: var(--text-dark);
+    color: var(--dark-text-color);
 }
 
 /* Large number display for statistics */
 .back-dash .stat-number {
     font-size: 86px;
     font-weight: 700;
-    color: var(--text-dark);
+    color: var(--dark-text-color);
     margin-top: -5px;
 }
 
@@ -285,7 +275,7 @@
 /* Item title/name styling */
 .back-dash .recent-name {
     font-weight: 500;
-    color: var(--text-dark);
+    color: var(--dark-text-color);
 }
 
 /* Email address styling */
@@ -314,7 +304,7 @@
  *******************************/
 /* "View all" link styling */
 .back-dash .view-all {
-    color: var(--text-dark);
+    color: var(--dark-text-color);
     text-decoration: underline;
     font-size: 16px;
     background: none;
@@ -333,7 +323,7 @@
 /* Secondary action button styling */
 .back-dash .view-all-button {
     background: var(--main-color-default);
-    color: var(--text-dark);
+    color: var(--dark-text-color);
     padding: 10px 25px;
     border-radius: 50px;
     border: none;
@@ -355,7 +345,7 @@
 /* Edit button styling */
 .back-dash .edit-button {
     background: var(--main-color-default);
-    color: var(--text-dark);
+    color: var(--dark-text-color);
     padding: 10px 25px;
     border-radius: 50px;
     border: none;
@@ -376,13 +366,7 @@
     transition: opacity 0.3s ease;
 }
 
-/* Settings block styling */
-.back-dash .settings-block {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5em 0;
-}
+
 
 /* Modal actions styling */
 .modal-actions {

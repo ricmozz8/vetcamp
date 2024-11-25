@@ -13,16 +13,36 @@
   font-size: 24px;
   margin: 0;
 }
-.listed-table .search-container {
-  position: relative;
+.search-container {
+  padding: 12px 20px;
+  border: 1px solid var(--dark-text-color);
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
 }
-.listed-table .search-input {
-  padding: 8px 8px 8px 40px;
-  border: 1px solid #e0e0e0;
-  border-radius: 20px;
-  font-size: 14px;
-  width: 300px;
+
+.search-container input {
+  border: none;
+  width: 100%;
+  outline: none;
+
+
 }
+
+.listed-table{
+  margin: auto;
+  max-width: 1200px;
+}
+
+.table-actions
+{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
 .listed-table .search-icon {
   position: absolute;
   left: 12px;

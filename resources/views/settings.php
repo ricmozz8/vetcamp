@@ -21,84 +21,101 @@ require __DIR__ . '/partials/header.php';
     <!--- Define your structure here --->
     <div class="back-dash">
 
-    <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
+        <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
         <!-- Main content area -->
         <main class="main-content">
             <!-- Secondary logo container -->
-            
+
             <header class="header">
                 <h1 class="welcome"> Ajustes </h1>
             </header>
 
-            <!-- Vetcamp dates area -->
-            <div>
-                <h2 class="setting-title"> Manejar fechas del campamento </h2>
-                <br>
-                <hr>
-                <div class="settings-block">
-                    <h3> Manejar sesiones del campamento </h3>
-                    <button class="edit-button" onclick="openModal('sessionsPopup')"> Editar </button>
-                </div>
-                <div class="settings-block">
-                    <h3> Manejar fechas limites de registros </h3>
-                    <button class="edit-button" onclick="openModal('datesPopup')"> Editar </button>
-                </div>
-            </div>
-            <br>
+            <div class="settings-cards">
 
-            <!-- Predefined messages area -->
-            <div>
-                <h2 class="setting-title"> Manejar mensajes predefinidos </h2>
-                <br>
-                <hr>
-                <div class="settings-block">
-                    <h3> Editar mensaje para aprobados </h3>
-                    <button class="edit-button" onclick="openModal('approvedPopup')"> Editar </button>
-                </div>
-                <div class="settings-block">
-                    <h3> Editar mensaje para denegados </h3>
-                    <button class="edit-button" onclick="openModal('rejectedPopup')"> Editar </button>
-                </div>
-                <div class="settings-block">
-                    <h3> Editar mensaje masivo </h3>
-                    <button class="edit-button" onclick="openModal('genericPopup')"> Editar </button>
-                </div>
-            </div>
-            <br>
+                <!-- Vetcamp dates area -->
+                <div class="settings-category-group">
+                    <div class="title-group">
+                        <span class="colored-icon-setting"><i class="las la-calendar"></i></span>
+                        <p class="setting-title"> Manejar fechas del campamento </p>
+                    </div>
 
-            <!-- Request management area -->
-            <div>
-                <h2 class="setting-title"> Administrar solicitudes </h2>
-                <br>
-                <hr>
-                <div class="settings-block">
-                    <h3> Archivar solicitudes </h3>
-                    <button class="edit-button" onclick="openModal('archivePopup')"> Archivar </button>
-                </div>
-                <div class="settings-block">
-                    <h3> Eliminar todas las solicitudes </h3>
-                    <button class="erase-button" onclick="openModal('allRequestsPopup')"> Borrar </button>
-                </div>
-                <div class="settings-block">
-                    <h3> Eliminar las solicitudes denegadas </h3>
-                    <button class="erase-button" onclick="openModal('rejectedRequestsPopup')"> Borrar </button>
-                </div>
-            </div>
-            <br>
 
-            <!-- Account management area -->
-            <div>
-                <h2 class="setting-title"> Administrar cuentas </h2>
-                <br>
-                <hr>
-                <div class="settings-block">
-                    <h3> Desactivar cuentas que no solicitaron </h3>
-                    <button class="erase-button" onclick="openModal('unsolicitedPopup')"> Desactivar </button>
+
+                    <div class="settings-block">
+                        <p> Manejar sesiones del campamento </p>
+                        <button class="main-action-bright secondary" onclick="openModal('sessionsPopup')"> Editar </button>
+                    </div>
+                    <div class="settings-block">
+                        <p> Manejar fechas limites de registros </p>
+                        <button class="main-action-bright secondary" onclick="openModal('datesPopup')"> Editar </button>
+                    </div>
                 </div>
-                <div class="settings-block">
-                    <h3> Desactivar todas las cuentas </h3>
-                    <button class="erase-button" onclick="openModal('allPopup')"> Desactivar </button>
+
+
+                <!-- Predefined messages area -->
+                <div class="settings-category-group">
+                    <div class="title-group">
+                        <span class="colored-icon-setting"><i class="las la-bullhorn"></i></span>
+                        <p class="setting-title"> Editar mensajes predeterminados </p>
+                    </div>
+
+                    <dark-text-color>
+                        <div class="settings-block">
+                            <p> Editar mensaje para aprobados </p>
+                            <button class="main-action-bright secondary" onclick="openModal('approvedPopup')"> Editar </button>
+                        </div>
+                        <div class="settings-block">
+                            <p> Editar mensaje para denegados </p>
+                            <button class="main-action-bright secondary" onclick="openModal('rejectedPopup')"> Editar </button>
+                        </div>
+                        <div class="settings-block">
+                            <p> Editar mensaje masivo </p>
+                            <button class="main-action-bright secondary" onclick="openModal('genericPopup')"> Editar </button>
+                        </div>
+                </div>
+
+
+                <!-- Request management area -->
+                <div class="settings-category-group">
+                    <div class="title-group">
+                        <span class="colored-icon-setting"><i class="las la-clipboard"></i></span>
+                        <p class="setting-title"> Manejar solicitudes </p>
+                    </div>
+
+                    <dark-text-color>
+                        <div class="settings-block">
+                            <p> Archivar solicitudes </p>
+                            <button class="main-action-bright secondary" onclick="openModal('archivePopup')"> Archivar </button>
+                        </div>
+                        <div class="settings-block">
+                            <p> Eliminar todas las solicitudes </p>
+                            <button class="main-action-bright danger" onclick="openModal('allRequestsPopup')"> Borrar </button>
+                        </div>
+                        <div class="settings-block">
+                            <p> Eliminar las solicitudes denegadas </p>
+                            <button class="main-action-bright danger" onclick="openModal('rejectedRequestsPopup')"> Borrar </button>
+                        </div>
+                </div>
+
+
+                <!-- Account management area -->
+                <div class="settings-category-group">
+                    <div class="title-group">
+                        <span class="colored-icon-setting"><i class="las la-user"></i></span>
+                        <p class="setting-title"> Administrar cuentas </p>
+                    </div>
+
+
+                    <dark-text-color>
+                        <div class="settings-block">
+                            <p> Desactivar cuentas que no solicitaron </p>
+                            <button class="main-action-bright danger" onclick="openModal('unsolicitedPopup')"> Desactivar </button>
+                        </div>
+                        <div class="settings-block">
+                            <p> Desactivar todas las cuentas </p>
+                            <button class="main-action-bright danger" onclick="openModal('allPopup')"> Desactivar </button>
+                        </div>
                 </div>
             </div>
 
@@ -122,29 +139,29 @@ require __DIR__ . '/partials/header.php';
         <div class="message-options">
             <h3>Año 2024</h3>
         </div>
-        <br>
+
 
         <!-- Form for managing existing sessions -->
         <form action="/sessions/update" method="POST">
             <div class="session-modal-edit-area">
-            <?php $session_array = [];?>
+                <?php $session_array = []; ?>
                 <?php foreach ($sessions as $index => $session): ?>
-                <div class="session-modal-edit">
-                    <button type="button" class="trash-button"> <i class="las la-trash"></i> </button>
-                    <input type="hidden" name="sessions[<?php echo $index; ?>][id]" value="<?php echo $session->session_id ?>" />
-                    <input type="text" class="session-edit-input" name="sessions[<?php echo $index; ?>][title]" value="<?php echo $session->title ?>"/>
-                    <input type="date" class="session-edit-input" name="sessions[<?php echo $index; ?>][start_date]" value="<?php echo $session->start_date ?>"/>
-                    <input type="date" class="session-edit-input" name="sessions[<?php echo $index; ?>][end_date]" value="<?php echo $session->end_date ?>"/>
-                </div>
-            <?php 
-            {$session_array[$session->session_id] =
-                [
-                    'title' => $session->title,
-                    'start_date' => $session->start_date,
-                    'end_date' => $session->end_date
-                ];
-            }
-            ?>
+                    <div class="session-modal-edit">
+                        <button type="button" class="trash-button"> <i class="las la-trash"></i> </button>
+                        <input type="hidden" name="sessions[<?php echo $index; ?>][id]" value="<?php echo $session->session_id ?>" />
+                        <input type="text" class="session-edit-input" name="sessions[<?php echo $index; ?>][title]" value="<?php echo $session->title ?>" />
+                        <input type="date" class="session-edit-input" name="sessions[<?php echo $index; ?>][start_date]" value="<?php echo $session->start_date ?>" />
+                        <input type="date" class="session-edit-input" name="sessions[<?php echo $index; ?>][end_date]" value="<?php echo $session->end_date ?>" />
+                    </div>
+                    <?php {
+                        $session_array[$session->session_id] =
+                            [
+                                'title' => $session->title,
+                                'start_date' => $session->start_date,
+                                'end_date' => $session->end_date
+                            ];
+                    }
+                    ?>
                 <?php endforeach; ?>
             </div>
 
@@ -152,7 +169,7 @@ require __DIR__ . '/partials/header.php';
             <div class="modal-actions">
                 <button type="button" class="primary main-action-bright" onclick="openModal('addSessionsPopup')">Crear sesión</button>
                 <button type="button" class="primary main-action-bright" onclick="closeModal('sessionsPopup')">Cancelar</button>
-                <button type="input" type = "hidden" name="" class="secondary main-action-bright">Guardar</button>
+                <button type="input" type="hidden" name="" class="secondary main-action-bright">Guardar</button>
             </div>
         </form>
     </div>
@@ -168,7 +185,7 @@ require __DIR__ . '/partials/header.php';
         <div class="message-options">
             <h3>Escriba un título para la sesión y establezca las fechas</h3>
         </div>
-        <br>
+
 
         <!-- Form for adding a new session -->
         <form action="/sessions/create" method="POST">
@@ -198,7 +215,7 @@ require __DIR__ . '/partials/header.php';
         <h2 class="message-title">Manejar fechas límite</h2>
         <p>Manejar las fechas límite para el registro del campamento.</p>
 
-        <br>
+
 
         <form action="settings/e/dates" style="width: 100%;" method="POST">
             <!-- Main modal area -->
