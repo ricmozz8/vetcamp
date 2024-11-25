@@ -34,7 +34,7 @@ class AuthController extends Controller
                     $user = User::findBy(['email' => $email, 'status' => 'active']);
                 } catch (ModelNotFoundException $e) {
                     // User was not found
-                    $_SESSION['error'] = 'Incorrect credentials';
+                    $_SESSION['error'] = 'Credenciales Incorrectas, intente de nuevo';
                     redirect('/login');
                 }
 

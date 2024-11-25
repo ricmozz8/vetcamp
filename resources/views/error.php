@@ -20,7 +20,7 @@ require __DIR__ . '/partials/header.php';
         <div class="error-content">
             
             
-            <a href="/" class="main-action-bright negative">Volver al inicio</a>
+            <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? '/'; ?>" class="main-action-bright negative">Volver atrás</a>
 
             <p class="error-subtitle">Si crees que esta página debería estar disponible, contacta con el administrador.</p>
             
