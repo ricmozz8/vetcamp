@@ -60,7 +60,7 @@ switch ($path) {
         AuthController::resetPassword();
         break;
     case '/logout':
-        AuthController::logoutUser();
+        AuthController::logoutUser($method);
         break;
     case '/apply':
         ApplicationController::index();

@@ -46,14 +46,14 @@ const presetMessages = {
 
 
 // Function to open the modal
-function openModal() {
+function openMainMessageModal() {
     modal.overlay.style.display = 'block';
     modal.popup.style.display = 'flex';
     modalState.isOpen = true;
 }
 
 // Function to close the modal
-function closeModal() {
+function closeMainMessageModal() {
     modal.overlay.style.display = 'none';
     modal.popup.style.display = 'none';
     modalState.isOpen = false;
@@ -90,8 +90,8 @@ function updatePresetMessage() {
 }
 
 // Event Listeners
-modal.openButton.addEventListener('click', openModal);
-modal.closeButton.addEventListener('click', closeModal);
+modal.openButton.addEventListener('click', openMainMessageModal);
+modal.closeButton.addEventListener('click', closeMainMessageModal);
 
 // Close modal when clicking overlay
 modal.overlay.addEventListener('click', (e) => {

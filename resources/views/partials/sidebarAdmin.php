@@ -35,7 +35,10 @@
                 <div class="user-info">
                         <h3 class="user-name"><?php echo Auth::user()->first_name . ' ' . Auth::user()->last_name; ?></h3>
                         <span class="user-email" id="userEmail"><?php echo Auth::user()->email; ?></span>
-                        <a href="/logout" class="logout">Salir</a>
+                        <a href="#" onclick="openModal('logoutModal')" class="logout">Salir</a>
                 </div>
         </div>
 </aside>
+<?php include( __DIR__ . '../../modals/confirmLogoutModal.php') ?>
+
+

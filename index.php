@@ -22,6 +22,10 @@ require 'mailing/mailer.php';
 
 session_start();
 
+// setting the locale and time
+setlocale(LC_TIME, 'es_ES.UTF-8');
+date_default_timezone_set('America/Puerto_Rico');
+
 // Let the router handle all requests
 include 'routes/web.php';
 

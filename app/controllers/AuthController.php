@@ -15,14 +15,12 @@ class AuthController extends Controller
         if (Auth::check()) {
             if (Auth::user()->type == 'admin') {
                 redirect('/admin');
-            }  else {
+            } else {
                 redirect('/apply');
             }
-            
         }
 
         render_view('login', [], 'Login');
-
     }
 
     public static function loginUser($method)
@@ -32,13 +30,11 @@ class AuthController extends Controller
             $password = $_POST['password'];
 
             if (isset($email) && isset($password)) {
-                try{ 
+                try {
                     $user = User::findBy(['email' => $email, 'status' => 'active']);
-
-
                 } catch (ModelNotFoundException $e) {
                     // User was not found
-                    $error= 'Incorrect credentials';
+                    $error = 'Incorrect credentials';
                     redirect('/login');
                 }
 
@@ -51,14 +47,12 @@ class AuthController extends Controller
                     } else {
                         redirect('/apply');
                     }
-
                 } else {
                     // Authentication failed
                     $error = 'Incorrect credentials';
-                    
-                }   
+                }
             }
-        }  
+        }
 
         redirect('/login');
     }
@@ -101,7 +95,7 @@ class AuthController extends Controller
             } catch (ModelNotFoundException $e) {
                 // User was not found
                 $user = User::create([
-                'first_name' => $_POST['first_name'],
+                    'first_name' => $_POST['first_name'],
                     'last_name' => $_POST['last_name'],
                     'email' => $_POST['email'],
                     'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
@@ -116,10 +110,14 @@ class AuthController extends Controller
         redirect('/register');
     }
 
-    public static function logoutUser()
+    public static function logoutUser($method)
     {
-        Auth::logout();
-        redirect('/');
+        if ($method == 'POST') {
+            Auth::logout();
+            redirect('/');
+        } else {
+            redirect('/login');
+        }
     }
 
     public static function resetPassword()
@@ -131,7 +129,7 @@ class AuthController extends Controller
     public static function forgotPassword()
     {
         // your index view here
-        render_view('forgotpass', [], 'ForgotPass');   
+        render_view('forgotpass', [], 'ForgotPass');
     }
 
     // define your other methods here

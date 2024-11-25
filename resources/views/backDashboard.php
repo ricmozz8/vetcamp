@@ -3,7 +3,8 @@
 <?php
 require __DIR__ . '/partials/header.php';
 
-// greeting personalizer by time of day (SPANISH)
+// greeting personalizer by time of day (SPANISH-PR)
+
 
 $hour = date('G');
 if ($hour >= 5 && $hour < 12) {
@@ -21,6 +22,7 @@ if ($hour >= 5 && $hour < 12) {
         
         
         <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
+        
         
          <!-- Main content area -->
         <div class="main-content">

@@ -9,7 +9,6 @@ class Model
     protected $attributes = []; // The attributes of the model
     public $values = []; // The sanitized values of the model
     private static $initialized = false; // A flag indicating whether the model has been initialized
-
     protected static $primary_key = 'id'; // The primary key of the model
     protected static $hidden = [];  // An array of attributes that should not be serialized
 
@@ -171,15 +170,6 @@ class Model
         }
         
     }
-    // public static function createUser(array $data) : Model
-    // {
-    //     $newModel = new static($data, self::sanitize($data));
-    //     $newModel->storeUser();
-
-    //     return $newModel;
-        
-    // }
-
     
     /**
      * Sets the value of a model attribute.
