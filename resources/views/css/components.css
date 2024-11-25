@@ -1,178 +1,226 @@
-a, button{
-    color: inherit;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 28px;
-    font-size: 1em;
-    position: relative;
-    top: 0px;
-    transition: all .25s ease;
-    display: block;
-    align-items: center;
-    gap: 10px;
-    border: none;
-    text-decoration: none;
+a,
+button {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 28px;
+  font-size: 1em;
+  position: relative;
+  top: 0px;
+  transition: all 0.25s ease;
+  display: block;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  text-decoration: none;
 }
-.main-action-bright{
-    background-color: var(--white-color);
-    color: var(--secondary-color-default);
-    box-shadow: var(--shadow-soft);
-    padding: 15px 25px;
-    font-weight: 600;
-    border: 1px solid var(--secondary-color-default);
-    border-bottom: 4px solid var(--secondary-color-default);
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.main-action-bright {
+  background-color: var(--white-color);
+  color: var(--secondary-color-default);
+  box-shadow: var(--shadow-soft);
+  padding: 15px 25px;
+  font-weight: 600;
+  border: 1px solid var(--secondary-color-default);
+  border-bottom: 4px solid var(--secondary-color-default);
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.main-action-bright.negative {
+  background-color: var(--secondary-color-default);
+  color: var(--white-color);
+  border: 1px solid var(--white-color);
+  border-bottom: 4px solid var(--white-color);
+}
+.main-action-bright.secondary {
+  background-color: var(--main-color-default);
+  color: var(--secondary-color-default);
 
-}
-.main-action-bright.negative{
-    background-color: var(--secondary-color-default);
-    color: var(--white-color);
-    border: 1px solid var(--white-color);
-    border-bottom: 4px solid var(--white-color);
-
-}
-.main-action-bright.secondary{
-    background-color: var(--main-color-default);
-    color: var(--secondary-color-default);
-    
-    box-shadow: none;
-    border: none;
-}
-
-.main-action-bright.tertiary{
-    background-color: var(--secondary-color-default);
-    color: var(--white-color);
-    box-shadow: none;
-    border: none;
+  box-shadow: none;
+  border: none;
 }
 
-.main-action-bright.quaternary{
-    box-shadow: none;
-    border: none;
+.main-action-bright.tertiary {
+  background-color: var(--secondary-color-default);
+  color: var(--white-color);
+  box-shadow: none;
+  border: none;
 }
 
-.main-action-bright.quaternary-squared{
-    box-shadow: none;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 15px;
-    display: block;
-    background-color: var(--white-color-shade-1);
-    position: relative;
-    margin: 5px 0 ;
-
+.main-action-bright.quaternary {
+  box-shadow: none;
+  border: none;
 }
 
-.main-action-bright.quaternary-squared:hover{
-    box-shadow: none;
-    top: 0;
-    border: none;
-
+.main-action-bright.quaternary-squared {
+  box-shadow: none;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: block;
+  background-color: var(--white-color-shade-1);
+  position: relative;
+  margin: 5px 0;
 }
 
-.main-action-bright.quaternary:hover{
-    background-color: var(--white-color);
-    border: none;
-    
+.main-action-bright.quaternary-squared:hover {
+  box-shadow: none;
+  top: 0;
+  border: none;
 }
 
-.main-action-bright:hover{
-    top: 5px;
-    border-bottom: 1px solid var(--secondary-color-default);
+.main-action-bright.quaternary:hover {
+  background-color: var(--white-color);
+  border: none;
 }
 
-.main-action-bright.negative:hover{
-    top: 5px;
-    border-bottom: 1px solid var(--white-color);
+.main-action-bright:hover {
+  top: 5px;
+  border-bottom: 1px solid var(--secondary-color-default);
 }
 
-.main-action-bright.secondary:hover{
-    border: none;
-    box-shadow: none;
-    border: none;
+.main-action-bright.negative:hover {
+  top: 5px;
+  border-bottom: 1px solid var(--white-color);
 }
 
-.main-action-bright.danger{
-    background-color: var(--danger-color);
-    color: var(--white-color);
-    box-shadow: none;
-    border: none;
-    
+.main-action-bright.secondary:hover {
+  border: none;
+  box-shadow: none;
+  border: none;
 }
 
-
-a:hover, button:hover{
-    box-shadow: none;
-    filter: brightness(.8);
+.main-action-bright.danger {
+  background-color: var(--danger-color);
+  color: var(--white-color);
+  box-shadow: none;
+  border: none;
 }
 
-a.plain-action{
-    background-color: transparent;
-    color: black;
-    box-shadow: none;
-    border: none;
-    text-decoration: underline;
-    padding: 0;
-    font-weight: 400;
-
-
+a:hover,
+button:hover {
+  box-shadow: none;
+  filter: brightness(0.8);
 }
 
-a.plain-action:hover{
-    top: 0px;
-    box-shadow: none;
-    border: none;
-    filter: brightness(.8);
+a.plain-action {
+  background-color: transparent;
+  color: black;
+  box-shadow: none;
+  border: none;
+  text-decoration: underline;
+  padding: 0;
+  font-weight: 400;
 }
 
-.system-message{
-    padding: 10px 15px;
-    background-color: var(--main-color-default);
-    text-align: left;
-    font-weight: bold;
-    margin-bottom: 1em;
-    box-shadow: var(--shadow-soft);
-    margin: auto;
-    justify-content: flex-start;
-    border-radius: 12px;
-    
-    animation: fadeDown .52s ease;
-    width: fit-content;
-    transition: all .25s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.message-close-button{
-    padding: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: var(--main-color-default);
-    transition: all .25s ease;
+a.plain-action:hover {
+  top: 0px;
+  box-shadow: none;
+  border: none;
+  filter: brightness(0.8);
 }
 
-.message-close-button:hover{
-    filter: brightness(.9);
+.system-message {
+  padding: 10px 15px;
+  background-color: var(--main-color-default);
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 1em;
+  box-shadow: var(--shadow-soft);
+  margin: auto;
+  justify-content: flex-start;
+  border-radius: 12px;
+
+  animation: fadeDown 0.52s ease;
+  width: fit-content;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.message-close-button {
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: var(--main-color-default);
+  transition: all 0.25s ease;
 }
 
-.no-deco-action:hover{
-    filter: brightness(.5);
-    top: 0px;
-    box-shadow: none;
-    border: none;
+.message-close-button:hover {
+  filter: brightness(0.9);
+}
+
+.no-deco-action:hover {
+  filter: brightness(0.5);
+  top: 0px;
+  box-shadow: none;
+  border: none;
+}
+
+/* Notification Card */
+.notification {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  width: fit-content;
+  position: fixed;
+  text-wrap: nowrap;
+  border-radius: 27px;
+  background-color: var(--white-color);
+  border: 1px solid var(--white-color-shade-1);
+  top: 15px;
+  right: 50%;
+  left: 50%;
+  animation: notification .3s;
+  box-shadow: var(--shadow-soft);
+  z-index: 6;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.notification p {
+    animation: fadeIn 0.3s ease;
+}
+
+.notification.error {
+  background-color: var(--danger-color);
+  color: var(--white-color);
+}
+
+.notification:hover {
+  filter: brightness(0.8);
 }
 
 @keyframes fadeDown {
-    from{
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to{
-        opacity: 1;
-        transform: translateY(0px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes fadeIn{
+  from {
+    display: none;
+    opacity: 0;
+  }
+  to {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes notification {
+  from {
+    top: -20px;
+    
+  }
+  to {
+    top: 15px;
+  }
 }
