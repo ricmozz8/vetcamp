@@ -113,7 +113,6 @@
   align-items: center;
   gap: 15px;
   width: 100%;
-  height: 15%;
   margin-top: auto;
 }
 
@@ -454,7 +453,7 @@
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 20ppx;
 }
 
 /* Session edit line styling */

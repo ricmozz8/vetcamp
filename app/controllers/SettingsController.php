@@ -77,7 +77,7 @@ class SettingsController extends Controller
             // update the message and save it to the database
             $message->update(['content' => $_POST['content']]);
         }
-
+        $_SESSION['message'] = 'Se ha editado el mensaje exitosamente';
         redirect('/admin/settings');
     }
 
@@ -97,6 +97,7 @@ class SettingsController extends Controller
             $limit_date->update(['start_date' => $_POST['startDate'], 'end_date' => $_POST['endDate']]);
         }
 
+        $_SESSION['message'] = 'Se han editado las fechas límite exitosamente';
         redirect('/admin/settings');
     }
     public static function updateSession($request_method)
@@ -106,7 +107,7 @@ class SettingsController extends Controller
             $sessions = $_POST['sessions'] ?? null;
             $new_sessions = $_POST['new_sessions'] ?? [];
             if (!$sessions && !$new_sessions) {
-                $_SESSION['error_message'] = "No session data provided.";
+                $_SESSION['error'] = "No session data provided.";
                 redirect('/admin/settings');
             }
             try {
@@ -150,15 +151,16 @@ class SettingsController extends Controller
 
                 //$_SESSION['success_message'] = "Sessions updated and new sessions created successfully.";
             } catch (Exception $e) {
-                $_SESSION['error_message'] = "An error occurred: " . $e->getMessage();
+                $_SESSION['error'] = "An error occurred: " . $e->getMessage();
             }
             // Redirect back to the sessions page
+            $_SESSION['message'] = 'Se han editado las sesiones exitosamente';
             redirect('/admin/settings');
         }
 
         // Handle invalid request methods
         http_response_code(405);
-        $_SESSION['error_message'] = "Invalid request method.";
+        $_SESSION['error'] = "Invalid request method.";
         redirect('/admin/settings');
     }
     // ---
