@@ -26,7 +26,7 @@ require_once __DIR__ . '/partials/header.php';
                         <img src="<?= $application->url_picture ?>" alt="Applicant" class="applicant-photo">
                         <div class="applicant-details">
                             <h1 class="applicant-name"><?= $user->first_name . " " . $user->last_name ?></h1>
-                            <p>Solicitud hecha: <?= ($user->created_at) ?></p>
+                            <p>Solicitud hecha: <?= get_date_spanish($user->created_at) ?></p>
                             <p class="flex">Correo: <a class="no-deco-action" href="mailto:<?= $user->email ?>"><?= $user->email ?></a></p>
                             <p>Teléfono: <?= format_phone($user->phone_number) ?></p>
                         </div>
