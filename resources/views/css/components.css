@@ -54,6 +54,25 @@ a, button{
     border: none;
 }
 
+.main-action-bright.quaternary-squared{
+    box-shadow: none;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: block;
+    background-color: var(--white-color-shade-1);
+    position: relative;
+    margin: 5px 0 ;
+
+}
+
+.main-action-bright.quaternary-squared:hover{
+    box-shadow: none;
+    top: 0;
+    border: none;
+
+}
+
 .main-action-bright.quaternary:hover{
     background-color: var(--white-color);
     border: none;

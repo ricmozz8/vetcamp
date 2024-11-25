@@ -41,7 +41,7 @@
         <div class="user-profile">
                 <!--<?php echo "<div class='user-avatar' id='userAvatar'><img src='Auth::user()->url_picture;'></div>"; ?>-->
                 <div class="user-info">
-                        <a href="#" class="w-fit">
+                        <a href="#" class="w-fit main-action-bright quaternary-squared">
                                 <i class="las la-cog"></i>
                         </a>
                         <h3 class="user-name"><?php echo Auth::user()->first_name . ' ' . Auth::user()->last_name; ?></h3>
