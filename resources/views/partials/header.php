@@ -45,7 +45,7 @@
 <?php unset($_SESSION['message']); } ?>
 
 <?php if (isset($_SESSION['error'])) { ?>
-                <div id='notification' class="notification-error" onclick="closeModal('notification')">
+                <div id='notification' class="notification error" onclick="closeModal('notification')">
                 <i class="las la-exclamation-triangle"></i>
                     <p class="notification-content"><?=$_SESSION['error'] ?> </p>
                 </div>

@@ -64,7 +64,6 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 0 20px;
 }
 
 /* Individual navigation items */
@@ -88,6 +87,7 @@
 
 .back-dash .nav-item.active {
   background: var(--main-color-default);
+  border-radius: 0 27px 27px 0;
 }
 
 /* Navigation and Main Content icons */
@@ -195,12 +195,12 @@
   display: flex;
   align-items: center;
   padding: 10px 15px;
-  background-color: var(--main-color-default);
-  color: var(--dark-text-color);
   width: fit-content;
-  position: absolute;
+  position: sticky;
   text-wrap: nowrap;
   border-radius: 27px;
+  background-color: var(--white-color);
+  border: 1px solid var(--white-color-shade-1);
   top: 15px;
   right: 50%;
   left: 50%;
@@ -211,29 +211,13 @@
   cursor: pointer;
 }
 
-.notification-error{
-    display: flex;
-    align-items: center;
-    padding: 10px 15px;
-    background-color: var(--danger-color);
-    color: var(--white-color);
-    width: fit-content;
-    position: absolute;
-    text-wrap: nowrap;
-    border-radius: 27px;
-    top: 15px;
-    right: 50%;
-    left: 50%;
-    animation: notification .3s ;
-    box-shadow: var(--shadow-soft);
-    z-index: 6;
-    cursor: pointer;
-    transition: all .2s ease;
+.notification.error{
+  background-color: var(--danger-color);
+  color: var(--white-color);
 }
 
-.notification-error:hover, .notification:hover 
+.notification:hover
 {
-
     filter: brightness(.8);
 }
 
