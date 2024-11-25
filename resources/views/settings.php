@@ -167,8 +167,8 @@ require __DIR__ . '/partials/header.php';
 
             <!-- Buttons area -->
             <div class="modal-actions">
-                <button type="button" class="primary main-action-bright" onclick="openModal('addSessionsPopup')">Crear sesión</button>
-                <button type="button" class="primary main-action-bright" onclick="closeModal('sessionsPopup')">Cancelar</button>
+                <a href="#"  type="button" class="primary main-action-bright" onclick="openModal('addSessionsPopup')">Crear sesión</a>
+                <a href="#"  type="button" class="primary main-action-bright" onclick="closeModal('sessionsPopup')">Cancelar</a>
                 <button type="input" type="hidden" name="" class="secondary main-action-bright">Guardar</button>
             </div>
         </form>
@@ -199,7 +199,7 @@ require __DIR__ . '/partials/header.php';
 
             <!-- Buttons area -->
             <div class="modal-actions">
-                <button type="button" class="primary main-action-bright" onclick="closeModal('addSessionsPopup')">Cancelar</button>
+                <a href="#" type="button" class="primary main-action-bright" onclick="closeModal('addSessionsPopup')">Cancelar</a>
                 <button type="submit" class="secondary main-action-bright">Guardar</button>
             </div>
         </form>
@@ -238,7 +238,7 @@ require __DIR__ . '/partials/header.php';
             <!-- Buttons area -->
             <div class="modal-actions">
                 <!-- Cancel button -->
-                <button class="primary main-action-bright" onclick="closeModal('datesPopup')">Cancelar</button>
+                <a href="#"  class="primary main-action-bright" onclick="closeModal('datesPopup')">Cancelar</a>
 
                 <!-- Save button -->
                 <button class="secondary main-action-bright" onclick="closeModal('datesPopup')">Guardar</button>
@@ -326,7 +326,7 @@ require __DIR__ . '/partials/header.php';
         <!-- Buttons area -->
         <div class="modal-actions">
             <!-- Cancel button -->
-            <button class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</button>
+            <a href="#"  class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
 
             <!-- Confirm button -->
             <button class="secondary main-action-bright" onclick="closeModal('archivePopup')">Confirmar</button>
@@ -352,7 +352,7 @@ require __DIR__ . '/partials/header.php';
         <!-- Buttons area -->
         <div class="modal-actions">
             <!-- Cancel button -->
-            <button class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</button>
+            <a href="#" class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
 
             <!-- Confirm button -->
             <button class="secondary main-action-bright" onclick="closeModal('archivePopup')">Confirmar</button>
@@ -378,7 +378,7 @@ require __DIR__ . '/partials/header.php';
         <!-- Buttons area -->
         <div class="modal-actions">
             <!-- Cancel button -->
-            <button class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</button>
+            <a href="#"  class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
 
             <!-- Confirm button -->
             <button class="secondary main-action-bright" onclick="closeModal('archivePopup')">Confirmar</button>
@@ -404,7 +404,7 @@ require __DIR__ . '/partials/header.php';
         <!-- Buttons area -->
         <div class="modal-actions">
             <!-- Cancel button -->
-            <button class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</button>
+            <a href="#"  class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
 
             <!-- Confirm button -->
             <button class="secondary main-action-bright" onclick="closeModal('archivePopup')">Confirmar</button>
@@ -485,7 +485,7 @@ require __DIR__ . '/partials/header.php';
         <!-- Buttons area -->
         <div class="modal-actions">
             <!-- Cancel button -->
-            <button class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</button>
+            <a href="#"  class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
 
             <!-- Confirm button -->
             <button class="secondary main-action-bright" onclick="closeModal('archivePopup')">Confirmar</button>

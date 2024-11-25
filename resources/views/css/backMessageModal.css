@@ -49,10 +49,10 @@
 
 .message-title {
     color: rgba(45, 45, 45, 1);
-    letter-spacing: -1.84px;
+    line-height: .8em;
     margin-top: 10px;
     font-weight: 700;
-    font-size: 2.3em;
+    font-size: 1.6em;
 }
 
 /*******************************
@@ -205,15 +205,13 @@
     flex-direction: column;
     align-items: start;
     color: rgba(0, 0, 0, 1);
-    letter-spacing: -1.2px;
     resize: vertical;
     min-height: 180px;  
     outline: none;
     border: 1px solid rgba(0, 0, 0, 1);
     width: 100%;
-    font-size: 1.3em;  
-    line-height: 1.5;
-    font-weight: 500;
+    font-size: 1em;
+    font-weight: 400;
 }
 
 /*******************************

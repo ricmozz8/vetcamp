@@ -44,21 +44,27 @@ if ($hour >= 5 && $hour < 12) {
                 <!-- Applicants stats card -->
                 <div class="stat-card">
                     <div class="stat-header">
-                        <h2 class="stat-title">Solicitantes</h2>
+                        <h2 class="stat-title">
+                        <i class="las la-id-badge"></i>    
+                        Solicitantes</h2>
                         
                     </div>
                     <div class="stat-number"><?php echo $all_applicants; ?></div>
-                       <img src="https://img.icons8.com/?size=100&id=tfnuCxzS4iEn&format=png&color=1A1A1A" alter="Applicants Icon" class="main-icons">
+                    
                 </div>
 
                 <!-- Registered users stats card -->
                 <div class="stat-card">
                     <div class="stat-header">
-                        <h2 class="stat-title">Registrados</h2>
+                        <h2 class="stat-title">
+                        <i class="las la-user-friends"></i>
+                            Registrados
+
+                        </h2>
                         
                     </div>
                     <div class="stat-number"><?php echo $all_users; ?></div>
-                       <img src="https://img.icons8.com/?size=100&id=aPUUXqLMszEs&format=png&color=1A1A1A" alter="Registered Icon" class="main-icons">
+                    
                 </div>
             </div>
 
