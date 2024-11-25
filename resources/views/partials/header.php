@@ -36,3 +36,17 @@
 
     <title><?= $page_title ?? 'Vetcamp' ?></title>
 </head>
+
+<?php if (isset($_SESSION['message'])) { ?>
+                <div class="notification">
+                    <i class="las la-exclamation-circle"></i>
+                    <p class="notification-content"><?=$_SESSION['message'] ?> </p>
+                </div>
+<?php unset($_SESSION['message']); } ?>
+
+<?php if (isset($_SESSION['error'])) { ?>
+                <div class="notification-error">
+                <i class="las la-exclamation-triangle"></i>
+                    <p class="notification-content"><?=$_SESSION['error'] ?> </p>
+                </div>
+<?php unset($_SESSION['error']); } ?>

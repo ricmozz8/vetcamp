@@ -74,9 +74,9 @@ class ApplicationController extends Controller
                     $application->update(['status' => $new_status]);
 
                     if ($notify) {
-                        $_SESSION['success_message'] = "Estado actualizado y notificación enviada.";
+                        $_SESSION['message'] = "Estado actualizado y notificación enviada.";
                     } else {
-                        $_SESSION['success_message'] = "Estado actualizado correctamente.";
+                        $_SESSION['message'] = "Estado actualizado correctamente.";
                     }
                 } catch (ModelNotFoundException $e) {
                     $_SESSION['error_message'] = "No se encontró la solicitud con el ID proporcionado.";
@@ -90,7 +90,7 @@ class ApplicationController extends Controller
         }
 
         // Redirigir de vuelta a la página de la solicitud
-        redirect('/admin/requests/r');
+        redirect("/admin/requests/r?id=$application->user_id");
         exit;
     }
 }

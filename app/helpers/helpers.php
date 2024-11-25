@@ -8,7 +8,7 @@ define('CONFIG', require('bootstrap/config.php'));
 /**
  * This is the helpers file, it will define some helper functions that need to be 
  * used on the entire website. Only define here GLOBAL functions.
-*/
+ */
 
 /**
  * Format a given phone number string into the format XXX-XXX-XXXX.
@@ -16,7 +16,8 @@ define('CONFIG', require('bootstrap/config.php'));
  * @param string $phone The phone number string without any separators.
  * @return string The formatted phone number.
  */
-function format_phone(string $phone): string {
+function format_phone(string $phone): string
+{
     return substr($phone, 0, 3) . '-' . substr($phone, 3, 3) . '-' . substr($phone, 6, 4);
 }
 
@@ -36,10 +37,11 @@ function format_phone(string $phone): string {
  * 
  * @return string The valid path for the selected asset.
  */
-function asset(string $subdirectory, bool $relative = true,  bool $windows_path = false): string {
+function asset(string $subdirectory, bool $relative = true,  bool $windows_path = false): string
+{
 
     // if the subdirectory starts with a slash
-    if (substr($subdirectory, 0,1) === '/') {
+    if (substr($subdirectory, 0, 1) === '/') {
         // The ASSETS_FOLDER already contains the trailing slash (preventing assets//img...)
         $subdirectory = substr($subdirectory, 1);
     }
@@ -57,7 +59,7 @@ function asset(string $subdirectory, bool $relative = true,  bool $windows_path 
         // replacing all backslashes with forward slashes
         $final_path = str_replace('\\', '/', $final_path);
     }
-    
+
     return $final_path;  // returning the valid path
 
 }
@@ -70,17 +72,18 @@ function asset(string $subdirectory, bool $relative = true,  bool $windows_path 
  * @param string $subdirectory The subdirectory the web resource is located.
  * 
  * @return string The valid path for the selected web resource.
- */ 
-function web_resource(string $subdirectory): string {
+ */
+function web_resource(string $subdirectory): string
+{
 
     // if the subdirectory starts with a slash
-    if (substr($subdirectory, 0,1) === '/') {
+    if (substr($subdirectory, 0, 1) === '/') {
         // The ASSETS_FOLDER already contains the trailing slash (preventing assets//img...)
         $subdirectory = substr($subdirectory, 1);
     }
 
     $final_path = WEB_RESOURCES_FOLDER . $subdirectory;
-  
+
 
     return $final_path;
 }
@@ -94,19 +97,20 @@ function web_resource(string $subdirectory): string {
  * @param array $data An associative array of variables to extract into the
  *                    view file's scope.
  */
-function render_view(string $view, array $data = [], string $title = ''): void {
+function render_view(string $view, array $data = [], string $title = ''): void
+{
     // serves the view file
 
     extract($data);
     $page_title = get_config('app', 'name', '') . ' - ' . $title;
 
-    try{
+    try {
         require VIEWS_DIR . $view . '.php';
     } catch (Error $e) {
         // check if the file exists
         throw new ViewNotFoundException('The view file does not exist: ' . VIEWS_DIR . $view . '.php' . PHP_EOL . $e->getMessage());
     }
-    
+
     exit;
 }
 
@@ -118,9 +122,19 @@ function render_view(string $view, array $data = [], string $title = ''): void {
  *
  * @param string $url The URL to redirect to.
  */
-function redirect(string $url) {
+function redirect(string $url)
+{
     header('Location: ' . $url);
     exit;
+}
+
+/**
+ * Redirects to the referring URL if it exists, otherwise redirects to a given URL.
+ *
+ * @param string $ifFail The URL to redirect to if the referring URL does not exist.
+ */
+function redirect_back(string $ifFail = '/') {
+    header('Location: ' . $_SERVER['HTTP_REFERER'] ?? $ifFail);
 }
 
 
@@ -130,10 +144,10 @@ function redirect(string $url) {
  * @param string $phone The phone number string with separators.
  * @return string The phone number without separators.
  */
-function deformat_phone(string $phone) {
+function deformat_phone(string $phone)
+{
     // removing all the separators
     return str_replace(['(', ')', '-', ' '], '', $phone);
-
 }
 
 
@@ -145,9 +159,10 @@ function deformat_phone(string $phone) {
  * @param string $key The key to store the value with.
  * @param mixed $value The value to store.
  */
-function session_store(string $key, $value) {
+function session_store(string $key, $value)
+{
 
-    if(!isset($_SESSION)) {
+    if (!isset($_SESSION)) {
         session_start();
     }
 
@@ -160,7 +175,8 @@ function session_store(string $key, $value) {
  * @param string $key The key to search for in the session.
  * @return bool True if the key exists, false otherwise.
  */
-function session_has(string $key) {
+function session_has(string $key)
+{
     return isset($_SESSION[$key]) ?? false;
 }
 
@@ -207,7 +223,8 @@ function get_date_spanish($date, $withYear = true, $withMonth = true)
  *
  * @return string The wrapped string.
  */
-function quote($string) {
+function quote($string)
+{
     if (gettype($string) !== 'string') {
         return $string;
     }
@@ -220,7 +237,8 @@ function quote($string) {
  * @param string $key The key to search for in the $_COOKIE array.
  * @return bool True if the key exists, false otherwise.
  */
-function cookie_exists(string $key) {
+function cookie_exists(string $key)
+{
     return isset($_COOKIE[$key]) ?? false;
 }
 
@@ -234,7 +252,8 @@ function cookie_exists(string $key) {
  * @param string $key The key of the cookie to retrieve.
  * @return mixed The value of the cookie if it exists, null otherwise.
  */
-function get_cookie(string $key) {
+function get_cookie(string $key)
+{
     if (!cookie_exists($key)) {
         return null;
     }
@@ -242,7 +261,8 @@ function get_cookie(string $key) {
 }
 
 
-function session_get(string $key) {
+function session_get(string $key)
+{
     if (!session_has($key)) {
         return null;
     }
@@ -258,7 +278,8 @@ function session_get(string $key) {
  *
  * @param mixed ...$args One or more variables to dump.
  */
-function dd(...$args) {
+function dd(...$args)
+{
     echo '<pre style="font-size: 1.2em; background-color: black; color: white; padding: 15px">';
     var_dump(...$args);
     echo '</pre>';
@@ -266,7 +287,8 @@ function dd(...$args) {
 }
 
 
-function abort(int $code, string $message = '') {
+function abort(int $code, string $message = '')
+{
     http_response_code($code);
     render_view('error', ['code' => $code, 'message' => $message], 'Error ' . $code);
     die();
@@ -287,6 +309,7 @@ function abort(int $code, string $message = '') {
  * 
  * @return mixed The configuration value or the default value if not found.
  */
-function get_config(string $type, string $title, string $default = null) {
+function get_config(string $type, string $title, string $default = null)
+{
     return CONFIG[$type][$title] ?? $default;
 }
