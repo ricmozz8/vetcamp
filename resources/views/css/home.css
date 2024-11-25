@@ -23,6 +23,9 @@
   background-size: 200vh;
   background-position: bottom;
   transform-style: preserve-3d;
+  perspective: 1px;
+	-webkit-perspective: 1px;
+	-webkit-transform-style: preserve-3d;
   animation: shineYellow 2s ease;
   transition: background-position 1s ease;
 

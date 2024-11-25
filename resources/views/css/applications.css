@@ -43,7 +43,32 @@
     line-height: .8em;
     font-weight: 600;
     margin-bottom: 0.5em;
-    letter-spacing: -2px;
+}
+
+.profile-link
+{
+    padding: 15px 20px;
+    border-radius: 50%;
+
+}
+
+.profile-link:hover{
+    background-color: var(--white-color );
+}
+
+.profile-dropdown{
+    display: none;
+    position: absolute;
+    top: 75px;
+    right: var(--main-margin);
+    background-color: var(--white-color);
+    padding: 1em;
+    z-index: 1;
+    animation: fadeIn 0.3s ease;
+}
+
+.profile-dropdown a{
+    width: 100%;
 }
 
 .status{

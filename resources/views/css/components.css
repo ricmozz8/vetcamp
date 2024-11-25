@@ -49,6 +49,17 @@ a, button{
     border: none;
 }
 
+.main-action-bright.quaternary{
+    box-shadow: none;
+    border: none;
+}
+
+.main-action-bright.quaternary:hover{
+    background-color: var(--white-color);
+    border: none;
+    
+}
+
 .main-action-bright:hover{
     top: 5px;
     border-bottom: 1px solid var(--secondary-color-default);

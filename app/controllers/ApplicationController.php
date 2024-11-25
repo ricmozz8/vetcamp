@@ -13,7 +13,7 @@ class ApplicationController extends Controller
         if (Auth::user()->type == 'admin') {
             redirect('/admin');
         }
-        render_view('application/dashboard', [], 'Aplica');
+        render_view('application/application_dashboard', [], 'Aplica');
     }
 
     /**
