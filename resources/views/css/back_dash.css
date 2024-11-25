@@ -258,6 +258,7 @@
     padding: 8px;
     background: #f8f8f8;
     border-radius: 8px;
+    gap: 8px;
 }
 
 .back-dash .recent-registered {
@@ -295,7 +296,8 @@
     height: 35px;
     border-radius: 50%;
     background: #ffffff;
-    margin-right: 2%;
+    object-fit: cover;
+
 }
 
 /*******************************
