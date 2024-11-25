@@ -170,7 +170,7 @@ if ($hour >= 5 && $hour < 12) {
         </div>
     </div>
 
-    <script src="<?= web_resource("js/backendDashboard.js")?>"></script>
+    <script src="<? web_resource("js/backendDashboard.js")?>"></script>
 
     <?php require_once('partials/footer.php'); ?>
 

@@ -118,10 +118,10 @@ require_once __DIR__ . '/partials/header.php';
                 </div>
             </div>
         </div>
-        <?= include('modals/messageModal.php') ?>
+        <?php include('modals/messageModal.php') ?>
         
 
-        <?= include('partials/footer.php') ?>
+        <?php include('partials/footer.php') ?>
 
     </body>
 
