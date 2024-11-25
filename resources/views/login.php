@@ -16,7 +16,7 @@ require __DIR__ . '/partials/header.php';
             <!-- Login Form -->
             <form action="/login/auth" method="POST"> <!-- Update -->
                 <!-- Page Title -->
-                <div class="page-title">Inicia Sesión</div>
+                <h2 class="page-title">Inicia Sesión</h2>
                 <?php
                 if (isset($error) && !empty($error))
                     echo '<div class="alert alert-danger">' . $error . '</div>';
@@ -53,9 +53,9 @@ require __DIR__ . '/partials/header.php';
                     Iniciar Sesión
                 </button>
             </form>
-            <div class="other-options">
-                <a href="/forgotPass" class="main-action-bright plain-action">olvidé mi contraseña</a>
-                <a href="/register" class="main-action-bright plain-action">no tienes cuenta?</a>
+            <div class="splitted-actions">
+                <a href="/forgotPass" class="main-action-bright no-deco-action">olvidé mi contraseña</a>
+                <a href="/register" class="main-action-bright no-deco-action">no tienes cuenta?</a>
             </div>
         </div>
 
@@ -63,6 +63,8 @@ require __DIR__ . '/partials/header.php';
         <?php require_once('partials/authPagesRightSide.php'); ?>
 
     </div>
+
+    
 
     <!-- Password Visibility Toggle Script -->
     <script>
@@ -81,6 +83,7 @@ require __DIR__ . '/partials/header.php';
             }
         }
     </script>
+
 
 </body>
 

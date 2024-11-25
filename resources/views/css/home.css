@@ -5,6 +5,7 @@
   text-align: center;
   padding: 1em;
   background-color: var(--main-color-default);
+  animation: shineYellow 2s ease;
 }
 
 .navbar .logotype {
@@ -22,6 +23,9 @@
   background-size: 200vh;
   background-position: bottom;
   transform-style: preserve-3d;
+  animation: shineYellow 2s ease;
+  transition: background-position 1s ease;
+
   
   
 }
@@ -35,12 +39,14 @@
   margin: 1em auto;
   color: var(--bright-text-color);
   text-shadow: var(--shadow-hard);
+  animation: fadeUp 1s ease;
 }
 
 .hero a {
   width: fit-content;
   text-align: center;
   margin: auto;
+  animation: fadeUp .33s ease ;
 }
 
 .hero-buttons{
@@ -446,5 +452,28 @@ footer .university-logo {
   .top-flex h2 {
     font-size: 3.5em;
     line-height: 1em;
+  }
+}
+
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shineYellow {
+  from {
+    background-position: 0 0;
+    background-color: var(--main-color-shade-3);
+  }
+  to {
+    background-position: 50% 50%;
+    background-color: var(--main-color-default);
   }
 }

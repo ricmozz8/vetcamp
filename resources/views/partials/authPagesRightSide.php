@@ -5,7 +5,7 @@
                 <div class="text-wrapper">Gemma Regalado, Unsplash</div>
 
         </div>
-            <!-- Dark Overlay + Icon-->
-            <div class="overlay">
-            <img src="resources/assets/logo/SVG/logo_icon.svg" alt="Vetcamp Icon" class="icon">
-            </div>
+        <!-- Dark Overlay + Icon-->
+        <div class="overlay">
+                <img src="resources/assets/logo/SVG/logo_icon.svg" alt="Vetcamp Icon" class="icon">
+        </div>

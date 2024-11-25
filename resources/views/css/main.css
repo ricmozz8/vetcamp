@@ -24,6 +24,8 @@
 @import url('modals.css');
 @import url('error.css');
 @import url('requests.css');
+@import url('auth.css');
+
 
 
 
@@ -31,7 +33,7 @@
 
     /* Font Family */
     --display-font-family: 'Host Grotesk', sans-serif;
-    --text-font: 'Host Grotesk', sans-serif;
+    --text-font: 'Inter Tight', sans-serif;
 
     /* Font Size */
     --font-size-xxs: 0.625rem;
@@ -48,10 +50,10 @@
     --font-weight-bold: 700;
 
     /* Brand Colors */  
-    --main-color-default: #F8CE3A;
-    --main-color-shade-1: #FFD700;
-    --main-color-shade-2: #FFB300;
-    --main-color-shade-3: #FFA500;
+    --main-color-default: #FFE900;
+    --main-color-shade-1: #fff36d;
+    --main-color-shade-2: #fff7a0;
+    --main-color-shade-3: #fffbcf;
 
     --secondary-color-default: #000000;
     --secondary-color-shade-1: #333333;
@@ -76,7 +78,7 @@
     --white-color-shade-3: #b6b6b6;
 
     /* selection color */
-    --main-color-selection: #f8cf3a71;
+    --main-color-selection: #ffea9f71;
     
     /* Shadows */
     --shadow-soft: 0px 3px 10px rgba(0, 0, 0, 0.253);
