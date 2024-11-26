@@ -41,7 +41,7 @@ require __DIR__ . '../../partials/header.php';
                         <label for="solicitud_escrita"> <span> Selecciona un archivo</span></label>
                         <input accept="application/pdf" type="file" id="solicitud_escrita" name="solicitud_escrita" onchange="updateFileName(this)">
                     </div>
-                    <div class="flex">
+                    <div class="check-labeled">
                         <label>Solicitud Escrita</label>
                         <button class="btn-download">Descargar</button>
                     </div>
