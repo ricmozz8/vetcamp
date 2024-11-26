@@ -1,6 +1,12 @@
 <?php
 
-
+/**
+ * This class is used to connect to the database using PDO.
+ * The methods defined here will create the base SQL queries needed for simple CRUD operations.
+ * 
+ * @author @ricmozz8
+ * 
+ */
 final class DB
 {
     private static $database; /* The PDO instance for the database connection.*/

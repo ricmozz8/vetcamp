@@ -224,12 +224,15 @@ function get_date_spanish($date, $withYear = true, $withMonth = true)
 }
 
 
+
 /**
- * Wraps a string in double quotes.
+ * Encloses a string within single quotes.
  *
- * @param string $string The string to wrap with double quotes.
+ * If the input is a string, it will be enclosed within single quotes,
+ * otherwise, the input is returned unchanged.
  *
- * @return string The wrapped string.
+ * @param mixed $string The value to quote.
+ * @return mixed The quoted string if the input is a string, otherwise the original input.
  */
 function quote($string)
 {
