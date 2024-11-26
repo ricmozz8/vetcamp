@@ -205,10 +205,9 @@
 
 /* Individual statistic cards */
 .back-dash .stat-card {
-  background: #ffffff;
+  background: var(--sidebar-bg);
   border-radius: 10px;
   padding: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 /* Card header with title and action link */
@@ -251,7 +250,7 @@
   display: flex;
   align-items: center;
   padding: 8px;
-  background: #f8f8f8;
+  background: var(--white-color);
   border-radius: 8px;
   gap: 8px;
 }

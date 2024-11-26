@@ -48,10 +48,7 @@ switch ($path) {
         AuthController::registerUser($method);
         break;
     case '/login':
-        AuthController::login();
-        break;
-    case '/login/auth':
-        AuthController::loginUser($method);
+        AuthController::login($method);
         break;
     case '/forgotpass':
         AuthController::forgotPassword();

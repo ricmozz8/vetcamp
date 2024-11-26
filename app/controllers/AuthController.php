@@ -10,21 +10,9 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public static function login()
+    public static function login($method)
     {
-        if (Auth::check()) {
-            if (Auth::user()->type == 'admin') {
-                redirect('/admin');
-            } else {
-                redirect('/apply');
-            }
-        }
 
-        render_view('login', [], 'Login');
-    }
-
-    public static function loginUser($method)
-    {
         if ($method == 'POST') {
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -37,7 +25,7 @@ class AuthController extends Controller
                     $_SESSION['error'] = 'Credenciales Incorrectas, intente de nuevo';
                     redirect('/login');
                 }
-
+ 
                 if (password_verify($password, $user->__get('password'))) {
                     // Authentication successful
                     Auth::login($user);
@@ -47,14 +35,24 @@ class AuthController extends Controller
                     } else {
                         redirect('/apply');
                     }
+
                 } else {
                     // Authentication failed
                     $_SESSION['error'] = 'Incorrect credentials';
                 }
             }
-        }
+        } else {
+            // method is GET
+            if (Auth::check()) {
+                if (Auth::user()->type == 'admin') {
+                    redirect('/admin');
+                } else {
+                    redirect('/apply');
+                }
+            }
 
-        redirect('/login');
+            render_view('login', [], 'Login');
+        }
     }
 
     public static function register()
