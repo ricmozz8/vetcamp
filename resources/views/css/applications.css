@@ -44,7 +44,6 @@
     font-weight: 600;
     margin-bottom: 0.5em;
 }
-
 .profile-link
 {
     padding: 15px 20px;
@@ -69,6 +68,20 @@
 
 .profile-dropdown a{
     width: 100%;
+}
+
+.check 
+{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+.check-labeled{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .status{
