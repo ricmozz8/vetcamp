@@ -181,6 +181,14 @@ function session_has(string $key)
 }
 
 
+/**
+ * Formats a given date string into the format DD de MM de AAAA, DD de MM or DD depending on the parameters.
+ *
+ * @param string $date The date string in the format YYYY-MM-DD.
+ * @param bool $withYear True if the year should be included in the formatted date.
+ * @param bool $withMonth True if the month should be included in the formatted date.
+ * @return string The formatted date string.
+ */
 function get_date_spanish($date, $withYear = true, $withMonth = true)
 {
     $months = [
