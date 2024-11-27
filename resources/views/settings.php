@@ -109,6 +109,10 @@ require __DIR__ . '/partials/header.php';
 
                     <dark-text-color>
                         <div class="settings-block">
+                            <p> Crear una cuenta de administrador </p>
+                            <button class="main-action-bright secondary" onclick="openModal('addAdminModal')"> Crear </button>
+                        </div>
+                        <div class="settings-block">
                             <p> Desactivar cuentas que no solicitaron </p>
                             <button class="main-action-bright danger" onclick="openModal('unsolicitedPopup')"> Desactivar </button>
                         </div>
@@ -167,8 +171,8 @@ require __DIR__ . '/partials/header.php';
 
             <!-- Buttons area -->
             <div class="modal-actions">
-                <a href="#"  type="button" class="primary main-action-bright" onclick="openModal('addSessionsPopup')">Crear sesión</a>
-                <a href="#"  type="button" class="primary main-action-bright" onclick="closeModal('sessionsPopup')">Cancelar</a>
+                <a href="#" type="button" class="primary main-action-bright" onclick="openModal('addSessionsPopup')">Crear sesión</a>
+                <a href="#" type="button" class="primary main-action-bright" onclick="closeModal('sessionsPopup')">Cancelar</a>
                 <button type="input" type="hidden" name="" class="secondary main-action-bright">Guardar</button>
             </div>
         </form>
@@ -238,7 +242,7 @@ require __DIR__ . '/partials/header.php';
             <!-- Buttons area -->
             <div class="modal-actions">
                 <!-- Cancel button -->
-                <a href="#"  class="primary main-action-bright" onclick="closeModal('datesPopup')">Cancelar</a>
+                <a href="#" class="primary main-action-bright" onclick="closeModal('datesPopup')">Cancelar</a>
 
                 <!-- Save button -->
                 <button class="secondary main-action-bright" onclick="closeModal('datesPopup')">Guardar</button>
@@ -326,7 +330,7 @@ require __DIR__ . '/partials/header.php';
         <!-- Buttons area -->
         <div class="modal-actions">
             <!-- Cancel button -->
-            <a href="#"  class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
+            <a href="#" class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
 
             <!-- Confirm button -->
             <button class="secondary main-action-bright" onclick="closeModal('archivePopup')">Confirmar</button>
@@ -378,7 +382,7 @@ require __DIR__ . '/partials/header.php';
         <!-- Buttons area -->
         <div class="modal-actions">
             <!-- Cancel button -->
-            <a href="#"  class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
+            <a href="#" class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
 
             <!-- Confirm button -->
             <button class="secondary main-action-bright" onclick="closeModal('archivePopup')">Confirmar</button>
@@ -404,7 +408,7 @@ require __DIR__ . '/partials/header.php';
         <!-- Buttons area -->
         <div class="modal-actions">
             <!-- Cancel button -->
-            <a href="#"  class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
+            <a href="#" class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
 
             <!-- Confirm button -->
             <button class="secondary main-action-bright" onclick="closeModal('archivePopup')">Confirmar</button>
@@ -485,13 +489,14 @@ require __DIR__ . '/partials/header.php';
         <!-- Buttons area -->
         <div class="modal-actions">
             <!-- Cancel button -->
-            <a href="#"  class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
+            <a href="#" class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
 
             <!-- Confirm button -->
             <button class="secondary main-action-bright" onclick="closeModal('archivePopup')">Confirmar</button>
         </div>
     </div>
-
+    
+    <?php require_once('modals/createAdminModal.php'); ?>
     <!--<script src="<?= web_resource("js/backendDashboard.js") ?>"></script>-->
 
     <!-- Footer with copyright information -->
