@@ -19,6 +19,7 @@ require 'app/controllers/RequestsController.php';
 require 'app/controllers/EvaluateController.php';
 require 'app/controllers/TrackingController.php';
 require 'app/controllers/ApplicationController.php';
+require 'app/controllers/FileController.php';
 
 $request = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
@@ -70,7 +71,8 @@ switch ($path) {
         } else {
             redirect('/apply');
         }
-        
+    case'/download-pdf':
+        FileController::getFile('storage', '/public/Dummy_Test_PDF.pdf');
         break;
     case '/admin':
         BackDashboardController::index();

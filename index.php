@@ -19,6 +19,7 @@ require 'app/helpers/helpers.php';
 require 'bootstrap/exceptions.php';
 require 'kernel/auth.php';
 require 'mailing/mailer.php';
+require 'storage/Storage.php';
 
 session_start();
 

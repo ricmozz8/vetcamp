@@ -46,7 +46,16 @@ class Storage{
      * @return string The contents of the file.
      */
     public static function get($disk, $path){
-        throw new NotImplementedException("Storage::get is not implemented");
+        self::setDisk($disk);
+        $file_path = $disk . '/' . $path;
+        if (file_exists($file_path) && is_readable($file_path))
+        {
+            return file_get_contents($file_path);
+        }
+        else 
+        {
+        return false;
+        }
     }
 
     /**
