@@ -75,6 +75,9 @@ switch ($path) {
     case '/admin':
         BackDashboardController::index();
         break;
+    case '/admin/create':
+        SettingsController::createAdmin($method);
+        break;
     case '/admin/profile':
     case '/admin/requests/r':
         $application_id = $_GET['id'] ?? null;

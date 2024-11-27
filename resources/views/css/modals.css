@@ -14,6 +14,11 @@
     transition: all 0.3s ease;
 }
 
+/* remove text selection on modal */
+.modal * {
+    user-select: none; /* Standard syntax */
+}
+
 .modal-content {
     background-color: #fff;
     padding: 20px;

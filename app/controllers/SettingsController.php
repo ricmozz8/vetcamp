@@ -22,7 +22,7 @@ class SettingsController extends Controller
         if (Auth::user()->type != 'admin') {
             redirect('/login');
         }
-        
+
         $messages = Message::all();
         $message_array = [];
 
@@ -49,8 +49,8 @@ class SettingsController extends Controller
 
         }
 
-    $sessions = Session::all();
-        
+        $sessions = Session::all();
+
 
         render_view('settings', [
             'messages' => $message_array,
@@ -163,7 +163,51 @@ class SettingsController extends Controller
         $_SESSION['error'] = "Invalid request method.";
         redirect('/admin/settings');
     }
-    // ---
+    
+    /**
+     * Creates a new admin user in the database using the data provided in the POST request.
+     * If the request method is not POST, it redirects to the settings page with an error message.
+     * If the user is created successfully, it redirects to the settings page with a success message.
+     * If there is an error while creating the user, it redirects to the settings page with an error message.
+     *
+     * @param string $request_method The request method of the request.
+     *
+     * @return void
+     */
+    public static function createAdmin($request_method) {
+        if ($request_method == 'POST') {
+
+            // Check if the password and confirm password fields match
+            if($_POST['password'] !== $_POST['password_confirmation']){
+                $_SESSION['error'] = 'Las contraseñas no coinciden';
+                redirect('/admin/settings');
+            }
+
+            if(User::exists(['email' => $_POST['email']])){
+                $_SESSION['error'] = 'El correo ya existe';
+                redirect('/admin/settings');
+            }
+
+            $user = User::create([
+                'first_name' => $_POST['first_name'],
+                'last_name' => $_POST['last_name'],
+                'email' => $_POST['email'],
+                'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+                'type' => 'admin',
+            ]);
+
+            if ($user) {                
+                $_SESSION['message'] = 'Se ha creado el administrador exitosamente';
+                redirect('/admin/settings');
+            } else {
+                $_SESSION['error'] = 'Error al crear el administrador';
+                redirect('/admin/settings');
+            }
+        } 
+        // disallow other request methods only post will be valid
+        $_SESSION['error'] = 'Página no encontrada';
+        redirect('/admin/settings');
+    }
 
     // define your other methods here
 }

@@ -240,9 +240,25 @@ class Model
         return DB::insert(static::$table, $this->attributes);
     }
 
-    // public function storeUser() : bool {
-    //     return DB::insertUser($this->attributes);
-    // }
+
+
+    /**
+     * Checks if a record exists in the associated table with the given data.
+     *
+     * @param array $with An associative array with the column(s) to search as
+     *                    the key(s) and the value(s) as the value(s) to match
+     *
+     * @return bool Returns true if the record exists, otherwise false.
+     */
+    public static function exists(array $with) : bool{
+        try{
+            self::findBy($with);
+        } catch (ModelNotFoundException $e) {
+            return false;
+        }
+        return true;
+    }
+
 
     /**
      * Sets the model attributes from the given associative array.
@@ -258,6 +274,8 @@ class Model
             $this->attributes[$key] = $value;
         }
     }
+
+
 
 
 
