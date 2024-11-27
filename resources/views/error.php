@@ -10,7 +10,7 @@ require __DIR__ . '/partials/header.php';
     <div class="error-container">
         <div class="iso-centered">
             <img src="/<?= asset('logo/SVG/vetcamp_iso_w.svg') ?>" alt="">
-            <h2>Ha ocurrido un error!</h2>
+            <h2>¡Ha ocurrido un error!</h2>
             <?php if ($code == 404) { ?>
                 <p>La página solicitada no existe.</p>
             <?php } else { ?>

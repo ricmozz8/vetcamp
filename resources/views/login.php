@@ -55,7 +55,7 @@ require __DIR__ . '/partials/header.php';
             </form>
             <div class="splitted-actions">
                 <a href="/forgotPass" class="main-action-bright no-deco-action">olvidé mi contraseña</a>
-                <a href="/register" class="main-action-bright no-deco-action">no tienes cuenta?</a>
+                <a href="/register" class="main-action-bright no-deco-action">¿no tienes cuenta?</a>
             </div>
         </div>
 
