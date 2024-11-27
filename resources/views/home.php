@@ -143,7 +143,7 @@ require __DIR__ . '/partials/header.php';
                     llenar la Certificación de Estudiante Educado en el Hogar
                     (certificación de la UPR - Administración Central) y
                     entregarla junto a la solicitud del VetCamp.</p>
-                <a class="main-action-bright secondary" href="">Descargar</a>
+                <a class="main-action-bright secondary" href="/solicitud">Descargar</a>
             </div>
         </div>
     </div>

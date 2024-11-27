@@ -43,9 +43,7 @@ require __DIR__ . '../../partials/header.php';
                     </div>
                     <div class="check-labeled">
                         <label>Solicitud Escrita</label>
-                        <form action="/download-pdf" method="POST">
-                          <a href="/download-pdf" class="btn-download">Descargar </a>
-                        </form>
+                          <a href="/solicitud" class="btn-download">Descargar </a>
                     </div>
 
                 </div>

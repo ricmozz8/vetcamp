@@ -71,7 +71,7 @@ switch ($path) {
         } else {
             redirect('/apply');
         }
-    case'/download-pdf':
+    case'/solicitud':
         FileController::getFile('storage', '/public/Dummy_Test_PDF.pdf');
         break;
     case '/admin':
