@@ -1,9 +1,11 @@
 <?php
+
 /**
  * This class will handle storage of files in various locations on the Storage folder
  * 
  */
-class Storage{
+class Storage
+{
 
     private static $storage_disk;
 
@@ -13,7 +15,8 @@ class Storage{
      *
      * @param string $disk The name of the disk to use.
      */
-    public static function setDisk($disk){
+    public static function setDisk($disk)
+    {
         self::$storage_disk = $disk;
     }
 
@@ -22,7 +25,8 @@ class Storage{
      *
      * @return string The name of the disk.
      */
-    public static function getDisk(){
+    public static function getDisk()
+    {
         return self::$storage_disk;
     }
 
@@ -33,7 +37,8 @@ class Storage{
      * @param string $path The path to the file to store.
      * @param string $contents The contents of the file to store.
      */
-    public static function store($disk, $path, $contents){
+    public static function store($disk, $path, $contents)
+    {
         throw new NotImplementedException("Storage::store is not implemented");
     }
 
@@ -45,16 +50,14 @@ class Storage{
      *
      * @return string The contents of the file.
      */
-    public static function get($disk, $path){
+    public static function get($disk, $path)
+    {
         self::setDisk($disk);
         $file_path = $disk . '/' . $path;
-        if (file_exists($file_path) && is_readable($file_path))
-        {
+        if (file_exists($file_path) && is_readable($file_path)) {
             return file_get_contents($file_path);
-        }
-        else 
-        {
-        return false;
+        } else {
+            return false;
         }
     }
 
@@ -65,9 +68,8 @@ class Storage{
      * @param string $path The path to the file to delete.
      *
      */
-    public static function delete($disk, $path){
+    public static function delete($disk, $path)
+    {
         throw new NotImplementedException("Storage::delete is not implemented");
     }
-
-    
 }
