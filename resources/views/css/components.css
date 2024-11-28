@@ -26,6 +26,7 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
+  text-wrap: nowrap;
 }
 .main-action-bright.negative {
   background-color: var(--secondary-color-default);

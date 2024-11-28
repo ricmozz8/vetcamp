@@ -12,7 +12,7 @@ require __DIR__ . '../../partials/header.php';
         <h1 class="">Vetcamp Verano <?php echo date('Y'); ?></h1>
         <form action="" method="POST">
             <input type="hidden" name="stage" value="1">
-            <button class="main-action-bright"><i class="las la-arrow-left"></i></button>
+            <button class="main-action-bright"><i class="las la-arrow-left"></i>Atrás</button>
         </form>
     </div>
 

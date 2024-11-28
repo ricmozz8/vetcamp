@@ -67,6 +67,11 @@ switch ($path) {
         // IMPORTANT: IT IS REQUIRED TO MOVE THIS TO A CONTROLLER WHEN IMPLEMENTING FUNCTIONALITY
         if($method == 'POST'){
             $stage = $_POST['stage'] ?? '1';
+
+            if ($stage == 'exit') {
+                redirect('/apply');
+            }
+            
             render_view('application/stage'.$stage  , [], 'Aplica');
         } else {
             redirect('/apply');

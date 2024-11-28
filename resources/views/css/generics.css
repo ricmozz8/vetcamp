@@ -22,10 +22,14 @@
     line-height: 1em;
 }
 
+.flex-min{
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
 .flex{
     display: flex;
-    flex-direction: column;
-    flex-direction: row;
 }
 
 .flex *{

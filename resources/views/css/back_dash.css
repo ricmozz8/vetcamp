@@ -370,6 +370,11 @@
   width: 100%;
 }
 
+/* Modal button styling */
+.modal-actions a, .modal-actions button {
+  width: fit-content;
+}
+
 /* Sessions modal styling */
 .session-modal-area {
   display: flex;
