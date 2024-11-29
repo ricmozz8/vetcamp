@@ -15,9 +15,11 @@
     <script src="<?= web_resource("js/modals.js") ?>"></script>
     <script src="<?= web_resource("js/dropdowns.js") ?>"></script>
     <script src="<?= web_resource("js/passwordShow.js") ?>"></script>
-    <script src="<? web_resource("js/backendDashboard.js")?>"></script>
+    <script src="<? web_resource("js/backendDashboard.js") ?>"></script>
+    <script src="<? web_resource("js/backendSidebar.js") ?>"></script>
 
-    <!-- TYPEFACES -->  
+
+    <!-- TYPEFACES -->
 
     <!-- Host Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,15 +42,17 @@
 </head>
 
 <?php if (isset($_SESSION['message'])) { ?>
-                <div id='notification' class="notification" onclick="closeModal('notification')">
-                    <i class="las la-exclamation-circle"></i>
-                    <p class="notification-content"><?=$_SESSION['message'] ?> </p>
-                </div>
-<?php unset($_SESSION['message']); } ?>
+    <div id='notification' class="notification" onclick="closeModal('notification')">
+        <i class="las la-exclamation-circle"></i>
+        <p class="notification-content"><?= $_SESSION['message'] ?> </p>
+    </div>
+<?php unset($_SESSION['message']);
+} ?>
 
 <?php if (isset($_SESSION['error'])) { ?>
-                <div id='notification' class="notification error" onclick="closeModal('notification')">
-                <i class="las la-exclamation-triangle"></i>
-                    <p class="notification-content"><?=$_SESSION['error'] ?> </p>
-                </div>
-<?php unset($_SESSION['error']); } ?>
+    <div id='notification' class="notification error" onclick="closeModal('notification')">
+        <i class="las la-exclamation-triangle"></i>
+        <p class="notification-content"><?= $_SESSION['error'] ?> </p>
+    </div>
+<?php unset($_SESSION['error']);
+} ?>

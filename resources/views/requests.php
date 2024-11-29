@@ -11,6 +11,11 @@ require __DIR__ . '/partials/header.php';
 
         <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
+        <a onclick="openModal('sidebar')" href="#" class="openSidebar">
+            <i class="las la-bars">
+            </i>
+        </a>
+
         <!-- Main content area -->
         <main class="main-content">
             <!-- Secondary logo container -->

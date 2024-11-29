@@ -1,5 +1,10 @@
 <!-- Sidebar navigation -->
-<aside class="sidebar">
+<aside id="sidebar" class="sidebar">
+
+        <!-- Close sidebar button -->
+        <a onclick="closeModal('sidebar')" class=" close-sidebar">
+                <i class="las la-times"></i>
+        </a>
         <!-- Logo section -->
         <div class="sidebar-logo">
                 <img src="/resources/assets/logo/SVG/vetcamp_full_ver_b.svg" alt="Vetcamp" class="logo logo-right">

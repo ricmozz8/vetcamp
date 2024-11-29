@@ -27,10 +27,14 @@ if ($hour >= 5 && $hour < 12) {
         <!-- Main content area -->
         <div class="main-content">
 
-
+            <a onclick="openModal('sidebar')" href="#" class="openSidebar">
+                <i class="las la-bars">
+                </i>
+            </a>
 
             <!-- Header with welcome message and action button -->
             <header class="header">
+
                 <h1 class="welcome"><?= $greeting ?>, <?= Auth::user()->first_name ?></h1>
                 <button class="main-action-bright" id="openModalButton">
                     <i class="las la-envelope"></i>

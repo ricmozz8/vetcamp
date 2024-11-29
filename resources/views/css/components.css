@@ -194,6 +194,171 @@ a.plain-action:hover {
   filter: brightness(0.8);
 }
 
+
+/*******************************
+ * SIDEBAR STYLES
+ * Navigation and branding elements
+ *******************************/
+/* Fixed sidebar container */
+.sidebar {
+  width: 280px;
+  background: var(--sidebar-bg);
+  height: 100vh;
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+/* Logo container - houses branding elements */
+.back-dash .logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-logo img {
+  width: 80px;
+  margin: 12px 20px;
+}
+
+/* Vertical navigation menu */
+.back-dash .nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Individual navigation items */
+.back-dash .nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: var(--dark-text-color);
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.close-sidebar{
+  margin: 0 20px;
+  display: none;
+}
+
+/* Interactive states for nav items */
+.back-dash .nav-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.back-dash .nav-item.active {
+  background: var(--main-color-default);
+  border-radius: 0 27px 27px 0;
+}
+
+/* Navigation and Main Content icons */
+.back-dash .nav-icon,
+.back-dash .main-icons {
+  width: 24px;
+  height: 24px;
+}
+
+.back-dash .nav-icon {
+  margin-right: 2%;
+}
+/*******************************
+ * USER PROFILE SECTION
+ * User information and controls at bottom of sidebar
+ *******************************/
+ .back-dash .user-profile {
+  position: relative;
+  background: #e7e7e7;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Circular user avatar */
+.back-dash .user-avatar {
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* User information container */
+.back-dash .user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* User email display */
+.back-dash .user-email {
+  font-size: 16px;
+  color: var(--dark-text-color);
+}
+
+/* Logout link styling */
+.back-dash .logout {
+  color: var(--dark-text-color);
+  text-decoration: underline;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.openSidebar{
+  display: none;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: var(--white-color-shade-1);
+  width: fit-content;
+  height: fit-content;
+}
+
+/*******************************
+ * MEDIA QUERIES FOR SIDEBAR
+ * Adapting the sizes for smaller screens and tablets for the sidebar.
+ *******************************/
+
+/* Tablet */
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    width: 280px;
+    position: fixed;
+    box-shadow: var(--shadow-soft);
+    z-index: 2;
+    display: flex;
+  }
+
+  .close-sidebar{
+    display: block;
+  }
+
+  .openSidebar{
+    display: block;
+    
+  }
+
+}
+
+/*******************************
+ * ANIMATIONS
+ * Animations for on screen appearing elements.
+ *******************************/
 @keyframes fadeDown {
   from {
     opacity: 0;
@@ -225,3 +390,5 @@ a.plain-action:hover {
     top: 15px;
   }
 }
+
+

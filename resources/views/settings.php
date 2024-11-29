@@ -23,6 +23,11 @@ require __DIR__ . '/partials/header.php';
 
         <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
+        <a onclick="openModal('sidebar')" href="#" class="openSidebar">
+            <i class="las la-bars">
+            </i>
+        </a>
+
         <!-- Main content area -->
         <main class="main-content">
             <!-- Secondary logo container -->
@@ -495,9 +500,8 @@ require __DIR__ . '/partials/header.php';
             <button class="secondary main-action-bright" onclick="closeModal('archivePopup')">Confirmar</button>
         </div>
     </div>
-    
+
     <?php require_once('modals/createAdminModal.php'); ?>
-    <!--<script src="<?= web_resource("js/backendDashboard.js") ?>"></script>-->
 
     <!-- Footer with copyright information -->
     <?php require_once('partials/footer.php'); ?>

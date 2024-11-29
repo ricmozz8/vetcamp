@@ -8,15 +8,15 @@ function closeModal(modalId) {
 }
 
 
-/* may be deleted
-let currentModal = null;
-
-function openOverlay(modalId) {
-    document.getElementById("popupOverlay").style.display = "block";
-    currentModal = modalId;
+function handleResize() {
+    if (window.matchMedia("(min-width: 768px)").matches) {
+        sidebar.style.display = "flex";
+    } else {
+        sidebar.style.display = "none";
+    }
 }
 
-function closeOverlay() {
-    document.getElementById("popupOverlay").style.display = "none";
-    document.getElementById(currentModal).style.display = "none";
-}*/
+window.addEventListener("resize", handleResize);
+
+// Initial check
+handleResize();
