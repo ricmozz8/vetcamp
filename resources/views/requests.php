@@ -60,7 +60,8 @@ require __DIR__ . '/partials/header.php';
                             // Get the full name
                             setlocale(LC_TIME, 'es_ES.UTF-8');
                             $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
-                            $date = new DateTime($user->created_at);
+                            
+
 
                             echo "<tr>";
                             echo "<td><img class='profile-picture' src=" . htmlspecialchars($user->application()->url_picture) . " alt='Profile Picture'></td>";
@@ -68,7 +69,7 @@ require __DIR__ . '/partials/header.php';
                             echo "<td>" . htmlspecialchars($user->email) . "</td>";
                             echo "<td>" . htmlspecialchars($user->application()->documentCount()) . "/6</td>";
                             echo "<td>" . htmlspecialchars($user->status) . "</td>";
-                            echo "<td>" . htmlspecialchars($date->format('d-m-Y')) . "</td>";
+                            echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
                             echo "<td>" . '<a class="main-action-bright no-deco-action" href="requests/r?id=' . $user->user_id . '" class="review-link">revisar</a>' . "</td>";          //To add "revisar" link
                             echo "</tr>";
                         }

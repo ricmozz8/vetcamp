@@ -52,12 +52,12 @@ require_once __DIR__ . '/partials/header.php';
                         foreach ($users as $user) {
                             // Get the full name
                             $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
-                            $date = new DateTime($user->created_at);
+                            
                             echo "<tr>";
                             echo "<td>" . $full_name . "</td>";
                             echo "<td>" . htmlspecialchars($user->email) . "</td>";
                             echo "<td>" . htmlspecialchars($user->status) . "</td>";
-                            echo "<td>" . htmlspecialchars($date->format('d-m-Y')) . "</td>";
+                            echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
                             echo "</tr>";
                         }
                         ?>
