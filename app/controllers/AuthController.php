@@ -30,6 +30,9 @@ class AuthController extends Controller
                     // Authentication successful
                     Auth::login($user);
 
+                    // update last login timestamp
+                    $user->update(['last_login' => date('Y-m-d H:i:s')]);
+
                     if (Auth::user()->type == 'admin') {
                         redirect('/admin');
                     } else {
