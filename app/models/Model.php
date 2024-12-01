@@ -296,7 +296,19 @@ class Model
         }
         return $data;
     }
-
+    
+    public function delete()
+    {
+        self::init();
+    
+        $primaryKey = static::$primary_key;
+        $table = static::$table;
+    
+        $query = "DELETE FROM $table WHERE $primaryKey = :id";
+        $params = [':id' => $this->attributes[$primaryKey]];
+    
+        DB::execute($query, $params);
+    }
 
 
 }
