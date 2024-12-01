@@ -41,7 +41,8 @@ class AuthController extends Controller
 
                 } else {
                     // Authentication failed
-                    $_SESSION['error'] = 'Incorrect credentials';
+                    $_SESSION['error'] = 'Credenciales Incorrectas, intente de nuevo';
+                    redirect('/login');
                 }
             }
         } else {
