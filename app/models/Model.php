@@ -240,6 +240,19 @@ class Model
         return DB::insert(static::$table, $this->attributes);
     }
 
+    /**
+     * Deletes the current record from the associated table.
+     *
+     * This method removes the record identified by the primary key from the database.
+     * It initializes the model if necessary before performing the delete operation.
+     *
+     * @return bool Returns true if the record was successfully deleted, otherwise false.
+     */
+    public function delete()
+    {
+        return DB::remove(static::$table, static::$primary_key, $this->attributes[static::$primary_key]);
+    }
+
 
 
     /**
@@ -297,18 +310,7 @@ class Model
         return $data;
     }
     
-    public function delete()
-    {
-        self::init();
-    
-        $primaryKey = static::$primary_key;
-        $table = static::$table;
-    
-        $query = "DELETE FROM $table WHERE $primaryKey = :id";
-        $params = [':id' => $this->attributes[$primaryKey]];
-    
-        DB::execute($query, $params);
-    }
+ 
 
 
 }

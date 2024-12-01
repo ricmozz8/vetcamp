@@ -102,6 +102,7 @@ class SettingsController extends Controller
     }
     public static function updateSession($request_method)
     {
+        // NOTE: Need to cleanup this code
         if ($request_method === 'POST') {
             // Retrieve the session data from the POST request
             $sessions = $_POST['sessions'] ?? null;
@@ -114,15 +115,15 @@ class SettingsController extends Controller
                     if ($session) {
                         $session->delete(); // Call the new delete method
                     }
-                } catch (Exception $e) {
-                    $_SESSION['error_message'] = "An error occurred: " . $e->getMessage();
+                } catch (ModelNotFoundException $e) {
+                    $_SESSION['error'] = "No se puede eliminar un record no existente";
                 }
     
                 // Redirect back to the sessions page after deleting
                 redirect('/admin/settings');
             }
             if (!$sessions && !$new_sessions) {
-                $_SESSION['error'] = "No session data provided.";
+                $_SESSION['error'] = "Ha ocurrido un error.";
                 redirect('/admin/settings');
             }
             try {
@@ -172,10 +173,6 @@ class SettingsController extends Controller
             $_SESSION['message'] = 'Se han editado las sesiones exitosamente';
             redirect('/admin/settings');
         }
-
-        // Handle invalid request methods
-        http_response_code(405);
-        $_SESSION['error'] = "Invalid request method.";
         redirect('/admin/settings');
     }
     
