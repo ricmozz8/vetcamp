@@ -106,6 +106,21 @@ class SettingsController extends Controller
             // Retrieve the session data from the POST request
             $sessions = $_POST['sessions'] ?? null;
             $new_sessions = $_POST['new_sessions'] ?? [];
+            $delete_session_id = $_POST['delete_session'] ?? null;
+            if ($delete_session_id) {
+                try {
+                    $session = Session::find((int)$delete_session_id);
+    
+                    if ($session) {
+                        $session->delete(); // Call the new delete method
+                    }
+                } catch (Exception $e) {
+                    $_SESSION['error_message'] = "An error occurred: " . $e->getMessage();
+                }
+    
+                // Redirect back to the sessions page after deleting
+                redirect('/admin/settings');
+            }
             if (!$sessions && !$new_sessions) {
                 $_SESSION['error'] = "No session data provided.";
                 redirect('/admin/settings');
