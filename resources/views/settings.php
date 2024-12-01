@@ -156,7 +156,8 @@ require __DIR__ . '/partials/header.php';
                 <?php $session_array = []; ?>
                 <?php foreach ($sessions as $index => $session): ?>
                     <div class="session-modal-edit">
-                        <button type="button" class="trash-button"> <i class="las la-trash"></i> </button>
+                        <button type="submit" class="trash-button" name="delete_session" value="<?php echo $session->session_id; ?>"> 
+                        <i class="las la-trash"></i> </button>
                         <input type="hidden" name="sessions[<?php echo $index; ?>][id]" value="<?php echo $session->session_id ?>" />
                         <input type="text" class="session-edit-input" name="sessions[<?php echo $index; ?>][title]" value="<?php echo $session->title ?>" />
                         <input type="date" class="session-edit-input" name="sessions[<?php echo $index; ?>][start_date]" value="<?php echo $session->start_date ?>" />
