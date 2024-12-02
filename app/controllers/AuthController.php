@@ -12,10 +12,13 @@ class AuthController extends Controller
      */
     public static function login($method)
     {
-
         if ($method == 'POST') {
             $email = $_POST['email'];
             $password = $_POST['password'];
+
+            if(!empty($_POST['botcheck'])) {
+                redirect('/');
+            }
 
             if (isset($email) && isset($password)) {
                 try {
@@ -84,6 +87,9 @@ class AuthController extends Controller
 
         if ($method == 'POST') {
 
+            if(!empty($_POST['botcheck'])) {
+                redirect('/');
+            }
 
             if ($_POST['password'] !== $_POST['confirm_password']) {
                 $error = 'Passwords do not match';

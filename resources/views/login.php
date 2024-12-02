@@ -39,7 +39,9 @@ require __DIR__ . '/partials/header.php';
 
                         <div class="password-container">
                             <input autocomplete="off"  type="password" id="password" name="password" required class="input-field input-password" placeholder="Ingrese su contraseña">
-
+                            <!-- Este Campo es invisible -->
+                            <label for="botcheck" style="display:none;">Deja este campo vacío:</label>
+                            <input type="text" id="botcheck" name="botcheck" style="display:none;">
                         </div>
                     </div>
 

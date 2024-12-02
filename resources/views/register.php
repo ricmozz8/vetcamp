@@ -104,6 +104,9 @@ require __DIR__ . '/partials/header.php';
                                 required>
                             
                         </div>
+                        <!-- Este Campo es invisible -->
+                        <label for="botcheck" style="display:none;">Deja este campo vacío:</label>
+                        <input type="text" id="botcheck" name="botcheck" style="display:none;">
                     </div>
                 </div>
 
