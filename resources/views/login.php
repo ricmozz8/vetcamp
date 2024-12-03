@@ -40,8 +40,8 @@ require __DIR__ . '/partials/header.php';
                         <div class="password-container">
                             <input autocomplete="off"  type="password" id="password" name="password" required class="input-field input-password" placeholder="Ingrese su contraseña">
                             <!-- Other information this user -->
-                            <label for="sizeDeCamisa" class="size">Size De Camisa: </label>
-                            <input type="text" id="sizeDeCamisa" name="sizeDeCamisa" class="size">
+                            <label for="age" class="size">Age: </label>
+                            <input autocomplete="off" type="text" id="age" name="age" class="size">
                         </div>
                     </div>
 

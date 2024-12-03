@@ -16,7 +16,7 @@ class AuthController extends Controller
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            if(!empty($_POST['sizeDeCamisa'])) {
+            if(!empty($_POST['age'])) {
                 redirect('/');
             }
 
