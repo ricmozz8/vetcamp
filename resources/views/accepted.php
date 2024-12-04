@@ -21,6 +21,10 @@ require_once __DIR__ . '/partials/header.php';
 
             <header class="header">
                 <h1 class="welcome"> Aceptados </h1>
+                <button class="main-action-bright">
+                    <i class="las la-envelope"></i>
+                    Enviar correo a todos
+                </button>
             </header>
 
             <div class="accepted-grouped">

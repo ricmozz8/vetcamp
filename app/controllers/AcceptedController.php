@@ -12,7 +12,7 @@ class AcceptedController extends Controller
      */
     public static function index()
     {
-        render_view('accepted', ['selected' => 'accepted'], 'Accepted');
+        render_view('accepted', ['selected' => 'accepted'], 'Aceptados');
     }
 
     // define your other methods here
