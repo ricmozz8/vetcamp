@@ -205,7 +205,8 @@ a.plain-action:hover {
   background: var(--sidebar-bg);
   height: 100vh;
   min-height: 100%;
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   padding: 20px 0;

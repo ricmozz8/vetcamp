@@ -6,9 +6,9 @@
                 <i class="las la-times"></i>
         </a>
         <!-- Logo section -->
-        <div class="sidebar-logo">
+        <a class="sidebar-logo" href="/admin">
                 <img src="/resources/assets/logo/SVG/vetcamp_full_ver_b.svg" alt="Vetcamp" class="logo logo-right">
-        </div>
+        </a>
 
         <!-- Main navigation menu -->
         <nav class="nav-links">
