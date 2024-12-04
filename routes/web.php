@@ -19,6 +19,7 @@ require 'app/controllers/RequestsController.php';
 require 'app/controllers/EvaluateController.php';
 require 'app/controllers/TrackingController.php';
 require 'app/controllers/ApplicationController.php';
+require 'app/controllers/AcceptedController.php';
 require 'app/controllers/FileController.php';
 
 $request = $_SERVER['REQUEST_URI'];
@@ -98,6 +99,9 @@ switch ($path) {
         break;
     case '/admin/registered':
         RegisteredController::index();
+        break;
+    case '/admin/accepted':
+        AcceptedController::index();
         break;
     case '/admin/settings':
         SettingsController::index();

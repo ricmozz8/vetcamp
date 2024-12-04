@@ -30,7 +30,9 @@
                         <i class="las la-user-friends"></i>
                         <span>Registrados</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="/admin/accepted" class="nav-item <?php if ($selected == 'accepted') {
+                                                                        echo 'active';
+                                                                }  ?>">
                         <i class="las la-check"></i>
                         <span>Aceptados</span>
                 </a>
