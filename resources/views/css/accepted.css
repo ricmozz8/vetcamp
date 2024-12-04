@@ -1,0 +1,41 @@
+.accepted-card-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.accepted-card{
+    padding: 1em;
+    background-color: var(--sidebar-bg);
+    border-radius: 27px;
+    transition: all 0.2s ease;
+    margin-bottom: 45vh;
+
+}
+
+.accepted-card-title{
+    font-weight: 500;
+}
+
+.accepted-user-card{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    background-color: var(--white-color);
+    padding: 15px;
+    border-radius: 27px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.accepted-user-card:hover{
+    background-color: var(--white-color-shade-1);
+}
+
+.accepted-user-card img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
