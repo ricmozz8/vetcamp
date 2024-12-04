@@ -4,9 +4,6 @@ require_once 'Controller.php';
 
 class FileController extends Controller
 {
-   
-    
-/*************  ✨ Codeium Command ⭐  *************/
     /**
      * Outputs a PDF file from the specified disk and path.
      *
@@ -15,7 +12,6 @@ class FileController extends Controller
      * @param string $disk The name of the disk to retrieve the file from.
      * @param string $path The path to the file to retrieve.
      */
-/******  01f2812f-2354-40fe-9be9-4cee2a81499e  *******/
     public static function getFile($disk, $path)
     {
         $file_contents = Storage::get($disk, $path);

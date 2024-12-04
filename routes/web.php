@@ -77,7 +77,7 @@ switch ($path) {
             redirect('/apply');
         }
     case'/solicitud':
-        FileController::getFile('storage', '/public/Dummy_Test_PDF.pdf');
+        FileController::getFile('storage', '/public/Formulario de Inscripción Vet CAMP UPR-Arecibo Verano 2025.pdf');
         break;
     case '/admin':
         BackDashboardController::index();
