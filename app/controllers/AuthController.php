@@ -16,7 +16,7 @@ class AuthController extends Controller
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            if(!empty($_POST['botcheck'])) {
+            if(!empty($_POST['age'])) {
                 redirect('/');
             }
 
@@ -87,7 +87,7 @@ class AuthController extends Controller
 
         if ($method == 'POST') {
 
-            if(!empty($_POST['botcheck'])) {
+            if(!empty($_POST['sizeDeCamisa'])) {
                 redirect('/');
             }
 

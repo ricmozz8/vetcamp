@@ -51,6 +51,11 @@
     width: 100%;
 }
 
+.size {
+    position: absolute;
+    left: -800em;
+}
+
 /* tablet */
 
 @media only screen and (min-width: 768px) {
