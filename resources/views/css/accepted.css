@@ -1,13 +1,7 @@
 .accepted-grouped{
     margin-bottom: 2em;
 }
-.accepted-card-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-wrap: nowrap;
-    gap: 1em;
-}
+
 
 .accepted-card{
     padding: 1em;
@@ -16,6 +10,25 @@
     transition: all 0.2s ease;
     margin: 1em 0;
     
+
+}
+
+.accepted-card-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.accepted-card-header h2{
+    font-size: 1em;
+}
+
+.accepted-card-header button{
+    display: block;
+    margin-bottom: 1em;
+    font-size: 0.8em;
 
 }
 
@@ -55,7 +68,32 @@
 }
 
 /* tablet */
+
 @media screen and (min-width: 768px) {
+    .accepted-card-header{
+       flex-direction: row  ;
+        justify-content: space-between;
+    
+        gap: 1em;
+    }
+    .accepted-card-header h2{
+        font-size: 1.2em;
+    }
+    
+    .accepted-card-header button{
+        font-size: initial;
+    }
+    
+}
+
+@media screen and (min-width: 1280px) {
+    .accepted-card-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    
+        gap: 1em;
+    }
     .accepted-grouped{
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -66,6 +104,14 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: .5em;
+    }
+
+    .accepted-card-header h2{
+        font-size: 1.6em;
+    }
+    
+    .accepted-card-header button{
+        font-size: initial;
     }
     
     
