@@ -201,7 +201,7 @@ a.plain-action:hover {
  *******************************/
 /* Fixed sidebar container */
 .sidebar {
-  width: 280px;
+  min-width: 280px;
   background: var(--sidebar-bg);
   height: 100vh;
   min-height: 100%;

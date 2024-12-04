@@ -1,7 +1,12 @@
+.accepted-grouped{
+    margin-bottom: 2em;
+}
 .accepted-card-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    text-wrap: nowrap;
+    gap: 1em;
 }
 
 .accepted-card{
@@ -9,15 +14,24 @@
     background-color: var(--sidebar-bg);
     border-radius: 27px;
     transition: all 0.2s ease;
-    margin-bottom: 45vh;
+    margin: 1em 0;
+    
 
 }
+
 
 .accepted-card-title{
     font-weight: 500;
 }
 
+.accepted-card-list{
+    overflow-y: scroll;
+    max-height: 400px;
+    
+}
+
 .accepted-user-card{
+    height: 100%;   
     display: flex;
     align-items: center;
     gap: 1em;
@@ -38,4 +52,21 @@
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+/* tablet */
+@media screen and (min-width: 768px) {
+    .accepted-grouped{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1em;
+    }
+
+    .accepted-card-list{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .5em;
+    }
+    
+    
 }
