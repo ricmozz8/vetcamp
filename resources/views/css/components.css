@@ -330,6 +330,15 @@ a.plain-action:hover {
   height: fit-content;
 }
 
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: var(--white-color);
+  outline: none;
+  border: 1px solid var(--white-color-shade-1);
+}
+
 /*******************************
  * MEDIA QUERIES FOR SIDEBAR
  * Adapting the sizes for smaller screens and tablets for the sidebar.

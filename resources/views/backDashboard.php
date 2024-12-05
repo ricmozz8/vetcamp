@@ -36,7 +36,7 @@ if ($hour >= 5 && $hour < 12) {
             <header class="header">
 
                 <h1 class="welcome"><?= $greeting ?>, <?= Auth::user()->first_name ?></h1>
-                <button class="main-action-bright" id="openModalButton">
+                <button class="main-action-bright" onclick="openModal('massiveEmailModal')">
                     <i class="las la-envelope"></i>
                     Enviar mensaje
                 </button>
@@ -121,63 +121,8 @@ if ($hour >= 5 && $hour < 12) {
                 </div>
             </div>
 
-            <!-- Modal Popup -->
-            <!-- The overlay provides a semi-transparent dark background behind the popup -->
-            <div class="popup-overlay" id="popupOverlay" style="display: none"></div>
-
-            <!-- Main popup container with the form -->
-
-            <div class="message-popup" id="messagePopup" style="display: none">
-                <!-- Close button in the top-right corner -->
-                <a href="#" class="plain-action" id="closePopup"><i class="las la-times"></i></a>
-
-                <!-- Popup title -->
-                <h2 class="message-title">Enviar mensaje</h2>
-
-                <!-- Message filter options -->
-                <div class="message-options">
-                    <!-- Filter buttons for different message states -->
-                    <button id="approvedButton" class="option-button">
-                        <div class="option-indicator">
-                            <div class="indicator-dot"></div>
-                        </div>
-                        <span class="option-text">Aprobados</span>
-                    </button>
-                    <button class="option-button" id="deniedButton">
-                        <div class="option-indicator">
-                            <div class="indicator-dot"></div>
-                        </div>
-                        <span class="option-text">Denegados</span>
-                    </button>
-                    <button class="option-button" id="allButton">
-                        <div class="option-indicator">
-                            <div class="indicator-dot"></div>
-                        </div>
-                        <span class="option-text">Todos</span>
-                    </button>
-
-
-                    <select class="form-rounded" name="section" id="sectionDropdown" style="display: none;">
-                        <option value="">Seleccione una sección</option>
-                        <option value="1">Sección 1</option>
-                        <option value="2">Sección 2</option>
-                        <option value="3">Sección 3</option>
-                        <option value="4">Sección 4</option>
-                    </select>
-                </div>
-
-                <!-- Preset message option -->
-                <label class="preset-message">
-                    <input type="checkbox" class="preset-checkbox" id="usePresetMessage">
-                    <span>Utilizar Mensajes Predefinidos</span>
-                </label>
-
-                <!-- Message input area -->
-                <textarea class="message-textarea" placeholder="Escriba su mensaje aquí..." aria-label="Message input"></textarea>
-
-                <!-- Send button -->
-                <button class="secondary main-action-bright" id="sendButton">Enviar</button>
-            </div>
+            <!-- Massive Email Modal -->
+             <?php require_once('modals/sendMassiveMailModal.php'); ?>
         </div>
     </div>
 
