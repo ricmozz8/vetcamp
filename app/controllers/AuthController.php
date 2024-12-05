@@ -13,13 +13,16 @@ class AuthController extends Controller
     public static function login($method)
     {
         if ($method == 'POST') {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
 
+            $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+            $password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
+
+            // this is a dummy test to prevent bot registry.
             if(!empty($_POST['age'])) {
                 redirect('/');
             }
 
+            
             if (isset($email) && isset($password)) {
                 try {
                     $user = User::findBy(['email' => $email, 'status' => 'active']);

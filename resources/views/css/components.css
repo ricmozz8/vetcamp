@@ -160,6 +160,10 @@ a.plain-action:hover {
   border: none;
 }
 
+.app-logotype{
+  width: 100px;
+}
+
 /* Notification Card */
 .notification {
   display: flex;

@@ -11,7 +11,9 @@ require __DIR__ . '/partials/header.php';
         <div class="content-left">
 
             <!-- Logo with link to home page -->
-            <a class="logo" href="/"><img src="resources/assets/logo/SVG/vetcamp_full_hoz_b.svg" alt="Vetcamp" class="logo"></a>
+            <a class="logo" href="/">
+            <?php require_once('partials/applicationLogo.php'); ?>
+            </a>
 
             <!-- Login Form -->
             <form action="/login" method="POST"> <!-- Update -->
@@ -39,9 +41,6 @@ require __DIR__ . '/partials/header.php';
 
                         <div class="password-container">
                             <input autocomplete="off"  type="password" id="password" name="password" required class="input-field input-password" placeholder="Ingrese su contraseña">
-                            <!-- Other information this user -->
-                            <label for="age" class="size">Age: </label>
-                            <input autocomplete="off" type="text" id="age" name="age" class="size">
                         </div>
                     </div>
 

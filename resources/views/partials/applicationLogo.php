@@ -1,0 +1,1 @@
+<img class="app-logotype" src="/<?= asset('logo/SVG/vetcamp-full-black.svg') ?>" alt="Vetcamp Logo">
