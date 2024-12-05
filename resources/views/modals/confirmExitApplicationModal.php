@@ -11,7 +11,6 @@
             <input type="hidden" name="-1">
             <a class="main-action-bright quaternary" onclick="closeModal('confirmExitApplicationModal')">Cancelar</a>
             <a class="main-action-bright danger" href="/apply"><i class="las la-times"></i>Salir sin guardar</a>
-            <button class="main-action-bright" onclick="closeModal('confirmExitApplicationModal')"><i class="las la-check"></i>Guardar y salir</button>
         </div>
     </div>
 </div>

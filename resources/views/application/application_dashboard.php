@@ -2,6 +2,8 @@
 <html lang="en">
 <?php
 require __DIR__ . '../../partials/header.php';
+
+$status = Auth::user()->application()->status;
 ?>
 
 <body>
@@ -15,7 +17,11 @@ require __DIR__ . '../../partials/header.php';
 
         <div class="splitted-title-head">
             <h3>Vetcamp Verano <?php echo date('Y'); ?></h3>
-            <p class="status not-filled">Estado: <?php echo 'Sin llenar'; ?></p>
+            <div class="flex-min">
+                <p>Estado: </p>
+                <p class="status <?= str_replace(' ', '-', strtolower($status)) ?>"><?php echo $status; ?></p>
+            </div>
+            
         </div>
 
         <p>Campamento de verano para estudiantes de escuela

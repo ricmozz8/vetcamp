@@ -10,8 +10,6 @@ class EvaluateController extends Controller
         // your index view here
 
     }
-
-    // CHANGE THESE TWO METHODS TO SETTINGS PAGE AND ADAPT TO EDIT MODAL
     /**
      * Updates all the messages in the database with the new content in the corresponding POST keys.
      *
@@ -23,13 +21,14 @@ class EvaluateController extends Controller
     {
 
         if ($request_method == 'POST') {
-            $application = Auth::$user->application();
+            $application = Auth::user()->application();
 
             if($application == null){
             redirect('/admin');
             }
-            
-            if (isset($_POST['status'])) {
+
+            $status = filter_input(INPUT_POST, 'status', FILTER_DEFAULT);
+            if (isset($status) and in_array($status, array_keys(Application::$statusParsings))) {
                 $newStatus = $_POST['status'];
                 $application->update(['status' => $newStatus]);
             }

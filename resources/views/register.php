@@ -90,8 +90,8 @@ require __DIR__ . '/partials/header.php';
 
                     <div class="field-wrapper">
                         <!-- Confirm password input field -->
-                        <div class="flex">Confirme Contraseña 
-                        <span class="password-toggle" onclick="togglePasswords()">
+                        <div class="flex">Confirme Contraseña
+                            <span class="password-toggle" onclick="togglePasswords()">
                                 Alternar Mostrar<i class="fas fa-eye"></i>
                             </span>
                         </div>
@@ -102,11 +102,13 @@ require __DIR__ . '/partials/header.php';
                                 class="input-field input-confirm-password"
                                 placeholder="Ingrese la contraseña de nuevo"
                                 required>
-                            
+
                         </div>
                         <!-- Other information this user -->
-                        <label for="sizeDeCamisa" class="size">Size De Camisa: </label>
-                        <input type="text" id="sizeDeCamisa" name="sizeDeCamisa" class="size">
+                        <div class="age-check-input">
+                            <label for="age" class="size">Age: </label>
+                            <input type="text" id="age" name="age" class="age-check-input">
+                        </div>
                     </div>
                 </div>
 

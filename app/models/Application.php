@@ -6,6 +6,20 @@ class Application extends Model{
 
     protected static $primary_key = 'id_application'; // Primary key
     protected static $table = 'applications'; // Table
+    public static $statusParsings = [
+        'unsubmitted' => 'Sin llenar',
+        'submitted' => 'Sometida',
+        'need_changes' => 'Necesita Cambios',
+        'approved' => 'Aceptado',
+        'denied' => 'Rechazado',
+        'incomplete' => 'Incompleta'
+    ];
+
+    public function __construct(array $attributes, array $sanitized)
+    {
+        parent::__construct( $attributes,  $sanitized);
+        $this->status = self::$statusParsings[$this->status];
+    }
 
     public function preferred_session($human_readable = false)
     {

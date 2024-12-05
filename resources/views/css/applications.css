@@ -88,19 +88,19 @@
     font-weight: bold;
 }
 
-.not-filled{
+.sin-llenar{
     color: var(--status-not-filled);
 }
 
-.filling{   
+.incompleta, .necesita-cambios{   
     color: var(--status-filling);
 }
 
-.filled{
+.sometida{
     color: var(--status-filled);
 }
 
-.rejected{
+.rechazada{
     color: var(--status-rejected);
 }
 
@@ -172,7 +172,6 @@
 .tab {
     padding: 10px;
     color: #333;
-    cursor: pointer;
 }
 
 .tab.active {

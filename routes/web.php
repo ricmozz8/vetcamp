@@ -21,6 +21,7 @@ require 'app/controllers/TrackingController.php';
 require 'app/controllers/ApplicationController.php';
 require 'app/controllers/AcceptedController.php';
 require 'app/controllers/FileController.php';
+require 'app/controllers/UserApplicationController.php';
 
 $request = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
@@ -62,21 +63,10 @@ switch ($path) {
         AuthController::logoutUser($method);
         break;
     case '/apply':
-        ApplicationController::index();
+        UserApplicationController::index();
         break;
     case '/apply/application':
-        // IMPORTANT: IT IS REQUIRED TO MOVE THIS TO A CONTROLLER WHEN IMPLEMENTING FUNCTIONALITY
-        if($method == 'POST'){
-            $stage = $_POST['stage'] ?? '1';
-
-            if ($stage == 'exit') {
-                redirect('/apply');
-            }
-            
-            render_view('application/stage'.$stage  , [], 'Aplica');
-        } else {
-            redirect('/apply');
-        }
+        UserApplicationController::basic_data($method);
     case'/solicitud':
         FileController::getFile('storage', '/public/Formulario de Inscripción Vet CAMP UPR-Arecibo Verano 2025.pdf');
         break;

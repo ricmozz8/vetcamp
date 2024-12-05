@@ -32,6 +32,11 @@
     display: flex;
 }
 
+.age-check-input{
+    position: absolute;
+    left: -600em;
+}
+
 .flex *{
     display: block;
     width: 100%;
