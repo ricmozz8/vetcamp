@@ -2,8 +2,8 @@
 <html lang="en">
 <?php
 require __DIR__ . '../../partials/header.php';
-
-$status = Auth::user()->application()->status;
+$application = Auth::user()->application();
+$status = $application ? $application->status : 'Sin llenar';
 ?>
 
 <body>
@@ -21,7 +21,7 @@ $status = Auth::user()->application()->status;
                 <p>Estado: </p>
                 <p class="status <?= str_replace(' ', '-', strtolower($status)) ?>"><?php echo $status; ?></p>
             </div>
-            
+
         </div>
 
         <p>Campamento de verano para estudiantes de escuela
@@ -32,9 +32,9 @@ $status = Auth::user()->application()->status;
         <div class="status-actions">
             <form action="/apply/application" method="POST">
                 <input type="hidden" name="stage" value="1">
-           
-                    <button class="main-action-bright secondary" type="submit">Llenar solicitud</button>
-              
+
+                <button class="main-action-bright secondary" type="submit">Llenar solicitud</button>
+
             </form>
         </div>
 
