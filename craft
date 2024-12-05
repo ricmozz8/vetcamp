@@ -111,9 +111,6 @@ switch ($action) {
         break;
 
     case 'test':
-        // creating the test file
-        echo '[WARNING] TESTING FRAMEWORK IS CURRENTLY DISABLED' . PHP_EOL;
-        exit;
         $test_file = TESTS_FOLDER . ucfirst($name) . '.php';
         $test_content = file_get_contents(SCAFFOLDING_FOLDER . 'test.tpl');
         $test_content = str_replace('{name}', $name, $test_content);

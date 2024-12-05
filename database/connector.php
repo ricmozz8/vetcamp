@@ -28,7 +28,7 @@ final class DB
     {
 
         $dsn = CONFIG['database']['service'] . ':' . http_build_query($connection, '', ';');
-
+        //dd($dsn);
         try {
 
             self::$database = new PDO($dsn, $user, $password, [

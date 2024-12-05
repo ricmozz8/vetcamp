@@ -7,6 +7,16 @@ class Application extends Model{
     protected static $primary_key = 'id_application'; // Primary key
     protected static $table = 'applications'; // Table
 
+    /**
+     * Retrieves the preferred session of the application.
+     * 
+     * If the second argument is true, the method will return a human-readable string
+     * containing the title of the session and the start and end dates of the session.
+     * If the second argument is false, the method will return an object of class Session.
+     * 
+     * @param boolean $human_readable If true, returns a human-readable string. If false, returns a Session object.
+     * @return string|Session Depending on the value of $human_readable.
+     */
     public function preferred_session($human_readable = false)
     {
 
@@ -19,6 +29,11 @@ class Application extends Model{
         return $session;
     }
 
+    /**
+     * Counts the number of documents uploaded by the user in the application.
+     * 
+     * @return int The number of uploaded documents.
+     */
     public function documentCount()
     {
         $count = 0;
@@ -34,4 +49,29 @@ class Application extends Model{
         return $count;
     }
 
+   
+    
+    
+    /**
+     * Deletes all denied user requests and the users themselves ( from the list of solicitants).
+     * 
+     * Iterates over all applicants and checks if the application status is 'denied'. If so, it calls the delete() method on the Application model.
+     * 
+     * @return array An array of the deleted user IDs.
+     */
+    public function UserisDeniedDeletion() {
+        $users = User::allApplicants();
+        $deletedApplications = [];
+    
+        foreach ($users as $user) 
+        {
+            $application = $user->application();
+    
+            if ($application && $application->status === 'denied') {
+                $deniedUsers = $application->delete();
+                $deletedApplications[] = $deniedUsers;
+            }
+        }
+        return $deletedApplications;
+    }
 }

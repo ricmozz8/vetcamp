@@ -127,6 +127,9 @@ switch ($path) {
     case '/admin/profile/track': # need correct url
         TrackingController::TrackingEvaluation($method);
         break;
+    case '/admin/delete/rejected/requests':
+        SettingsController::deleteRejectedRequests($method);
+        break;
     default:
         abort(404, 'Page was not found');
         break;
