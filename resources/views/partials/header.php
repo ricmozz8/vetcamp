@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/<?= asset("logo/SVG/vetcamp_iso_p.svg") ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="/<?= asset("logo/SVG/vetcamp-icon-yellow.svg") ?>" type="image/x-icon">
 
     <!-- CSS -->
 

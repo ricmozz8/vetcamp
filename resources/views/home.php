@@ -9,7 +9,7 @@ require __DIR__ . '/partials/header.php';
         <p style="font-weight: bold;">DO NOT SHOW TO STAKEHOLDERS | WEBSITE UNDER CONSTRUCTION</p>
     </div> -->
     <header class="navbar">
-        <img class="logotype" src="<?= asset('logo/SVG/vetcamp_full_hoz_b.svg') ?>" alt="Vetcamp Logo">
+        <?php require_once('partials/applicationLogo.php'); ?>
     </header>
     <div class="hero">
         <h1>¡Explora tu pasión por la salud animal!</h1>

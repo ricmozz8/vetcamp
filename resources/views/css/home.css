@@ -9,7 +9,7 @@
 }
 
 .navbar .logotype {
-  width: 10rem;
+  width: 6rem;
   cursor: pointer;
 }
 
@@ -439,7 +439,7 @@ footer .university-logo {
 
 @media only screen and (min-width: 1440px) {
   .hero {
-    background-size: 240vh;
+    background-size: 200vh;
   }
 
   .requirement-cards-grid {

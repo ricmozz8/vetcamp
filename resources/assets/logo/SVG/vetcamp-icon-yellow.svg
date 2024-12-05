@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 82 83" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-1271,-233)">
+        <g id="vetcamp-icon-yellow">
+            <g transform="matrix(0.1587,0,0,0.15375,-196.225,-193.177)">
+                <g id="vetcamp-icon-yellow1" serif:id="vetcamp-icon-yellow">
+                    <path d="M9432.23,3210.11C9420.93,3210.11 9410.09,3205.62 9402.09,3197.63L9313.55,3109.08L9313.56,3109.06C9312.95,3108.47 9312.34,3107.87 9311.73,3107.26C9258.61,3054.14 9258.61,2967.88 9311.73,2914.75C9364.86,2861.63 9451.12,2861.63 9504.24,2914.75L9504.3,2914.81C9505.32,2915.83 9506.95,2915.87 9508.02,2914.91C9561.44,2867.13 9643.64,2868.89 9694.94,2920.19C9746.85,2972.1 9748.04,3055.65 9698.5,3109.01L9698.57,3109.08L9610.02,3197.63C9602.03,3205.62 9591.19,3210.11 9579.89,3210.11L9432.23,3210.11Z" style="fill:rgb(252,239,90);"/>
+                </g>
+            </g>
+            <g id="boundaries" transform="matrix(0.679896,0,0,0.679896,909.809,87.9036)">
+                <rect x="531.364" y="214.493" width="120.233" height="120.233" style="fill:none;"/>
+            </g>
+        </g>
+    </g>
+</svg>

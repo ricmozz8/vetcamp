@@ -3,7 +3,7 @@ $user_full_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 ?>
 <div class="auth-navbar">
     <a href="/apply">
-        <img class="logotype" src="/<?= asset('logo/SVG/vetcamp_full_hoz_b.svg') ?>" alt="Vetcamp Logo">
+    <?php require_once('applicationLogo.php'); ?>
     </a>
     <a href="#" class="main-action-bright quaternary" onclick="toggleDropdown('profileDropdown')">
         <h3><?= $user_full_name ?></h3>

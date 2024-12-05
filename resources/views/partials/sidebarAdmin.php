@@ -7,7 +7,7 @@
         </a>
         <!-- Logo section -->
         <a class="sidebar-logo" href="/admin">
-                <img src="/resources/assets/logo/SVG/vetcamp_full_ver_b.svg" alt="Vetcamp" class="logo logo-right">
+        <?php require_once('applicationLogo.php'); ?>
         </a>
 
         <!-- Main navigation menu -->
