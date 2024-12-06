@@ -114,7 +114,7 @@ switch ($path) {
     case '/sessions/create':
         SettingsController::updateSession($method);
         break;
-    case '/admin/profile/track': # need correct url
+    case '/admin/requests/track':
         TrackingController::TrackingEvaluation($method);
         break;
     default:
