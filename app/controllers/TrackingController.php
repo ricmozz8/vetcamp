@@ -9,63 +9,59 @@ class TrackingController extends Controller
     {
         // Ensure the request method is POST
         if ($request_method === 'POST') {
-            if (!Auth::check()) {
-                $_SESSION['error_message'] = "User not authenticated.";
-                redirect('/admin/login');
-                return;
-            }
-            // Retrieve the application ID from the POST data
             $applicationId = $_POST['application_id'] ?? null;
+            $decision = $_POST['status'] ?? null; // The status selected in the form
+            $madeOn = date('Y-m-d H:i:s'); // Current timestamp
+
+            // Log the user object for debugging
             $user = Auth::user();
+            $userId = null;
+            if ($user) {
+                // Safely retrieve user_id via the __get method if it exists
+                if (isset($user->attributes['user_id'])) {
+                    $userId = $user->attributes['user_id'];
+                } elseif (method_exists($user, '__get')) {
+                    $userId = $user->__get('user_id');
+                }
+            }
 
-            $userId = $user ? $user->__get('user_id') : null;
-            // Validate application ID and user authentication
-            if ($applicationId === null || $userId === null) {
-                $_SESSION['error_message'] = "Invalid request or user not authenticated.";
+
+            // Map of Spanish to English status values
+            $status_map = [
+                'Sometida' => 'submitted',
+                'Necesita Cambios' => 'need_changes',
+                'Denegada' => 'denied',
+                'Aprobada' => 'approved',
+                'Incompleta' => 'incomplete',
+                'No Sometida' => 'unsubmitted',
+            ];
+
+            // Convert status to English using the map
+            $decision = $status_map[$decision] ?? null;
+
+            // Validate data
+            if ($applicationId === null || $userId === null || $decision === null) {
                 redirect('/admin/requests');
                 return;
             }
 
-            // Check if the application exists
             try {
-                $application = Application::find($applicationId);
-            } catch (ModelNotFoundException $e) {
-                $_SESSION['error_message'] = "Application not found.";
-                redirect('/admin/requests');
-                return;
-            }
-
-            // Check if a tracking record already exists for this user and application
-            $trackingExists = Tracking::exists([
-                'application_id' => $applicationId,
-                'user_id' => $userId,
-            ]);
-
-            if ($trackingExists) {
-                $_SESSION['error_message'] = "This application has already been evaluated by this user.";
-                redirect('/admin/requests');
-                return;
-            }
-
-            try {
-                // Create a new tracking record in the evaluated_by table
+                // Create a new tracking record with the updated decision (status)
                 Tracking::create([
                     'application_id' => $applicationId,
                     'user_id' => $userId,
+                    'decision' => $decision, // Use the mapped decision
+                    'made_on' => $madeOn,
                 ]);
-
-                $_SESSION['success_message'] = "Evaluation tracking recorded successfully.";
-                redirect('/admin/requests?id=' . $applicationId . '&tracking=success');
             } catch (Exception $e) {
-                $_SESSION['error_message'] = "An error occurred: " . $e->getMessage();
                 redirect('/admin/requests');
             }
         } else {
             http_response_code(405);
-            $_SESSION['error_message'] = "Invalid request method.";
             redirect('/admin/requests');
         }
     }
 }
+
 
 
