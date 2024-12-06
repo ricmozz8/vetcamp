@@ -115,14 +115,21 @@ require_once __DIR__ . '/partials/header.php';
                         <!-- Hidden form for tracking evaluation -->
                         <form id="trackEvaluationForm" action="/admin/requests/track" method="POST" style="display: none;">
                             <input type="hidden" name="application_id" value="<?php echo $application->id_application; ?>">
+                            <input type="hidden" name="status" value="<?php echo $application->status; ?>">
                         </form>
                     </section>
 
                     <script>
                     function trackEvaluation(event) {
-                        // After submitting the status update form, submit the tracking form
-                        event.preventDefault(); // Prevent form redirection
-                        const statusForm = event.target;
+                        // Prevent the default form submission
+                        event.preventDefault(); 
+
+                        const statusForm = event.target; // The form that updates the status
+                        const trackForm = document.getElementById('trackEvaluationForm'); // The hidden tracking form
+
+                        // Update the tracking form's hidden status field with the newly selected status
+                        const selectedStatus = statusForm.querySelector('input[name="status"]:checked').value;
+                        trackForm.querySelector('input[name="status"]').value = selectedStatus;
 
                         // Submit the main form (status update)
                         fetch(statusForm.action, {
@@ -131,7 +138,7 @@ require_once __DIR__ . '/partials/header.php';
                         }).then(response => {
                             if (response.ok) {
                                 // Submit the tracking form after status update is successful
-                                document.getElementById('trackEvaluationForm').submit();
+                                trackForm.submit();
                             } else {
                                 alert('Error updating status.');
                             }
