@@ -120,6 +120,9 @@ switch ($path) {
     case '/admin/delete/rejected/requests':
         SettingsController::deleteRejectedRequests($method);
         break;
+    case '/admin/delete/all/requests':
+        SettingsController::deleteAllRequests($method);
+        break;
     default:
         abort(404, 'Page was not found');
         break;

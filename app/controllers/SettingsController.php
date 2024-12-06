@@ -260,5 +260,54 @@ class SettingsController extends Controller
 
     redirect('/admin/settings');
 }
-    
+
+public static function deleteAllRequests($request_method)
+
+{
+    if ($request_method !== 'POST') 
+   {
+        $_SESSION['error'] = 'Método no permitido.';
+        redirect('/admin/settings');
+    }
+    if (!Auth::check() || Auth::user()->type !== 'admin') 
+    {
+        $_SESSION['error'] = 'Acceso no autorizado.';
+        redirect('/login');
+    }
+
+    try
+    {
+        // Llama a la función en el modelo Application
+        $deletedUsers = Application::DeletionOfAllApplications();
+
+        if (!empty($deletedUsers)) 
+        {
+            $_SESSION['message'] = count($deletedUsers) . ' solicitudes eliminadas exitosamente.';
+        } 
+        else 
+        {
+            $_SESSION['message'] = 'No se encontraron solicitudes para eliminar.';
+        }
+    } 
+    catch (Exception $e) 
+    {
+        $_SESSION['error'] = 'Ocurrió un error al eliminar solicitudes: ' . $e->getMessage();
+    }
+
+    redirect('/admin/settings');
+ }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
