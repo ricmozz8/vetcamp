@@ -143,7 +143,18 @@ require __DIR__ . '/partials/header.php';
                 <?php $session_array = []; ?>
                 <?php foreach ($sessions as $index => $session): ?>
                     <div class="session-modal-edit">
-                        <button type="submit" class="trash-button" name="delete_session" value="<?php echo $session->session_id; ?>"> 
+                        <button type="submit" 
+                        class="trash-button" 
+                        name="delete_session" 
+                        value="<?php echo $session->session_id; ?>" 
+                        onclick="return confirmDelete(this);" 
+                        data-title="<?php echo htmlspecialchars($session->title); ?>">
+                        <script>
+                        function confirmDelete(button) {
+                        const sessionTitle = button.getAttribute('data-title') || "esta sesión";
+                        return confirm(`¿Estás seguro de que deseas eliminar ${sessionTitle}?`);
+                        }
+                        </script>
                         <i class="las la-trash"></i> </button>
                         <input type="hidden" name="sessions[<?php echo $index; ?>][id]" value="<?php echo $session->session_id ?>" />
                         <input type="text" class="session-edit-input" name="sessions[<?php echo $index; ?>][title]" value="<?php echo $session->title ?>" />
