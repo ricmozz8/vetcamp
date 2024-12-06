@@ -86,7 +86,7 @@ require_once __DIR__ . '/partials/header.php';
                     <br>
                     <hr><br>
                     <section class="manage-section">
-                        <form action="/admin/requests/update" method="POST">
+                        <form action="/admin/requests/update" method="POST" onsubmit="trackEvaluation(event)">
                             <input type="hidden" name="application_id" value="<?php echo $application->id_application; ?>">
                             <h2>Manejar Solicitud</h2>
                             <div class="status-options">
@@ -103,18 +103,41 @@ require_once __DIR__ . '/partials/header.php';
                                     <input type="radio" name="status" value="Aprobada" <?php echo ($application->status === 'approved') ? 'checked' : ''; ?>> Aprobada
                                 </label>
                             </div>
-                            <a class="main-action-bright secondary" onclick="openModal('messageModal')">
-                                <i class="las la-envelope"></i>
-                                Enviar mensaje</a><br>
-                            <hr><br>
+
                             <div class="actions">
                                 <label>
                                     <input name="notify" type="checkbox"> Notificar al solicitante
                                 </label>
-                                <button class=" main-action-bright"><i class="las la-save"></i> Guardar</button>
+                                <button class="main-action-bright" type="submit"><i class="las la-save"></i> Guardar</button>
                             </div>
+                        </form>
+
+                        <!-- Hidden form for tracking evaluation -->
+                        <form id="trackEvaluationForm" action="/admin/requests/track" method="POST" style="display: none;">
+                            <input type="hidden" name="application_id" value="<?php echo $application->id_application; ?>">
+                        </form>
                     </section>
-                    </form>
+
+                    <script>
+                    function trackEvaluation(event) {
+                        // After submitting the status update form, submit the tracking form
+                        event.preventDefault(); // Prevent form redirection
+                        const statusForm = event.target;
+
+                        // Submit the main form (status update)
+                        fetch(statusForm.action, {
+                            method: statusForm.method,
+                            body: new FormData(statusForm)
+                        }).then(response => {
+                            if (response.ok) {
+                                // Submit the tracking form after status update is successful
+                                document.getElementById('trackEvaluationForm').submit();
+                            } else {
+                                alert('Error updating status.');
+                            }
+                        }).catch(() => alert('Error updating status.'));
+                    }
+                    </script>
                 </div>
             </div>
         </div>
