@@ -319,6 +319,10 @@ require __DIR__ . '/partials/header.php';
             <h3> Esta acción no se prodra revertir... </h3>
         </div>
 
+          <!-- Form to delete rejected requests -->
+    <form action="/admin/delete/all/requests" method="POST">
+        <!-- CSRF Token -->
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>" />
 
         <!-- Buttons area -->
         <div class="modal-actions">
@@ -328,6 +332,7 @@ require __DIR__ . '/partials/header.php';
             <!-- Confirm button -->
             <button class="secondary main-action-bright" onclick="closeModal('archivePopup')">Confirmar</button>
         </div>
+     </form>
     </div>
 
 

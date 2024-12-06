@@ -72,15 +72,25 @@ class Application extends Model
         return $count;
     }
 
+    /**
+     * Given a status in Spanish, returns the corresponding status in English.
+     * 
+     * @param string $statusInSpanish The status in Spanish.
+     * @return string The status in English. If the status in Spanish is not found, returns the input string.
+     */
+    public static function getStatusInEnglish($statusInSpanish)
+{
+    $reverseParsing = array_flip(self::$statusParsings); 
+    return $reverseParsing[$statusInSpanish] ?? $statusInSpanish;
+}
+   
 
 
 
     /**
-     * Deletes all denied user requests and the users themselves ( from the list of solicitants).
+     * Deletes all denied user requests.
      * 
-     * Iterates over all applicants and checks if the application status is 'denied'. If so, it calls the delete() method on the Application model.
-     * 
-     * @return array An array of the deleted user IDs.
+     * @return array An array of user IDs of the users whose requests were deleted.
      */
     public function UserisDeniedDeletion()
     {
@@ -90,11 +100,40 @@ class Application extends Model
         foreach ($users as $user) {
             $application = $user->application();
 
-            if ($application && $application->status === 'denied') {
-                $deniedUsers = $application->delete();
-                $deletedApplications[] = $deniedUsers;
+            if ($application) 
+            {
+                $statusInEnglish = self::getStatusInEnglish($application->status);
+            }
+            if ($statusInEnglish === 'denied') 
+            {
+                $application->delete();
+                $deletedApplications[] = $user->user_id;
             }
         }
+    
+    return $deletedApplications;
+}
+
+    /**
+     * Deletes all user requests.
+     * 
+     * @return array An array of user IDs of the users whose requests were deleted.
+     */
+    public function DeletionOfAllApplications()
+    {
+        $users = User::allApplicants();
+        $deletedApplications = [];
+
+        foreach ($users as $user) 
+        {
+            $application = $user->application();
+            if ($application) 
+            {
+            $application->delete();
+            $deletedApplications[] = $user->user_id;
+            }
+        }
+    
         return $deletedApplications;
     }
 
