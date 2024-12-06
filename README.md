@@ -1,4 +1,4 @@
-<img src="resources/assets/logo/SVG/vetcamp_full_ver_w.svg" style="width: 20%; margin: auto; text-align: center"/>
+<img src="resources/assets/logo/SVG/vetcamp-full-white.svg" style="width: 20%; margin: auto; text-align: center"/>
 
 <br>
 
