@@ -1,6 +1,5 @@
 <?php
 require_once 'Controller.php';
-
 require_once 'app/models/Message.php';
 require_once 'app/models/LimitDate.php';
 
@@ -221,5 +220,45 @@ class SettingsController extends Controller
         redirect('/admin/settings');
     }
 
-    // define your other methods here
+    
+    /**
+     * Deletes all denied user requests and the users themselves.
+     *
+     * Checks if the request method is POST and if the user is an admin.
+     * If everything is valid, it calls the UserisDeniedDeletion method in the Application model.
+     * If the deletion is successful, it sets a success message; otherwise, it sets an error message.
+     * Finally, it redirects to the settings page.
+     *
+     * @param string $request_method The request method of the request.
+     *
+     * @return void
+     */
+    public static function deleteRejectedRequests($request_method)
+{
+    if ($request_method !== 'POST') {
+        $_SESSION['error'] = 'Método no permitido.';
+        redirect('/admin/settings');
+    }
+
+    if (!Auth::check() || Auth::user()->type !== 'admin') {
+        $_SESSION['error'] = 'Acceso no autorizado.';
+        redirect('/login');
+    }
+
+    try {
+        // Llama a la función en el modelo Application
+        $deletedUsers = Application::UserisDeniedDeletion();
+
+        if (!empty($deletedUsers)) {
+            $_SESSION['message'] = count($deletedUsers) . ' solicitudes denegadas eliminadas exitosamente.';
+        } else {
+            $_SESSION['message'] = 'No se encontraron solicitudes denegadas para eliminar.';
+        }
+    } catch (Exception $e) {
+        $_SESSION['error'] = 'Ocurrió un error al eliminar solicitudes denegadas: ' . $e->getMessage();
+    }
+
+    redirect('/admin/settings');
+}
+    
 }
