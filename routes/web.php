@@ -9,19 +9,10 @@
 
 // CONTROLLERS HERE
 
-require 'app/controllers/UserController.php';
-require 'app/controllers/HomeController.php';
-require 'app/controllers/BackDashboardController.php';
-require 'app/controllers/AuthController.php';
-require 'app/controllers/SettingsController.php';
-require 'app/controllers/RegisteredController.php';
-require 'app/controllers/RequestsController.php';
-require 'app/controllers/EvaluateController.php';
-require 'app/controllers/TrackingController.php';
-require 'app/controllers/ApplicationController.php';
-require 'app/controllers/AcceptedController.php';
+
+
 require 'app/controllers/FileController.php';
-require 'app/controllers/UserApplicationController.php';
+require 'app/controllers/HomeController.php';
 
 $request = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
@@ -44,12 +35,12 @@ require 'admin.php';
 
 switch ($path) {
 
-    // GET FRONT VIEWS
+        // GET FRONT VIEWS
     case '/':
         HomeController::index();
-        break;   
+        break;
 
-    case'/solicitud':
+    case '/solicitud':
         FileController::getFile('storage', '/public/Formulario de Inscripción Vet CAMP UPR-Arecibo Verano 2025.pdf');
         break;
 
@@ -57,4 +48,3 @@ switch ($path) {
         abort(404, 'Page was not found');
         break;
 }
-

@@ -1,4 +1,6 @@
 <?php
+require 'app/controllers/UserApplicationController.php';
+
 switch ($path) {
     case '/apply':
         UserApplicationController::index();

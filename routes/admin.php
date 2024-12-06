@@ -1,4 +1,16 @@
 <?php
+require 'app/controllers/UserController.php';
+
+require 'app/controllers/BackDashboardController.php';
+
+require 'app/controllers/SettingsController.php';
+require 'app/controllers/RegisteredController.php';
+require 'app/controllers/RequestsController.php';
+
+require 'app/controllers/TrackingController.php';
+require 'app/controllers/ApplicationController.php';
+require 'app/controllers/AcceptedController.php';
+
 switch ($path) {
     case '/admin':
         BackDashboardController::index();
