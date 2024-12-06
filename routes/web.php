@@ -38,89 +38,23 @@ if (substr($request, -1) === '/' && $request !== '/') {
 }
 
 // Define your views/urls here
+require 'auth.php';
+require 'application.php';
+require 'admin.php';
+
 switch ($path) {
 
     // GET FRONT VIEWS
     case '/':
         HomeController::index();
-        break;
-    case '/register':
-        AuthController::register();
-        break;
-    case '/register/new':
-        AuthController::registerUser($method);
-        break;
-    case '/login':
-        AuthController::login($method);
-        break;
-    case '/forgotpass':
-        AuthController::forgotPassword();
-        break;
-    case '/passreset':
-        AuthController::resetPassword();
-        break;
-    case '/logout':
-        AuthController::logoutUser($method);
-        break;
-    case '/apply':
-        UserApplicationController::index();
-        break;
-    case '/apply/application':
-        UserApplicationController::basic_data($method);
+        break;   
+
     case'/solicitud':
         FileController::getFile('storage', '/public/Formulario de Inscripción Vet CAMP UPR-Arecibo Verano 2025.pdf');
         break;
-    case '/admin':
-        BackDashboardController::index();
-        break;
-    case '/admin/create':
-        SettingsController::createAdmin($method);
-        break;
-    case '/admin/profile':
-    case '/admin/requests/r':
-        $application_id = $_GET['id'] ?? null;
-        ApplicationController::editApplication($application_id);
-        break;
-    case '/admin/requests/update':
-        ApplicationController::updateStatus($method);
-        break;
-    case '/admin/requests':
-        RequestsController::index();
-        break;
-    case '/admin/registered':
-        RegisteredController::index();
-        break;
-    case '/admin/accepted':
-        AcceptedController::index();
-        break;
-    case '/admin/settings':
-        SettingsController::index();
-        break;
-    case '/admin/settings/e/approved':
-        SettingsController::updateMessage($method);
-        break;
-    case '/admin/settings/e/rejected':
-        SettingsController::updateMessage($method);
-        break;
-    case '/admin/settings/e/all':
-        SettingsController::updateMessage($method);
-        break;
-    case '/admin/settings/e/dates':
-        SettingsController::updateLimitDate($method);
-        break;
-    case '/sessions/update':
-        SettingsController::updateSession($method);
-        break;
-    case '/sessions/create':
-        SettingsController::updateSession($method);
-        break;
-    case '/admin/profile/track': # need correct url
-        TrackingController::TrackingEvaluation($method);
-        break;
-    case '/admin/delete/rejected/requests':
-        SettingsController::deleteRejectedRequests($method);
-        break;
+
     default:
         abort(404, 'Page was not found');
         break;
 }
+

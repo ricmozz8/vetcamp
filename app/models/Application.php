@@ -2,23 +2,34 @@
 require_once 'Model.php';
 require_once 'User.php';
 
-class Application extends Model{
+class Application extends Model
+{
 
     protected static $primary_key = 'id_application'; // Primary key
-    protected static $table = 'applications'; // Table
     public static $statusParsings = [
         'unsubmitted' => 'Sin llenar',
         'submitted' => 'Sometida',
         'need_changes' => 'Necesita Cambios',
         'approved' => 'Aceptado',
         'denied' => 'Rechazado',
-        'incomplete' => 'Incompleta'
+        'incomplete' => 'Incompleta',
+        'waitlist' => 'En lista de espera'
     ];
 
     public function __construct(array $attributes, array $sanitized)
     {
-        parent::__construct( $attributes,  $sanitized);
+        parent::__construct($attributes,  $sanitized);
         $this->status = self::$statusParsings[$this->status];
+    }
+
+    /**
+     * Retrieves the user associated with the application.
+     *
+     * @return User The user that made the application.
+     */
+    public function user()
+    {
+        return User::find((int) $this->attributes['user_id'], 'user_id', 'users');
     }
 
     /**
@@ -51,11 +62,9 @@ class Application extends Model{
     public function documentCount()
     {
         $count = 0;
-        
-        foreach ($this->attributes as $key=>$value) 
-        {
-            if (strpos($key, 'url') !== false and $value != null) 
-            {
+
+        foreach ($this->attributes as $key => $value) {
+            if (strpos($key, 'url') !== false and $value != null) {
                 $count++;
             }
         }
@@ -63,9 +72,9 @@ class Application extends Model{
         return $count;
     }
 
-   
-    
-    
+
+
+
     /**
      * Deletes all denied user requests and the users themselves ( from the list of solicitants).
      * 
@@ -73,19 +82,49 @@ class Application extends Model{
      * 
      * @return array An array of the deleted user IDs.
      */
-    public function UserisDeniedDeletion() {
+    public function UserisDeniedDeletion()
+    {
         $users = User::allApplicants();
         $deletedApplications = [];
-    
-        foreach ($users as $user) 
-        {
+
+        foreach ($users as $user) {
             $application = $user->application();
-    
+
             if ($application && $application->status === 'denied') {
                 $deniedUsers = $application->delete();
                 $deletedApplications[] = $deniedUsers;
             }
         }
         return $deletedApplications;
+    }
+
+    /**
+     * Retrieves the full application details including user addresses.
+     * 
+     * This method gathers the user's school, postal, and physical addresses
+     * and merges them with other application values.
+     *
+     * @return array An associative array containing the application's values
+     *               and the user's addresses.
+     */
+    public function full_application(): array
+    {
+
+        try{
+            $addresses = [
+                'school_address' => $this->user()->school_address(),
+                'postal_address' => $this->user()->postal_address(),
+                'physical_address' => $this->user()->physical_address(),
+            ];
+
+        } catch (ModelNotFoundException $e) {
+            $addresses = [
+                'school_address' => null,
+                'postal_address' => null,
+                'physical_address' => null,
+            ];
+        }
+
+        return array_merge($this->values, $addresses);
     }
 }

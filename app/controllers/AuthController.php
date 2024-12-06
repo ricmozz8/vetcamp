@@ -90,7 +90,7 @@ class AuthController extends Controller
 
         if ($method == 'POST') {
 
-            if(!empty($_POST['sizeDeCamisa'])) {
+            if(!empty($_POST['age'])) {
                 redirect('/');
             }
 
@@ -99,6 +99,7 @@ class AuthController extends Controller
                 redirect('/register');
             }
 
+            // prevent registry for already existing users
             try {
                 User::findBy(['email' => $_POST['email']]);
                 $error = 'Email already exists';

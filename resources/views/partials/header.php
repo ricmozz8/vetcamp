@@ -15,8 +15,9 @@
     <script src="<?= web_resource("js/modals.js") ?>"></script>
     <script src="<?= web_resource("js/dropdowns.js") ?>"></script>
     <script src="<?= web_resource("js/passwordShow.js") ?>"></script>
-    <script src="<? web_resource("js/backendDashboard.js") ?>"></script>
-    <script src="<? web_resource("js/backendSidebar.js") ?>"></script>
+    <script src="<?= web_resource("js/backendDashboard.js") ?>"></script>
+    <script src="<?= web_resource("js/backendSidebar.js") ?>"></script>
+    <script src="<?= web_resource("js/pushMessages.js") ?>"></script>
 
 
     <!-- TYPEFACES -->

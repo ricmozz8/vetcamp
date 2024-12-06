@@ -88,10 +88,10 @@ class Model
      *
      * @throws ModelNotFoundException If no records are found with the specified id.
      */
-    public static function findAll(int $id, string $column = null) : Model {
+    public static function findAll(int $id, string $column = null, string $table = null) : Model {
         self::init();
 
-        $data = DB::whereAll(static::$table, $column ?? static::$primary_key, $id);
+        $data = DB::whereAll($table ?? static::$table, $column ?? static::$primary_key, $id);
 
         if (empty($data)) {
             throw new ModelNotFoundException('There is no record with the id given:  ' . $id);
@@ -114,10 +114,9 @@ class Model
      *
      * @throws ModelNotFoundException If the record is not found.
      */
-    public static function find(int $id, string $column = null) : Model {
+    public static function find(int $id, string $column = null, string $table = null) : Model {
         self::init();
-
-        $data = DB::where(static::$table, $column ?? static::$primary_key, $id);
+        $data = DB::where($table ?? static::$table, $column ?? static::$primary_key, $id);
 
         if (empty($data)) {
             throw new ModelNotFoundException('There is no record with the id given: ' . $id);

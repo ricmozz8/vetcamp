@@ -26,16 +26,14 @@ $status = $application ? $application->status : 'Sin llenar';
 
         <p>Campamento de verano para estudiantes de escuela
             superior interesados en la tecnología veterinaria.
-            Se llevará a cabo bajo 4 sesiones
+            Se llevará a cabo bajo 4 sesiones de 14 estudiantes.
         </p>
+        <p><strong>Profesora:</strong> Rebeka Sanabria</p>
 
         <div class="status-actions">
-            <form action="/apply/application" method="POST">
-                <input type="hidden" name="stage" value="1">
-
-                <button class="main-action-bright secondary" type="submit">Llenar solicitud</button>
-
-            </form>
+            <a href="/apply/application" class="main-action-bright secondary" type="submit">
+                <?php echo $status == 'Sin llenar' ? 'Llenar Solicitud' : 'Editar Solicitud'; ?>
+            </a>
         </div>
 
 
