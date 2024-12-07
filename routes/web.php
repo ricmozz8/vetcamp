@@ -117,6 +117,10 @@ switch ($path) {
     case '/admin/requests/track':
         TrackingController::TrackingEvaluation($method);
         break;
+    case '/admin/settings/archive':
+        $appController = new ApplicationController();
+        $appController->archive();
+        break;
     default:
         abort(404, 'Page was not found');
         break;
