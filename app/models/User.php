@@ -7,7 +7,7 @@ require_once 'PhysicalAddress.php';
 
 class User extends Model
 {
-
+    protected static $table = 'users';
     protected static $hidden = ['password', 'user_id']; // Attributes that should not be serialized
     protected static $primary_key = 'user_id'; // The primary key of the model
 
