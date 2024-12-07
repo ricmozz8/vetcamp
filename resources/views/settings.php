@@ -490,14 +490,16 @@ require __DIR__ . '/partials/header.php';
         </div>
 
 
-        <!-- Buttons area -->
-        <div class="modal-actions">
-            <!-- Cancel button -->
-            <a href="#" class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
+        <form action="/admin/settings/archive" method="POST">
+                <!-- Buttons area -->
+            <div class="modal-actions">
+                <!-- Cancel button -->
+                <a href="#" class="primary main-action-bright" onclick="closeModal('archivePopup')">Cancelar</a>
 
-            <!-- Confirm button -->
-            <button class="secondary main-action-bright" onclick="closeModal('archivePopup')">Confirmar</button>
-        </div>
+                <!-- Confirm button -->
+                <button type="submit" class="secondary main-action-bright">Confirmar</button>
+            </div>
+        </form>
     </div>
 
     <?php require_once('modals/createAdminModal.php'); ?>
