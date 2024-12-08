@@ -131,17 +131,100 @@ class AuthController extends Controller
         }
     }
 
-    public static function resetPassword()
+        public static function resetPassword()
     {
-        // your index view here
-        render_view('passreset', [], 'PassReset');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_SESSION['otp_verified_email'] ?? null;
+            $password = $_POST['password'] ?? '';
+            $confirmPassword = $_POST['confirm_password'] ?? '';
+    
+            if (!$email) {
+                $_SESSION['error_message'] = "Proceso no iniciado. Intenta nuevamente.";
+                redirect('/forgotpass');
+                exit;
+            }
+    
+            // Validate passwords
+            if ($password !== $confirmPassword) {
+                $_SESSION['error_message'] = "Las contraseñas no coinciden.";
+                redirect('/passreset');
+                exit;
+            }
+    
+            try {
+                // Try to find the user by email
+                $user = User::findBy(['email' => $email]);
+    
+                if (!$user) {
+                    $_SESSION['error_message'] = "No se encontró el usuario.";
+                    redirect('/forgotpass');
+                    exit;
+                }
+    
+                // Update the user's password
+                $user->update([
+                    'password' => password_hash($password, PASSWORD_BCRYPT)
+                ]);
+    
+                $_SESSION['success_message'] = "Contraseña restablecida correctamente.";
+                unset($_SESSION['otp_verified_email']); // Clear OTP session after success
+                redirect('/login');
+                exit;
+    
+            } catch (ModelNotFoundException $e) {
+                $_SESSION['error_message'] = "Error al restablecer la contraseña: " . $e->getMessage();
+                redirect('/forgotpass');
+                exit;
+            }
+        } else {
+            // Render the reset password view
+            render_view('passreset', [], 'PassReset');
+        }
     }
-
-    public static function forgotPassword()
+    
+    public static function forgotPassword() 
     {
-        // your index view here
-        render_view('forgotpass', [], 'ForgotPass');
+        // Determine flow based on POST data
+        $otpSent = isset($_POST['email']);
+        $otpValidated = isset($_POST['otp']);
+    
+        // Simulated OTP for demonstration
+        $generatedOtp = $_POST['generatedOtp'] ?? rand(100000, 999999);
+    
+        // View data to control the flow
+        $viewData = [
+            'otpSent' => $otpSent,
+            'otpValidated' => $otpValidated,
+            'generatedOtp' => $generatedOtp, // Simulated OTP
+            'error' => null,
+            'message' => null
+        ];
+    
+        if ($otpSent && !$otpValidated) {
+            $email = $_POST['email'] ?? null;
+    
+            if ($email) {
+                // Save email to session for later use
+                $_SESSION['otp_verified_email'] = $email; // Save the email
+    
+                // For demonstration: Simulate OTP "sent"
+                $viewData['message'] = "Se envió el código OTP a su correo electrónico.";
+            } else {
+                $viewData['error'] = "Por favor, ingresa un correo electrónico válido.";
+            }
+        } elseif ($otpValidated) {
+            $enteredOtp = $_POST['otp'] ?? null;
+    
+            if ($enteredOtp == $generatedOtp) {
+                // OTP is valid, redirect to reset password page
+                redirect('/passreset'); 
+            } else {
+                $viewData['error'] = "Código OTP incorrecto.";
+            }
+        }
+    
+        // Render the forgot password view
+        render_view('forgotpass', $viewData, 'ForgotPass');
     }
-
     // define your other methods here
 }
