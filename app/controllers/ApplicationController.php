@@ -55,18 +55,9 @@ class ApplicationController extends Controller
             $newStatus = $_POST['status'] ?? null;
             $notify = isset($_POST['notify']) && $_POST['notify'] === 'on';
     
-            // Map of Spanish to English status values
-            $status_map = [
-                'Sometida' => 'submitted',
-                'Necesita Cambios' => 'need_changes',
-                'Denegada' => 'denied',
-                'Aprobada' => 'approved',
-                'Incompleta' => 'incomplete',
-                'No Sometida' => 'unsubmitted',
-            ];
-    
-            // Convert status to English
-            $newStatus = $status_map[$newStatus] ?? null;
+            // Reverse mapping: Spanish status to English key
+            $statusMap = array_flip(Application::$statusParsings);
+            $newStatus = $statusMap[$newStatus] ?? null;
     
             // Validate data
             if ($applicationId === null || $newStatus === null) {
@@ -79,10 +70,10 @@ class ApplicationController extends Controller
                 // Update application status
                 $application = Application::find($applicationId);
                 $application->update(['status' => $newStatus]);
-                
+    
                 // Call TrackingEvaluation for tracking
                 TrackingController::TrackingEvaluation('POST');
-
+    
                 if ($notify) {
                     $_SESSION['success_message'] = "Estado actualizado y notificación enviada.";
                 } else {
@@ -102,16 +93,18 @@ class ApplicationController extends Controller
             redirect('/admin/requests');
         }
     }
-        public function archive()
+    
+    public static function archive()
     {
         try {
-            // Set the default file name if not provided
+            // Set the default file name
             $filePath = 'solicitudes_archivadas_' . date('Y-m-d_H-i-s') . '.csv';
     
             // Open the CSV file for writing
             $file = fopen($filePath, 'w');
             if (!$file) {
-                throw new Exception('No se pudo abrir el archivo para escribir.');
+                redirect('/admin/settings');
+                return;
             }
     
             // Add UTF-8 BOM for correct encoding
@@ -120,68 +113,54 @@ class ApplicationController extends Controller
             // Write the CSV header
             fputcsv($file, ['Nombre', 'Correo', 'Creado En', 'Evaluado En', 'Nombre del Evaluador', 'Decisión Final']);
     
-            // Mapa para traducir decisiones al español
-            $decisionMap = [
-                'approved' => 'Aprobada',
-                'denied' => 'Denegada',
-                'need_changes' => 'Necesita Cambios',
-                'submitted' => 'Sometida',
-                'unsubmitted' => 'No Sometida',
-                'incomplete' => 'Incompleta',
-            ];
-    
-            // Obtener todas las aplicaciones
+            // Fetch all applications
             $applications = Application::all();
     
             foreach ($applications as $application) {
                 try {
-                    // Obtener datos del usuario
+                    // Fetch user data
                     $user = User::find($application->user_id);
-                    $userFirstName = $user->__get('first_name') ?? 'N/A';
-                    $userLastName = $user->__get('last_name') ?? 'N/A';
+                    $userFirstName = $user->first_name;
+                    $userLastName = $user->last_name;
                     $applicantEmail = $user->__get('email') ?? 'N/A';
     
-                    // Formatear la fecha de creación
-                    $createdOn = (new DateTime($application->date_created))->format('d') . ' de ' .
-                        $this->getMonthInSpanish((new DateTime($application->date_created))->format('m')) . ' de ' .
-                        (new DateTime($application->date_created))->format('Y');
+                    // Format creation date
+                    $createdOn = get_date_spanish($application->date_created);
     
-                    // Obtener datos del evaluador
+                    // Fetch evaluator data
                     $evaluatedOn = 'N/A';
                     $evaluatorName = 'N/A';
                     try {
                         $evaluator = Tracking::findBy(['application_id' => $application->id_application]);
                         if ($evaluator) {
                             $evaluatorUser = User::find($evaluator->__get('user_id'));
-                            $evaluatorFirstName = $evaluatorUser->__get('first_name') ?? 'N/A';
-                            $evaluatorLastName = $evaluatorUser->__get('last_name') ?? 'N/A';
+                            $evaluatorFirstName = $evaluatorUser->first_name;
+                            $evaluatorLastName = $evaluatorUser->last_namel;
                             $evaluatorName = $evaluatorFirstName . ' ' . $evaluatorLastName;
-                            $evaluatedOn = (new DateTime($evaluator->__get('made_on')))->format('d') . ' de ' .
-                                $this->getMonthInSpanish((new DateTime($evaluator->__get('made_on')))->format('m')) . ' de ' .
-                                (new DateTime($evaluator->__get('made_on')))->format('Y');
+                            $evaluatedOn = get_date_spanish($evaluator->__get('made_on'));
                         }
                     } catch (ModelNotFoundException $e) {
                         $evaluatedOn = 'N/A';
                     }
     
-                    // Traducir la decisión final
-                    $finalDecision = $decisionMap[$application->status] ?? 'Desconocido';
+                    // Translate the final decision
+                    $finalDecision = Application::$statusParsings[$application->status] ?? 'Desconocido';
     
-                    // Escribir en el archivo CSV
+                    // Write to the CSV file
                     fputcsv($file, [
-                        $userFirstName . ' ' . $userLastName, // Nombre
-                        $applicantEmail,                     // Correo
-                        $createdOn,                          // Creado En
-                        $evaluatedOn,                        // Evaluado En
-                        $evaluatorName,                      // Nombre del Evaluador
-                        $finalDecision                       // Decisión Final
+                        $userFirstName . ' ' . $userLastName,
+                        $applicantEmail,
+                        $createdOn,
+                        $evaluatedOn,
+                        $evaluatorName,
+                        $finalDecision
                     ]);
                 } catch (Exception $e) {
-                    // No logging is done here as per request
+                    continue;
                 }
             }
     
-            // Cerrar el archivo
+            // Close the file
             fclose($file);
     
             // Set headers for file download
@@ -191,35 +170,9 @@ class ApplicationController extends Controller
             header('Expires: 0');
             readfile($filePath);
     
-            // Optionally delete the file after sending it to the user
             unlink($filePath);
-    
         } catch (Exception $e) {
-            // No logging is done here as per request
             redirect('/admin/settings');
         }
     }
-    /**
-     * Devuelve el nombre del mes en español.
-     */
-    private function getMonthInSpanish($month)
-    {
-        $months = [
-            '01' => 'enero',
-            '02' => 'febrero',
-            '03' => 'marzo',
-            '04' => 'abril',
-            '05' => 'mayo',
-            '06' => 'junio',
-            '07' => 'julio',
-            '08' => 'agosto',
-            '09' => 'septiembre',
-            '10' => 'octubre',
-            '11' => 'noviembre',
-            '12' => 'diciembre',
-        ];
-        return $months[$month] ?? 'desconocido';
-    }
-    
-    
 }
