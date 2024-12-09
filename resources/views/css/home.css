@@ -209,10 +209,6 @@
   color: var(--secondary-color-shade-2);
 }
 
-.bio-card:hover {
-  box-shadow: 0 0 4px 6px rgba(255,255,255, 0.3);
-  background-color: var(--white-color-shade-1);
-}
 
 .instructor-grid {
   display: grid;
