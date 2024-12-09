@@ -132,20 +132,22 @@ class AuthController extends Controller
         }
     }
 
-        public static function resetPassword()
+    public static function resetPassword()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Sanitize and validate email from session
             $email = $_SESSION['otp_verified_email'] ?? null;
-            $password = $_POST['password'] ?? '';
-            $confirmPassword = $_POST['confirm_password'] ?? '';
-    
             if (!$email) {
                 $_SESSION['error_message'] = "Proceso no iniciado. Intenta nuevamente.";
                 redirect('/forgotpass');
                 exit;
             }
     
-            // Validate passwords
+            // Sanitize and validate passwords from POST data
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+            $confirmPassword = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
+    
+            // Validate password match
             if ($password !== $confirmPassword) {
                 $_SESSION['error_message'] = "Las contraseñas no coinciden.";
                 redirect('/passreset');
@@ -153,7 +155,7 @@ class AuthController extends Controller
             }
     
             try {
-                // Try to find the user by email
+                // Try to find the user by email (using the sanitized email)
                 $user = User::findBy(['email' => $email]);
     
                 if (!$user) {
@@ -162,7 +164,7 @@ class AuthController extends Controller
                     exit;
                 }
     
-                // Update the user's password
+                // Update the user's password with sanitized and securely hashed password
                 $user->update([
                     'password' => password_hash($password, PASSWORD_BCRYPT)
                 ]);
@@ -182,7 +184,6 @@ class AuthController extends Controller
             render_view('passreset', [], 'PassReset');
         }
     }
-    
     public static function forgotPassword() 
     {
         // Determine flow based on POST data
