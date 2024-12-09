@@ -3,9 +3,10 @@
 :root{
     --status-not-filled: #a3a3a3;
     --status-filling: #da9412;
-    --status-filled: #229645;
-    --status-rejected: #df3131;
-    --status-success: #229645;
+    --status-filled: #2fff73;
+    --status-rejected: #e35151;
+    --status-success: #2fff73;
+    --status-pending: #5cd0fc;
 }
 
 .auth-navbar
@@ -68,6 +69,12 @@
     background-color: var(--secondary-color-default);
     width: fit-content;
     margin: 1em 0;
+    cursor: help;
+    transition: all 0.2s ease;
+}
+
+.status-info:hover{
+    background-color: var(--secondary-color-shade-1);
 }
 
 .status-actions{
@@ -143,12 +150,16 @@
     color: var(--status-filled);
 }
 
-.rechazada{
+.rechazado{
     color: var(--status-rejected);
 }
 
-.success{
+.aceptado{
     color: var(--status-success);
+}
+
+.en-lista-de-espera{
+    color: var(--status-pending);
 }
 
 

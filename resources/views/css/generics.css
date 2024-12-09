@@ -22,6 +22,14 @@
     line-height: 1em;
 }
 
+.flex-sb{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    text-align: left;
+}
+
 .flex-min{
     display: flex;
     gap: 1em;

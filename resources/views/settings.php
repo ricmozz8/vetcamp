@@ -14,6 +14,7 @@ require __DIR__ . '/modals/confirmDeleteDeniedModal.php';
 require __DIR__ . '/modals/createAdminModal.php';
 require __DIR__ . '/modals/confirmDisableUnsolicitedModal.php';
 require __DIR__ . '/modals/confirmDisableAllModal.php';
+require __DIR__ . '/modals/editPicturesModal.php';
 ?>
 
 <body>
@@ -40,8 +41,8 @@ require __DIR__ . '/modals/confirmDisableAllModal.php';
                 <!-- Vetcamp dates area -->
                 <div class="settings-category-group">
                     <div class="title-group">
-                        <span class="colored-icon-setting"><i class="las la-calendar"></i></span>
-                        <p class="setting-title"> Manejar fechas del campamento </p>
+                        <span class="colored-icon-setting"><i class="las la-paw"></i></span>
+                        <p class="setting-title"> Manejar el campamento </p>
                     </div>
 
 
@@ -53,6 +54,10 @@ require __DIR__ . '/modals/confirmDisableAllModal.php';
                     <div class="settings-block">
                         <p> Manejar fechas limites de registros </p>
                         <button class="main-action-bright secondary" onclick="openModal('limitDateEditModal')"> Editar </button>
+                    </div>
+                    <div class="settings-block">
+                        <p> Manejar fotos de la página de inicio </p>
+                        <button class="main-action-bright secondary" onclick="openModal('editPicturesModal')"> Editar </button>
                     </div>
                 </div>
 

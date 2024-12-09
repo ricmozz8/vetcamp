@@ -16,7 +16,7 @@ $status = $application ? $application->status : 'Sin llenar';
         </div>
         <div class="application-card-action">
             <div class="application-card-head">
-                <div class="status-info">
+                <div onclick="openModal('applicationStatusHelp')"  class="status-info">
                     <p>Estado: </p>
                     <p class="status <?= str_replace(' ', '-', strtolower($status)) ?>"><?php echo $status; ?></p>
                 </div>
@@ -41,8 +41,9 @@ $status = $application ? $application->status : 'Sin llenar';
 
 
 
-    </div>
+    </div>  
 
+    <?php require_once(__DIR__ . '../../modals/applicationStatusHelp.php'); ?>
     <?php require_once(__DIR__ . '../../partials/footer.php'); ?>
 </body>
 
