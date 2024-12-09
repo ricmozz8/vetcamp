@@ -26,7 +26,7 @@ class TrackingController extends Controller
 
             // Get the authenticated user
             $user = Auth::user();
-            $userId = $user?->__get('user_id') ?? null;
+            $userId = $user->__get('user_id') ?? null;
 
             // Map of Spanish to English status values
             $status_map = [
