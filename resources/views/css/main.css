@@ -8,213 +8,198 @@
 
 */
 
-@import url('home.css');
-@import url('auth_pages.css');
-@import url('login.css');
-@import url('register.css');
-@import url('forgot_pass.css');
-@import url('pass_reset.css');
-@import url('back_dash.css');
-@import url('backMessageModal.css');
-@import url('components.css');
-@import url('crash.css');
-@import url('generics.css');
-@import url('applications.css');
-@import url('profile.css');
-@import url('modals.css');
-@import url('error.css');
-@import url('requests.css');
-@import url('auth.css');
-@import url('settings.css');
-@import url('accepted.css');
-
-
-
+@import url("home.css");
+@import url("auth_pages.css");
+@import url("login.css");
+@import url("register.css");
+@import url("forgot_pass.css");
+@import url("pass_reset.css");
+@import url("back_dash.css");
+@import url("backMessageModal.css");
+@import url("components.css");
+@import url("crash.css");
+@import url("generics.css");
+@import url("applications.css");
+@import url("profile.css");
+@import url("modals.css");
+@import url("error.css");
+@import url("requests.css");
+@import url("auth.css");
+@import url("settings.css");
+@import url("accepted.css");
 
 :root {
+  /* Font Family */
+  --display-font-family: "Host Grotesk", sans-serif;
+  --text-font: "Inter Tight", sans-serif;
 
-    /* Font Family */
-    --display-font-family: 'Host Grotesk', sans-serif;
-    --text-font: 'Inter Tight', sans-serif;
+  /* Font Size */
+  --font-size-xxs: 0.625rem;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 2rem;
+  --font-size-xxxl: 2.5rem;
 
-    /* Font Size */
-    --font-size-xxs: 0.625rem;
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.875rem;
-    --font-size-md: 1rem;
---font-size-lg: 1.25rem;
-    --font-size-xl: 1.5rem;
-    --font-size-xxl: 2rem;
-    --font-size-xxxl: 2.5rem;
+  /* Font Weight */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
 
-    /* Font Weight */
-    --font-weight-regular: 400;
-    --font-weight-bold: 700;
+  /* Brand Colors */
+  --main-color-default: #ffe900;
+  --main-color-shade-1: #fff36d;
+  --main-color-shade-2: #fff7a0;
+  --main-color-shade-3: #fffbcf;
 
-    /* Brand Colors */  
-    --main-color-default: #FFE900;
-    --main-color-shade-1: #fff36d;
-    --main-color-shade-2: #fff7a0;
-    --main-color-shade-3: #fffbcf;
+  --secondary-color-default: #000000;
+  --secondary-color-shade-1: #333333;
+  --secondary-color-shade-2: #666666;
+  --secondary-color-shade-3: #999999;
 
-    --secondary-color-default: #000000;
-    --secondary-color-shade-1: #333333;
-    --secondary-color-shade-2: #666666;
-    --secondary-color-shade-3: #999999;
+  --dark-text-color: #030303;
+  --dark-text-color-shade-1: #1a1a1a;
+  --dark-text-color-shade-2: #333333;
+  --dark-text-color-shade-3: #4d4d4d;
 
+  --bright-text-color: #f5f5f5;
+  --bright-text-color-shade-1: #c0c0c0;
+  --bright-text-color-shade-2: #b6b6b6;
+  --bright-text-color-shade-3: #999999;
 
-    --dark-text-color: #030303;
-    --dark-text-color-shade-1: #1a1a1a;
-    --dark-text-color-shade-2: #333333;
-    --dark-text-color-shade-3: #4d4d4d;
+  --white-color: #f5f5f5;
+  --white-color-shade-1: #dadada;
+  --white-color-shade-2: #c0c0c0;
+  --white-color-shade-3: #b6b6b6;
 
-    --bright-text-color: #f5f5f5;
-    --bright-text-color-shade-1: #c0c0c0;
-    --bright-text-color-shade-2: #b6b6b6;
-    --bright-text-color-shade-3: #999999;
-   
+  --danger-color: rgb(255, 59, 59);
+  --danger-color-shade-1: rgb(255, 80, 80);
+  --danger-color-shade-2: rgb(255, 100, 100);
 
-    --white-color: #f5f5f5;
-    --white-color-shade-1: #dadada;
-    --white-color-shade-2: #c0c0c0;
-    --white-color-shade-3: #b6b6b6;
+  /* selection color */
+  --main-color-selection: #ffea9f71;
 
+  /* Shadows */
+  --shadow-soft: 0px 3px 10px rgba(0, 0, 0, 0.253);
+  --shadow-hard: 0px 6px 15px rgba(0, 0, 0, 0.425);
 
-    --danger-color: rgb(255, 59, 59);
-    --danger-color-shade-1: rgb(255, 80, 80);
-    --danger-color-shade-2: rgb(255, 100, 100);
-    
-
-    /* selection color */
-    --main-color-selection: #ffea9f71;
-
-    
-    /* Shadows */
-    --shadow-soft: 0px 3px 10px rgba(0, 0, 0, 0.253);
-    --shadow-hard: 0px 6px 15px rgba(0, 0, 0, 0.425);
-
-    /* margins */
-    --main-margin: 4rem;
-
-
+  /* margins */
+  --main-margin: 4rem;
 }
 
-::selection{
-    background-color: var(--main-color-selection);
-    
+::selection {
+  background-color: var(--main-color-selection);
 }
 
 /* Stylizing Scrollbar */
 
-::-webkit-scrollbar /* the scrollbar */{
-    width: 10px;
-    background-color:transparent
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
 }
+
 ::-webkit-scrollbar-track {
-    background-color: transparent;
-    border: 1px solid var(--secondary-color-default);
-    transition: all 0.25s ease;
+  background-color: transparent;
+  border: none;
 }
+
 ::-webkit-scrollbar-thumb {
-    background-color: var(--secondary-color-shade-2);
-    border: 1px solid var(--secondary-color-shade-1);
-    border-bottom: 4px solid var(--secondary-color-shade-1);
-    cursor: grab;
-    box-shadow: var(--shadow-hard);
-    transition: all 0.25s ease;
+  background-color: var(--white-color-shade-1);
+  border: none;
+  border-radius: 20px;
+  box-shadow: none;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--secondary-color-shade-2);
+  background-color: var(--white-color-shade-2);
+  cursor: grab;
 }
 
 ::-webkit-scrollbar-thumb:active {
-    border-bottom: 1px solid var(--secondary-color-default);
-    cursor: grabbing;
+  border-bottom: 1px solid var(--secondary-color-default);
+  cursor: grabbing;
 }
 
 ::-webkit-file-upload-button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    font-family: var(--text-font);
-    font-weight: var(--font-weight-regular);
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: var(--text-font);
+  font-weight: var(--font-weight-regular);
+  box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--display-font-family);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--display-font-family);
 }
 
-.top-lbl{
-    padding: 5px; 
-    text-align: center; 
-    position: sticky; 
-    top: 0; 
-    background-color: var(--main-color-default); 
-    box-shadow: var(--shadow-hard);
-     z-index: 3;
+.top-lbl {
+  padding: 5px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--main-color-default);
+  box-shadow: var(--shadow-hard);
+  z-index: 3;
 }
 
-
-.block{
-    display: block;
+.block {
+  display: block;
 }
 
-.no-deco-action{
-    text-decoration: underline;
-    padding: 2px;
-    background-color: transparent;
-    color: var(--secondary-color-default);
-    border: none;
-    cursor: pointer;
-    box-shadow: none;
-
+.no-deco-action {
+  text-decoration: underline;
+  padding: 2px;
+  background-color: transparent;
+  color: var(--secondary-color-default);
+  border: none;
+  cursor: pointer;
+  box-shadow: none;
 }
-
-
-
 
 /* media queries */
 
 /* Tablet */
 
-@media only screen and (min-width: 768px) {  
+@media only screen and (min-width: 768px) {
+  :root {
+    /* Font Size */
+    --font-size-xxs: 0.7rem;
+    --font-size-xs: 0.8rem;
+    --font-size-sm: 0.9rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.1rem;
+    --font-size-xl: 1.2rem;
+    --font-size-xxl: 1.5rem;
 
-    :root{
-
-        /* Font Size */
-        --font-size-xxs: 0.7rem;
-        --font-size-xs: 0.8rem; 
-        --font-size-sm: 0.9rem;
-        --font-size-md: 1rem;
-        --font-size-lg: 1.1rem;
-        --font-size-xl: 1.2rem;
-        --font-size-xxl: 1.5rem;
-
-        /* margins */
-        --main-margin: 2rem;
-    }
+    /* margins */
+    --main-margin: 2rem;
+  }
 }
 
 /* Desktop Large */
 
 @media only screen and (min-width: 1024px) {
-    :root{  
-        /* margins */
-        --main-margin: 8rem;
-    }
+  :root {
+    /* margins */
+    --main-margin: 8rem;
+  }
 }
 
 /* Desktop ExtraLarge */
 
 @media only screen and (min-width: 1200px) {
-    :root{  
-        /* margins */
-        --main-margin: 12rem;
-    }
+  :root {
+    /* margins */
+    --main-margin: 12rem;
+  }
 }
-

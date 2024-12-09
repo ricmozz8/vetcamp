@@ -160,7 +160,7 @@ a.plain-action:hover {
   border: none;
 }
 
-.app-logotype{
+.app-logotype {
   width: 100px;
 }
 
@@ -175,10 +175,11 @@ a.plain-action:hover {
   border-radius: 27px;
   background-color: var(--white-color);
   border: 1px solid var(--white-color-shade-1);
-  top: 15px;
-  right: 50%;
-  left: 50%;
-  animation: notification .3s;
+  top: 20px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  animation: notification 0.3s;
   box-shadow: var(--shadow-soft);
   z-index: 6;
   transition: all 0.2s ease;
@@ -186,7 +187,7 @@ a.plain-action:hover {
 }
 
 .notification p {
-    animation: fadeIn 0.3s ease;
+  animation: fadeIn 0.3s ease;
 }
 
 .notification.error {
@@ -197,7 +198,6 @@ a.plain-action:hover {
 .notification:hover {
   filter: brightness(0.8);
 }
-
 
 /*******************************
  * SIDEBAR STYLES
@@ -249,7 +249,7 @@ a.plain-action:hover {
   box-shadow: none;
 }
 
-.close-sidebar{
+.close-sidebar {
   margin: 0 20px;
   display: none;
 }
@@ -278,7 +278,7 @@ a.plain-action:hover {
  * USER PROFILE SECTION
  * User information and controls at bottom of sidebar
  *******************************/
- .back-dash .user-profile {
+.back-dash .user-profile {
   position: relative;
   background: #e7e7e7;
   padding: 20px;
@@ -324,7 +324,7 @@ a.plain-action:hover {
   box-shadow: none;
 }
 
-.openSidebar{
+.openSidebar {
   display: none;
   margin: 20px;
   padding: 10px;
@@ -358,15 +358,13 @@ select {
     display: flex;
   }
 
-  .close-sidebar{
+  .close-sidebar {
     display: block;
   }
 
-  .openSidebar{
+  .openSidebar {
     display: block;
-    
   }
-
 }
 
 /*******************************
@@ -384,7 +382,7 @@ select {
   }
 }
 
-@keyframes fadeIn{
+@keyframes fadeIn {
   from {
     display: none;
     opacity: 0;
@@ -397,12 +395,18 @@ select {
 
 @keyframes notification {
   from {
-    top: -20px;
-    
+    top: -40px;
   }
   to {
     top: 15px;
   }
 }
 
-
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

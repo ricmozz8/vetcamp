@@ -48,8 +48,9 @@
         <div class="user-profile">
                 <!--<?php echo "<div class='user-avatar' id='userAvatar'><img src='Auth::user()->url_picture;'></div>"; ?>-->
                 <div class="user-info">
-                        <a href="#" class="w-fit main-action-bright quaternary-squared">
+                        <a href="#" onclick="openModal('userProfileEditModal')" class="w-fit main-action-bright quaternary-squared">
                                 <i class="las la-cog"></i>
+                                <span>Editar perfil</span>
                         </a>
                         <h3 class="user-name"><?php echo Auth::user()->first_name . ' ' . Auth::user()->last_name; ?></h3>
                         <span class="user-email" id="userEmail"><?php echo Auth::user()->email; ?></span>
@@ -58,3 +59,4 @@
         </div>
 </aside>
 <?php include(__DIR__ . '../../modals/confirmLogoutModal.php') ?>
+<?php include(__DIR__ . '../../modals/userProfileEditModal.php') ?>

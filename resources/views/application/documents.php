@@ -10,10 +10,7 @@ require __DIR__ . '../../partials/header.php';
 
     <div class="section-head">
         <h1 class="">Vetcamp Verano <?php echo date('Y'); ?></h1>
-        <form action="" method="POST">
-            <input type="hidden" name="stage" value="2">
-            <button class="main-action-bright"><i class="las la-arrow-left"></i>Atrás</button>
-        </form>
+        <a href="/apply/application/contact" class="main-action-bright"><i class="las la-arrow-left"></i>Atrás</a>
     </div>
 
 

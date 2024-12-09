@@ -19,6 +19,7 @@ storage/*.key
 .env
 .env.production
 .env.tests
+.envtype
 Homestead.yaml
 Homestead.json
 /.vagrant

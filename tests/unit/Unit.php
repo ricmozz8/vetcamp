@@ -117,7 +117,7 @@ class Unit
    
 
         foreach ($tests as $test) {
-            if (substr($test, 0, 4) === 'test') {
+            if (substr($test, 0, 4) === 'test' && $test !== 'start_test') {
 
                 $test_count++;
 
@@ -133,8 +133,5 @@ class Unit
                 }
             }
         }
-
-        
-        
     }
 }

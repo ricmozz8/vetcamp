@@ -1,28 +1,27 @@
 <?php
 
-echo '[WARNING] TESTING FRAMEWORK IS CURRENTLY DISABLED' . PHP_EOL;
-exit;
-
 echo "[INFO] Running tests!\n" . str_repeat('-', 40) . "\n\n";
-
 
 require_once 'unit/Unit.php';
 
 $test_files = glob('unit/*.php');
 
-
 foreach ($test_files as $test_file) {
     require_once $test_file;
 }
 
-foreach ($test_files as $test_file) {
+// Create an instance of the Unit class
+$unit = new Unit();
 
+// Run the tests
+$unit->start_test();
 
+$class_name = basename($test_file, '.php');
 
-    $class_name = basename($test_file, '.php');
-
-    if(class_exists($class_name) && strpos ($class_name, 'Test') === 0) {
-        $test = new $class_name();
-        $test->start_test();
-    }
+if (class_exists($class_name) && strpos($class_name, 'Test') === 0) {
+    $test = new $class_name();
+    $test->start_test();
 }
+
+$authTest = new AuthTest();
+$authTest->start_test();

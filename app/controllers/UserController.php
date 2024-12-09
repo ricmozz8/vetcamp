@@ -53,26 +53,36 @@ class UserController extends Controller{
     }
 
 
-    /**
-     * Updates a user record in the database and returns the user object.
-     *
-     * This method updates a user record in the database and returns the user object
-     * in JSON format. If the user is not found, it will return null.
-     *
-     * @return string|null The user object in JSON format or null if the user is not found.
-     */
-    public static function update()
+
+    public static function update($method)
     {
-        try{
-            $userObject = User::find(1);
-        }  catch (ModelNotFoundException $notFound) {
-            // handle here when the user is not found
-            $userObject = null;
+        if ($method == 'POST') {
+            $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
+            $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+            $first_name = filter_input(INPUT_POST, 'first_name', FILTER_DEFAULT);
+            $last_name = filter_input(INPUT_POST, 'last_name', FILTER_DEFAULT);
+
+
+            // validate the user is the logged user
+            if (Auth::user()->__get('user_id') != $user_id) {
+                $_SESSION['error'] = 'Hubo un error al actualizar el perfil';
+                redirect('/admin');
+            }
+
+            $user = User::find($user_id);
+            $user->update([
+                'email' => $email,
+                'first_name' => $first_name,
+                'last_name' => $last_name
+            ]);
+
+            $_SESSION['message'] = 'Perfil actualizado correctamente';
+
+            // reload the new user on session
+            Auth::login($user);
         }
-
-        // $userObject->update(['primer_nombre' => 'Aoaoe Ie Ueaoe']);
-        echo json_encode($userObject);
-
+        
+        redirect('/admin'); // if no referrer returns to admin page
     }
 
 

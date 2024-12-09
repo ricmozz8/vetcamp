@@ -48,7 +48,7 @@ require __DIR__ . '/partials/header.php';
                         <div class="field-wrapper">
                             <!-- Phone input field -->
                             <div class="text-wrapper-4">Teléfono</div>
-                            <input type="tel"
+                            <input type="number"
                                 name="phone_number"
                                 id="telefono"
                                 class="input-field input-phone"

@@ -3,6 +3,14 @@ require_once 'Controller.php';
 
 class UserApplicationController extends Controller
 {
+    /**
+     * Renders the application dashboard view.
+     *
+     * Redirects the user to login if not logged in, or to /admin if an admin is trying to access
+     * the frontend.
+     *
+     * @return void
+     */
     public static function index()
     {
 
@@ -14,9 +22,8 @@ class UserApplicationController extends Controller
         }
 
         $application = Auth::user()->application(); // returns null if no application is found
-
         $has_application = $application ? $application->status : 'Sin llenar';
-        
+
         render_view('application/application_dashboard', [
             'has_application' => $has_application
         ], 'Aplica');
@@ -30,33 +37,92 @@ class UserApplicationController extends Controller
      */
     public static function basic_data($method)
     {
-        // your index view here
-         // IMPORTANT: IT IS REQUIRED TO MOVE THIS TO A CONTROLLER WHEN IMPLEMENTING FUNCTIONALITY
-         if($method == 'POST'){
-            $stage = filter_input(INPUT_POST, 'stage', FILTER_DEFAULT) ?? '1';
-
-            $application = Auth::user()->application(); // can be NULL if user doesnt have a request
-            $sessions = Session::all();
-
-            $stage_info = [
-                'birthdate' => Auth::user()->birthdate,
-                'preferred_session' => $application->preferred_session(),
-                'school_street' => Auth::user()->school_address()->street ?? '',
-                'school_city' => Auth::user()->school_address()->city ?? '',
-                'school_zip' => Auth::user()->school_address()->zip_code ?? '',
-                'school_type' => Auth::user()->school_address()->school_type ?? '',
-                'sessions' => $sessions
-            ];
-
-            render_view('application/stage1'  , ['basic_information' => $stage_info], 'Datos Básicos');
-           
-            
-            
+        // save the basic information here, validate it and then save it 
+        if ($method === 'POST') {
+            $_SESSION['message'] = 'Datos básicos guardados correctamente';
+            redirect('/apply/application/contact');
         } else {
-            redirect('/apply');
+            $stage = filter_input(INPUT_POST, 'stage', FILTER_DEFAULT) ?? '1';
+            $application = Auth::user()->application();
+            $full_application = $application ? $application->full_application() : [];
+            $sessions = Session::all();
+            render_view('application/basic_info', [
+                'application' => $full_application,
+                'sessions' => $sessions
+            ], 'Datos Básicos');
         }
-
     }
 
-    // define your other methods here
+    /**
+     * This renders the contact view.
+     *
+     * If the method is POST, it saves the contact information to the user's application
+     * and redirects to the application dashboard.
+     *
+     * If the method is GET, it renders the contact view with the application's contact information
+     * and all sessions available.
+     *
+     * @param string $method The HTTP method used to access this function.
+     *
+     * @return void
+     */
+    public static function contact($method)
+    {
+        // submit the contact information and validate them it here
+        if ($method === 'POST') {
+            $_SESSION['message'] = 'Datos de contacto guardados correctamente';
+            redirect('/apply/application/documents');
+        } else {
+            $stage = filter_input(INPUT_POST, 'stage', FILTER_DEFAULT) ?? '1';
+            $application = Auth::user()->application();
+            $full_application = $application ? $application->full_application() : [];
+            
+            $sessions = Session::all();
+            render_view('application/contact', ['application' => $full_application, 'sessions' => $sessions], 'Contacto');
+        }
+    }
+
+    /**
+     * This handles the document submission stage of the application process.
+     *
+     * If the method is POST, it saves the uploaded documents to the user's application
+     * and redirects to the application dashboard.
+     *
+     * If the method is GET, it renders the document upload view with the application's
+     * current details and all sessions available.
+     *
+     * @param string $method The HTTP method used to access this function.
+     *
+     * @return void
+     */
+    public static function documents($method)
+    {
+        // submit the documents and validate them it here
+
+        if ($method === 'POST') {
+            $_SESSION['message'] = 'Documentos guardados correctamente';
+            redirect('/apply/application/confirm');
+        } else {
+            $stage = filter_input(INPUT_POST, 'stage', FILTER_DEFAULT) ?? '1';
+            $application = Auth::user()->application();
+            $full_application = $application ? $application->full_application() : [];
+            $sessions = Session::all();
+            render_view('application/documents', ['application' => $full_application, 'sessions' => $sessions], 'Documentos');
+        }
+    }
+
+    public static function confirm($method)
+    {
+        // submit the application and confirm it here
+        if ($method === 'POST') {
+            $_SESSION['message'] = 'Aplicación sometida correctamente';
+            redirect('/apply');
+        } else {
+            $stage = filter_input(INPUT_POST, 'stage', FILTER_DEFAULT) ?? '1';
+            $application = Auth::user()->application();
+            $full_application = $application ? $application->full_application() : [];
+            $sessions = Session::all();
+            render_view('application/confirm', ['application' => $full_application, 'sessions' => $sessions], 'Confirmar Aplicación');
+        }
+    }
 }

@@ -27,6 +27,9 @@ require __DIR__ . '../../partials/header.php';
             <span class="tab">Confirmar</span>
         </div>
 
+        <?php
+        // dd($application);
+        ?>
 
         <form action="" method="POST">
             <div class="form-section">
@@ -34,14 +37,14 @@ require __DIR__ . '../../partials/header.php';
                 <div class="form-block">
                     <div class="form-group">
                         <label for="birthdate">Fecha de nacimiento</label>
-                        <input required type="date" id="birthdate" name="birthdate" value="<?= $basic_information['birthdate'] ?>">
+                        <input required type="date" id="birthdate" name="birthdate" value="<?= Auth::user()->birthdate  ?? '' ?>">
                     </div>
 
                     <div class="form-group">
                         <label for="section">Selecciona la sección que deseas participar</label>
                         <select required id="section" name="section">
-                            <?php foreach ($basic_information['sessions'] as $session) { ?>
-                                <option <?php echo $basic_information['preferred_session'] == $session ? 'selected' : '' ?> value="<?= $session->session_id ?>"><?= $session->title ?></option>
+                            <?php foreach ($sessions as $session) { ?>
+                                <option <?php echo $application['id_preferred_session'] ?? '' == $session->session_id ? 'selected' : '' ?> value="<?= $session->session_id ?>"><?= $session->title ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -52,11 +55,11 @@ require __DIR__ . '../../partials/header.php';
                 <div class="form-block">
                     <div class="form-group">
                         <label for="street">Calle</label>
-                        <input value="<?=$basic_information['school_street'] ?>" required type="text" placeholder="123 Main St" name="school_street">
+                        <input value="<?=$application['school_address']->street  ?? '' ?>" required type="text" placeholder="123 Main St" name="school_street">
                     </div>
 
                     <div class="form-group">
-                        <?php $city = $basic_information['school_city'] ?>
+                        <?php $city = $application['school_address']->city   ?? '' ?>
                         <label for="city">Ciudad</label>
                         <?php require_once 'cityselector.php' ?>
                     </div>
@@ -64,7 +67,7 @@ require __DIR__ . '../../partials/header.php';
                     <div class="form-group">
 
                         <label for="zipcode">Código Postal</label>
-                        <input value="<?=$basic_information['school_zip'] ?>" required type="text" placeholder="0000" name="school_zipcode">
+                        <input value="<?=$application['school_address']->zip_code ?? ''  ?>" required type="text" placeholder="0000" name="school_zipcode">
                     </div>
 
                     <div class="form-group">
@@ -73,9 +76,9 @@ require __DIR__ . '../../partials/header.php';
 
                         <select required name="schoolType">
                             <option value="">Selecciona una</option>
-                            <option <?php echo $basic_information['school_type'] == 'public' ? 'selected' : '' ?> value="public">Pública</option>
-                            <option <?php echo $basic_information['school_type'] == 'private' ? 'selected' : '' ?> value="private">Privada</option>
-                            <option <?php echo $basic_information['school_type'] == 'homeschooled' ? 'selected' : '' ?> value="homeschooled">Homeschooled</option>
+                            <option <?php echo $application['school_address']->school_type  ?? ''  == 'public' ? 'selected' : '' ?> value="public">Pública</option>
+                            <option <?php echo $application['school_address']->school_type  ?? ''  == 'private' ? 'selected' : '' ?> value="private">Privada</option>
+                            <option <?php echo $application['school_address']->school_type  ?? ''  == 'homeschooled' ? 'selected' : '' ?> value="homeschooled">Homeschooled</option>
                             <!-- Add more options here -->
                         </select>
                     </div>
@@ -83,7 +86,6 @@ require __DIR__ . '../../partials/header.php';
             </div>
 
             <div class="form-actions">
-                <input type="hidden" name="stage" value="2">
                 <p>Se guardará la información una vez pulses 'siguiente'.</p>
                 <button class="main-action-bright  secondary">Siguiente</button>
             </div>

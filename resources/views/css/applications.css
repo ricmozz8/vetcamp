@@ -1,7 +1,7 @@
 /* Components on the Applications Sites */
 
 :root{
-    --status-not-filled: #5c5c5c;
+    --status-not-filled: #a3a3a3;
     --status-filling: #da9412;
     --status-filled: #229645;
     --status-rejected: #df3131;
@@ -22,21 +22,27 @@
 }
 
 .application-card{
-    padding: 1em;
-    border: 1px solid var(--secondary-color-default);
+    background-color: var(--main-color-default);
     margin: 2em var(--main-margin);
     border-radius: 7px;
     transition: all 0.2s ease;
     margin-bottom: 45vh;
+    user-select: none;
+}
+
+.application-deco-banner img{
+    object-fit: cover;
+    height: 300px;
+    width: 100%;
+    border-radius: 7px 7px 0 0;
+    border-bottom: 1px solid var(--secondary-color-default);
 }
 
 .application-card > * {
     margin: 0.5em 0;
 }
 
-.application-card:hover{
-    box-shadow: var(--shadow-soft);
-}
+
 
 .application-card h3{
     font-size: 2.5em;
@@ -44,6 +50,30 @@
     font-weight: 600;
     margin-bottom: 0.5em;
 }
+
+.application-card-action{
+    padding: 2dvh;
+}
+
+.application-card-head{
+    display: flex;
+    flex-direction: column;
+}
+.status-info{
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: var(--white-color);
+    background-color: var(--secondary-color-default);
+    width: fit-content;
+    margin: 1em 0;
+}
+
+.status-actions{
+    margin-top: 1em;
+}
+
 .profile-link
 {
     padding: 15px 20px;
@@ -58,16 +88,25 @@
 .profile-dropdown{
     display: none;
     position: absolute;
-    top: 75px;
+    top: 85px;
     right: var(--main-margin);
     background-color: var(--white-color);
-    padding: 1em;
     z-index: 1;
     animation: fadeIn 0.3s ease;
+    border-radius: 10px;
 }
 
+
+
 .profile-dropdown a{
-    width: 100%;
+    width: 250px;
+    padding: 10px 20px;
+    display: block;
+    border-radius: 10px;
+}
+
+.profile-dropdown a:hover{
+    background-color: var(--white-color-shade-1);
 }
 
 .check 

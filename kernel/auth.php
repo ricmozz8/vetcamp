@@ -11,7 +11,6 @@ class Auth
      */
     public static function login(User $user){
         // if trying to login with a user that is already logged in
-        if(isset($_SESSION['user'])) return;
         $_SESSION['user'] = $user;
     }
 
@@ -41,6 +40,8 @@ class Auth
     {
         return $_SESSION['user'];
     }
+
+    
 
     
 }
