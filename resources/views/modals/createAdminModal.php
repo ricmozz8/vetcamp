@@ -1,6 +1,6 @@
-<div id="addAdminModal" class="modal">
+<div id="createAdminModal" class="modal">
     <div class="modal-content">
-        <span class="close-button" onclick="closeModal('addAdminModal')"><i class="las la-times"></i></span>
+        <span class="close-button" onclick="closeModal('createAdminModal')"><i class="las la-times"></i></span>
         <h2>
             <i class="las la-user"></i><br>
             Crear nuevo usuario de administrador
