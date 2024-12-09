@@ -38,9 +38,10 @@ require __DIR__ . '/partials/header.php';
 
         <div class="carroussel-wrapper">
             <div class="carroussel">
-                <img src="resources/assets/img/imageSnake.png">
-                <img src="resources/assets/img/imageDogBlack.png">
-                <!-- <img src="resources/assets/img/imageLab.png"> -->
+                <img src="resources/assets/img/doggo-checkup-2.jpeg">
+                <img src="resources/assets/img/microscopes-2.jpeg">
+                <img src="resources/assets/img/cow-2.jpeg">
+                <img src="resources/assets/img/group-looking-away-2.jpeg">
             </div>
         </div>
         <div class="carrousel-actions">
@@ -70,7 +71,7 @@ require __DIR__ . '/partials/header.php';
             <div class="bio-container">
                 <h1 class="team-title">Nuestro Equipo</h1>
                 <div class="bio-card">
-                    <img src="resources/assets/img/Dra._Rebeka_Sanabria.jpg" alt="Dra. Rebeka Sanabria León" class="bio-image">
+                    <img src="resources/assets/img/Dra._Rebeka_Sanabria-2.jpeg" alt="Dra. Rebeka Sanabria León" class="bio-image">
                     <div class="bio-info">
                         <h2 class="bio-name">Dra. Rebeka Sanabria León</h2>
                         <p class="bio-title">Fundadora y Coordinadora del VetCamp <br>
@@ -85,7 +86,7 @@ require __DIR__ . '/partials/header.php';
                 </div>
 
                 <div class="bio-card">
-                    <img src="resources/assets/img/Kenializ_Rosado_Molina.jpeg" alt="Kenializ Rosado Molina" class="bio-image">
+                    <img src="resources/assets/img/Kenializ_Rosado_Molina-2.jpeg" alt="Kenializ Rosado Molina" class="bio-image">
                     <div class="bio-info">
                         <h2 class="bio-name">Kenializ Rosado Molina</h2>
                         <p class="bio-title"> LVT <br>
@@ -99,11 +100,11 @@ require __DIR__ . '/partials/header.php';
                         <h3 class="team-title">Perrinstructores y Gatinstructores</h3>
                         <div class="instructor-grid">
                             <div class="instructor-item">
-                                <img src="resources/assets/img/Eugenio.jpg" alt="Perrinstructor Eugenio" class="instructor-image">
+                                <img src="resources/assets/img/Eugenio-2.jpeg" alt="Perrinstructor Eugenio" class="instructor-image">
                                 <p class="instructor-name">Eugenio</p>
                             </div>
                             <div class="instructor-item">
-                                <img src="resources/assets/img/Manolo.jpg" alt="Perrinstructor Manolo" class="instructor-image">
+                                <img src="resources/assets/img/Manolo-2.jpeg" alt="Perrinstructor Manolo" class="instructor-image">
                                 <p class="instructor-name">Manolo</p>
                             </div>
                             <div class="instructor-item">
