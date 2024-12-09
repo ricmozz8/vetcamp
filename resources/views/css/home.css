@@ -103,6 +103,7 @@
 .carroussel img {
   width: 100%;
   border-radius: 7px;
+  max-height: 459px;
 }
 
 .carrousel-actions {

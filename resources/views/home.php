@@ -5,9 +5,7 @@ require __DIR__ . '/partials/header.php';
 ?>
 
 <body>
-    <!-- <div class="top-lbl">
-        <p style="font-weight: bold;">DO NOT SHOW TO STAKEHOLDERS | WEBSITE UNDER CONSTRUCTION</p>
-    </div> -->
+
     <header class="navbar">
         <?php require_once('partials/applicationLogo.php'); ?>
     </header>
