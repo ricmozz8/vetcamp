@@ -35,11 +35,6 @@ class BackDashboardController extends Controller
         });
         $recent_registered = array_slice($recent_registered, 0, 5);
 
-        // Format timestamps for recent registered users
-        foreach ($recent_registered as $user) {
-            // careful with dynamic properties, it is deprecated
-            $user->set('formatted_created_at', self::formatTimestamp($user->created_at));
-        }
 
         // Get recent applications
         $recent_applications = User::allApplicants();
@@ -50,18 +45,11 @@ class BackDashboardController extends Controller
         });
         $recent_applications = array_slice($recent_applications, 0, 5);
 
-/*
-        foreach ($recent_applications as $application) {
-            if ($application->user) {
-                // dynamic property here
-                $application->set('url_picture', $application->$user->User::getPictureUrl()); // getPictureUrl() to be added
-            } else {
-                // dynamic property here
-                $application->set('url_picture', 'https://img.icons8.com/?size=100&id=7819&format=png&color=737373');
-            }
-        }
-*/
-        // Now call render_view with the defined variables
+        // excluding unsubmitted applications
+        $recent_applications = array_filter($recent_applications, function($user) {
+            return $user->application()->status != 'Sin subir';
+        });
+
         render_view('backDashboard', [
             'all_users' => $all_users,
             'all_applicants' => $all_applicants,

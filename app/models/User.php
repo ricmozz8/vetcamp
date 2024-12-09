@@ -49,7 +49,7 @@ class User extends Model
             return null;
         }
 
-        return  $apply; 
+        return  $apply;
     }
 
 
@@ -72,8 +72,8 @@ class User extends Model
                 try {
                     $userApplication = $user->application();
 
-                    if ($userApplication) {
-                        $user->set('status', $userApplication->status);
+                    // avoiding applications that have not been submitted
+                    if ($userApplication && $userApplication->status !== 'Sin subir') {
                         $result[] = $user;
                     }
                 } catch (ModelNotFoundException $notFound) {
@@ -187,6 +187,4 @@ class User extends Model
 
     }
     */
-
- 
 }

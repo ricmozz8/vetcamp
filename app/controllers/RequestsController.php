@@ -21,6 +21,7 @@ class RequestsController extends Controller
         // storing users
         $users = User::allApplicants();
 
+
         // your index view here
         render_view('requests', ["users" => $users, 'selected' => 'requests'], 'Requests');
     }

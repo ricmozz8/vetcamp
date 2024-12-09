@@ -27,26 +27,52 @@ class ApplicationController extends Controller
      */
     public static function editApplication($user_id)
     {
-        
+
         if ($user_id == null) {
             redirect('/admin/requests');
         }
         // your index view here
-        $user = User::find($user_id);
+        try{
+            $user = User::find($user_id);
+        } catch (ModelNotFoundException $notFound) {
+            // handle here when the user is not found
+            $user = null;
+        }
+        
+
+        if ($user == null) {
+            $_SESSION['error'] = "No se encontró el usuario con el ID proporcionado.";
+            redirect('/admin/requests');
+        }
+
+
+
         $application = $user->application();
 
-        
-        render_view('profile', 
-            ['user' => $user, 
-            'application' => $application,
-            'postal_address' => $user->postal_address(),
-            'physical_address' => $user->physical_address(),
-            'school_address' => $user->school_address(),
-            'preferred_session' => $application->preferred_session(true),
-            'profile_pic'=> $application->url_picture,
-            'document_count' => $application->documentCount(),
-        ], 'Aplicación');
+        if ($application == null) {
+            $_SESSION['error'] = "No se encontró la solicitud del usuario con el ID proporcionado.";
+            redirect('/admin/requests');
+        }
 
+        if($application->status === 'Sin subir') {
+            $_SESSION['error'] = "El usuario no ha sometido su solicitud todavia.";
+            redirect('/admin/requests');
+        }
+
+        render_view(
+            'profile',
+            [
+                'user' => $user,
+                'application' => $application,
+                'postal_address' => $user->postal_address(),
+                'physical_address' => $user->physical_address(),
+                'school_address' => $user->school_address(),
+                'preferred_session' => $application->preferred_session(true),
+                'profile_pic' => $application->url_picture,
+                'document_count' => $application->documentCount(),
+            ],
+            'Aplicación'
+        );
     }
     public static function updateStatus($request_method)
     {
@@ -54,26 +80,26 @@ class ApplicationController extends Controller
             $applicationId = $_POST['application_id'] ?? null;
             $newStatus = $_POST['status'] ?? null;
             $notify = isset($_POST['notify']) && $_POST['notify'] === 'on';
-    
+
             // Reverse mapping: Spanish status to English key
             $statusMap = array_flip(Application::$statusParsings);
             $newStatus = $statusMap[$newStatus] ?? null;
-    
+
             // Validate data
             if ($applicationId === null || $newStatus === null) {
                 $_SESSION['error_message'] = "Datos inválidos.";
                 redirect('/admin/requests');
                 return;
             }
-    
+
             try {
                 // Update application status
                 $application = Application::find($applicationId);
                 $application->update(['status' => $newStatus]);
-    
+
                 // Call TrackingEvaluation for tracking
                 TrackingController::TrackingEvaluation('POST');
-    
+
                 if ($notify) {
                     $_SESSION['success_message'] = "Estado actualizado y notificación enviada.";
                 } else {
@@ -93,29 +119,29 @@ class ApplicationController extends Controller
             redirect('/admin/requests');
         }
     }
-    
+
     public static function archive()
     {
         try {
             // Set the default file name
             $filePath = 'solicitudes_archivadas_' . date('Y-m-d_H-i-s') . '.csv';
-    
+
             // Open the CSV file for writing
             $file = fopen($filePath, 'w');
             if (!$file) {
                 redirect('/admin/settings');
                 return;
             }
-    
+
             // Add UTF-8 BOM for correct encoding
             fwrite($file, "\xEF\xBB\xBF");
-    
+
             // Write the CSV header
             fputcsv($file, ['Nombre', 'Correo', 'Creado En', 'Evaluado En', 'Nombre del Evaluador', 'Decisión Final']);
-    
+
             // Fetch all applications
             $applications = Application::all();
-    
+
             foreach ($applications as $application) {
                 try {
                     // Fetch user data
@@ -123,10 +149,10 @@ class ApplicationController extends Controller
                     $userFirstName = $user->first_name;
                     $userLastName = $user->last_name;
                     $applicantEmail = $user->__get('email') ?? 'N/A';
-    
+
                     // Format creation date
                     $createdOn = get_date_spanish($application->date_created);
-    
+
                     // Fetch evaluator data
                     $evaluatedOn = 'N/A';
                     $evaluatorName = 'N/A';
@@ -142,10 +168,10 @@ class ApplicationController extends Controller
                     } catch (ModelNotFoundException $e) {
                         $evaluatedOn = 'N/A';
                     }
-    
+
                     // Translate the final decision
                     $finalDecision = Application::$statusParsings[$application->status] ?? 'Desconocido';
-    
+
                     // Write to the CSV file
                     fputcsv($file, [
                         $userFirstName . ' ' . $userLastName,
@@ -159,17 +185,17 @@ class ApplicationController extends Controller
                     continue;
                 }
             }
-    
+
             // Close the file
             fclose($file);
-    
+
             // Set headers for file download
             header('Content-Type: text/csv');
             header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
             header('Pragma: no-cache');
             header('Expires: 0');
             readfile($filePath);
-    
+
             unlink($filePath);
         } catch (Exception $e) {
             redirect('/admin/settings');
