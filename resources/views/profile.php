@@ -97,10 +97,10 @@ require_once __DIR__ . '/partials/header.php';
                                     <input type="radio" name="status" value="Necesita Cambios" <?php echo ($application->status === 'need_changes') ? 'checked' : ''; ?>> Necesita Cambios
                                 </label>
                                 <label class="radio-option">
-                                    <input type="radio" name="status" value="Denegada" <?php echo ($application->status === 'denied') ? 'checked' : ''; ?>> Denegada
+                                    <input type="radio" name="status" value="Rechazado" <?php echo ($application->status === 'denied') ? 'checked' : ''; ?>> Denegada
                                 </label>
                                 <label class="radio-option">
-                                    <input type="radio" name="status" value="Aprobada" <?php echo ($application->status === 'approved') ? 'checked' : ''; ?>> Aprobada
+                                    <input type="radio" name="status" value="Aceptado" <?php echo ($application->status === 'approved') ? 'checked' : ''; ?>> Aprobada
                                 </label>
                             </div>
 

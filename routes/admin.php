@@ -26,6 +26,9 @@ switch ($path) {
     case '/admin/requests/update':
         ApplicationController::updateStatus($method);
         break;
+    case '/admin/settings/archive':
+        ApplicationController::archive();
+        break;
     case '/admin/requests':
         RequestsController::index();
         break;
