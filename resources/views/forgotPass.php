@@ -8,7 +8,9 @@ require __DIR__ . '/partials/header.php';
     <!-- Main container for forgot password page -->
         <div class="forgot-pass">
             <div class="content-left">
-                <a class="logo" href="/"><img src="resources/assets/logo/SVG/vetcamp_full_hoz_b.svg" alt="Vetcamp" class="logo"></a>
+                <a class="logo" href="/">
+                <?php require_once('partials/applicationLogo.php'); ?>
+                </a>
 
                 <?php if (isset($error)): ?>
                     <div class="alert error"><?php echo htmlspecialchars($error); ?></div>

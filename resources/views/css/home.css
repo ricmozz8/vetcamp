@@ -165,6 +165,94 @@
   content: "- ";
 }
 
+/*Team Info section*/
+.bio-container {
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.bio-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white-color);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.bio-image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.bio-info {
+  padding: 20px;
+  flex: 1;
+}
+
+.bio-name {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: var(--secondary-color-default);
+  margin-bottom: 10px;
+}
+
+.bio-title {
+  font-size: 1em;
+  color: var(--secondary-color-shade-1);
+  margin-bottom: 10px;
+}
+
+.bio-description {
+  font-size: 0.9em;
+  color: var(--secondary-color-shade-2);
+}
+
+.bio-card:hover {
+  box-shadow: 0 0 4px 6px rgba(255,255,255, 0.3);
+  background-color: var(--white-color-shade-1);
+}
+
+.instructor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin-top: 40px;
+}
+
+.instructor-item {
+  text-align: center;
+}
+
+.instructor-image {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  position: relative;
+  clip-path: path(var(--vetcamp-icon));
+}
+
+.instructor-name {
+  font-size: 1.4em;
+  font-weight: 700;
+  margin-bottom: 1em;
+}
+
+.instructor-image:hover {
+  box-shadow: 0 0 4px 6px rgba(255,255,255, 0.3);
+}
+
+.team-title {
+  text-align: center;
+  font-size: 2.8em;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  color: var(--white-color);
+}
+
 /* sections */
 
 .block {
@@ -329,6 +417,25 @@ footer .university-logo {
   .splitted-header p {
     text-align: right;
   }
+
+  .bio-container {
+    max-width: 1000px;
+  }
+
+  .bio-card {
+    display: flex;
+    flex-direction: row;
+  }
+
+   .bio-image {
+     width: 20%;
+     height: auto;
+   }
+
+   .instructor-image {
+      width: 215px;
+      height: 215px;
+   }
 
   .carrousel {
     max-width: 100%;

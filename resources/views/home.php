@@ -67,10 +67,56 @@ require __DIR__ . '/partials/header.php';
             </ul>
         </div>
 
+            <div class="bio-container">
+                <h1 class="team-title">Nuestro Equipo</h1>
+                <div class="bio-card">
+                    <img src="resources/assets/img/Dra._Rebeka_Sanabria.jpg" alt="Dra. Rebeka Sanabria León" class="bio-image">
+                    <div class="bio-info">
+                        <h2 class="bio-name">Dra. Rebeka Sanabria León</h2>
+                        <p class="bio-title">Fundadora y Coordinadora del VetCamp <br>
+                                             Catedrática Auxiliar del Programa de Tecnología Veterinaria – UPR Arecibo <br>
+                                             Presidenta del Comité Institucional del Cuidado y Uso Animal – UPR Arecibo <br>
+                                             </p>
+                        <p class="bio-description"> Educación: <br>
+                                                    DVM – Universidad Nacional Pedro Henríquez Ureña, Santo Domingo, RD – 2011 <br>
+                                                    MSc – Nutrición Animal y Manejo de Residuos Orgánicos – UPR Mayagüez – 2006 <br>
+                                                    BS – Agricultura General – UPR Mayagüez - 2003 <br></p>
+                    </div>
+                </div>
+
+                <div class="bio-card">
+                    <img src="resources/assets/img/Kenializ_Rosado_Molina.jpeg" alt="Kenializ Rosado Molina" class="bio-image">
+                    <div class="bio-info">
+                        <h2 class="bio-name">Kenializ Rosado Molina</h2>
+                        <p class="bio-title"> LVT <br>
+                                              Coordinadora SCNAVTA <br>
+                                              Técnica de Laboratorio del Programa de Tecnología Veterinaria - UPR Arecibo <br></p>
+                        <p class="bio-description"> Educación: <br>
+                                                    BS – Microbiología Médica en la UPR de Arecibo <br>
+                                                    Grado Asociado en Tecnología Veterinaria – UPR de Arecibo <br></p>
+                    </div>
+                </div>
+                        <h3 class="team-title">Perrinstructores y Gatinstructores</h3>
+                        <div class="instructor-grid">
+                            <div class="instructor-item">
+                                <img src="resources/assets/img/Eugenio.jpg" alt="Perrinstructor Eugenio" class="instructor-image">
+                                <p class="instructor-name">Eugenio</p>
+                            </div>
+                            <div class="instructor-item">
+                                <img src="resources/assets/img/Manolo.jpg" alt="Perrinstructor Manolo" class="instructor-image">
+                                <p class="instructor-name">Manolo</p>
+                            </div>
+                            <div class="instructor-item">
+                                <img src="resources/assets/img/Twiggy.jpg" alt="Gatinstructor Twiggy" class="instructor-image">
+                                <p class="instructor-name">Twiggy</p>
+                            </div>
+                            <div class="instructor-item">
+                                <img src="resources/assets/img/Punky.jpg" alt="Gatinstructor Punky" class="instructor-image">
+                                <p class="instructor-name">Punky</p>
+                            </div>
+                        </div>
+            </div>
     </div>
-
-
-
 
     <div class="sections-dynamic">
         <div class="splitted-header">

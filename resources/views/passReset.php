@@ -6,47 +6,62 @@ require __DIR__ . '/partials/header.php';
 
 <body>
     <!-- Main password reset container -->
-        <div class="pass-reset">
+    <div class="pass-reset">
 
         <div class="content-left">
 
-            <!-- Logo with link to home page -->
-            <a class="logo" href="/"><img src="resources/assets/logo/SVG/vetcamp_full_hoz_b.svg" alt="Vetcamp" class="logo"></a>
+           <!-- Logo with link to home page -->
+            <a class="logo" href="/">
+            <?php require_once('partials/applicationLogo.php'); ?>
+            </a>
 
             <!-- Password reset form -->
-            <form action="/passreset" method="POST">
-                <div class="page-title">Restablece tu contraseña</div>
+            <form action="login.php" method="POST">
 
-                <!-- New password input -->
-                <div class="field-wrapper">
-                    <div class="password-container">
-                        <label for="password" class="text-wrapper-2">Nueva Contraseña</label>
-                        <input type="password" id="password" name="password" required class="input-field input-password" placeholder="Ingrese la nueva contraseña">
-                        <span class="password-toggle" onclick="togglePasswords()">
-                            <i class="fas fa-eye"></i>
-                        </span>
-                    </div>
+            <div class="page-title">Restablece tu contraseña</div>
+
+                <div class="input-group">
+                     <div class="field-wrapper">
+                        <div class="password-container">
+                            <!-- New password input -->
+                            <label for="email" class="text-wrapper-2">Nueva Contraseña</label>
+                            <input type="password"
+                                   id="password"
+                                   name="password"
+                                   required
+                                   class="input-field input-password"
+                                   placeholder="Ingrese la nueva contraseña"
+                                   required>
+                                       <span class="password-toggle" onclick="togglePasswords()">
+                                          <i class="fas fa-eye"></i>
+                                       </span>
+                        </div>
+                     </div>
+
+                     <div class="field-wrapper">
+                        <div class="password-container">
+                                <!-- Confirm password input -->
+                                <label for="password" class="text-wrapper-3">Confirma la nueva contraseña</label>
+                                <input type="password"
+                                       name="confirm_password"
+                                       id="confirm_password"
+                                       class="input-field input-confirm-password"
+                                       placeholder="Ingrese la contraseña de nuevo"
+                                       required>
+                                           <span class="password-toggle" onclick="togglePasswords()">
+                                              <i class="fas fa-eye"></i>
+                                           </span>
+                        </div>
+                     </div>
                 </div>
 
-                <!-- Confirm password input -->
-                <div class="field-wrapper">
-                    <div class="password-container">
-                        <label for="confirm_password" class="text-wrapper-3">Confirma la nueva contraseña</label>
-                        <input type="password" name="confirm_password" id="confirm_password" class="input-field input-confirm-password" placeholder="Ingrese la contraseña de nuevo" required>
-                        <span class="password-toggle" onclick="togglePasswords()">
-                            <i class="fas fa-eye"></i>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Submit button -->
+                <!-- Submit button with hover effect -->
                 <div class="mainbutton">
                     <button type="submit" class="main-action-bright">
-                        <div class="secondary-action">Restablecer</div>
+                            <div class="secondary-action">restablecer</div>
                     </button>
                 </div>
             </form>
-        </div>
         </div>
         
         <!-- Right Side Image Container -->

@@ -7,5 +7,5 @@
         </div>
         <!-- Dark Overlay + Icon-->
         <div class="overlay">
-                <img src="resources/assets/logo/SVG/logo_icon.svg" alt="Vetcamp Icon" class="icon">
+                <img src="resources/assets/logo/SVG/vetcamp-icon-white.svg" alt="Vetcamp Icon" class="icon">
         </div>
