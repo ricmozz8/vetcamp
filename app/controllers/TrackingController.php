@@ -7,24 +7,26 @@ class TrackingController extends Controller
 {
     public static function TrackingEvaluation($request_method)
     {
-        // Ensure the request method is POST
         if ($request_method === 'POST') {
-            $applicationId = $_POST['application_id'] ?? null;
-            $decision = $_POST['status'] ?? null; // The status selected in the form
-            $madeOn = date('Y-m-d H:i:s'); // Current timestamp
+            // Initialize variables
+            $applicationId = null;
+            $decision = null;
 
-            // Log the user object for debugging
-            $user = Auth::user();
-            $userId = null;
-            if ($user) {
-                // Safely retrieve user_id via the __get method if it exists
-                if (isset($user->attributes['user_id'])) {
-                    $userId = $user->attributes['user_id'];
-                } elseif (method_exists($user, '__get')) {
-                    $userId = $user->__get('user_id');
+            // Sanitize and validate input
+            if (isset($_POST['application_id']) && is_numeric($_POST['application_id'])) {
+                $applicationId = (int) $_POST['application_id'];
+            }
+
+            if (isset($_POST['status']) && is_string($_POST['status'])) {
+                $allowedStatuses = ['Sometida', 'Necesita Cambios', 'Denegada', 'Aprobada', 'Incompleta', 'No Sometida'];
+                if (in_array($_POST['status'], $allowedStatuses)) {
+                    $decision = $_POST['status'];
                 }
             }
 
+            // Get the authenticated user
+            $user = Auth::user();
+            $userId = $user?->__get('user_id') ?? null;
 
             // Map of Spanish to English status values
             $status_map = [
@@ -34,30 +36,36 @@ class TrackingController extends Controller
                 'Aprobada' => 'approved',
                 'Incompleta' => 'incomplete',
                 'No Sometida' => 'unsubmitted',
+                'Lista de Espera' => 'waitlist',
             ];
 
-            // Convert status to English using the map
-            $decision = $status_map[$decision] ?? null;
+            // Convert status to English
+            $decision = $decision !== null ? $status_map[$decision] : null;
 
-            // Validate data
+            // Validate required data
             if ($applicationId === null || $userId === null || $decision === null) {
+                $_SESSION['error_message'] = "Datos inválidos o incompletos.";
                 redirect('/admin/requests');
                 return;
             }
 
             try {
-                // Create a new tracking record with the updated decision (status)
+                // Create a new tracking record
                 Tracking::create([
                     'application_id' => $applicationId,
                     'user_id' => $userId,
-                    'decision' => $decision, // Use the mapped decision
-                    'made_on' => $madeOn,
+                    'decision' => $decision,
                 ]);
+
+                $_SESSION['success_message'] = "Seguimiento registrado correctamente.";
+                redirect('/admin/requests');
             } catch (Exception $e) {
+                $_SESSION['error_message'] = "Error al registrar el seguimiento.";
                 redirect('/admin/requests');
             }
         } else {
             http_response_code(405);
+            $_SESSION['error_message'] = "Método de solicitud no permitido.";
             redirect('/admin/requests');
         }
     }
