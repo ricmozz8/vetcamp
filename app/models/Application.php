@@ -6,6 +6,8 @@ class Application extends Model
 {
 
     protected static $primary_key = 'id_application'; // Primary key
+    protected static $table = 'applications'; // Table name
+    
     public static $statusParsings = [
         'unsubmitted' => 'Sin llenar',
         'submitted' => 'Sometida',

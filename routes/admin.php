@@ -62,4 +62,7 @@ switch ($path) {
     case '/sessions/create':
         SettingsController::updateSession($method);
         break;
+    case '/profile/update':
+        UserController::update($method);
+        break;
 }
