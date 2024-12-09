@@ -15,12 +15,14 @@ $status = $application ? $application->status : 'Sin llenar';
             <img draggable="false" aria-selected="false" src="<?php echo asset('img/solic_img.png') ?>" alt="">
         </div>
         <div class="application-card-action">
-            <div class="splitted-title-head">
-                <h3>Vetcamp Verano <?php echo date('Y'); ?></h3>
+            <div class="application-card-head">
                 <div class="status-info">
                     <p>Estado: </p>
                     <p class="status <?= str_replace(' ', '-', strtolower($status)) ?>"><?php echo $status; ?></p>
                 </div>
+
+                <h3>Vetcamp Verano <?php echo date('Y'); ?></h3>
+
 
             </div>
 

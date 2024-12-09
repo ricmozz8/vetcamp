@@ -27,6 +27,7 @@
     border-radius: 7px;
     transition: all 0.2s ease;
     margin-bottom: 45vh;
+    user-select: none;
 }
 
 .application-deco-banner img{
@@ -53,6 +54,11 @@
 .application-card-action{
     padding: 2dvh;
 }
+
+.application-card-head{
+    display: flex;
+    flex-direction: column;
+}
 .status-info{
     display: flex;
     align-items: center;
@@ -60,6 +66,8 @@
     border-radius: 15px;
     color: var(--white-color);
     background-color: var(--secondary-color-default);
+    width: fit-content;
+    margin: 1em 0;
 }
 
 .status-actions{
