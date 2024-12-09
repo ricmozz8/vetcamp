@@ -28,7 +28,6 @@ final class DB
     {
 
         $dsn = CONFIG['database']['service'] . ':' . http_build_query($connection, '', ';');
-        //dd($dsn);
         try {
 
             self::$database = new PDO($dsn, $user, $password, [
@@ -120,12 +119,13 @@ final class DB
 
         $operator = in_array($operator, ['=', '>', '<', '>=', '<=', '!=']) ? $operator : '=';
         $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ' . $where . ' ' . $operator . ' :equal';
-
+       
 
         // Preparar la consulta SQL
         $statement = self::$database->prepare($sql);
         $statement->bindValue(':equal', $equal, PDO::PARAM_STR);
         $statement->execute();
+
         $results = $statement->fetch();
 
         if (is_array($results)) {
@@ -209,11 +209,8 @@ final class DB
 
             return true;
         } catch (Error $e) {
-            // Manejo de errores de la base de datos
-            error_log("Error en la consulta: " . $e->getMessage());
-            throw $e;
             return false;
-        }
+        } 
     }
 
     /**

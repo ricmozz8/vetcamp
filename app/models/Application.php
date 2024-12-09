@@ -9,7 +9,7 @@ class Application extends Model
     protected static $table = 'applications'; // Table name
     
     public static $statusParsings = [
-        'unsubmitted' => 'Sin llenar',
+        'unsubmitted' => 'Sin subir',
         'submitted' => 'Sometida',
         'need_changes' => 'Necesita Cambios',
         'approved' => 'Aceptado',
@@ -137,35 +137,5 @@ class Application extends Model
         }
     
         return $deletedApplications;
-    }
-
-    /**
-     * Retrieves the full application details including user addresses.
-     * 
-     * This method gathers the user's school, postal, and physical addresses
-     * and merges them with other application values.
-     *
-     * @return array An associative array containing the application's values
-     *               and the user's addresses.
-     */
-    public function full_application(): array
-    {
-
-        try{
-            $addresses = [
-                'school_address' => $this->user()->school_address(),
-                'postal_address' => $this->user()->postal_address(),
-                'physical_address' => $this->user()->physical_address(),
-            ];
-
-        } catch (ModelNotFoundException $e) {
-            $addresses = [
-                'school_address' => null,
-                'postal_address' => null,
-                'physical_address' => null,
-            ];
-        }
-
-        return array_merge($this->values, $addresses);
     }
 }

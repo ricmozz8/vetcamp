@@ -117,7 +117,7 @@ class Model
     public static function find(int $id, string $column = null, string $table = null) : Model {
         self::init();
         $data = DB::where($table ?? static::$table, $column ?? static::$primary_key, $id);
-
+        
         if (empty($data)) {
             throw new ModelNotFoundException('There is no record with the id given: ' . $id);
         } else {

@@ -127,6 +127,10 @@
     font-weight: bold;
 }
 
+.sin-subir{
+    color: var(--status-filling);
+}
+
 .sin-llenar{
     color: var(--status-not-filled);
 }

@@ -35,20 +35,20 @@ require __DIR__ . '../../partials/header.php';
                 <div class="form-block">
                     <div class="form-group">
                         <label for="aline1">Línea 1</label>
-                        <input required value="<?= $application['physical_address']->aline1 ?? '' ?>" type="text" id="postal_aline1" name="postal_address_line_1">
+                        <input required value="<?= isset($postal_address) ? $postal_address->aline1 : ''  ?>" type="text" id="postal_aline1" name="postal_address_line_1">
                     </div>
                     <div class="form-group">
                         <label for="aline1">Línea 2</label>
-                        <input value="<?= $application['physical_address']->aline2 ?? '' ?>" type="text" id="postal_aline1" name="postal_address_line_1">
+                        <input value="<?= isset($postal_address) ? $postal_address->aline2 : ''  ?>" type="text" id="postal_aline1" name="postal_address_line_1">
                     </div>
                     <div class="form-group">
                         <label for="postal_city">Ciudad</label>
-                        <?php $city = $application['physical_address']->city ?? '' ?>
+                        <?php $city = isset($postal_address) ? $postal_address->city : ''  ?>
                         <?php require 'cityselector.php' ?>
                     </div>
                     <div class="form-group">
                         <label for="postal_zip">Código Postal</label>
-                        <input required value="<?= $application['physical_address']->zip_code ?? '' ?>" type="text" id="postal_zip" name="postal_zip">
+                        <input required value="<?= isset($postal_address) ? $postal_address->zip_code : ''  ?>" type="text" id="postal_zip" name="postal_zip">
                     </div>
 
                 </div>
@@ -64,21 +64,21 @@ require __DIR__ . '../../partials/header.php';
                 <div class="form-block">
                     <div class="form-group">
                         <label for="aline1">Línea 1</label>
-                        <input required value="<?= $application['postal_address']->aline1 ?? '' ?>" type="text" id="physical_aline1" name="physical_address_line_1">
+                        <input required value="<?= isset($physical_address) ? $physical_address->zip_code : '' ?>" type="text" id="physical_aline1" name="physical_address_line_1">
                     </div>
                     <div class="form-group">
                         <label for="aline1">Línea 2</label>
-                        <input value="<?= $application['postal_address']->aline2 ?? '' ?>" type="text" id="physical_aline1" name="physical_address_line_1">
+                        <input value="<?= isset($physical_address) ? $physical_address->zip_code : '' ?>" type="text" id="physical_aline1" name="physical_address_line_1">
                     </div>
                     <div class="form-group">
 
                         <label for="physical_city">Ciudad</label>
-                        <?php $city = $application['postal_address']->city ?? '' ?>
+                        <?php isset($physical_address) ? $physical_address->zip_code : '' ?>
                         <?php require 'cityselector.php' ?>
                     </div>
                     <div class="form-group">
                         <label  for="postal_zip">Código Postal</label>
-                        <input required value="<?= $application['postal_address']->zip_code ?? '' ?>" type="text" id="physical_zip" name="physical_zip">
+                        <input required value="<?= isset($physical_address) ? $physical_address->zip_code : '' ?>" type="text" id="physical_zip" name="physical_zip">
                     </div>
 
                 </div>

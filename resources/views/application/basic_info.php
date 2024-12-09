@@ -43,8 +43,9 @@ require __DIR__ . '../../partials/header.php';
                     <div class="form-group">
                         <label for="section">Selecciona la sección que deseas participar</label>
                         <select required id="section" name="section">
+                            <option value="">Selecciona una</option>
                             <?php foreach ($sessions as $session) { ?>
-                                <option <?php echo $application['id_preferred_session'] ?? '' == $session->session_id ? 'selected' : '' ?> value="<?= $session->session_id ?>"><?= $session->title ?></option>
+                                <option <?php echo $application->id_preferred_session ?? '' == $session->session_id ? 'selected' : '' ?> value="<?= $session->session_id ?>"><?= $session->title ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -55,11 +56,11 @@ require __DIR__ . '../../partials/header.php';
                 <div class="form-block">
                     <div class="form-group">
                         <label for="street">Calle</label>
-                        <input value="<?=$application['school_address']->street  ?? '' ?>" required type="text" placeholder="123 Main St" name="school_street">
+                        <input value="<?= isset($school_address) ? $school_address->street : '' ?>" required type="text" placeholder="123 Main St" name="school_street">
                     </div>
 
                     <div class="form-group">
-                        <?php $city = $application['school_address']->city   ?? '' ?>
+                        <?php $city = isset($school_address) ? $school_address->city : '' ?>
                         <label for="city">Ciudad</label>
                         <?php require_once 'cityselector.php' ?>
                     </div>
@@ -67,7 +68,7 @@ require __DIR__ . '../../partials/header.php';
                     <div class="form-group">
 
                         <label for="zipcode">Código Postal</label>
-                        <input value="<?=$application['school_address']->zip_code ?? ''  ?>" required type="text" placeholder="0000" name="school_zipcode">
+                        <input value="<?=isset($school_address) ? $school_address->zip_code : '' ?>" required type="number" placeholder="0000" name="school_zipcode">
                     </div>
 
                     <div class="form-group">
@@ -76,9 +77,10 @@ require __DIR__ . '../../partials/header.php';
 
                         <select required name="schoolType">
                             <option value="">Selecciona una</option>
-                            <option <?php echo $application['school_address']->school_type  ?? ''  == 'public' ? 'selected' : '' ?> value="public">Pública</option>
-                            <option <?php echo $application['school_address']->school_type  ?? ''  == 'private' ? 'selected' : '' ?> value="private">Privada</option>
-                            <option <?php echo $application['school_address']->school_type  ?? ''  == 'homeschooled' ? 'selected' : '' ?> value="homeschooled">Homeschooled</option>
+                            <?php $school_type = isset($school_address) ? ($school_address->school_type) : '';?>
+                            <option <?php  echo $school_type  == 'public' ?  'selected' : '' ?> value="public">Pública</option>
+                            <option <?php  echo $school_type  == 'private' ?  'selected' : '' ?> value="private">Privada</option>
+                            <option <?php  echo $school_type  == 'homeschooled'  ? 'selected' : '' ?> value="homeschooled">Homeschooled</option>
                             <!-- Add more options here -->
                         </select>
                     </div>

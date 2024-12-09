@@ -38,9 +38,21 @@ class Auth
      */
     public static function user()
     {
-        return $_SESSION['user'];
+        return User::find($_SESSION['user']->user_id, 'user_id');
     }
 
+    /**
+     * Refreshes the user in the session with the latest data from the database.
+     * If the user is not logged in, this method does nothing.
+     */
+    public static function refresh()
+    {
+        if (isset($_SESSION['user'])) {
+            $_SESSION['user'] = User::find($_SESSION['user']->__get('user_id'));
+            return True;
+        }
+        return False;
+    }
     
 
     

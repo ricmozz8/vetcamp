@@ -136,7 +136,11 @@ class User extends Model
      */
     public function postal_address()
     {
-        return PostalAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+        try {
+            return PostalAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+        } catch (ModelNotFoundException $notFound) {
+            return null;
+        }
     }
 
     /**
@@ -150,7 +154,11 @@ class User extends Model
      */
     public function physical_address()
     {
-        return PhysicalAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+        try {
+            return PhysicalAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+        } catch (ModelNotFoundException $notFound) {
+            return null;
+        }
     }
 
 
