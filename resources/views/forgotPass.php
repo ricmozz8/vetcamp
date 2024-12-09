@@ -8,14 +8,7 @@ require __DIR__ . '/partials/header.php';
     <!-- Main container for forgot password page -->
         <div class="forgot-pass">
             <div class="content-left">
-                <a class="logo" href="/"><img src="resources/assets/logo/SVG/vetcamp_full_hoz_b.svg" alt="Vetcamp" class="logo"></a>
-
-                <?php if (isset($error)): ?>
-                    <div class="alert error"><?php echo htmlspecialchars($error); ?></div>
-                <?php endif; ?>
-                <?php if (isset($message)): ?>
-                    <div class="alert success"><?php echo htmlspecialchars($message); ?></div>
-                <?php endif; ?>
+                <a class="logo" href="/"><img src="resources/assets/logo/SVG/vetcamp-full-black.svg" alt="Vetcamp" class="logo"></a>
 
                 <form action="/forgotpass" method="POST">
                     <!-- Back button -->

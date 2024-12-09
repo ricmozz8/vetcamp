@@ -5,7 +5,7 @@
         <i class="las la-exclamation-triangle"></i>
             ¿Deseas salir de la solicitud?
         </h2>
-        <p>Puede que tus cambios no se guarden correctamente</p>
+        <p>Tus cambios no se guardarán correctamente</p>
 
         <div class="modal-actions">
             <input type="hidden" name="-1">
