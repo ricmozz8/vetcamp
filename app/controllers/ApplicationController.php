@@ -51,11 +51,11 @@ class ApplicationController extends Controller
     public static function updateStatus($request_method)
     {
         if ($request_method === 'POST') {
-            $application_id = $_POST['application_id'] ?? null;
-            $new_status = $_POST['status'] ?? null;
+            $applicationId = $_POST['application_id'] ?? null;
+            $newStatus = $_POST['status'] ?? null;
             $notify = isset($_POST['notify']) && $_POST['notify'] === 'on';
-
-            // Mapeo de estados en español a inglés
+    
+            // Map of Spanish to English status values
             $status_map = [
                 'Sometida' => 'submitted',
                 'Necesita Cambios' => 'need_changes',
@@ -64,37 +64,43 @@ class ApplicationController extends Controller
                 'Incompleta' => 'incomplete',
                 'No Sometida' => 'unsubmitted',
             ];
+    
+            // Convert status to English
+            $newStatus = $status_map[$newStatus] ?? null;
+    
+            // Validate data
+            if ($applicationId === null || $newStatus === null) {
+                $_SESSION['error_message'] = "Datos inválidos.";
+                redirect('/admin/requests');
+                return;
+            }
+    
+            try {
+                // Update application status
+                $application = Application::find($applicationId);
+                $application->update(['status' => $newStatus]);
+                
+                // Call TrackingEvaluation for tracking
+                TrackingController::TrackingEvaluation('POST');
 
-            // Convertir estado al valor en inglés
-            $new_status = $status_map[$new_status] ?? null;
-
-            if ($application_id && $new_status) {
-                // Buscar la aplicación usando el modelo
-                try {
-                    $application = Application::find($application_id);
-
-                    // Actualizar el estado
-                    $application->update(['status' => $new_status]);
-
-                    if ($notify) {
-                        $_SESSION['message'] = "Estado actualizado y notificación enviada.";
-                    } else {
-                        $_SESSION['message'] = "Estado actualizado correctamente.";
-                    }
-                } catch (ModelNotFoundException $e) {
-                    $_SESSION['error_message'] = "No se encontró la solicitud con el ID proporcionado.";
+                if ($notify) {
+                    $_SESSION['success_message'] = "Estado actualizado y notificación enviada.";
+                } else {
+                    $_SESSION['success_message'] = "Estado actualizado correctamente.";
                 }
-            } else {
-                $_SESSION['error_message'] = "ID de aplicación o estado inválido.";
+                redirect('/admin/requests');
+            } catch (ModelNotFoundException $e) {
+                $_SESSION['error_message'] = "No se encontró la solicitud con el ID proporcionado.";
+                redirect('/admin/requests');
+            } catch (Exception $e) {
+                $_SESSION['error_message'] = "Error al actualizar el estado.";
+                redirect('/admin/requests');
             }
         } else {
             http_response_code(405);
             $_SESSION['error_message'] = "Método de solicitud no permitido.";
+            redirect('/admin/requests');
         }
-
-        // Redirigir de vuelta a la página de la solicitud
-        redirect("/admin/requests/r?id=$application->user_id");
-        exit;
     }
         public function archive()
     {
