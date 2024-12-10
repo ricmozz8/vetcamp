@@ -8,7 +8,7 @@
     <!-- Popup title -->
     <h2 class="message-title">Manejar fechas límite</h2>
     <br>
-    <p>Manejar las fechas límite para el registro del campamento.</p>
+    <h3> Establezca las fechas límite para registrarse al campamento. </h3>
 
 
 
