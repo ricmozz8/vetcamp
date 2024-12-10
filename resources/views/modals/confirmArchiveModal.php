@@ -9,7 +9,7 @@
 
     <!-- Alert -->
     <div class="message-options">
-        <h3> Esta acción no se prodra revertir... </h3>
+        <h3> Esta acción creará un documento con la información de las solicitudes actuales.  Recuerde limpiar las listas para evitar documentos duplicados. </h3>
     </div>
 
 

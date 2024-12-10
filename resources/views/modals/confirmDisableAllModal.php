@@ -9,7 +9,7 @@
 
     <!-- Alert -->
     <div class="message-options">
-        <h3> Esta acción no se prodra revertir... </h3>
+        <h3> Esta acción eliminará los documentos de las cuentas y cambiará el estado de las mismas a "desactivada".  Esta acción no se podrá revertir... </h3>
     </div>
 
 

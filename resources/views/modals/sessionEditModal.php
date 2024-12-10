@@ -8,7 +8,7 @@
 
     <!-- Message area -->
     <div class="message-options">
-        <h3>Año 2024</h3>
+        <h3> Cambie el título y las fechas de comienzo y final de cada sesión activa.  Recuerde presionar el botón de "Guardar" para preservar los cambios. </h3>
     </div>
 
 
@@ -60,31 +60,31 @@
 
 <!-- Popup for adding a new session -->
 <div class="message-popup" id="addSessionsModal" style="display: none">
-<a href="#" class="plain-action" id="closePopup" onclick="closeModal('addSessionsModal')">
-    <i class="las la-times"></i>
-</a>
+    <a href="#" class="plain-action" id="closePopup" onclick="closeModal('addSessionsModal')">
+        <i class="las la-times"></i>
+    </a>
 
-<h2 class="message-title">Añadir nueva sesión</h2>
+    <h2 class="message-title">Añadir nueva sesión</h2>
 
-<div class="message-options">
-    <h3>Escriba un título para la sesión y establezca las fechas</h3>
-</div>
+    <div class="message-options">
+        <h3> Escriba un título y establezca las fechas de comienzo y final para crear una sesión nueva. </h3>
+    </div>
 
 
-<!-- Form for adding a new session -->
-<form action="/sessions/create" method="POST">
-    <div class="session-modal-edit-area">
-        <div class="session-modal-edit">
-            <input type="text" class="session-edit-input" name="new_sessions[0][title]" placeholder="Título de la nueva sesión" />
-            <input type="date" class="session-edit-input" name="new_sessions[0][start_date]" />
-            <input type="date" class="session-edit-input" name="new_sessions[0][end_date]" />
+    <!-- Form for adding a new session -->
+    <form action="/sessions/create" method="POST">
+        <div class="session-modal-edit-area">
+            <div class="session-modal-edit">
+                <input type="text" class="session-edit-input" name="new_sessions[0][title]" placeholder="Título de la nueva sesión" />
+                <input type="date" class="session-edit-input" name="new_sessions[0][start_date]" />
+                <input type="date" class="session-edit-input" name="new_sessions[0][end_date]" />
+            </div>
         </div>
-    </div>
 
-    <!-- Buttons area -->
-    <div class="modal-actions">
-        <a href="#" type="button" class="primary main-action-bright" onclick="closeModal('addSessionsModal')">Cancelar</a>
-        <button type="submit" class="secondary main-action-bright">Guardar</button>
-    </div>
-</form>
+        <!-- Buttons area -->
+        <div class="modal-actions">
+            <a href="#" type="button" class="primary main-action-bright" onclick="closeModal('addSessionsModal')">Cancelar</a>
+            <button type="submit" class="secondary main-action-bright">Guardar</button>
+        </div>
+    </form>
 </div>
