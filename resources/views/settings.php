@@ -136,10 +136,6 @@ require __DIR__ . '/modals/editPicturesModal.php';
         </main>
     </div>
 
-    <!-- Modal Popup -->
-    <!-- The overlay provides a semi-transparent dark background behind the popup -->
-    <div class="popup-overlay" id="popupOverlay" style="display: none"></div>
-
     <!-- Footer with copyright information -->
     <?php require_once('partials/footer.php'); ?>
 </body>
