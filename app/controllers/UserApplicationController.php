@@ -38,15 +38,17 @@ class UserApplicationController extends Controller
      */
     public static function basic_data($method)
     {
+        $application = Auth::user()->application();
+        $school_address  = Auth::user()->school_address();
+
         // save the basic information here, validate it and then save it 
         if ($method === 'POST') {
 
             $birthdate = filter_input(INPUT_POST, 'birthdate', FILTER_DEFAULT);
 
-            $user = Auth::user()->update([
+            Auth::user()->update([
                 'birthdate' => $birthdate
             ]);
-
 
             $section = filter_input(INPUT_POST, 'section', FILTER_DEFAULT);
 
@@ -74,23 +76,19 @@ class UserApplicationController extends Controller
             $city = filter_input(INPUT_POST, 'city', FILTER_DEFAULT);
             $zip = filter_input(INPUT_POST, 'school_zipcode', FILTER_DEFAULT);
 
-            // check if the user has a school address
-            try {
-                $school_address = Auth::user()->school_address();
+            // check if the user has a school address and save it
 
-                $school_address->update([
-                    'street' => $street,
-                    'city' => $city,
-                    'zip_code' => $zip
-                ]);
-            } catch (ModelNotFoundException $e) {
+            $newAddress = [
+                'street' => $street,
+                'city' => $city,
+                'zip_code' => $zip
+            ];
 
-                $school_address = SchoolAddress::create([
-                    'street' => $street,
-                    'city' => $city,
-                    'zip_code' => $zip,
-                    'user_id' => Auth::user()->__get('user_id')
-                ]);
+            if ($school_address === null) {
+                $newAddress['user_id'] = Auth::user()->__get('user_id');
+                $school_address = SchoolAddress::create($newAddress);
+            } else {
+                $school_address->update($newAddress);
             }
 
             // refresh the user with the new information on the database
@@ -100,20 +98,13 @@ class UserApplicationController extends Controller
 
             redirect('/apply/application/contact');
         } else {
-            $application = Auth::user()->application();
-            $sessions = Session::all();
-            try{
-                $school_address  = Auth::user()->school_address();
-            } catch (ModelNotFoundException $e) {
-                $school_address = null;
-            }
 
+            $sessions = Session::all();
             render_view('application/basic_info', [
                 'application' => $application,
                 'sessions' => $sessions,
                 'school_address' => $school_address
             ], 'Datos Básicos');
-
         }
     }
 
@@ -132,14 +123,64 @@ class UserApplicationController extends Controller
      */
     public static function contact($method)
     {
+        $application = Auth::user()->application();
+        $postal_address = Auth::user()->postal_address();
+        $physical_address = Auth::user()->physical_address();
+
         // submit the contact information and validate them it here
         if ($method === 'POST') {
-            $_SESSION['message'] = 'Datos de contacto guardados correctamente';
+            
+            // obtaining the contact information
+
+            $physical_addr_data = [
+                'aline1' => filter_input(INPUT_POST, 'physical_aline1', FILTER_DEFAULT),
+                'aline2' => filter_input(INPUT_POST, 'physical_aline2', FILTER_DEFAULT),
+                'city' => filter_input(INPUT_POST, 'physical_city', FILTER_DEFAULT),
+                'zip_code' => filter_input(INPUT_POST, 'physical_zip', FILTER_DEFAULT),
+            ];
+
+            $postal_addr_data = [
+                'aline1' => filter_input(INPUT_POST, 'postal_aline1', FILTER_DEFAULT),
+                'aline2' => filter_input(INPUT_POST, 'postal_aline2', FILTER_DEFAULT),
+                'city' => filter_input(INPUT_POST, 'postal_city', FILTER_DEFAULT),
+                'zip_code' => filter_input(INPUT_POST, 'postal_zip', FILTER_DEFAULT),
+            ];
+
+            
+
+            $isValid = 
+            validate_input($physical_addr_data, ['aline1', 'city', 'zip']) &&
+            validate_input($postal_addr_data, ['aline1', 'city', 'zip']);
+
+            // do not let the user continue if there are errors
+            if (!$isValid) {
+                $_SESSION['error'] = 'Por favor complete todos los campos';
+                redirect('/apply/application/contact');
+            }
+
+            // updating the user's addresses
+            if ($physical_address === null) {
+                $physical_address['user_id'] = Auth::user()->__get('user_id');
+                $physical_address = PhysicalAddress::create($physical_addr_data);
+            } else {
+                $physical_address->update($physical_addr_data);
+            }
+
+            if ($postal_address === null) {
+                $postal_address['user_id'] = Auth::user()->__get('user_id');
+                $postal_address = PostalAddress::create($postal_addr_data);
+            } else {
+               $postal_address->update($postal_addr_data);
+            }
+
+            // refresh the user with the new information on the database
+            Auth::refresh() ?
+                $_SESSION['message'] = 'Datos de contacto guardados correctamente' :
+                $_SESSION['error'] = 'Hubo un error al guardar los datos de contacto';
+
             redirect('/apply/application/documents');
         } else {
-            $application = Auth::user()->application();
-            $postal_address = Auth::user()->postal_address();
-            $physical_address = Auth::user()->physical_address();
+
 
             render_view('application/contact', [
                 'application' => $application,

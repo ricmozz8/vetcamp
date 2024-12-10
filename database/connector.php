@@ -257,7 +257,7 @@ final class DB
             foreach ($data as $key => $value) {
 
                 // placing the adequate filter:
-                $pdo_param = is_numeric($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+                $pdo_param = gettype($value) === "int" ? PDO::PARAM_INT : PDO::PARAM_STR;
                 $stmt->bindValue(":$key", $value, $pdo_param);
             }
 

@@ -9,7 +9,7 @@ require __DIR__ . '../../partials/header.php';
 
 
     <div class="section-head">
-        <h1 >Vetcamp Verano <?php echo date('Y'); ?></h1>
+        <h1>Vetcamp Verano <?php echo date('Y'); ?></h1>
         <a href="/apply/application/documents" class="main-action-bright"><i class="las la-arrow-left"></i>Atrás</a>
     </div>
 
@@ -30,12 +30,83 @@ require __DIR__ . '../../partials/header.php';
 
 
         <form action="" method="POST">
-            <!-- Document upload section -->
-         
+            <!-- Confirmation info -->
+
+            <div class="desk-grid">
+
+                <div class="grid-group">
+                    <h3>Contacto</h3>
+                    <div class="form-group">
+                        <label for="first_name">Nombre</label>
+                        <p><?= Auth::user()->first_name ?? '' ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Apellido</label>
+                        <p><?= Auth::user()->last_name ?? '' ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo</label>
+                        <p><?= Auth::user()->email ?? '' ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <p><?= format_phone(Auth::user()->phone_number) ?? '' ?></p>
+                    </div>
+                </div>
+
+
+                <div class="grid-group">
+                    <h3>Direcciones</h3>
+                    <div class="form-group">
+                        <label for="postal">Dirección de la escuela</label>
+                        <?php
+                        if (Auth::user()->school_address()) {
+                            $fullPostal = Auth::user()->school_address()->build();
+                        }
+                        ?>
+                        <p><?= $fullPostal ?? '' ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="postal">Dirección postal</label>
+                        <?php
+                        if (Auth::user()->postal_address()) {
+                            $fullPostal = Auth::user()->postal_address()->build();
+                        }
+                        ?>
+                        <p><?= $fullPostal ?? '' ?></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postal">Dirección física</label>
+                        <?php
+                        if (Auth::user()->physical_address()) {
+                            $fullPostal = Auth::user()->physical_address()->build();
+                        }
+                        ?>
+                        <p><?= $fullPostal ?? '' ?></p>
+                    </div>
+                </div>
+                <div class="grid-group">
+                <h3>Campamento</h3>
+                <div class="form-group">
+                    <label for="postal">Sesión preferida</label>
+                    <p><?= Auth::user()->application()->preferred_session(true) ?? '' ?>
+                   
+                </p>
+                </div>
+              
+
+
+
+
+            </div>
+
             <div class="form-actions">
                 <input type="hidden" name="stage" value="confirm">
-                <p>Se guardará la información una vez pulses 'siguiente'.</p>
-                <button class="main-action-bright  secondary">Confirmar</button>
+                
+                <button class="main-action-bright ">
+                <i class="las la-arrow-right"></i>    
+                Someter</button>
             </div>
         </form>
     </div>

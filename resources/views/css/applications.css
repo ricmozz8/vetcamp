@@ -257,15 +257,15 @@
     margin-bottom: 5px;
 }
 
-.form-group input,
-.form-group select {
+input,
+select {
     padding: 10px;
     font-size: 14px;
     border: 1px solid var(--secondary-color-default);
     border-radius: 15px;
     margin-bottom: 1em;
     outline: none;
-    /* anti-aliasing; */
+    background-color: transparent;
 }
 
 .form-group input[type="date"] {
