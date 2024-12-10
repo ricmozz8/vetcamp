@@ -18,10 +18,12 @@ class Application extends Model
         'waitlist' => 'En lista de espera'
     ];
 
+    public $status;
+
     public function __construct(array $attributes, array $sanitized)
     {
         parent::__construct($attributes,  $sanitized);
-        $this->set('status', self::$statusParsings[$this->values['status']]);
+        $this->status = self::$statusParsings[$this->values['status']];
     }
 
     /**
