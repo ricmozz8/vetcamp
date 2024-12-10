@@ -256,6 +256,11 @@ class SettingsController extends Controller
         }
     } catch (Exception $e) {
         $_SESSION['error'] = 'Ocurrió un error al eliminar solicitudes denegadas: ' . $e->getMessage();
+    } finally {
+
+        if (empty($deletedUsers)) {
+            $_SESSION['message'] = 'No se encontraron solicitudes para eliminar.';
+        }
     }
 
     redirect('/admin/settings');
