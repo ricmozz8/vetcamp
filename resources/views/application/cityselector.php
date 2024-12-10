@@ -1,4 +1,4 @@
-<select required name="city" id="school_city">
+<select required name="<?= isset($citylabel) ? $citylabel : 'city' ?>" id="school_city">
     <option value="">Seleccione una ciudad</option>
     <option <?php echo $city == 'Adjuntas' ? 'selected' : '' ?> value="Adjuntas">Adjuntas</option>
     <option <?php echo $city == 'Aguada' ? 'selected' : '' ?> value="Aguada">Aguada</option>
@@ -79,3 +79,7 @@
     <option <?php echo $city == 'Yabucoa' ? 'selected' : '' ?> value="Yabucoa">Yabucoa</option>
     <option <?php echo $city == 'Yauco' ? 'selected' : '' ?> value="Yauco">Yauco</option>
 </select>
+<?php $inputName = isset($citylabel) ? $citylabel : 'city';
+require 'formInputError.php';
+unset($citylabel);
+?>

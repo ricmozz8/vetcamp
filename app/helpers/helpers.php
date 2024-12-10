@@ -324,3 +324,28 @@ function get_config(string $type, string $title, string $default = null)
 {
     return CONFIG[$type][$title] ?? $default;
 }
+
+
+
+/**
+ * Validates user input by checking if all required fields are not empty.
+ *
+ * This function takes an associative array of inputs, and an array of required
+ * field names. It then checks if all the required fields are present in the
+ * inputs array and are not empty. If any required field is empty, the function
+ * will return false. Otherwise, it will return true.
+ *
+ * @param array $inputs The associative array of inputs to validate.
+ * @param array $required The array of required field names.
+ *
+ * @return bool True if all required fields are not empty, false otherwise.
+ */
+function validate_input(array $inputs, array $required)
+{
+    foreach ($inputs as $key => $value) {
+        if (in_array($key, $required) && empty($value)) {
+            return false;
+        }
+    }
+    return true;
+}

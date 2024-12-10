@@ -121,7 +121,12 @@ class User extends Model
      */
     public function school_address()
     {
-        return SchoolAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+        try{ 
+            return SchoolAddress::find($this->attributes[self::$primary_key], self::$primary_key);
+        }
+        catch (ModelNotFoundException $notFound) {
+            return null;
+        }
     }
 
 
