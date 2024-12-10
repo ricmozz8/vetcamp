@@ -59,6 +59,9 @@ switch ($path) {
     case '/admin/delete/rejected/requests':
         SettingsController::deleteRejectedRequests($method);
         break;
+    case '/admin/delete/all/requests':
+        SettingsController::deleteAllRequests($method);
+        break;
     case '/sessions/update':
         SettingsController::updateSession($method);
         break;
