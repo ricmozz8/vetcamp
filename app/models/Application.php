@@ -21,7 +21,7 @@ class Application extends Model
     public function __construct(array $attributes, array $sanitized)
     {
         parent::__construct($attributes,  $sanitized);
-        $this->status = self::$statusParsings[$this->status];
+        $this->set('status', self::$statusParsings[$this->values['status']]);
     }
 
     /**
