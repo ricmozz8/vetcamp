@@ -45,7 +45,7 @@ require __DIR__ . '../../partials/header.php';
                         <select required id="section" name="section">
                             <option value="">Selecciona una</option>
                             <?php foreach ($sessions as $session) { ?>
-                                <option <?php echo $application->id_preferred_session ?? '' == $session->session_id ? 'selected' : '' ?> value="<?= $session->session_id ?>"><?= $session->title ?></option>
+                                <option <?php echo $application->id_preferred_session ?? '' == $session->session_id ? 'selected' : '' ?> value="<?= $session->session_id ?>"><?= $session->formatted() ?></option>
                             <?php } ?>
                         </select>
                     </div>
