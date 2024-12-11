@@ -109,7 +109,6 @@ $statusParsing = [
                 // check if the user pressed the manage-user-button
                 if (event.target.closest('#manage-user-button') === null) {
                     if (event.target.closest('.manage-user') === null) {
-                        console.log('CONTXT');
                         closeContextMenu('manage-user');
                     }
                 }
