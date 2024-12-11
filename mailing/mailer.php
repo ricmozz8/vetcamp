@@ -4,6 +4,8 @@
  * 
  * This class provides methods for sending emails using different mailers.
  */
+
+
 class Mailer{
 
     // attributes
@@ -14,6 +16,7 @@ class Mailer{
     private static $password;
     private static $from;
     private static $to;
+
 
 
 
@@ -35,7 +38,17 @@ class Mailer{
         self::$port = get_config('mailing', 'port', '25');
         self::$username = get_config('mailing', 'username', '');
         self::$password = get_config('mailing', 'password', '');
-        self::$from = get_config('mailing', 'from', '');
+
+        // Configure the mailer service
+        ini_set('smtp', self::$mailer);
+        ini_set('smtp_host', self::$host);
+        ini_set('smtp_port', self::$port);
+        ini_set('smtp_username', self::$username);
+        ini_set('smtp_password', self::$password);
+
+
+
+
     }
 
     /**

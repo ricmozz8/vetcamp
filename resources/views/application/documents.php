@@ -35,8 +35,8 @@ require __DIR__ . '../../partials/header.php';
                 <!-- Document upload boxes -->
                 <div class="document-group">
                     <div class="upload-box">
-                        <label for="solicitud_escrita"> <span> Selecciona un archivo</span></label>
-                        <input accept="application/pdf" type="file" id="solicitud_escrita" name="solicitud_escrita" onchange="updateFileName(this)">
+                        <label for="written_application"> <span> Selecciona un archivo</span></label>
+                        <input  accept="application/pdf" type="file" id="written_application" name="written_application" onchange="updateFileName(this)">
                     </div>
                     <div class="check-labeled">
                         <label>Solicitud Escrita</label>
@@ -47,16 +47,16 @@ require __DIR__ . '../../partials/header.php';
 
                 <div class="document-group">
                     <div class="upload-box">
-                        <label for="credito"> <span> Selecciona un archivo</span></label>
-                        <input accept="application/pdf" type="file" id="credito" name="credito" onchange="updateFileName(this)">
+                        <label for="transcript"> <span> Selecciona un archivo</span></label>
+                        <input  accept="application/pdf" type="file" id="transcript" name="transcript" onchange="updateFileName(this)">
                     </div>
                     <label>Transcripción de crédito</label>
                 </div>
 
                 <div class="document-group">
                     <div class="upload-box">
-                        <label for="escrito"><span> Selecciona un archivo</span></label>
-                        <input accept="application/pdf" type="file" id="escrito" name="escrito" onchange="updateFileName(this)">
+                        <label for="written_essay"><span> Selecciona un archivo</span></label>
+                        <input  accept="application/pdf" type="file" id="written_essay" name="written_essay" onchange="updateFileName(this)">
                     </div>
                     <label>Ensayo escrito</label>
                 </div>
@@ -64,8 +64,8 @@ require __DIR__ . '../../partials/header.php';
                 <div class="document-group">
                     <div class="upload-box">
 
-                        <label for="foto"> <span> Selecciona un archivo</span></label>
-                        <input accept="image/*" type="file" id="foto" name="foto" onchange="updateFileName(this)">
+                        <label for="picture"> <span> Selecciona un archivo</span></label>
+                        <input  accept="image/*" type="file" id="picture" name="picture" onchange="updateFileName(this)">
                     </div>
                     <label>Foto 2x2</label>
                 </div>
@@ -73,8 +73,8 @@ require __DIR__ . '../../partials/header.php';
                 <div class="document-group">
                     <div class="upload-box">
 
-                        <label for="ensayo_video"> <span> Selecciona un archivo</span></label>
-                        <input accept="video/*" type="file" id="ensayo_video" name="ensayo_video" onchange="updateFileName(this)">
+                        <label for="video_essay"> <span> Selecciona un archivo</span></label>
+                        <input  accept="video/*" type="file" id="video_essay" name="video_essay" onchange="updateFileName(this)">
                     </div>
                     <label>Ensayo en video</label>
                 </div>
@@ -83,8 +83,8 @@ require __DIR__ . '../../partials/header.php';
                     <div class="upload-box">
 
 
-                        <label for="carta_autorizacion"><span> Selecciona un archivo</span> </label>
-                        <input accept="application/pdf" type="file" id="carta_autorizacion" name="carta_autorizacion" onchange="updateFileName(this)">
+                        <label for="authorization"><span> Selecciona un archivo</span> </label>
+                        <input  accept="application/pdf" type="file" id="authorization" name="authorization" onchange="updateFileName(this)">
                     </div>
                     <label>Carta de Autorización</label>
                 </div>
@@ -92,7 +92,7 @@ require __DIR__ . '../../partials/header.php';
             <div class="form-actions">
                 <input type="hidden" name="stage" value="4">
                 <p>Se guardará la información una vez pulses 'siguiente'.</p>
-                <button class="main-action-bright  secondary">Siguiente</button>
+                <button id="next-button" class="main-action-bright  secondary">Siguiente</button>
             </div>
         </form>
     </div>

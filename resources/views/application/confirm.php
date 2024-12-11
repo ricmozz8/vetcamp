@@ -87,26 +87,35 @@ require __DIR__ . '../../partials/header.php';
                     </div>
                 </div>
                 <div class="grid-group">
-                <h3>Campamento</h3>
-                <div class="form-group">
-                    <label for="postal">Sesión preferida</label>
-                    <p><?= Auth::user()->application()->preferred_session(true) ?? '' ?>
-                   
-                </p>
+                    <h3>Campamento</h3>
+                    <div class="form-group">
+                        <label for="postal">Sesión preferida</label>
+                        <?php if (Auth::user()->application()) {
+                            $session = Auth::user()->application()->preferred_session(true);
+                        } else {
+                            $session = '';
+                        } ?>
+
+                        <p><?= $session ?>
+
+                        </p>
+                    </div>
+
+
+
+
+
                 </div>
-              
-
-
-
-
             </div>
 
             <div class="form-actions">
                 <input type="hidden" name="stage" value="confirm">
-                
-                <button class="main-action-bright ">
-                <i class="las la-arrow-right"></i>    
-                Someter</button>
+
+                <a href="#" onclick="openModal('confirmSubmitApplicationModal')" class="main-action-bright ">
+                    <i class="las la-arrow-right"></i>
+                    Someter</a>
+
+                <?php require_once __DIR__ . '../../modals/confirmSubmitApplicationModal.php'; ?>
             </div>
         </form>
     </div>

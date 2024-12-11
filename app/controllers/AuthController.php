@@ -106,14 +106,24 @@ class AuthController extends Controller
                 redirect('/login');
             } catch (ModelNotFoundException $e) {
                 // User was not found
-                $user = User::create([
+                User::create([
                     'first_name' => $_POST['first_name'],
                     'last_name' => $_POST['last_name'],
                     'email' => $_POST['email'],
                     'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
                     'phone_number' => deformat_phone($_POST['phone_number']),
                 ]);
+
+                $user = User::findBy(['email' => $_POST['email']]);
+
+                Mailer::send(
+                    $user->email,
+                    'Bienvenido a vetcamp',
+                    'Tu cuenta ha sido registrada en vetcamp!');
+
                 Auth::login($user);
+
+                
 
                 redirect('/apply');
             }
@@ -144,8 +154,8 @@ class AuthController extends Controller
             }
     
             // Sanitize and validate passwords from POST data
-            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-            $confirmPassword = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
+            $password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
+            $confirmPassword = filter_input(INPUT_POST, 'confirm_password', FILTER_DEFAULT);
     
             // Validate password match
             if ($password !== $confirmPassword) {

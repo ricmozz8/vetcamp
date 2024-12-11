@@ -10,6 +10,7 @@ class Auth
      * @param array $user The user to be logged in
      */
     public static function login(User $user){
+
         // if trying to login with a user that is already logged in
         $_SESSION['user'] = $user;
     }

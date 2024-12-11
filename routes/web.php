@@ -43,6 +43,12 @@ switch ($path) {
     case '/solicitud':
         FileController::getFile('storage', '/public/Formulario de Inscripción Vet CAMP UPR-Arecibo Verano 2025.pdf');
         break;
+    
+    case '/sendmail/tome':
+        Mailer::send('cupcakethief2311@gmail.com', 'Test Mail', 'This is a test mail');
+        $_SESSION['message'] = "Email enviado con exito!";
+        redirect('/');
+        break;
 
     default:
         abort(404, 'Page was not found');

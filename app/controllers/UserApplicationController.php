@@ -123,13 +123,19 @@ class UserApplicationController extends Controller
      */
     public static function contact($method)
     {
+
         $application = Auth::user()->application();
         $postal_address = Auth::user()->postal_address();
         $physical_address = Auth::user()->physical_address();
 
+        if ($application === null) { // the user must have submitted their basic information first
+            $_SESSION['error'] = 'Por favor complete todos los campos';
+            redirect('/apply/application/basic_info');
+        }
+
         // submit the contact information and validate them it here
         if ($method === 'POST') {
-            
+
             // obtaining the contact information
 
             $physical_addr_data = [
@@ -146,11 +152,11 @@ class UserApplicationController extends Controller
                 'zip_code' => filter_input(INPUT_POST, 'postal_zip', FILTER_DEFAULT),
             ];
 
-            
 
-            $isValid = 
-            validate_input($physical_addr_data, ['aline1', 'city', 'zip']) &&
-            validate_input($postal_addr_data, ['aline1', 'city', 'zip']);
+
+            $isValid =
+                validate_input($physical_addr_data, ['aline1', 'city', 'zip']) &&
+                validate_input($postal_addr_data, ['aline1', 'city', 'zip']);
 
             // do not let the user continue if there are errors
             if (!$isValid) {
@@ -170,7 +176,7 @@ class UserApplicationController extends Controller
                 $postal_address['user_id'] = Auth::user()->__get('user_id');
                 $postal_address = PostalAddress::create($postal_addr_data);
             } else {
-               $postal_address->update($postal_addr_data);
+                $postal_address->update($postal_addr_data);
             }
 
             // refresh the user with the new information on the database
@@ -206,12 +212,63 @@ class UserApplicationController extends Controller
     public static function documents($method)
     {
         // submit the documents and validate them it here
+        $application = Auth::user()->application();
 
         if ($method === 'POST') {
+
+            if ($application === null) {
+                $_SESSION['error'] = 'Por favor complete todos los campos';
+                redirect('/apply/application/basic_info');
+            }
+
+            // getting all documents
+            $documents = [
+                'written_application' => $_FILES['written_application'],
+                'transcript' => $_FILES['transcript'],
+                'written_essay' => $_FILES['written_essay'],
+                'picture' => $_FILES['picture'],
+                'video_essay' => $_FILES['video_essay'],
+                'authorization_letter' => $_FILES['authorization'],
+            ]; // important that these names are the same as the ones in the view and the database (Without the `url_`)
+
+            // validating the documents (note: create a validate_documents function)
+            $isValid = validate_input(
+                $documents,
+                [
+                    'written_application',
+                    'transcript',
+                    'written_essay',
+                    'picture',
+                    'video_essay',
+                    'authorization_letter'
+                ]
+            );
+
+            // do not let the user continue if there are errors
+            if (!$isValid) {
+                $_SESSION['error'] = 'Por favor complete todos los campos';
+                redirect('/apply/application/documents');
+            }
+
+            // saving the documents
+            foreach ($documents as $key => $document) {
+                $source_folder = 'documents/submissions/' . Auth::user()->__get('user_id');;
+                $destination = $source_folder . '/' . $document['name'];
+
+                Storage::store('private', $destination, file_get_contents($document['tmp_name']));
+
+                $application->update([
+                    "url_$key" => $destination
+                ]);
+            }
+
+            // refresh the user with the new information on the database
+            Auth::refresh();
+
             $_SESSION['message'] = 'Documentos guardados correctamente';
             redirect('/apply/application/confirm');
         } else {
-            $application = Auth::user()->application();
+
 
             render_view('application/documents', [
                 'application' => $application,
@@ -221,8 +278,19 @@ class UserApplicationController extends Controller
 
     public static function confirm($method)
     {
+        $application = Auth::user()->application();
         // submit the application and confirm it here
         if ($method === 'POST') {
+
+            if ($application === null) {
+                $_SESSION['error'] = 'Por favor complete todos los campos';
+                redirect('/apply/application/basic_info');
+            }
+
+            $application->update([
+                'status' => 'submitted'
+            ]);
+
             $_SESSION['message'] = 'Aplicación sometida correctamente';
             redirect('/apply');
         } else {
