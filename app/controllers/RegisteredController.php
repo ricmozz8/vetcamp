@@ -23,7 +23,7 @@ class RegisteredController extends Controller
         // $users = User::allof('user');
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $perPage = 9; // Set the number of users per page
+        $perPage = 10; // Set the number of users per page
 
         // Get all users
         $allUsers = User::allof('user');

@@ -24,7 +24,7 @@ class RequestsController extends Controller
         // dd(User::findLike(['first_name' => '%est%']));
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $perPage = 7; // Set the number of users per page
+        $perPage = 6; // Set the number of users per page
 
         // Get all applicants
         $allApplicants = User::allApplicants();
