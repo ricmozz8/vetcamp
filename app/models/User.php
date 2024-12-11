@@ -175,21 +175,4 @@ class User extends Model
         return $interval->y;
     }
 
-
-    /*
-    Note: WIP
-    public static function getApprovedUsers()
-    {
-
-    }
-
-
-    public static function getDeniedUsers()
-    {
-
-    }
-    public function getPictureUrl() {
-
-    }
-    */
 }
