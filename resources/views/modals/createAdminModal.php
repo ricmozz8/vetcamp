@@ -51,7 +51,7 @@
                     <input type="checkbox" name="notify">
                     <label for="notify">Notificar al correo</label>
                 </div>
-                <button class="main-action-bright"><i class="las la-user"></i> Crear</button>
+                <button class="main-action-bright primary"><i class="las la-user"></i> Crear</button>
             </div>
 
         </form>

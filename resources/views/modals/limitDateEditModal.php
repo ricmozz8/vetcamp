@@ -33,10 +33,10 @@
         <!-- Buttons area -->
         <div class="modal-actions">
             <!-- Cancel button -->
-            <a href="#" class="primary main-action-bright" onclick="closeModal('limitDateEditModal')">Cancelar</a>
+            <a href="#" class="secondary main-action-bright" onclick="closeModal('limitDateEditModal')">Cancelar</a>
 
             <!-- Save button -->
-            <button class="secondary main-action-bright" onclick="closeModal('limitDateEditModal')">Guardar</button>
+            <button class="primary main-action-bright" onclick="closeModal('limitDateEditModal')">Guardar</button>
         </div>
     </form>
 

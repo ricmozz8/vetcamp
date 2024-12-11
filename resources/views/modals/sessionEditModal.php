@@ -50,9 +50,9 @@
 
         <!-- Buttons area -->
         <div class="modal-actions">
-            <a href="#" type="button" class="primary main-action-bright" onclick="openModal('addSessionsModal')">Crear sesión</a>
-            <a href="#" type="button" class="primary main-action-bright" onclick="closeModal('sessionEditModal')">Cancelar</a>
-            <button type="input" type="hidden" name="" class="secondary main-action-bright">Guardar</button>
+            <a href="#" type="button" class="tertiary main-action-bright" onclick="openModal('addSessionsModal')">Crear sesión</a>
+            <a href="#" type="button" class="secondary main-action-bright" onclick="closeModal('sessionEditModal')">Cancelar</a>
+            <button type="input" type="hidden" name="" class="primary main-action-bright">Guardar</button>
         </div>
     </form>
 </div>
@@ -83,8 +83,8 @@
 
         <!-- Buttons area -->
         <div class="modal-actions">
-            <a href="#" type="button" class="primary main-action-bright" onclick="closeModal('addSessionsModal')">Cancelar</a>
-            <button type="submit" class="secondary main-action-bright">Guardar</button>
+            <a href="#" type="button" class="secondary main-action-bright" onclick="closeModal('addSessionsModal')">Cancelar</a>
+            <button type="submit" class="primary main-action-bright">Guardar</button>
         </div>
     </form>
 </div>

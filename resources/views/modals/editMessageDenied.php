@@ -13,6 +13,6 @@
         <textarea name="content" class="message-textarea" placeholder="Escriba su mensaje aquí..." aria-label="Message input"><?= $messages['denied']['content'] ?></textarea>
         <input name="id" type="hidden" value="<?= $messages['denied']['id'] ?>">
         <!-- Send button -->
-        <button class="secondary main-action-bright" onclick="closeModal('editMessageDenied')"><i class="las la-envelope"> </i>Guardar</button>
+        <button class="primary main-action-bright" onclick="closeModal('editMessageDenied')"><i class="las la-envelope"> </i>Guardar</button>
     </form>
 </div>

@@ -17,10 +17,10 @@
             <!-- Buttons area -->
         <div class="modal-actions">
             <!-- Cancel button -->
-            <a href="#" class="primary main-action-bright" onclick="closeModal('confirmArchiveModal')">Cancelar</a>
+            <a href="#" class="secondary main-action-bright" onclick="closeModal('confirmArchiveModal')">Cancelar</a>
 
             <!-- Confirm button -->
-            <button type="submit" class="secondary main-action-bright">Confirmar</button>
+            <button type="submit" class="primary main-action-bright">Confirmar</button>
         </div>
     </form>
 </div>

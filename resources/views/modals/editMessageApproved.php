@@ -14,6 +14,6 @@
         <input name="id" type="hidden" value="<?= $messages['approved']['id'] ?>">
 
         <!-- Send button -->
-        <button class="secondary main-action-bright" onclick="closeModal('editMessageApproved')"><i class="las la-envelope"> </i>Guardar</button>
+        <button class="primary main-action-bright" onclick="closeModal('editMessageApproved')"><i class="las la-envelope"> </i>Guardar</button>
     </form>
 </div>

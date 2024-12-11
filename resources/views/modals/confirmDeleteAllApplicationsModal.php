@@ -21,10 +21,10 @@
     <!-- Buttons area -->
     <div class="modal-actions">
         <!-- Cancel button -->
-        <a href="#" class="primary main-action-bright" onclick="closeModal('confirmDeleteAllApplicationsModal')">Cancelar</a>
+        <a href="#" class="secondary main-action-bright" onclick="closeModal('confirmDeleteAllApplicationsModal')">Cancelar</a>
 
         <!-- Confirm button -->
-        <button class="secondary main-action-bright" onclick="closeModal('confirmDeleteAllApplicationsModal')">Confirmar</button>
+        <button class="primary main-action-bright" onclick="closeModal('confirmDeleteAllApplicationsModal')">Confirmar</button>
     </div>
     </form>
 </div>

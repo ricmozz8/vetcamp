@@ -20,7 +20,7 @@
 
         </div>
 
-        <button class="main-action-bright secondary"><i class="las la-paper-plane"></i> Enviar</button>
+        <button class="main-action-bright primary"><i class="las la-paper-plane"></i> Enviar</button>
         </form>
     </div>
 </div>

@@ -16,9 +16,9 @@
     <!-- Buttons area -->
     <div class="modal-actions">
         <!-- Cancel button -->
-        <a href="#" class="primary main-action-bright" onclick="closeModal('confirmDisableAllModal')">Cancelar</a>
+        <a href="#" class="secondary main-action-bright" onclick="closeModal('confirmDisableAllModal')">Cancelar</a>
 
         <!-- Confirm button -->
-        <button class="secondary main-action-bright" onclick="closeModal('confirmDisableAllModal')">Confirmar</button>
+        <button class="primary main-action-bright" onclick="closeModal('confirmDisableAllModal')">Confirmar</button>
     </div>
 </div>

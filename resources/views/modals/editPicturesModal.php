@@ -37,8 +37,8 @@
         </div>
 
         <div class="modal-actions">
-            <button onclick="closeModal('editPicturesModal')" class="main-action-bright quaternary"><i class="las la-times"></i> Cancelar</button>
-            <button class="main-action-bright secondary"><i class="las la-save"></i> Guardar</button>
+            <button onclick="closeModal('editPicturesModal')" class="main-action-bright secondary"><i class="las la-times"></i> Cancelar</button>
+            <button class="main-action-bright primary"><i class="las la-save"></i> Guardar</button>
         </div>
 
         </form>
