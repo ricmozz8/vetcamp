@@ -20,7 +20,7 @@ $user_full_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
             <i class="las la-key"></i>
             Manejar Cuenta
         </a>
-        <a onclick="openModal('logoutModal')" href="#" class="">
+        <a onclick="openModal('logoutModal')" href="#" class="nav-danger">
             <i class="las la-sign-out-alt"></i>
             Salir
         </a>

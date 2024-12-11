@@ -127,6 +127,12 @@
     background-color: var(--white-color-shade-1);
 }
 
+.profile-dropdown a.nav-danger:hover{
+    background-color: var(--danger-color);
+    color: var(--white-color);
+    filter: none;
+}
+
 .check 
 {
     display: flex;
