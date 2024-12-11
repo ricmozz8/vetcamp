@@ -263,7 +263,7 @@ select {
     font-size: 14px;
     border: 1px solid var(--secondary-color-default);
     border-radius: 15px;
-    margin-bottom: 1em;
+
     outline: none;
     background-color: transparent;
 }

@@ -1,120 +1,155 @@
-
 .profile-wrapper {
-
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 1024px;
-
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 1024px;
+  box-shadow: 0px 14px 20px #cbcbcb;
+  margin-bottom: 5em;
 }
 
 .header-logo {
-    display: flex;
-    align-items: center;
-    background-color: var(--main-color-default);;
-    padding: 1em var(--main-margin);
+  display: flex;
+  align-items: center;
+  background-color: var(--main-color-default);
+  padding: 1em var(--main-margin);
 }
 
-
 .h-logo {
-    height: 40px;
-    margin: 0 auto;
+  height: 40px;
+  margin: 0 auto;
 }
 
 .applicant-info {
-    display: flex;
-    align-items: center;
-    padding: 20px 0;
-    border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
 }
 
 .applicant-photo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-right: 20px;
-    object-fit: cover;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
 }
 
 .applicant-details h1 {
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 5px;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .applicant-details p {
-    font-size: 14px;
-
+  font-size: 14px;
 }
 
 .data-section {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .data-section h2 {
-    font-size: 1.3em;
-    margin-bottom: 10px;
+  font-size: 1.3em;
+  margin-bottom: 10px;
 }
 
-.data-grid, .documents-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+.data-grid,
+.documents-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
-.data-grid div, .documents-grid div {
-
-    padding: 10px;
-    border-radius: 4px;
+.data-grid div,
+.documents-grid div {
+  padding: 10px;
+  border-radius: 4px;
 }
 
-.data-grid strong, .documents-grid a {
-    font-size: 14px;
-    color: #333;
+.data-grid strong,
+.documents-grid a {
+  font-size: 14px;
+  color: #333;
 }
 
 .status-options {
-    display: flex;
-    gap: 15px;
-    margin: 15px 0;
+  display: flex;
+  gap: 15px;
+  margin: 15px 0;
 }
 
 .status-options label {
-    font-size: 14px;
-    cursor: pointer;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .send-message {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
 .actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 15px;
-    margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+  margin: 10px 0;
 }
 
 .actions label {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .radio-option {
-    padding: 10px;
-    border: 1px solid var(--secondary-color-default);
+  padding: 10px;
+  border: 1px solid var(--secondary-color-default);
 
-    border-radius: 20px;
-    cursor: pointer;
-    transition: border-color 0.3s ease;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
-.manage-section{
-    padding: 20px 0;
+.manage-section {
+  padding: 20px 0;
+}
+
+@media print {
+  .sidebar {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+
+  .profile-wrapper {
+    display: block;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+  .profile-wrapper a.main-action-bright,
+  .profile-wrapper button.main-action-bright,
+  label {
+    display: none;
+  }
+
+
+  .profile-wrapper a.main-action-bright.no-deco-action {
+    display: block;
+  }
+
+  .main-content {
+    padding: 0;
+    margin: 0;
+  }
+
+  .manage-section{
+    display: none;
+  }
 }

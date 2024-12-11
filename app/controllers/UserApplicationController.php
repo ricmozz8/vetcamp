@@ -213,13 +213,14 @@ class UserApplicationController extends Controller
     {
         // submit the documents and validate them it here
         $application = Auth::user()->application();
+        if ($application === null) {
+            $_SESSION['error'] = 'Por favor complete todos los campos';
+            redirect('/apply/application/basic_info');
+        }
 
         if ($method === 'POST') {
 
-            if ($application === null) {
-                $_SESSION['error'] = 'Por favor complete todos los campos';
-                redirect('/apply/application/basic_info');
-            }
+
 
             // getting all documents
             $documents = [
@@ -279,13 +280,15 @@ class UserApplicationController extends Controller
     public static function confirm($method)
     {
         $application = Auth::user()->application();
+        if ($application === null) {
+            $_SESSION['error'] = 'Por favor complete todos los campos';
+            redirect('/apply/application/basic_info');
+        }
         // submit the application and confirm it here
+
         if ($method === 'POST') {
 
-            if ($application === null) {
-                $_SESSION['error'] = 'Por favor complete todos los campos';
-                redirect('/apply/application/basic_info');
-            }
+            // Validate here that every information is valid before sumbitting
 
             $application->update([
                 'status' => 'submitted'
