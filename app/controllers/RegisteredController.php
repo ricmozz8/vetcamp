@@ -20,7 +20,7 @@ class RegisteredController extends Controller
         }
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $perPage = 10; // Set the number of users per page
+        $perPage = 7; // Set the number of users per page
 
         // Get all users
         $allUsers = User::allof('user');
