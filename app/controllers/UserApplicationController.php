@@ -232,24 +232,31 @@ class UserApplicationController extends Controller
                 'authorization_letter' => $_FILES['authorization'],
             ]; // important that these names are the same as the ones in the view and the database (Without the `url_`)
 
+
             // validating the documents (note: create a validate_documents function)
-            $isValid = validate_input(
-                $documents,
-                [
-                    'written_application',
-                    'transcript',
-                    'written_essay',
-                    'picture',
-                    'video_essay',
-                    'authorization_letter'
-                ]
-            );
+            $valid =
+                validate_documents($documents, [
+                    'written_application' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
+                    'transcript' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
+                    'written_essay' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
+                    'picture' => ['type' => 'image/jpeg', 'size' => 2097152, 'required' => false],
+                    'video_essay' => ['type' => 'video/mp4', 'size' => 10485760, 'required' => false],
+                    'authorization_letter' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
+                ]);
+
+            // if the user has not uploaded any documents
+            if ($valid['result'] === DOCUMENTS_OK) {
+                $_SESSION['message'] = 'Te faltan algunos documentos por subir.';
+                redirect('/apply/application/confirm');
+            }
 
             // do not let the user continue if there are errors
-            if (!$isValid) {
-                $_SESSION['error'] = 'Por favor complete todos los campos';
+            if ($valid['result'] === DOCUMENTS_NOT_VALID) {
+                $_SESSION['error'] = $valid['message'];
                 redirect('/apply/application/documents');
             }
+
+
 
             // saving the documents
             foreach ($documents as $key => $document) {
