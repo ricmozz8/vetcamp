@@ -2,6 +2,11 @@
 <html lang="en">
 <?php
 require_once __DIR__ . '/partials/header.php';
+
+$statusParsing = [
+    'active' => 'Activo',
+    'disabled' => 'Desactivado'
+]
 ?>
 
 <body>
@@ -52,11 +57,19 @@ require_once __DIR__ . '/partials/header.php';
                         foreach ($users as $user) {
                             // Get the full name
                             $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
+                            $status = htmlspecialchars($user->status);
+                            $statusColor = $status === 'active' ? '#11df11' : '#df1111';
+
+                            if (isset($statusParsing[$status])) {
+                                $status = $statusParsing[$status];
+                            }
+
+                            
                             
                             echo "<tr>";
                             echo "<td>" . $full_name . "</td>";
                             echo "<td>" . htmlspecialchars($user->email) . "</td>";
-                            echo "<td>" . htmlspecialchars($user->status) . "</td>";
+                            echo "<td class='status-badge'>" . '<i class="las la-dot-circle" style="color: ' . $statusColor . '" > </i>'  . htmlspecialchars($status) . "</td>";
                             echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
                             echo "</tr>";
                         }

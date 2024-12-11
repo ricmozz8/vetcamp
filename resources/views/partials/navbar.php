@@ -12,7 +12,7 @@ $user_full_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
     </a>
     <div class="profile-dropdown" id="profileDropdown" >
 
-        <a href="#" class="">
+        <a onclick="openModal('userProfileEditModal')" href="#" class="">
             <i class="las la-user"></i>
             Perfil
         </a>
@@ -27,3 +27,4 @@ $user_full_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 
 
 <?php include(__DIR__ . '../../modals/confirmLogoutModal.php') ?>
+<?php include(__DIR__ . '../../modals/userProfileEditModal.php') ?>
