@@ -34,6 +34,16 @@ class DatabaseConnectionException extends Exception
     }
 }
 
+
+class DatabaseQueryException extends Exception
+{
+    private $query;
+    public function __construct($message = "", $query = "", $code = 0, Throwable $previous = null)
+    {
+        parent::__construct($message . ' with query ' . $query, $code, $previous);
+    }
+}
+
 // handling exceptions and adding a style
 function exceptionHandler( $exception) {
 

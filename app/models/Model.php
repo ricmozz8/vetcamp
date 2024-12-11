@@ -148,6 +148,29 @@ class Model
         return new static($data, self::sanitize($data));
     }
 
+
+    /**
+     * Finds a record in the associated table where any of the columns match
+     * the given patterns.
+     *
+     * @param array $data An associative array with the column(s) to search as
+     *                    the key(s) and the value(s) as the pattern(s) to match
+     *
+     * @return Model The model instance with the matching record.
+     *
+     * @throws ModelNotFoundException If the record is not found.
+     */
+    public static function findLike(array $data) : Model {
+        self::init();
+        $data = DB::like(static::$table, $data);
+
+        if (empty($data)) {
+            throw new ModelNotFoundException('There is no record with the data given');
+        }
+        
+        return new static($data, self::sanitize($data));
+    }
+
   
     /**
      * Creates a new model and stores it to the database.
@@ -217,6 +240,7 @@ class Model
         return true;
         
     }
+
 
 
     /**

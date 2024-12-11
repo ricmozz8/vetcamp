@@ -119,7 +119,7 @@ final class DB
 
         $operator = in_array($operator, ['=', '>', '<', '>=', '<=', '!=']) ? $operator : '=';
         $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ' . $where . ' ' . $operator . ' :equal';
-       
+
 
         // Preparar la consulta SQL
         $statement = self::$database->prepare($sql);
@@ -210,7 +210,7 @@ final class DB
             return true;
         } catch (Error $e) {
             return false;
-        } 
+        }
     }
 
     /**
@@ -291,6 +291,48 @@ final class DB
         $statement = self::$database->prepare($sql);
         $statement->execute();
         return $statement->rowCount() > 0;
+    }
+
+
+    /**
+     * Execute a SELECT query with LIKE conditions on the database.
+     *
+     * This method constructs and executes a SELECT query with LIKE conditions
+     * based on the provided column-value pairs. It searches for records in the
+     * specified table where any of the given columns match the provided patterns.
+     *
+     * @param string $table The name of the table to search in.
+     * @param array $values An associative array where keys are column names and
+     *                      values are the patterns to match using LIKE.
+     *
+     * @return array The results of the query as an array of associative arrays.
+     */
+    public static function like(string $table, array $values): array
+    {
+        $sql = "SELECT * from `$table` WHERE";
+
+        foreach ($values as $key => $value) {
+            $sql .= " $key LIKE :$key";
+            if (count($values) > 2) {
+                $sql .=  " OR ";
+            }
+        }
+        $statement = self::$database->prepare($sql);
+        // binding values to the statement
+        foreach ($values as $key => $value) {
+            $statement->bindValue(":$key", $value);
+        }
+
+        try {
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // Handle the exception (you can log it or display a message)
+            throw new DatabaseQueryException($e->getMessage(), $statement->queryString, $e->getCode(), $e);
+            return false;
+        }
+        $statement->execute();
+        
     }
 
 

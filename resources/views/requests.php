@@ -23,8 +23,13 @@ require __DIR__ . '/partials/header.php';
 
             <div class="listed-table">
                 <div class="header">
-                    <h2 class="welcome">Solicitudes</h2>
-
+                    <div class="flex-min">
+                        <h2 class="welcome">Solicitudes</h2>
+                        <a class="main-action-bright secondary" href="#">
+                            <i class="las la-file-csv"></i>
+                            Importar
+                        </a>
+                    </div>
                     <div class="table-actions">
                         <button class="main-action-bright tertiary">
                             <i class="las la-filter"></i>
@@ -60,7 +65,7 @@ require __DIR__ . '/partials/header.php';
                             // Get the full name
                             setlocale(LC_TIME, 'es_ES.UTF-8');
                             $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
-                            
+
 
 
                             echo "<tr>";

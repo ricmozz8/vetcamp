@@ -21,6 +21,8 @@ class RequestsController extends Controller
         // storing users
         $users = User::allApplicants();
 
+        // dd(User::findLike(['first_name' => '%est%']));
+
 
         // your index view here
         render_view('requests', ["users" => $users, 'selected' => 'requests'], 'Requests');
