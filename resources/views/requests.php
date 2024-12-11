@@ -36,10 +36,10 @@ require __DIR__ . '/partials/header.php';
                             Filtrar
                         </button>
                         <div class="search-container">
-                            <input type="text" class="search-input" placeholder="Busca correos, nombres, fechas">
-                            <a href="#">
-                                <i class="las la-search"></i>
-                            </a>
+                            <form method="POST" action="/admin/requests">
+                                <input type="text" class="search-input" name="search" placeholder="Busca correos, nombres">
+                                <button type="submit"> <i class="las la-search"></i> </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@ require __DIR__ . '/partials/header.php';
                             echo "<td><img class='profile-picture' src=" . htmlspecialchars($user->application()->url_picture) . " alt='Profile Picture'></td>";
                             echo "<td>" . $full_name . "</td>";
                             echo "<td>" . htmlspecialchars($user->email) . "</td>";
-                            echo "<td>" . htmlspecialchars($user->application()->documentCount()) . "/6</td>";
+                            echo "<td>" . (htmlspecialchars($user->application() ? $user->application()->documentCount() : 0)) . "/6</td>";
                             echo "<td>" . htmlspecialchars($user->status) . "</td>";
                             echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
                             echo "<td>" . '<a class="main-action-bright no-deco-action" href="requests/r?id=' . $user->user_id . '" class="review-link">revisar</a>' . "</td>";          //To add "revisar" link

@@ -5,6 +5,10 @@ define('VIEWS_DIR', __DIR__ . '/../../resources/views/');
 define('WEB_RESOURCES_FOLDER', '/../../resources/views/');
 define('CONFIG', require('bootstrap/config.php'));
 
+define('DOCUMENTS_OK', 111);
+define('DOCUMENTS_VALID', 222);
+define('DOCUMENTS_NOT_VALID', 333);
+
 /**
  * This is the helpers file, it will define some helper functions that need to be 
  * used on the entire website. Only define here GLOBAL functions.
@@ -133,7 +137,8 @@ function redirect(string $url)
  *
  * @param string $ifFail The URL to redirect to if the referring URL does not exist.
  */
-function redirect_back(string $ifFail = '/') {
+function redirect_back(string $ifFail = '/')
+{
     header('Location: ' . $_SERVER['HTTP_REFERER'] ?? $ifFail);
 }
 
@@ -348,4 +353,74 @@ function validate_input(array $inputs, array $required)
         }
     }
     return true;
+}
+
+
+
+/**
+ * Validates user documents through inputs and rules.
+ * 
+ * @param array $documents The documents to validate.
+ * @param array $rules The rules to validate the documents against.
+ * 
+ * The rules array will contain the key of the document on the docuements array and
+ * then the rule followed by its value, for example:
+ * [
+ *      'user_picture' => [
+ *          'required' => true,
+ *          'type' => 'image',
+ *          'size' => '2mb',
+ *          'mimetype' => 'image/jpeg'
+ *      ],
+ * ]
+ */
+function validate_documents(array $documents, array $rules)
+{
+    // for each document
+
+
+
+    $documentNameBag = [];
+
+    foreach ($documents as $key => $document) {
+
+        if (in_array($document['name'], $documentNameBag)) {
+            return ['result' => false, 'message' => 'Debes subir un documento diferente para ' . $key];
+        }
+
+        $rules = isset($rules[$key]) ? $rules[$key] : [];
+
+        if (empty($rules)) {
+            continue;
+        }
+
+        if(!$rules['required']) {
+            continue;
+        }
+
+        
+
+        if ($rules['required'] && empty($document['name'])) {
+            return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $key . ' es obligatorio '];
+        }
+
+        if ($rules['type'] && $document['type'] != $rules['type']) {
+            return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $document['name'] . ' debe ser de tipo ' . $rules['type']];
+        }
+
+        $sizeToMB = $rules['size'] / 1024 / 1024 . 'MB';
+
+        if ($rules['size'] && $document['size'] > $rules['size']) {
+            return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $key . ' debe ser menor a ' . $sizeToMB];
+        }
+
+        $documentNameBag[] = $document['name'];
+    }
+    // if all documents have passed all the rules, return true
+
+    if(empty($documentNameBag)) {
+        return ['result' => DOCUMENTS_OK, 'message' => 'Hay documentos sin subir'];
+    }
+
+    return ['result' => DOCUMENTS_VALID, 'message' => 'Documentos validados correctamente'];
 }

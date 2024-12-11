@@ -103,6 +103,10 @@ require_once __DIR__ . '/partials/header.php';
                                     <input type="radio" name="status" value="Aceptado" <?php echo ($application->status === 'approved') ? 'checked' : ''; ?>> Aprobada
                                 </label>
                             </div>
+                            <a href="#" class="main-action-bright" onclick="openModal('exportApplicationModal')">
+                                <i class="las la-download"></i>
+                                Exportar a Excel
+                            </a>
 
                             <div class="actions">
                                 <label>

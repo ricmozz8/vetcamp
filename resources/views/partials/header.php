@@ -17,7 +17,7 @@
     <script src="<?= web_resource("js/passwordShow.js") ?>"></script>
     <script src="<?= web_resource("js/backendDashboard.js") ?>"></script>
     <script src="<?= web_resource("js/backendSidebar.js") ?>"></script>
-    <script src="<?= web_resource("js/pushMessages.js") ?>"></script>
+    <script src="<?= web_resource("js/contextMenu.js") ?>"></script>
 
 
     <!-- TYPEFACES -->

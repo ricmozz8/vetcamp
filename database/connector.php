@@ -307,34 +307,31 @@ final class DB
      *
      * @return array The results of the query as an array of associative arrays.
      */
-    public static function like(string $table, array $values): array
-    {
-        $sql = "SELECT * from `$table` WHERE";
-
-        foreach ($values as $key => $value) {
-            $sql .= " $key LIKE :$key";
-            if (count($values) > 2) {
-                $sql .=  " OR ";
-            }
+    public static function like(string $table, array $values): array {
+        if (empty($values)) {
+            throw new InvalidArgumentException('Values array cannot be empty.');
         }
+        $conditions = [];
+        foreach ($values as $column => $pattern) {
+            $conditions[] = "`$column` LIKE :$column";
+        }
+        $whereClause = implode(' OR ', $conditions);
+    
+        $sql = "SELECT * FROM `$table` WHERE $whereClause";  
+        // Preparar la consulta SQL
         $statement = self::$database->prepare($sql);
-        // binding values to the statement
-        foreach ($values as $key => $value) {
-            $statement->bindValue(":$key", $value);
+        foreach ($values as $column => $pattern) {
+            $statement->bindValue(":$column", $pattern, PDO::PARAM_STR);
         }
-
+    
         try {
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            // Handle the exception (you can log it or display a message)
-            throw new DatabaseQueryException($e->getMessage(), $statement->queryString, $e->getCode(), $e);
-            return false;
+            throw new DatabaseQueryException($e->getMessage(), $sql, $e->getCode(), $e);
         }
-        $statement->execute();
-        
     }
-
+    
 
     /**
      * Get all columns from a table.
