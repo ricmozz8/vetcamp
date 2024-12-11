@@ -33,11 +33,12 @@ $statusParsing = [
                             Filtrar
                         </button>
                         <div class="search-container">
-                            <input type="text" class="search-input" placeholder="Busca correos, nombres, fechas">
-                            <a href="#">
-                                <i class="las la-search"></i>
-                            </a>
+                            <form method="POST" action="/admin/registered">
+                                <input type="text" class="search-input" name="search" placeholder="Busca correos, nombres">
+                                <button type="submit"> <i class="las la-search"></i> </button>
+                            </form>
                         </div>
+
                     </div>
                 </div>
                 <table>

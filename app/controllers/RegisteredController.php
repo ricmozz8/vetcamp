@@ -20,10 +20,25 @@ class RegisteredController extends Controller
         }
         
         // storing users
-        $users = User::allof('user');
-
-        // your index view here
-        render_view('registered', ["users" => $users,'selected' => 'registered'], 'Registered');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $palabra = $_POST['search'];
+        
+            if (!empty($palabra)) {
+                $searchTerm = $palabra . "%";
+        
+                // Realizar la búsqueda en las columnas relevantes
+                $users = User::findLike([
+                    'first_name' => $searchTerm,
+                    'last_name' => $searchTerm,
+                    'email' => $searchTerm
+                ]);
+            } else {
+                $users = User::allof('user');
+            }
+        } else {
+            $users = User::allof('user');
+        }
+        render_view('registered', ["users" => $users, 'selected' => 'registered'], 'Registered');
     }
 
     // define your other methods here

@@ -160,16 +160,24 @@ class Model
      *
      * @throws ModelNotFoundException If the record is not found.
      */
-    public static function findLike(array $data) : Model {
+    public static function findLike(array $data): array {
         self::init();
-        $data = DB::like(static::$table, $data);
-
-        if (empty($data)) {
-            throw new ModelNotFoundException('There is no record with the data given');
+    
+        // Llama al método `like` del builder query
+        $results = DB::like(static::$table, $data);
+    
+        if (empty($results)) {
+            throw new ModelNotFoundException('There is no record matching the given data.');
         }
-        
-        return new static($data, self::sanitize($data));
+    
+        $models = [];
+        foreach ($results as $result) {
+            $models[] = new static($result, self::sanitize($result));
+        }
+    
+        return $models;
     }
+    
 
   
     /**

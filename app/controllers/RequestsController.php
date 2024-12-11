@@ -23,9 +23,29 @@ class RequestsController extends Controller
 
         // dd(User::findLike(['first_name' => '%est%']));
 
+                // storing users
+                // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                //     $palabra = $_POST['search'];
+                
+                //     if (!empty($palabra)) {
+                //         $searchTerm = $palabra . "%";
+                
+                //         // Realizar la búsqueda en las columnas relevantes
+                //         $users = User::findLike([
+                //             'first_name' => $searchTerm,
+                //             'last_name' => $searchTerm,
+                //             'email' => $searchTerm
+                //         ]);
+                //     } else {
+                //         $users = User::allApplicants();
+                //     }
+                // } else {
+                //     $users = User::allApplicants();
+                //     render_view('requests', ["users" => $users, 'selected' => 'requests'], 'Requests');
+                // }
+                render_view('requests', ["users" => $users, 'selected' => 'requests'], 'Requests');
 
         // your index view here
-        render_view('requests', ["users" => $users, 'selected' => 'requests'], 'Requests');
     }
 
     // define your other methods here
