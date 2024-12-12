@@ -137,17 +137,26 @@ class ApplicationController extends Controller
             fwrite($file, "\xEF\xBB\xBF");
 
             // Write the CSV header
-            fputcsv($file, ['Nombre', 'Correo', 'Creado En', 'Evaluado En', 'Nombre del Evaluador', 'Decisión Final']);
+            fputcsv($file, ['Nombre', 'Correo', 'Creado En', 'Evaluado En', 'Nombre del Evaluador', 'DecisiÃ³n Final']);
 
             // Fetch all applications
             $applications = Application::all();
+            if (empty($applications)) {
+                $_SESSION['error_message'] = "No hay datos disponibles para archivar.";
+                redirect('/admin/settings');
+                return;
+            }
 
             foreach ($applications as $application) {
                 try {
                     // Fetch user data
                     $user = User::find($application->user_id);
-                    $userFirstName = $user->first_name;
-                    $userLastName = $user->last_name;
+                    if (!$user) {
+                        continue; // Skip if user data is missing
+                    }
+
+                    $userFirstName = $user->first_name ?? 'N/A';
+                    $userLastName = $user->last_name ?? 'N/A';
                     $applicantEmail = $user->__get('email') ?? 'N/A';
 
                     // Format creation date
@@ -160,10 +169,12 @@ class ApplicationController extends Controller
                         $evaluator = Tracking::findBy(['application_id' => $application->id_application]);
                         if ($evaluator) {
                             $evaluatorUser = User::find($evaluator->__get('user_id'));
-                            $evaluatorFirstName = $evaluatorUser->first_name;
-                            $evaluatorLastName = $evaluatorUser->last_namel;
-                            $evaluatorName = $evaluatorFirstName . ' ' . $evaluatorLastName;
-                            $evaluatedOn = get_date_spanish($evaluator->__get('made_on'));
+                            if ($evaluatorUser) {
+                                $evaluatorFirstName = $evaluatorUser->first_name ?? 'N/A';
+                                $evaluatorLastName = $evaluatorUser->last_name ?? 'N/A';
+                                $evaluatorName = $evaluatorFirstName . ' ' . $evaluatorLastName;
+                                $evaluatedOn = get_date_spanish($evaluator->__get('made_on'));
+                            }
                         }
                     } catch (ModelNotFoundException $e) {
                         $evaluatedOn = 'N/A';
@@ -198,6 +209,7 @@ class ApplicationController extends Controller
 
             unlink($filePath);
         } catch (Exception $e) {
+            $_SESSION['error_message'] = "Error al generar el archivo de solicitudes.";
             redirect('/admin/settings');
         }
     }
