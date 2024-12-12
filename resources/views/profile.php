@@ -91,16 +91,16 @@ require_once __DIR__ . '/partials/header.php';
                             <h2>Manejar Solicitud</h2>
                             <div class="status-options">
                                 <label class="radio-option">
-                                    <input type="radio" name="status" value="Sometida" <?php echo ($application->status === 'Sometida') ? 'checked' : ''; ?>> Sometida
+                                    <input type="radio" name="status" value="Sometida" <?php echo ($application->status === 'submitted') ? 'checked' : ''; ?>> Sometida
                                 </label>
                                 <label class="radio-option">
-                                    <input type="radio" name="status" value="Necesita Cambios" <?php echo ($application->status === 'Necesita Cambios') ? 'checked' : ''; ?>> Necesita Cambios
+                                    <input type="radio" name="status" value="Necesita Cambios" <?php echo ($application->status === 'need_changes') ? 'checked' : ''; ?>> Necesita Cambios
                                 </label>
                                 <label class="radio-option">
-                                    <input type="radio" name="status" value="Rechazado" <?php echo ($application->status === 'Rechazado') ? 'checked' : ''; ?>> Denegada
+                                    <input type="radio" name="status" value="Rechazado" <?php echo ($application->status === 'denied') ? 'checked' : ''; ?>> Denegada
                                 </label>
                                 <label class="radio-option">
-                                    <input type="radio" name="status" value="Aceptado" <?php echo ($application->status === 'Aceptado') ? 'checked' : ''; ?>> Aprobada
+                                    <input type="radio" name="status" value="Aceptado" <?php echo ($application->status === 'approved') ? 'checked' : ''; ?>> Aprobada
                                 </label>
                             </div>
                             <a href="#" class="main-action-bright" onclick="openModal('messageModal')">
