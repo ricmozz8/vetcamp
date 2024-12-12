@@ -133,6 +133,12 @@
     filter: none;
 }
 
+a.nav-danger:hover{
+    background-color: var(--danger-color);
+    color: var(--white-color);
+    filter: none;
+}
+
 .check 
 {
     display: flex;

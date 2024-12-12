@@ -35,8 +35,9 @@ $statusParsing = [
                         <div class="search-container">
                             <form method="POST" action="/admin/registered">
                                 <input type="text" class="search-input" name="search" placeholder="Busca correos, nombres">
-                                <button type="submit"> <i class="las la-search"></i> </button>
+                                
                             </form>
+                            <button type="submit " class=" no-deco-action"> <i class="las la-search"></i> </button>
                         </div>
 
                     </div>
@@ -91,7 +92,7 @@ $statusParsing = [
                         <i class="las la-times"></i>
                         Desactivar
                     </a>
-                    <a href="#">
+                    <a class="nav-danger" href="#">
                         <i class="las la-trash"></i>
                         Eliminar
                     </a>

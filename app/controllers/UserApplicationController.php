@@ -244,8 +244,10 @@ class UserApplicationController extends Controller
                     'authorization_letter' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
                 ]);
 
+            
+
             // if the user has not uploaded any documents
-            if ($valid['result'] === DOCUMENTS_OK) {
+            if ($valid['result'] === DOCUMENTS_OK && empty($valid['validated'])) {
                 $_SESSION['message'] = 'Te faltan algunos documentos por subir.';
                 redirect('/apply/application/confirm');
             }
@@ -254,19 +256,21 @@ class UserApplicationController extends Controller
             if ($valid['result'] === DOCUMENTS_NOT_VALID) {
                 $_SESSION['error'] = $valid['message'];
                 redirect('/apply/application/documents');
-            }
-
-
+            }   
 
             // saving the documents
-            foreach ($documents as $key => $document) {
-                $source_folder = 'documents/submissions/' . Auth::user()->__get('user_id');;
-                $destination = $source_folder . '/' . $document['name'];
+            foreach ($valid['validated'] as $key => $document) {
+                $source_folder = 'documents/submissions/' . Auth::user()->__get('user_id');
+
+                // getting the extension
+                $extension = pathinfo($document['name'], PATHINFO_EXTENSION);
+                $destination = $source_folder . '/' . $key . '.' . $extension;
+                
 
                 Storage::store('private', $destination, file_get_contents($document['tmp_name']));
 
                 $application->update([
-                    "url_$key" => $destination
+                    "url_{$key}" => $destination
                 ]);
             }
 
@@ -276,10 +280,13 @@ class UserApplicationController extends Controller
             $_SESSION['message'] = 'Documentos guardados correctamente';
             redirect('/apply/application/confirm');
         } else {
+            // method is GET
 
-
+            $saved_documents = $application->getDocuments();
+            
             render_view('application/documents', [
                 'application' => $application,
+                'saved_documents' => $saved_documents
             ], 'Datos Básicos');
         }
     }
@@ -305,6 +312,7 @@ class UserApplicationController extends Controller
             redirect('/apply');
         } else {
             $application = Auth::user()->application();
+
 
             render_view('application/confirm', [
                 'application' => $application,

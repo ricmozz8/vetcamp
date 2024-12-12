@@ -7,7 +7,7 @@ class Application extends Model
 
     protected static $primary_key = 'id_application'; // Primary key
     protected static $table = 'applications'; // Table name
-    
+
     public static $statusParsings = [
         'unsubmitted' => 'Sin subir',
         'submitted' => 'Sometida',
@@ -59,6 +59,58 @@ class Application extends Model
     }
 
     /**
+     * Gives all submitted documents.
+     * 
+     * @return array An array of submitted documents.
+     * @note: This will only return the URL of the documents that are submitted to the file system.
+     */
+    public function getSubmittedDocuments(): array
+    {
+        return remove_null_or_empty([
+            'written_application' => $this->attributes['url_written_application'],
+            'transcript' => $this->attributes['url_transcript'],
+            'written_essay' => $this->attributes['url_written_essay'],
+            'picture' => $this->attributes['url_picture'],
+            'video_essay' => $this->attributes['url_video_essay'],
+            'authorization_letter' => $this->attributes['url_authorization_letter']
+        ]);
+    }
+
+
+    /**
+     * Retrieves all submitted documents.
+     * 
+     * The documents are returned in an array, where each key is the name of the document
+     * and the value is an array with the following keys:
+     * - contents: The contents of the file.
+     * - name: The name of the file.
+     * - size: The size of the file in bytes.
+     * - type: The mime type of the file.
+     * 
+     * @return array An array of submitted documents.
+     */
+    public function getDocuments(): array
+    {
+        $document_array = [];
+
+        foreach ($this->getSubmittedDocuments() as $key => $value) {
+            // getting the file 
+            $file = Storage::get_metadata('private', $value);
+            
+        
+            $document_array[$key] = [
+                'contents' => $file['contents'],
+                'name' => $file['name'],
+                'size' => $file['size'],
+                'type' => $file['type'] 
+            ];
+        }
+
+        return $document_array;
+
+    }
+
+    /**
      * Counts the number of documents uploaded by the user in the application.
      * 
      * @return int The number of uploaded documents.
@@ -83,11 +135,11 @@ class Application extends Model
      * @return string The status in English. If the status in Spanish is not found, returns the input string.
      */
     public static function getStatusInEnglish($statusInSpanish)
-{
-    $reverseParsing = array_flip(self::$statusParsings); 
-    return $reverseParsing[$statusInSpanish] ?? $statusInSpanish;
-}
-   
+    {
+        $reverseParsing = array_flip(self::$statusParsings);
+        return $reverseParsing[$statusInSpanish] ?? $statusInSpanish;
+    }
+
 
 
 
@@ -104,19 +156,17 @@ class Application extends Model
         foreach ($users as $user) {
             $application = $user->application();
 
-            if ($application) 
-            {
+            if ($application) {
                 $statusInEnglish = self::getStatusInEnglish($application->status);
             }
-            if ($statusInEnglish === 'denied') 
-            {
+            if ($statusInEnglish === 'denied') {
                 $application->delete();
                 $deletedApplications[] = $user->user_id;
             }
         }
-    
-    return $deletedApplications;
-}
+
+        return $deletedApplications;
+    }
 
     /**
      * Deletes all user requests.
@@ -128,16 +178,14 @@ class Application extends Model
         $users = User::allApplicants();
         $deletedApplications = [];
 
-        foreach ($users as $user) 
-        {
+        foreach ($users as $user) {
             $application = $user->application();
-            if ($application) 
-            {
-            $application->delete();
-            $deletedApplications[] = $user->user_id;
+            if ($application) {
+                $application->delete();
+                $deletedApplications[] = $user->user_id;
             }
         }
-    
+
         return $deletedApplications;
     }
 }

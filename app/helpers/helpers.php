@@ -381,6 +381,7 @@ function validate_documents(array $documents, array $rules)
 
 
     $documentNameBag = [];
+    $validDocuments = [];
 
     foreach ($documents as $key => $document) {
 
@@ -388,17 +389,17 @@ function validate_documents(array $documents, array $rules)
             return ['result' => false, 'message' => 'Debes subir un documento diferente para ' . $key];
         }
 
+        if (empty($document['name'])) {
+            continue;
+        }
+
         $rules = isset($rules[$key]) ? $rules[$key] : [];
 
         if (empty($rules)) {
+            // there are no rules to validate
+            $validDocuments[$key] = $document;
             continue;
         }
-
-        if(!$rules['required']) {
-            continue;
-        }
-
-        
 
         if ($rules['required'] && empty($document['name'])) {
             return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $key . ' es obligatorio '];
@@ -415,12 +416,26 @@ function validate_documents(array $documents, array $rules)
         }
 
         $documentNameBag[] = $document['name'];
+        $validDocuments[$key] = $document;
     }
     // if all documents have passed all the rules, return true
 
     if(empty($documentNameBag)) {
-        return ['result' => DOCUMENTS_OK, 'message' => 'Hay documentos sin subir'];
+        return ['result' => DOCUMENTS_OK, 'message' => 'Hay documentos sin subir', 'validated'=>$validDocuments];
     }
 
-    return ['result' => DOCUMENTS_VALID, 'message' => 'Documentos validados correctamente'];
+    return ['result' => DOCUMENTS_VALID, 'message' => 'Documentos validados correctamente', 'validated'=>$validDocuments];
+}
+
+
+/**
+ * Removes all null and empty values from an array
+ *
+ * @param array $array the array to filter
+ * @return array the filtered array
+ */
+function remove_null_or_empty($array) {
+    return array_filter($array, function ($value) {
+        return !is_null($value) && $value !== '';
+    });
 }

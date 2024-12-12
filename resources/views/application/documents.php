@@ -35,37 +35,68 @@ require __DIR__ . '../../partials/header.php';
                 <!-- Document upload boxes -->
                 <div class="document-group">
                     <div class="upload-box">
-                        <label for="written_application"> <span> Selecciona un archivo</span></label>
-                        <input  accept="application/pdf" type="file" id="written_application" name="written_application" onchange="updateFileName(this)">
+                        <?php if ($saved_documents['written_application']) { ?>
+
+                            <?php $written_application = $saved_documents['written_application']; ?>
+                            <label for="written_application"> <span> <?= $written_application['name'] ?></span></label>
+                            <input accept="application/pdf" value=" <?= $written_application['name'] ?>" type="file" id="written_application" name="written_application" onchange="updateFileName(this)">
+
+
+                        <?php } else { ?>
+
+                            <label for="written_application"> <span> Selecciona un archivo</span></label>
+                            <input accept="application/pdf" type="file" id="written_application" name="written_application" onchange="updateFileName(this)">
+
+                        <?php } ?>
                     </div>
                     <div class="check-labeled">
                         <label>Solicitud Escrita</label>
-                          <a href="/solicitud" class="btn-download">Descargar </a>
+                        <a href="/solicitud" target="_blank" class="btn-download">Descargar </a>
+                        <?php if ($saved_documents['written_application']) { ?>
+                            <a href="#" onclick="showModal('fileViewPopup-<?= $written_application['name'] ?>')" class="btn-download">
+                                <i class="las la-eye"></i> Visualizar
+                            </a>
+                        <?php } ?>
                     </div>
 
                 </div>
 
                 <div class="document-group">
                     <div class="upload-box">
-                        <label for="transcript"> <span> Selecciona un archivo</span></label>
-                        <input  accept="application/pdf" type="file" id="transcript" name="transcript" onchange="updateFileName(this)">
+                        <?php if (isset($saved_documents['transcript'])) { ?>
+                            <?php $transcript = $saved_documents['transcript']; ?>
+                            <label for="transcript"> <span> <?= $transcript['name'] ?></span></label>
+                            <input accept="application/pdf" value=" <?= $transcript['name'] ?>" type="file" id="transcript" name="transcript" onchange="updateFileName(this)">
+                        <?php } else { ?>
+                            <label for="transcript"> <span> Selecciona un archivo</span></label>
+                            <input accept="application/pdf" type="file" id="transcript" name="transcript" onchange="updateFileName(this)">
+                        <?php } ?>
                     </div>
-                    <label>Transcripción de crédito</label>
+                    <div class="check-labeled">
+                        <label>Transcripción de crédito</label>
+                        <?php if ($saved_documents['transcript']) { ?>
+                            <a href="#" onclick="showModal('fileViewPopup-<?= $transcript['name'] ?>')" class="btn-download">
+                                <i class="las la-eye"></i> Visualizar
+                            </a>
+                        <?php } ?>
+                    </div>
+
                 </div>
 
                 <div class="document-group">
                     <div class="upload-box">
                         <label for="written_essay"><span> Selecciona un archivo</span></label>
-                        <input  accept="application/pdf" type="file" id="written_essay" name="written_essay" onchange="updateFileName(this)">
+                        <input accept="application/pdf" type="file" id="written_essay" name="written_essay" onchange="updateFileName(this)">
                     </div>
                     <label>Ensayo escrito</label>
+
                 </div>
 
                 <div class="document-group">
                     <div class="upload-box">
 
                         <label for="picture"> <span> Selecciona un archivo</span></label>
-                        <input  accept="image/*" type="file" id="picture" name="picture" onchange="updateFileName(this)">
+                        <input accept="image/*" type="file" id="picture" name="picture" onchange="updateFileName(this)">
                     </div>
                     <label>Foto 2x2</label>
                 </div>
@@ -74,7 +105,7 @@ require __DIR__ . '../../partials/header.php';
                     <div class="upload-box">
 
                         <label for="video_essay"> <span> Selecciona un archivo</span></label>
-                        <input  accept="video/*" type="file" id="video_essay" name="video_essay" onchange="updateFileName(this)">
+                        <input accept="video/*" type="file" id="video_essay" name="video_essay" onchange="updateFileName(this)">
                     </div>
                     <label>Ensayo en video</label>
                 </div>
@@ -84,7 +115,7 @@ require __DIR__ . '../../partials/header.php';
 
 
                         <label for="authorization"><span> Selecciona un archivo</span> </label>
-                        <input  accept="application/pdf" type="file" id="authorization" name="authorization" onchange="updateFileName(this)">
+                        <input accept="application/pdf" type="file" id="authorization" name="authorization" onchange="updateFileName(this)">
                     </div>
                     <label>Carta de Autorización</label>
                 </div>
@@ -97,6 +128,10 @@ require __DIR__ . '../../partials/header.php';
         </form>
     </div>
 
+    <!-- including here file view popup -->
+    <?php foreach ($saved_documents as $file) { ?>
+        <?php require(__DIR__ . '../../modals/fileViewPopup.php'); ?>
+    <?php } ?>
 
 
 

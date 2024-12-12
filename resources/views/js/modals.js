@@ -7,6 +7,10 @@ function closeModal(modalId) {
     document.getElementById(modalId).style.display = "none";
 }
 
+function showModal(modalId) {
+    document.getElementById(modalId).style.display = "block";
+}
+
 
 function handleResize() {
     if (window.matchMedia("(min-width: 768px)").matches) {

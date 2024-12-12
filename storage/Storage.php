@@ -46,7 +46,6 @@ class Storage
             // the directory already exists, thus we replace with the current one
             rmdir(dirname($file_path), true);
             mkdir(dirname($file_path), 0777, true);
-
         }
         file_put_contents($file_path, $contents);
     }
@@ -62,12 +61,42 @@ class Storage
     public static function get($disk, $path)
     {
         self::setDisk($disk);
-        $file_path = $disk . '/' . $path;
+        $file_path =  $disk . '/' . $path;
+
         if (file_exists($file_path) && is_readable($file_path)) {
+            // get the name and size
             return file_get_contents($file_path);
         } else {
             return false;
         }
+    }
+
+    /**
+     * Retrieve metadata about a file from the specified disk.
+     *
+     * @param string $disk The name of the disk to retrieve the file from.
+     * @param string $path The path to the file to retrieve.
+     *
+     * @return array An associative array with the following keys:
+     *               - name: The name of the file.
+     *               - size: The size of the file in bytes.
+     *               - type: The mime type of the file.
+     *               - contents: The contents of the file.
+     *
+     * @return false If the file does not exist or is not readable.
+     */
+    public static function get_metadata($disk, $path)
+    {
+        $file_path = 'storage/' . $disk . '/' . $path;
+        if (file_exists($file_path)) {
+            return [
+                'name' => basename($file_path),
+                'size' => filesize($file_path),
+                'type' => mime_content_type($file_path),
+                'contents' => file_get_contents($file_path)
+            ];
+        }
+        return false;
     }
 
     /**
