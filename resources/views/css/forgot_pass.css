@@ -23,14 +23,9 @@
 
 /* Page title styling */
 .forgot-pass .page-title {
-    width: calc(21.8vw + 9.3vh);
     font-weight: 600;
     color: #2c2c2c;
     font-size: 2.6em;
-    letter-spacing: calc(-0.06vw - 0.02vh);
-    line-height: calc(3vw + 1.3vh);
-    white-space: nowrap;
-    margin-bottom: 5%;
 }
 
 /* Input field base styling */
@@ -41,7 +36,6 @@
     border: 1px solid #000000;
     font-size: 1.4em;
     padding: 0 calc(0.9vw + 0.4vh);
-    margin-bottom: 5%;
     outline: none;
     padding-right: 45px;
 }
@@ -54,62 +48,24 @@
 /* Email label styling */
 .forgot-pass .text-wrapper-2 {
     font-size: 1.7em;
-    letter-spacing: calc(-0.06vw - 0.02vh);
     line-height: calc(1.5vw + 0.6vh);
 }
 
 /* Instruction text styling */
 .forgot-pass .text-wrapper-3 {
     font-size: 1.7em;
-    letter-spacing: calc(-0.06vw - 0.02vh);
     line-height: calc(1.3vw + 0.5vh);
 }
 
-/*******************************
- * BUTTONS AND ACTIONS
- * Styles for buttons, links, and interactive elements
- *******************************/
- /* Actions Container */
-.forgot-pass .actions {
-    gap: calc(1.1vw + 0.5vh);
-    margin-top: calc(1vw + 0.8vh);
+/* Back icon styling */
+.forgot-pass .back-icon {
+    width: 25px;
+    height: auto;
 }
-
-/* Submit button container styling */
-.forgot-pass .mainbutton {
-    position: absolute;
-    width: calc(11.6vw + 4.9vh);
-    height: calc(3vw + 1.3vh);
-    left: 3%;
-    cursor: pointer;
-    padding: 0;
-}
-
-/* Button text styling */
-.forgot-pass .secondary-action {
-    position: relative;
-    width: calc(8.6vw + 3.7vh);
-    color: #181818;
-    font-size: 1.7em;
-    text-align: center;
-    letter-spacing: calc(-0.06vw - 0.02vh);
-}
-
-/* Back button styling */
-.forgot-pass .back-button {
-    width: calc(3.4vw + 1.4vh);
-    height: calc(3.4vw + 1.4vh);
-}
-
-/* Back button hover effect */
-.forgot-pass .back-button :hover {
-    transform: translateY(2px);
-}
-
 
 /*WORK IN PROGRESS*/
 /* Mobile Media Query for Password Reset Form */
-@media screen and (max-width: 689px) {
+@media screen and (max-width: 768px) {
     /* Main Container */
     .forgot-pass {
         font-size: 0.8em;
@@ -118,20 +74,17 @@
     /* Page Title */
     .forgot-pass .page-title {
         font-size: 1.65em;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         width: calc(38vw + 16vh);
-        margin-top: -5px;
     }
 
     /* Input Labels */
     .forgot-pass .text-wrapper-2 {
         font-size: 1em;
-        margin-bottom: 10px;
     }
 
     .forgot-pass .text-wrapper-3 {
         font-size: 1em;
-        margin-bottom: 10px;
         line-height: calc(2.3vw + 1vh);
     }
 
@@ -141,26 +94,11 @@
         padding: 8px 40px 8px 16px;
     }
 
-    /* Main Button Styling */
-    .forgot-pass .mainbutton {
-        width: calc(20vw + 9vh);
-        height: calc(5vw + 2vh);
-        margin-left: 10px;
-        margin-top: -50px;
+    /* Back Icon Styling */
+    .forgot-pass .back-icon {
+        width: 18px;
     }
 
-    /* Back Button Styling */
-    .forgot-pass .back-button {
-        width: calc(5vw + 2vh);
-        height: calc(5vw + 2vh);
-        margin-top: -25%;
-    }
-
-    /* Button Text */
-    .forgot-pass .secondary-action {
-        width: calc(14vw + 6vh);
-        font-size: 1.2em;
-    }
 }
 
 @media screen and (min-width: 768px) {
