@@ -74,7 +74,7 @@ require __DIR__ . '/partials/header.php';
                             echo "<td>" . $full_name . "</td>";
                             echo "<td>" . htmlspecialchars($user->email) . "</td>";
                             echo "<td>" . (htmlspecialchars($user->application() ? $user->application()->documentCount() : 0)) . "/6</td>";
-                            echo "<td>" . htmlspecialchars($user->status) . "</td>";
+                            echo "<td>" . htmlspecialchars($user->application()->status) . "</td>";
                             echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
                             echo "<td>" . '<a class="main-action-bright no-deco-action" href="requests/r?id=' . $user->user_id . '" class="review-link">revisar</a>' . "</td>";          //To add "revisar" link
                             echo "</tr>";

@@ -28,6 +28,9 @@ class RequestsController extends Controller
 
         // Get all applicants
         $allApplicants = User::allApplicants();
+        
+
+        
 
         // Calculate total pages
         $totalUsers = count($allApplicants);

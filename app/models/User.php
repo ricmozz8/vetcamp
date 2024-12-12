@@ -61,6 +61,8 @@ class User extends Model
             $applications = Application::all();
             $applicationsByUserId = [];
 
+            
+
 
             foreach ($applications as $application) {
                 $applicationsByUserId[$application->user_id] = $application;
@@ -71,10 +73,12 @@ class User extends Model
             foreach ($users as $user) {
                 try {
                     $userApplication = $user->application();
+                    
 
                     // avoiding applications that have not been submitted
                     if ($userApplication && $userApplication->status !== 'Sin subir') {
                         $result[] = $user;
+                        
                     }
                 } catch (ModelNotFoundException $notFound) {
                     continue;
