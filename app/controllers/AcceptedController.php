@@ -25,7 +25,7 @@ class AcceptedController extends Controller
 
         foreach ($allApplicants as $applicant){
             try{
-                if ($applicant->status == 'approved'){
+                if ($applicant->userApplication->status == 'approved'){
                     $allApproved[] = $applicant;
                 } 
             } catch (ModelNotFoundException $notFound) {
@@ -37,12 +37,25 @@ class AcceptedController extends Controller
         $sessionsDivided = [[]];
 
         // Getting all the active sessions
-        $currentSessions;
+        try{
+            //$currentSessions = User::allApplicants($user->application()->id_preffered_session);
+        } catch (Exception $e) {
+            throw new Exception("An error occurred: " . $e->getMessage());
+        }
+        
 
         // Separate every accepted user into their respective session
-        //foreach (){
-            
-        //}
+        foreach ($currentSessions as $session){
+            foreach ($allApproved as $individual){
+                try{
+                    if ($individual->userApplication->id_preffered_session == $session){
+                        $sessionsDivided[$session] = $individual;
+                    }
+                } catch (Exception $e) {
+                    throw new Exception("An error occurred: " . $e->getMessage());
+                }
+            }
+        }
 
         render_view('accepted', ['selected' => 'accepted'], 'Aceptados');
     }
