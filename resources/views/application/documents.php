@@ -35,7 +35,7 @@ require __DIR__ . '../../partials/header.php';
                 <!-- Document upload boxes -->
                 <div class="document-group">
                     <div class="upload-box">
-                        <?php if ($saved_documents['written_application']) { ?>
+                        <?php if (isset($saved_documents['written_application'])) { ?>
 
                             <?php $written_application = $saved_documents['written_application']; ?>
                             <label for="written_application"> <span> <?= $written_application['name'] ?></span></label>
@@ -52,7 +52,7 @@ require __DIR__ . '../../partials/header.php';
                     <div class="check-labeled">
                         <label>Solicitud Escrita</label>
                         <a href="/solicitud" target="_blank" class="btn-download">Descargar </a>
-                        <?php if ($saved_documents['written_application']) { ?>
+                        <?php if (isset($saved_documents['written_application'])) { ?>
                             <a href="#" onclick="showModal('fileViewPopup-<?= $written_application['name'] ?>')" class="btn-download">
                                 <i class="las la-eye"></i> Visualizar
                             </a>
@@ -74,7 +74,7 @@ require __DIR__ . '../../partials/header.php';
                     </div>
                     <div class="check-labeled">
                         <label>Transcripción de crédito</label>
-                        <?php if ($saved_documents['transcript']) { ?>
+                        <?php if (isset($saved_documents['transcript'])) { ?>
                             <a href="#" onclick="showModal('fileViewPopup-<?= $transcript['name'] ?>')" class="btn-download">
                                 <i class="las la-eye"></i> Visualizar
                             </a>
