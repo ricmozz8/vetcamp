@@ -26,7 +26,7 @@ $statusParsing = [
 
             <div class="listed-table">
                 <div class="header">
-                    <h2 class="welcome">Registrados</h2>
+                    <h2 class="welcome">Usuarios</h2>
                     <div class="table-actions">
                         <button class="main-action-bright tertiary">
                             <i class="las la-filter"></i>
