@@ -248,6 +248,8 @@ class SettingsController extends Controller
     try {
         // Llama a la función en el modelo Application
         $deletedUsers = Application::UserisDeniedDeletion();
+        $users = User::allApplicants();
+
 
         if (!empty($deletedUsers)) {
             $_SESSION['message'] = count($deletedUsers) . ' solicitudes denegadas eliminadas exitosamente.';
@@ -258,7 +260,7 @@ class SettingsController extends Controller
         $_SESSION['error'] = 'Ocurrió un error al eliminar solicitudes denegadas: ' . $e->getMessage();
     } finally {
 
-        if (empty($deletedUsers)) {
+        if (empty($users)) {
             $_SESSION['message'] = 'No se encontraron solicitudes para eliminar.';
         }
     }
