@@ -100,11 +100,38 @@ require __DIR__ . '../../partials/header.php';
 
                         </p>
                     </div>
+                </div>
+
+                <div class="grid-group">
+                    <h3>Documentos</h3>
+                    <div class="form-group">
+                        <p for="file-submitted">
+                            <i style="color: lightgreen;" class="las la-check"></i>
+                            Aplicación escrita
+                        </p>
+                        <p for="file-submitted">
+                            <i style="color: lightgreen;" class="las la-check"></i>
+                            Transcripción de crédito
+                        </p>
+                        <p for="file-submitted">
+                            <i style="color: lightgreen;" class="las la-check"></i>
+                            Ensayo en video
+                        </p>
+                        <p for="file-submitted">
+                            <i style="color: lightgreen;" class="las la-check"></i>
+                            Ensayo escrito
+                        </p>
+                        <p for="file-submitted">
+                            <i style="color:red;" class="las la-times"></i>
+                            Carta de autorización
+                        </p>
+                        <p for="file-submitted">
+                            <i style="color:red;" class="las la-times"></i>
+                            Foto
+                        </p>
 
 
-
-
-
+                    </div>
                 </div>
             </div>
 
