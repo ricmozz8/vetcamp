@@ -51,6 +51,7 @@ class UserApplicationController extends Controller
             ]);
 
             $section = filter_input(INPUT_POST, 'section', FILTER_DEFAULT);
+          
 
             if ($section == null) {
                 $_SESSION['error'] = 'Indica la sección que deseas participar';

@@ -45,7 +45,13 @@ require __DIR__ . '../../partials/header.php';
                         <select required id="section" name="section">
                             <option value="">Selecciona una</option>
                             <?php foreach ($sessions as $session) { ?>
-                                <option <?php echo $application->id_preferred_session ?? '' == $session->session_id ? 'selected' : '' ?> value="<?= $session->session_id ?>"><?= $session->formatted() ?></option>
+                                <?php
+                                $preffers = $application->id_preferred_session;
+                                $result = '';
+                                if ($preffers && $preffers === $session->session_id)
+                                    $result = 'selected';
+                                ?>
+                                <option <?php echo $result ?> value="<?= $session->session_id ?>"><?= $session->formatted() ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -68,7 +74,7 @@ require __DIR__ . '../../partials/header.php';
                     <div class="form-group">
 
                         <label for="zipcode">Código Postal</label>
-                        <input value="<?=isset($school_address) ? $school_address->zip_code : '' ?>" required type="number" placeholder="0000" name="school_zipcode">
+                        <input value="<?= isset($school_address) ? $school_address->zip_code : '' ?>" required type="number" placeholder="0000" name="school_zipcode">
                     </div>
 
                     <div class="form-group">
@@ -77,10 +83,10 @@ require __DIR__ . '../../partials/header.php';
 
                         <select required name="schoolType">
                             <option value="">Selecciona una</option>
-                            <?php $school_type = isset($school_address) ? ($school_address->school_type) : '';?>
-                            <option <?php  echo $school_type  == 'public' ?  'selected' : '' ?> value="public">Pública</option>
-                            <option <?php  echo $school_type  == 'private' ?  'selected' : '' ?> value="private">Privada</option>
-                            <option <?php  echo $school_type  == 'homeschooled'  ? 'selected' : '' ?> value="homeschooled">Homeschooled</option>
+                            <?php $school_type = isset($school_address) ? ($school_address->school_type) : ''; ?>
+                            <option <?php echo $school_type  == 'public' ?  'selected' : '' ?> value="public">Pública</option>
+                            <option <?php echo $school_type  == 'private' ?  'selected' : '' ?> value="private">Privada</option>
+                            <option <?php echo $school_type  == 'homeschooled'  ? 'selected' : '' ?> value="homeschooled">Homeschooled</option>
                             <!-- Add more options here -->
                         </select>
                     </div>
