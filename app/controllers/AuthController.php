@@ -99,6 +99,16 @@ class AuthController extends Controller
                 redirect('/register');
             }
 
+            $first_name = filter_input(INPUT_POST, 'first_name', FILTER_DEFAULT);
+            $last_name = filter_input(INPUT_POST, 'last_name', FILTER_DEFAULT);
+            $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+            $password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
+
+            if (!$first_name || !$last_name || !$email || !$password) {
+                $error = 'Por favor llene todos los campos';
+                redirect('/register');
+            }
+
             // prevent registry for already existing users
             try {
                 User::findBy(['email' => $_POST['email']]);
