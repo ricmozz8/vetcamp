@@ -30,7 +30,7 @@ switch ($path) {
         ApplicationController::archive();
         break;
     case '/admin/requests':
-        RequestsController::index();
+        RequestsController::index($method);
         break;
     case '/admin/registered':
         RegisteredController::index();

@@ -10,7 +10,7 @@ class RequestsController extends Controller
      *
      * @return void
      */
-    public static function index()
+    public static function index($method)
     {
         if (!Auth::check()) {
             redirect('/login');

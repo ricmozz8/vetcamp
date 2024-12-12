@@ -28,7 +28,7 @@
                                                                         echo 'active';
                                                                 } ?>">
                         <i class="las la-user-friends"></i>
-                        <span>Registrados</span>
+                        <span>Usuarios</span>
                 </a>
                 <a href="/admin/accepted" class="nav-item <?php if ($selected == 'accepted') {
                                                                         echo 'active';

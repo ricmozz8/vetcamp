@@ -99,3 +99,48 @@ textarea {
     font-weight: bold;
     text-align: right;
 }
+
+.file-view-popup{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+
+}
+
+.document-info-topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em;
+    border-radius: 10px 10px 0px 0px;
+    margin: 2em 2em 0 2em;
+    background-color: var(--main-color-default);
+    color: var(--secondary-color-default);
+}
+
+.file-view-popup .file-content{
+    padding: 0 2em 2em 2em ;
+    flex-direction: column;
+    gap: 1em;
+    color: var(--secondary-color-default);
+    backdrop-filter: blur(5px);
+    
+}
+
+.file-content embed{
+    width: 100%;
+    height: 80dvh;
+    background-color: var(--white-color);
+
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+}
+

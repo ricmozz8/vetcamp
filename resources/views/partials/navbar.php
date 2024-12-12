@@ -14,9 +14,13 @@ $user_full_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 
         <a onclick="openModal('userProfileEditModal')" href="#" class="">
             <i class="las la-user"></i>
-            Perfil
+            Manejar perfil
         </a>
-        <a onclick="openModal('logoutModal')" href="#" class="">
+        <a  href="#" class="">
+            <i class="las la-key"></i>
+            Manejar Cuenta
+        </a>
+        <a onclick="openModal('logoutModal')" href="#" class="nav-danger">
             <i class="las la-sign-out-alt"></i>
             Salir
         </a>

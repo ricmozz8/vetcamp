@@ -59,6 +59,10 @@ require __DIR__ . '/modals/editPicturesModal.php';
                         <p> Manejar fotos de la página de inicio </p>
                         <button class="main-action-bright secondary" onclick="openModal('editPicturesModal')"> Editar </button>
                     </div>
+                    <div class="settings-block">
+                        <p> Actualizar solicitud escrita </p>
+                        <button class="main-action-bright secondary"> Editar </button>
+                    </div>
                 </div>
 
 

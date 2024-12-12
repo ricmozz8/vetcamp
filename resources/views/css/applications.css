@@ -104,16 +104,39 @@
 }
 
 
+.profile-dropdown a:first-child{
+    display: block;
+    border-radius: 12px 12px 0 0;
+}
+
+.profile-dropdown a:last-child{
+    display: block;
+    
+    border-radius: 0 0 12px 12px;
+}
 
 .profile-dropdown a{
     width: 250px;
     padding: 10px 20px;
-    display: block;
-    border-radius: 10px;
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 1.1em;
 }
 
 .profile-dropdown a:hover{
     background-color: var(--white-color-shade-1);
+}
+
+.profile-dropdown a.nav-danger:hover{
+    background-color: var(--danger-color);
+    color: var(--white-color);
+    filter: none;
+}
+
+a.nav-danger:hover{
+    background-color: var(--danger-color);
+    color: var(--white-color);
+    filter: none;
 }
 
 .check 
@@ -175,9 +198,7 @@
     margin: 50px;
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid black;
     box-shadow: var(--shadow-soft);
-    background-color: white;
 }
 
 /* Progress Bar */

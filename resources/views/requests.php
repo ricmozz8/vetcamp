@@ -38,8 +38,9 @@ require __DIR__ . '/partials/header.php';
                         <div class="search-container">
                             <form method="POST" action="/admin/requests">
                                 <input type="text" class="search-input" name="search" placeholder="Busca correos, nombres">
-                                <button type="submit"> <i class="las la-search"></i> </button>
+                                
                             </form>
+                            <button type="submit " class=" no-deco-action"> <i class="las la-search"></i> </button>
                         </div>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ $statusParsing = [
 
             <div class="listed-table">
                 <div class="header">
-                    <h2 class="welcome">Registrados</h2>
+                    <h2 class="welcome">Usuarios</h2>
                     <div class="table-actions">
                         <button class="main-action-bright tertiary">
                             <i class="las la-filter"></i>
@@ -35,8 +35,9 @@ $statusParsing = [
                         <div class="search-container">
                             <form method="POST" action="/admin/registered">
                                 <input type="text" class="search-input" name="search" placeholder="Busca correos, nombres">
-                                <button type="submit"> <i class="las la-search"></i> </button>
+                                
                             </form>
+                            <button type="submit " class=" no-deco-action"> <i class="las la-search"></i> </button>
                         </div>
 
                     </div>
@@ -121,7 +122,7 @@ $statusParsing = [
                         <i class="las la-times"></i>
                         Desactivar
                     </a>
-                    <a href="#">
+                    <a class="nav-danger" href="#">
                         <i class="las la-trash"></i>
                         Eliminar
                     </a>
