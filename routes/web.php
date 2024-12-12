@@ -41,7 +41,7 @@ switch ($path) {
         break;
 
     case '/solicitud':
-        FileController::getFile('storage', '/public/Formulario de Inscripción Vet CAMP UPR-Arecibo Verano 2025.pdf');
+        FileController::getFile('storage', '/public/solicitud.pdf');
         break;
     
     case '/sendmail/tome':
