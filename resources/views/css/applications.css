@@ -198,9 +198,7 @@ a.nav-danger:hover{
     margin: 50px;
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid black;
     box-shadow: var(--shadow-soft);
-    background-color: white;
 }
 
 /* Progress Bar */
