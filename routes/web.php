@@ -23,10 +23,6 @@ $queryParams = [];
 parse_str($parsedUrl['query'] ?? '', $queryParams); // Parse query string into an associative array
 
 
-// Remove trailing slash
-if (substr($request, -1) === '/' && $request !== '/') {
-    $request = substr($request, 0, -1);
-}
 
 // Define your views/urls here
 require 'auth.php';
@@ -44,11 +40,6 @@ switch ($path) {
         FileController::getFile('storage', '/public/solicitud.pdf');
         break;
     
-    case '/sendmail/tome':
-        Mailer::send('cupcakethief2311@gmail.com', 'Test Mail', 'This is a test mail');
-        $_SESSION['message'] = "Email enviado con exito!";
-        redirect('/');
-        break;
 
     default:
         abort(404, 'Page was not found');

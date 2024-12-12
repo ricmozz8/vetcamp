@@ -70,7 +70,7 @@ require __DIR__ . '/partials/header.php';
 
 
                             echo "<tr>";
-                            echo "<td><img class='profile-picture' src=" . htmlspecialchars($user->application()->url_picture) . " alt='Profile Picture'></td>";
+                            echo "<td><img class='profile-picture' src=" . '' . " alt='Profile Picture'></td>";
                             echo "<td>" . $full_name . "</td>";
                             echo "<td>" . htmlspecialchars($user->email) . "</td>";
                             echo "<td>" . (htmlspecialchars($user->application() ? $user->application()->documentCount() : 0)) . "/6</td>";

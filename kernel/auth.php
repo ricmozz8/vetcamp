@@ -39,7 +39,9 @@ class Auth
      */
     public static function user()
     {
-        return User::find($_SESSION['user']->user_id, 'user_id');
+        if (!isset($_SESSION['user'])) return null;
+
+        return User::find($_SESSION['user']->__get('user_id'), 'user_id');
     }
 
     /**
@@ -53,6 +55,36 @@ class Auth
             return True;
         }
         return False;
+    }
+
+    /**
+     * Check if the user currently logged in is an admin
+     * @return bool True if the user is an admin, false if not logged in or not an admin
+     */
+    public static function is_admin(){
+        if (!self::check()) {
+            return False;
+        }
+
+        return self::user()->type == 'admin';
+    }
+
+
+    /**
+     * If the user is not logged in, redirects to /login.
+     * If the user is an admin, redirects to /admin.
+     * If the user is not an admin, redirects to /apply.
+     */
+    public static function only_logged_in(){
+        if (!self::check()) {
+            redirect('/login');
+        } 
+
+        if (self::user()->type == 'admin') {
+            redirect('/admin');
+        } else {
+            redirect('/apply');
+        }
     }
     
 

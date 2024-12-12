@@ -212,7 +212,16 @@ class UserApplicationController extends Controller
      */
     public static function documents($method)
     {
-        // submit the documents and validate them it here
+
+        // for some reason, the session is terminated if the user submits a file 
+        // that is too large. 
+
+        if (!isset($_SESSION['user'])) {
+            $_SESSION['error'] = 'Por favor complete todos los campos';
+           redirect_back() ;
+        }
+
+
         $application = Auth::user()->application();
         if ($application === null) {
             $_SESSION['error'] = 'Por favor complete todos los campos';
@@ -234,15 +243,17 @@ class UserApplicationController extends Controller
             ]; // important that these names are the same as the ones in the view and the database (Without the `url_`)
 
 
+            
+
             // validating the documents (note: create a validate_documents function)
             $valid =
                 validate_documents($documents, [
-                    'written_application' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
-                    'transcript' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
-                    'written_essay' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
-                    'picture' => ['type' => 'image/jpeg', 'size' => 2097152, 'required' => false],
-                    'video_essay' => ['type' => 'video/mp4', 'size' => 10485760, 'required' => false],
-                    'authorization_letter' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
+                    'written_application' => ['type' => ['application/pdf'], 'size' => 2097152, 'required' => false],
+                    'transcript' => ['type' => ['application/pdf'], 'size' => 2097152, 'required' => false],
+                    'written_essay' => ['type' => ['application/pdf'], 'size' => 2097152, 'required' => false],
+                    'picture' => ['type' => ['image/jpeg', 'image/png', 'image/jpg'], 'size' => 2097152, 'required' => false],
+                    'video_essay' => ['type' => ['video/mp4'], 'size' => 10485760, 'required' => false],
+                    'authorization_letter' => ['type' => ['application/pdf'], 'size' => 2097152, 'required' => false],
                 ]);
 
             
@@ -257,7 +268,8 @@ class UserApplicationController extends Controller
             if ($valid['result'] === DOCUMENTS_NOT_VALID) {
                 $_SESSION['error'] = $valid['message'];
                 redirect('/apply/application/documents');
-            }   
+            }
+               
 
             // saving the documents
             foreach ($valid['validated'] as $key => $document) {

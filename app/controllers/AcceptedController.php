@@ -25,7 +25,7 @@ class AcceptedController extends Controller
 
         foreach ($allApplicants as $applicant){
             try{
-                if ($applicant->userApplication->status == 'approved'){
+                if ($applicant->application()->status == 'approved'){
                     $allApproved[] = $applicant;
                 } 
             } catch (ModelNotFoundException $notFound) {
@@ -43,6 +43,7 @@ class AcceptedController extends Controller
             throw new Exception("An error occurred: " . $e->getMessage());
         }
         
+        $currentSessions = []; // define this
 
         // Separate every accepted user into their respective session
         foreach ($currentSessions as $session){

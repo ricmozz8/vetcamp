@@ -41,7 +41,7 @@ class ApplicationController extends Controller
         
 
         if ($user == null) {
-            $_SESSION['error'] = "No se encontró el usuario con el ID proporcionado.";
+        $_SESSION['error'] = "No se encontró el usuario con el ID proporcionado.";
             redirect('/admin/requests');
         }
 

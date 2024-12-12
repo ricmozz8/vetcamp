@@ -88,7 +88,7 @@ if ($hour >= 5 && $hour < 12) {
                             $full_name = htmlspecialchars($application->first_name . ' ' . $application->last_name . ' ');
 
                             echo "<div class='recent-application'>";
-                            echo "<img src=" . htmlspecialchars($application->application()->url_picture) . " alt='Profile Picture' class='avatar';>";
+                            echo "<img src=" . ''. " alt='Profile Picture' class='avatar';>";
                             echo "<td>" . $full_name . "</td>";
                             echo "<td>" . htmlspecialchars($application->email) . "</td>";
                             echo "</div>";

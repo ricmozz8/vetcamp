@@ -18,6 +18,7 @@
     <script src="<?= web_resource("js/backendDashboard.js") ?>"></script>
     <script src="<?= web_resource("js/backendSidebar.js") ?>"></script>
     <script src="<?= web_resource("js/contextMenu.js") ?>"></script>
+    <script src="<?= web_resource("js/documentValidate.js") ?>"></script>
 
 
     <!-- TYPEFACES -->
