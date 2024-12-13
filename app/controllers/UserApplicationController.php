@@ -51,7 +51,7 @@ class UserApplicationController extends Controller
             ]);
 
             $section = filter_input(INPUT_POST, 'section', FILTER_DEFAULT);
-          
+
 
             if ($section == null) {
                 $_SESSION['error'] = 'Indica la sección que deseas participar';
@@ -218,7 +218,7 @@ class UserApplicationController extends Controller
 
         if (!isset($_SESSION['user'])) {
             $_SESSION['error'] = 'Por favor complete todos los campos';
-           redirect_back() ;
+            redirect_back();
         }
 
 
@@ -243,7 +243,7 @@ class UserApplicationController extends Controller
             ]; // important that these names are the same as the ones in the view and the database (Without the `url_`)
 
 
-            
+
 
             // validating the documents (note: create a validate_documents function)
             $valid =
@@ -256,7 +256,7 @@ class UserApplicationController extends Controller
                     'authorization_letter' => ['type' => ['application/pdf'], 'size' => 8388608, 'required' => false],
                 ]);
 
-            
+
 
             // if the user has not uploaded any documents
             if (!$application->isComplete() && $valid['result'] === DOCUMENTS_OK && empty($valid['validated'])) {
@@ -269,7 +269,7 @@ class UserApplicationController extends Controller
                 $_SESSION['error'] = $valid['message'];
                 redirect('/apply/application/documents');
             }
-               
+
 
             // saving the documents
             foreach ($valid['validated'] as $key => $document) {
@@ -278,7 +278,7 @@ class UserApplicationController extends Controller
                 // getting the extension
                 $extension = pathinfo($document['name'], PATHINFO_EXTENSION);
                 $destination = $source_folder . '/' . $key . '.' . $extension;
-                
+
 
                 Storage::store('private', $destination, file_get_contents($document['tmp_name']));
 
@@ -296,8 +296,8 @@ class UserApplicationController extends Controller
             // method is GET
 
             $saved_documents = $application->getDocuments();
-            
-            
+
+
             render_view('application/documents', [
                 'application' => $application,
                 'saved_documents' => $saved_documents
@@ -318,13 +318,12 @@ class UserApplicationController extends Controller
 
             // Validate here that every information is valid before sumbitting
 
-            if($application->status == 'submitted'){
+            if ($application->status == 'submitted') {
                 $_SESSION['message'] = 'Aplicación actualizada correctamente';
                 redirect('/apply');
             }
 
-            if(!$application->isComplete())
-            {
+            if (!$application->isComplete()) {
                 $_SESSION['error'] = 'Tienes información sin llenar, las solicitudes incompletas no serán aprobadas.';
                 redirect('/apply/application/confirm');
             }
@@ -332,6 +331,12 @@ class UserApplicationController extends Controller
             $application->update([
                 'status' => 'submitted'
             ]);
+
+            Mailer::send(
+                Auth::user()->email,
+                'Solicitud de Aplicación',
+                'Tu solicitud ha sido sometida correctamente.'
+            );
 
             $_SESSION['message'] = 'Aplicación sometida correctamente';
             redirect('/apply');
