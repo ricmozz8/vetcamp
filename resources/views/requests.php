@@ -25,10 +25,7 @@ require __DIR__ . '/partials/header.php';
                 <div class="header">
                     <div class="flex-min">
                         <h2 class="welcome">Solicitudes</h2>
-                        <a class="main-action-bright secondary" href="#">
-                            <i class="las la-file-csv"></i>
-                            Importar
-                        </a>
+    
                     </div>
                     <div class="table-actions">
                         <button class="main-action-bright tertiary">
