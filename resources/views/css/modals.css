@@ -131,7 +131,6 @@ textarea {
     flex-direction: column;
     gap: 1em;
     color: var(--secondary-color-default);
-    backdrop-filter: blur(5px);
     
 }
 
