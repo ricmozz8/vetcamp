@@ -46,7 +46,7 @@ require_once __DIR__ . '/partials/header.php';
                     <div class="accepted-card-list">  <!-- De aqui en adelante, loop por persona en sesión -->
                         <div class="accepted-user-card">
                             <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.kym-cdn.com%2Fphotos%2Fimages%2Foriginal%2F002%2F901%2F902%2F95c.png&f=1&nofb=1&ipt=e8f6df058776a57d715f8504ac35876a754aa07ad0211a2b2cc5263753f7929f&ipo=images" alt="userIMG">
-                            <h3>Chill Guy</h3>
+                            <h3>Student</h3>
                         </div>
                         
                     </div>
@@ -70,7 +70,7 @@ require_once __DIR__ . '/partials/header.php';
                     <div class="accepted-card-list">  <!-- De aqui en adelante, loop por persona en sesión -->
                         <div class="accepted-user-card">
                             <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.kym-cdn.com%2Fphotos%2Fimages%2Foriginal%2F002%2F901%2F902%2F95c.png&f=1&nofb=1&ipt=e8f6df058776a57d715f8504ac35876a754aa07ad0211a2b2cc5263753f7929f&ipo=images" alt="userIMG">
-                            <h3>Chill Guy</h3>
+                            <h3>Student</h3>
                         </div>
                         
                     </div>
@@ -94,7 +94,7 @@ require_once __DIR__ . '/partials/header.php';
                     <div class="accepted-card-list">  <!-- De aqui en adelante, loop por persona en sesión -->
                         <div class="accepted-user-card">
                             <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.kym-cdn.com%2Fphotos%2Fimages%2Foriginal%2F002%2F901%2F902%2F95c.png&f=1&nofb=1&ipt=e8f6df058776a57d715f8504ac35876a754aa07ad0211a2b2cc5263753f7929f&ipo=images" alt="userIMG">
-                            <h3>Chill Guy</h3>
+                            <h3>Student</h3>
                         </div>
 
                     </div>
@@ -118,7 +118,7 @@ require_once __DIR__ . '/partials/header.php';
                     <div class="accepted-card-list">  <!-- De aqui en adelante, loop por persona en sesión -->
                         <div class="accepted-user-card">
                             <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.kym-cdn.com%2Fphotos%2Fimages%2Foriginal%2F002%2F901%2F902%2F95c.png&f=1&nofb=1&ipt=e8f6df058776a57d715f8504ac35876a754aa07ad0211a2b2cc5263753f7929f&ipo=images" alt="userIMG">
-                            <h3>Chill Guy</h3>
+                            <h3>Student</h3>
                         </div>
                         
                     </div>
