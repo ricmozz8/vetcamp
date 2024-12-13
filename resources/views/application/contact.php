@@ -63,10 +63,7 @@ require __DIR__ . '../../partials/header.php';
                 <!-- ---------------------------- POSTAL ADDRESS ------------------------------ -->
                 <div class="check">
                     <h3>Dirección Postal</h3>
-                    <div class="check-labeled">
-                        <input type="checkbox" name="same_as_physical" id="same_as_physical">
-                        <label for="same_as_physical">Igual a Dirección Física</label>
-                    </div>
+                    
                 </div>
 
                 <div class="form-block">

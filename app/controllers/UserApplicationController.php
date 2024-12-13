@@ -167,14 +167,14 @@ class UserApplicationController extends Controller
 
             // updating the user's addresses
             if ($physical_address === null) {
-                $physical_address['user_id'] = Auth::user()->__get('user_id');
+                $physical_addr_data['user_id'] = Auth::user()->__get('user_id');
                 $physical_address = PhysicalAddress::create($physical_addr_data);
             } else {
                 $physical_address->update($physical_addr_data);
             }
 
             if ($postal_address === null) {
-                $postal_address['user_id'] = Auth::user()->__get('user_id');
+                $postal_addr_data['user_id'] = Auth::user()->__get('user_id');
                 $postal_address = PostalAddress::create($postal_addr_data);
             } else {
                 $postal_address->update($postal_addr_data);
@@ -193,7 +193,7 @@ class UserApplicationController extends Controller
                 'application' => $application,
                 'postal_address' => $postal_address,
                 'physical_address' => $physical_address
-            ], 'Datos Básicos');
+            ], 'Datos de Contacto');
         }
     }
 
@@ -212,7 +212,16 @@ class UserApplicationController extends Controller
      */
     public static function documents($method)
     {
-        // submit the documents and validate them it here
+
+        // for some reason, the session is terminated if the user submits a file 
+        // that is too large. 
+
+        if (!isset($_SESSION['user'])) {
+            $_SESSION['error'] = 'Por favor complete todos los campos';
+           redirect_back() ;
+        }
+
+
         $application = Auth::user()->application();
         if ($application === null) {
             $_SESSION['error'] = 'Por favor complete todos los campos';
@@ -234,21 +243,23 @@ class UserApplicationController extends Controller
             ]; // important that these names are the same as the ones in the view and the database (Without the `url_`)
 
 
+            
+
             // validating the documents (note: create a validate_documents function)
             $valid =
                 validate_documents($documents, [
-                    'written_application' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
-                    'transcript' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
-                    'written_essay' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
-                    'picture' => ['type' => 'image/jpeg', 'size' => 2097152, 'required' => false],
-                    'video_essay' => ['type' => 'video/mp4', 'size' => 10485760, 'required' => false],
-                    'authorization_letter' => ['type' => 'application/pdf', 'size' => 2097152, 'required' => false],
+                    'written_application' => ['type' => ['application/pdf'], 'size' => 8388608, 'required' => false],
+                    'transcript' => ['type' => ['application/pdf'], 'size' => 8388608, 'required' => false],
+                    'written_essay' => ['type' => ['application/pdf'], 'size' => 8388608, 'required' => false],
+                    'picture' => ['type' => ['image/jpeg', 'image/png', 'image/jpg'], 'size' => 8388608, 'required' => false],
+                    'video_essay' => ['type' => ['video/mp4'], 'size' => 10485760, 'required' => false],
+                    'authorization_letter' => ['type' => ['application/pdf'], 'size' => 8388608, 'required' => false],
                 ]);
 
             
 
             // if the user has not uploaded any documents
-            if ($valid['result'] === DOCUMENTS_OK && empty($valid['validated'])) {
+            if (!$application->isComplete() && $valid['result'] === DOCUMENTS_OK && empty($valid['validated'])) {
                 $_SESSION['message'] = 'Te faltan algunos documentos por subir.';
                 redirect('/apply/application/confirm');
             }
@@ -257,7 +268,8 @@ class UserApplicationController extends Controller
             if ($valid['result'] === DOCUMENTS_NOT_VALID) {
                 $_SESSION['error'] = $valid['message'];
                 redirect('/apply/application/documents');
-            }   
+            }
+               
 
             // saving the documents
             foreach ($valid['validated'] as $key => $document) {
@@ -285,10 +297,11 @@ class UserApplicationController extends Controller
 
             $saved_documents = $application->getDocuments();
             
+            
             render_view('application/documents', [
                 'application' => $application,
                 'saved_documents' => $saved_documents
-            ], 'Datos Básicos');
+            ], 'Documentos');
         }
     }
 
@@ -305,6 +318,17 @@ class UserApplicationController extends Controller
 
             // Validate here that every information is valid before sumbitting
 
+            if($application->status == 'submitted'){
+                $_SESSION['message'] = 'Aplicación actualizada correctamente';
+                redirect('/apply');
+            }
+
+            if(!$application->isComplete())
+            {
+                $_SESSION['error'] = 'Tienes información sin llenar, las solicitudes incompletas no serán aprobadas.';
+                redirect('/apply/application/confirm');
+            }
+
             $application->update([
                 'status' => 'submitted'
             ]);
@@ -313,11 +337,9 @@ class UserApplicationController extends Controller
             redirect('/apply');
         } else {
             $application = Auth::user()->application();
-
-
             render_view('application/confirm', [
                 'application' => $application,
-            ], 'Datos Básicos');
+            ], 'Confirmar');
         }
     }
 }

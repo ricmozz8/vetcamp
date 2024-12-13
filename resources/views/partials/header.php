@@ -2,6 +2,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="/<?= asset("logo/SVG/vetcamp-icon-yellow.svg") ?>" type="image/x-icon">
 

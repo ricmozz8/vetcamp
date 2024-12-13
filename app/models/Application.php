@@ -2,8 +2,11 @@
 require_once 'Model.php';
 require_once 'User.php';
 
+define('REQUIRED_DOCUMENTS_AMOUNT', 6);
+
 class Application extends Model
 {
+
 
     protected static $primary_key = 'id_application'; // Primary key
     protected static $table = 'applications'; // Table name
@@ -96,18 +99,17 @@ class Application extends Model
         foreach ($this->getSubmittedDocuments() as $key => $value) {
             // getting the file 
             $file = Storage::get_metadata('private', $value);
-            
-        
+
+
             $document_array[$key] = [
                 'contents' => $file['contents'],
                 'name' => $file['name'],
                 'size' => $file['size'],
-                'type' => $file['type'] 
+                'type' => $file['type']
             ];
         }
 
         return $document_array;
-
     }
 
     /**
@@ -138,6 +140,51 @@ class Application extends Model
     {
         $reverseParsing = array_flip(self::$statusParsings);
         return $reverseParsing[$statusInSpanish] ?? $statusInSpanish;
+    }
+
+
+    /**
+     * Determines if the application is complete.
+     * 
+     * @return boolean True if the application is complete, false otherwise.
+     * 
+     * An application is considered complete if it has all the required documents, 
+     * the user's birthdate is not null, the user has a school address, a postal 
+     * address, a physical address, and an id of the preferred session.
+     */
+    public function isComplete()
+    {
+        if ($this->documentCount() !== REQUIRED_DOCUMENTS_AMOUNT) {
+            
+            return false;
+        }
+
+        if ($this->user()->birthdate === null or $this->user()->birthdate === '0000-00-00') {
+            
+            return false;
+        }
+
+        if ($this->user()->school_address() === null) {
+            
+            return false;
+        }
+
+        if ($this->user()->postal_address() === null) {
+           
+            return false;
+        }
+
+        if ($this->user()->physical_address() === null) {
+            
+            return false;
+        }
+
+        if ($this->id_preferred_session === null) {
+            
+            return false;
+        }
+
+        return true;
     }
 
 

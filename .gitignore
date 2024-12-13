@@ -28,3 +28,5 @@ Homestead.json
 /.idea
 /.vs
 /.vscode
+
+/storage/private/documents

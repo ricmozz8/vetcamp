@@ -21,17 +21,18 @@ require __DIR__ . '/partials/header.php';
 
                 <form action="/forgotpass" method="POST">
                     <!-- Back button -->
-                    <a href="/login" class="no-deco-action">
-                                <img src="resources/assets/back-arrow.svg" alt="Back Button" class="back-button">
+                    <a href="/login" class="main-action-bright">
+                       <img src="https://img.icons8.com/?size=100&id=AIKY5pYoauww&format=png&color=1A1A1A" alt="Back Icon" class="back-icon">
                     </a>
                     <?php if (empty($otpSent)): ?>
+                      <h1 class="page-title">¿Olvidaste tu contraseña? </h1>
                         <div class="input-group">
                             <div class="field-wrapper">
                                 <label for="email" class="text-wrapper-2">Correo</label>
                                 <input type="email" id="email" name="email" required class="input-field input-email" placeholder="juan.delpueblo@upr.edu">
                             </div>
                             <div class="field-wrapper">
-                                <div class="text-wrapper-3">Escribe tu correo electrónico para recibir un código OTP.</div>
+                                <div class="text-wrapper-3">Escribe tu correo electrónico.</div>
                             </div>
                         </div>
                     <?php elseif (isset($otpSent) && !$otpValidated): ?>
@@ -52,19 +53,13 @@ require __DIR__ . '/partials/header.php';
                         </div>
                     <?php endif; ?>
 
-                    <div class="actions">
-                        <div class="mainbutton">
                             <button type="submit" class="main-action-bright">
-                                <div class="secondary-action">
                                     <?php if (empty($otpSent)): ?>
-                                        Enviar código
+                                        Enviar
                                     <?php elseif (isset($otpSent) && !$otpValidated): ?>
                                         Validar código
                                     <?php endif; ?>
-                                </div>
                             </button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>

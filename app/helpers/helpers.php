@@ -377,16 +377,13 @@ function validate_input(array $inputs, array $required)
 function validate_documents(array $documents, array $rules)
 {
     // for each document
-
-
-
     $documentNameBag = [];
     $validDocuments = [];
 
     foreach ($documents as $key => $document) {
 
         if (in_array($document['name'], $documentNameBag)) {
-            return ['result' => false, 'message' => 'Debes subir un documento diferente para ' . $key];
+            return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'Sube archivos diferentes'];
         }
 
         if (empty($document['name'])) {
@@ -401,12 +398,47 @@ function validate_documents(array $documents, array $rules)
             continue;
         }
 
+        // validating the files using the _FILES superarray
+        // Validating file size on the type of error
+        if ($_FILES[$key]['error'] !== UPLOAD_ERR_OK) {
+            $result = ['result' => DOCUMENTS_NOT_VALID];
+            switch ($_FILES['fileToUpload']['error']) {
+                case UPLOAD_ERR_INI_SIZE:
+                    $result[] = ['message' => 'El archivo es demasiado grande'];
+                    break;
+                case UPLOAD_ERR_PARTIAL:
+
+                    $result[] = ['message' => 'El archivo se ha subido parcialmente'];
+                    break;
+                case UPLOAD_ERR_NO_FILE:
+                    $result[] = ['message' => 'No se ha subido ningun archivo'];
+                    break;
+                case UPLOAD_ERR_NO_TMP_DIR:
+
+                    $result[] = ['message' => 'No se ha podido guardar el archivo temporal'];
+                    break;
+                case UPLOAD_ERR_CANT_WRITE:
+
+                    $result[] = ['message' => 'No se ha podido guardar el archivo'];
+                    break;
+                default:
+                    $result[] = ['message' => 'Ha ocurrido un error al subir el archivo'];
+                    break;
+            }
+
+            return $result;
+        }
+
         if ($rules['required'] && empty($document['name'])) {
             return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $key . ' es obligatorio '];
         }
 
-        if ($rules['type'] && $document['type'] != $rules['type']) {
-            return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $document['name'] . ' debe ser de tipo ' . $rules['type']];
+
+
+        if (isset($rules['type']) && !in_array($document['type'], $rules['type'])) {
+            $required_types = str_replace(['image/', 'video/', 'application/'], '', implode(', ', $rules['type']));
+
+            return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $document['name'] . ' debe ser de tipo ' . $required_types];
         }
 
         $sizeToMB = $rules['size'] / 1024 / 1024 . 'MB';
@@ -420,11 +452,11 @@ function validate_documents(array $documents, array $rules)
     }
     // if all documents have passed all the rules, return true
 
-    if(empty($documentNameBag)) {
-        return ['result' => DOCUMENTS_OK, 'message' => 'Hay documentos sin subir', 'validated'=>$validDocuments];
+    if (empty($documentNameBag)) {
+        return ['result' => DOCUMENTS_OK, 'message' => 'Hay documentos sin subir', 'validated' => $validDocuments];
     }
 
-    return ['result' => DOCUMENTS_VALID, 'message' => 'Documentos validados correctamente', 'validated'=>$validDocuments];
+    return ['result' => DOCUMENTS_VALID, 'message' => 'Documentos validados correctamente', 'validated' => $validDocuments];
 }
 
 
@@ -434,7 +466,8 @@ function validate_documents(array $documents, array $rules)
  * @param array $array the array to filter
  * @return array the filtered array
  */
-function remove_null_or_empty($array) {
+function remove_null_or_empty($array)
+{
     return array_filter($array, function ($value) {
         return !is_null($value) && $value !== '';
     });
