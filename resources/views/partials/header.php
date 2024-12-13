@@ -1,6 +1,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'self' blob:; style-src 'self'; frame-src 'self'">
+
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="/<?= asset("logo/SVG/vetcamp-icon-yellow.svg") ?>" type="image/x-icon">
