@@ -423,6 +423,7 @@ input[type="file"] {
     font-weight: bold;
     font-size: 12px;
     cursor: pointer;
+    text-wrap: nowrap;
 }
 
 .all_sol {
@@ -508,6 +509,13 @@ input[type="file"] {
     background-color: #f5f5f5;
 }
 
+form .grid-group{
+    padding: 1em;
+    background: var(--white-color);
+    border-radius: 15px;
+
+}
+
 
 
 /* Tablet */
@@ -544,9 +552,9 @@ input[type="file"] {
         grid-gap: 1em;
     }
 
-    
-    
 }
+
+
 
 /* Desktop */
 @media only screen and (min-width: 1024px) {

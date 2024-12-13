@@ -38,14 +38,14 @@ require __DIR__ . '../../partials/header.php';
                         <?php if (isset($saved_documents['written_application'])) { ?>
 
                             <?php $written_application = $saved_documents['written_application']; ?>
-                            <label for="written_application"> <span> <?= $written_application['name'] ?></span></label>
-                            <input accept="application/pdf" value=" <?= $written_application['name'] ?>" type="file" id="written_application file-input" name="written_application" onchange="updateFileName(this)">
+                            <label for="written_application"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                            <input accept="application/pdf" value=" <?= $written_application['name'] ?>" type="file" id="written_application" name="written_application" onchange="updateFileName(this)">
 
 
                         <?php } else { ?>
 
                             <label for="written_application"> <span> Selecciona un archivo</span></label>
-                            <input accept="application/pdf" type="file" id="written_application file-input" name="written_application" onchange="updateFileName(this)">
+                            <input accept="application/pdf" type="file" id="written_application" name="written_application" onchange="updateFileName(this)">
 
                         <?php } ?>
                     </div>
@@ -65,11 +65,11 @@ require __DIR__ . '../../partials/header.php';
                     <div class="upload-box">
                         <?php if (isset($saved_documents['transcript'])) { ?>
                             <?php $transcript = $saved_documents['transcript']; ?>
-                            <label for="transcript"> <span> <?= $transcript['name'] ?></span></label>
-                            <input accept="application/pdf" value=" <?= $transcript['name'] ?>" type="file" id="transcript file-input" name="transcript" onchange="updateFileName(this)">
+                            <label for="transcript"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                            <input accept="application/pdf" value=" <?= $transcript['name'] ?>" type="file" id="transcript" name="transcript" onchange="updateFileName(this)">
                         <?php } else { ?>
                             <label for="transcript"> <span> Selecciona un archivo</span></label>
-                            <input accept="application/pdf" type="file" id="transcript file-input" name="transcript" onchange="updateFileName(this)">
+                            <input accept="application/pdf" type="file" id="transcript" name="transcript" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
@@ -87,11 +87,11 @@ require __DIR__ . '../../partials/header.php';
                     <div class="upload-box">
                         <?php if (isset($saved_documents['written_essay'])) { ?>
                             <?php $written_essay = $saved_documents['written_essay']; ?>
-                            <label for="transcript"> <span> <?= $written_essay['name'] ?></span></label>
-                            <input accept="application/pdf" value=" <?= $written_essay['name'] ?>" type="file" id="transcript file-input" name="transcript" onchange="updateFileName(this)">
+                            <label for="transcript"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                            <input accept="application/pdf" value=" <?= $written_essay['name'] ?>" type="file" id="transcript" name="transcript" onchange="updateFileName(this)">
                         <?php } else { ?>
                             <label for="written_essay"><span> Selecciona un archivo</span></label>
-                            <input accept="application/pdf" type="file" id="written_essay file-input" name="written_essay" onchange="updateFileName(this)">
+                            <input accept="application/pdf" type="file" id="written_essay" name="written_essay" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
@@ -110,11 +110,11 @@ require __DIR__ . '../../partials/header.php';
                     <div class="upload-box">
                         <?php if (isset($saved_documents['picture'])) { ?>
                             <?php $picture = $saved_documents['picture']; ?>
-                            <label for="picture"> <span> <?= $picture['name'] ?></span></label>
-                            <input accept="image/*" value=" <?= $picture['name'] ?>" type="file" id="picture file-input" name="picture" onchange="updateFileName(this)">
+                            <label for="picture"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                            <input accept="image/*" value=" <?= $picture['name'] ?>" type="file" id="picture" name="picture" onchange="updateFileName(this)">
                         <?php } else { ?>
                             <label for="picture"> <span> Selecciona un archivo</span></label>
-                            <input accept="image/*" type="file" id="picture file-input" name="picture" onchange="updateFileName(this)">
+                            <input accept="image/*" type="file" id="picture" name="picture" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
@@ -133,11 +133,11 @@ require __DIR__ . '../../partials/header.php';
 
                         <?php if (isset($saved_documents['video_essay'])) { ?>
                             <?php $video_essay = $saved_documents['video_essay']; ?>
-                            <label for="video_essay"> <span> <?= $video_essay['name'] ?></span></label>
-                            <input accept="video/*" value=" <?= $video_essay['name'] ?>" type="file" id="video_essay file-input" name="video_essay" onchange="updateFileName(this)">
+                            <label for="video_essay"><span> <i class="las la-edit"></i> Editar archivo</span></label>
+                            <input accept="video/*" value=" <?= $video_essay['name'] ?>" type="file" id="video_essay" name="video_essay" onchange="updateFileName(this)">
                         <?php } else { ?>
                             <label for="video_essay"> <span> Selecciona un archivo</span></label>
-                            <input accept="video/*" type="file" id="video_essay file-input" name="video_essay" onchange="updateFileName(this)">
+                            <input accept="video/*" type="file" id="video_essay" name="video_essay" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
@@ -155,11 +155,11 @@ require __DIR__ . '../../partials/header.php';
                     <div class="upload-box">
                         <?php if (isset($saved_documents['authorization'])) { ?>
                             <?php $authorization = $saved_documents['authorization']; ?>
-                            <label for="authorization"> <span> <?= $authorization['name'] ?></span></label>
-                            <input accept="application/pdf" value=" <?= $authorization['name'] ?>" type="file" id="authorization file-input" name="authorization" onchange="updateFileName(this)">
+                            <label for="authorization"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                            <input accept="application/pdf" value=" <?= $authorization['name'] ?>" type="file" id="authorization" name="authorization" onchange="updateFileName(this)">
                         <?php } else { ?>
                             <label for="authorization"><span> Selecciona un archivo</span> </label>
-                            <input accept="application/pdf" type="file" id="file-input authorization" name="authorization" onchange="updateFileName(this)">
+                            <input accept="application/pdf" type="file" id="authorization" name="authorization" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
                     <div class="check-labeled">

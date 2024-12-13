@@ -383,7 +383,7 @@ function validate_documents(array $documents, array $rules)
     foreach ($documents as $key => $document) {
 
         if (in_array($document['name'], $documentNameBag)) {
-            return ['result' => false, 'message' => 'Debes subir un documento diferente para ' . $key];
+            return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'Sube archivos diferentes'];
         }
 
         if (empty($document['name'])) {
@@ -401,7 +401,7 @@ function validate_documents(array $documents, array $rules)
         // validating the files using the _FILES superarray
         // Validating file size on the type of error
         if ($_FILES[$key]['error'] !== UPLOAD_ERR_OK) {
-            $result = ['result' => false];
+            $result = ['result' => DOCUMENTS_NOT_VALID];
             switch ($_FILES['fileToUpload']['error']) {
                 case UPLOAD_ERR_INI_SIZE:
                     $result[] = ['message' => 'El archivo es demasiado grande'];

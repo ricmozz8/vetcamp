@@ -317,6 +317,17 @@ class UserApplicationController extends Controller
 
             // Validate here that every information is valid before sumbitting
 
+            if($application->status == 'submitted'){
+                $_SESSION['message'] = 'Aplicación actualizada correctamente';
+                redirect('/apply');
+            }
+
+            if(!$application->isComplete())
+            {
+                $_SESSION['error'] = 'Tienes información sin llenar, las solicitudes incompletas no serán aprobadas.';
+                redirect('/apply/application/confirm');
+            }
+
             $application->update([
                 'status' => 'submitted'
             ]);
@@ -325,8 +336,6 @@ class UserApplicationController extends Controller
             redirect('/apply');
         } else {
             $application = Auth::user()->application();
-
-
             render_view('application/confirm', [
                 'application' => $application,
             ], 'Datos Básicos');
