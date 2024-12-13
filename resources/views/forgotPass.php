@@ -31,9 +31,10 @@ require __DIR__ . '/partials/header.php';
                                 <input type="email" id="email" name="email" required class="input-field input-email" placeholder="juan.delpueblo@upr.edu">
                             </div>
                             <div class="field-wrapper">
-                                <div class="text-wrapper-3">Escribe tu correo electrónico para recibir un código OTP.</div>
-                            </div>
+                                <div class="text-wrapper-3">Escribe tu correo electrónico para recibir un código.</div>
+                                </div>
                         </div>
+                    </div>
                     <?php elseif (isset($otpSent) && !$otpValidated): ?>
                         <div class="input-group">
                             <div class="field-wrapper">
@@ -50,6 +51,7 @@ require __DIR__ . '/partials/header.php';
                         <div class="otp-demo">
                             <strong>Simulated OTP:</strong> <?php echo htmlspecialchars($generatedOtp); ?>
                         </div>
+                    </div>
                     <?php endif; ?>
 
                     <div class="actions">
