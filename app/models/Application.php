@@ -2,7 +2,7 @@
 require_once 'Model.php';
 require_once 'User.php';
 
-define('REQUIRED_DOCUMENTS_AMOUNT', '6');
+define('REQUIRED_DOCUMENTS_AMOUNT', 6);
 
 class Application extends Model
 {
@@ -155,22 +155,27 @@ class Application extends Model
     public function isComplete()
     {
         if ($this->documentCount() !== REQUIRED_DOCUMENTS_AMOUNT) {
+
             return false;
         }
 
         if ($this->user()->birthdate === null or $this->user()->birthdate === '0000-00-00') {
+
             return false;
         }
 
         if ($this->user()->school_address() === null) {
+
             return false;
         }
 
         if ($this->user()->postal_address() === null) {
+
             return false;
         }
 
         if ($this->user()->physical_address() === null) {
+
             return false;
         }
 

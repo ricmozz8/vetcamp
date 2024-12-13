@@ -259,7 +259,7 @@ class UserApplicationController extends Controller
             
 
             // if the user has not uploaded any documents
-            if ($valid['result'] === DOCUMENTS_OK && empty($valid['validated'])) {
+            if (!$application->isComplete() && $valid['result'] === DOCUMENTS_OK && empty($valid['validated'])) {
                 $_SESSION['message'] = 'Te faltan algunos documentos por subir.';
                 redirect('/apply/application/confirm');
             }
