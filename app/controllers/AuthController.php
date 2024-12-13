@@ -152,7 +152,7 @@ class AuthController extends Controller
         }
     }
 
-    public static function resetPassword()
+  public static function resetPassword()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Sanitize and validate email from session
@@ -164,12 +164,18 @@ class AuthController extends Controller
             }
     
             // Sanitize and validate passwords from POST data
-            $password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
-            $confirmPassword = filter_input(INPUT_POST, 'confirm_password', FILTER_DEFAULT);
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+            $confirmPassword = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
+    
+            // Validate password length
+            if (strlen($password) < 8) {
+                $_SESSION['error'] = "La contraseña debe tener al menos 8 caracteres.";
+                redirect('/passreset');
+            }
     
             // Validate password match
             if ($password !== $confirmPassword) {
-                $_SESSION['error_message'] = "Las contraseñas no coinciden.";
+                $_SESSION['error'] = "Las contraseñas no coinciden.";
                 redirect('/passreset');
                 exit;
             }
@@ -179,8 +185,16 @@ class AuthController extends Controller
                 $user = User::findBy(['email' => $email]);
     
                 if (!$user) {
-                    $_SESSION['error_message'] = "No se encontró el usuario.";
+                    $_SESSION['error'] = "No se encontró el usuario.";
                     redirect('/forgotpass');
+                    exit;
+                }
+    
+                // Check if the new password is different from the current password
+                $currentPasswordHash = $user->password;
+                if (password_verify($password, $currentPasswordHash)) {
+                    $_SESSION['error'] = "La nueva contraseña no puede ser igual a la anterior.";
+                    redirect('/passreset');
                     exit;
                 }
     
@@ -197,13 +211,14 @@ class AuthController extends Controller
             } catch (ModelNotFoundException $e) {
                 $_SESSION['error_message'] = "Error al restablecer la contraseña: " . $e->getMessage();
                 redirect('/forgotpass');
-                exit;
             }
         } else {
             // Render the reset password view
             render_view('passreset', [], 'PassReset');
         }
     }
+    
+    
     public static function forgotPassword() 
     {
         // Determine flow based on POST data
@@ -226,11 +241,24 @@ class AuthController extends Controller
             $email = $_POST['email'] ?? null;
     
             if ($email) {
-                // Save email to session for later use
-                $_SESSION['otp_verified_email'] = $email; // Save the email
+                try {
+                    // Check if the email exists
+                    $user = User::findBy(['email' => $email]);
+                    
+                    if ($user) {
+                        // Save email to session for later use
+                        $_SESSION['otp_verified_email'] = $email;
     
-                // For demonstration: Simulate OTP "sent"
-                $viewData['message'] = "Se envió el código OTP a su correo electrónico.";
+                        // For demonstration: Simulate OTP "sent"
+                        $viewData['message'] = "Se envió el código OTP a su correo electrónico.";
+                    } else {
+                        // Email does not exist
+                        $viewData['error'] = "No se encontró una cuenta con este correo electrónico.";
+                    }
+                } catch (ModelNotFoundException $e) {
+                    $_SESSION['error'] = "No se encontró una cuenta con este correo electrónico.";
+                    redirect('/forgotPass');
+                }
             } else {
                 $viewData['error'] = "Por favor, ingresa un correo electrónico válido.";
             }
@@ -239,7 +267,7 @@ class AuthController extends Controller
     
             if ($enteredOtp == $generatedOtp) {
                 // OTP is valid, redirect to reset password page
-                redirect('/passreset'); 
+                redirect('/passreset');
             } else {
                 $viewData['error'] = "Código OTP incorrecto.";
             }
@@ -248,5 +276,5 @@ class AuthController extends Controller
         // Render the forgot password view
         render_view('forgotpass', $viewData, 'ForgotPass');
     }
-    // define your other methods here
+    
 }
