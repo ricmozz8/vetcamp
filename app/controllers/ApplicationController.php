@@ -79,7 +79,6 @@ class ApplicationController extends Controller
         if ($request_method === 'POST') {
             $applicationId = $_POST['application_id'] ?? null;
             $newStatus = $_POST['status'] ?? null;
-            $notify = isset($_POST['notify']) && $_POST['notify'] === 'on';
 
             // Reverse mapping: Spanish status to English key
             $statusMap = array_flip(Application::$statusParsings);
@@ -99,13 +98,7 @@ class ApplicationController extends Controller
 
                 // Call TrackingEvaluation for tracking
                 TrackingController::TrackingEvaluation('POST');
-
-                if ($notify) {
-                    $_SESSION['success_message'] = "Estado actualizado y notificación enviada.";
-                } else {
-                    $_SESSION['success_message'] = "Estado actualizado correctamente.";
-                }
-                redirect('/admin/requests');
+                
             } catch (ModelNotFoundException $e) {
                 $_SESSION['error_message'] = "No se encontró la solicitud con el ID proporcionado.";
                 redirect('/admin/requests');

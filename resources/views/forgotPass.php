@@ -51,6 +51,7 @@ require __DIR__ . '/partials/header.php';
                         <div class="otp-demo">
                             <strong>Simulated OTP:</strong> <?php echo htmlspecialchars($generatedOtp); ?>
                         </div>
+                    </div>
                     <?php endif; ?>
 
                             <button type="submit" class="main-action-bright">
