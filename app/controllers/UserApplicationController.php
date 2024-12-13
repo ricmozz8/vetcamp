@@ -167,14 +167,14 @@ class UserApplicationController extends Controller
 
             // updating the user's addresses
             if ($physical_address === null) {
-                $physical_address['user_id'] = Auth::user()->__get('user_id');
+                $physical_addr_data['user_id'] = Auth::user()->__get('user_id');
                 $physical_address = PhysicalAddress::create($physical_addr_data);
             } else {
                 $physical_address->update($physical_addr_data);
             }
 
             if ($postal_address === null) {
-                $postal_address['user_id'] = Auth::user()->__get('user_id');
+                $postal_addr_data['user_id'] = Auth::user()->__get('user_id');
                 $postal_address = PostalAddress::create($postal_addr_data);
             } else {
                 $postal_address->update($postal_addr_data);
@@ -296,6 +296,7 @@ class UserApplicationController extends Controller
             // method is GET
 
             $saved_documents = $application->getDocuments();
+            
             
             render_view('application/documents', [
                 'application' => $application,
