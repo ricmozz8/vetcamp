@@ -6,58 +6,55 @@ require_once 'app/models/Tracking.php';
 class TrackingController extends Controller
 {
   public static function TrackingEvaluation($request_method)
-    {
-        if ($request_method === 'POST') {
-            // Initialize variables
-            $applicationId = null;
-            $decision = null;
-    
-            // Sanitize and validate input
-            if (isset($_POST['application_id']) && is_numeric($_POST['application_id'])) {
-                $applicationId = (int) $_POST['application_id'];
-            }
-    
-            if (isset($_POST['status']) && is_string($_POST['status'])) {
-                // Reverse mapping: Spanish status to English key
-                $statusMap = array_flip(Application::$statusParsings);
-                if (isset($statusMap[$_POST['status']])) {
-                    $decision = $statusMap[$_POST['status']];
-                }
-            }
-    
-            // Get the authenticated user
-            $user = Auth::user();
-            $userId = $user->__get('user_id') ?? null;
-    
-            // Validate required data
-            if ($applicationId === null || $userId === null || $decision === null) {
-                $_SESSION['error_message'] = "Datos inválidos o incompletos.";
-                redirect('/admin/requests');
-                return;
-            }
-    
-            try {
-                // Create a new tracking record
-                Tracking::create([
-                    'application_id' => $applicationId,
-                    'user_id' => $userId,
-                    'decision' => $decision,
-                ]);
-    
-                $application = Application::find($applicationId);
-                $userId = $application->user_id;
-                $_SESSION['message'] = 'Se ha cambiado el estado de la solicitud exitosamente';
-                redirect("/admin/requests/r?id=$userId");
-            } catch (Exception $e) {
-                $_SESSION['error_message'] = "Error al registrar el seguimiento.";
-                redirect('/admin/requests');
-            }
-        } else {
-            http_response_code(405);
-            $_SESSION['error_message'] = "Método de solicitud no permitido.";
-            redirect('/admin/requests');
-        }
-    }    
+      {
+          if ($request_method === 'POST') {
+              // Sanitize and validate input
+              $applicationId = filter_input(INPUT_POST, 'application_id', FILTER_VALIDATE_INT);
+              $decision = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_STRING);
+              
+              // Validate required data
+              if (!$applicationId || !$decision || !array_key_exists($decision, Application::$statusParsings)) {
+                  $_SESSION['error_message'] = "Datos inválidos o incompletos.";
+                  redirect('/admin/requests');
+                  return;
+              }
+              
+              try {
+                  // Get the authenticated user
+                  $user = Auth::user();
+                  $userId = $user->__get('user_id') ?? null;
+      
+                  if (!$userId) {
+                      $_SESSION['error_message'] = "Usuario no autenticado.";
+                      redirect('/admin/requests');
+                      return;
+                  }
+      
+                  // Create a new tracking record
+                  Tracking::create([
+                      'application_id' => $applicationId,
+                      'user_id' => $userId,
+                      'decision' => $decision, // Use the raw status key directly
+                  ]);
+      
+                  // Redirect to the specific application page
+                  $application = Application::find($applicationId);
+                  $userId = $application->user_id;
+                  $_SESSION['message'] = 'Se ha cambiado el estado de la solicitud exitosamente';
+                  redirect("/admin/requests/r?id=$userId");
+              } catch (ModelNotFoundException $e) {
+                  $_SESSION['error_message'] = "No se encontró la solicitud con el ID proporcionado.";
+                  redirect('/admin/requests');
+              } catch (Exception $e) {
+                  $_SESSION['error_message'] = "Error al registrar el seguimiento: " . $e->getMessage();
+                  redirect('/admin/requests');
+              }
+          } else {
+              http_response_code(405);
+              $_SESSION['error_message'] = "Método de solicitud no permitido.";
+              redirect('/admin/requests');
+          }
+      }
 }
 
 

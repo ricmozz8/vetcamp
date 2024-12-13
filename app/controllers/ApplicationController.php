@@ -78,23 +78,22 @@ class ApplicationController extends Controller
         if ($request_method === 'POST') {
             $applicationId = $_POST['application_id'] ?? null;
             $newStatus = $_POST['status'] ?? null;
-
-            // Reverse mapping: Spanish status to English key
-            $statusMap = array_flip(Application::$statusParsings);
-            $newStatus = $statusMap[$newStatus] ?? null;
-
-            // Validate data
-            if ($applicationId === null || $newStatus === null) {
+            
+           
+            // Validate application ID and new status
+            if ($applicationId === null || $newStatus === null || !array_key_exists($newStatus, Application::$statusParsings)) {
+                error_log('Invalid application ID or status: ' . $newStatus);
                 $_SESSION['error_message'] = "Datos inválidos.";
                 redirect('/admin/requests');
                 return;
             }
 
+    
             try {
                 // Update application status
                 $application = Application::find($applicationId);
                 $application->update(['status' => $newStatus]);
-
+                
                 // Call TrackingEvaluation for tracking
                 TrackingController::TrackingEvaluation('POST');
                 
