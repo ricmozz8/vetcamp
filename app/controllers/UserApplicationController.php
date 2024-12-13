@@ -193,7 +193,7 @@ class UserApplicationController extends Controller
                 'application' => $application,
                 'postal_address' => $postal_address,
                 'physical_address' => $physical_address
-            ], 'Datos Básicos');
+            ], 'Datos de Contacto');
         }
     }
 
@@ -300,7 +300,7 @@ class UserApplicationController extends Controller
             render_view('application/documents', [
                 'application' => $application,
                 'saved_documents' => $saved_documents
-            ], 'Datos Básicos');
+            ], 'Documentos');
         }
     }
 
@@ -338,7 +338,7 @@ class UserApplicationController extends Controller
             $application = Auth::user()->application();
             render_view('application/confirm', [
                 'application' => $application,
-            ], 'Datos Básicos');
+            ], 'Confirmar');
         }
     }
 }
