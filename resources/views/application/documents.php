@@ -153,8 +153,8 @@ require __DIR__ . '../../partials/header.php';
 
                 <div class="document-group">
                     <div class="upload-box">
-                        <?php if (isset($saved_documents['authorization'])) { ?>
-                            <?php $authorization = $saved_documents['authorization']; ?>
+                        <?php if (isset($saved_documents['authorization_letter'])) { ?>
+                            <?php $authorization = $saved_documents['authorization_letter']; ?>
                             <label for="authorization"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
                             <input accept="application/pdf" value=" <?= $authorization['name'] ?>" type="file" id="authorization" name="authorization" onchange="updateFileName(this)">
                         <?php } else { ?>
@@ -164,7 +164,7 @@ require __DIR__ . '../../partials/header.php';
                     </div>
                     <div class="check-labeled">
                       <label>Carta de Autorización</label>  
-                      <?php if (isset($saved_documents['authorization'])) { ?>
+                      <?php if (isset($saved_documents['authorization_letter'])) { ?>
                             <a href="#" onclick="showModal('fileViewPopup-<?= $authorization['name'] ?>')" class="btn-download">
                                 <i class="las la-eye"></i> Visualizar
                             </a>
