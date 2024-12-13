@@ -86,9 +86,11 @@ if ($hour >= 5 && $hour < 12) {
                         foreach ($recent_applications as $application) {
                             // Get the full name
                             $full_name = htmlspecialchars($application->first_name . ' ' . $application->last_name . ' ');
+                            $pictureObj = $application->application()->getProfilePicture();
+                            $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
 
                             echo "<div class='recent-application'>";
-                            echo "<img src=" . ''. " alt='Profile Picture' class='avatar';>";
+                            echo "<img src=\"$src\" alt=\"Image\" class=\"profile-picture\">";
                             echo "<td>" . $full_name . "</td>";
                             echo "<td>" . htmlspecialchars($application->email) . "</td>";
                             echo "</div>";

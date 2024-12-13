@@ -66,11 +66,12 @@ require __DIR__ . '/partials/header.php';
                             // Get the full name
                             setlocale(LC_TIME, 'es_ES.UTF-8');
                             $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
-
-
+                            $pictureObj = $user->application()->getProfilePicture();
+                            $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
+                            
 
                             echo "<tr>";
-                            echo "<td><img class='profile-picture' src=" . '' . " alt='Profile Picture'></td>";
+                            echo "<td><img src=\"$src\" alt=\"Image\" class=\"profile-picture\"></td>";
                             echo "<td>" . $full_name . "</td>";
                             echo "<td>" . htmlspecialchars($user->email) . "</td>";
                             echo "<td>" . (htmlspecialchars($user->application() ? $user->application()->documentCount() : 0)) . "/6</td>";

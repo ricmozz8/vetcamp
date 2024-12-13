@@ -23,7 +23,10 @@ require_once __DIR__ . '/partials/header.php';
                     <a href="/admin/requests" class=" main-action-bright"><i class="las la-arrow-left"></i> Volver</a>
 
                     <section class="applicant-info">
-                        <img src="<?= $application->url_picture ?>" alt="Applicant" class="applicant-photo">
+                        <?php if ($documents['picture'] != null) {
+                            $picture = $documents['picture']; ?>
+                            <img src="data:<?php echo $picture['type']; ?>;base64,<?php echo base64_encode($picture['contents']); ?>" alt="Applicant" class="applicant-photo">
+                        <?php } ?>
                         <div class="applicant-details">
                             <h1 class="applicant-name"><?= $user->first_name . " " . $user->last_name ?></h1>
                             <p>Solicitud hecha: <?= get_date_spanish($user->created_at) ?></p>
@@ -75,12 +78,30 @@ require_once __DIR__ . '/partials/header.php';
                     <section class="data-section">
                         <h2>Documentos subidos</h2>
                         <div class="documents-grid">
-                            <div><a class="main-action-bright no-deco-action" href="<?= $application->url_written_essay ?>"><i class="las la-file-alt"></i>Ensayo Escrito</a></div>
-                            <div><a class="main-action-bright no-deco-action" href="<?= $application->url_video_essay ?>"><i class="las la-file-alt"></i>Ensayo en Video</a></div>
-                            <div><a class="main-action-bright no-deco-action" href="<?= $application->url_authorization_letter ?>"><i class="las la-file-alt"></i>Carta de Autorización</a></div>
-                            <div><a class="main-action-bright no-deco-action" href="<?= $application->url_transcript ?>"><i class="las la-file-alt"></i>Transcripción de créditos</a></div>
-                            <div><a class="main-action-bright no-deco-action" href="<?= $application->url_written_application ?>"><i class="las la-file-alt"></i>Solicitud Escrita</a></div>
-                            <div><a class="main-action-bright no-deco-action" href="<?= $application->url_picture ?>"><i class="las la-file-alt"></i>Foto 2x2</a></div>
+                            <?php if ($documents['written_essay'] != null) { ?>
+                                <div><a onclick="showModal('fileViewPopup-<?= $documents['written_essay']['name'] ?>')" class="main-action-bright no-deco-action" href="#"><i class="las la-file-alt"></i>Ensayo Escrito</a></div>
+                            <?php } ?>
+
+                            <?php if ($documents['video_essay'] != null) { ?>
+                                <div><a onclick="showModal('fileViewPopup-<?= $documents['video_essay']['name'] ?>')" class="main-action-bright no-deco-action" href="#"><i class="las la-file-alt"></i>Ensayo en Video</a></div>
+                            <?php } ?>
+
+                            <?php if ($documents['authorization_letter'] != null) { ?>
+                                <div><a onclick="showModal('fileViewPopup-<?= $documents['authorization_letter']['name'] ?>')" class="main-action-bright no-deco-action" href="#"><i class="las la-file-alt"></i>Carta de Autorización</a></div>
+                            <?php } ?>
+
+                            <?php if ($documents['transcript'] != null) { ?>
+                                <div><a onclick="showModal('fileViewPopup-<?= $documents['transcript']['name'] ?>')" class="main-action-bright no-deco-action" href="#"><i class="las la-file-alt"></i>Transcripción de créditos</a></div>
+                            <?php } ?>
+
+                            <? if ($documents['written_application'] != null) { ?>
+                                <div><a onclick="showModal('fileViewPopup-<?= $documents['written_application']['name'] ?>')" class="main-action-bright no-deco-action" href="#"><i class="las la-file-alt"></i>Solicitud Escrita</a></div>
+                            <? } ?>
+
+                            <? if ($documents['picture'] != null) { ?>
+                                <div><a onclick="showModal('fileViewPopup-<?= $documents['picture']['name'] ?>')" class="main-action-bright no-deco-action" href="#"><i class="las la-file-alt"></i>Foto 2x2</a></div>
+                            <? } ?>
+
                         </div>
                     </section>
                     <br>
@@ -123,6 +144,13 @@ require_once __DIR__ . '/partials/header.php';
                 </div>
             </div>
         </div>
+        <!-- including here file view popup -->
+        <?php foreach ($documents as $file) { ?>
+            <?php require(__DIR__ . '/modals/fileViewPopup.php'); ?>
+        <?php } ?>
+
+
+
         <?php include('modals/messageModal.php') ?>
 
 

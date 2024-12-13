@@ -81,6 +81,17 @@ class Application extends Model
 
 
     /**
+     * Retrieves the raw contents of the profile picture.
+     *
+     * @return string The raw contents of the profile picture.
+     */
+    public function getProfilePicture()
+    {
+        return $this->getDocuments()['picture'];
+    }
+
+
+    /**
      * Retrieves all submitted documents.
      * 
      * The documents are returned in an array, where each key is the name of the document
@@ -155,32 +166,32 @@ class Application extends Model
     public function isComplete()
     {
         if ($this->documentCount() !== REQUIRED_DOCUMENTS_AMOUNT) {
-            
+
             return false;
         }
 
         if ($this->user()->birthdate === null or $this->user()->birthdate === '0000-00-00') {
-            
+
             return false;
         }
 
         if ($this->user()->school_address() === null) {
-            
+
             return false;
         }
 
         if ($this->user()->postal_address() === null) {
-           
+
             return false;
         }
 
         if ($this->user()->physical_address() === null) {
-            
+
             return false;
         }
 
         if ($this->id_preferred_session === null) {
-            
+
             return false;
         }
 

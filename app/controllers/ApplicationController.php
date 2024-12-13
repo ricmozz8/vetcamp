@@ -45,8 +45,6 @@ class ApplicationController extends Controller
             redirect('/admin/requests');
         }
 
-
-
         $application = $user->application();
 
         if ($application == null) {
@@ -70,6 +68,7 @@ class ApplicationController extends Controller
                 'preferred_session' => $application->preferred_session(true),
                 'profile_pic' => $application->url_picture,
                 'document_count' => $application->documentCount(),
+                'documents' => $application->getDocuments(),
             ],
             'Aplicación'
         );
