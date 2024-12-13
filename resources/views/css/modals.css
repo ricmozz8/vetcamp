@@ -143,6 +143,10 @@ textarea {
     border-radius: 0px 0px 10px 10px;
     display: flex;
 }
+object{
+    width: 100%;
+    height: 80dvh;
+}
 
 .file-content img{
     width: 100%;

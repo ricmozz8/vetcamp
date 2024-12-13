@@ -11,9 +11,15 @@
 
     <div class="file-content">
         <?php if ($file['type'] == 'application/pdf') { ?>
-            <embed src="data:<?php echo $file['type']; ?>;base64,<?php echo base64_encode($file['contents']); ?>" type="<?php echo $file['type']; ?>" />
+            
+            <object data="data:<?php echo $file['type']; ?>;base64,<?php echo base64_encode($file['contents']); ?>" type="<?php echo $file['type']; ?>">
+                <embed src="data:<?php echo $file['type']; ?>;base64,<?php echo base64_encode($file['contents']); ?>" type="<?php echo $file['type']; ?>" />
+            </object>
+            
         <?php } else if ($file['type'] == 'image/jpeg' || $file['type'] == 'image/png' || $file['type'] == 'image/jpg') { ?>
-            <img src="data:<?php echo $file['type']; ?>;base64,<?php echo base64_encode($file['contents']); ?>" alt="Image">
+            
+                <img src="data:<?php echo $file['type']; ?>;base64,<?php echo base64_encode($file['contents']); ?>" alt="Image">
+            
         <?php } else if ($file['type'] == 'video/mp4') { ?>
             <video src="data:<?php echo $file['type']; ?>;base64,<?php echo base64_encode($file['contents']); ?>" controls></video>
 
