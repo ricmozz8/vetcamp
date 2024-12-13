@@ -127,6 +127,8 @@ require_once __DIR__ . '/partials/header.php';
                                     <input type="radio" name="status" value="waitlist" <?php echo ($application->status === 'En lista de espera') ? 'checked' : ''; ?>> En lista de espera
                                 </label>
                             </div>
+
+                            <div class="actions">
                             <a href="#" class="main-action-bright" onclick="openModal('messageModal')">
                                 <i class="las la-envelope"></i>
                                 Enviar Mensaje
@@ -135,8 +137,12 @@ require_once __DIR__ . '/partials/header.php';
                                 <i class="las la-download"></i>
                                 Exportar a Excel
                             </a>
+                            </div>
+                            <br><br>
+                           
 
                             <div class="actions">
+                
                                 <label>
                                     <input name="notify" type="checkbox"> Notificar al solicitante
                                 </label>
