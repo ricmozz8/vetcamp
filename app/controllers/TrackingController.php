@@ -44,8 +44,10 @@ class TrackingController extends Controller
                     'decision' => $decision,
                 ]);
     
-                $_SESSION['success_message'] = "Seguimiento registrado correctamente.";
-                redirect('/admin/requests');
+                $application = Application::find($applicationId);
+                $userId = $application->user_id;
+                $_SESSION['message'] = 'Se ha cambiado el estado de la solicitud exitosamente';
+                redirect("/admin/requests/r?id=$userId");
             } catch (Exception $e) {
                 $_SESSION['error_message'] = "Error al registrar el seguimiento.";
                 redirect('/admin/requests');
