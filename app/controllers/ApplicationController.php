@@ -116,10 +116,11 @@ class ApplicationController extends Controller
         try {
             // Set the default file name
             $filePath = 'solicitudes_archivadas_' . date('Y-m-d_H-i-s') . '.csv';
-
+            
             // Open the CSV file for writing
             $file = fopen($filePath, 'w');
             if (!$file) {
+                $_SESSION['error_message'] = "Error opening file for writing.";
                 redirect('/admin/settings');
                 return;
             }
@@ -128,7 +129,7 @@ class ApplicationController extends Controller
             fwrite($file, "\xEF\xBB\xBF");
 
             // Write the CSV header
-            fputcsv($file, ['Nombre', 'Correo', 'Creado En', 'Evaluado En', 'Nombre del Evaluador', 'DecisiÃ³n Final']);
+            fputcsv($file, ['Nombre', 'Correo', 'Creado En', 'Evaluado En', 'Nombre del Evaluador', 'Decisión Final']);
 
             // Fetch all applications
             $applications = Application::all();
@@ -137,20 +138,27 @@ class ApplicationController extends Controller
                 redirect('/admin/settings');
                 return;
             }
-
             foreach ($applications as $application) {
                 try {
-                    // Fetch user data
+                    // Get the internal status key (e.g., 'unsubmitted', 'approved', etc.)
+                    $internalStatusKey = array_search($application->status, Application::$statusParsings);
+
+                    // Skip if the status is 'unsubmitted' (i.e., 'Sin subir')
+                    if ($internalStatusKey === 'unsubmitted') {
+                    //   file_put_contents('debug_log.txt', "Skipping application ID: {$application->id_application} because the status is 'unsubmitted' ('Sin subir')\n", FILE_APPEND);
+                        continue; // Skip this iteration if the status is 'unsubmitted'
+                    }
+
+                    // Get the user data
                     $user = User::find($application->user_id);
                     if (!$user) {
                         continue; // Skip if user data is missing
                     }
 
+                    // Prepare user and application data
                     $userFirstName = $user->first_name ?? 'N/A';
                     $userLastName = $user->last_name ?? 'N/A';
                     $applicantEmail = $user->__get('email') ?? 'N/A';
-
-                    // Format creation date
                     $createdOn = get_date_spanish($application->date_created);
 
                     // Fetch evaluator data
@@ -171,9 +179,12 @@ class ApplicationController extends Controller
                         $evaluatedOn = 'N/A';
                     }
 
+                    $statusMap = array_flip(Application::$statusParsings);
                     // Translate the final decision
-                    $finalDecision = Application::$statusParsings[$application->status] ?? 'Desconocido';
+                    $finalDecision = $statusMap[$application->status] ?? 'Desconocido';
 
+        
+                    
                     // Write to the CSV file
                     fputcsv($file, [
                         $userFirstName . ' ' . $userLastName,
@@ -188,7 +199,7 @@ class ApplicationController extends Controller
                 }
             }
 
-            // Close the file
+            // Close the file after all data has been written
             fclose($file);
 
             // Set headers for file download
@@ -196,12 +207,17 @@ class ApplicationController extends Controller
             header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
             header('Pragma: no-cache');
             header('Expires: 0');
+        
+            // Output the file to the browser
             readfile($filePath);
-
+            // Delete the file after sending it to the browser
             unlink($filePath);
+            exit();
         } catch (Exception $e) {
-            $_SESSION['error_message'] = "Error al generar el archivo de solicitudes.";
+            // Catch any other exceptions and show an error message
+            $_SESSION['error_message'] = "Error al generar el archivo de solicitudes: " . $e->getMessage();
             redirect('/admin/settings');
         }
     }
+
 }
