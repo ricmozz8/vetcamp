@@ -87,8 +87,8 @@ require __DIR__ . '../../partials/header.php';
                     <div class="upload-box">
                         <?php if (isset($saved_documents['written_essay'])) { ?>
                             <?php $written_essay = $saved_documents['written_essay']; ?>
-                            <label for="transcript"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
-                            <input accept="application/pdf" value=" <?= $written_essay['name'] ?>" type="file" id="transcript" name="transcript" onchange="updateFileName(this)">
+                            <label for="written_essay"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                            <input accept="application/pdf" value=" <?= $written_essay['name'] ?>" type="file" id="written_essay" name="written_essay" onchange="updateFileName(this)">
                         <?php } else { ?>
                             <label for="written_essay"><span> Selecciona un archivo</span></label>
                             <input accept="application/pdf" type="file" id="written_essay" name="written_essay" onchange="updateFileName(this)">
