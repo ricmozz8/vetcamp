@@ -1,5 +1,6 @@
 <img src="resources/assets/logo/SVG/vetcamp-full-white.svg" style="width: 30%; margin: auto; text-align: center"/>
 
+![alt text](image.png)
 <br>
 
 ## Requirements
