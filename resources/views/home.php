@@ -187,8 +187,8 @@ require __DIR__ . '/partials/header.php';
             </div>
             <div class="req-card last-card-grid">
                 <i class="las la-clipboard-list"></i>
-                <h4>Solicitud Escrita</h4>
-                <p>Firmada por estudiante, encargado y director de la escuela.
+                <h4>Certificación Estudiantil</h4>
+                <p>Firmada por el encargado y director de la escuela.
                     En caso de que el estudiante sea educado en el hogar, deberá
                     llenar la Certificación de Estudiante Educado en el Hogar
                     (certificación de la UPR - Administración Central) y

@@ -50,7 +50,7 @@ require __DIR__ . '../../partials/header.php';
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
-                        <label>Solicitud Escrita</label>
+                        <label>Certificación Estudiantil</label>
                         <a href="/solicitud" target="_blank" class="btn-download">Descargar </a>
                         <?php if (isset($saved_documents['written_application'])) { ?>
                             <a href="#" onclick="showModal('fileViewPopup-<?= $written_application['name'] ?>')" class="btn-download">
