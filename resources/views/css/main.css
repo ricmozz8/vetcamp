@@ -166,6 +166,10 @@ h6 {
   box-shadow: none;
 }
 
+.bold{
+  font-weight: var(--font-weight-bold);
+}
+
 /* media queries */
 
 /* Tablet */
