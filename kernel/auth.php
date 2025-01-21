@@ -44,6 +44,20 @@ class Auth
         return User::find($_SESSION['user']->__get('user_id'), 'user_id');
     }
 
+
+    /**
+     * Check if the user hasn't logged in in the last 2 days. If so, logout the user.
+     * This function is meant to be used as a middleware
+     */
+    public static function checkLastLogin()
+    {
+        $user = self::user();
+        if ($user && $user->last_login < (new DateTime())->modify('-2 days')) {
+            self::logout();
+        }
+    }
+
+
     /**
      * Refreshes the user in the session with the latest data from the database.
      * If the user is not logged in, this method does nothing.
@@ -86,7 +100,5 @@ class Auth
             redirect('/apply');
         }
     }
-    
-
     
 }

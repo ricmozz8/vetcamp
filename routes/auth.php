@@ -20,4 +20,7 @@ switch ($path) {
     case '/logout':
         AuthController::logoutUser($method);
         break;
+    case '/check-last-login':
+        AuthController::checkLastLogin();
+        break;
     }

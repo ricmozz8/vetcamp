@@ -1,4 +1,4 @@
 # use either 'testing' or 'development' without quotes to specify type of environment
 # note: if you're using production, dont forget to create the .env.production file also
 # testing env file will be .env
-development
+production
