@@ -472,3 +472,22 @@ function remove_null_or_empty($array)
         return !is_null($value) && $value !== '';
     });
 }
+
+
+
+/**
+ * Converts a size in megabytes to bytes.
+ *
+ * This function takes a string representing a size in megabytes,
+ * removes the 'MB' suffix, and converts it to bytes.
+ *
+ * @param string $megabytes The size in megabytes as a string with 'MB' suffix.
+ * @return int The size in bytes.
+ */
+
+function to_byte_size($megabytes){
+    // removing the 'MB' from the string
+
+    $megabytes = str_replace('MB', '', $megabytes);
+    return $megabytes * 1024 * 1024;
+}

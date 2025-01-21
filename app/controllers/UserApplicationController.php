@@ -248,12 +248,12 @@ class UserApplicationController extends Controller
             // validating the documents (note: create a validate_documents function)
             $valid =
                 validate_documents($documents, [
-                    'written_application' => ['type' => ['application/pdf'], 'size' => 8388608, 'required' => false],
-                    'transcript' => ['type' => ['application/pdf'], 'size' => 8388608, 'required' => false],
-                    'written_essay' => ['type' => ['application/pdf'], 'size' => 8388608, 'required' => false],
-                    'picture' => ['type' => ['image/jpeg', 'image/png', 'image/jpg'], 'size' => 8388608, 'required' => false],
-                    'video_essay' => ['type' => ['video/mp4'], 'size' => 10485760, 'required' => false],
-                    'authorization_letter' => ['type' => ['application/pdf'], 'size' => 8388608, 'required' => false],
+                    'written_application' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false],
+                    'transcript' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false],
+                    'written_essay' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false],
+                    'picture' => ['type' => ['image/jpeg', 'image/png', 'image/jpg'], 'size' => to_byte_size('10MB'), 'required' => false],
+                    'video_essay' => ['type' => ['video/mp4'], 'size' => to_byte_size('20MB'), 'required' => false],
+                    'authorization_letter' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false],
                 ]);
 
 
