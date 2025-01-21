@@ -77,12 +77,11 @@ button {
 }
 
 .main-action-bright:hover {
-  top: 5px;
   border-bottom: 1px solid var(--secondary-color-default);
 }
 
 .main-action-bright.negative:hover {
-  top: 5px;
+
   border-bottom: 1px solid var(--white-color);
 }
 

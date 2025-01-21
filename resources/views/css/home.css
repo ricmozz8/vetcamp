@@ -1,11 +1,18 @@
 /* Navbar Section */
 .navbar {
-  position: relative;
+  position: sticky;
+  top: 0;
   margin: auto;
   text-align: center;
-  padding: 1em;
-  background-color: var(--main-color-default);
+  padding: 1em 5em;
+
+  background-color: white;
+  border-bottom: 1px solid black;
   animation: shineYellow 2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
 }
 
 .navbar .logotype {

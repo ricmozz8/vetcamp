@@ -82,3 +82,16 @@
     }
 }
 
+
+
+/* max mobile */
+
+@media only screen and (max-width: 768px) {
+    .no-mobile{
+        display: none;
+    }
+
+    .navbar{
+        justify-content: center;
+    }
+}
