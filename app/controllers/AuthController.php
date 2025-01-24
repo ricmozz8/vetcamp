@@ -276,5 +276,14 @@ class AuthController extends Controller
         // Render the forgot password view
         render_view('forgotpass', $viewData, 'ForgotPass');
     }
+
+    /**
+     * Checks if the user hasn't logged in in the last 2 days. If so, log the user out.
+     * This method is meant to be used as a middleware
+     */
+    public static function checkLastLogin() 
+    {
+        Auth::checkLastLogin();
+    }
     
 }
