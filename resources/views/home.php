@@ -6,14 +6,7 @@ require __DIR__ . '/partials/header.php';
 
 <body>
 
-    <header class="navbar">
-
-        <?php require_once('partials/applicationLogo.php'); ?>
-        <div class="flex no-mobile">
-            <a class="main-action-bright no-deco-action" href="/login">Inicia Sesión</a>
-            <a class="main-action-bright tertiary" href="/register">Regístrate</a>
-        </div>
-    </header>
+    <?php require __DIR__ . '/partials/homeNavbar.php'; ?>  
     <div class="hero">
         <div class="main-copy">
             <h1>¡Explora tu pasión por la tecnología veterinaria!</h1>
