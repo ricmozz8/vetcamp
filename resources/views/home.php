@@ -7,7 +7,7 @@ require __DIR__ . '/partials/header.php';
 <body>
 
     <header class="navbar">
-      
+
         <?php require_once('partials/applicationLogo.php'); ?>
         <div class="flex no-mobile">
             <a class="main-action-bright no-deco-action" href="/login">Inicia Sesión</a>
@@ -15,76 +15,57 @@ require __DIR__ . '/partials/header.php';
         </div>
     </header>
     <div class="hero">
-        <h1>¡Explora tu pasión por la salud animal!</h1>
+        <div class="main-copy">
+            <h1>¡Explora tu pasión por la tecnología veterinaria!</h1>
+            <p>
+                Tendrás la oportunidad de trabajar con estudiantes y profesionales del campo,
+                participando en presentaciones, laboratorios y visitas emocionantes.
+            </p>
+        </div>
         <div class="hero-buttons">
             <a class="main-action-bright" href="/register">regístrate ya</a>
             <a class="main-action-bright tertiary" href="/login">O inicia sesión</a>
         </div>
+
+        <div class="images-grid-hero no-mobile">
+
+            <div class="hero-image hi-1">
+                <img src=<?= asset('img/doggo4.webp') ?> alt="Vetcamp Verano 2023">
+            </div>
+
+            <div class="top-of-another-images">
+
+                <div class=" hi-2">
+                    <img src=<?= asset('img/doggo-checkup-2.jpeg') ?> alt="Vetcamp Verano 2023">
+                </div>
+                <div class="
+                 hi-3">
+                    <img src=<?= asset('img/microscopes-2.jpeg') ?> alt="Vetcamp Verano 2023">
+                </div>
+
+
+            </div>
+
+            <div class="hero-image hi-4">
+                <img src=<?= asset('img/group-looking-away-2.jpeg') ?> alt="Vetcamp Verano 2023">
+            </div>
+
+        </div>
     </div>
 
-    <div class="splitted-header">
-        <h3>¿Qué es Vetcamp?</h3>
-        <p>
-            Vetcamp de la Universidad de Puerto Rico Recinto de Arecibo (UPRA)
-            es un campamento genial para estudiantes de escuela superior que aman
-            los animales y quieren aprender sobre salud animal.
-            <br> <br>
-            Aquí, podrás explorar
-            diferentes áreas de la medicina y tecnología veterinaria. Tendrás la oportunidad
-            de trabajar con estudiantes y profesionales del campo, participando en presentaciones,
-            laboratorios y visitas emocionantes. ¡Es una gran manera de descubrir si quieres
-            seguir una carrera en este mundo!
-        </p>
-    </div>
 
     <div class="objectives-carroussel">
+        <div class="bio-container">
+            <h1 class="team-title">Nuestro Equipo</h1>
 
-        <div class="carroussel-wrapper">
-            <div class="carroussel">
-                <img src="resources/assets/img/doggo-checkup-2.jpeg">
-                <img src="resources/assets/img/microscopes-2.jpeg">
-                <img src="resources/assets/img/cow-2.jpeg">
-                <img src="resources/assets/img/group-looking-away-2.jpeg">
-            </div>
-        </div>
-        <div class="carrousel-actions">
-            <div onclick="scroll_by_left()" id="scroll-action-l" class="c-action scroll-left">
-                <i class="las la-angle-left"></i>
-            </div>
-            <div onclick="scroll_by_right()" id="scroll-action-r" class="c-action scroll-right">
-                <i class="las la-angle-right"></i>
-            </div>
+            <div class="team-people-grid">
 
-
-        </div>
-        <div class="splitted-header">
-            <h3>Nuestros objetivos</h3>
-            <ul>
-                <li>Exponer a estudiantes de escuela superior interesados en el área
-                    de salud animal al aspecto teórico y práctico de las labores de técnicos,
-                    tecnólogos y médicos veterinarios en diferentes especies de animales.</li>
-                <li>Orientarlos/as sobre los requerimientos para
-                    estudiar a nivel universitario una carrera relacionada a la medicina veterinaria.
-                </li>
-                <li>Educar sobre las opciones para proseguir una carrera universitaria en el área de salud animal.</li>
-                <li>Interactuar con diferentes especies de animales domésticos y exóticos.</li>
-            </ul>
-        </div>
-
-            <div class="bio-container">
-                <h1 class="team-title">Nuestro Equipo</h1>
                 <div class="bio-card">
                     <img src="resources/assets/img/Dra._Rebeka_Sanabria-2.jpeg" alt="Dra. Rebeka Sanabria León" class="bio-image">
                     <div class="bio-info">
                         <h2 class="bio-name">Dra. Rebeka Sanabria León</h2>
                         <p class="bio-title">Fundadora y Coordinadora del VetCamp <br>
-                                             Catedrática Auxiliar del Programa de Tecnología Veterinaria – UPR Arecibo <br>
-                                             Presidenta del Comité Institucional del Cuidado y Uso Animal – UPR Arecibo <br>
-                                             </p>
-                        <p class="bio-description"> Educación: <br>
-                                                    DVM – Universidad Nacional Pedro Henríquez Ureña, Santo Domingo, RD – 2011 <br>
-                                                    MSc – Nutrición Animal y Manejo de Residuos Orgánicos – UPR Mayagüez – 2006 <br>
-                                                    BS – Agricultura General – UPR Mayagüez - 2003 <br></p>
+                        </p>
                     </div>
                 </div>
 
@@ -93,33 +74,33 @@ require __DIR__ . '/partials/header.php';
                     <div class="bio-info">
                         <h2 class="bio-name">Kenializ Rosado Molina</h2>
                         <p class="bio-title"> LVT <br>
-                                              Coordinadora SCNAVTA <br>
-                                              Técnica de Laboratorio del Programa de Tecnología Veterinaria - UPR Arecibo <br></p>
-                        <p class="bio-description"> Educación: <br>
-                                                    BS – Microbiología Médica en la UPR de Arecibo <br>
-                                                    Grado Asociado en Tecnología Veterinaria – UPR de Arecibo <br></p>
+                            Coordinadora SCNAVTA <br>
+                            Técnica de Laboratorio del Programa de Tecnología Veterinaria - UPR Arecibo <br></p>
                     </div>
                 </div>
-                        <h3 class="team-title">Perrinstructores y Gatinstructores</h3>
-                        <div class="instructor-grid">
-                            <div class="instructor-item">
-                                <img src="resources/assets/img/Eugenio-2.jpeg" alt="Perrinstructor Eugenio" class="instructor-image">
-                                <p class="instructor-name">Eugenio</p>
-                            </div>
-                            <div class="instructor-item">
-                                <img src="resources/assets/img/Manolo-2.jpeg" alt="Perrinstructor Manolo" class="instructor-image">
-                                <p class="instructor-name">Manolo</p>
-                            </div>
-                            <div class="instructor-item">
-                                <img src="resources/assets/img/Twiggy.jpg" alt="Gatinstructor Twiggy" class="instructor-image">
-                                <p class="instructor-name">Twiggy</p>
-                            </div>
-                            <div class="instructor-item">
-                                <img src="resources/assets/img/Punky.jpg" alt="Gatinstructor Punky" class="instructor-image">
-                                <p class="instructor-name">Punky</p>
-                            </div>
-                        </div>
+
             </div>
+
+            <h3 class="team-title">Perrinstructores y Gatinstructores</h3>
+            <div class="instructor-grid">
+                <div class="instructor-item">
+                    <img src="resources/assets/img/Eugenio-2.jpeg" alt="Perrinstructor Eugenio" class="instructor-image">
+                    <p class="instructor-name">Eugenio</p>
+                </div>
+                <div class="instructor-item">
+                    <img src="resources/assets/img/Manolo-2.jpeg" alt="Perrinstructor Manolo" class="instructor-image">
+                    <p class="instructor-name">Manolo</p>
+                </div>
+                <div class="instructor-item">
+                    <img src="resources/assets/img/Twiggy.jpg" alt="Gatinstructor Twiggy" class="instructor-image">
+                    <p class="instructor-name">Twiggy</p>
+                </div>
+                <div class="instructor-item">
+                    <img src="resources/assets/img/Punky.jpg" alt="Gatinstructor Punky" class="instructor-image">
+                    <p class="instructor-name">Punky</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="sections-dynamic">
@@ -139,7 +120,6 @@ require __DIR__ . '/partials/header.php';
             ?>
                 <div class="section-block shade-<?php echo $loop; ?>">
                     <h1><?= get_date_spanish($session->start_date, false, false) . ' al ' . get_date_spanish($session->end_date); ?></h1>
-                    <p><?= $session->title ?></p>
                 </div>
                 <?php
                 if ($loop == 4) {
@@ -149,7 +129,7 @@ require __DIR__ . '/partials/header.php';
             <?php $loop++;
             } ?>
         </div>
-        <p class="min-margin">Vetcamp tendrá un costo de participación de <b>$500.00 por estudiante</b></p>
+        <p class="min-margin cost-ad">Vetcamp tendrá un costo de participación de <b>$500.00 por estudiante</b></p>
     </div>
 
     <div class="participation-requirements">
