@@ -44,6 +44,14 @@ require __DIR__ . '/partials/header.php';
             </div>
 
         </div>
+
+        <div class="sponsors">
+            <h2>Traído a ustedes por:</h2>
+            <div class="sponsor-logos">
+                <img src="https://upra.edu/wp-content/uploads/2015/08/arecibo.png" alt="UPR Logo" class="sponsor-logo">
+                <img src="https://upra.edu/wp-content/uploads/2019/08/aetv.jpg" alt="TVET LOGO">
+            </div>
+        </div>
     </div>
 
 

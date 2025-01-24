@@ -30,7 +30,7 @@ $status = $application ? $application->status : 'Sin llenar';
                 superior interesados en la tecnología veterinaria.
                 Se llevará a cabo bajo 4 sesiones de 14 estudiantes.
             </p>
-            <p><strong>Profesora:</strong> Rebeka Sanabria</p>
+            
 
             <div class="status-actions">
                 <a href="/apply/application" class="main-action-bright" type="submit">
