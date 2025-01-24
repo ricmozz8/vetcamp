@@ -23,7 +23,7 @@ require __DIR__ . '/partials/header.php';
         <div class="images-grid-hero no-mobile">
 
             <div class="hero-image hi-1">
-                <img src=<?= asset('img/doggo4.webp') ?> alt="Vetcamp Verano 2023">
+                <img src=<?= asset('img/cow-2.jpeg') ?> alt="Vetcamp Verano 2023">
             </div>
 
             <div class="top-of-another-images">
