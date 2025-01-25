@@ -48,6 +48,10 @@
   --font-weight-bold: 700;
 
   /* Brand Colors */
+
+  --main-color-darken-2: #ff9500;
+  --main-color-darken-1: #ffbf00;
+  
   --main-color-default: #ffe900;
   --main-color-shade-1: #fff36d;
   --main-color-shade-2: #fff7a0;

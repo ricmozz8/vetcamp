@@ -17,8 +17,8 @@ require __DIR__ . '/partials/header.php';
         </div>
         <?php if (!Auth::check()) : ?>
             <div class="hero-buttons">
-                <a class="main-action-bright tertiary" href="/register">regístrate ya</a>
-                <a class="main-action-bright no-deco-action" href="/login">o inicia sesión</a>
+                <a class="main-action-bright gradiented" href="/register">Regístrate ya</a>
+                <a class="main-action-bright no-deco-action" href="/login">O inicia sesión</a>
                 
             </div>
         <?php else : ?>

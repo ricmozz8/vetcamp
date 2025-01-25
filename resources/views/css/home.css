@@ -67,6 +67,14 @@
   animation: fadeUp 1s ease;
 }
 
+.gradient-highlight{
+  background: linear-gradient(to right, var(--main-color-darken-2), var(--main-color-default));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
 .hero a {
   width: fit-content;
   text-align: center;
