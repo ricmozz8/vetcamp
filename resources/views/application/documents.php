@@ -176,7 +176,7 @@ require __DIR__ . '../../partials/header.php';
             <div class="form-actions">
                 <input type="hidden" name="stage" value="4">
                 <p>Se guardará la información una vez pulses 'siguiente'.</p>
-                <button id="next-button" class="main-action-bright  secondary">Siguiente</button>
+                <button id="next-button" class="main-action-bright gradiented">Siguiente</button>
             </div>
         </form>
     </div>

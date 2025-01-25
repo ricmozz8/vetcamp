@@ -27,8 +27,8 @@
 
             <div class="modal-actions">
 
-                <a class="main-action-bright secondary" onclick="closeModal('userProfileEditModal')">Cancelar</a>
-                <button type="submit" class="main-action-bright primary"> <i class="las la-save"></i> Guardar</button>
+                <a class="main-action-bright" onclick="closeModal('userProfileEditModal')">Cancelar</a>
+                <button type="submit" class="main-action-bright gradiented"> <i class="las la-save"></i> Guardar</button>
 
             </div>
         </form>

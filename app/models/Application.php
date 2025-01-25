@@ -246,4 +246,22 @@ class Application extends Model
 
         return $deletedApplications;
     }
+
+
+    /**
+     * Checks if the application is submitted.
+     * 
+     * @return boolean True if the application is submitted, false otherwise.
+     */
+    public function isSubmitted()
+    {
+        return in_array($this->status, [
+            'Sometida',
+            'Necesita Cambios',
+            'Aceptado',
+            'Rechazado',
+            'Incompleta',
+            'En lista de espera'
+        ]);
+    }
 }

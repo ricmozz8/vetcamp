@@ -3,7 +3,15 @@
 <?php
 require __DIR__ . '../../partials/header.php';
 $application = Auth::user()->application();
-$status = $application ? $application->status : 'Sin llenar';
+$status = 'Sin llenar';
+
+if ($application && $application->isSubmitted()) {
+    $status = $application->status === 'Necesita Cambios' ? 'Necesita Cambios' : 'Sometida';
+} else if($application){
+    $status = $application->status;
+}
+
+
 ?>
 
 <body>
@@ -16,7 +24,7 @@ $status = $application ? $application->status : 'Sin llenar';
         </div>
         <div class="application-card-action">
             <div class="application-card-head">
-                <div onclick="openModal('applicationStatusHelp')"  class="status-info">
+                <div onclick="openModal('applicationStatusHelp')" class="status-info">
                     <p>Estado: </p>
                     <p class="status <?= str_replace(' ', '-', strtolower($status)) ?>"><?php echo $status; ?></p>
                 </div>
@@ -30,10 +38,10 @@ $status = $application ? $application->status : 'Sin llenar';
                 superior interesados en la tecnología veterinaria.
                 Se llevará a cabo bajo 4 sesiones de 14 estudiantes.
             </p>
-            
+
 
             <div class="status-actions">
-                <a href="/apply/application" class="main-action-bright" type="submit">
+                <a href="/apply/application" class="main-action-bright tertiary" type="submit">
                     <?php echo $status == 'Sin llenar' ? 'Llenar Solicitud' : 'Editar Solicitud'; ?>
                 </a>
             </div>
@@ -41,7 +49,7 @@ $status = $application ? $application->status : 'Sin llenar';
 
 
 
-    </div>  
+    </div>
 
     <?php require_once(__DIR__ . '../../modals/applicationStatusHelp.php'); ?>
     <?php require_once(__DIR__ . '../../partials/footer.php'); ?>

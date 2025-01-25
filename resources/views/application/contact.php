@@ -105,7 +105,7 @@ require __DIR__ . '../../partials/header.php';
 
             <div class="form-actions">
                 <p>Se guardará la información una vez pulses 'siguiente'.</p>
-                <button class="main-action-bright  secondary">Siguiente</button>
+                <button class="main-action-bright gradiented">Siguiente</button>
             </div>
         </form>
     </div>

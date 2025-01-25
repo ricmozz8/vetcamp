@@ -162,7 +162,7 @@ require __DIR__ . '../../partials/header.php';
             <div class="form-actions">
                 <input type="hidden" name="stage" value="confirm">
 
-                <a href="#" onclick="openModal('confirmSubmitApplicationModal')" class="main-action-bright ">
+                <a href="#" onclick="openModal('confirmSubmitApplicationModal')" class="main-action-bright gradiented">
                     <i class="las la-arrow-right"></i>
                     Someter</a>
 

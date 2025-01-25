@@ -5,8 +5,8 @@
         <h2>¿Estás seguro de que quieres enviar la solicitud?</h2>
         <p>Tu solicitud será evaluada con la información proporcionada.</p>
         <div class="modal-actions">
-            <button class="main-action-bright  secondary" onclick="closeModal('confirmSubmitApplicationModal')">Cancelar</button>
-            <button class="main-action-bright ">
+            <button class="main-action-bright" onclick="closeModal('confirmSubmitApplicationModal')">Cancelar</button>
+            <button class="main-action-bright gradiented">
                 <i class="las la-paper-plane"></i>
                 Enviar</button>
         </div>
