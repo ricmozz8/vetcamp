@@ -6,7 +6,7 @@ require __DIR__ . '/partials/header.php';
 
 <body>
 
-    <?php require __DIR__ . '/partials/homeNavbar.php'; ?>  
+    <?php require __DIR__ . '/partials/homeNavbar.php'; ?>
     <div class="hero">
         <div class="main-copy">
             <h1>¡Explora tu pasión por la tecnología veterinaria!</h1>
@@ -15,10 +15,18 @@ require __DIR__ . '/partials/header.php';
                 participando en presentaciones, laboratorios y visitas emocionantes.
             </p>
         </div>
-        <div class="hero-buttons">
-            <a class="main-action-bright" href="/register">regístrate ya</a>
-            <a class="main-action-bright tertiary" href="/login">O inicia sesión</a>
-        </div>
+        <?php if (!Auth::check()) : ?>
+            <div class="hero-buttons">
+                <a class="main-action-bright tertiary" href="/register">regístrate ya</a>
+                <a class="main-action-bright no-deco-action" href="/login">o inicia sesión</a>
+                
+            </div>
+        <?php else : ?>
+            <div class="hero-buttons">
+                <a class="main-action-bright tertiary" href="/apply">!Solicita ya!</a>
+            </div>
+        <?php endif; ?>
+        <p>Solicitudes cierran el <?= get_date_spanish($limit_dates->end_date, false) ?></p>
 
         <div class="images-grid-hero no-mobile">
 
