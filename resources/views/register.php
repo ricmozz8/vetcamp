@@ -115,7 +115,7 @@ require __DIR__ . '/partials/header.php';
                 <div class="splitted-actions">
                     <!-- Submit button -->
                     <div class="mainbutton">
-                        <button type="submit" class="main-action-bright">
+                        <button type="submit" class="main-action-bright gradiented">
                             regístrate
                         </button>
                     </div>

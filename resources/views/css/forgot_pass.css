@@ -9,7 +9,7 @@
     flex-direction: column;
     width: auto;
     height: auto;
-    font-size: 0.95em;
+    
 }
 
 /*******************************
@@ -17,14 +17,14 @@
  * Styles for input fields, labels, and form layout
  *******************************/
 /* Form Styling */
-.forgot-pass form {
-    margin-top: 10%;
+.forgot-pass form  {
+    margin-top: calc(5vw + 2vh);
 }
 
 /* Page title styling */
 .forgot-pass .page-title {
     font-weight: 600;
-    color: #2c2c2c;
+    margin: 1em 0;
     font-size: 2.6em;
 }
 
@@ -57,11 +57,6 @@
     line-height: calc(1.3vw + 0.5vh);
 }
 
-/* Back icon styling */
-.forgot-pass .back-icon {
-    width: 25px;
-    height: auto;
-}
 
 /*WORK IN PROGRESS*/
 /* Mobile Media Query for Password Reset Form */

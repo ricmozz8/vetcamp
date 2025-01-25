@@ -50,7 +50,7 @@ require __DIR__ . '/partials/header.php';
                     }
                     ?>
                 </div>
-                <button type="submit" class="main-action-bright">
+                <button type="submit" class="main-action-bright gradiented">
                     Iniciar Sesión
                 </button>
             </form>

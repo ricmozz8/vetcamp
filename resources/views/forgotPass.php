@@ -12,17 +12,11 @@ require __DIR__ . '/partials/header.php';
                 <?php require_once('partials/applicationLogo.php'); ?>
                 </a>
 
-                <?php if (isset($error)): ?>
-                    <div class="alert error"><?php echo htmlspecialchars($error); ?></div>
-                <?php endif; ?>
-                <?php if (isset($message)): ?>
-                    <div class="alert success"><?php echo htmlspecialchars($message); ?></div>
-                <?php endif; ?>
-
                 <form action="/forgotpass" method="POST">
                     <!-- Back button -->
-                    <a href="/login" class="main-action-bright">
-                       <img src="https://img.icons8.com/?size=100&id=AIKY5pYoauww&format=png&color=1A1A1A" alt="Back Icon" class="back-icon">
+                    <a href="/" class="main-action-bright">
+                        <i class="las la-arrow-left"></i>
+                        <p>Atrás</p>
                     </a>
                     <?php if (empty($otpSent)): ?>
                       <h1 class="page-title">¿Olvidaste tu contraseña? </h1>

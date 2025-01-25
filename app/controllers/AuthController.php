@@ -274,7 +274,7 @@ class AuthController extends Controller
         }
     
         // Render the forgot password view
-        render_view('forgotpass', $viewData, 'ForgotPass');
+        render_view('forgotPass', $viewData, 'ForgotPass');
     }
 
     /**

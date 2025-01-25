@@ -21,7 +21,7 @@ button {
   padding: 15px 25px;
   font-weight: 600;
   border: 1px solid var(--secondary-color-default);
-
+  font-size: 1em;
   width: fit-content;
   display: flex;
   align-items: center;

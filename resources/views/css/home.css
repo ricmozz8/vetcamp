@@ -634,6 +634,10 @@ footer .university-logo {
     width: 100%;
     height: 543.59px; /* the size of the left side of the flex*/
   }
+
+  .cost-ad{
+    text-align: left;
+  }
 }
 
 /* Desktop */
