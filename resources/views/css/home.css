@@ -33,7 +33,7 @@
   background-position: center;
   transform-style: preserve-3d;
   perspective: 1px;
-  padding: 30vh 0;
+  padding: 5vh 0;
   text-align: center;
   -webkit-perspective: 1px;
   -webkit-transform-style: preserve-3d;
@@ -111,6 +111,8 @@
   animation: fadeUp 0.33s ease;
 }
 
+
+
 .hero-image {
   border-radius: 23px;
   height: max-content;
@@ -131,6 +133,11 @@
 .top-of-another-images img:hover, 
 .hero-image img:hover {
   transform: scale(1.05);
+}
+
+.close-date-text{
+  margin: 1em 0;
+  padding: 1em 0;
 }
 
 /* Informational First Section */
@@ -644,7 +651,7 @@ footer .university-logo {
 
 @media only screen and (min-width: 1024px) {
   .hero {
-    padding: 5rem 2em;
+    padding: 2rem 2em;
     background-size: 250vh;
     background-position-y: center;
     background-position-x: bottom;

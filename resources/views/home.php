@@ -19,14 +19,14 @@ require __DIR__ . '/partials/header.php';
             <div class="hero-buttons">
                 <a class="main-action-bright gradiented" href="/register">Regístrate ya</a>
                 <a class="main-action-bright no-deco-action" href="/login">O inicia sesión</a>
-                
+
             </div>
         <?php else : ?>
             <div class="hero-buttons">
                 <a class="main-action-bright tertiary" href="/apply">!Solicita ya!</a>
             </div>
         <?php endif; ?>
-        <p>Solicitudes cierran el <?= get_date_spanish($limit_dates->end_date, false) ?></p>
+        <p class="close-date-text">Solicitudes cierran el <?= get_date_spanish($limit_dates->end_date, false) ?></p>
 
         <div class="images-grid-hero no-mobile">
 
@@ -58,56 +58,6 @@ require __DIR__ . '/partials/header.php';
             <div class="sponsor-logos">
                 <img src="https://upra.edu/wp-content/uploads/2015/08/arecibo.png" alt="UPR Logo" class="sponsor-logo">
                 <img src="https://upra.edu/wp-content/uploads/2019/08/aetv.jpg" alt="TVET LOGO">
-            </div>
-        </div>
-    </div>
-
-
-    <div class="objectives-carroussel">
-        <div class="bio-container">
-            <h1 class="team-title">Nuestro Equipo</h1>
-
-            <div class="team-people-grid">
-
-                <div class="bio-card">
-                    <img src="resources/assets/img/Dra._Rebeka_Sanabria-2.jpeg" alt="Dra. Rebeka Sanabria León" class="bio-image">
-                    <div class="bio-info">
-                        <h2 class="bio-name">Dra. Rebeka Sanabria León</h2>
-                        <p class="bio-title">Fundadora y Coordinadora del VetCamp <br>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bio-card">
-                    <img src="resources/assets/img/Kenializ_Rosado_Molina-2.jpeg" alt="Kenializ Rosado Molina" class="bio-image">
-                    <div class="bio-info">
-                        <h2 class="bio-name">Kenializ Rosado Molina</h2>
-                        <p class="bio-title"> LVT <br>
-                            Coordinadora SCNAVTA <br>
-                            Técnica de Laboratorio del Programa de Tecnología Veterinaria - UPR Arecibo <br></p>
-                    </div>
-                </div>
-
-            </div>
-
-            <h3 class="team-title">Perrinstructores y Gatinstructores</h3>
-            <div class="instructor-grid">
-                <div class="instructor-item">
-                    <img src="resources/assets/img/Eugenio-2.jpeg" alt="Perrinstructor Eugenio" class="instructor-image">
-                    <p class="instructor-name">Eugenio</p>
-                </div>
-                <div class="instructor-item">
-                    <img src="resources/assets/img/Manolo-2.jpeg" alt="Perrinstructor Manolo" class="instructor-image">
-                    <p class="instructor-name">Manolo</p>
-                </div>
-                <div class="instructor-item">
-                    <img src="resources/assets/img/Twiggy.jpg" alt="Gatinstructor Twiggy" class="instructor-image">
-                    <p class="instructor-name">Twiggy</p>
-                </div>
-                <div class="instructor-item">
-                    <img src="resources/assets/img/Punky.jpg" alt="Gatinstructor Punky" class="instructor-image">
-                    <p class="instructor-name">Punky</p>
-                </div>
             </div>
         </div>
     </div>
@@ -186,6 +136,57 @@ require __DIR__ . '/partials/header.php';
             </div>
         </div>
     </div>
+
+    <div class="objectives-carroussel">
+        <div class="bio-container">
+            <h1 class="team-title">Nuestro Equipo</h1>
+
+            <div class="team-people-grid">
+
+                <div class="bio-card">
+                    <img src="resources/assets/img/Dra._Rebeka_Sanabria-2.jpeg" alt="Dra. Rebeka Sanabria León" class="bio-image">
+                    <div class="bio-info">
+                        <h2 class="bio-name">Dra. Rebeka Sanabria León</h2>
+                        <p class="bio-title">Fundadora y Coordinadora del VetCamp <br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bio-card">
+                    <img src="resources/assets/img/Kenializ_Rosado_Molina-2.jpeg" alt="Kenializ Rosado Molina" class="bio-image">
+                    <div class="bio-info">
+                        <h2 class="bio-name">Kenializ Rosado Molina</h2>
+                        <p class="bio-title"> LVT <br>
+                            Coordinadora SCNAVTA <br>
+                            Técnica de Laboratorio del Programa de Tecnología Veterinaria - UPR Arecibo <br></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <h3 class="team-title">Perrinstructores y Gatinstructores</h3>
+            <div class="instructor-grid">
+                <div class="instructor-item">
+                    <img src="resources/assets/img/Eugenio-2.jpeg" alt="Perrinstructor Eugenio" class="instructor-image">
+                    <p class="instructor-name">Eugenio</p>
+                </div>
+                <div class="instructor-item">
+                    <img src="resources/assets/img/Manolo-2.jpeg" alt="Perrinstructor Manolo" class="instructor-image">
+                    <p class="instructor-name">Manolo</p>
+                </div>
+                <div class="instructor-item">
+                    <img src="resources/assets/img/Twiggy.jpg" alt="Gatinstructor Twiggy" class="instructor-image">
+                    <p class="instructor-name">Twiggy</p>
+                </div>
+                <div class="instructor-item">
+                    <img src="resources/assets/img/Punky.jpg" alt="Gatinstructor Punky" class="instructor-image">
+                    <p class="instructor-name">Punky</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <div class="contact-section">
         <div class="left-flex">
