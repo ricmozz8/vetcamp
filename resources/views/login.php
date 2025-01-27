@@ -20,6 +20,7 @@ require __DIR__ . '/partials/header.php';
                     Inicia sesión
 
                 </h1>
+                <hr>
                 <div class="input-group">
                     <div class="field-wrapper">
                         <label for="email" class="text-wrapper-2">Correo</label>

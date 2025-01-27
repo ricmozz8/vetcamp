@@ -23,13 +23,14 @@ require __DIR__ . '/partials/header.php';
                 if (isset($error))
                     echo '<div class="alert alert-danger">' . $error . '</div>';
                 ?>
+                <hr>
 
                 <div class="input-group">
 
 
                     <div class="field-wrapper">
                         <!-- Name input field -->
-                        <label  for="first_name">Nombre</label>
+                        <label for="first_name">Nombre</label>
                         <input type="text"
                             name="first_name"
                             id="nombre"
@@ -39,7 +40,7 @@ require __DIR__ . '/partials/header.php';
                     </div>
                     <div class="field-wrapper">
                         <!-- Name input field -->
-                        <label for ="last_name">Apellidos</label>
+                        <label for="last_name">Apellidos</label>
                         <input type="text"
                             name="last_name"
                             id="nombre"
@@ -74,7 +75,7 @@ require __DIR__ . '/partials/header.php';
                     <div class="field-wrapper">
                         <!-- Password input field -->
                         <div class="mini-flex-label">
-                            
+
                             <label for="password">Contraseña</label>
 
                             <span class="password-toggle" onclick="togglePasswords()">
@@ -117,7 +118,7 @@ require __DIR__ . '/partials/header.php';
                         </div>
                     </div>
                 </div>
-
+                <hr>
                 <div class="form-main-actions">
                     <!-- Submit button -->
                     <div class="form-main-action">

@@ -39,6 +39,13 @@ switch ($path) {
     case '/solicitud':
         FileController::getFile('storage', '/public/solicitud.pdf');
         break;
+
+    case '/branding':
+        HomeController::branding();
+        break;
+    case '/credits':
+        HomeController::credits();
+        break;
     
 
     default:

@@ -19,4 +19,13 @@ class HomeController extends Controller
     }
 
     // define your other methods here
+
+    public static function branding()
+    {
+        render_view('branding', [], 'Marca');
+    }
+
+    public static function credits(){
+        render_view('credits', [], 'Créditos');
+    }
 }
