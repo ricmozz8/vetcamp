@@ -10,13 +10,15 @@ require __DIR__ . '/partials/header.php';
 
         <div class="content-left">
 
-            <!-- Logo with link to home page -->
-            <a class="logo" href="/"><?php require_once('partials/applicationLogo.php'); ?></a>
+            <?php require_once('partials/genericNavbarNoAuth.php'); ?>
 
             <!-- Sign-up form -->
-            <form action="/register/new" method="POST"> <!-- Update -->
+            <form action="/register/new" method="POST" class="auth-form"> <!-- Update -->
                 <!-- Page Title -->
-                <h2 class="page-title">Regístrate</h2>
+                <h1>
+                    <i class="las la-arrow-right"></i>
+                    Regístrate
+                </h1>
                 <?php
                 if (isset($error))
                     echo '<div class="alert alert-danger">' . $error . '</div>';
@@ -24,43 +26,43 @@ require __DIR__ . '/partials/header.php';
 
                 <div class="input-group">
 
-                    <div class="name-phone-wrapper">
-                        <div class="field-wrapper">
-                            <!-- Name input field -->
-                            <div class="text-wrapper-3">Nombre</div>
-                            <input type="text"
-                                name="first_name"
-                                id="nombre"
-                                class="input-field input-name"
-                                placeholder="Juan"
-                                required>
-                        </div>
-                        <div class="field-wrapper">
-                            <!-- Name input field -->
-                            <div class="text-wrapper-3">Apellidos</div>
-                            <input type="text"
-                                name="last_name"
-                                id="nombre"
-                                class="input-field input-name"
-                                placeholder="del Pueblo"
-                                required>
-                        </div>
-                        <div class="field-wrapper">
-                            <!-- Phone input field -->
-                            <div class="text-wrapper-4">Teléfono</div>
-                            <input type="number"
-                                name="phone_number"
-                                id="telefono"
-                                class="input-field input-phone"
-                                placeholder="(000)-000-0000"
-                                required>
-                        </div>
+
+                    <div class="field-wrapper">
+                        <!-- Name input field -->
+                        <label  for="first_name">Nombre</label>
+                        <input type="text"
+                            name="first_name"
+                            id="nombre"
+                            class="input-field input-name"
+                            placeholder="Juan"
+                            required>
                     </div>
+                    <div class="field-wrapper">
+                        <!-- Name input field -->
+                        <label for ="last_name">Apellidos</label>
+                        <input type="text"
+                            name="last_name"
+                            id="nombre"
+                            class="input-field input-name"
+                            placeholder="del Pueblo"
+                            required>
+                    </div>
+                    <div class="field-wrapper">
+                        <!-- Phone input field -->
+                        <label for="phone_number">Teléfono</label>
+                        <input type="number"
+                            name="phone_number"
+                            id="telefono"
+                            class="input-field input-phone"
+                            placeholder="(000)-000-0000"
+                            required>
+                    </div>
+
 
 
                     <div class="field-wrapper">
                         <!-- Email input field -->
-                        <div class="text-wrapper-2">Correo</div>
+                        <label for="email">Correo</label>
                         <input type="email"
                             name="email"
                             id="correo"
@@ -71,39 +73,43 @@ require __DIR__ . '/partials/header.php';
 
                     <div class="field-wrapper">
                         <!-- Password input field -->
-                        <div class="flex">Cree una contraseña
+                        <div class="mini-flex-label">
+                            
+                            <label for="password">Contraseña</label>
 
                             <span class="password-toggle" onclick="togglePasswords()">
                                 Alternar Mostrar<i class="fas fa-eye"></i>
                             </span>
                         </div>
-                        <div class="password-container"> <!-- To be fixed on both pass fields -->
-                            <input type="password"
-                                name="password"
-                                id="password"
-                                class="input-field input-password"
-                                placeholder="Ingrese la contraseña"
-                                required>
 
-                        </div>
+                        <input type="password"
+                            name="password"
+                            id="password"
+                            class="input-field input-password"
+                            placeholder="Ingrese la contraseña"
+                            required>
+
+
                     </div>
 
                     <div class="field-wrapper">
                         <!-- Confirm password input field -->
-                        <div class="flex">Confirme Contraseña
+                        <div class="mini-flex-label">
+                            <label for="confirm_password">Confirmar Contraseña</label>
                             <span class="password-toggle" onclick="togglePasswords()">
-                                Alternar Mostrar<i class="fas fa-eye"></i>
+                                Alternar Mostrar
+                                <i class="fas fa-eye"></i>
                             </span>
                         </div>
-                        <div class="password-container">
-                            <input type="password"
-                                name="confirm_password"
-                                id="confirm_password"
-                                class="input-field input-confirm-password"
-                                placeholder="Ingrese la contraseña de nuevo"
-                                required>
 
-                        </div>
+                        <input type="password"
+                            name="confirm_password"
+                            id="confirm_password"
+                            class="input-field input-confirm-password"
+                            placeholder="Ingrese la contraseña de nuevo"
+                            required>
+
+
                         <!-- Other information this user -->
                         <div class="age-check-input">
                             <label for="age" class="size">Age: </label>
@@ -112,11 +118,12 @@ require __DIR__ . '/partials/header.php';
                     </div>
                 </div>
 
-                <div class="splitted-actions">
+                <div class="form-main-actions">
                     <!-- Submit button -->
-                    <div class="mainbutton">
+                    <div class="form-main-action">
                         <button type="submit" class="main-action-bright gradiented">
-                            regístrate
+                            Regístrate
+                            <i class="las la-arrow-right"></i>
                         </button>
                     </div>
 

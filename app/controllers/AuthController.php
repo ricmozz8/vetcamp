@@ -1,5 +1,7 @@
 <?php
 require_once 'Controller.php';
+require_once 'app/models/User.php';
+require_once 'app/models/PasswordReset.php';
 
 class AuthController extends Controller
 {
@@ -18,11 +20,11 @@ class AuthController extends Controller
             $password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
 
             // this is a dummy test to prevent bot registry.
-            if(!empty($_POST['age'])) {
+            if (!empty($_POST['age'])) {
                 redirect('/');
             }
 
-            
+
             if (isset($email) && isset($password)) {
                 try {
                     $user = User::findBy(['email' => $email, 'status' => 'active']);
@@ -31,7 +33,7 @@ class AuthController extends Controller
                     $_SESSION['error'] = 'Credenciales Incorrectas, intente de nuevo';
                     redirect('/login');
                 }
- 
+
                 if (password_verify($password, $user->__get('password'))) {
                     // Authentication successful
                     Auth::login($user);
@@ -44,7 +46,6 @@ class AuthController extends Controller
                     } else {
                         redirect('/apply');
                     }
-
                 } else {
                     // Authentication failed
                     $_SESSION['error'] = 'Credenciales Incorrectas, intente de nuevo';
@@ -90,7 +91,7 @@ class AuthController extends Controller
 
         if ($method == 'POST') {
 
-            if(!empty($_POST['age'])) {
+            if (!empty($_POST['age'])) {
                 redirect('/');
             }
 
@@ -129,11 +130,12 @@ class AuthController extends Controller
                 Mailer::send(
                     $user->email,
                     'Bienvenido a vetcamp',
-                    'Tu cuenta ha sido registrada en vetcamp!');
+                    'Tu cuenta ha sido registrada en vetcamp!'
+                );
 
                 Auth::login($user);
 
-                
+
 
                 redirect('/apply');
             }
@@ -152,138 +154,141 @@ class AuthController extends Controller
         }
     }
 
-  public static function resetPassword()
+    public static function resetPassword()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Sanitize and validate email from session
-            $email = $_SESSION['otp_verified_email'] ?? null;
-            if (!$email) {
-                $_SESSION['error_message'] = "Proceso no iniciado. Intenta nuevamente.";
-                redirect('/forgotpass');
-                exit;
+
+            // take the OTP from the request
+            $reset_code = filter_input(INPUT_POST, 'reset-code', FILTER_DEFAULT);
+
+            if (!$reset_code) {
+                $_SESSION['error'] = "Por favor ingresa un código de restablecimiento.";
+                redirect('/restablish');
             }
-    
-            // Sanitize and validate passwords from POST data
-            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-            $confirmPassword = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
-    
-            // Validate password length
-            if (strlen($password) < 8) {
-                $_SESSION['error'] = "La contraseña debe tener al menos 8 caracteres.";
-                redirect('/passreset');
-            }
-    
-            // Validate password match
-            if ($password !== $confirmPassword) {
-                $_SESSION['error'] = "Las contraseñas no coinciden.";
-                redirect('/passreset');
-                exit;
-            }
-    
+
             try {
-                // Try to find the user by email (using the sanitized email)
-                $user = User::findBy(['email' => $email]);
-    
-                if (!$user) {
-                    $_SESSION['error'] = "No se encontró el usuario.";
-                    redirect('/forgotpass');
-                    exit;
-                }
-    
-                // Check if the new password is different from the current password
-                $currentPasswordHash = $user->password;
-                if (password_verify($password, $currentPasswordHash)) {
-                    $_SESSION['error'] = "La nueva contraseña no puede ser igual a la anterior.";
-                    redirect('/passreset');
-                    exit;
-                }
-    
-                // Update the user's password with sanitized and securely hashed password
-                $user->update([
-                    'password' => password_hash($password, PASSWORD_BCRYPT)
-                ]);
-    
-                $_SESSION['success_message'] = "Contraseña restablecida correctamente.";
-                unset($_SESSION['otp_verified_email']); // Clear OTP session after success
-                redirect('/login');
-                exit;
-    
+                $reset_request = PasswordReset::findBy(['OTP' => $reset_code]);
             } catch (ModelNotFoundException $e) {
-                $_SESSION['error_message'] = "Error al restablecer la contraseña: " . $e->getMessage();
+                $_SESSION['error'] = "Código de restablecimiento inválido.";
                 redirect('/forgotpass');
             }
+
+            if (!$reset_request->valid) {
+                $_SESSION['error'] = "Código de restablecimiento inválido.";
+                redirect('/forgotpass');
+            }
+
+            // Define the time-to-live in days
+            $ttlInDays = $reset_request->ttl;
+
+            // Convert TTL from days to seconds
+            $ttlInSeconds = $ttlInDays * 86400; // 86400 seconds in a day
+
+            $now = new DateTime('now', new DateTimeZone('UTC'));
+            $madeOn = new DateTime($reset_request->created_at, new DateTimeZone('UTC'));
+
+            // Check if the reset request has expired
+            if ($now->getTimestamp() - $madeOn->getTimestamp() > $ttlInSeconds) {
+                $_SESSION['error'] = "Código de restablecimiento inválido."; // Invalid reset code message
+                $reset_request->update(['valid' => 0]);
+                redirect('/forgotpass'); // Redirect to the forgot password page
+            }
+
+            // invalidate the current reset request
+            $reset_request->update(['valid' => 0]);
+
+            render_view('passReset', ['reset_token' => $reset_request->reset_token], 'Restablecer contraseña');
         } else {
-            // Render the reset password view
-            render_view('passreset', [], 'PassReset');
+            redirect('/forgotpass');
         }
     }
-    
-    
-    public static function forgotPassword() 
+
+    public static function changePassword()
     {
-        // Determine flow based on POST data
-        $otpSent = isset($_POST['email']);
-        $otpValidated = isset($_POST['otp']);
-    
-        // Simulated OTP for demonstration
-        $generatedOtp = $_POST['generatedOtp'] ?? rand(100000, 999999);
-    
-        // View data to control the flow
-        $viewData = [
-            'otpSent' => $otpSent,
-            'otpValidated' => $otpValidated,
-            'generatedOtp' => $generatedOtp, // Simulated OTP
-            'error' => null,
-            'message' => null
-        ];
-    
-        if ($otpSent && !$otpValidated) {
-            $email = $_POST['email'] ?? null;
-    
-            if ($email) {
-                try {
-                    // Check if the email exists
-                    $user = User::findBy(['email' => $email]);
-                    
-                    if ($user) {
-                        // Save email to session for later use
-                        $_SESSION['otp_verified_email'] = $email;
-    
-                        // For demonstration: Simulate OTP "sent"
-                        $viewData['message'] = "Se envió el código OTP a su correo electrónico.";
-                    } else {
-                        // Email does not exist
-                        $viewData['error'] = "No se encontró una cuenta con este correo electrónico.";
-                    }
-                } catch (ModelNotFoundException $e) {
-                    $_SESSION['error'] = "No se encontró una cuenta con este correo electrónico.";
-                    redirect('/forgotPass');
-                }
-            } else {
-                $viewData['error'] = "Por favor, ingresa un correo electrónico válido.";
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
+            $confirm_password = filter_input(INPUT_POST, 'confirm_password', FILTER_DEFAULT);
+            $token = filter_input(INPUT_POST, 'token', FILTER_DEFAULT);
+
+            if ($password !== $confirm_password) {
+                $_SESSION['error'] = "Las contrasenas no coinciden";
+                redirect('/restablish');
             }
-        } elseif ($otpValidated) {
-            $enteredOtp = $_POST['otp'] ?? null;
-    
-            if ($enteredOtp == $generatedOtp) {
-                // OTP is valid, redirect to reset password page
-                redirect('/passreset');
-            } else {
-                $viewData['error'] = "Código OTP incorrecto.";
+
+            if (strlen($password) < 8) {
+                $_SESSION['error'] = "La contraseña debe tener al menos 8 caracteres";
+                redirect('/restablish');
             }
+
+            try {
+                $reset_request = PasswordReset::findBy(['reset_token' => $token]);
+            } catch (ModelNotFoundException $e) {
+                $_SESSION['error'] = "Código de restablecimiento inválido.";
+                redirect('/forgotpass');
+            }
+
+            try {
+                $user = User::find($reset_request->user_id);
+                $user->update(['password' => password_hash($password, PASSWORD_DEFAULT)]);
+            } catch (ModelNotFoundException $e) {
+                // handle here when the user is not found
+                $_SESSION['error'] = "Código de restablecimiento inválido.";
+                redirect('/forgotpass');
+            }
+
+
+            $_SESSION['message'] = "Contraseña restablecida correctamente";
+
+            redirect('/login');
         }
-    
-        // Render the forgot password view
-        render_view('forgotPass', $viewData, 'ForgotPass');
+    }
+
+
+    public static function forgotPassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // take the email from the request
+            $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+
+            if (!$email) {
+                $_SESSION['error'] = "Por favor ingresa un correo electrónico válido.";
+                redirect('/forgotpass');
+            }
+
+            try {
+                $user = User::findBy(['email' => $email]);
+            } catch (ModelNotFoundException $e) {
+                $_SESSION['error'] = "No se encontró el usuario.";
+                redirect('/forgotpass');
+            }
+
+
+            $reset_request = PasswordReset::create([
+                'user_id' => $user->__get('user_id'),
+                'reset_token' => PasswordReset::generateToken(),
+                'OTP' => PasswordReset::generateOTP()
+            ]);
+
+            Mailer::send(
+                $user->email,
+                'Restablecer contraseña',
+                'Tu código de restablecimiento es ' . $reset_request->OTP
+            );
+
+            render_view('resetPassword', ['reset_email' => $user->email], 'Restablecer contraseña');
+        } else {
+            render_view('forgotpass', [], 'Restablecer contraseña');
+        }
     }
 
     /**
      * Checks if the user hasn't logged in in the last 2 days. If so, log the user out.
      * This method is meant to be used as a middleware
      */
-    public static function checkLastLogin() 
+    public static function checkLastLogin()
     {
         Auth::checkLastLogin();
     }
-    
 }

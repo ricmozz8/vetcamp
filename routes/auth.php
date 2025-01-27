@@ -14,8 +14,11 @@ switch ($path) {
     case '/forgotpass':
         AuthController::forgotPassword();
         break;
-    case '/passreset':
+    case '/restablish':
         AuthController::resetPassword();
+        break;
+    case '/passreset':
+        AuthController::changePassword();
         break;
     case '/logout':
         AuthController::logoutUser($method);

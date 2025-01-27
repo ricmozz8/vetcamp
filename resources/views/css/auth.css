@@ -1,490 +1,75 @@
-/* Sign Up page CSS */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2em 3em;
+  gap: 2em;
 
-/*******************************
- * LAYOUT CONTAINERS
- * Primary structural elements that define the app's layout
- *******************************/
-/* Main container styles */
-.sign-up {
-    width: auto;
-    height: auto;
-    font-size: 0.9em;
+  border-radius: 17px;
+
+  margin: 3em auto;
+  max-width: 700px;
+  width: 100%;
 }
 
-/*******************************
- * FORM ELEMENTS
- * Styles for input fields, labels, and form layout
- *******************************/
-/* Form Styling */
-.sign-up form {
-    margin-top: 5%;
+.auth-form h1 {
+  font-weight: bold;
+  font-size: 2.2em;
 }
 
-/* Page title styles */
-.page-title {
-    width: 15dvh;
-    font-weight: 600;
-    font-size: 3em;
-    white-space: nowrap;
+.field-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-
-
-
-.input-name,
-.input-phone {
-    width: 100%;
+label {
+  padding: 1em 0;
 }
 
-
-/* Name and Phone field Containers */
-.sign-up .name-phone-wrapper {
-    display: flex;
-    gap: calc(1.5vw + 0.6vh);
-    width: 100%;
+.mini-flex-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
 
-/* Password Field Container */
-.sign-up .password-container {
-    position: relative;
-}
-
-.sign-up .password-toggle {
-      position: absolute;
-      right: 0.75em;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #666;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-}
-
-
-/* Button text styles */
-.sign-up .secondary-action {
-    position: relative;
-    width: calc(7.5vw + 3.2vh);
-    color: #181818;
-    font-size: 1.6em;
-    text-align: center;
-
-}
-
-.splitted-actions{
-    display: flex;
-    align-items: center;
-    gap: 1em;
-    padding: 1em 0;
-}
-
-
-
-.sign-up .secondary-action-2:hover {
-    border-color: var(--main-color-default);
-}
-
-/*WORK IN PROGRESS*/
-/* Mobile Media Query for Sign Up Form */
-@media screen and (max-width: 689px) {
-    /* Main Container */
-    .sign-up {
-        font-size: 0.8em;
-    }
-
-    .sign-up form {
-        margin-top: -12%;
-    }
-
-    /* Page Title */
-    .sign-up .page-title {
-        font-size: 1.8em;
-        margin-bottom: calc(2.4vw + 0.6vh);
-        width: calc(38vw + 16vh);
-    }
-
-    /* Input Labels */
-    .sign-up .text-wrapper-2,
-    .sign-up .text-wrapper-3,
-    .sign-up .text-wrapper-4,
-    .sign-up .text-wrapper-5,
-    .sign-up .text-wrapper-6 {
-        font-size: calc(2.2vw + 1.1vh);
-        margin-bottom: 2%;
-    }
-
-    /* Input Fields */
-    .sign-up .input-field {
-        height: clamp(40px, calc(4vw + 2vh), 50px);
-        padding: 8px 40px 8px 16px;
-        font-size: clamp(0.75em, 0.85em, 1em);
-        position: relative;
-    }
-
-    /* Password Toggle Button */
-    .sign-up .password-toggle {
-        position: absolute;
-        right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: clamp(0.75em, 0.85em, 1em);
-    }
-
-    /* Main Button Styling */
-    .sign-up .mainbutton {
-        position:absolute;
-        left: calc(2vw + 2.5vh);
-    }
-
-    /* Button Text */
-    .sign-up .secondary-action {
-        width: calc(14vw + 6vh);
-        font-size: 1.2em;
-    }
-
-    /* Login Link */
-    .sign-up .secondary-action-2 {
-        left: 5%;
-        font-size: 1em;
-    }
-}
-
-/* Tablet Media Query for Sign Up Form */
-@media screen and (min-width: 689px) and (max-width: 1024px) {
-    /* Main Container */
-    .sign-up {
-        font-size: 0.75em;
-    }
-
-    .sign-up form {
-        margin-top: 15%;
-    }
-
-    /* Page Title */
-    .sign-up .page-title {
-        font-size:  2em;
-        margin-bottom: calc(1.35vw + 0.27vh);
-        width: calc(21.6vw + 9.45vh);
-    }
-
-    /* Input Labels */
-    .sign-up .text-wrapper-2,
-    .sign-up .text-wrapper-3,
-    .sign-up .text-wrapper-4,
-    .sign-up .text-wrapper-5,
-    .sign-up .text-wrapper-6 {
-        font-size: 1.2em;
-        margin-bottom: 1.35%;
-    }
-
-    /* Password Toggle Button */
-    .sign-up .password-toggle {
-        transform: translateY(-50%);
-        font-size: 0.8em;
-    }
-
-
-    /* Button Text */
-    .sign-up .secondary-action {
-        width: calc(7.43vw + 3.38vh);
-        font-size: 1.2em;
-    }
-
-    /* Login Link */
-    .sign-up .secondary-action-2 {
-        left: 2.7%;
-        font-size: 1em;
-    }
-}
-
-@media screen and (min-width: 1440px) {
-    /* Main Container */
-    .sign-up {
-        font-size: 1em;
-    }
-
-    .sign-up form{
-        margin-top: 15%;
-    }
-}
-
-@media screen and (min-width: 2560px) {
-    /* Main Container */
-    .sign-up {
-        font-size: 1.8em;
-    }
-
-    .sign-up form{
-        margin-top: 15%;
-    }
-}
-
-
-/* Login CSS styles */
-
-/*******************************
- * LAYOUT CONTAINERS
- * Primary structural elements that define the app's layout
- *******************************/
-/* Main Container */
-.login {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-}
-
-/*******************************
- * FORM ELEMENTS
- * Styles for input fields, labels, and form layout
- *******************************/
-/* Form Styling */
-.login form {
-    margin-top: calc(5vw + 2vh);
-
-}
-
-/* Input Fields Container */
- .input-group {
-    gap: calc(1vw + 1vh);
-}
-
-/* Input Labels */
-.login .text-wrapper-2 {
-    font-size: 1.5em;
-    
-    line-height: 1.2;
-    width: fit-content;
-}
-
-/* Input Fields */
-.input-field {
-    width: 100%;
-    border-radius: 50px;
-    border: 1px solid #000000;
-    padding: 15px 20px;
-    outline: none;
-    font-size: 1em;
-}
-
-.input-field:focus {
-    border-color: var(--main-color-default);
-}
-
-/* Password Field Container */
-.password-container {
-    position: relative;
-}
-
-/* Password Toggle Button */
 .password-toggle {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #666;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      text-wrap: nowrap;
-      gap: 5px;
+  cursor: pointer;
 }
 
 .password-toggle:hover {
-    color: #333;
+  text-decoration: underline;
+}
+.splitted-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+  justify-content: center;
+  font-weight: 100;
 }
 
-/*******************************
- * BUTTONS AND ACTIONS
- * Styles for buttons, links, and interactive elements
- *******************************/
-/* Actions Container */
-.login .actions {
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 5px;
+.form-main-actions {
+  display: flex;
+  justify-content: start;
+  gap: 1em;
 }
 
-/* Main Button Styling */
-.login .mainbutton {
-    position: relative;
-    right: 120px;
-    cursor: pointer;
-    padding: 0;
+.form-main-actions * {
+  width: 100%;
 }
 
-/* Button Text */
-.login .secondary-action {
-    width: calc(8.1vw + 3.4vh);
-    color: #181818;
-    font-size: 1.8em;
-    
-}
+/* tablet */
 
-/* Links Styling */
-.login .signup-link,
-.login .pass-reset-link {
-    text-decoration: underline;
-    color: #181818;
-    font-size: calc(1.4vw + 0.6vh);
-    
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    box-shadow: none;
-}
+@media only screen and (min-width: 768px) {
+  .auth-form {
+    box-shadow: 0px 20px 60px rgb(219, 219, 219);
+  }
 
+  .form-main-actions {
+    justify-content: flex-end;
+  }
 
-
-.login .signup-link:hover,
-.login .pass-reset-link:hover {
-    border-color: var(--main-color-default);
-}
-
-
-
-
-/*******************************
- * RESET & BASE STYLES
- * Establish consistent base styling across browsers
- *******************************/
- * {
-    box-sizing: border-box;
-}
-
-/*******************************
- * LAYOUT CONTAINERS
- * Primary structural elements that define the app's layout
- *******************************/
-/* Authentication pages Left Side Content Container */
- .content-left {
-    display: flex;
-    flex-direction: column;
-    padding: calc(2.5vw + 1vh) calc(2.8vw + 1vh);
-    position: relative;
-    height: 100%;
-    width: 45%;
-}
-
-/*******************************
- * IMAGES AND DECORATIVE ELEMENTS
- * Styles for background images, overlays, and decorative components
- *******************************/
-/* Company logo styles */
- .logo {
-    width: 200px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    box-shadow: none;
-}
-
-/* Side Content Container */
- .side-content {
-    display: flex;
-    position: absolute;
-    width: 55%;
-    height: 100%;
-    top: 0;
-    right: 0;
-}
-
-/* Side Image Styling */
- .side-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 6% 25%;
-}
-
-/* Dark Overlay */
- .overlay {
-    position: absolute;
-    width: 55%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-/* Logo Icon Overlay */
- .icon {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 30%;
-    width: calc(12.9vw + 5.5vh);
-    height: calc(9.4vw + 4vh);
-}
-
-/* Image Attribution */
- .text-wrapper {
-    position: absolute;
-    bottom: calc(1.2vw + 0.5vh);
-    left: calc(2.6vw + 1.1vh);
-    color: #ffffff;
-    font-size: 14px;
-        z-index: 3;
-}
-
-/*******************************
- * FORM ELEMENTS
- * Styles for input fields, labels, and form layout
- *******************************/
-/* Input Fields Container */
- .input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    margin-bottom: 1.2em;
-}
-
-/* Input Field Wrapper */
- .field-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: calc(0.3vw + 0.15vh);
-}
-
-/*WORK IN PROGRESS*/
-@media screen and (max-width: 900px) {
-   /* Adjust main content layout */
-   .content-left {
-       width: 100%;
-       height: 55vh;
-   }
- 
-
-   /* Move side content to bottom */
-   .side-content {
-       display: none;
-   }
-
-   /* Adjust image to fill bottom space */
-   .side-image {
-       width: 100%;
-       height: 100%;
-       object-position: center center;
-   }
-
-   /* Adjust overlay to match */
-   .overlay {
-       display: none;
-   }
-
-   /* Adjust icon */
-   .icon {
-       width: calc(12.9vw + 5.5vh);
-       height: calc(9.4vw + 4vh);
-   }
-
-   /* Adjust attribution text */
-   .text-wrapper {
-       font-size: 10px;
-   }
+  .form-main-actions * {
+    width: fit-content;
+  }
 }
