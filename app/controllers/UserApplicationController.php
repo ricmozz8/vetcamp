@@ -4,6 +4,27 @@ require_once 'app/models/Application.php';
 
 class UserApplicationController extends Controller
 {
+    
+    /**
+     * Validates if the current time is within the limit dates.
+     *
+     * @return boolean True if the current time is within the limit dates, false otherwise.
+     */
+    private static function validate_time_limit() {
+        $limit_date = LimitDate::find(1);
+        $start = new DateTime($limit_date->start_date);
+        $end = new DateTime($limit_date->end_date);
+
+       
+
+        $now = new DateTime(date('Y-m-d'));
+        
+        if ($now > $end || $now < $start) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Renders the application dashboard view.
      *
@@ -26,7 +47,8 @@ class UserApplicationController extends Controller
         $has_application = $application ? $application->status : 'Sin llenar';
 
         render_view('application/application_dashboard', [
-            'has_application' => $has_application
+            'has_application' => $has_application,
+            'can_apply' => self::validate_time_limit()
         ], 'Aplica');
     }
 
@@ -38,6 +60,12 @@ class UserApplicationController extends Controller
      */
     public static function basic_data($method)
     {
+
+        if(!self::validate_time_limit()) {
+            $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
+            redirect('/apply');
+        }
+
         $application = Auth::user()->application();
         $school_address  = Auth::user()->school_address();
 
@@ -124,6 +152,10 @@ class UserApplicationController extends Controller
      */
     public static function contact($method)
     {
+        if(!self::validate_time_limit()) {
+            $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
+            redirect('/apply');
+        }
 
         $application = Auth::user()->application();
         $postal_address = Auth::user()->postal_address();
@@ -212,6 +244,11 @@ class UserApplicationController extends Controller
      */
     public static function documents($method)
     {
+
+        if(!self::validate_time_limit()) {
+            $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
+            redirect('/apply');
+        }
 
         // for some reason, the session is terminated if the user submits a file 
         // that is too large. 
@@ -307,6 +344,11 @@ class UserApplicationController extends Controller
 
     public static function confirm($method)
     {
+        if(!self::validate_time_limit()) {
+            $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
+            redirect('/apply');
+        }
+
         $application = Auth::user()->application();
         if ($application === null) {
             $_SESSION['error'] = 'Por favor complete todos los campos';

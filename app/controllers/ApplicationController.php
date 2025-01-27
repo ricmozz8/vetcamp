@@ -3,9 +3,23 @@ require_once 'Controller.php';
 require_once 'app/models/Tracking.php';
 require_once 'app/models/Application.php';
 require_once 'app/models/User.php';
+require_once 'app/models/LimitDate.php';
 
 class ApplicationController extends Controller
 {
+
+    /**
+     * Validates if the current time is within the limit dates.
+     *
+     * @return boolean True if the current time is within the limit dates, false otherwise.
+     */
+    private function validate_time_limit() {
+        $limit_date = LimitDate::find(1);
+        if (time() > $limit_date->end_date) {
+            return false;
+        }
+        return true;
+    }
 
     public static function index()
     {
@@ -16,7 +30,7 @@ class ApplicationController extends Controller
         if (Auth::user()->type == 'admin') {
             redirect('/admin');
         }
-        render_view('application/application_dashboard', [], 'Aplica');
+        render_view('application/application_dashboard', ['can_apply'=> self::validate_time_limit()], 'Aplica');
     }
 
     /**

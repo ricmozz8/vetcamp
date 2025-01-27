@@ -7,7 +7,7 @@ $status = 'Sin llenar';
 
 if ($application && $application->isSubmitted()) {
     $status = $application->status === 'Necesita Cambios' ? 'Necesita Cambios' : 'Sometida';
-} else if($application){
+} else if ($application) {
     $status = $application->status;
 }
 
@@ -39,12 +39,17 @@ if ($application && $application->isSubmitted()) {
                 Se llevará a cabo bajo 4 sesiones de 14 estudiantes.
             </p>
 
-
-            <div class="status-actions">
-                <a href="/apply/application" class="main-action-bright tertiary" type="submit">
-                    <?php echo $status == 'Sin llenar' ? 'Llenar Solicitud' : 'Editar Solicitud'; ?>
-                </a>
-            </div>
+            <?php if ($can_apply) : ?>
+                <div class="status-actions">
+                    <a href="/apply/application" class="main-action-bright tertiary" type="submit">
+                        <?php echo $status == 'Sin llenar' ? 'Llenar Solicitud' : 'Editar Solicitud'; ?>
+                    </a>
+                </div>
+            <?php else : ?>
+                <div class="status-actions">
+                    <p>Las solicitudes están cerradas temporalmente</p>
+                </div>
+            <?php endif; ?>
         </div>
 
 
