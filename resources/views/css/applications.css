@@ -195,10 +195,7 @@ a.nav-danger:hover{
 
 
 .application-form-card {
-    margin: 50px;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: var(--shadow-soft);
+padding: 20px;
 }
 
 /* Progress Bar */
@@ -247,12 +244,14 @@ a.nav-danger:hover{
 .tab {
     padding: 10px;
     color: #333;
+    display: none;
 }
 
 .tab.active {
     font-weight: bold;
     color: #333;
     border-bottom: 2px solid #000;
+    display: block;
 }
 
 .form-section {
@@ -516,8 +515,17 @@ form .grid-group{
 
 }
 
-
-
+.desk-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1em;
+}
+.application_header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
 /* Tablet */
 @media only screen and (min-width: 768px) {
 
@@ -529,6 +537,10 @@ form .grid-group{
 
     .application-form-card{
         margin: 50px var(--main-margin);
+
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: var(--shadow-soft);
     }
     .form-block{
         display: grid;
@@ -552,8 +564,15 @@ form .grid-group{
         grid-gap: 1em;
     }
 
-}
+    .tab{
+        display: inline;
+    }
 
+    .application_header{
+        flex-direction: row;
+        align-items: start;
+    }
+}
 
 
 /* Desktop */

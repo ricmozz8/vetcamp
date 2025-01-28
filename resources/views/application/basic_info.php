@@ -8,7 +8,7 @@ require __DIR__ . '../../partials/header.php';
     <?php require_once(__DIR__ . '../../partials/navbar.php'); ?>
 
 
-    <div class="flex-min left-margin">
+    <div class="application_header">
         <h1 class="">Vetcamp Verano <?php echo date('Y'); ?></h1>
         <a class="main-action-bright" onclick="openModal('confirmExitApplicationModal')" href="#"><i class="las la-home"></i>Inicio</a>
     </div>

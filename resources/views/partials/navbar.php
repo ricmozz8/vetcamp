@@ -5,9 +5,9 @@ $user_full_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 
         <?php require_once('applicationLogo.php'); ?>
    
-    <a href="#" class="main-action-bright quaternary" onclick="toggleDropdown('profileDropdown')">
+    <a href="#" class="main-action-bright primary" onclick="toggleDropdown('profileDropdown')">
         <i class="las la-user"></i>
-        <h3><?= $user_full_name ?></h3>
+        <h3 class="no-mobile"><?= $user_full_name ?></h3>
         <i class="las la-caret-down"></i>
     </a>
     <div class="profile-dropdown" id="profileDropdown" >
