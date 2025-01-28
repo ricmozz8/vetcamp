@@ -21,7 +21,16 @@ require __DIR__ . '/partials/header.php';
                 <a class="main-action-bright no-deco-action" href="/login">O inicia sesión</a>
 
             </div>
-        <?php else : ?>
+        <?php elseif (Auth::user()->type === 'admin') : ?>
+            <div class="hero-buttons">
+                <a class="main-action-bright tertiary" href="/admin">
+                    <i class="las la-cog"></i>
+                    Admin
+                </a>
+            </div>
+
+        <?php else: ?>
+
             <div class="hero-buttons">
                 <a class="main-action-bright tertiary" href="/apply">!Solicita ya!</a>
             </div>
@@ -132,7 +141,7 @@ require __DIR__ . '/partials/header.php';
                     llenar la Certificación de Estudiante Educado en el Hogar
                     (certificación de la UPR - Administración Central) y
                     entregarla junto a la solicitud del VetCamp.</p>
-                
+
             </div>
         </div>
     </div>
