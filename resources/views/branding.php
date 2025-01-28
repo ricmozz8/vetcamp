@@ -11,7 +11,8 @@ require __DIR__ . '/partials/header.php'; ?>
         <img src="/<?= asset('img/logogrid_image.png') ?>" alt="Construcción del logotipo de vetcamp">
     </div>
     <div class="blog-content">
-        <h1>Recursos de branding</h1>
+        <h1>Vetcamp vuelve mejor que nunca</h1>
+        <p>Con una nueva plataforma y un nuevo logotipo más moderno y reconocible, adaptándose a los nuevos tiempos y a las redes sociales.</p>
         <div class="section-image-blog">
             <img style="width: 100%; object-fit:contain;" src="/<?= asset('img/before&after.png') ?>" alt="Rebranding de Vetcamp">
         </div>
@@ -29,6 +30,12 @@ require __DIR__ . '/partials/header.php'; ?>
         <p class="blog-description">
             El logotipo es una representación geométrica que conecta con la mascota universitaria, el lobo de la UPRA.
         </p>
+        <div class="section-image-blog-full-contain">
+            <img src="/<?= asset('img/iphone-14-case-mockup.png') ?>" alt="Construcción del logotipo de vetcamp">
+        </div>
+        <div class="section-image-blog">
+            <img src="/<?= asset('img/sizeshow.png') ?>" alt="Construcción del logotipo de vetcamp">
+        </div>
         <div class="section-image-blog">
             <img src="/<?= asset('img/grid_logo.png') ?>" alt="Construcción del logotipo de vetcamp">
         </div>
