@@ -29,6 +29,8 @@ require 'auth.php';
 require 'application.php';
 require 'admin.php';
 
+require_once 'app/controllers/UserApplicationController.php';
+
 switch ($path) {
 
         // GET FRONT VIEWS
@@ -37,7 +39,7 @@ switch ($path) {
         break;
 
     case '/solicitud':
-        FileController::getFile('storage', '/public/solicitud.pdf');
+        UserApplicationController::getPrintableApplication();
         break;
 
     case '/branding':

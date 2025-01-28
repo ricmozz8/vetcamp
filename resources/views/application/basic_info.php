@@ -55,6 +55,13 @@ require __DIR__ . '../../partials/header.php';
                             <?php } ?>
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <label for="shirtsize">Tamaño de camisa</label>
+                        <?php require_once __DIR__ . '../../partials/clothingSelector.php' ?>
+                    </div>
+
+                    
                 </div>
 
                 <h3>Dirección de Escuela de procedencia</h3>

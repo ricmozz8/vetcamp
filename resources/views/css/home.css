@@ -429,10 +429,6 @@
   transition: all 0.2s ease;
 }
 
-.req-card:hover {
-  box-shadow: var(--shadow-soft);
-  background-color: var(--white-color);
-}
 
 .req-card i {
   font-size: 3.5em;

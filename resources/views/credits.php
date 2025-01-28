@@ -26,6 +26,10 @@ require __DIR__ . '/partials/header.php'; ?>
         <p>André S. Negrón Pérez</p>
         <p>Rosana Rodríguez Berríos</p>
         <br>
+        <h2>Rediseño de la identidad visual</h2>
+        <p>Ricardo L. Morales Crespo</p>
+        <a style="text-align: center; margin: auto;" class="main-action-bright no-deco-action" href="/branding">Ver recursos</a>
+        <br>
 
     
         <h2>Agradecimientos</h2>

@@ -12,11 +12,15 @@ require __DIR__ . '/partials/header.php'; ?>
     </div>
     <div class="blog-content">
         <h1>Recursos de branding</h1>
+        <div class="section-image-blog">
+            <img style="width: 100%; object-fit:contain;" src="/<?= asset('img/before&after.png') ?>" alt="Rebranding de Vetcamp">
+        </div>
         <p class="blog-description">
-            Recopilamos aquí los recursos de imagen de marca. Estos recursos están listos para ser
-            utilizados tanto en el sitio web como en las redes sociales, material impreso y demás. Se ha
+            Se ha
             creado una imagen visual más atractiva y versátil para el uso en diferentes entornos sin perder calidad,
             manteniendo el mensaje y la identidad de la marca.
+            Recopilamos aquí los recursos de imagen de marca. Estos recursos están listos para ser
+            utilizados tanto en el sitio web como en las redes sociales, material impreso y demás.
         </p>
         <br>
         <hr><br>
@@ -125,11 +129,11 @@ require __DIR__ . '/partials/header.php'; ?>
                 <p class="color-value">#ffe900</p>
             </div>
             <div class="color-block block-primary-s-1">
-     
+
                 <p class="color-value">#fff36d</p>
             </div>
             <div class="color-block block-primary-s-2">
-    
+
                 <p class="color-value">#fff7a0</p>
             </div>
             <div class="color-block block-primary-s-3">

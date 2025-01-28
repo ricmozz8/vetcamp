@@ -9,7 +9,7 @@ require __DIR__ . '/partials/header.php';
     <?php require __DIR__ . '/partials/homeNavbar.php'; ?>
     <div class="hero">
         <div class="main-copy">
-            <h1>¡Explora tu pasión por la tecnología veterinaria!</h1>
+            <h1>¡Explora tu pasión por la medicina veterinaria!</h1>
             <p>
                 Tendrás la oportunidad de trabajar con estudiantes y profesionales del campo,
                 participando en presentaciones, laboratorios y visitas emocionantes.
@@ -132,7 +132,7 @@ require __DIR__ . '/partials/header.php';
                     llenar la Certificación de Estudiante Educado en el Hogar
                     (certificación de la UPR - Administración Central) y
                     entregarla junto a la solicitud del VetCamp.</p>
-                <a class="main-action-bright secondary" href="/solicitud">Descargar</a>
+                
             </div>
         </div>
     </div>

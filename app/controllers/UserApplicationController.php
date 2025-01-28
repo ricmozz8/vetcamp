@@ -4,25 +4,39 @@ require_once 'app/models/Application.php';
 
 class UserApplicationController extends Controller
 {
-    
+
     /**
      * Validates if the current time is within the limit dates.
      *
      * @return boolean True if the current time is within the limit dates, false otherwise.
      */
-    private static function validate_time_limit() {
+    private static function validate_time_limit()
+    {
         $limit_date = LimitDate::find(1);
         $start = new DateTime($limit_date->start_date);
         $end = new DateTime($limit_date->end_date);
 
-       
+
 
         $now = new DateTime(date('Y-m-d'));
-        
+
         if ($now > $end || $now < $start) {
             return false;
         }
         return true;
+    }
+
+
+    public static function getPrintableApplication()
+    {
+        if (!Auth::check()) { // checks if the user is logged in
+            redirect('/login');
+        }
+        if (Auth::user()->type == 'admin') { // redirect admins trying to access the frontend
+            redirect('/admin');
+        }
+
+        render_view('document', [], 'Solicitud');
     }
 
     /**
@@ -61,7 +75,7 @@ class UserApplicationController extends Controller
     public static function basic_data($method)
     {
 
-        if(!self::validate_time_limit()) {
+        if (!self::validate_time_limit()) {
             $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
             redirect('/apply');
         }
@@ -74,8 +88,22 @@ class UserApplicationController extends Controller
 
             $birthdate = filter_input(INPUT_POST, 'birthdate', FILTER_DEFAULT);
 
+            if ($birthdate == null) {
+                $_SESSION['error'] = 'Por favor complete todos los campos';
+                redirect('/apply/application/basic_info');
+            }
+
+            $shirtSize = filter_input(INPUT_POST, 'shirtsize', FILTER_DEFAULT);
+
+            if ($shirtSize == null) {
+                $_SESSION['error'] = 'Por favor complete todos los campos';
+                redirect('/apply/application/basic_info');
+            }
+            
+
             Auth::user()->update([
-                'birthdate' => $birthdate
+                'birthdate' => $birthdate,
+ 
             ]);
 
             $section = filter_input(INPUT_POST, 'section', FILTER_DEFAULT);
@@ -92,11 +120,13 @@ class UserApplicationController extends Controller
                 $application = Application::create([
                     'user_id' => Auth::user()->__get('user_id'),
                     'id_preferred_session' => $section,
-                    'status' => 'unsubmitted'
+                    'status' => 'unsubmitted',
+                    'shirt_size' => $shirtSize
                 ]);
             } else {
                 $application->update([
                     'id_preferred_session' => $section,
+                    'shirt_size' => $shirtSize
                 ]);
             }
 
@@ -152,7 +182,7 @@ class UserApplicationController extends Controller
      */
     public static function contact($method)
     {
-        if(!self::validate_time_limit()) {
+        if (!self::validate_time_limit()) {
             $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
             redirect('/apply');
         }
@@ -245,7 +275,7 @@ class UserApplicationController extends Controller
     public static function documents($method)
     {
 
-        if(!self::validate_time_limit()) {
+        if (!self::validate_time_limit()) {
             $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
             redirect('/apply');
         }
@@ -344,7 +374,7 @@ class UserApplicationController extends Controller
 
     public static function confirm($method)
     {
-        if(!self::validate_time_limit()) {
+        if (!self::validate_time_limit()) {
             $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
             redirect('/apply');
         }

@@ -27,6 +27,7 @@
 @import url("auth.css");
 @import url("settings.css");
 @import url("accepted.css");
+@import url("printable.css");
 
 :root {
   /* Font Family */
