@@ -571,6 +571,7 @@ form .grid-group{
     .application_header{
         flex-direction: row;
         align-items: start;
+        margin: 0 var(--main-margin);
     }
 }
 
