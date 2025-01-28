@@ -71,10 +71,10 @@
 }
 
 .legal-notice{
-    border: 1px solid black;
-    padding: 1em;
-    margin: 1em 0;
+    
+    margin: .5em 0;
     font-size: .5em;
+    text-align: justify;
 }
 
 .document-centered{
@@ -108,8 +108,10 @@
     justify-content: center;
     align-items: center;
     font-size: 1em;
-    color: rgb(163, 163, 163);
+    color: rgba(106, 106, 106, 0.372);
+    
     padding: 1em 1.3em;
+    border: 1px dashed rgb(163, 163, 163);
 
 }
 
@@ -129,8 +131,9 @@
     justify-content: center;
     align-items: center;
     font-size: 1em;
-    color: rgb(163, 163, 163);
+    color: rgba(106, 106, 106, 0.372);
     padding: 1em 1.3em;
+    border: 1px dashed rgb(163, 163, 163);
 }
 
 .wf{

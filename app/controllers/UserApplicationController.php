@@ -52,6 +52,12 @@ class UserApplicationController extends Controller
             redirect('/apply/application/basic_info');
         }
 
+        if(Auth::user()->application()->shirt_size === null){
+            redirect('/apply/application/basic_info');
+        }
+
+
+
         render_view('document', [], 'Solicitud');
     }
 
