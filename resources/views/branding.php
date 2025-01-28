@@ -35,7 +35,7 @@ require __DIR__ . '/partials/header.php'; ?>
             <img src="/<?= asset('img/iphone-14-case-mockup.png') ?>" alt="Construcción del logotipo de vetcamp">
         </div>
         <div class="section-image-blog">
-            <img src="/<?= asset('img/sizeshow.png') ?>" alt="Versatilidad y adaptabilidad a los tamaños">
+            <img src="/<?= asset('img/scalability.gif') ?>" alt="Versatilidad y adaptabilidad a los tamaños">
         </div>
         <div class="section-image-blog">
             <img src="/<?= asset('img/vetcamp-versatility.gif') ?>" alt="El logotipo es adaptable a cualquier paleta de colores">
