@@ -12,7 +12,7 @@ require __DIR__ . '/partials/header.php'; ?>
     </div>
     <div class="blog-content">
         <h1>Vetcamp vuelve mejor que nunca</h1>
-        <p>Con una nueva plataforma y un nuevo logotipo más moderno y reconocible, adaptándose a los nuevos tiempos y a las redes sociales.</p>
+        <p>Con una nueva plataforma y una nueva identidad visual más moderna y reconocible, adaptándose a los nuevos tiempos y a las redes sociales.</p>
         <div class="section-image-blog">
             <img style="width: 100%; object-fit:contain;" src="/<?= asset('img/before&after.png') ?>" alt="Rebranding de Vetcamp">
         </div>
