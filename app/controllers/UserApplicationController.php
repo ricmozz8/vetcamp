@@ -36,6 +36,22 @@ class UserApplicationController extends Controller
             redirect('/admin');
         }
 
+        if(Auth::user()->application() == null){
+            redirect('/apply/application/basic_info');
+        }
+
+        if(Auth::user()->postal_address() == null){
+            redirect('/apply/application/basic_info');
+        }
+
+        if(Auth::user()->physical_address() == null){
+            redirect('/apply/application/basic_info');
+        }
+
+        if(Auth::user()->school_address() == null){
+            redirect('/apply/application/basic_info');
+        }
+
         render_view('document', [], 'Solicitud');
     }
 
