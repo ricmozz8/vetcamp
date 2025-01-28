@@ -52,8 +52,14 @@ class Auth
     public static function checkLastLogin()
     {
         $user = self::user();
-        if ($user && $user->last_login < (new DateTime('now', new DateTimeZone('UTC')))->modify('-2 days')) {
-            self::logout();
+        if ($user) {
+            // convertir last_login a DateTime
+            $lastLogin = $user->last_login instanceof DateTime ? $user->last_login : new DateTime($user->last_login, new DateTimeZone('UTC'));
+            $limit = (new DateTime('now', new DateTimeZone('UTC')))->modify('-2 days');
+    
+            if ($lastLogin < $limit) {
+                self::logout();
+            }
         }
     }
 
