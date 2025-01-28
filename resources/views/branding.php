@@ -11,6 +11,7 @@ require __DIR__ . '/partials/header.php'; ?>
         <img src="/<?= asset('img/logogrid_image.png') ?>" alt="Construcción del logotipo de vetcamp">
     </div>
     <div class="blog-content">
+        <p style="font-size: 12px; color: gray">27 enero 2025 2:00:00 PM</p>
         <h1>Vetcamp vuelve mejor que nunca</h1>
         <p>Con una nueva plataforma y una nueva identidad visual más moderna y reconocible, adaptándose a los nuevos tiempos y a las redes sociales.</p>
         <div class="section-image-blog">
