@@ -59,20 +59,20 @@ require __DIR__ . '/partials/header.php'; ?>
             </div>
             <div class="logo-square dark-logo-square">
                 <img src="/<?= asset('logo/SVG/vetcamp-full-black.svg') ?>" alt="">
-                <a download target="_blank" class="main-action-bright tertiary" href=<?= asset('logo/SVG/vetcamp-full-white.svg') ?>>
+                <a download target="_blank" class="main-action-bright tertiary" href=<?= asset('logo/SVG/vetcamp-full-black.svg') ?>>
                     <i class="las la-download"></i> Descargar logotipo en negativo (SVG)
                 </a>
             </div>
 
             <div class="logo-square bright-logo-square">
                 <img src="/<?= asset('logo/SVG/vetcamp-icon-white.svg') ?>" alt="">
-                <a download target="_blank" class="main-action-bright quaternary" href=<?= asset('logo/SVG/vetcamp-full-white.svg') ?>>
+                <a download target="_blank" class="main-action-bright quaternary" href=<?= asset('logo/SVG/vetcamp-icon-white.svg') ?>>
                     <i class="las la-download"></i> Descargar isotipo en positivo (SVG)
                 </a>
             </div>
             <div class="logo-square dark-logo-square">
                 <img src="/<?= asset('logo/SVG/vetcamp-icon-black.svg') ?>" alt="">
-                <a download target="_blank" class="main-action-bright tertiary" href=<?= asset('logo/SVG/vetcamp-full-white.svg') ?>>
+                <a download target="_blank" class="main-action-bright tertiary" href=<?= asset('logo/SVG/vetcamp-icon-black.svg') ?>>
                     <i class="las la-download"></i> Descargar isotipo en negativo (SVG)
                 </a>
             </div>
