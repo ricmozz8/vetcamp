@@ -45,12 +45,12 @@ require __DIR__ . '/partials/header.php'; ?>
                         <p><?= Auth::user()->first_name . ' ' . Auth::user()->last_name ?></p>
                     </div>
                     <div class="form-print-data">
-                        <h4>Edad</h4>
-                        <p><?= Auth::user()->get_age() ?></p>
+                        <h4>Tamaño de ropa</h4>
+                        <p><?= Auth::user()->application()->shirt_size ?></p>
                     </div>
                     <div class="form-print-data">
                         <h4>Fecha de Nacimiento</h4>
-                        <p><?= get_date_spanish(Auth::user()->birthdate) ?></p>
+                        <p><?= get_date_spanish(Auth::user()->birthdate) ?> (<?= Auth::user()->get_age() ?> años)</p>
                     </div>
                     <div class="form-print-data">
                         <h4>Teléfono residencial o celular</h4>
