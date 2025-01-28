@@ -208,6 +208,8 @@
    
 }
 
+
+
 .subtext{
     font-size: 0.8em;
     color: rgb(122, 122, 122);
@@ -268,4 +270,11 @@
     }
 
     
+}
+
+
+@media print {
+    .noprint{
+        display: none;
+    }
 }
