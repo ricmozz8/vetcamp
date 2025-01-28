@@ -11,7 +11,7 @@ require __DIR__ . '/partials/header.php'; ?>
         <img src="/<?= asset('img/logogrid_image.png') ?>" alt="Construcción del logotipo de vetcamp">
     </div>
     <div class="blog-content">
-        <p style="font-size: 12px; color: gray">27 enero 2025 2:00:00 PM</p>
+        <p style="font-size: 12px; color: gray">27 enero 2025 2:00:00 PM | Equipo de rediseño y desarrollo</p>
         <h1>Vetcamp vuelve mejor que nunca</h1>
         <p>Con una nueva plataforma y una nueva identidad visual más moderna y reconocible, adaptándose a los nuevos tiempos y a las redes sociales.</p>
         <div class="section-image-blog">
@@ -35,7 +35,13 @@ require __DIR__ . '/partials/header.php'; ?>
             <img src="/<?= asset('img/iphone-14-case-mockup.png') ?>" alt="Construcción del logotipo de vetcamp">
         </div>
         <div class="section-image-blog">
-            <img src="/<?= asset('img/sizeshow.png') ?>" alt="Construcción del logotipo de vetcamp">
+            <img src="/<?= asset('img/sizeshow.png') ?>" alt="Versatilidad y adaptabilidad a los tamaños">
+        </div>
+        <div class="section-image-blog">
+            <img src="/<?= asset('img/vetcamp-versatility.gif') ?>" alt="El logotipo es adaptable a cualquier paleta de colores">
+        </div>
+        <div class="section-image-blog">
+            <img src="/<?= asset('img/10YCeleb.png') ?>" alt="Vetcamp celebra los 10 años">
         </div>
         <div class="section-image-blog">
             <img src="/<?= asset('img/grid_logo.png') ?>" alt="Construcción del logotipo de vetcamp">
