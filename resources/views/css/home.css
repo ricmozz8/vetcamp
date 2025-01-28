@@ -612,7 +612,6 @@ footer .university-logo {
     text-align: left;
     display: flex;
     align-items: flex-start;
-    gap: 195px;
     flex-direction: column;
   }
 
