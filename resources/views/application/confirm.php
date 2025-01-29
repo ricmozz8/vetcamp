@@ -89,7 +89,7 @@ require __DIR__ . '../../partials/header.php';
                 <div class="grid-group">
                     <h3>Campamento</h3>
                     <div class="form-group">
-                        <label for="postal">Sesión preferida</label>
+                        <label for="session">Sesión preferida</label>
                         <?php if (Auth::user()->application()) {
                             $session = Auth::user()->application()->preferred_session(true);
                         } else {
@@ -97,6 +97,21 @@ require __DIR__ . '../../partials/header.php';
                         } ?>
 
                         <p><?= $session ?>
+
+
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="session">Tamaño de camisa</label>
+                        <?php if (Auth::user()->application()) {
+                            $size = Auth::user()->application()->shirt_size;
+                        } else {
+                            $size = '';
+                        } ?>
+
+                        <p><?= $size ?>
+
 
                         </p>
                     </div>
@@ -130,7 +145,7 @@ require __DIR__ . '../../partials/header.php';
                             Ensayo en video
                         </p>
                         <p for="file-submitted">
-                        <?php if ($application->url_written_essay !== null && $application->url_written_essay !== '') { ?>
+                            <?php if ($application->url_written_essay !== null && $application->url_written_essay !== '') { ?>
                                 <i style="color: lightgreen;" class="las la-check"></i>
                             <?php } else { ?>
                                 <i style="color:red;" class="las la-times"></i>
@@ -138,7 +153,7 @@ require __DIR__ . '../../partials/header.php';
                             Ensayo escrito
                         </p>
                         <p for="file-submitted">
-                        <?php if ($application->url_authorization_letter !== null && $application->url_authorization_letter !== '') { ?>
+                            <?php if ($application->url_authorization_letter !== null && $application->url_authorization_letter !== '') { ?>
                                 <i style="color: lightgreen;" class="las la-check"></i>
                             <?php } else { ?>
                                 <i style="color:red;" class="las la-times"></i>
@@ -146,7 +161,7 @@ require __DIR__ . '../../partials/header.php';
                             Carta de autorización
                         </p>
                         <p for="file-submitted">
-                        <?php if ($application->url_picture !== null && $application->url_picture !== '') { ?>
+                            <?php if ($application->url_picture !== null && $application->url_picture !== '') { ?>
                                 <i style="color: lightgreen;" class="las la-check"></i>
                             <?php } else { ?>
                                 <i style="color:red;" class="las la-times"></i>
