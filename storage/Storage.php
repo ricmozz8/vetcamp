@@ -39,13 +39,20 @@ class Storage
      */
     public static function store($disk, $path, $contents)
     {
+        // path of the file
         $file_path = 'storage/' . $disk . '/' . $path;
+
+        // check if the folder exists if not, create it
+
         if (!file_exists(dirname($file_path))) {
             mkdir(dirname($file_path), 0777, true);
         } else {
             // the directory already exists, thus we replace with the current one
             unlink($file_path);
         }
+
+        // finally, store the file
+
         file_put_contents($file_path, $contents);
     }
 
