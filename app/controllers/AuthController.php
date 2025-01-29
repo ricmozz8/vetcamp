@@ -279,7 +279,7 @@ class AuthController extends Controller
 
             render_view('resetPassword', ['reset_email' => $user->email], 'Restablecer contraseña');
         } else {
-            render_view('forgotpass', [], 'Restablecer contraseña');
+            render_view('forgotPass', [], 'Restablecer contraseña');
         }
     }
 
