@@ -58,7 +58,9 @@ require __DIR__ . '../../partials/header.php';
 
                     <div class="form-group">
                         <label for="shirtsize">Tamaño de camisa</label>
-                        <?php require_once __DIR__ . '../../partials/clothingSelector.php' ?>
+                        <?php 
+                        $shirt_size = isset($application) ? $application->shirt_size : '';  
+                        require_once __DIR__ . '../../partials/clothingSelector.php' ?>
                     </div>
 
                     
