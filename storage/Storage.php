@@ -44,7 +44,7 @@ class Storage
 
         // check if the folder exists if not, create it
 
-        if (!file_exists(dirname($file_path))) {
+        if (!file_exists(dirname($file_path)) && !is_dir(dirname($file_path))) {
             mkdir(dirname($file_path), 0777, true);
         } else {
             // the directory already exists, thus we replace with the current one

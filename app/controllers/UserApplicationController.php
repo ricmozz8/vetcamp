@@ -342,7 +342,7 @@ class UserApplicationController extends Controller
                     'transcript' => ['type' => ['application/pdf'], 'size' => to_byte_size('2MB'), 'required' => false],
                     'written_essay' => ['type' => ['application/pdf'], 'size' => to_byte_size('2MB'), 'required' => false],
                     'picture' => ['type' => ['image/jpeg', 'image/png', 'image/jpg'], 'size' => to_byte_size('2MB'), 'required' => false],
-                    'video_essay' => ['type' => ['video/mp4'], 'size' => to_byte_size('2MB'), 'required' => false],
+                    'video_essay' => ['type' => ['video/mp4'], 'size' => to_byte_size('4MB'), 'required' => false],
                     'authorization_letter' => ['type' => ['application/pdf'], 'size' => to_byte_size('2MB'), 'required' => false],
                 ]);
 
