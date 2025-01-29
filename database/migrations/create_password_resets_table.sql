@@ -3,7 +3,7 @@
 --
 
 CREATE TABLE `password_resets` (
-  `id` int NOT NULL,
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `OTP` text NOT NULL,
   `reset_token` text NOT NULL,

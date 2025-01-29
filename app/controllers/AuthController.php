@@ -184,14 +184,14 @@ class AuthController extends Controller
             // Convert TTL from days to seconds
             $ttlInSeconds = $ttlInDays * 86400; // 86400 seconds in a day
 
-            $now = new DateTime('now', new DateTimeZone('UTC'));
-            $madeOn = new DateTime($reset_request->created_at, new DateTimeZone('UTC'));
+            $now = new DateTime('now');
+            $madeOn = new DateTime($reset_request->made_on);
 
             // Check if the reset request has expired
-            if ($now->getTimestamp() - $madeOn->getTimestamp() > $ttlInSeconds) {
-                $_SESSION['error'] = "Código de restablecimiento inválido."; // Invalid reset code message
+            if (($now->getTimestamp() - $madeOn->getTimestamp()) > $ttlInSeconds) {
+                $_SESSION['error'] = "Código de restablecimiento ha expirado.";
                 $reset_request->update(['valid' => 0]);
-                redirect('/forgotpass'); // Redirect to the forgot password page
+                redirect('/forgotpass');
             }
 
             // invalidate the current reset request
