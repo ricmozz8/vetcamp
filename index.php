@@ -1,10 +1,11 @@
 <?php
-// DEBUG ONLY ---
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
-// DEBUG ONLY ---
+// setting upload max size to 25MB
+ini_set('upload_max_filesize', '25M');
+ini_set('post_max_size', '25M');
+ini_set('max_execution_time', 50000);
+
+
 
 /**
  * 
@@ -14,12 +15,23 @@ error_reporting(E_ALL);
  * and start the application.
  */
 
+
+
 // GLOBAL IMPORTS AVAILABLE ON ALL FILES
 require 'app/helpers/helpers.php';
 require 'bootstrap/exceptions.php';
 require 'kernel/auth.php';
 require 'mailing/mailer.php';
 require 'storage/Storage.php';
+
+
+// 8388608 is 8MB, we are setting the maximum POST size to 8MB
+// 11379602 is 10MB
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST) && $_SERVER['CONTENT_LENGTH'] > 8388608) {
+    die('Request too large');
+
+}
+
 
 session_start();
 

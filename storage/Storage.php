@@ -45,7 +45,6 @@ class Storage
         } else {
             // the directory already exists, thus we replace with the current one
             unlink($file_path);
-            mkdir(dirname($file_path), 0777, true);
         }
         file_put_contents($file_path, $contents);
     }

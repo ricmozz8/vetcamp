@@ -379,6 +379,7 @@ function validate_documents(array $documents, array $rules)
     // for each document
     $documentNameBag = [];
     $validDocuments = [];
+    $invalidDocuments = [];
 
     foreach ($documents as $key => $document) {
 
@@ -433,15 +434,13 @@ function validate_documents(array $documents, array $rules)
             return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $key . ' es obligatorio '];
         }
 
-
-
         if (isset($rules['type']) && !in_array($document['type'], $rules['type'])) {
             $required_types = str_replace(['image/', 'video/', 'application/'], '', implode(', ', $rules['type']));
 
             return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $document['name'] . ' debe ser de tipo ' . $required_types];
         }
 
-        $sizeToMB = $rules['size'] / 1024 / 1024 . 'MB';
+        $sizeToMB = sizeToMB($rules['size']);
 
         if ($rules['size'] && $document['size'] > $rules['size']) {
             return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $key . ' debe ser menor a ' . $sizeToMB];
@@ -490,4 +489,10 @@ function to_byte_size($megabytes){
 
     $megabytes = str_replace('MB', '', $megabytes);
     return $megabytes * 1024 * 1024;
+}
+
+
+function sizeToMB($size)
+{
+    return number_format($size / (1024 * 1024), 2) . ' MB';
 }
