@@ -1,9 +1,9 @@
 <?php
 
 // setting upload max size to 25MB
-ini_set('upload_max_filesize', '25M');
-ini_set('post_max_size', '25M');
-ini_set('max_execution_time', 50000);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 
 
