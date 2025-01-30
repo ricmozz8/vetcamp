@@ -25,12 +25,7 @@ require 'mailing/mailer.php';
 require 'storage/Storage.php';
 
 
-// 8388608 is 8MB, we are setting the maximum POST size to 8MB
-// 11379602 is 10MB
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST) && $_SERVER['CONTENT_LENGTH'] > 8388608) {
-    die('Request too large');
 
-}
 
 
 session_start();

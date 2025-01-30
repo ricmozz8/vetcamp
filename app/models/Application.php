@@ -109,7 +109,15 @@ class Application extends Model
 
         foreach ($this->getSubmittedDocuments() as $key => $value) {
             // getting the file 
-            $file = Storage::get_metadata('private', $value);
+            try {
+                $file = Storage::get_metadata('private', $value);
+            } catch (FileNotFoundException $e) {
+                // remove the path from the Model
+                $this->update([
+                    $key => null
+                ]);
+                continue;
+            }
 
 
             $document_array[$key] = [

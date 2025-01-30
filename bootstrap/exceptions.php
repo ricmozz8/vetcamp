@@ -44,6 +44,14 @@ class DatabaseQueryException extends Exception
     }
 }
 
+class FileNotFoundException extends Exception
+{
+    public function __construct($message = "", $code = 0, Throwable $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
+}
+
 // handling exceptions and adding a style
 function exceptionHandler( $exception) {
 

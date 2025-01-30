@@ -89,7 +89,7 @@ class Storage
      *               - type: The mime type of the file.
      *               - contents: The contents of the file.
      *
-     * @return false If the file does not exist or is not readable.
+     * @throws FileNotFoundException If the file is not found.
      */
     public static function get_metadata($disk, $path)
     {
@@ -102,7 +102,7 @@ class Storage
                 'contents' => file_get_contents($file_path)
             ];
         }
-        return false;
+        throw new FileNotFoundException('File with path "' . $file_path . '" ' . 'not found.');
     }
 
     /**
