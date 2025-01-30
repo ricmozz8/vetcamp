@@ -57,7 +57,9 @@
 
 <!-- BETA WARNING (REMOVE ON 1.0 DEPLOY) -->
 <div class="lower-disclaimer">
-    <i class="las la-info noprint"></i>
+    <div class="minicon">
+        <img src="/<?= asset("logo/SVG/vetcamp-icon-yellow.svg") ?>" alt="vet-icon">
+    </div>
     <p class="noprint">
         Vetcamp se encuentra en desarrollo.
         Puede ayudarnos a

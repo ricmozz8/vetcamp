@@ -180,6 +180,7 @@ h6 {
   align-items: center; 
   gap: 10px; 
   padding: 10px; 
+  font-size: 0.75em;
   position: fixed; 
   width: 100%; 
   bottom: 0; 
@@ -187,6 +188,10 @@ h6 {
   background-color: var(--secondary-color-default); 
   color: white; 
   z-index: 100;
+}
+
+.minicon{
+  width: 15px;
 }
 
 form *> {
