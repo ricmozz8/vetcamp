@@ -90,6 +90,12 @@ if ($hour >= 5 && $hour < 12) {
                     <div class="recent-list">
                         <?php
                         foreach ($recent_applications as $application) {
+
+                            if ($application->application()->isComplete() == false) {
+                                continue;
+                            }
+
+
                             // Get the full name
                             $full_name = htmlspecialchars($application->first_name . ' ' . $application->last_name . ' ');
                             $pictureObj = $application->application()->getProfilePicture();

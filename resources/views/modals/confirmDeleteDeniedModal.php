@@ -15,7 +15,6 @@
     <!-- Form to delete rejected requests -->
     <form action="/admin/delete/rejected/requests" method="POST">
         <!-- CSRF Token -->
-    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>" />
 
 
     <!-- Buttons area -->

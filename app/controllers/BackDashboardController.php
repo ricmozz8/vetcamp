@@ -47,7 +47,7 @@ class BackDashboardController extends Controller
 
         // excluding unsubmitted applications
         $recent_applications = array_filter($recent_applications, function($user) {
-            return $user->application()->status != 'Sin subir';
+            return $user->application()->isComplete();
         });
 
         render_view('backDashboard', [

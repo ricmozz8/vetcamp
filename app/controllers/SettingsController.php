@@ -110,14 +110,14 @@ class SettingsController extends Controller
             if ($delete_session_id) {
                 try {
                     $session = Session::find((int)$delete_session_id);
-    
+
                     if ($session) {
                         $session->delete(); // Call the new delete method
                     }
                 } catch (ModelNotFoundException $e) {
                     $_SESSION['error'] = "No se puede eliminar un record no existente";
                 }
-    
+
                 // Redirect back to the sessions page after deleting
                 redirect('/admin/settings');
             }
@@ -174,7 +174,7 @@ class SettingsController extends Controller
         }
         redirect('/admin/settings');
     }
-    
+
     /**
      * Creates a new admin user in the database using the data provided in the POST request.
      * If the request method is not POST, it redirects to the settings page with an error message.
@@ -185,16 +185,17 @@ class SettingsController extends Controller
      *
      * @return void
      */
-    public static function createAdmin($request_method) {
+    public static function createAdmin($request_method)
+    {
         if ($request_method == 'POST') {
 
             // Check if the password and confirm password fields match
-            if($_POST['password'] !== $_POST['password_confirmation']){
+            if ($_POST['password'] !== $_POST['password_confirmation']) {
                 $_SESSION['error'] = 'Las contraseñas no coinciden';
                 redirect('/admin/settings');
             }
 
-            if(User::exists(['email' => $_POST['email']])){
+            if (User::exists(['email' => $_POST['email']])) {
                 $_SESSION['error'] = 'El correo ya existe';
                 redirect('/admin/settings');
             }
@@ -207,20 +208,20 @@ class SettingsController extends Controller
                 'type' => 'admin',
             ]);
 
-            if ($user) {                
+            if ($user) {
                 $_SESSION['message'] = 'Se ha creado el administrador exitosamente';
                 redirect('/admin/settings');
             } else {
                 $_SESSION['error'] = 'Error al crear el administrador';
                 redirect('/admin/settings');
             }
-        } 
+        }
         // disallow other request methods only post will be valid
         $_SESSION['error'] = 'Página no encontrada';
         redirect('/admin/settings');
     }
 
-    
+
     /**
      * Deletes all denied user requests and the users themselves.
      *
@@ -234,87 +235,89 @@ class SettingsController extends Controller
      * @return void
      */
     public static function deleteRejectedRequests($request_method)
-{
-    if ($request_method !== 'POST') {
-        $_SESSION['error'] = 'Método no permitido.';
+    {
+        if ($request_method !== 'POST') {
+            $_SESSION['error'] = 'Método no permitido.';
+            redirect('/admin/settings');
+        }
+
+        if (!Auth::check() || Auth::user()->type !== 'admin') {
+            $_SESSION['error'] = 'Acceso no autorizado.';
+            redirect('/login');
+        }
+
+        try {
+            // Llama a la función en el modelo Application
+            $deletedUsers = Application::UserisDeniedDeletion();
+            $users = User::allApplicants();
+
+
+            if (!empty($deletedUsers)) {
+                $_SESSION['message'] = count($deletedUsers) . ' solicitudes denegadas eliminadas exitosamente.';
+            } else {
+                $_SESSION['message'] = 'No se encontraron solicitudes denegadas para eliminar.';
+            }
+        } catch (Exception $e) {
+            $_SESSION['error'] = 'Ocurrió un error al eliminar solicitudes denegadas: ' . $e->getMessage();
+        } finally {
+
+            if (empty($users)) {
+                $_SESSION['message'] = 'No se encontraron solicitudes para eliminar.';
+            }
+        }
+
         redirect('/admin/settings');
     }
 
-    if (!Auth::check() || Auth::user()->type !== 'admin') {
-        $_SESSION['error'] = 'Acceso no autorizado.';
-        redirect('/login');
-    }
+    public static function deleteAllRequests($request_method)
 
-    try {
-        // Llama a la función en el modelo Application
-        $deletedUsers = Application::UserisDeniedDeletion();
-        $users = User::allApplicants();
-
-
-        if (!empty($deletedUsers)) {
-            $_SESSION['message'] = count($deletedUsers) . ' solicitudes denegadas eliminadas exitosamente.';
-        } else {
-            $_SESSION['message'] = 'No se encontraron solicitudes denegadas para eliminar.';
+    {
+        if ($request_method !== 'POST') {
+            $_SESSION['error'] = 'Método no permitido.';
+            redirect('/admin/settings');
         }
-    } catch (Exception $e) {
-        $_SESSION['error'] = 'Ocurrió un error al eliminar solicitudes denegadas: ' . $e->getMessage();
-    } finally {
-
-        if (empty($users)) {
-            $_SESSION['message'] = 'No se encontraron solicitudes para eliminar.';
+        if (!Auth::check() || Auth::user()->type !== 'admin') {
+            $_SESSION['error'] = 'Acceso no autorizado.';
+            redirect('/login');
         }
-    }
 
-    redirect('/admin/settings');
-}
+        try {
+            // Llama a la función en el modelo Application
+            $deletedUsers = Application::DeletionOfAllApplications();
 
-public static function deleteAllRequests($request_method)
+            if (!empty($deletedUsers)) {
+                $_SESSION['message'] = count($deletedUsers) . ' solicitudes eliminadas exitosamente.';
+            } else {
+                $_SESSION['message'] = 'No se encontraron solicitudes para eliminar.';
+            }
+        } catch (Exception $e) {
+            $_SESSION['error'] = 'Ocurrió un error al eliminar solicitudes: ' . $e->getMessage();
+        }
 
-{
-    if ($request_method !== 'POST') 
-   {
-        $_SESSION['error'] = 'Método no permitido.';
         redirect('/admin/settings');
     }
-    if (!Auth::check() || Auth::user()->type !== 'admin') 
-    {
-        $_SESSION['error'] = 'Acceso no autorizado.';
-        redirect('/login');
-    }
 
-    try
+    public static function deleteUser($request)
     {
-        // Llama a la función en el modelo Application
-        $deletedUsers = Application::DeletionOfAllApplications();
+        if ($request !== 'POST') {
 
-        if (!empty($deletedUsers)) 
-        {
-            $_SESSION['message'] = count($deletedUsers) . ' solicitudes eliminadas exitosamente.';
-        } 
-        else 
-        {
-            $_SESSION['message'] = 'No se encontraron solicitudes para eliminar.';
+            $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
+
+            try {
+                $user = User::find($user_id);
+            } catch (ModelNotFoundException $notFound) {
+                $_SESSION['error'] = 'El usuario no existe.';
+                redirect('/admin/settings');
+            }
+
+            $user->delete();
+            $_SESSION['message'] = 'El usuario ha sido eliminado exitosamente.';
+            redirect('/admin/settings');
+            
         }
-    } 
-    catch (Exception $e) 
-    {
-        $_SESSION['error'] = 'Ocurrió un error al eliminar solicitudes: ' . $e->getMessage();
+        if (!Auth::check() || Auth::user()->type !== 'admin') {
+            $_SESSION['error'] = 'Acceso no autorizado.';
+            redirect('/login');
+        }
     }
-
-    redirect('/admin/settings');
- }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-    
-

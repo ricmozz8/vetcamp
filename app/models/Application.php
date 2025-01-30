@@ -214,7 +214,7 @@ class Application extends Model
      * 
      * @return array An array of user IDs of the users whose requests were deleted.
      */
-    public function UserisDeniedDeletion()
+    public static function UserisDeniedDeletion()
     {
         $users = User::allApplicants();
         $deletedApplications = [];
@@ -239,7 +239,7 @@ class Application extends Model
      * 
      * @return array An array of user IDs of the users whose requests were deleted.
      */
-    public function DeletionOfAllApplications()
+    public static function DeletionOfAllApplications()
     {
         $users = User::allApplicants();
         $deletedApplications = [];

@@ -51,6 +51,7 @@ $statusParsing = [
                             <th>Estado</th>
                             <th>Fecha</th>
                             <th></th>
+                            <th></th>
 
                         </tr>
                     </thead>
@@ -75,6 +76,7 @@ $statusParsing = [
                             echo "<td class='status-badge'>" . '<i class="las la-dot-circle" style="color: ' . $statusColor . '" > </i>'  . htmlspecialchars($status) . "</td>";
                             echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
                             echo '<td>' . '<a id="manage-user-button" href="#" onclick="openContextMenu(event, \'manage-user\')" class="w-fit main-action-bright quaternary-squared">' . '<i class="las la-ellipsis-v"></i>' . '</a>' . '</td>';
+                            echo '<td>' . '<a class="main-action-bright no-deco-action" href="#' . '" class="review-link"> <> borrar</a>' . "</td>";
                             echo "</tr>";
                         }
                         ?>
