@@ -10,11 +10,11 @@ class TrackingController extends Controller
           if ($request_method === 'POST') {
               // Sanitize and validate input
               $applicationId = filter_input(INPUT_POST, 'application_id', FILTER_VALIDATE_INT);
-              $decision = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_STRING);
+              $decision = filter_input(INPUT_POST, 'status', FILTER_DEFAULT);
               
               // Validate required data
               if (!$applicationId || !$decision || !array_key_exists($decision, Application::$statusParsings)) {
-                  $_SESSION['error_message'] = "Datos inválidos o incompletos.";
+                  $_SESSION['error'] = "Datos inválidos o incompletos.";
                   redirect('/admin/requests');
                   return;
               }
@@ -25,7 +25,7 @@ class TrackingController extends Controller
                   $userId = $user->__get('user_id') ?? null;
       
                   if (!$userId) {
-                      $_SESSION['error_message'] = "Usuario no autenticado.";
+                      $_SESSION['error'] = "Usuario no autenticado.";
                       redirect('/admin/requests');
                       return;
                   }
@@ -43,15 +43,15 @@ class TrackingController extends Controller
                   $_SESSION['message'] = 'Se ha cambiado el estado de la solicitud exitosamente';
                   redirect("/admin/requests/r?id=$userId");
               } catch (ModelNotFoundException $e) {
-                  $_SESSION['error_message'] = "No se encontró la solicitud con el ID proporcionado.";
+                  $_SESSION['error'] = "No se encontró la solicitud con el ID proporcionado.";
                   redirect('/admin/requests');
               } catch (Exception $e) {
-                  $_SESSION['error_message'] = "Error al registrar el seguimiento: " . $e->getMessage();
+                  $_SESSION['error'] = "Error al registrar el seguimiento: " . $e->getMessage();
                   redirect('/admin/requests');
               }
           } else {
               http_response_code(405);
-              $_SESSION['error_message'] = "Método de solicitud no permitido.";
+              $_SESSION['error'] = "Método de solicitud no permitido.";
               redirect('/admin/requests');
           }
       }

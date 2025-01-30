@@ -1,0 +1,1 @@
+ALTER TABLE `evaluated_by` ADD `decision` TEXT NOT NULL AFTER `user_id`; 
