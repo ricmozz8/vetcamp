@@ -9,7 +9,7 @@ require __DIR__ . '../../partials/header.php';
 
 
     <div class="application_header">
-        <h1 class="">Vetcamp Verano <?php echo date('Y'); ?></h1>
+        <h1 class="">Solicitud</h1>
         <a href="/apply/application/contact" class="main-action-bright"><i class="las la-arrow-left"></i>Atrás</a>
     </div>
 
