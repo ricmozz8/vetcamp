@@ -63,6 +63,6 @@
     <p class="noprint">
         Vetcamp se encuentra en desarrollo,
     </p>
-    <a target="_blank" style="color: white;" class=" no-deco-action" href="https://forms.gle/vh4v4ryUXCHvAVos8">reporta un bug <i style="color: white;" class="las la-external-link-alt"></i></a>
+    <a target="_blank" style="color: white;" class=" no-deco-action" href="https://forms.gle/vh4v4ryUXCHvAVos8">déjanos saber <i style="color: white;" class="las la-external-link-alt"></i></a>
     <p>si presentas algún error con la web.</p>
 </div>
