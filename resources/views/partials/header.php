@@ -57,6 +57,11 @@
 
 <!-- BETA WARNING (REMOVE ON 1.0 DEPLOY) -->
 <div class="lower-disclaimer">
-    <i class="las la-info noprint"></i> 
-    <p class="noprint">La plataforma se encuentra en fase BETA, por lo que se podrían presentar errores...</p>
+    <i class="las la-info noprint"></i>
+    <p class="noprint">
+        Vetcamp se encuentra en desarrollo.
+        Puede ayudarnos a
+    </p>
+    <a target="_blank" style="color: white;" class=" no-deco-action" href="https://forms.gle/vh4v4ryUXCHvAVos8">reportar problemas <i style="color: white;" class="las la-external-link-alt"></i></a>
+    <p>si le surge alguno.</p>
 </div>
