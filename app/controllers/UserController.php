@@ -88,6 +88,9 @@ class UserController extends Controller{
 
     public static function new()
     {
+
+        // how to create a new user with model:
+
         // $newUser =User::create([
         //     'email' => 'KZGZM@example.com',
         //     'password' => password_hash('password', PASSWORD_DEFAULT),
@@ -100,5 +103,15 @@ class UserController extends Controller{
         echo json_encode($newUser);
 
     }
-    
+
+    public static function delete()
+    {
+        $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
+        $user = User::find($user_id);
+
+        // deleting associated data
+        
+        $user->delete();
+        redirect('/admin');
+    }
 }
