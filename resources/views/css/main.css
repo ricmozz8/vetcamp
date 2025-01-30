@@ -175,11 +175,35 @@ h6 {
   font-weight: var(--font-weight-bold);
 }
 
+.lower-disclaimer {
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  padding: 10px; 
+  position: fixed; 
+  width: 100%; 
+  bottom: 0; 
+  text-align: center; 
+  background-color: var(--secondary-color-default); 
+  color: white; 
+  z-index: 100;
+}
+
 form *> {
   margin: 1em 0;
 }
 
 /* media queries */
+
+@media print{
+  .no-print{
+    display: none;
+  }
+
+  .lower-disclaimer{
+    display: none;
+  }
+}
 
 /* Tablet */
 

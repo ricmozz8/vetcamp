@@ -56,7 +56,7 @@
 } ?>
 
 <!-- BETA WARNING (REMOVE ON 1.0 DEPLOY) -->
-<div class="noprint" style="display: flex; align-items: center; gap: 10px; padding: 10px; position: fixed; width: 100%; bottom: 0; text-align: center; background-color: var(--secondary-color-default); color: white; z-index: 100;">
+<div class="lower-disclaimer">
     <i class="las la-info noprint"></i> 
     <p class="noprint">La plataforma se encuentra en fase BETA, por lo que se podrían presentar errores...</p>
 </div>
