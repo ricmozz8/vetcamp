@@ -39,12 +39,12 @@ class Mailer{
         self::$username = get_config('mailing', 'username', '');
         self::$password = get_config('mailing', 'password', '');
 
-        // Configure the mailer service
-        ini_set('smtp', self::$mailer);
-        ini_set('smtp_host', self::$host);
-        ini_set('smtp_port', self::$port);
-        ini_set('smtp_username', self::$username);
-        ini_set('smtp_password', self::$password);
+        // // Configure the mailer service
+        // ini_set('smtp', self::$mailer);
+        // ini_set('smtp_host', self::$host);
+        // ini_set('smtp_port', self::$port);
+        // ini_set('smtp_username', self::$username);
+        // ini_set('smtp_password', self::$password);
 
 
 
