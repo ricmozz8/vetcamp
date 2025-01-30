@@ -34,22 +34,16 @@ if ($application && $application->isSubmitted()) {
 
             </div>
 
-            <p>Campamento de verano para estudiantes de escuela
+            <p class="application-card-copy">Campamento de verano para estudiantes de escuela
                 superior interesados en la tecnología veterinaria.
                 Se llevará a cabo bajo 4 sesiones de 14 estudiantes.
             </p>
 
-            <?php if ($can_apply) : ?>
-                <div class="status-actions">
-                    <a href="/apply/application" class="main-action-bright tertiary" type="submit">
-                        <?php echo $status == 'Sin llenar' ? 'Llenar Solicitud' : 'Editar Solicitud'; ?>
-                    </a>
-                </div>
-            <?php else : ?>
-                <div class="status-actions">
-                    <p>Las solicitudes están cerradas temporalmente</p>
-                </div>
-            <?php endif; ?>
+            <div class="status-actions-centered">
+                <a  href="/apply/application" class="main-action-bright tertiary <?php echo !$can_apply ? 'disabled' : ''; ?> " type="submit">
+                    <?php echo $can_apply ? ($status == 'Sin llenar' ? 'Llenar Solicitud' : 'Editar Solicitud') : 'Las solicitudes están cerradas temporalmente'; ?>
+                </a>
+            </div>
         </div>
 
 

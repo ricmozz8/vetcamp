@@ -204,6 +204,10 @@ h6 {
 
 }
 
+.disabled{
+  pointer-events: none ! important;
+}
+
 
 
 input[type="date"]::-webkit-calendar-picker-indicator {

@@ -59,6 +59,15 @@
 .application-card-head{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 1em 0;
+}
+
+.application-card-copy{
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
 }
 .status-info{
     display: flex;
@@ -79,6 +88,11 @@
 
 .status-actions{
     margin-top: 1em;
+}
+
+.status-actions-centered{
+    margin: 1em auto;
+    width: fit-content;
 }
 
 .profile-link
