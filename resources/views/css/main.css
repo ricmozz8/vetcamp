@@ -178,24 +178,60 @@ h6 {
 .lower-disclaimer {
   display: flex; 
   align-items: center; 
+  justify-content: center; 
   gap: 10px; 
   padding: 10px; 
   font-size: 0.75em;
   position: fixed; 
   width: 100%; 
   bottom: 0; 
-  text-align: center; 
   background-color: var(--secondary-color-default); 
   color: white; 
   z-index: 100;
+  animation: slideUp .3s ease;
+  
 }
+
+.lower-disclaimer p, .lower-disclaimer a{
+  animation: slideUp 1s ease;
+}
+
+
 
 .minicon{
   width: 15px;
+  animation: slideUp 0.5s ease;
+
+}
+
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
 }
 
 form *> {
   margin: 1em 0;
+}
+
+
+/* animation */
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+    filter: grayscale(1);
+  }
+  10% {
+    opacity: 1;
+    
+  
+  }
+  100% {
+    transform: translateY(0);
+    filter: grayscale(0); 
+  }
 }
 
 /* media queries */
