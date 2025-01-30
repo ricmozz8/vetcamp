@@ -18,7 +18,3 @@ RewriteRule ^(.*)$ index.php
     Order Allow,Deny
     Deny from all
 </Files>
-
-
-php_value upload_max_filesize 35M
-php_value post_max_size 40M
