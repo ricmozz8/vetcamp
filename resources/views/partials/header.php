@@ -59,6 +59,7 @@
 <div class="lower-disclaimer">
     <div class="minicon">
         <img src="/<?= asset("logo/SVG/vetcamp-icon-yellow.svg") ?>" alt="vet-icon">
+        <p class="alert-text">!</p>
     </div>
     <p class="noprint">
         Vetcamp se encuentra en desarrollo,

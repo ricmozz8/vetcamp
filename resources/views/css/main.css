@@ -207,13 +207,28 @@ h6 {
 .lower-disclaimer:hover{
   border-radius: 20px;
   padding: 25px 15px;
+
+  .minicon .alert-text{
+    display: block;
+  }
 }
 
 
 .minicon{
   width: 15px;
   animation: slideUp 0.5s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 5px;
 
+
+}
+
+.minicon .alert-text{
+  font-size: 1.3em;
+  display: none;
+  font-weight: bold;
 }
 
 .disabled{
