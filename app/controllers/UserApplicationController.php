@@ -36,23 +36,23 @@ class UserApplicationController extends Controller
             redirect('/admin');
         }
 
-        if(Auth::user()->application() == null){
+        if (Auth::user()->application() == null) {
             redirect('/apply/application/basic_info');
         }
 
-        if(Auth::user()->postal_address() == null){
+        if (Auth::user()->postal_address() == null) {
             redirect('/apply/application/basic_info');
         }
 
-        if(Auth::user()->physical_address() == null){
+        if (Auth::user()->physical_address() == null) {
             redirect('/apply/application/basic_info');
         }
 
-        if(Auth::user()->school_address() == null){
+        if (Auth::user()->school_address() == null) {
             redirect('/apply/application/basic_info');
         }
 
-        if(Auth::user()->application()->shirt_size === null){
+        if (Auth::user()->application()->shirt_size === null) {
             redirect('/apply/application/basic_info');
         }
 
@@ -121,11 +121,11 @@ class UserApplicationController extends Controller
                 $_SESSION['error'] = 'Por favor complete todos los campos';
                 redirect('/apply/application/basic_info');
             }
-            
+
 
             Auth::user()->update([
                 'birthdate' => $birthdate,
- 
+
             ]);
 
             $section = filter_input(INPUT_POST, 'section', FILTER_DEFAULT);
@@ -320,7 +320,11 @@ class UserApplicationController extends Controller
 
         if ($method === 'POST') {
 
-            if($_SERVER['CONTENT_LENGTH'] > to_byte_size('100MB')) {
+            // dd($_FILES);
+
+
+
+            if ($_SERVER['CONTENT_LENGTH'] > to_byte_size('100MB')) {
                 $_SESSION['error'] = 'El archivo es demasiado grande';
                 redirect_back();
             }
@@ -333,6 +337,7 @@ class UserApplicationController extends Controller
                 'picture' => $_FILES['picture'],
                 'video_essay' => $_FILES['video_essay'],
                 'authorization_letter' => $_FILES['authorization'],
+                'recommendation_letter' => $_FILES['recommendation'],
             ]; // important that these names are the same as the ones in the view and the database (Without the `url_`)
 
 
@@ -347,9 +352,10 @@ class UserApplicationController extends Controller
                     'picture' => ['type' => ['image/jpeg', 'image/png', 'image/jpg'], 'size' => to_byte_size('10MB'), 'required' => false],
                     'video_essay' => ['type' => ['video/mp4'], 'size' => to_byte_size('10MB'), 'required' => false],
                     'authorization_letter' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false],
+                    'recommendation_letter' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false]
                 ]);
 
-
+            
 
             // if the user has not uploaded any documents
             if (!$application->isComplete() && $valid['result'] === DOCUMENTS_OK && empty($valid['validated'])) {
@@ -362,6 +368,8 @@ class UserApplicationController extends Controller
                 $_SESSION['error'] = $valid['message'];
                 redirect('/apply/application/documents');
             }
+
+            
 
 
             // saving the documents
@@ -379,6 +387,8 @@ class UserApplicationController extends Controller
                     "url_{$key}" => $destination
                 ]);
             }
+
+            
 
             // refresh the user with the new information on the database
             Auth::refresh();

@@ -401,8 +401,10 @@ function validate_documents(array $documents, array $rules)
 
         // validating the files using the _FILES superarray
         // Validating file size on the type of error
-        if ($_FILES[$key]['error'] !== UPLOAD_ERR_OK) {
+        if ($_FILES[$key]['error'] && $_FILES[$key]['error'] !== UPLOAD_ERR_OK) {
+
             $result = ['result' => DOCUMENTS_NOT_VALID];
+
             switch ($_FILES['fileToUpload']['error']) {
                 case UPLOAD_ERR_INI_SIZE:
                     $result[] = ['message' => 'El archivo es demasiado grande'];
@@ -419,13 +421,19 @@ function validate_documents(array $documents, array $rules)
                     $result[] = ['message' => 'No se ha podido guardar el archivo temporal'];
                     break;
                 case UPLOAD_ERR_CANT_WRITE:
-
                     $result[] = ['message' => 'No se ha podido guardar el archivo'];
                     break;
+                case UPLOAD_ERR_EXTENSION:
+                    $result[] = ['message' => 'La carga de archivos fue detenida por la extension'];
+                    break;
+                case UPLOAD_ERR_FORM_SIZE:
+                    $result[] = ['message' => 'El archivo es demasiado grande'];
+                    break;
                 default:
-                    $result[] = ['message' => 'Ha ocurrido un error al subir el archivo'];
+                    $result[] = ['message' => $_FILES['fileToUpload']['error']];
                     break;
             }
+
 
             return $result;
         }

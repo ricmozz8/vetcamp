@@ -102,6 +102,10 @@ require_once __DIR__ . '/partials/header.php';
                                 <div><a onclick="showModal('fileViewPopup-<?= $documents['picture']['name'] ?>')" class="main-action-bright no-deco-action" href="#"><i class="las la-file-alt"></i>Foto 2x2</a></div>
                             <? } ?>
 
+                            <? if ($documents['recommendation_letter'] != null) { ?>
+                                <div><a onclick="showModal('fileViewPopup-<?= $documents['recommendation_letter']['name'] ?>')" class="main-action-bright no-deco-action" href="#"><i class="las la-file-alt"></i>Carta de recomendación</a></div>
+                            <? } ?>
+
                         </div>
                     </section>
                     <br>

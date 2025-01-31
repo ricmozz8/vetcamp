@@ -2,7 +2,7 @@
 require_once 'Model.php';
 require_once 'User.php';
 
-define('REQUIRED_DOCUMENTS_AMOUNT', 6);
+define('REQUIRED_DOCUMENTS_AMOUNT', 7);
 
 class Application extends Model
 {
@@ -75,7 +75,8 @@ class Application extends Model
             'written_essay' => $this->attributes['url_written_essay'],
             'picture' => $this->attributes['url_picture'],
             'video_essay' => $this->attributes['url_video_essay'],
-            'authorization_letter' => $this->attributes['url_authorization_letter']
+            'authorization_letter' => $this->attributes['url_authorization_letter'],
+            'recommendation_letter' => $this->attributes['url_recommendation_letter']
         ]);
     }
 
@@ -200,6 +201,11 @@ class Application extends Model
         }
 
         if ($this->id_preferred_session === null) {
+
+            return false;
+        }
+
+        if ($this->shirt_size === null) {
 
             return false;
         }

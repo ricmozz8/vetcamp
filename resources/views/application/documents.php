@@ -34,7 +34,10 @@ require __DIR__ . '../../partials/header.php';
         <!-- Document upload section -->
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="document-section">
+
                 <!-- Document upload boxes -->
+
+                <!-- Written Application -->
                 <div class="document-group">
                     <div class="upload-box">
                         <?php if (isset($saved_documents['written_application'])) { ?>
@@ -63,6 +66,7 @@ require __DIR__ . '../../partials/header.php';
 
                 </div>
 
+                <!-- Transcript upload -->
                 <div class="document-group">
                     <div class="upload-box">
                         <?php if (isset($saved_documents['transcript'])) { ?>
@@ -84,6 +88,8 @@ require __DIR__ . '../../partials/header.php';
                     </div>
 
                 </div>
+
+                <!-- Written Essay -->
 
                 <div class="document-group">
                     <div class="upload-box">
@@ -108,6 +114,8 @@ require __DIR__ . '../../partials/header.php';
 
                 </div>
 
+                <!-- Picture upload -->
+
                 <div class="document-group">
                     <div class="upload-box">
                         <?php if (isset($saved_documents['picture'])) { ?>
@@ -129,6 +137,8 @@ require __DIR__ . '../../partials/header.php';
                     </div>
 
                 </div>
+
+                <!-- Video Essay -->
 
                 <div class="document-group">
                     <div class="upload-box">
@@ -152,7 +162,8 @@ require __DIR__ . '../../partials/header.php';
                     </div>
 
                 </div>
-
+                
+                <!-- Authorization Letter -->
                 <div class="document-group">
                     <div class="upload-box">
                         <?php if (isset($saved_documents['authorization_letter'])) { ?>
@@ -165,15 +176,37 @@ require __DIR__ . '../../partials/header.php';
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
-                      <label>Carta de Autorización</label>  
-                      <?php if (isset($saved_documents['authorization_letter'])) { ?>
+                        <label>Carta de Autorización</label>
+                        <?php if (isset($saved_documents['authorization_letter'])) { ?>
                             <a href="#" onclick="showModal('fileViewPopup-<?= $authorization['name'] ?>')" class="btn-download">
                                 <i class="las la-eye"></i> Visualizar
                             </a>
                         <?php } ?>
                     </div>
-                    
                 </div>
+
+                <!-- Recommendation Letter -->
+                <div class="document-group">
+                    <div class="upload-box">
+                        <?php if (isset($saved_documents['recommendation_letter'])) { ?>
+                            <?php $recommendation = $saved_documents['recommendation_letter']; ?>
+                            <label for="recommendation"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                            <input accept="application/pdf" value=" <?= $recommendation['name'] ?>" type="file" id="recommendation" name="recommendation" onchange="updateFileName(this)">
+                        <?php } else { ?>
+                            <label for="recommendation"><span> Selecciona un archivo</span> </label>
+                            <input accept="application/pdf" type="file" id="recommendation" name="recommendation" onchange="updateFileName(this)">
+                        <?php } ?>
+                    </div>
+                    <div class="check-labeled">
+                        <label>Carta de Recomendación</label>
+                        <?php if (isset($saved_documents['recommendation_letter'])) { ?>
+                            <a href="#" onclick="showModal('fileViewPopup-<?= $recommendation['name'] ?>')" class="btn-download">
+                                <i class="las la-eye"></i> Visualizar
+                            </a>
+                        <?php } ?>
+                    </div>
+                </div>
+
             </div>
             <div class="form-actions">
                 <input type="hidden" name="stage" value="4">

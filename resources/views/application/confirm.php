@@ -120,6 +120,8 @@ require __DIR__ . '../../partials/header.php';
                 <div class="grid-group">
                     <h3>Documentos</h3>
                     <div class="form-group">
+
+                        <!-- File submission check -->
                         <p for="file-submitted">
                             <?php if ($application->url_written_application !== null && $application->url_written_application !== '') { ?>
                                 <i style="color: lightgreen;" class="las la-check"></i>
@@ -128,6 +130,7 @@ require __DIR__ . '../../partials/header.php';
                             <?php } ?>
                             Aplicación escrita
                         </p>
+
                         <p for="file-submitted">
                             <?php if ($application->url_transcript !== null && $application->url_transcript !== '') { ?>
                                 <i style="color: lightgreen;" class="las la-check"></i>
@@ -136,6 +139,7 @@ require __DIR__ . '../../partials/header.php';
                             <?php } ?>
                             Transcripción de crédito
                         </p>
+
                         <p for="file-submitted">
                             <?php if ($application->url_video_essay !== null && $application->url_video_essay !== '') { ?>
                                 <i style="color: lightgreen;" class="las la-check"></i>
@@ -144,6 +148,7 @@ require __DIR__ . '../../partials/header.php';
                             <?php } ?>
                             Ensayo en video
                         </p>
+
                         <p for="file-submitted">
                             <?php if ($application->url_written_essay !== null && $application->url_written_essay !== '') { ?>
                                 <i style="color: lightgreen;" class="las la-check"></i>
@@ -152,6 +157,7 @@ require __DIR__ . '../../partials/header.php';
                             <?php } ?>
                             Ensayo escrito
                         </p>
+
                         <p for="file-submitted">
                             <?php if ($application->url_authorization_letter !== null && $application->url_authorization_letter !== '') { ?>
                                 <i style="color: lightgreen;" class="las la-check"></i>
@@ -160,6 +166,16 @@ require __DIR__ . '../../partials/header.php';
                             <?php } ?>
                             Carta de autorización
                         </p>
+
+                        <p for="file-submitted">
+                            <?php if ($application->url_recommendation_letter !== null && $application->url_recommendation_letter !== '') { ?>
+                                <i style="color: lightgreen;" class="las la-check"></i>
+                            <?php } else { ?>
+                                <i style="color:red;" class="las la-times"></i>
+                            <?php } ?>
+                            Carta de recomendación
+                        </p>
+
                         <p for="file-submitted">
                             <?php if ($application->url_picture !== null && $application->url_picture !== '') { ?>
                                 <i style="color: lightgreen;" class="las la-check"></i>
