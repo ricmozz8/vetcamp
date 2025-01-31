@@ -1,0 +1,1 @@
+ALTER TABLE `applications` ADD `url_recommendation_letter` TEXT NOT NULL AFTER `url_written_essay`;
