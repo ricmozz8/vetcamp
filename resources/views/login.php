@@ -30,7 +30,7 @@ require __DIR__ . '/partials/header.php';
                         <div class="mini-flex-label">
                             <label for="password" class="text-wrapper-2">Contraseña</label>
                             <span class="password-toggle" onclick="togglePassword()">
-                                Alternar mostrar <i class="fas fa-eye"></i>
+                                 <i class="fas fa-eye"></i>
                             </span>
                         </div>
 

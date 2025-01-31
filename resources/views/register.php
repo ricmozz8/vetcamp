@@ -79,7 +79,7 @@ require __DIR__ . '/partials/header.php';
                             <label for="password">Contraseña</label>
 
                             <span class="password-toggle" onclick="togglePasswords()">
-                                Alternar Mostrar<i class="fas fa-eye"></i>
+                                <i class="fas fa-eye"></i>
                             </span>
                         </div>
 
@@ -98,7 +98,7 @@ require __DIR__ . '/partials/header.php';
                         <div class="mini-flex-label">
                             <label for="confirm_password">Confirmar Contraseña</label>
                             <span class="password-toggle" onclick="togglePasswords()">
-                                Alternar Mostrar
+
                                 <i class="fas fa-eye"></i>
                             </span>
                         </div>
@@ -121,6 +121,8 @@ require __DIR__ . '/partials/header.php';
                 <hr>
                 <div class="form-main-actions">
                     <!-- Submit button -->
+                    <!-- Login link -->
+                    <a class="main-action-bright no-deco-action" href="/login">ya tienes cuenta?</a>
                     <div class="form-main-action">
                         <button type="submit" class="main-action-bright gradiented">
                             Regístrate
@@ -128,8 +130,7 @@ require __DIR__ . '/partials/header.php';
                         </button>
                     </div>
 
-                    <!-- Login link -->
-                    <a class="main-action-bright no-deco-action" href="/login">ya tienes cuenta?</a>
+
                 </div>
             </form>
         </div>
