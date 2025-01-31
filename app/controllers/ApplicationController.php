@@ -13,7 +13,8 @@ class ApplicationController extends Controller
      *
      * @return boolean True if the current time is within the limit dates, false otherwise.
      */
-    private function validate_time_limit() {
+    private function validate_time_limit()
+    {
         $limit_date = LimitDate::find(1);
         if (time() > $limit_date->end_date) {
             return false;
@@ -30,7 +31,7 @@ class ApplicationController extends Controller
         if (Auth::user()->type == 'admin') {
             redirect('/admin');
         }
-        render_view('application/application_dashboard', ['can_apply'=> self::validate_time_limit()], 'Aplica');
+        render_view('application/application_dashboard', ['can_apply' => self::validate_time_limit()], 'Aplica');
     }
 
     /**
@@ -46,16 +47,11 @@ class ApplicationController extends Controller
             redirect('/admin/requests');
         }
         // your index view here
-        try{
+        try {
             $user = User::find($user_id);
         } catch (ModelNotFoundException $notFound) {
             // handle here when the user is not found
-            $user = null;
-        }
-        
-
-        if ($user == null) {
-        $_SESSION['error'] = "No se encontró el usuario con el ID proporcionado.";
+            $_SESSION['error'] = "No se encontró el usuario con el ID proporcionado.";
             redirect('/admin/requests');
         }
 
@@ -66,7 +62,7 @@ class ApplicationController extends Controller
             redirect('/admin/requests');
         }
 
-        if($application->status === 'Sin subir') {
+        if ($application->status === 'Sin subir') {
             $_SESSION['error'] = "El usuario no ha sometido su solicitud todavia.";
             redirect('/admin/requests');
         }
@@ -92,8 +88,8 @@ class ApplicationController extends Controller
         if ($request_method === 'POST') {
             $applicationId = $_POST['application_id'] ?? null;
             $newStatus = $_POST['status'] ?? null;
-            
-           
+
+
             // Validate application ID and new status
             if ($applicationId === null || $newStatus === null || !array_key_exists($newStatus, Application::$statusParsings)) {
                 error_log('Invalid application ID or status: ' . $newStatus);
@@ -102,15 +98,14 @@ class ApplicationController extends Controller
                 return;
             }
 
-    
+
             try {
                 // Update application status
                 $application = Application::find($applicationId);
                 $application->update(['status' => $newStatus]);
-                
+
                 // Call TrackingEvaluation for tracking
                 TrackingController::TrackingEvaluation('POST');
-                
             } catch (ModelNotFoundException $e) {
                 $_SESSION['error_message'] = "No se encontró la solicitud con el ID proporcionado.";
                 redirect('/admin/requests');
@@ -130,7 +125,7 @@ class ApplicationController extends Controller
         try {
             // Set the default file name
             $filePath = 'solicitudes_archivadas_' . date('Y-m-d_H-i-s') . '.csv';
-            
+
             // Open the CSV file for writing
             $file = fopen($filePath, 'w');
             if (!$file) {
@@ -159,7 +154,7 @@ class ApplicationController extends Controller
 
                     // Skip if the status is 'unsubmitted' (i.e., 'Sin subir')
                     if ($internalStatusKey === 'unsubmitted') {
-                    //   file_put_contents('debug_log.txt', "Skipping application ID: {$application->id_application} because the status is 'unsubmitted' ('Sin subir')\n", FILE_APPEND);
+                        //   file_put_contents('debug_log.txt', "Skipping application ID: {$application->id_application} because the status is 'unsubmitted' ('Sin subir')\n", FILE_APPEND);
                         continue; // Skip this iteration if the status is 'unsubmitted'
                     }
 
@@ -197,8 +192,8 @@ class ApplicationController extends Controller
                     // Translate the final decision
                     $finalDecision = $statusMap[$application->status] ?? 'Desconocido';
 
-        
-                    
+
+
                     // Write to the CSV file
                     fputcsv($file, [
                         $userFirstName . ' ' . $userLastName,
@@ -221,7 +216,7 @@ class ApplicationController extends Controller
             header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
             header('Pragma: no-cache');
             header('Expires: 0');
-        
+
             // Output the file to the browser
             readfile($filePath);
             // Delete the file after sending it to the browser
@@ -233,5 +228,4 @@ class ApplicationController extends Controller
             redirect('/admin/settings');
         }
     }
-
 }
