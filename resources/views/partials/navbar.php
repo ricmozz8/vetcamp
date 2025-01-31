@@ -25,6 +25,5 @@ $user_full_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 </div>
 
 
-
 <?php include(__DIR__ . '../../modals/confirmLogoutModal.php') ?>
 <?php include(__DIR__ . '../../modals/userProfileEditModal.php') ?>

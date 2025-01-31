@@ -55,7 +55,7 @@
 <?php unset($_SESSION['error']);
 } ?>
 
-<!-- BETA WARNING (REMOVE ON 1.0 DEPLOY) -->
+<!-- beta warning -->
 <div class="lower-disclaimer">
     <div class="minicon">
         <img src="/<?= asset("logo/SVG/vetcamp-icon-yellow.svg") ?>" alt="vet-icon">

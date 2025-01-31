@@ -180,15 +180,22 @@ h6 {
   align-items: center; 
   justify-content: center; 
   gap: 10px; 
-  padding: 10px; 
+  padding: 10px 15px; 
   font-size: 0.75em;
   position: fixed; 
-  width: 100%; 
+
+
   bottom: 0; 
+  left: 0;
+  right: 0;
   background-color: var(--secondary-color-default); 
   color: white; 
   z-index: 100;
-  animation: slideUp .3s ease;
+  animation: slideUp .5s ease;
+
+  transition: all 0.5s ease;
+  cursor: pointer;
+  
   
 }
 
@@ -196,6 +203,11 @@ h6 {
   animation: slideUp 1s ease;
 }
 
+
+.lower-disclaimer:hover{
+  border-radius: 20px;
+  padding: 25px 15px;
+}
 
 
 .minicon{
@@ -219,11 +231,31 @@ form *> {
 }
 
 
-/* animation */
+
+
 
 @keyframes slideUp {
   0% {
     transform: translateY(100%);
+    opacity: 0;
+    filter: grayscale(1);
+
+
+  }
+  10% {
+    opacity: 1;
+    
+  
+  }
+  100% {
+    transform: translateY(0);
+    filter: grayscale(0); 
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
     opacity: 0;
     filter: grayscale(1);
   }
@@ -237,6 +269,8 @@ form *> {
     filter: grayscale(0); 
   }
 }
+
+
 
 /* media queries */
 
@@ -265,6 +299,12 @@ form *> {
 
     /* margins */
     --main-margin: 2rem;
+  }
+
+  .lower-disclaimer{
+    width: fit-content;
+    border-radius: 32px;
+    margin: 1em auto;
   }
 }
 

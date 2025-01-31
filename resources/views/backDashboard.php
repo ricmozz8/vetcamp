@@ -18,15 +18,8 @@ if ($hour >= 5 && $hour < 12) {
 
 <body>
     <!-- Main dashboard container -->
-    <div style="padding: .5rem; text-align:center; background:black; color:white;">
-        Aviso: La implementación del backend todavía <b class="bold">se encuentra
-        en desarrollo</b>, algunas partes podrían estar incompletas.
-    </div>
+
     <div class="back-dash">
-
-    
-
-
         <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
 
