@@ -206,7 +206,7 @@ h6 {
 
 .lower-disclaimer:hover{
   border-radius: 20px;
-  padding: 25px 15px;
+  padding: 10px 35px;
 
   .minicon .alert-text{
     display: block;
