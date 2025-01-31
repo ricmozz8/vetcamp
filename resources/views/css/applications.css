@@ -34,7 +34,8 @@
 .application-deco-banner img{
     object-fit: cover;
     height: 300px;
-    width: 100%;
+    width: 150%;
+    max-width: 100%;
     border-radius: 7px 7px 0 0;
     border-bottom: 1px solid var(--secondary-color-default);
 }
@@ -47,7 +48,7 @@
 
 .application-card h3{
     font-size: 2.5em;
-    line-height: .8em;
+    line-height: 1.2em;
     font-weight: 600;
     margin-bottom: 0.5em;
 }
@@ -64,6 +65,7 @@
     text-align: center;
     padding: 1em 0;
 }
+
 
 .application-card-copy{
     max-width: 500px;
