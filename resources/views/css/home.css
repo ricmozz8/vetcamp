@@ -590,7 +590,8 @@ footer .university-logo {
 
   .last-card-grid {
     /* take remaining space */
-    grid-column-start: 1;
+
+    grid-column-start: 0;
     grid-column-end: 3;
     text-align: left;
   }
@@ -666,8 +667,9 @@ footer .university-logo {
   }
   .last-card-grid {
     /* take remaining space */
-    grid-column-start: 2;
-    grid-column-end: 4;
+
+    grid-column-start: 0;
+    grid-column-end: 3;
     text-align: left;
   }
 }
@@ -680,13 +682,7 @@ footer .university-logo {
   }
 
   .requirement-cards-grid {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-  .last-card-grid {
-    /* take remaining space */
-    grid-column-start: 1;
-    grid-column-end: 5;
-    text-align: left;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   .top-flex h2 {

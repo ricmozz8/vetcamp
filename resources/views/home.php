@@ -122,7 +122,7 @@ require __DIR__ . '/partials/header.php';
             <div class="req-card">
                 <i class="las la-envelope-open"></i>
                 <h4>Carta de autorización</h4>
-                <p>de tus padres o tutor legal</p>
+                <p>De tus padres o tutor legal</p>
             </div>
             <div class="req-card">
                 <i class="las la-file"></i>
@@ -131,9 +131,8 @@ require __DIR__ . '/partials/header.php';
             <div class="req-card">
                 <i class="las la-portrait"></i>
                 <h4>Foto 2x2</h4>
-                <p>que debe estar adjunta en la solicitud</p>
             </div>
-            <div class="req-card last-card-grid">
+            <div class="req-card ">
                 <i class="las la-clipboard-list"></i>
                 <h4>Certificación Estudiantil</h4>
                 <p>Firmada por el encargado y director de la escuela.
@@ -141,6 +140,12 @@ require __DIR__ . '/partials/header.php';
                     llenar la Certificación de Estudiante Educado en el Hogar
                     (certificación de la UPR - Administración Central) y
                     entregarla junto a la solicitud del VetCamp.</p>
+
+            </div>
+            <div class="req-card">
+                <i class="las la-file-signature"></i>
+                <h4>Carta de recomendación</h4>
+                <p>De tu maestro de ciencias</p>
 
             </div>
         </div>
