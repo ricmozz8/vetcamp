@@ -1,1 +1,1 @@
-ALTER TABLE `applications` ADD `url_recommendation_letter` TEXT NOT NULL AFTER `url_written_essay`;
+ALTER TABLE `applications` ADD `url_recommendation_letter` TEXT NULL AFTER `url_written_essay`;
