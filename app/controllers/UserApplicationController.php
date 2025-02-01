@@ -423,6 +423,8 @@ class UserApplicationController extends Controller
 
             // Validate here that every information is valid before sumbitting
 
+            $extra_notes = filter_input(INPUT_POST, 'extra_info', FILTER_DEFAULT);
+
             if ($application->status == 'submitted') {
                 $_SESSION['message'] = 'Aplicación actualizada correctamente';
                 redirect('/apply');
@@ -433,8 +435,11 @@ class UserApplicationController extends Controller
                 redirect('/apply/application/confirm');
             }
 
+
+
             $application->update([
-                'status' => 'submitted'
+                'status' => 'submitted',
+                'extra_notes' => isset($extra_notes) ? $extra_notes : ''
             ]);
 
             Mailer::send(

@@ -118,6 +118,23 @@
   padding: 20px 0;
 }
 
+.extra-notes{
+  display: flex;
+  padding: 1em;
+  background-color: var(--main-color-shade-3);
+  color: var(--main-color-darken-2);
+  border-radius: 17px;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0;
+}
+.extra-notes h2{
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
 @media print {
   .sidebar {
     display: none;

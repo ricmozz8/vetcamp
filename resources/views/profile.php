@@ -110,6 +110,17 @@ require_once __DIR__ . '/partials/header.php';
                     </section>
                     <br>
                     <hr><br>
+
+                    <?php if ($application->extra_notes) { ?>
+                        <section class="extra-notes">
+                            <h2><i class="las la-info-circle"></i>
+                                El usuario ha indicado:
+                            </h2>
+                            <p><?= ucfirst($application->extra_notes) ?></p>
+                        </section>
+                    <?php } ?>
+
+
                     <section class="manage-section">
                         <form action="/admin/requests/update" method="POST">
                             <input type="hidden" name="application_id" value="<?php echo $application->id_application; ?>">
@@ -133,20 +144,20 @@ require_once __DIR__ . '/partials/header.php';
                             </div>
 
                             <div class="actions">
-                            <a href="#" class="main-action-bright" onclick="openModal('messageModal')">
-                                <i class="las la-envelope"></i>
-                                Enviar Mensaje
-                            </a>
-                            <a href="#" class="main-action-bright" onclick="openModal('exportApplicationModal')">
-                                <i class="las la-download"></i>
-                                Exportar a Excel
-                            </a>
+                                <a href="#" class="main-action-bright" onclick="openModal('messageModal')">
+                                    <i class="las la-envelope"></i>
+                                    Enviar Mensaje
+                                </a>
+                                <a href="#" class="main-action-bright" onclick="openModal('exportApplicationModal')">
+                                    <i class="las la-download"></i>
+                                    Exportar a Excel
+                                </a>
                             </div>
                             <br><br>
-                           
+
 
                             <div class="actions">
-                
+
                                 <label>
                                     <input name="notify" type="checkbox"> Notificar al solicitante
                                 </label>
