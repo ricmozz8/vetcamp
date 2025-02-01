@@ -303,8 +303,6 @@ class UserApplicationController extends Controller
             redirect('/apply');
         }
 
-        // for some reason, the session is terminated if the user submits a file 
-        // that is too large. 
 
         if (!Auth::check()) {
             $_SESSION['error'] = 'Por favor complete todos los campos';
