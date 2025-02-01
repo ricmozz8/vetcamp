@@ -7,7 +7,7 @@ require __DIR__ . '/partials/header.php'; ?>
     <?php require_once(__DIR__ . '/partials/genericNavbarNoAuth.php'); ?>
 
     <div class="centered-credits">
-        <h1> <i class="las la-trophy"></i> Créditos</h1>
+        <h1>Créditos</h1>
 
 
         <br><br>
