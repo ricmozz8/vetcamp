@@ -425,6 +425,10 @@ class UserApplicationController extends Controller
 
             $extra_notes = filter_input(INPUT_POST, 'extra_info', FILTER_DEFAULT);
 
+            if (empty($extra_notes)) {
+                $extra_notes = '';
+            }
+
             if ($application->status == 'submitted') {
                 $_SESSION['message'] = 'Aplicación actualizada correctamente';
                 redirect('/apply');
@@ -439,7 +443,7 @@ class UserApplicationController extends Controller
 
             $application->update([
                 'status' => 'submitted',
-                'extra_notes' => isset($extra_notes) ? $extra_notes : ''
+                'extra_notes' => $extra_notes
             ]);
 
             Mailer::send(
