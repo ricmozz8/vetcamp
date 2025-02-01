@@ -41,7 +41,9 @@ require __DIR__ . '/modals/editPicturesModal.php';
                 <!-- Vetcamp dates area -->
                 <div class="settings-category-group">
                     <div class="title-group">
-                        <span class="colored-icon-setting"><i class="las la-paw"></i></span>
+                        <span class="colored-icon-setting">
+                            <img src="/<?= asset('logo/SVG/vetcamp-icon-black.svg') ?>" alt="">
+                        </span>
                         <p class="setting-title"> Manejar el campamento </p>
                     </div>
 
