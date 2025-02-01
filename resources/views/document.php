@@ -35,7 +35,7 @@ require __DIR__ . '/partials/header.php'; ?>
         </div>
 
         
-        <h1 class="document-title">Solicitud para Vetcamp <?= date('Y') ?></h1>
+        <h1 class="document-title">Certificación Estudiantil para Vetcamp <?= date('Y') ?></h1>
 
         <div class="document-content">
             <div class="printed-form-group">
