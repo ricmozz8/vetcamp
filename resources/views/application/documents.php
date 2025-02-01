@@ -13,7 +13,7 @@ require __DIR__ . '../../partials/header.php';
         <a href="/apply/application/contact" class="main-action-bright"><i class="las la-arrow-left"></i>Atrás</a>
     </div>
 
-    <p class="subtext" style="margin: 1em var(--main-margin); text-align: left;">Documentos han de ser menores a 2MB y los vídeos no más de 10MB</p>
+    <p class="subtext" style="margin: 1em var(--main-margin); text-align: left;">Los documentos deben pesar menos de 10 MB</p>
 
 
 
