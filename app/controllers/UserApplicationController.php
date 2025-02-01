@@ -320,14 +320,11 @@ class UserApplicationController extends Controller
 
         if ($method === 'POST') {
 
-            // dd($_FILES);
-
-
-
-            if ($_SERVER['CONTENT_LENGTH'] > to_byte_size('100MB')) {
-                $_SESSION['error'] = 'El archivo es demasiado grande';
-                redirect_back();
+            if (empty($_FILES)) {
+                $_SESSION['message'] = 'Debes subir los documentos antes de someter la solicitud.';
+                redirect('/apply/application/confirm');
             }
+
 
             // getting all documents
             $documents = [
@@ -336,9 +333,10 @@ class UserApplicationController extends Controller
                 'written_essay' => $_FILES['written_essay'],
                 'picture' => $_FILES['picture'],
                 'video_essay' => $_FILES['video_essay'],
-                'authorization_letter' => $_FILES['authorization'],
-                'recommendation_letter' => $_FILES['recommendation'],
+                'authorization_letter' => $_FILES['authorization_letter'],
+                'recommendation_letter' => $_FILES['recommendation_letter'],
             ]; // important that these names are the same as the ones in the view and the database (Without the `url_`)
+
 
 
 
@@ -354,8 +352,9 @@ class UserApplicationController extends Controller
                     'authorization_letter' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false],
                     'recommendation_letter' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false]
                 ]);
-
             
+            
+
 
             // if the user has not uploaded any documents
             if (!$application->isComplete() && $valid['result'] === DOCUMENTS_OK && empty($valid['validated'])) {
@@ -369,7 +368,7 @@ class UserApplicationController extends Controller
                 redirect('/apply/application/documents');
             }
 
-            
+
 
 
             // saving the documents
@@ -388,7 +387,7 @@ class UserApplicationController extends Controller
                 ]);
             }
 
-            
+
 
             // refresh the user with the new information on the database
             Auth::refresh();

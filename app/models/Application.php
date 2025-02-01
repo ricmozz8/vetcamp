@@ -115,7 +115,7 @@ class Application extends Model
             } catch (FileNotFoundException $e) {
                 // remove the path from the Model
                 $this->update([
-                    $key => null,
+                    'url_' . $key => '',
                     'status' => 'unsubmitted'
                 ]);
                 continue;

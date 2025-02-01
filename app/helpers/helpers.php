@@ -401,42 +401,48 @@ function validate_documents(array $documents, array $rules)
 
         // validating the files using the _FILES superarray
         // Validating file size on the type of error
-        if ($_FILES[$key]['error'] && $_FILES[$key]['error'] !== UPLOAD_ERR_OK) {
+        if (
+            isset($_FILES[$key]) &&
+            $_FILES[$key]['error'] &&
+            $_FILES[$key]['error'] !== UPLOAD_ERR_OK
+        ) {
 
             $result = ['result' => DOCUMENTS_NOT_VALID];
+            
 
-            switch ($_FILES['fileToUpload']['error']) {
+            switch ($_FILES[$key]['error']) {
                 case UPLOAD_ERR_INI_SIZE:
-                    $result[] = ['message' => 'El archivo es demasiado grande'];
+                    $result['message'] =  'El archivo es demasiado grande' . ' debe pesar ' . ini_get('upload_max_filesize') . 'B';
                     break;
                 case UPLOAD_ERR_PARTIAL:
 
-                    $result[] = ['message' => 'El archivo se ha subido parcialmente'];
+                    $result['message'] =  'El archivo se ha subido parcialmente';
                     break;
                 case UPLOAD_ERR_NO_FILE:
-                    $result[] = ['message' => 'No se ha subido ningun archivo'];
+                    $result['message'] =  'No se ha subido ningun archivo';
                     break;
                 case UPLOAD_ERR_NO_TMP_DIR:
 
-                    $result[] = ['message' => 'No se ha podido guardar el archivo temporal'];
+                    $result['message'] =  'No se ha podido guardar el archivo temporal';
                     break;
                 case UPLOAD_ERR_CANT_WRITE:
-                    $result[] = ['message' => 'No se ha podido guardar el archivo'];
+                    $result['message'] =  'No se ha podido guardar el archivo';
                     break;
                 case UPLOAD_ERR_EXTENSION:
-                    $result[] = ['message' => 'La carga de archivos fue detenida por la extension'];
+                    $result['message'] =  'La carga de archivos fue detenida por la extension';
                     break;
                 case UPLOAD_ERR_FORM_SIZE:
-                    $result[] = ['message' => 'El archivo es demasiado grande'];
+                    $result['message'] =  'El archivo es demasiado grande' . ' debe pesar ' . ini_get('upload_max_filesize') . 'B';
                     break;
                 default:
-                    $result[] = ['message' => $_FILES['fileToUpload']['error']];
+                    $result['message'] =  $_FILES[$key]['error'];
                     break;
             }
 
 
             return $result;
         }
+
 
         if ($rules['required'] && empty($document['name'])) {
             return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $key . ' es obligatorio '];
@@ -492,7 +498,8 @@ function remove_null_or_empty($array)
  * @return int The size in bytes.
  */
 
-function to_byte_size($megabytes){
+function to_byte_size($megabytes)
+{
     // removing the 'MB' from the string
 
     $megabytes = str_replace('MB', '', $megabytes);

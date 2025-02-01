@@ -168,11 +168,11 @@ require __DIR__ . '../../partials/header.php';
                     <div class="upload-box">
                         <?php if (isset($saved_documents['authorization_letter'])) { ?>
                             <?php $authorization = $saved_documents['authorization_letter']; ?>
-                            <label for="authorization"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
-                            <input accept="application/pdf" value=" <?= $authorization['name'] ?>" type="file" id="authorization" name="authorization" onchange="updateFileName(this)">
+                            <label for="authorization_letter"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                            <input accept="application/pdf" value=" <?= $authorization['name'] ?>" type="file" id="authorization_letter" name="authorization_letter" onchange="updateFileName(this)">
                         <?php } else { ?>
-                            <label for="authorization"><i class="las la-file-upload"></i>  <span> Subir archivo</span> </label>
-                            <input accept="application/pdf" type="file" id="authorization" name="authorization" onchange="updateFileName(this)">
+                            <label for="authorization_letter"><i class="las la-file-upload"></i>  <span> Subir archivo</span> </label>
+                            <input accept="application/pdf" type="file" id="authorization_letter" name="authorization_letter" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
@@ -190,11 +190,11 @@ require __DIR__ . '../../partials/header.php';
                     <div class="upload-box">
                         <?php if (isset($saved_documents['recommendation_letter'])) { ?>
                             <?php $recommendation = $saved_documents['recommendation_letter']; ?>
-                            <label for="recommendation"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
-                            <input accept="application/pdf" value=" <?= $recommendation['name'] ?>" type="file" id="recommendation" name="recommendation" onchange="updateFileName(this)">
+                            <label for="recommendation_letter"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                            <input accept="application/pdf" value=" <?= $recommendation['name'] ?>" type="file" id="recommendation_letter" name="recommendation_letter" onchange="updateFileName(this)">
                         <?php } else { ?>
-                            <label for="recommendation"> <i class="las la-file-upload"></i> <span> Subir archivo</span> </label>
-                            <input accept="application/pdf" type="file" id="recommendation" name="recommendation" onchange="updateFileName(this)">
+                            <label for="recommendation_letter"> <i class="las la-file-upload"></i> <span> Subir archivo</span> </label>
+                            <input accept="application/pdf" type="file" id="recommendation_letter" name="recommendation_letter" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
