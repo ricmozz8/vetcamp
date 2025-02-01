@@ -26,9 +26,9 @@ require __DIR__ . '/partials/header.php'; ?>
         <p>André S. Negrón Pérez</p>
         <p>Rosana Rodríguez Berríos</p>
         <br>
-        <h2>Rediseño de la identidad visual</h2>
+        <h2>Diseñado por</h2>
         <p>Ricardo L. Morales Crespo</p>
-        <a style="text-align: center; margin: auto;" class="main-action-bright no-deco-action" href="/branding">Ver recursos</a>
+        <a style="text-align: center; margin: auto;" class="main-action-bright no-deco-action" href="/branding">Ver recursos de marca</a>
         <br>
 
     
@@ -39,6 +39,8 @@ require __DIR__ . '/partials/header.php'; ?>
         <p class="subtext">Departamento de Ciencias de Cómputos (UPRA)</p>
 
         <br>
+
+        <p class="subtext">Iconografía por <a style="text-decoration: underline; cursor: pointer;" target="_blank" href="https://icons8.com">Icons8</a></p>
         
 
     </div>

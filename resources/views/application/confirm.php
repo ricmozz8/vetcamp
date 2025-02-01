@@ -35,7 +35,7 @@ require __DIR__ . '../../partials/header.php';
             <div class="desk-grid">
 
                 <div class="grid-group">
-                    <h3>Contacto</h3>
+                    <h3 class="valid-title">Contacto</h3>
                     <div class="form-group">
                         <label for="first_name">Nombre</label>
                         <p><?= Auth::user()->first_name ?? '' ?></p>
@@ -56,7 +56,7 @@ require __DIR__ . '../../partials/header.php';
 
 
                 <div class="grid-group">
-                    <h3>Direcciones</h3>
+                    <h3 class="valid-title">Direcciones</h3>
                     <div class="form-group">
                         <label for="postal">Dirección de la escuela</label>
                         <?php
@@ -87,7 +87,7 @@ require __DIR__ . '../../partials/header.php';
                     </div>
                 </div>
                 <div class="grid-group">
-                    <h3>Campamento</h3>
+                    <h3 class="valid-title">Campamento</h3>
                     <div class="form-group">
                         <label for="session">Sesión preferida</label>
                         <?php if (Auth::user()->application()) {
@@ -118,69 +118,69 @@ require __DIR__ . '../../partials/header.php';
                 </div>
 
                 <div class="grid-group">
-                    <h3>Documentos</h3>
+                    <h3 class="valid-title">Documentos</h3>
                     <div class="form-group">
 
                         <!-- File submission check -->
-                        <p for="file-submitted">
+                        <p class="file-submitted">
                             <?php if ($application->url_written_application !== null && $application->url_written_application !== '') { ?>
-                                <i style="color: lightgreen;" class="las la-check"></i>
+                                <span class="doc-ok"><i  class="las la-check-circle"></i></span>
                             <?php } else { ?>
-                                <i style="color:red;" class="las la-times"></i>
+                                <span class="doc-no"><i  class="las la-times"></i></span>
                             <?php } ?>
                             Aplicación escrita
                         </p>
 
-                        <p for="file-submitted">
+                        <p class="file-submitted">
                             <?php if ($application->url_transcript !== null && $application->url_transcript !== '') { ?>
-                                <i style="color: lightgreen;" class="las la-check"></i>
+                                <span class="doc-ok"><i  class="las la-check-circle"></i></span>
                             <?php } else { ?>
-                                <i style="color:red;" class="las la-times"></i>
+                                <span class="doc-no"><i  class="las la-times"></i></span>
                             <?php } ?>
                             Transcripción de crédito
                         </p>
 
-                        <p for="file-submitted">
+                        <p class="file-submitted">
                             <?php if ($application->url_video_essay !== null && $application->url_video_essay !== '') { ?>
-                                <i style="color: lightgreen;" class="las la-check"></i>
+                                <span class="doc-ok"><i  class="las la-check-circle"></i></span>
                             <?php } else { ?>
-                                <i style="color:red;" class="las la-times"></i>
+                                <span class="doc-no"><i  class="las la-times"></i></span>
                             <?php } ?>
                             Ensayo en video
                         </p>
 
-                        <p for="file-submitted">
+                        <p class="file-submitted">
                             <?php if ($application->url_written_essay !== null && $application->url_written_essay !== '') { ?>
-                                <i style="color: lightgreen;" class="las la-check"></i>
+                                <span class="doc-ok"><i  class="las la-check-circle"></i></span>
                             <?php } else { ?>
-                                <i style="color:red;" class="las la-times"></i>
+                                <span class="doc-no"><i  class="las la-times"></i></span>
                             <?php } ?>
                             Ensayo escrito
                         </p>
 
-                        <p for="file-submitted">
+                        <p class="file-submitted">
                             <?php if ($application->url_authorization_letter !== null && $application->url_authorization_letter !== '') { ?>
-                                <i style="color: lightgreen;" class="las la-check"></i>
+                                <span class="doc-ok"><i  class="las la-check-circle"></i></span>
                             <?php } else { ?>
-                                <i style="color:red;" class="las la-times"></i>
+                                <span class="doc-no"><i  class="las la-times"></i></span>
                             <?php } ?>
                             Carta de autorización
                         </p>
 
-                        <p for="file-submitted">
+                        <p class="file-submitted">
                             <?php if ($application->url_recommendation_letter !== null && $application->url_recommendation_letter !== '') { ?>
-                                <i style="color: lightgreen;" class="las la-check"></i>
+                                <span class="doc-ok"><i  class="las la-check-circle"></i></span>
                             <?php } else { ?>
-                                <i style="color:red;" class="las la-times"></i>
+                                <span class="doc-no"><i  class="las la-times"></i></span>
                             <?php } ?>
                             Carta de recomendación
                         </p>
 
-                        <p for="file-submitted">
+                        <p class="file-submitted">
                             <?php if ($application->url_picture !== null && $application->url_picture !== '') { ?>
-                                <i style="color: lightgreen;" class="las la-check"></i>
+                                <span class="doc-ok"><i  class="las la-check-circle"></i></span>
                             <?php } else { ?>
-                                <i style="color:red;" class="las la-times"></i>
+                                <span class="doc-no"><i  class="las la-times"></i></span>
                             <?php } ?>
                             Foto
                         </p>

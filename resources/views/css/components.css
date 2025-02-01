@@ -177,7 +177,7 @@ a.plain-action:hover {
   padding: 10px 15px;
   width: fit-content;
   position: fixed;
-  text-wrap: nowrap;
+  
   border-radius: 27px;
   background-color: var(--white-color);
   border: 1px solid var(--white-color-shade-1);
@@ -194,6 +194,7 @@ a.plain-action:hover {
 
 .notification p {
   animation: fadeIn 0.3s ease;
+  text-align: center;
 }
 
 .notification.error {

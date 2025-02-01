@@ -4,8 +4,8 @@
     --status-not-filled: #a3a3a3;
     --status-filling: #da9412;
     --status-filled: #2fff73;
-    --status-rejected: #e35151;
-    --status-success: #2fff73;
+    --status-rejected: #fb1c1c;
+    --status-success: #18b94e;
     --status-pending: #5cd0fc;
 }
 
@@ -363,6 +363,34 @@ select {
     cursor: pointer;
    
     transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.file-submitted{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.valid-title{
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+
+.doc-ok{
+    background-color: var(--status-success);
+    padding: 5px 8px;
+    color: var(--white-color);
+    border-radius: 999em;
+    font-weight: bold;
+}
+.doc-no{
+    background-color: var(--status-rejected);
+    padding: 5px 8px;
+    color: var(--white-color);
+    border-radius: 999em;
+    font-weight: bold;
 }
 
 .upload-box label {
