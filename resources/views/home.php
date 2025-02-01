@@ -126,7 +126,7 @@ require __DIR__ . '/partials/header.php';
             </div>
             <div class="req-card">
                 <i class="las la-file"></i>
-                <h4>Transcripción de crédito</h4>
+                <h4>Transcripción de créditos</h4>
             </div>
             <div class="req-card">
                 <i class="las la-portrait"></i>
@@ -139,7 +139,7 @@ require __DIR__ . '/partials/header.php';
                     En caso de que el estudiante sea educado en el hogar, deberá
                     llenar la Certificación de Estudiante Educado en el Hogar
                     (certificación de la UPR - Administración Central) y
-                    entregarla junto a la solicitud del VetCamp.</p>
+                    entregarla junto a la solicitud del Vetcamp.</p>
 
             </div>
             <div class="req-card">
@@ -161,7 +161,7 @@ require __DIR__ . '/partials/header.php';
                     <img src="resources/assets/img/Dra._Rebeka_Sanabria-2.jpeg" alt="Dra. Rebeka Sanabria León" class="bio-image">
                     <div class="bio-info">
                         <h2 class="bio-name">Dra. Rebeka Sanabria León</h2>
-                        <p class="bio-title">Fundadora y Coordinadora del VetCamp <br>
+                        <p class="bio-title">Fundadora y Coordinadora del Vetcamp <br>
                         </p>
                     </div>
                 </div>
