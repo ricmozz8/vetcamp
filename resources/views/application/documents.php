@@ -49,7 +49,7 @@ require __DIR__ . '../../partials/header.php';
 
                         <?php } else { ?>
 
-                            <label for="written_application"> <span> Selecciona un archivo</span></label>
+                            <label for="written_application"> <i class="las la-file-upload"></i> <span> Subir archivo</span></label>
                             <input accept="application/pdf" type="file" id="written_application" name="written_application" onchange="updateFileName(this)">
 
                         <?php } ?>
@@ -74,7 +74,7 @@ require __DIR__ . '../../partials/header.php';
                             <label for="transcript"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
                             <input accept="application/pdf" value=" <?= $transcript['name'] ?>" type="file" id="transcript" name="transcript" onchange="updateFileName(this)">
                         <?php } else { ?>
-                            <label for="transcript"> <span> Selecciona un archivo</span></label>
+                            <label for="transcript"><i class="las la-file-upload"></i>  <span> Subir archivo</span></label>
                             <input accept="application/pdf" type="file" id="transcript" name="transcript" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
@@ -98,7 +98,7 @@ require __DIR__ . '../../partials/header.php';
                             <label for="written_essay"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
                             <input accept="application/pdf" value=" <?= $written_essay['name'] ?>" type="file" id="written_essay" name="written_essay" onchange="updateFileName(this)">
                         <?php } else { ?>
-                            <label for="written_essay"><span> Selecciona un archivo</span></label>
+                            <label for="written_essay"><i class="las la-file-upload"></i> <span> Subir archivo</span></label>
                             <input accept="application/pdf" type="file" id="written_essay" name="written_essay" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
@@ -123,7 +123,7 @@ require __DIR__ . '../../partials/header.php';
                             <label for="picture"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
                             <input accept="image/*" value=" <?= $picture['name'] ?>" type="file" id="picture" name="picture" onchange="updateFileName(this)">
                         <?php } else { ?>
-                            <label for="picture"> <span> Selecciona un archivo</span></label>
+                            <label for="picture"> <i class="las la-file-upload"></i> <span> Subir archivo</span></label>
                             <input accept="image/*" type="file" id="picture" name="picture" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
@@ -148,7 +148,7 @@ require __DIR__ . '../../partials/header.php';
                             <label for="video_essay"><span> <i class="las la-edit"></i> Editar archivo</span></label>
                             <input accept="video/*" value=" <?= $video_essay['name'] ?>" type="file" id="video_essay" name="video_essay" onchange="updateFileName(this)">
                         <?php } else { ?>
-                            <label for="video_essay"> <span> Selecciona un archivo</span></label>
+                            <label for="video_essay"> <i class="las la-file-upload"></i>  <span> Subir archivo</span></label>
                             <input accept="video/*" type="file" id="video_essay" name="video_essay" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
@@ -171,7 +171,7 @@ require __DIR__ . '../../partials/header.php';
                             <label for="authorization"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
                             <input accept="application/pdf" value=" <?= $authorization['name'] ?>" type="file" id="authorization" name="authorization" onchange="updateFileName(this)">
                         <?php } else { ?>
-                            <label for="authorization"><span> Selecciona un archivo</span> </label>
+                            <label for="authorization"><i class="las la-file-upload"></i>  <span> Subir archivo</span> </label>
                             <input accept="application/pdf" type="file" id="authorization" name="authorization" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
@@ -193,7 +193,7 @@ require __DIR__ . '../../partials/header.php';
                             <label for="recommendation"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
                             <input accept="application/pdf" value=" <?= $recommendation['name'] ?>" type="file" id="recommendation" name="recommendation" onchange="updateFileName(this)">
                         <?php } else { ?>
-                            <label for="recommendation"><span> Selecciona un archivo</span> </label>
+                            <label for="recommendation"> <i class="las la-file-upload"></i> <span> Subir archivo</span> </label>
                             <input accept="application/pdf" type="file" id="recommendation" name="recommendation" onchange="updateFileName(this)">
                         <?php } ?>
                     </div>
