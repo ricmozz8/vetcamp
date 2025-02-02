@@ -151,6 +151,26 @@ require __DIR__ . '/partials/header.php';
         </div>
     </div>
 
+
+    <div class="conmemorative-10y">
+        <div class="logo-special-titled">
+            <img class="icon-small-vt" src=<?= asset('logo/SVG/vetcamp-icon-white.svg') ?> alt="Vetcamp Verano 2023">
+            <h3>10 Años</h3>
+            <p>Formando la nueva generación de apasionados a la medicina veterinaria.</p>
+        </div>
+
+        <div class="tilted-images-scroller">
+            <?php 
+            // doing this to avoid a giant block of just images
+            $images = 30;
+            for ($i = 1; $i <= $images; $i++) {
+            ?>
+                <img draggable="false" src=<?= asset('img/10Y/' . $i . '.png') ?> alt="Foto conmemorativa de los 10 Años de Vetcamp">
+            <?php } ?>
+
+        </div>
+    </div>
+
     <div class="objectives-carroussel">
         <div class="bio-container">
             <h1 class="team-title">Nuestro Equipo</h1>

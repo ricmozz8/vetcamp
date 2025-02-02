@@ -188,6 +188,83 @@
   transform: scale(1.05);
 }
 
+/* 10Y Conmemorative Section */
+
+.conmemorative-10y {
+  padding: 10vh var(--main-margin);
+  margin: auto;
+  text-align: center;
+  background-color: var(--secondary-color-default);
+  color: var(--white-color);
+  overflow: hidden;
+}
+.conmemorative-10y .icon-small-vt{
+  width: 30px;
+}
+
+.conmemorative-10y h3{
+  font-weight: bold;
+  font-size: 3em;
+}
+
+.conmemorative-10y p{
+  font-size: 1em;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.logo-special-titled{
+  padding: 1em;
+}
+
+.tilted-images-scroller{
+  display: flex;
+  gap: 1.6em;
+
+  padding: 1em 0;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.tilted-images-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.tilted-images-scroller{
+  margin: 0 auto;
+}
+
+.tilted-images-scroller img{
+  width: 100%;
+  border-radius: 7px;
+  max-height: 459px;
+  object-fit: cover;
+  transform-origin: top left;
+  transform: rotate(-6deg);
+
+  transition: all 0.25s ease;
+  margin: 6em 0;
+  box-shadow: var(--shadow-soft);
+}
+
+.tilted-images-scroller img:hover{
+  border-radius: 18px;
+  filter: brightness(0.9);
+}
+
+.tilted-images-scroller {
+  animation: scrollX 30s alternate-reverse infinite linear;
+}
+
+@keyframes scrollX {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-150%);
+  }
+}
+
 
 /* Objectives Section */
 
