@@ -157,12 +157,15 @@ class UserApplicationController extends Controller
             $city = filter_input(INPUT_POST, 'city', FILTER_DEFAULT);
             $zip = filter_input(INPUT_POST, 'school_zipcode', FILTER_DEFAULT);
 
+            $school_type = filter_input(INPUT_POST, 'schoolType', FILTER_DEFAULT);
+
             // check if the user has a school address and save it
 
             $newAddress = [
                 'street' => $street,
                 'city' => $city,
-                'zip_code' => $zip
+                'zip_code' => $zip,
+                'school_type' => $school_type
             ];
 
             if ($school_address === null) {
