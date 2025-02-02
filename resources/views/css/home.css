@@ -253,7 +253,7 @@
 }
 
 .tilted-images-scroller {
-  animation: scrollX 30s alternate-reverse infinite linear;
+  animation: scrollX 120s alternate-reverse infinite linear;
 }
 
 @keyframes scrollX {
@@ -261,7 +261,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-150%);
+    transform: translateX(-1600%); /* if all the images are not showing, increase the number */
   }
 }
 
