@@ -220,7 +220,6 @@
 .tilted-images-scroller{
   display: flex;
   gap: 1.6em;
-
   padding: 1em 0;
   margin: 0 auto;
   max-width: 100%;
@@ -235,7 +234,7 @@
 }
 
 .tilted-images-scroller img{
-  width: 100%;
+  /* width: 100%; */
   border-radius: 7px;
   max-height: 459px;
   object-fit: cover;
@@ -245,6 +244,7 @@
   transition: all 0.25s ease;
   margin: 6em 0;
   box-shadow: var(--shadow-soft);
+  -moz-transform: rotate(-6deg);
 }
 
 .tilted-images-scroller img:hover{
@@ -253,7 +253,18 @@
 }
 
 .tilted-images-scroller {
-  animation: scrollX 120s alternate-reverse infinite linear;
+  animation: scrollX 60s alternate-reverse infinite linear;
+  -moz-animation: scrollX 120s alternate-reverse infinite linear; /* Firefox */
+  -webkit-animation: scrollX 120s alternate-reverse infinite linear; /* Safari and Chrome */
+}
+
+@-moz-keyframes scrollX {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1600%);
+  }
 }
 
 @keyframes scrollX {
@@ -261,7 +272,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-1600%); /* if all the images are not showing, increase the number */
+    transform: translateX(-1600%);
   }
 }
 
