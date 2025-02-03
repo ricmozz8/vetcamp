@@ -4,9 +4,9 @@
         <i class="las la-envelope"></i>
         <h2>Enviar mensaje masivo</h2>
         <div class="modal-details">
-            <form action="">
+            <form action="/mail" method="POST">
                 <div class="modal-header-flex">
-                    <select name="type" id="select-type">
+                    <select required name="type" id="select-type">
                         <option value="approved">Aprobados</option>
                         <option value="denied">Rechazados</option>
                         <option value="waitlist">En lista de espera</option>
@@ -16,7 +16,7 @@
                     <input type="checkbox" name="predef-msg" id="">
                 </div>
 
-                <textarea name="message" placeholder="Introduce un mensaje aquí..."></textarea>
+                <textarea required name="message" placeholder="Introduce un mensaje aquí..."></textarea>
 
         </div>
 

@@ -24,6 +24,17 @@ class User extends Model
 
 
     /**
+     * Sends an email to the user with the given message
+     * 
+     * @param string $message The message to send to the user
+     * @return void
+     */
+    public function sendEmail($message){
+        Mailer::send($this->email, 'Mensaje de Vetcamp', $message);
+    }
+
+
+    /**
      * Returns the sanitized values of the user model
      * 
      * @return array An associative array with the sanitized values of the user

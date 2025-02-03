@@ -11,6 +11,8 @@ require 'app/controllers/TrackingController.php';
 require 'app/controllers/ApplicationController.php';
 require 'app/controllers/AcceptedController.php';
 
+require 'app/controllers/MessagesController.php';
+
 switch ($path) {
     case '/admin':
         BackDashboardController::index();
@@ -70,5 +72,8 @@ switch ($path) {
         break;
     case '/profile/update':
         UserController::update($method);
+        break;
+    case '/mail':
+        MessagesController::mailUsers($method);
         break;
 }
