@@ -21,7 +21,7 @@ class ErrorLog{
         $label = '[' . strtoupper($type) . ']';
 
         $date = date("Y-m-d H:i:s");
-        $log = '[' . $date . '] ' . " - " . $error . " - " . $file . " - " . $file_trace . "\n\n";
+        $log = $label . '[' . $date . '] ' . " - " . $error . " - " . $file . " - " . $file_trace . "\n\n";
 
         self::write($log);
     }
