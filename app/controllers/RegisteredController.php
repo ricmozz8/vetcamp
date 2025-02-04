@@ -43,11 +43,18 @@ class RegisteredController extends Controller
             $s = filter_input(INPUT_POST, 'search', FILTER_DEFAULT);
             if (!empty($s)) {
                 $searchTerm = $s . "%";
-                $users = User::findLike([
-                    'first_name' => $searchTerm,
-                    'last_name' => $searchTerm,
-                    'email' => $searchTerm
-                ]);
+
+                try {
+                    $users = User::findLike([
+                        'first_name' => $searchTerm,
+                        'last_name' => $searchTerm,
+                        'email' => $searchTerm
+                    ]);
+                } catch (ModelNotFoundException $notFound) {
+
+                    $_SESSION['error'] = 'No se encontraron resultados';
+                    redirect('/admin/registered');
+                }
             }
         }
 
@@ -59,9 +66,6 @@ class RegisteredController extends Controller
             'currentPage' => $page,
             'totalPages' => $totalPages
         ], 'Registered');
-        
-     
-        
     }
 
     // define your other methods here
