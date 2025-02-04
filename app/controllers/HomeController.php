@@ -15,7 +15,7 @@ class HomeController extends Controller
     public static function index()
     {
         // your index view here
-        render_view('home', ['sessions' => Session::all(), 'limit_dates' => LimitDate::find(1)], 'Home');
+        render_view('home', ['sessions' => Session::all(), 'limit_dates' => LimitDate::find(1)], 'Solicita para el Vetcamp ' . date('Y'));
     }
 
     // define your other methods here
