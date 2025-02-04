@@ -48,7 +48,7 @@
                                                                         echo 'active';
                                                                 } ?>">
                         <i class="las la-bug"></i>
-                        <span>Errores</span>
+                        <span>Errores (desarrollo)</span>
                 </a>
         </nav>
 
