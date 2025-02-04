@@ -42,6 +42,14 @@
                         <i class="las la-cog"></i>
                         <span>Ajustes</span>
                 </a>
+                <hr>
+                
+                <a href="/admin/dev/errors" class="nav-item <?php if ($selected == 'errors') {
+                                                                        echo 'active';
+                                                                } ?>">
+                        <i class="las la-bug"></i>
+                        <span>Errores</span>
+                </a>
         </nav>
 
         <!-- User profile section -->

@@ -361,3 +361,27 @@
 .context-menu a:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+/* error table */
+
+.error-table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white-color);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 10px;
+    font-size: 14px; /* Adjust font size as needed, default is 1em*/
+}
+
+.error-table th, .error-table td {
+    padding: 12px 20px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.error-table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+    color: #333;
+}

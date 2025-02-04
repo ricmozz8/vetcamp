@@ -14,7 +14,7 @@ require __DIR__ . '/partials/header.php';
             <?php if ($code == 404) { ?>
                 <p>La página solicitada no existe.</p>
             <?php } else { ?>
-                <p>Ha ocurrido un error inesperado.</p>
+                <p>Ha ocurrido un error inesperado, no te preocupes hemos notado el problema y trabajaremos para solucionarlo lo antes posible.</p>
             <?php } ?>
         </div>
         <div class="error-content">

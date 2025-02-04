@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/../app/models/ErrorLog.php';
+
+
 // Define your custom exceptions here
 
 class NotImplementedException extends Exception
@@ -54,6 +57,13 @@ class FileNotFoundException extends Exception
 
 // handling exceptions and adding a style
 function exceptionHandler( $exception) {
+
+    // Log the error
+
+    ErrorLog::create([
+        'error' => $exception->getMessage(),
+        'file_trace' => $exception->getTraceAsString()
+    ]);
 
     $is_debug = get_config('app', 'debug');
 
