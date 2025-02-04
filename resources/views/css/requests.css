@@ -13,9 +13,10 @@
   font-size: 24px;
   margin: 0;
 }
-.search-container {
-  padding: 12px 20px;
-  border: 1px solid var(--dark-text-color);
+.search-container form {
+  padding: 0px;
+  background-color: var(--white-color);
+  border: 1px solid #e0e0e0;
   border-radius: 28px;
   display: flex;
   align-items: center;
@@ -27,8 +28,16 @@
   border: none;
   width: 100%;
   outline: none;
+  padding: 10px 15px;
+  background-clip: content-box;
 
 
+}
+
+.search-container input:focus {
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
 
 .listed-table{

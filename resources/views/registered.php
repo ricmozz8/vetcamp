@@ -34,10 +34,10 @@ $statusParsing = [
                         </button>
                         <div class="search-container">
                             <form method="POST" action="/admin/registered">
-                                <input value="<?= isset($_POST['search']) ? $_POST['search'] : '' ?>"type="text" class="search-input" name="search" placeholder="Busca correos, nombres">
-
+                                <input required value="<?= isset($_POST['search']) ? $_POST['search'] : '' ?>" type="text" class="search-input" name="search" placeholder="Busca correos, nombres">
+                                <button type="submit " class="main-action-bright tertiary"> <i class="las la-search"></i> </button>
                             </form>
-                            <button type="submit " class=" no-deco-action"> <i class="las la-search"></i> </button>
+
                         </div>
 
                     </div>
@@ -151,7 +151,7 @@ $statusParsing = [
                 require __DIR__ . '/modals/confirmDeleteUserModal.php';
                 $loop++;
             }
-            
+
             ?>
 
         </section>
