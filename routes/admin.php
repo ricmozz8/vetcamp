@@ -78,6 +78,9 @@ switch ($path) {
     case '/admin/dev/errors':
         ErrorsController::index();
         break;
+    case '/admin/dev/errors/download':
+        ErrorsController::download();
+        break;
     case '/mail':
         MessagesController::mailUsers($method);
         break;

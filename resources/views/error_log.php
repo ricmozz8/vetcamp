@@ -18,6 +18,10 @@ require_once __DIR__ . '/partials/header.php';
                         <i class="las la-bug"></i>
                         Errores de la aplicación
                     </h2>
+                    <a target="_blank" class="main-action-bright tertiary" href="/admin/dev/errors/download">
+                        <i class="las la-download"></i>
+                        Descargar
+                    </a>
                 </div>
                 <div class="stat-number">
                     <textarea name="errorlog" id="log-ta" class="log-ta"><?= $errors ?></textarea>
