@@ -23,7 +23,7 @@ require 'bootstrap/exceptions.php';
 require 'kernel/auth.php';
 require 'mailing/mailer.php';
 require 'storage/Storage.php';
-
+require 'kernel/ErrorLog.php';
 
 
 

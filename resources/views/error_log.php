@@ -20,27 +20,7 @@ require_once __DIR__ . '/partials/header.php';
                     </h2>
                 </div>
                 <div class="stat-number">
-                    <table class="error-table">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Error</th>
-                                <th>Archivo</th>
-                                <th>Trazado de archivos</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($errors as $error) : ?>
-                                <tr>
-                                    <td><?= $error->throwed ?></td>
-                                    <td><?= $error->error ?></td>
-                                    <td><?= $error->file ?></td>
-                                    <td><?= $error->file_trace ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                    <textarea name="errorlog" id="log-ta" class="log-ta"><?= $errors ?></textarea>
                 </div>
             </div>
         </div>

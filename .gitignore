@@ -25,6 +25,8 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 
+storage/private/error_log.txt
+
 /.idea
 /.vs
 /.vscode

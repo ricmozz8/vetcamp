@@ -69,6 +69,8 @@ class Storage
         self::setDisk($disk);
         $file_path =  $disk . '/' . $path;
 
+        
+
         if (file_exists($file_path) && is_readable($file_path)) {
             // get the name and size
             return file_get_contents($file_path);

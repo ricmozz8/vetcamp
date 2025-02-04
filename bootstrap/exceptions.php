@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../app/models/ErrorLog.php';
+
 
 
 // Define your custom exceptions here
@@ -60,11 +60,11 @@ function exceptionHandler( $exception) {
 
     // Log the error
 
-    ErrorLog::create([
-        'error' => $exception->getMessage(),
-        'file' => $exception->getFile() . ' on line ' . $exception->getLine(),
-        'file_trace' => $exception->getTraceAsString()
-    ]);
+    ErrorLog::log(
+        $exception->getMessage(),
+        $exception->getFile() . ' on line ' . $exception->getLine(),
+        $exception->getTraceAsString()
+    );
 
     $is_debug = get_config('app', 'debug');
 

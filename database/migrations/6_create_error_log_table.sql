@@ -1,8 +1,0 @@
-CREATE TABLE `error_log` 
-(`id` INT NOT NULL AUTO_INCREMENT , 
-`error` TEXT NOT NULL , 
-`file` TEXT NOT NULL,
-`file_trace` TEXT NOT NULL , 
-`throwed` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
-PRIMARY KEY (`id`)) 
-ENGINE = InnoDB;

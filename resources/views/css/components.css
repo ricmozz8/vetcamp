@@ -358,6 +358,19 @@ select {
   color: var(--main-color-darken-2);
   margin: 10px 0;
   
+
+  
+}
+
+.log-ta{
+  font-family: monospace;
+  font-size: 12px;
+  resize: vertical;
+  min-height: 400px;
+  max-height: 800px !important;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--white-color-shade-1);
 }
 
 /*******************************
