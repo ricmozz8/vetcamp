@@ -67,9 +67,7 @@ class Storage
     public static function get($disk, $path)
     {
         self::setDisk($disk);
-        $file_path =  $disk . '/' . $path;
-
-        
+        $file_path =  'storage/' . $disk . '/' . $path;
 
         if (file_exists($file_path) && is_readable($file_path)) {
             // get the name and size
@@ -116,9 +114,12 @@ class Storage
      */
     public static function delete($disk, $path)
     {
-        $file_path = $disk . '/' . $path;
-        if (file_exists($file_path)) {
-            unlink($file_path);
+        $file_path = 'storage/' . $disk . '/' . $path;
+        if (!file_exists($file_path)) {
+            throw new FileNotFoundException('File with path "' . $file_path . '" not found.');
         }
+
+        // delete the file
+        unlink($file_path);
     }
 }

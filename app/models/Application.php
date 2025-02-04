@@ -275,7 +275,16 @@ class Application extends Model
         $documents = $this->getSubmittedDocuments();
 
         foreach ($documents as $key => $value) {
-            Storage::delete('private', $value);
+            try{
+                
+                Storage::delete('private', $value);
+            } catch (FileNotFoundException $e) {
+                // log the error if the file is not found as a warning
+
+                ErrorLog::log($e->getMessage(), $e->getFile(), $e->getTraceAsString(), 'warning');
+                continue;
+            }
+            
         }
 
         return $this->delete();

@@ -63,7 +63,7 @@ function exceptionHandler( $exception) {
     ErrorLog::log(
         $exception->getMessage(),
         $exception->getFile() . ' on line ' . $exception->getLine(),
-        $exception->getTraceAsString()
+        $exception->getTraceAsString(),
     );
 
     $is_debug = get_config('app', 'debug');

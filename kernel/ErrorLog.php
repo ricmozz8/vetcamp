@@ -16,7 +16,9 @@ class ErrorLog{
      * 
      * @return void
      */
-    public static function log($error, $file, $file_trace) {
+    public static function log($error, $file, $file_trace, $type = 'error') {
+
+        $label = '[' . strtoupper($type) . ']';
 
         $date = date("Y-m-d H:i:s");
         $log = '[' . $date . '] ' . " - " . $error . " - " . $file . " - " . $file_trace . "\n\n";

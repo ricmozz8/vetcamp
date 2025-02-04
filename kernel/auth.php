@@ -49,7 +49,8 @@ class Auth
         } catch (ModelNotFoundException $e) {
             // if the user is not found, log them out
             self::logout();
-            return null;
+            redirect('/login');
+            
         }
         return $user;
     }
