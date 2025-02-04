@@ -36,9 +36,10 @@ class RegisteredController extends Controller
         $offset = ($page - 1) * $perPage;
         $users = array_slice($allUsers, $offset, $perPage);
 
-        // Filtro 
+        // Filtering users
         // storing users
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        try {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $palabra = $_POST['search'];
                 if (!empty($palabra)) {
                     $searchTerm = $palabra . "%";
@@ -51,10 +52,12 @@ class RegisteredController extends Controller
                 } else {
                     $users = User::allof('user');
                 }
-        } else {
-            $users = User::allof('user');
+            } else {
+                $users = User::allof('user');
+            }
+        } catch (ModelNotFoundException $e) {
+            $users = [];
         }
-        //render_view('registered', ["users" => $users, 'selected' => 'registered'], 'Registered');
         // end filtro
 
         // your index view here
