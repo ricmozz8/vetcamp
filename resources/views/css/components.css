@@ -362,6 +362,14 @@ select {
   
 }
 
+.danger-box{
+  padding: 10px;
+  border-radius: 13px;
+  background-color: var(--danger-color);
+  color: var(--white-color);
+  margin: 10px 0;
+}
+
 .log-ta{
   font-family: monospace;
   font-size: 12px;

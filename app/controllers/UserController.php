@@ -127,6 +127,11 @@ class UserController extends Controller
             redirect('/admin');
         }
 
+        if(Auth::user()->__get('user_id') === $user_id){ {
+            $_SESSION['error'] = 'No puedes eliminar a ti mismo.';
+            redirect('/admin');
+        }
+
         if ($user->type === 'admin') {
             // admins has no associated application not addresses
             $user->delete();
@@ -159,4 +164,6 @@ class UserController extends Controller
         redirect('/admin/registered');
         
     }
+}
+
 }

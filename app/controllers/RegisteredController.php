@@ -38,27 +38,19 @@ class RegisteredController extends Controller
 
         // Filtering users
         // storing users
-        try {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $palabra = $_POST['search'];
-                if (!empty($palabra)) {
-                    $searchTerm = $palabra . "%";
-                    // Realizar la búsqueda en las columnas relevantes
-                    $users = User::findLike([
-                        'first_name' => $searchTerm,
-                        'last_name' => $searchTerm,
-                        'email' => $searchTerm
-                    ]);
-                } else {
-                    $users = User::allof('user');
-                }
-            } else {
-                $users = User::allof('user');
+        $users = User::allof('user');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $s = filter_input(INPUT_POST, 'search', FILTER_DEFAULT);
+            if (!empty($s)) {
+                $searchTerm = $s . "%";
+                $users = User::findLike([
+                    'first_name' => $searchTerm,
+                    'last_name' => $searchTerm,
+                    'email' => $searchTerm
+                ]);
             }
-        } catch (ModelNotFoundException $e) {
-            $users = [];
         }
-        // end filtro
+
 
         // your index view here
         render_view('registered', [
