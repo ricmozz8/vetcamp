@@ -109,14 +109,27 @@ class UserController extends Controller
 
     public static function delete($method)
     {
-        if ($method !== 'POST') {
-            redirect('/admin');
-        }
 
-        if (!Auth::check() || Auth::user()->type !== 'admin') {
-            $_SESSION['error'] = 'Acceso no autorizado.';
+        
+
+        if (!Auth::check()) {
             redirect('/login');
         }
+
+        if (Auth::user()->type !== 'admin') {
+            redirect('/login');
+        }
+
+        
+
+
+        if ($method !== 'POST') {
+            $_SESSION['error'] = 'Acceso no autorizado';
+            redirect_back();    
+        }
+
+
+        
 
         $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
 
@@ -124,13 +137,15 @@ class UserController extends Controller
             $user = User::find($user_id);
         } catch (ModelNotFoundException $notFound) {
             $_SESSION['error'] = 'El usuario no existe.';
-            redirect('/admin');
+            redirect_back();    
         }
 
-        if(Auth::user()->__get('user_id') === $user_id){ {
+
+        if(Auth::user()->user_id === $user_id) {
             $_SESSION['error'] = 'No puedes eliminar a ti mismo.';
-            redirect('/admin');
+            redirect_back();    
         }
+
 
         if ($user->type === 'admin') {
             // admins has no associated application not addresses
@@ -166,4 +181,4 @@ class UserController extends Controller
     }
 }
 
-}
+

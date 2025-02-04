@@ -14,6 +14,8 @@ require_once 'app/controllers/AcceptedController.php';
 require_once 'app/controllers/MessagesController.php';
 
 require_once 'app/controllers/ErrorsController.php';
+require_once 'app/controllers/UserController.php';
+
 
 switch ($path) {
     case '/admin':
@@ -80,6 +82,9 @@ switch ($path) {
         break;
     case '/admin/dev/errors/download':
         ErrorsController::download();
+        break;
+    case '/users/delete':
+        UserController::delete($method);
         break;
     case '/mail':
         MessagesController::mailUsers($method);

@@ -45,7 +45,7 @@ class Auth
         if (!isset($_SESSION['user'])) return null;
 
         try {
-            $user = User::find($_SESSION['user']->__get('user_id'), 'user_id');
+            $user = User::find($_SESSION['user']->user_id, 'user_id');
         } catch (ModelNotFoundException $e) {
             // if the user is not found, log them out
             self::logout();
