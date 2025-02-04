@@ -25,7 +25,8 @@ require_once __DIR__ . '/partials/header.php';
                             <tr>
                                 <th>Fecha</th>
                                 <th>Error</th>
-                                <th>Archivos</th>
+                                <th>Archivo</th>
+                                <th>Trazado de archivos</th>
                                 
                             </tr>
                         </thead>
@@ -34,6 +35,7 @@ require_once __DIR__ . '/partials/header.php';
                                 <tr>
                                     <td><?= $error->throwed ?></td>
                                     <td><?= $error->error ?></td>
+                                    <td><?= $error->file ?></td>
                                     <td><?= $error->file_trace ?></td>
                                 </tr>
                             <?php endforeach; ?>

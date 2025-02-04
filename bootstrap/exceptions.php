@@ -62,6 +62,7 @@ function exceptionHandler( $exception) {
 
     ErrorLog::create([
         'error' => $exception->getMessage(),
+        'file' => $exception->getFile() . ' on line ' . $exception->getLine(),
         'file_trace' => $exception->getTraceAsString()
     ]);
 
