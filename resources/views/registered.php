@@ -35,7 +35,7 @@ $statusParsing = [
                         <div class="search-container">
                             <form method="POST" action="/admin/registered">
                                 <input type="text" class="search-input" name="search" placeholder="Busca correos, nombres">
-                                
+
                             </form>
                             <button type="submit " class=" no-deco-action"> <i class="las la-search"></i> </button>
                         </div>
@@ -50,7 +50,7 @@ $statusParsing = [
                             <th>Correo</th>
                             <th>Estado</th>
                             <th>Fecha</th>
-                            <th></th>
+                            <!-- <th></th> -->
                             <th></th>
 
                         </tr>
@@ -58,6 +58,7 @@ $statusParsing = [
                     <tbody>
                         <?php
                         // Loop through the users returned by the User::all() method
+                        $loop = 1;
                         foreach ($users as $user) {
                             // Get the full name
                             $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
@@ -75,10 +76,13 @@ $statusParsing = [
                             echo "<td>" . htmlspecialchars($user->email) . "</td>";
                             echo "<td class='status-badge'>" . '<i class="las la-dot-circle" style="color: ' . $statusColor . '" > </i>'  . htmlspecialchars($status) . "</td>";
                             echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
-                            echo '<td>' . '<a id="manage-user-button" href="#" onclick="openContextMenu(event, \'manage-user\')" class="w-fit main-action-bright quaternary-squared">' . '<i class="las la-ellipsis-v"></i>' . '</a>' . '</td>';
-                            echo '<td>' . '<a class="main-action-bright no-deco-action" href="#' . '" class="review-link"> <> borrar</a>' . "</td>";
+                            // echo '<td>' . '<a id="manage-user-button" href="#" onclick="openContextMenu(event, \'manage-user\')" class="w-fit main-action-bright quaternary-squared">' . '<i class="las la-ellipsis-v"></i>' . '</a>' . '</td>';
+                            echo '<td>' . '<a onclick="openModal(\'confirmDeleteUserModal-' . $loop++ .  '\')" class="main-action-bright no-deco-action" href="#' . '" class="review-link"> <i class="las la-trash"></i> borrar</a>' . "</td>";
                             echo "</tr>";
                         }
+
+
+
                         ?>
                     </tbody>
                 </table>
@@ -119,7 +123,7 @@ $statusParsing = [
                     <?php endif; ?>
                 </div>
 
-                <div id="manage-user" class="context-menu manage-user">
+                <!-- <div id="manage-user" class="context-menu manage-user">
                     <a href="#">
                         <i class="las la-times"></i>
                         Desactivar
@@ -132,10 +136,25 @@ $statusParsing = [
                         <i class="las la-lock"></i>
                         Restablecer Contraseña
                     </a>
-                </div>
+                </div> -->
             </div>
 
         </main>
+
+        <!-- modals -->
+        <section>
+            <?php
+            // Loop through the users returned by the User::all() method
+            $loop = 1;
+            foreach ($users as $user) {
+                $user_id = $user->user_id;
+                require __DIR__ . '/modals/confirmDeleteUserModal.php';
+                $loop++;
+            }
+            
+            ?>
+
+        </section>
 
         <script>
             // close context menu if the user clicks outside of it

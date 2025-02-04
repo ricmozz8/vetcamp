@@ -1,19 +1,19 @@
 <?php
-require 'app/controllers/UserController.php';
+require_once 'app/controllers/UserController.php';
 
-require 'app/controllers/BackDashboardController.php';
+require_once 'app/controllers/BackDashboardController.php';
 
-require 'app/controllers/SettingsController.php';
-require 'app/controllers/RegisteredController.php';
-require 'app/controllers/RequestsController.php';
+require_once 'app/controllers/SettingsController.php';
+require_once 'app/controllers/RegisteredController.php';
+require_once 'app/controllers/RequestsController.php';
 
-require 'app/controllers/TrackingController.php';
-require 'app/controllers/ApplicationController.php';
-require 'app/controllers/AcceptedController.php';
+require_once 'app/controllers/TrackingController.php';
+require_once 'app/controllers/ApplicationController.php';
+require_once 'app/controllers/AcceptedController.php';
 
-require 'app/controllers/MessagesController.php';
+require_once 'app/controllers/MessagesController.php';
 
-require 'app/controllers/ErrorsController.php';
+require_once 'app/controllers/ErrorsController.php';
 
 switch ($path) {
     case '/admin':

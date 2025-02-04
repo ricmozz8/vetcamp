@@ -233,7 +233,7 @@ class Application extends Model
                 $statusInEnglish = self::getStatusInEnglish($application->status);
             }
             if ($statusInEnglish === 'denied') {
-                $application->delete();
+                $application->hard_delete();
                 $deletedApplications[] = $user->user_id;
             }
         }
@@ -254,12 +254,32 @@ class Application extends Model
         foreach ($users as $user) {
             $application = $user->application();
             if ($application) {
-                $application->delete();
+                $application->hard_delete();
                 $deletedApplications[] = $user->user_id;
             }
         }
 
         return $deletedApplications;
+    }
+
+
+    /**
+     * Hard deletes the application.
+     * 
+     * This removes all the documents from the storage and deletes the application from the database.
+     * 
+     * @return bool True if the application was successfully deleted, false otherwise.
+     */
+    public function hard_delete()
+    {
+        $documents = $this->getSubmittedDocuments();
+
+        foreach ($documents as $key => $value) {
+            Storage::delete('private', $value);
+        }
+
+        return $this->delete();
+        
     }
 
 

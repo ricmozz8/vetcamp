@@ -3,24 +3,26 @@ require_once 'Controller.php';
 require_once 'app/models/User.php';
 
 
-class UserController extends Controller{
+class UserController extends Controller
+{
 
-    
+
     /**
      * Serves the index view.
      *
      * @return void
      */
-    public static function index() {
-        try{
+    public static function index()
+    {
+        try {
             $userObject = User::find(1);
         } catch (ModelNotFoundException $notFound) {
             // handle here when the user is not found
             $userObject = null;
         }
-        
 
-        render_view('users', ['user' => $userObject] , 'Users');
+
+        render_view('users', ['user' => $userObject], 'Users');
     }
 
     /**
@@ -32,10 +34,11 @@ class UserController extends Controller{
      *
      * @return void
      */
-    public static function all() {
+    public static function all()
+    {
         $users = User::allof('user');
-       render_view('allUsers', ['users' => $users] , 'All Users');
-      }
+        render_view('allUsers', ['users' => $users], 'All Users');
+    }
 
 
     /**
@@ -47,9 +50,10 @@ class UserController extends Controller{
      *
      * @return void
      */
-      public static function allApplicants() {
-       $solicitants = User::allApplicants();
-       render_view('allSolicitants', ['solicitants' => $solicitants], 'All Solicitants'); 
+    public static function allApplicants()
+    {
+        $solicitants = User::allApplicants();
+        render_view('allSolicitants', ['solicitants' => $solicitants], 'All Solicitants');
     }
 
 
@@ -81,7 +85,7 @@ class UserController extends Controller{
             // reload the new user on session
             Auth::login($user);
         }
-        
+
         redirect('/admin'); // if no referrer returns to admin page
     }
 
@@ -101,17 +105,58 @@ class UserController extends Controller{
 
         $newUser = User::find(1) ?? null;
         echo json_encode($newUser);
-
     }
 
-    public static function delete()
+    public static function delete($method)
     {
-        $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
-        $user = User::find($user_id);
+        if ($method !== 'POST') {
+            redirect('/admin');
+        }
 
-        // deleting associated data
+        if (!Auth::check() || Auth::user()->type !== 'admin') {
+            $_SESSION['error'] = 'Acceso no autorizado.';
+            redirect('/login');
+        }
+
+        $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
+
+        try {
+            $user = User::find($user_id);
+        } catch (ModelNotFoundException $notFound) {
+            $_SESSION['error'] = 'El usuario no existe.';
+            redirect('/admin');
+        }
+
+        if ($user->type === 'admin') {
+            // admins has no associated application not addresses
+            $user->delete();
+            redirect('/admin');
+        } else {
+            $application = $user->application();
+            $postal_address = $user->postal_address();
+            $physical_address = $user->physical_address();
+            $school_address = $user->school_address();
+
+            // go ahead and delete the user data before deleting the user
+            if ($application !== null) {
+                $application->hard_delete();
+            }
+            if ($postal_address !== null) {
+                $postal_address->delete();
+            }
+            if ($physical_address !== null) {
+                $physical_address->delete();
+            }
+            if ($school_address !== null) {
+                $school_address->delete();
+            }
+
+            // finally delete the user
+            $user->delete();
+        }
+
+        $_SESSION['message'] = 'El usuario ha sido eliminado.';
+        redirect('/admin/registered');
         
-        $user->delete();
-        redirect('/admin');
     }
 }
