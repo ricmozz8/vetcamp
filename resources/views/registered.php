@@ -35,6 +35,9 @@ $statusParsing = [
                         <div class="search-container">
                             <form method="POST" action="/admin/registered">
                                 <input required value="<?= isset($_POST['search']) ? $_POST['search'] : '' ?>" type="text" class="search-input" name="search" placeholder="Busca correos, nombres">
+                                <?php if (isset($_POST['search'])): ?>
+                                    <a class="no-deco-action" href="/admin/registered"><i class="las la-times"></i></a>
+                                <?php endif; ?>
                                 <button type="submit " class="main-action-bright tertiary"> <i class="las la-search"></i> </button>
                             </form>
 

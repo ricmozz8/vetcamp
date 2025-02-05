@@ -137,19 +137,14 @@ final class DB
 
     public static function whereColumns(string $table, array $conditions, string $column = '*'): array
     {
-        // conditions is the associative array with the column and its value to search
-
         $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ';
 
-
         $index = 0;
-        // getting the length of conditions
-
         $length = count($conditions);
+        $params = [];
         foreach ($conditions as $key => $value) {
-
-
-            $sql .= $key . ' = ' . quote($value);
+            $sql .= $key . ' = :' . $key;
+            $params[$key] = $value;
 
             if ($index < $length - 1) {
                 $sql .= ' AND ';
@@ -158,7 +153,7 @@ final class DB
         }
 
         $statement = self::$database->prepare($sql);
-        $statement->execute();
+        $statement->execute($params);
         $results = $statement->fetch();
 
         if (is_array($results)) {
@@ -307,7 +302,8 @@ final class DB
      *
      * @return array The results of the query as an array of associative arrays.
      */
-    public static function like(string $table, array $values): array {
+    public static function like(string $table, array $values): array
+    {
         if (empty($values)) {
             throw new InvalidArgumentException('Values array cannot be empty.');
         }
@@ -316,14 +312,14 @@ final class DB
             $conditions[] = "`$column` LIKE :$column";
         }
         $whereClause = implode(' OR ', $conditions);
-    
-        $sql = "SELECT * FROM `$table` WHERE $whereClause";  
+
+        $sql = "SELECT * FROM `$table` WHERE $whereClause";
         // Preparar la consulta SQL
         $statement = self::$database->prepare($sql);
         foreach ($values as $column => $pattern) {
             $statement->bindValue(":$column", $pattern, PDO::PARAM_STR);
         }
-    
+
         try {
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -331,7 +327,7 @@ final class DB
             throw new DatabaseQueryException($e->getMessage(), $sql, $e->getCode(), $e);
         }
     }
-    
+
 
     /**
      * Get all columns from a table.
