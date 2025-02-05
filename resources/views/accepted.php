@@ -26,8 +26,10 @@ require_once __DIR__ . '/partials/header.php';
                     Enviar mensaje
                 </button>
             </header>
+            <p style="color: gray; text-align: center; font-size: 12px; max-width: 700px; margin: auto; padding: 1em"> Esta sección está siendo implementada por el momento.</p>
 
-            <div class="accepted-grouped">
+            
+             <div class="accepted-grouped" style="display: none;">
                 <div class="accepted-card">
                     <div class="accepted-card-header">
                         <div class="">
