@@ -16,11 +16,11 @@ require_once __DIR__ . '/partials/header.php';
                 <div class="stat-header">
                     <h2 class="stat-title">
                         <i class="las la-bug"></i>
-                        Errores de la aplicación
+                        Error log
                     </h2>
                     <a target="_blank" class="main-action-bright tertiary" href="/admin/dev/errors/download">
                         <i class="las la-download"></i>
-                        Descargar
+                        Download
                     </a>
                 </div>
                 <div class="stat-number">

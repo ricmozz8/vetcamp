@@ -43,12 +43,17 @@
                         <span>Ajustes</span>
                 </a>
                 <hr>
+
+                <p class="sidebar-section">
+                        <i class="las la-wrench"></i>
+                        Developer tools
+                </p>
                 
                 <a href="/admin/dev/errors" class="nav-item <?php if ($selected == 'errors') {
                                                                         echo 'active';
                                                                 } ?>">
                         <i class="las la-bug"></i>
-                        <span>Errores (desarrollo)</span>
+                        <span>Error log</span>
                 </a>
         </nav>
 

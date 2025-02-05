@@ -384,3 +384,7 @@
     font-weight: bold;
     color: #333;
 }
+
+.sidebar-section{
+  margin: 1em 20px;
+}
