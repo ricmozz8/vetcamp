@@ -18,10 +18,13 @@ class ErrorLog{
      */
     public static function log($error, $file, $file_trace, $type = 'error') {
 
-        $label = '[' . strtoupper($type) . ']';
+        if (!file_exists(ERROR_LOG_PATH)) {
+            mkdir(ERROR_LOG_PATH, 0777, true);
+        }
+
 
         $date = date("Y-m-d H:i:s");
-        $log = $label . '[' . $date . '] ' . " - " . $error . " - " . $file . " - " . $file_trace . "\n\n";
+        $log = strtoupper($type)  . ' | ' . $date . ' | ' . $error . " | " . $file . " | " . $file_trace . "\n\n";
 
         self::write($log);
     }
@@ -34,8 +37,9 @@ class ErrorLog{
     public static function all() {
         if (!file_exists(ERROR_LOG_PATH . ERROR_LOG_FILE)) {
             touch(ERROR_LOG_PATH . ERROR_LOG_FILE);
+            self::log('Error log was created successfully ', 'error_log.txt', '', 'info');
         }
-        self::log('Error log was created successfully ', 'error_log.txt', '', 'info');
+        
         return file_get_contents(ERROR_LOG_PATH . ERROR_LOG_FILE);
     }
 
@@ -57,6 +61,57 @@ class ErrorLog{
         // Close the file
         fclose($file);
     }
+
+    public static function clear() {
+        if (file_exists(ERROR_LOG_PATH . ERROR_LOG_FILE)) {
+            unlink(ERROR_LOG_PATH . ERROR_LOG_FILE);
+        }
+    }
+
+    /**
+     * AsArray
+     * This method will return each error log as an associative array with the keys being:
+     * - type
+     * - date
+     * - error
+     * - file
+     * - trace
+     * 
+     * @return array
+     */
+    public static function asArray() {
+        $logs = self::all();
+        $logEntries = explode("\n\n", trim($logs));
+        $errorArray = [];
+
+        foreach ($logEntries as $entry) {
+            if (empty($entry)) {
+                continue;
+            }
+
+            $entry = rtrim($entry, ' |');
+            
+            
+            $matches = explode(' | ', trim($entry));
+
+            
+            if ($matches) {
+                $errorArray[] = [
+                    'type' => strtolower($matches[0]),
+                    'date' => $matches[1] ?? null,
+                    'error' => $matches[2] ?? null,
+                    'file' => $matches[3] ?? null,
+                    'trace' => $matches[4] ?? null
+                ];
+            }
+        }
+
+        return $errorArray;
+
+        
+    }
+
+
 
 
 

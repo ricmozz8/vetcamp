@@ -134,7 +134,6 @@ final class DB
         return [];
     }
 
-
     public static function whereColumns(string $table, array $conditions, string $column = '*'): array
     {
         $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ';

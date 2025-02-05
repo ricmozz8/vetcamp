@@ -27,8 +27,30 @@ require_once __DIR__ . '/partials/header.php';
                     </a>
                 </div>
                 <div class="stat-number">
-                    <textarea name="errorlog" id="log-ta" class="log-ta"><?= $errors ?></textarea>
+
+                    <table class="error-table">
+                        <tr>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Error</th>
+                            <th>File</th>
+                            <th>Trace</th>
+                        </tr>
+                        <tbody>
+                            <?php foreach ($errors as $error): ?>
+                                <tr>
+                                    <td class="error-type-<?= $error['type'] ?>" ><?= $error['type'] ?></td>
+                                    <td><?= $error['date'] ?></td>
+                                    <td><?= $error['error'] ?></td>
+                                    <td><?= $error['file'] ?></td>
+                                    <td><?= $error['trace'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    
                 </div>
+                <!-- <textarea name="errorlog" id="log-ta" class="log-ta"><?= $errors ?></textarea> -->
             </div>
         </div>
     </div>

@@ -18,7 +18,7 @@ class ErrorsController extends Controller
             redirect('/login');
         }
 
-        render_view('error_log', ['errors'=>  ErrorLog::all(), 'selected' => 'errors'], 'Error Log');
+        render_view('error_log', ['errors'=>  ErrorLog::asArray(), 'selected' => 'errors'], 'Error Log');
 
     }
 
@@ -30,11 +30,13 @@ class ErrorsController extends Controller
         if (Auth::user()->type != 'admin') {
             redirect('/login');
         }
-
+       
         $today = date('Y-m-d');
         header('Content-Type: text/plain');
         header('Content-Disposition: attachment; filename="vetcamp_error_log_' . $today . '.txt"');
-        echo ErrorLog::all();
+        header('Content-Transfer-Encoding: binary');
+        readfile(ERROR_LOG_PATH . ERROR_LOG_FILE);
+        exit;
     }
 
     // define your other methods here

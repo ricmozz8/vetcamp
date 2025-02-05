@@ -19,11 +19,12 @@ error_reporting(E_ALL);
 
 // GLOBAL IMPORTS AVAILABLE ON ALL FILES
 require 'app/helpers/helpers.php';
+require 'kernel/ErrorLog.php';
 require 'bootstrap/exceptions.php';
 require 'kernel/auth.php';
 require 'mailing/mailer.php';
 require 'storage/Storage.php';
-require 'kernel/ErrorLog.php';
+
 
 
 
