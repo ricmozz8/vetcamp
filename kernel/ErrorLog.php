@@ -32,6 +32,10 @@ class ErrorLog{
      * @return string The error logs
      */
     public static function all() {
+        if (!file_exists(ERROR_LOG_PATH . ERROR_LOG_FILE)) {
+            touch(ERROR_LOG_PATH . ERROR_LOG_FILE);
+        }
+        self::log('Dev log was created successfully ', 'error_log.txt', '', 'info');
         return file_get_contents(ERROR_LOG_PATH . ERROR_LOG_FILE);
     }
 
