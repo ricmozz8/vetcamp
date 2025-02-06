@@ -89,4 +89,7 @@ switch ($path) {
     case '/mail':
         MessagesController::mailUsers($method);
         break;
+    case '/mail/user':
+        MessagesController::message($method);
+        break;
 }
