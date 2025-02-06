@@ -110,7 +110,6 @@ function internalServerErrorHandler($errno, $errstr, $errfile, $errline) {
         'crash'
     );
 
-    redirect('/');
 }
 
 

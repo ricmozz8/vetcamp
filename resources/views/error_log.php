@@ -48,6 +48,7 @@ require_once __DIR__ . '/partials/header.php';
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <br><br><br>    
                     
                 </div>
                 

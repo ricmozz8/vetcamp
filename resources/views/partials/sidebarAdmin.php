@@ -1,4 +1,10 @@
 <!-- Sidebar navigation -->
+ <?php
+ if(!isset($selected)){
+        $selected = '';
+ }
+ ?>
+
 <aside id="sidebar" class="sidebar">
 
         <!-- Close sidebar button -->

@@ -15,7 +15,7 @@ class RequestsController extends Controller
         if (!Auth::check()) {
             redirect('/login');
         }
-        if (Auth::user()->type != 'admin') {
+        if (Auth::user()->type !== 'admin') {
             redirect('/login');
         }
         // storing users
