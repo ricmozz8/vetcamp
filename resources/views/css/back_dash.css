@@ -75,12 +75,26 @@
  * STATISTICS GRID & CARDS
  * Layout and styling for metric displays
  *******************************/
+
+ .back-dash .stats-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
 /* Two-column grid layout for statistics */
 .back-dash .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
   margin-bottom: 15px;
+}
+
+.stat-description{
+  font-size: 14px;
+  color: gray;
+
 }
 
 /* Individual statistic cards */
@@ -406,6 +420,16 @@
 
 .error-type-notice{
   color: #fba119;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: fit-content;
+  height: fit-content;
+
+}
+
+.error-type-crash{
+  color: #7e0a0a;
   border: none;
   text-transform: uppercase;
   font-weight: bold;

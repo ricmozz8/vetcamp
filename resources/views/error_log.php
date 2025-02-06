@@ -50,7 +50,7 @@ require_once __DIR__ . '/partials/header.php';
                     </table>
                     
                 </div>
-                <!-- <textarea name="errorlog" id="log-ta" class="log-ta"><?= $errors ?></textarea> -->
+                
             </div>
         </div>
     </div>

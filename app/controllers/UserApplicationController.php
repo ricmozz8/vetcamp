@@ -102,6 +102,14 @@ class UserApplicationController extends Controller
             redirect('/apply');
         }
 
+        if (!Auth::check() ) {
+            redirect('/login');
+        }
+
+        if (Auth::user()->type == 'admin') {
+            redirect('/admin');
+        }
+
         $application = Auth::user()->application();
         $school_address  = Auth::user()->school_address();
 
@@ -212,6 +220,15 @@ class UserApplicationController extends Controller
             redirect('/apply');
         }
 
+        if (!Auth::check() ) {
+            redirect('/login');
+        }
+
+        if (Auth::user()->type == 'admin') {
+            redirect('/admin');
+        }
+
+
         $application = Auth::user()->application();
         $postal_address = Auth::user()->postal_address();
         $physical_address = Auth::user()->physical_address();
@@ -307,9 +324,12 @@ class UserApplicationController extends Controller
         }
 
 
-        if (!Auth::check()) {
-            $_SESSION['error'] = 'Por favor complete todos los campos';
-            redirect_back();
+        if (!Auth::check() ) {
+            redirect('/login');
+        }
+
+        if (Auth::user()->type == 'admin') {
+            redirect('/admin');
         }
 
 
@@ -345,13 +365,13 @@ class UserApplicationController extends Controller
             // validating the documents (note: create a validate_documents function)
             $valid =
                 validate_documents($documents, [
-                    'written_application' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false],
-                    'transcript' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false],
-                    'written_essay' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false],
-                    'picture' => ['type' => ['image/jpeg', 'image/png', 'image/jpg'], 'size' => to_byte_size('10MB'), 'required' => false],
-                    'video_essay' => ['type' => ['video/mp4'], 'size' => to_byte_size('10MB'), 'required' => false],
-                    'authorization_letter' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false],
-                    'recommendation_letter' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false]
+                    'written_application' => ['type' => ['application/pdf'], 'size' => to_byte_size('8MB'), 'required' => false],
+                    'transcript' => ['type' => ['application/pdf'], 'size' => to_byte_size('8MB'), 'required' => false],
+                    'written_essay' => ['type' => ['application/pdf'], 'size' => to_byte_size('8MB'), 'required' => false],
+                    'picture' => ['type' => ['image/jpeg', 'image/png', 'image/jpg'], 'size' => to_byte_size('8MB'), 'required' => false],
+                    'video_essay' => ['type' => ['video/mp4'], 'size' => to_byte_size('8MB'), 'required' => false],
+                    'authorization_letter' => ['type' => ['application/pdf'], 'size' => to_byte_size('8MB'), 'required' => false],
+                    'recommendation_letter' => ['type' => ['application/pdf'], 'size' => to_byte_size('8MB'), 'required' => false]
                 ]);
             
             
@@ -413,6 +433,14 @@ class UserApplicationController extends Controller
         if (!self::validate_time_limit()) {
             $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
             redirect('/apply');
+        }
+
+        if (!Auth::check() ) {
+            redirect('/login');
+        }
+
+        if (Auth::user()->type == 'admin') {
+            redirect('/admin');
         }
 
         $application = Auth::user()->application();

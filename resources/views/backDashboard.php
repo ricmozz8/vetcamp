@@ -43,7 +43,7 @@ if ($hour >= 5 && $hour < 12) {
 
 
             <!-- Statistics grid section -->
-            <div class="stats-grid">
+            <div class="stats-grid-3 ">
                 <!-- Applicants stats card -->
                 <div class="stat-card">
                     <div class="stat-header">
@@ -54,6 +54,8 @@ if ($hour >= 5 && $hour < 12) {
 
                     </div>
                     <div class="stat-number"><?php echo $all_applicants; ?></div>
+                    <p class="stat-description">Usuarios que han llenado el formulario, y que han sometido su solicitud para evaluación.</p>
+
 
                 </div>
 
@@ -68,8 +70,27 @@ if ($hour >= 5 && $hour < 12) {
 
                     </div>
                     <div class="stat-number"><?php echo $all_users; ?></div>
+                    <p class="stat-description">Usuarios que se han registrado en Vetcamp</p>
+
 
                 </div>
+
+                <!-- Interested users stats card -->
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <h2 class="stat-title">
+                            <i class="las la-paw"></i>
+                            Interesados en el campamento
+
+                        </h2>
+                       
+                    </div>
+                    <div class="stat-number"><?php echo $interested; ?></div>
+                    <p class="stat-description">Usuarios que han llenado el formulario, pero que no la han sometido. (Interesados en aplicar)</p>
+
+                </div>
+
+                
             </div>
 
             <!-- Recent activity section -->

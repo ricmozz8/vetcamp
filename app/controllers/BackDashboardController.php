@@ -14,17 +14,13 @@ class BackDashboardController extends Controller
      */
     public static function index()
     {
-
-        if (!Auth::check()) {
-            redirect('/login');
-        }
-        if (Auth::user()->type != 'admin') {
-            redirect('/login');
-        }
         
         // Get registered and applicant stats
         $all_users = count(User::allOf('user'));
         $all_applicants = count(User::allApplicants());
+
+        // getting all interested users (people with unsubmitted applications)
+        $interested = count(User::interested());
 
         // Get recent registered users
         $recent_registered = User::allOf('user');
@@ -38,6 +34,8 @@ class BackDashboardController extends Controller
 
         // Get recent applications
         $recent_applications = User::allApplicants();
+       
+
         usort($recent_applications, function($a, $b) {
             $timeA = $a->application()->created_at ? strtotime($a->application()->created_at) : 0;
             $timeB = $b->application()->created_at ? strtotime($b->application()->created_at) : 0;
@@ -50,12 +48,15 @@ class BackDashboardController extends Controller
             return $user->application()->isComplete();
         });
 
+        
+
         render_view('backDashboard', [
             'all_users' => $all_users,
             'all_applicants' => $all_applicants,
             'recent_registered' => $recent_registered,
             'recent_applications' => $recent_applications,
-            'selected' => 'start'
+            'selected' => 'start',
+            'interested' => $interested
         ], 'BackDashboard');
     }
 
