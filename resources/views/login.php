@@ -24,7 +24,7 @@ require __DIR__ . '/partials/header.php';
                 <div class="input-group">
                     <div class="field-wrapper">
                         <label for="email" class="text-wrapper-2">Correo</label>
-                        <input autocomplete="off" type="email" id="email" name="email" required class="input-field input-email" placeholder="juan.delpueblo@upr.edu">
+                        <input  type="email" id="email" name="email" required class="input-field input-email" placeholder="juan.delpueblo@upr.edu">
                     </div>
                     <div class="field-wrapper">
                         <div class="mini-flex-label">

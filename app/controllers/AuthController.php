@@ -14,6 +14,7 @@ class AuthController extends Controller
      */
     public static function login($method)
     {
+
         if ($method == 'POST') {
 
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
@@ -96,7 +97,7 @@ class AuthController extends Controller
             }
 
             if ($_POST['password'] !== $_POST['confirm_password']) {
-                $error = 'Passwords do not match';
+                $_SESSION['error'] = 'Las contraseñas no coinciden';
                 redirect('/register');
             }
 
@@ -106,14 +107,14 @@ class AuthController extends Controller
             $password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
 
             if (!$first_name || !$last_name || !$email || !$password) {
-                $error = 'Por favor llene todos los campos';
+                $_SESSION['error'] = 'Por favor llene todos los campos';
                 redirect('/register');
             }
 
             // prevent registry for already existing users
             try {
                 User::findBy(['email' => $_POST['email']]);
-                $error = 'Email already exists';
+                $$_SESSION['error'] = 'Ya existe un usuario con este correo';
                 redirect('/login');
             } catch (ModelNotFoundException $e) {
                 // User was not found
@@ -134,13 +135,9 @@ class AuthController extends Controller
                 );
 
                 Auth::login($user);
-
-
-
                 redirect('/apply');
             }
         }
-        $error = 'Error creating user';
         redirect('/register');
     }
 
@@ -156,6 +153,13 @@ class AuthController extends Controller
 
     public static function resetPassword()
     {
+        if (Auth::check()) {
+            if (Auth::user()->type == 'admin') {
+                redirect('/admin');
+            } else {
+                redirect('/apply');
+            }
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // take the OTP from the request
@@ -199,6 +203,13 @@ class AuthController extends Controller
 
     public static function changePassword()
     {
+        if (Auth::check()) {
+            if (Auth::user()->type == 'admin') {
+                redirect('/admin');
+            } else {
+                redirect('/apply');
+            }
+        }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
@@ -241,6 +252,13 @@ class AuthController extends Controller
 
     public static function forgotPassword()
     {
+        if (Auth::check()) {
+            if (Auth::user()->type == 'admin') {
+                redirect('/admin');
+            } else {
+                redirect('/apply');
+            }
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // take the email from the request

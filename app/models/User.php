@@ -29,7 +29,8 @@ class User extends Model
      * @param string $message The message to send to the user
      * @return void
      */
-    public function sendEmail($message){
+    public function sendEmail($message)
+    {
         Mailer::send($this->email, 'Mensaje de Vetcamp', $message);
     }
 
@@ -63,6 +64,35 @@ class User extends Model
         return  $apply;
     }
 
+    
+    /**
+     * This returns a list of users that have not yet submitted an application (interested in applying).
+     */
+    public static function interested()
+    {
+        try {
+            $users = self::allof('user');
+
+            $interested_list = [];
+
+            foreach ($users as $user) {
+                try {
+                    $application = $user->application();
+
+                    if ($application === null || !($application->isComplete())) {
+                        $interested_list[] = $user;
+                    }
+                } catch (ModelNotFoundException $notFound) {
+                    continue;
+                }
+            }
+        } catch (Exception $e) {
+            throw new Exception("An error occurred: " . $e->getMessage());
+        }
+
+        return $interested_list;
+    }
+
 
     public static function allApplicants()
     {
@@ -72,7 +102,7 @@ class User extends Model
             $applications = Application::all();
             $applicationsByUserId = [];
 
-            
+
 
 
             foreach ($applications as $application) {
@@ -84,12 +114,11 @@ class User extends Model
             foreach ($users as $user) {
                 try {
                     $userApplication = $user->application();
-                    
 
-                    // avoiding applications that have not been submitted
-                    if ($userApplication && $userApplication->status !== 'Sin subir') {
+
+                    // including applications that have been submitted
+                    if ( $userApplication !== null && $userApplication->isComplete()) {
                         $result[] = $user;
-                        
                     }
                 } catch (ModelNotFoundException $notFound) {
                     continue;
@@ -136,10 +165,9 @@ class User extends Model
      */
     public function school_address()
     {
-        try{ 
+        try {
             return SchoolAddress::find($this->attributes[self::$primary_key], self::$primary_key);
-        }
-        catch (ModelNotFoundException $notFound) {
+        } catch (ModelNotFoundException $notFound) {
             return null;
         }
     }
@@ -189,5 +217,4 @@ class User extends Model
         $interval = $birth_date->diff($current_date);
         return $interval->y;
     }
-
 }

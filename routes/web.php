@@ -48,6 +48,7 @@ switch ($path) {
     case '/credits':
         HomeController::credits();
         break;
+        
     
 
     default:

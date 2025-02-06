@@ -424,17 +424,24 @@ function validate_documents(array $documents, array $rules)
                 case UPLOAD_ERR_NO_TMP_DIR:
 
                     $result['message'] =  'No se ha podido guardar el archivo temporal';
+                    ErrorLog::log('User ' .  Auth::user()->email . ' tried to upload file, but the server could not locate the temporary directory', $key, 'app/helpers/helpers.php', 'notice');
                     break;
                 case UPLOAD_ERR_CANT_WRITE:
+                    ErrorLog::log('User ' .  Auth::user()->email . ' tried to upload file, but the server has no permissions to write the file', $key, 'app/helpers/helpers.php', 'notice');
+
                     $result['message'] =  'No se ha podido guardar el archivo';
                     break;
                 case UPLOAD_ERR_EXTENSION:
+                    ErrorLog::log('User ' .  Auth::user()->email . ' tried to upload file, but the extension is not allowed', $key, 'app/helpers/helpers.php', 'notice');
+
                     $result['message'] =  'La carga de archivos fue detenida por la extension';
                     break;
                 case UPLOAD_ERR_FORM_SIZE:
+                    ErrorLog::log('User ' .  Auth::user()->email . ' tried to upload file, but files were too large, ' . 'server limit: ' . ini_get('upload_max_filesize') . 'B' , $key, 'app/helpers/helpers.php', 'notice');
                     $result['message'] =  'El archivo es demasiado grande' . ' debe pesar ' . ini_get('upload_max_filesize') . 'B';
                     break;
                 default:
+                    ErrorLog::log('User ' .  Auth::user()->email . ' tried to upload file, but an unknown error occurred (' . $_FILES[$key]['error'] . ')', $key, 'app/helpers/helpers.php', 'notice');
                     $result['message'] =  $_FILES[$key]['error'];
                     break;
             }
@@ -455,6 +462,7 @@ function validate_documents(array $documents, array $rules)
         }
 
         $sizeToMB = sizeToMB($rules['size']);
+
 
         if ($rules['size'] && $document['size'] > $rules['size']) {
             return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $key . ' debe ser menor a ' . $sizeToMB];

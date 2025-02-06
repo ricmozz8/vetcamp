@@ -96,5 +96,26 @@ function exceptionHandler( $exception) {
     ], 'Error');
 }
 
+/**
+ * Handles exceptions by logging the error details and rendering a styled error view.
+ *
+ * @param Exception $exception The exception object to be handled.
+ */
+
+function internalServerErrorHandler($errno, $errstr, $errfile, $errline) {
+    ErrorLog::log(
+        $errstr . '(' . $errno . ')',
+        $errfile . ' on line ' . $errline,
+        '',
+        'crash'
+    );
+
+    redirect('/');
+}
+
+
+// Set the custom error handler
+set_error_handler('internalServerErrorHandler');
+
 // Set the custom exception handler
 set_exception_handler('exceptionHandler');

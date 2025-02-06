@@ -1,6 +1,8 @@
 <?php
 require_once 'app/controllers/AuthController.php';
 
+
+
 switch ($path) {
     case '/register':
         AuthController::register();
