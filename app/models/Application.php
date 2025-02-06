@@ -276,17 +276,16 @@ class Application extends Model
 
         foreach ($documents as $key => $value) {
             try{
-                
+                // remove it from the storage
                 Storage::delete('private', $value);
             } catch (FileNotFoundException $e) {
                 // log the error if the file is not found as a warning
-
                 ErrorLog::log($e->getMessage(), $e->getFile(), $e->getTraceAsString(), 'warning');
                 continue;
             }
             
         }
-
+        // finally, delete the application record
         return $this->delete();
         
     }
