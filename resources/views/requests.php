@@ -25,7 +25,7 @@ require __DIR__ . '/partials/header.php';
                 <div class="header">
                     <div class="flex-min">
                         <h2 class="welcome">Solicitudes</h2>
-    
+
                     </div>
                     <div class="table-actions">
                         <button class="main-action-bright tertiary">
@@ -35,7 +35,7 @@ require __DIR__ . '/partials/header.php';
                         <div class="search-container">
                             <form method="POST" action="/admin/requests">
                                 <input type="text" class="search-input" name="search" placeholder="Busca correos, nombres">
-                                
+
                             </form>
                             <button type="submit " class=" no-deco-action"> <i class="las la-search"></i> </button>
                         </div>
@@ -51,6 +51,7 @@ require __DIR__ . '/partials/header.php';
                             <th>Estado</th>
                             <th>Fecha</th>
                             <th>Acción</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,7 +66,7 @@ require __DIR__ . '/partials/header.php';
                             $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
                             $pictureObj = $user->application()->getProfilePicture();
                             $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
-                            
+
 
                             echo "<tr>";
                             echo "<td><img src=\"$src\" alt=\"Image\" class=\"profile-picture\"></td>";
@@ -74,7 +75,8 @@ require __DIR__ . '/partials/header.php';
                             echo "<td>" . (htmlspecialchars($user->application() ? $user->application()->documentCount() : 0)) . "/7</td>";
                             echo "<td>" . htmlspecialchars($user->application()->status) . "</td>";
                             echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
-                            echo "<td>" . '<a class="main-action-bright no-deco-action" href="requests/r?id=' . $user->user_id . '" class="review-link">revisar</a>' . "</td>";          //To add "revisar" link
+                            echo "<td>" . '<a class="main-action-bright no-deco-action" href="requests/r?id=' . $user->user_id . '" class="review-link">revisar</a>' . "</td>";
+                            echo "<td>" . '<a class="main-action-bright no-deco-action" href="#" onclick="confirmDeleteModal()">' . '<i class="las la-trash"></i> borrar' . '</a>' . '<td/>';
                             echo "</tr>";
                         }
                         ?>
