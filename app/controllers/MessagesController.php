@@ -68,7 +68,7 @@ class MessagesController extends Controller
 
             try {
                 $user = User::find($user_id);
-            } catch (ModelNotFoundException) { // if we try to send a message to a non-existent user
+            } catch (ModelNotFoundException $e) { // if we try to send a message to a non-existent user
                 $_SESSION['error'] = 'No se ha encontrado el usuario';
                 redirect_back();
             }
