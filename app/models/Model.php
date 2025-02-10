@@ -319,10 +319,6 @@ class Model
         }
     }
 
-
-
-
-
     /**
      * Removes specified attributes from the given data array.
      *
@@ -339,6 +335,18 @@ class Model
             unset($data[$to_hide]);
         }
         return $data;
+    }
+
+    public static function countwithCondition(string $aColumn, $aValue, string $aColumnCondition, $aValueCondition) : int {
+        self::init();
+        $data = DB::countwithCondition(static::$table, $aColumn, $aValue, $aColumnCondition, $aValueCondition);
+        
+        if (empty($data)) {
+            throw new ModelNotFoundException('There is no record with the id given: ');
+        } else {
+            return $data;
+        }
+  
     }
 
 

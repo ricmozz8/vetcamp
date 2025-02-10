@@ -102,7 +102,13 @@ class ApplicationController extends Controller
             try {
                 // Update application status
                 $application = Application::find($applicationId);
+                $cupos = Application::countwithCondition("id_preferred_session", Application::find($applicationId)->id_preferred_session, "status", "approved");
+                if($cupos >= 14 && $newStatus == 'approved') {
+                    $newStatus = 'need_changes';
+                }
+                
                 $application->update(['status' => $newStatus]);
+                //$application->status = $newStatus;
 
                 // Call TrackingEvaluation for tracking
                 TrackingController::TrackingEvaluation('POST');

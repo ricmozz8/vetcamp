@@ -396,4 +396,30 @@ final class DB
     {
         return self::$database;
     }
+
+    // New
+    public static function count(string $table, string $column, $value): int
+    {
+        $sql = "SELECT COUNT(*) FROM " . self::$database_name . "." . $table . " WHERE " . $column . " = :value";
+        $statement = self::$database->prepare($sql);
+        $statement->bindValue(':value', $value, is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR);
+        $statement->execute();
+        return (int) $statement->fetchColumn();
+    }
+
+    // New
+    public static function countwithCondition(string $table, string $column, $value, string $columnCondition, $valueCondition): int
+{
+    $sql = "SELECT COUNT(*) FROM " . self::$database_name . "." . $table . " WHERE " . $column . " = :value AND " . $columnCondition . " = :valueCondition";
+    
+    $statement = self::$database->prepare($sql);
+    
+    $statement->bindValue(':value', $value, is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR);
+    $statement->bindValue(':valueCondition', $valueCondition, is_int($valueCondition) ? PDO::PARAM_INT : PDO::PARAM_STR);
+    
+    $statement->execute();
+    return (int) $statement->fetchColumn();
+}
+
+
 }

@@ -130,6 +130,42 @@ class User extends Model
         }
     }
 
+    public static function approvedApplicants()
+{
+    try {
+        $type = 'user';
+        $users = self::allof($type);
+        $applications = Application::all();
+
+        $approvedApplicants = [];
+
+        foreach ($users as $user) {
+            try {
+                $application = $user->application();
+
+                if ($application && trim(strtolower($application->status)) === 'aceptado') {
+                    $approvedApplicants[] = [
+                        'user_id' => $user->user_id,
+                        'id_application' => $application->id_application,
+                        'id_preferred_session' => $application->id_preferred_session,
+                    ];
+                }
+            } catch (ModelNotFoundException $notFound) {
+                continue;
+            }
+        }
+
+        //var_dump($approvedApplicants); // Verificar la lista final
+        //exit;
+
+        return $approvedApplicants;
+    } catch (Exception $e) {
+        throw new Exception("An error occurred: " . $e->getMessage());
+    }
+}
+    
+
+
     /**
      * Retrieves all users of the given type from the database.
      *
