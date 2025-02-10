@@ -13,7 +13,7 @@ require __DIR__ . '../../partials/header.php';
         <a href="/apply/application/contact" class="main-action-bright"><i class="las la-arrow-left"></i>Atrás</a>
     </div>
 
-    <p class="subtext" style="margin: 1em var(--main-margin); text-align: left;">Los documentos deben pesar <b style="font-weight: 800;"> menos de 8 MB</b></p>
+    <p class="subtext" style="margin: 1em var(--main-margin); text-align: left;">Los documentos deben pesar <b style="font-weight: 800;"> menos de 10 MB</b></p>
 
     <p class="warning-box" style="margin: 1em var(--main-margin); text-align: left;">
         Nota, si la plataforma no le permite subir documentos, intente reducir su tamaño comprimiéndolos y luego subirlos. Recomendamos herramientas como ILovePDF o Adobe Acrobat.
