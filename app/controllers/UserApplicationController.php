@@ -102,7 +102,7 @@ class UserApplicationController extends Controller
             redirect('/apply');
         }
 
-        if (!Auth::check() ) {
+        if (!Auth::check()) {
             redirect('/login');
         }
 
@@ -220,7 +220,7 @@ class UserApplicationController extends Controller
             redirect('/apply');
         }
 
-        if (!Auth::check() ) {
+        if (!Auth::check()) {
             redirect('/login');
         }
 
@@ -317,21 +317,19 @@ class UserApplicationController extends Controller
     public static function documents($method)
     {
 
-
         if (!self::validate_time_limit()) {
             $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
             redirect('/apply');
         }
 
 
-        if (!Auth::check() ) {
+        if (!Auth::check()) {
             redirect('/login');
         }
 
         if (Auth::user()->type == 'admin') {
             redirect('/admin');
         }
-
 
         $application = Auth::user()->application();
         if ($application === null) {
@@ -346,7 +344,6 @@ class UserApplicationController extends Controller
                 redirect('/apply/application/confirm');
             }
 
-
             // getting all documents
             $documents = [
                 'written_application' => $_FILES['written_application'],
@@ -357,10 +354,6 @@ class UserApplicationController extends Controller
                 'authorization_letter' => $_FILES['authorization_letter'],
                 'recommendation_letter' => $_FILES['recommendation_letter'],
             ]; // important that these names are the same as the ones in the view and the database (Without the `url_`)
-
-
-
-
 
             // validating the documents (note: create a validate_documents function)
             $valid =
@@ -373,8 +366,6 @@ class UserApplicationController extends Controller
                     'authorization_letter' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false],
                     'recommendation_letter' => ['type' => ['application/pdf'], 'size' => to_byte_size('10MB'), 'required' => false]
                 ]);
-            
-            
 
 
             // if the user has not uploaded any documents
@@ -388,9 +379,6 @@ class UserApplicationController extends Controller
                 $_SESSION['error'] = $valid['message'];
                 redirect('/apply/application/documents');
             }
-
-
-
 
             // saving the documents
             foreach ($valid['validated'] as $key => $document) {
@@ -408,8 +396,6 @@ class UserApplicationController extends Controller
                 ]);
             }
 
-
-
             // refresh the user with the new information on the database
             Auth::refresh();
 
@@ -419,7 +405,6 @@ class UserApplicationController extends Controller
             // method is GET
 
             $saved_documents = $application->getDocuments();
-
 
             render_view('application/documents', [
                 'application' => $application,
@@ -435,7 +420,7 @@ class UserApplicationController extends Controller
             redirect('/apply');
         }
 
-        if (!Auth::check() ) {
+        if (!Auth::check()) {
             redirect('/login');
         }
 

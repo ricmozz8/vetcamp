@@ -13,7 +13,7 @@ class ApplicationController extends Controller
      *
      * @return boolean True if the current time is within the limit dates, false otherwise.
      */
-    private function validate_time_limit()
+    private function validate_time_limit(): bool
     {
         $limit_date = LimitDate::find(1);
         if (time() > $limit_date->end_date) {
@@ -22,9 +22,12 @@ class ApplicationController extends Controller
         return true;
     }
 
+    /**
+     * @throws ViewNotFoundException
+     */
     public static function index()
     {
-        // dd(Auth::user()); use this for showing the user
+
         if (!Auth::check()) {
             redirect('/login');
         }
@@ -39,6 +42,7 @@ class ApplicationController extends Controller
      *
      *
      * @return void
+     * @throws ViewNotFoundException
      */
     public static function editApplication($user_id)
     {
@@ -49,13 +53,13 @@ class ApplicationController extends Controller
         // your index view here
         try {
             $user = User::find($user_id);
+            $application = $user->application();
         } catch (ModelNotFoundException $notFound) {
             // handle here when the user is not found
             $_SESSION['error'] = "No se encontró el usuario con el ID proporcionado.";
             redirect('/admin/requests');
         }
 
-        $application = $user->application();
 
         if ($application == null) {
             $_SESSION['error'] = "No se encontró la solicitud del usuario con el ID proporcionado.";
@@ -83,45 +87,44 @@ class ApplicationController extends Controller
             'Aplicación'
         );
     }
+
     public static function updateStatus($request_method)
     {
         if ($request_method === 'POST') {
-            $applicationId = $_POST['application_id'] ?? null;
-            $newStatus = $_POST['status'] ?? null;
-
+            $applicationId = filter_input(INPUT_POST, 'application_id', FILTER_VALIDATE_INT);
+            $newStatus = filter_input(INPUT_POST, 'status', FILTER_DEFAULT);
 
             // Validate application ID and new status
-            if ($applicationId === null || $newStatus === null || !array_key_exists($newStatus, Application::$statusParsings)) {
-                error_log('Invalid application ID or status: ' . $newStatus);
-                $_SESSION['error_message'] = "Datos inválidos.";
+            if (!$applicationId || !$newStatus || !array_key_exists($newStatus, Application::$statusParsings)) {
+                $_SESSION['error'] = "Los datos proporcionados no son válidos.";
                 redirect('/admin/requests');
                 return;
             }
 
-
             try {
                 // Update application status
                 $application = Application::find($applicationId);
-                $cupos = Application::countwithCondition("id_preferred_session", Application::find($applicationId)->id_preferred_session, "status", "approved");
-                if($cupos >= 14 && $newStatus == 'approved') {
-                    $newStatus = 'need_changes';
-                }
-                
                 $application->update(['status' => $newStatus]);
-                //$application->status = $newStatus;
+                $user_id = $application->user()->user_id;
 
-                // Call TrackingEvaluation for tracking
-                TrackingController::TrackingEvaluation('POST');
             } catch (ModelNotFoundException $e) {
-                $_SESSION['error_message'] = "No se encontró la solicitud con el ID proporcionado.";
+                ErrorLog::log($e->getMessage(), $e->getFile() . ' on line ' . $e->getLine(), $e->getTraceAsString());
+                $_SESSION['error'] = "No se encontró la solicitud con el ID proporcionado.";
                 redirect('/admin/requests');
             } catch (Exception $e) {
-                $_SESSION['error_message'] = "Error al actualizar el estado.";
+                ErrorLog::log($e->getMessage(), $e->getFile() . ' on line ' . $e->getLine(), $e->getTraceAsString());
+                $_SESSION['error'] = "Error al actualizar el estado.";
                 redirect('/admin/requests');
             }
+
+
+
+            // Redirect to admin requests page
+            $_SESSION['message'] = "Estado de la solicitud actualizado correctamente.";
+
+            redirect('/admin/requests/r?id=' . $user_id );
+
         } else {
-            http_response_code(405);
-            $_SESSION['error_message'] = "Método de solicitud no permitido.";
             redirect('/admin/requests');
         }
     }
@@ -135,7 +138,7 @@ class ApplicationController extends Controller
             // Open the CSV file for writing
             $file = fopen($filePath, 'w');
             if (!$file) {
-                $_SESSION['error_message'] = "Error opening file for writing.";
+                $_SESSION['error'] = "Error opening file for writing.";
                 redirect('/admin/settings');
                 return;
             }
@@ -149,7 +152,7 @@ class ApplicationController extends Controller
             // Fetch all applications
             $applications = Application::all();
             if (empty($applications)) {
-                $_SESSION['error_message'] = "No hay datos disponibles para archivar.";
+                $_SESSION['error'] = "No hay datos disponibles para archivar.";
                 redirect('/admin/settings');
                 return;
             }
@@ -199,7 +202,6 @@ class ApplicationController extends Controller
                     $finalDecision = $statusMap[$application->status] ?? 'Desconocido';
 
 
-
                     // Write to the CSV file
                     fputcsv($file, [
                         $userFirstName . ' ' . $userLastName,
@@ -230,7 +232,7 @@ class ApplicationController extends Controller
             exit();
         } catch (Exception $e) {
             // Catch any other exceptions and show an error message
-            $_SESSION['error_message'] = "Error al generar el archivo de solicitudes: " . $e->getMessage();
+            $_SESSION['error'] = "Error al generar el archivo de solicitudes: " . $e->getMessage();
             redirect('/admin/settings');
         }
     }
