@@ -171,11 +171,6 @@ require_once __DIR__ . '/partials/header.php';
                                 echo renderSelect('status', $statuses, $application->status);
                                 ?>
                             </div>
-
-                            <div class="actions-st">
-
-
-                            </div>
                             <br><br>
 
 
