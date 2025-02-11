@@ -118,13 +118,14 @@ class AuthController extends Controller
                 redirect('/register');
             } catch (ModelNotFoundException $e) {
                 // User was not found, this means we can register the new user.
-                $user = User::create([
+                User::create([
                     'first_name' => $_POST['first_name'],
                     'last_name' => $_POST['last_name'],
                     'email' => $_POST['email'],
                     'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
                     'phone_number' => deformat_phone($_POST['phone_number']),
                 ]);
+                $user = User::findBy(['email' => $email]);
 
 
                 Mailer::send(
