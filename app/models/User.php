@@ -114,7 +114,7 @@ class User extends Model
 
 
                     // including applications that have been submitted
-                    if ( $userApplication !== null && $userApplication->isComplete()) {
+                    if ( $userApplication !== null && $userApplication->isSubmitted()) {
                         $result[] = $user;
                     }
                 } catch (ModelNotFoundException $notFound) {

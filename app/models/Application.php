@@ -176,10 +176,6 @@ class Application extends Model
     public function isComplete()
     {
 
-        if($this->isSubmitted() === false){
-            return false;
-        }
-
         if ($this->documentCount() !== REQUIRED_DOCUMENTS_AMOUNT) {
 
             return false;
