@@ -10,7 +10,7 @@ require __DIR__ . '../../partials/header.php';
 
     <div class="application_header">
         <h1 class="">Solicitud</h1>
-        <a href="/apply/application/contact" class="main-action-bright"><i class="las la-arrow-left"></i>Atrás</a>
+        <a href="/apply/application/contact" class="main-action-bright secondary"><i class="las la-arrow-left"></i>Atrás</a>
     </div>
 
     <p class="subtext" style="margin: 1em var(--main-margin); text-align: left;">Los documentos deben pesar <b style="font-weight: 800;"> menos de 10 MB</b></p>
