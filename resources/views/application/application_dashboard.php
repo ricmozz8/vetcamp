@@ -5,30 +5,9 @@ require __DIR__ . '../../partials/header.php';
 $application = Auth::user()->application();
 $status = 'Sin llenar';
 
-/*
-  Este comentario se tiene que borrar
-  Antes de borrarlo verificar el codigo de la linea 19 a 34.
 
 if ($application && $application->isSubmitted()) {
     $status = $application->status === 'Necesita Cambios' ? 'Necesita Cambios' : 'Sometida';
-} else if ($application) {
-    $status = $application->status;
-}
-*/
-
-if ($application && $application->isSubmitted()) {
-    if ($application->status === 'Sometida') {
-        $status = 'Sometida';
-    } else if ($application->status === 'Necesita Cambios') {
-        $status = 'Necesita Cambios';
-    } else if ($application->status === 'Rechazado') {
-        $status = 'Rechazado';
-    } else if ($application->status === 'Aceptado') {
-        $status = 'Aceptado';
-    }
-    else {
-        $status = $application->status;
-    }
 } else if ($application) {
     $status = $application->status;
 }
