@@ -5,7 +5,7 @@
             <span class="file-size"><?= round($file['size'] / 1024)   ?>KB</span>
         </div>
         <div class="action">
-            <button class="main-action-bright" onclick="closeModal('fileViewPopup-<?php echo $file['name'] ?>')"><i class="las la-times"></i>Cerrar</button>
+            <button class="main-action-bright tertiary" onclick="closeModal('fileViewPopup-<?php echo $file['name'] ?>')"><i class="las la-times"></i>Cerrar</button>
         </div>
     </div>
 

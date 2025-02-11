@@ -15,18 +15,22 @@ button {
   text-decoration: none;
 }
 .main-action-bright {
-  background-color: white;
+
+  border: none;
   color: var(--secondary-color-default);
 
   padding: 15px 25px;
   font-weight: 600;
-  border: 1px solid var(--secondary-color-default);
   font-size: 1em;
   width: fit-content;
   display: flex;
   align-items: center;
   gap: 10px;
   text-wrap: nowrap;
+}
+
+.main-action-bright.primary{
+  background: linear-gradient(to right, var(--main-color-darken-1), var(--main-color-default));
 }
 
 .main-action-bright.gradiented{
@@ -42,8 +46,8 @@ button {
   border-bottom: 4px solid var(--white-color);
 }
 .main-action-bright.secondary {
-  background-color: var(--main-color-default);
-  color: var(--secondary-color-default);
+  background-color: var(--secondary-color-default);
+  color: var(--white-color);
 
   box-shadow: none;
   border: none;
@@ -57,8 +61,10 @@ button {
 }
 
 .main-action-bright.quaternary {
+  color: var(--secondary-color-default);
+
   box-shadow: none;
-  border: none;
+  border: 1px solid var(--secondary-color-default);
 }
 
 .main-action-bright.quaternary-squared {
@@ -75,12 +81,11 @@ button {
 .main-action-bright.quaternary-squared:hover {
   box-shadow: none;
   top: 0;
-  border: none;
 }
 
 .main-action-bright.quaternary:hover {
   background-color: var(--white-color);
-  border: none;
+
 }
 
 .main-action-bright:hover {
@@ -157,6 +162,20 @@ a.plain-action:hover {
 
 .message-close-button:hover {
   filter: brightness(0.9);
+}
+
+.main-action-bright.no-deco-action{
+  background-color: transparent !important;
+  color: black;
+  box-shadow: none;
+  border: none;
+  text-decoration: underline;
+  padding: 0;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
 }
 
 .no-deco-action:hover {
