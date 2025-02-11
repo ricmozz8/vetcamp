@@ -43,10 +43,10 @@ class MessagesController extends Controller
 
     /**
      * Message a particular user
-     * 
-     * @param method the method of the request (either POST/GET)
-     * 
-     * @return null it redirects back to the previous view (REQUEST_REFERRER) 
+     *
+     * @param $method the method of the request (either POST/GET)
+     *
+     * @return null it redirects back to the previous view (REQUEST_REFERRER)
      */
     public static function message($method)
     {
@@ -54,7 +54,7 @@ class MessagesController extends Controller
             redirect_back();
 
         if (Auth::user()->type !== 'admin') // only allow admins
-            redirect_back();
+            redirect('/admin');
 
         if ($method === 'POST') {
             // getting all the form data from the view
@@ -63,22 +63,22 @@ class MessagesController extends Controller
 
             if (!$user_id || !$message) {
                 $_SESSION['error'] = 'Por favor complete todos los campos';
-                redirect_back();
+                redirect('/admin');
             }
 
             try {
                 $user = User::find($user_id);
             } catch (ModelNotFoundException $e) { // if we try to send a message to a non-existent user
                 $_SESSION['error'] = 'No se ha encontrado el usuario';
-                redirect_back();
+                redirect('/admin');
             }
 
             // Sending the email to the user
-            Mailer::send($user->email, 'Mensaje de ' . Auth::user()->name . '@' . 'Vetcamp',  $message);
+            Mailer::send($user->email, 'Mensaje de ' . Auth::user()->first_name . '@ ' . 'Vetcamp', $message);
 
             $_SESSION['message'] = 'Mensaje enviado exitosamente'; // let know the user that the message was sent
 
-            redirect_back();
+            redirect('/admin');
         } else {
             redirect('/admin');
         }
@@ -109,10 +109,8 @@ class MessagesController extends Controller
             }
         }
 
-        
-        
-    }
 
+    }
 
 
     // define your other methods here

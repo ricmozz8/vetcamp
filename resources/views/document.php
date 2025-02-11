@@ -11,7 +11,7 @@ require __DIR__ . '/partials/header.php'; ?>
             <h3>Certificación Estudiantil</h3>
             <p>Llévela a su director o consejero escolar para firmar y timbrar.</p>
         </div>
-        <a class="main-action-bright quaternary" href="javascript:window.print();"> <i class="las la-download"></i> Imprimir</a>
+        <a class="main-action-bright primary" href="javascript:window.print();"> <i class="las la-download"></i> Imprimir</a>
     </div>
 
     <div class="printable-application">
