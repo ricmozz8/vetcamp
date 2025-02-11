@@ -28,16 +28,21 @@ require __DIR__ . '/partials/header.php';
 
                     </div>
                     <div class="table-actions">
-                        <button class="main-action-bright tertiary">
+                        <button onclick="openModal('filterModal')" class="main-action-bright tertiary">
                             <i class="las la-filter"></i>
                             Filtrar
                         </button>
                         <div class="search-container">
                             <form method="POST" action="/admin/requests">
-                                <input type="text" class="search-input" name="search" placeholder="Busca correos, nombres">
-
+                                <input required value="<?= isset($_POST['search']) ? $_POST['search'] : '' ?>" type="text"
+                                       class="search-input" name="search" placeholder="Busca correos, nombres">
+                                <?php if (isset($_POST['search'])): ?>
+                                    <a class="no-deco-action" href="/admin/requests"><i class="las la-times"></i></a>
+                                <?php endif; ?>
+                                <button type="submit " class="main-action-bright tertiary"><i class="las la-search"></i>
+                                </button>
                             </form>
-                            <button type="submit " class=" no-deco-action"> <i class="las la-search"></i> </button>
+
                         </div>
                     </div>
                 </div>
@@ -122,6 +127,7 @@ require __DIR__ . '/partials/header.php';
 
         </main>
     </div>
+    <?php require __DIR__ . '/modals/filterModal.php'; ?>
 
     <!-- Footer with copyright information -->
     <?php require_once('partials/footer.php'); ?>
