@@ -46,7 +46,7 @@ require __DIR__ . '../../partials/header.php';
                             <option value="">Selecciona una</option>
                             <?php foreach ($sessions as $session) { ?>
                                 <?php
-                                $preffers = $application->id_preferred_session;
+                                $preffers = $application ? $application->id_preferred_session: '';
                                 $result = '';
                                 if ($preffers && $preffers === $session->session_id)
                                     $result = 'selected';
@@ -58,12 +58,12 @@ require __DIR__ . '../../partials/header.php';
 
                     <div class="form-group">
                         <label for="shirtsize">Tamaño de camisa</label>
-                        <?php 
-                        $shirt_size = isset($application) ? $application->shirt_size : '';  
+                        <?php
+                        $shirt_size = isset($application) ? $application->shirt_size : '';
                         require_once __DIR__ . '../../partials/clothingSelector.php' ?>
                     </div>
 
-                    
+
                 </div>
 
                 <h3>Dirección de Escuela de procedencia</h3>
