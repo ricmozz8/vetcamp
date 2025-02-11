@@ -13,10 +13,13 @@ require __DIR__ . '../../partials/header.php';
         <a href="/apply/application/contact" class="main-action-bright secondary"><i class="las la-arrow-left"></i>Atrás</a>
     </div>
 
-    <p class="subtext" style="margin: 1em var(--main-margin); text-align: left;">Los documentos deben pesar <b style="font-weight: 800;"> menos de 10 MB</b></p>
+    <p class="subtext" style="margin: 1em var(--main-margin); text-align: left;">
+        Nota, si la plataforma no le permite subir documentos, intente reducir su tamaño comprimiéndolos y luego subirlos.</p>
 
     <p class="warning-box" style="margin: 1em var(--main-margin); text-align: left;">
-        Nota, si la plataforma no le permite subir documentos, intente reducir su tamaño comprimiéndolos y luego subirlos. Recomendamos herramientas como ILovePDF o Adobe Acrobat.
+        Los documentos deben pesar <b style="font-weight: 800;"> menos de 10 MB</b> de lo contrario, la plataforma no
+        subirá los archivos.
+
     </p>
 
 
@@ -58,7 +61,7 @@ require __DIR__ . '../../partials/header.php';
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
-                        <label>Certificación Estudiantil</label>
+                        <label>Certificación Estudiantil (PDF)</label>
                         <a href="/solicitud" target="_blank" class="btn-download">Descargar </a>
                         <?php if (isset($saved_documents['written_application'])) { ?>
                             <a href="#" onclick="showModal('fileViewPopup-<?= $written_application['name'] ?>')" class="btn-download">
@@ -82,7 +85,7 @@ require __DIR__ . '../../partials/header.php';
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
-                        <label>Transcripción de crédito</label>
+                        <label>Transcripción de crédito (PDF)</label>
                         <?php if (isset($saved_documents['transcript'])) { ?>
                             <a href="#" onclick="showModal('fileViewPopup-<?= $transcript['name'] ?>')" class="btn-download">
                                 <i class="las la-eye"></i> Visualizar
@@ -106,7 +109,7 @@ require __DIR__ . '../../partials/header.php';
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
-                        <label>Ensayo escrito</label>
+                        <label>Ensayo escrito (PDF)</label>
                         <?php if (isset($saved_documents['written_essay'])) { ?>
                             <a href="#" onclick="showModal('fileViewPopup-<?= $written_essay['name'] ?>')" class="btn-download">
                                 <i class="las la-eye"></i> Visualizar
@@ -131,7 +134,7 @@ require __DIR__ . '../../partials/header.php';
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
-                        <label>Foto 2x2</label>
+                        <label>Foto 2x2 (PNG, JPEG, JPG)</label>
                         <?php if (isset($saved_documents['picture'])) { ?>
                             <a href="#" onclick="showModal('fileViewPopup-<?= $picture['name'] ?>')" class="btn-download">
                                 <i class="las la-eye"></i> Visualizar
@@ -156,7 +159,7 @@ require __DIR__ . '../../partials/header.php';
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
-                        <label>Ensayo en video</label>
+                        <label>Ensayo en video (MP4)</label>
                         <?php if (isset($saved_documents['video_essay'])) { ?>
                             <a href="#" onclick="showModal('fileViewPopup-<?= $video_essay['name'] ?>')" class="btn-download">
                                 <i class="las la-eye"></i> Visualizar
@@ -179,7 +182,7 @@ require __DIR__ . '../../partials/header.php';
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
-                        <label>Carta de Autorización</label>
+                        <label>Carta de Autorización (PDF)</label>
                         <?php if (isset($saved_documents['authorization_letter'])) { ?>
                             <a href="#" onclick="showModal('fileViewPopup-<?= $authorization['name'] ?>')" class="btn-download">
                                 <i class="las la-eye"></i> Visualizar
@@ -201,7 +204,7 @@ require __DIR__ . '../../partials/header.php';
                         <?php } ?>
                     </div>
                     <div class="check-labeled">
-                        <label>Carta de Recomendación</label>
+                        <label>Carta de Recomendación (PDF)</label>
                         <?php if (isset($saved_documents['recommendation_letter'])) { ?>
                             <a href="#" onclick="showModal('fileViewPopup-<?= $recommendation['name'] ?>')" class="btn-download">
                                 <i class="las la-eye"></i> Visualizar
