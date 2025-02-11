@@ -232,15 +232,21 @@ require_once __DIR__ . '/partials/header.php';
                 <div class="comment-padded">
 
 
-                    <p class="disclaimer">
-                        Todos los comentarios son privados y solo son accesibles
-                        para los administradores, ningún usuario podrá verlos.
+<!--                    <p class="disclaimer">-->
+<!--                        Todos los comentarios son privados y solo son accesibles-->
+<!--                        para los administradores, ningún usuario podrá verlos.-->
+<!--                    </p>-->
+
+                    <p class="disclaimer" style="color: #eabd0b">
+                        Esta sección vendrá pronto, se está implementando.
                     </p>
 
 
                     <div class="comment-list">
 
-                        <div class="comment-card">
+                        <!-- SAMPLE COMMENT CARD -->
+
+                        <!--<div class="comment-card">
                             <div class="comment-info">
                                 <div class="profile-badge">AU</div>
                                 <div class="user-data">
@@ -252,13 +258,13 @@ require_once __DIR__ . '/partials/header.php';
                                 <p>Lorem ipsum dolor sit amet adiscpiscing elit consecteur</p>
                             </div>
 
-                        </div>
+                        </div>-->
 
                     </div>
 
-                    <form class="post-comment-form" action="/comment/add" method="POST">
+                    <form class="post-comment-form" action="#">
                         <input type="hidden" name="application_id" value="<?php echo $application->id_application; ?>">
-                        <textarea name="comment" id="" cols="30" rows="10"
+                        <textarea required name="comment" id="" cols="30" rows="10"
                                   placeholder="Escribe un comentario..."></textarea>
                         <button class="main-action-bright secondary" type="submit"><i class="las la-paper-plane"></i> Enviar
                         </button>
