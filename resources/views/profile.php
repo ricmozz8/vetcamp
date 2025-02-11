@@ -91,7 +91,7 @@ require_once __DIR__ . '/partials/header.php';
                         <h2><i class="las la-file"></i> Documentos subidos</h2>
                         <div class="documents-grid">
                             <?php if ($documents['written_essay'] != null) { ?>
-                                <div><a onclick="showModal('fileViewPopup-<?= $documents['written_essay']['name'] ?>"
+                                <div><a onclick="showModal('fileViewPopup-<?= $documents['written_essay']['name'] ?>')"
                                         class="no-deco-action w-fit" href="#"><i
                                                 class="las la-file-alt"></i>Ensayo
                                         Escrito</a></div>
