@@ -10,7 +10,7 @@ define('DOCUMENTS_VALID', 222);
 define('DOCUMENTS_NOT_VALID', 333);
 
 /**
- * This is the helpers file, it will define some helper functions that need to be 
+ * This is the helpers file, it will define some helper functions that need to be
  * used on the entire website. Only define here GLOBAL functions.
  */
 
@@ -26,22 +26,21 @@ function format_phone(string $phone): string
 }
 
 
-
 /**
  * This function will return a valid path for the assets
  * folder.
- * 
- * @param string $subdirectory The subdirectory the asset is located, for example: if 
- * you want to access the favicon located at `/assets/logo/svg/icon.ico`, the correct usage is: 
+ *
+ * @param string $subdirectory The subdirectory the asset is located, for example: if
+ * you want to access the favicon located at `/assets/logo/svg/icon.ico`, the correct usage is:
  * `asset('logo/svg/icon.ico')`.
- * 
+ *
  * @param bool $relative If true, the path will be returned relative to the ASSETS_FOLDER, _true by default_.
- * 
+ *
  * @param bool $windows_path If true, the path will be returned in windows format, _false by default_.
- * 
+ *
  * @return string The valid path for the selected asset.
  */
-function asset(string $subdirectory, bool $relative = true,  bool $windows_path = false): string
+function asset(string $subdirectory, bool $relative = true, bool $windows_path = false): string
 {
 
     // if the subdirectory starts with a slash
@@ -70,11 +69,11 @@ function asset(string $subdirectory, bool $relative = true,  bool $windows_path 
 
 
 /**
- * This function will return a valid path for the resources/views folder. A web resource can be 
+ * This function will return a valid path for the resources/views folder. A web resource can be
  * a css or js file.
- * 
+ *
  * @param string $subdirectory The subdirectory the web resource is located.
- * 
+ *
  * @return string The valid path for the selected web resource.
  */
 function web_resource(string $subdirectory): string
@@ -229,7 +228,6 @@ function get_date_spanish($date, $withYear = true, $withMonth = true)
 }
 
 
-
 /**
  * Encloses a string within single quotes.
  *
@@ -289,7 +287,7 @@ function session_get(string $key)
  * Dumps the given variables and ends the script.
  *
  * This function is useful for debugging purposes. It prints the contents
- * of the given variables in a readable format using `var_dump`, then 
+ * of the given variables in a readable format using `var_dump`, then
  * terminates the script execution.
  *
  * @param mixed ...$args One or more variables to dump.
@@ -322,14 +320,13 @@ function abort(int $code, string $message = '')
  * @param string $title The specific configuration key within the category.
  * @param string|null $default The default value to return if the configuration
  *                             value is not found. Defaults to null.
- * 
+ *
  * @return mixed The configuration value or the default value if not found.
  */
 function get_config(string $type, string $title, string $default = null)
 {
     return CONFIG[$type][$title] ?? $default;
 }
-
 
 
 /**
@@ -356,13 +353,12 @@ function validate_input(array $inputs, array $required)
 }
 
 
-
 /**
  * Validates user documents through inputs and rules.
- * 
+ *
  * @param array $documents The documents to validate.
  * @param array $rules The rules to validate the documents against.
- * 
+ *
  * The rules array will contain the key of the document on the docuements array and
  * then the rule followed by its value, for example:
  * [
@@ -408,41 +404,41 @@ function validate_documents(array $documents, array $rules)
         ) {
 
             $result = ['result' => DOCUMENTS_NOT_VALID];
-            
+
 
             switch ($_FILES[$key]['error']) {
                 case UPLOAD_ERR_INI_SIZE:
-                    $result['message'] =  'El archivo es demasiado grande' . ' debe pesar ' . ini_get('upload_max_filesize') . 'B';
+                    $result['message'] = 'El archivo es demasiado grande' . ' debe pesar ' . ini_get('upload_max_filesize') . 'B';
                     break;
                 case UPLOAD_ERR_PARTIAL:
 
-                    $result['message'] =  'El archivo se ha subido parcialmente';
+                    $result['message'] = 'El archivo se ha subido parcialmente';
                     break;
                 case UPLOAD_ERR_NO_FILE:
-                    $result['message'] =  'No se ha subido ningun archivo';
+                    $result['message'] = 'No se ha subido ningun archivo';
                     break;
                 case UPLOAD_ERR_NO_TMP_DIR:
 
-                    $result['message'] =  'No se ha podido guardar el archivo temporal';
-                    ErrorLog::log('User ' .  Auth::user()->email . ' tried to upload file, but the server could not locate the temporary directory', $key, 'app/helpers/helpers.php', 'notice');
+                    $result['message'] = 'No se ha podido guardar el archivo temporal';
+                    ErrorLog::log('User ' . Auth::user()->email . ' tried to upload file, but the server could not locate the temporary directory', $key, 'app/helpers/helpers.php', 'notice');
                     break;
                 case UPLOAD_ERR_CANT_WRITE:
-                    ErrorLog::log('User ' .  Auth::user()->email . ' tried to upload file, but the server has no permissions to write the file', $key, 'app/helpers/helpers.php', 'notice');
+                    ErrorLog::log('User ' . Auth::user()->email . ' tried to upload file, but the server has no permissions to write the file', $key, 'app/helpers/helpers.php', 'notice');
 
-                    $result['message'] =  'No se ha podido guardar el archivo';
+                    $result['message'] = 'No se ha podido guardar el archivo';
                     break;
                 case UPLOAD_ERR_EXTENSION:
-                    ErrorLog::log('User ' .  Auth::user()->email . ' tried to upload file, but the extension is not allowed', $key, 'app/helpers/helpers.php', 'notice');
+                    ErrorLog::log('User ' . Auth::user()->email . ' tried to upload file, but the extension is not allowed', $key, 'app/helpers/helpers.php', 'notice');
 
-                    $result['message'] =  'La carga de archivos fue detenida por la extension';
+                    $result['message'] = 'La carga de archivos fue detenida por la extension';
                     break;
                 case UPLOAD_ERR_FORM_SIZE:
-                    ErrorLog::log('User ' .  Auth::user()->email . ' tried to upload file, but files were too large, ' . 'server limit: ' . ini_get('upload_max_filesize') . 'B' , $key, 'app/helpers/helpers.php', 'notice');
-                    $result['message'] =  'El archivo es demasiado grande' . ' debe pesar ' . ini_get('upload_max_filesize') . 'B';
+                    ErrorLog::log('User ' . Auth::user()->email . ' tried to upload file, but files were too large, ' . 'server limit: ' . ini_get('upload_max_filesize') . 'B', $key, 'app/helpers/helpers.php', 'notice');
+                    $result['message'] = 'El archivo es demasiado grande' . ' debe pesar ' . ini_get('upload_max_filesize') . 'B';
                     break;
                 default:
-                    ErrorLog::log('User ' .  Auth::user()->email . ' tried to upload file, but an unknown error occurred (' . $_FILES[$key]['error'] . ')', $key, 'app/helpers/helpers.php', 'notice');
-                    $result['message'] =  $_FILES[$key]['error'];
+                    ErrorLog::log('User ' . Auth::user()->email . ' tried to upload file, but an unknown error occurred (' . $_FILES[$key]['error'] . ')', $key, 'app/helpers/helpers.php', 'notice');
+                    $result['message'] = $_FILES[$key]['error'];
                     break;
             }
 
@@ -487,13 +483,12 @@ function validate_documents(array $documents, array $rules)
  * @param array $array the array to filter
  * @return array the filtered array
  */
-function remove_null_or_empty($array)
+function remove_null_or_empty($array): array
 {
     return array_filter($array, function ($value) {
         return !is_null($value) && $value !== '';
     });
 }
-
 
 
 /**
@@ -506,7 +501,7 @@ function remove_null_or_empty($array)
  * @return int The size in bytes.
  */
 
-function to_byte_size($megabytes)
+function to_byte_size(string $megabytes)
 {
     // removing the 'MB' from the string
 
@@ -514,8 +509,45 @@ function to_byte_size($megabytes)
     return $megabytes * 1024 * 1024;
 }
 
+/**
+ * Renders an HTML select element with the specified options, selected value, and attributes.
+ *
+ * @param string $name The name attribute for the select element.
+ * @param array $options An associative array of options where keys are the option values and values are the labels.
+ * @param string|null $selectedValue The value of the option to be pre-selected. Defaults to null.
+ * @param array $attributes An associative array of additional HTML attributes for the select element.
+ * @return string The generated HTML string for the select element.
+ */
+function renderSelect($name, $options, $selectedValue = null, $attributes = []): string
+{
 
-function sizeToMB($size)
+    // Generate additional attributes as a string
+    $extraAttributes = '';
+    if (!empty($attributes)) {
+        foreach ($attributes as $key => $value) {
+            $extraAttributes .= " {$key}='{$value}'";
+        }
+    }
+
+    // Start the select tag
+    $html = "<select class='status-select' name='{$name}'{$extraAttributes}>";
+
+
+    // Add the options
+    foreach ($options as $value => $label) {
+        $selected = ($value === $selectedValue || $label === $selectedValue) ? 'selected' : '';
+        $html .= "<option value='{$value}' {$selected}>{$label}</option>";
+    }
+
+    // Close the select tag
+    $html .= '</select>';
+
+    // Return the generated HTML
+    return $html;
+}
+
+
+function sizeToMB($size): string
 {
     return number_format($size / (1024 * 1024), 2) . ' MB';
 }

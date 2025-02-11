@@ -1,7 +1,6 @@
 <?php
 
 
-
 // Define your custom exceptions here
 
 class NotImplementedException extends Exception
@@ -41,6 +40,7 @@ class DatabaseConnectionException extends Exception
 class DatabaseQueryException extends Exception
 {
     private $query;
+
     public function __construct($message = "", $query = "", $code = 0, Throwable $previous = null)
     {
         parent::__construct($message . ' with query ' . $query, $code, $previous);
@@ -56,7 +56,8 @@ class FileNotFoundException extends Exception
 }
 
 // handling exceptions and adding a style
-function exceptionHandler( $exception) {
+function exceptionHandler($exception)
+{
 
     // Log the error
 
@@ -68,26 +69,26 @@ function exceptionHandler( $exception) {
 
     $is_debug = get_config('app', 'debug');
 
-    if ($is_debug == "false") {    
+    if ($is_debug == "false") {
         abort(500);
     }
 
     // Stylize the error message
-   $exception_name = get_class($exception);
-   $exception_message = $exception->getMessage();
-   $exception_trace = $exception->getTrace();
-   $exception_file = $exception->getFile();
-   $exception_line = $exception->getLine();
+    $exception_name = get_class($exception);
+    $exception_message = $exception->getMessage();
+    $exception_trace = $exception->getTrace();
+    $exception_file = $exception->getFile();
+    $exception_line = $exception->getLine();
 
 
-   // getting the file contents to show at the view
+    // getting the file contents to show at the view
 
 //    $exception_file_contents = file_get_contents($exception_file);
 
-   // save only 15 lines between the error line
+    // save only 15 lines between the error line
 
-   render_view('crash', [
-        'exception_name' => $exception_name, 
+    render_view('crash', [
+        'exception_name' => $exception_name,
         'exception_message' => $exception_message,
         'exception_trace' => $exception_trace,
         'exception_file' => $exception_file,
@@ -102,13 +103,30 @@ function exceptionHandler( $exception) {
  * @param Exception $exception The exception object to be handled.
  */
 
-function internalServerErrorHandler($errno, $errstr, $errfile, $errline) {
+function internalServerErrorHandler($errno, $errstr, $errfile, $errline)
+{
     ErrorLog::log(
         $errstr . '(' . $errno . ')',
         $errfile . ' on line ' . $errline,
         '',
         'crash'
     );
+
+    $is_debug = get_config('app', 'debug');
+
+    if ($is_debug == "true") {
+
+        // save only 15 lines between the error line
+
+        render_view('crash', [
+            'exception_name' => 'Internal Server Error',
+            'exception_message' => $errstr,
+            'exception_trace' => '',
+            'exception_file' => $errfile,
+            'exception_line' => $errline,
+
+        ], 'Error');
+    }
 
 }
 

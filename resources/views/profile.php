@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+
 require_once __DIR__ . '/partials/header.php';
 ?>
 
@@ -48,7 +49,7 @@ require_once __DIR__ . '/partials/header.php';
                     </section>
 
                     <section class="data-section">
-                        <h2>Datos básicos</h2>
+                        <h2><i class="las la-info"></i> Datos básicos</h2>
                         <div class="data-grid">
                             <div><strong>Dirección Postal</strong>
                                 <p>
@@ -85,22 +86,20 @@ require_once __DIR__ . '/partials/header.php';
                             </div>
                         </div>
                     </section>
-                    <br>
-                    <hr>
-                    <br>
+
                     <section class="data-section">
-                        <h2>Documentos subidos</h2>
+                        <h2><i class="las la-file"></i> Documentos subidos</h2>
                         <div class="documents-grid">
                             <?php if ($documents['written_essay'] != null) { ?>
                                 <div><a onclick="showModal('fileViewPopup-<?= $documents['written_essay']['name'] ?>"
-                                        class="no-deco-action" href="#"><i
+                                        class="no-deco-action w-fit" href="#"><i
                                                 class="las la-file-alt"></i>Ensayo
                                         Escrito</a></div>
                             <?php } ?>
 
                             <?php if ($documents['video_essay'] != null) { ?>
                                 <div><a onclick="showModal('fileViewPopup-<?= $documents['video_essay']['name'] ?>')"
-                                        class="no-deco-action" href="#"><i
+                                        class="no-deco-action w-fit" href="#"><i
                                                 class="las la-file-alt"></i>Ensayo
                                         en Video</a></div>
                             <?php } ?>
@@ -108,14 +107,14 @@ require_once __DIR__ . '/partials/header.php';
                             <?php if ($documents['authorization_letter'] != null) { ?>
                                 <div>
                                     <a onclick="showModal('fileViewPopup-<?= $documents['authorization_letter']['name'] ?>')"
-                                       class="no-deco-action" href="#"><i
+                                       class="no-deco-action w-fit" href="#"><i
                                                 class="las la-file-alt"></i>Carta
                                         de Autorización</a></div>
                             <?php } ?>
 
                             <?php if ($documents['transcript'] != null) { ?>
                                 <div><a onclick="showModal('fileViewPopup-<?= $documents['transcript']['name'] ?>')"
-                                        class="no-deco-action" href="#"><i
+                                        class="no-deco-action w-fit" href="#"><i
                                                 class="las la-file-alt"></i>Transcripción
                                         de créditos</a></div>
                             <?php } ?>
@@ -123,14 +122,14 @@ require_once __DIR__ . '/partials/header.php';
                             <? if ($documents['written_application'] != null) { ?>
                                 <div>
                                     <a onclick="showModal('fileViewPopup-<?= $documents['written_application']['name'] ?>')"
-                                       class="no-deco-action" href="#"><i
+                                       class="no-deco-action w-fit" href="#"><i
                                                 class="las la-file-alt"></i>Solicitud
                                         Escrita</a></div>
                             <? } ?>
 
                             <? if ($documents['picture'] != null) { ?>
                                 <div><a onclick="showModal('fileViewPopup-<?= $documents['picture']['name'] ?>')"
-                                        class="no-deco-action" href="#"><i
+                                        class="no-deco-action w-fit" href="#"><i
                                                 class="las la-file-alt"></i>Foto
                                         2x2</a></div>
                             <? } ?>
@@ -138,16 +137,13 @@ require_once __DIR__ . '/partials/header.php';
                             <? if ($documents['recommendation_letter'] != null) { ?>
                                 <div>
                                     <a onclick="showModal('fileViewPopup-<?= $documents['recommendation_letter']['name'] ?>')"
-                                       class="no-deco-action" href="#"><i
+                                       class="no-deco-action w-fit" href="#"><i
                                                 class="las la-file-alt"></i>Carta
                                         de recomendación</a></div>
                             <? } ?>
 
                         </div>
                     </section>
-                    <br>
-                    <hr>
-                    <br>
 
                     <?php if ($application->extra_notes) { ?>
                         <section class="extra-notes">
@@ -163,55 +159,40 @@ require_once __DIR__ . '/partials/header.php';
                         <form action="/admin/requests/update" method="POST">
                             <input type="hidden" name="application_id"
                                    value="<?php echo $application->id_application; ?>">
-                            <h2>Manejar Solicitud</h2>
-                            <div class="status-options">
-                                <label class="radio-option">
-                                    <input type="radio" name="status"
-                                           value="submitted" <?php echo ($application->status === 'Sometida') ? 'checked' : ''; ?>>
-                                    Sometida
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="status"
-                                           value="need_changes" <?php echo ($application->status === 'Necesita Cambios') ? 'checked' : ''; ?>>
-                                    Necesita Cambios
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="status"
-                                           value="denied" <?php echo ($application->status === 'Rechazado') ? 'checked' : ''; ?>>
-                                    Denegada
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="status"
-                                           value="approved" <?php echo ($application->status === 'Aceptado') ? 'checked' : ''; ?>>
-                                    Aprobada
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="status"
-                                           value="waitlist" <?php echo ($application->status === 'En lista de espera') ? 'checked' : ''; ?>>
-                                    En lista de espera
-                                </label>
+                            <h2>
+                                <i class="las la-edit"></i>
+                                Manejar Solicitud
+                            </h2>
+
+                            <div class="flex-min">
+                                <label for="status">Cambiar estado</label>
+                                <?php
+
+                                echo renderSelect('status', $statuses, $application->status);
+                                ?>
                             </div>
 
-                            <div class="actions">
+                            <div class="actions-st">
 
-                                <a href="#" class="main-action-bright quaternary" onclick="openModal('exportApplicationModal')">
-                                    <i class="las la-download"></i>
-                                    Exportar a Excel
-                                </a>
-                                <a href="#" class="main-action-bright secondary" onclick="openModal('messageModal')">
-                                    <i class="las la-envelope"></i>
-                                    Enviar Mensaje
-                                </a>
+
                             </div>
                             <br><br>
 
 
                             <div class="actions">
+                                <a href="#" class="main-action-bright no-deco-action"
+                                   onclick="openModal('exportApplicationModal')">
+                                    <i class="las la-download"></i>
+                                    Exportar a Excel
+                                </a>
 
-                                <label>
-                                    <input name="notify" type="checkbox"> Notificar al solicitante
-                                </label>
-                                <button class="main-action-bright primary" type="submit"><i class="las la-save"></i> Guardar
+                                <a href="#" class="main-action-bright secondary" onclick="openModal('messageModal')">
+                                    <i class="las la-envelope"></i>
+                                    Enviar Mensaje
+                                </a>
+
+                                <button class="main-action-bright primary" type="submit"><i class="las la-save"></i>
+                                    Guardar
                                 </button>
                             </div>
                         </form>
@@ -232,10 +213,10 @@ require_once __DIR__ . '/partials/header.php';
                 <div class="comment-padded">
 
 
-<!--                    <p class="disclaimer">-->
-<!--                        Todos los comentarios son privados y solo son accesibles-->
-<!--                        para los administradores, ningún usuario podrá verlos.-->
-<!--                    </p>-->
+                    <!--                    <p class="disclaimer">-->
+                    <!--                        Todos los comentarios son privados y solo son accesibles-->
+                    <!--                        para los administradores, ningún usuario podrá verlos.-->
+                    <!--                    </p>-->
 
                     <p class="disclaimer" style="color: #eabd0b">
                         Esta sección vendrá pronto, se está implementando.
@@ -266,7 +247,8 @@ require_once __DIR__ . '/partials/header.php';
                         <input type="hidden" name="application_id" value="<?php echo $application->id_application; ?>">
                         <textarea required name="comment" id="" cols="30" rows="10"
                                   placeholder="Escribe un comentario..."></textarea>
-                        <button class="main-action-bright secondary" type="submit"><i class="las la-paper-plane"></i> Enviar
+                        <button class="main-action-bright secondary" type="submit"><i class="las la-paper-plane"></i>
+                            Enviar
                         </button>
                     </form>
 

@@ -70,6 +70,11 @@ class ApplicationController extends Controller
             $_SESSION['error'] = "El usuario no ha sometido su solicitud todavia.";
             redirect('/admin/requests');
         }
+        
+        $valid_statuses = Application::$statusParsings;
+
+
+        $valid_statuses = array_diff_key(Application::$statusParsings, ['unsubmitted' => 'Sin subir']);
 
         render_view(
             'profile',
@@ -83,8 +88,9 @@ class ApplicationController extends Controller
                 'profile_pic' => $application->url_picture,
                 'document_count' => $application->documentCount(),
                 'documents' => $application->getDocuments(),
+                'statuses' => $valid_statuses,
             ],
-            'Aplicación'
+            'Solicitud'
         );
     }
 
