@@ -56,7 +56,7 @@ class SettingsController extends Controller
             'limit_dates' => $limit_dates,
             'sessions' => $sessions,
             'selected' => 'settings'
-        ], 'Settings');
+        ], 'Ajustes');
     }
 
 

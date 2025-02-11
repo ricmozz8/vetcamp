@@ -57,7 +57,7 @@ class BackDashboardController extends Controller
             'recent_applications' => $recent_applications,
             'selected' => 'start',
             'interested' => $interested
-        ], 'BackDashboard');
+        ], 'Administración');
     }
 
     /**

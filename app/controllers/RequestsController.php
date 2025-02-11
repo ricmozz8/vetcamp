@@ -48,7 +48,7 @@ class RequestsController extends Controller
             'selected' => 'requests',
             'currentPage' => $page,
             'totalPages' => $totalPages
-        ], 'Requests');
+        ], 'Solicitudes');
     }
 
     // define your other methods here

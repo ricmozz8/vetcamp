@@ -65,7 +65,7 @@ class RegisteredController extends Controller
             'selected' => 'registered',
             'currentPage' => $page,
             'totalPages' => $totalPages
-        ], 'Registered');
+        ], 'Usuarios');
     }
 
     // define your other methods here

@@ -13,7 +13,7 @@
         </a>
         <!-- Logo section -->
         <a class="sidebar-logo" href="/admin">
-        <?php require_once('applicationLogo.php'); ?>
+            <img src="/<?= asset('logo/SVG/admin_logo_black.svg'); ?>" alt="">
         </a>
 
         <!-- Main navigation menu -->

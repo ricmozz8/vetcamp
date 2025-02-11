@@ -5,7 +5,7 @@
 
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/<?= asset("logo/SVG/vetcamp-icon-white.svg") ?>" type="image/x-icon">
+    <link rel="icon" href="/<?= asset("icon.svg") ?>" type="image/x-icon">
 
     <!-- CSS -->
 
