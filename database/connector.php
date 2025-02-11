@@ -397,7 +397,17 @@ final class DB
         return self::$database;
     }
 
-    // New
+    /**
+     * Basic counting operation in a DB.
+     *
+     * Executes an SQL COUNT statement.
+     *
+     * @param string $table The name of the table.
+     * @param string $column The column name to use in the WHERE clause.
+     * @param string $value The value to match for the specified column in the WHERE clause.
+     *
+     * @return bool Returns true if a record was successfully deleted, otherwise false.
+     */
     public static function count(string $table, string $column, $value): int
     {
         $sql = "SELECT COUNT(*) FROM " . self::$database_name . "." . $table . " WHERE " . $column . " = :value";
@@ -407,7 +417,19 @@ final class DB
         return (int) $statement->fetchColumn();
     }
 
-    // New
+    /**
+     * Basic counting operation in a DB.
+     *
+     * Executes an SQL COUNT statement.
+     *
+     * @param string $table The name of the table.
+     * @param string $column The column name to use in the WHERE clause.
+     * @param string $value The value to match for the specified column in the WHERE clause.
+     * @param string $columnCondition The name of the column to use after the AND clause.
+     * @param string $valueCondition The value that should match the specified column after the AND clause.
+     *
+     * @return int
+     */
     public static function countwithCondition(string $table, string $column, $value, string $columnCondition, $valueCondition): int
     {
         $sql = "SELECT COUNT(*) FROM " . self::$database_name . "." . $table . " WHERE " . $column . " = :value AND " . $columnCondition . " = :valueCondition";
