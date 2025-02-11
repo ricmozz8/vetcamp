@@ -102,9 +102,6 @@ class User extends Model
             $applications = Application::all();
             $applicationsByUserId = [];
 
-
-
-
             foreach ($applications as $application) {
                 $applicationsByUserId[$application->user_id] = $application;
             }
@@ -124,9 +121,11 @@ class User extends Model
                     continue;
                 }
             }
+
             return $result;
         } catch (Exception $e) {
-            throw new Exception("An error occurred: " . $e->getMessage());
+            ErrorLog::log($e->getMessage(), $e->getFile(), $e->getTraceAsString(), 'error');
+            return [];
         }
     }
 
