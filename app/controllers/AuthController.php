@@ -113,12 +113,12 @@ class AuthController extends Controller
 
             // prevent registry for already existing users
             try {
-                User::findBy(['email' => $_POST['email']]);
-                $$_SESSION['error'] = 'Ya existe un usuario con este correo';
-                redirect('/login');
+                User::findBy(['email' => $email]);
+                $_SESSION['error'] = 'Ya existe un usuario con este correo';
+                redirect('/register');
             } catch (ModelNotFoundException $e) {
-                // User was not found
-                User::create([
+                // User was not found, this means we can register the new user.
+                $user = User::create([
                     'first_name' => $_POST['first_name'],
                     'last_name' => $_POST['last_name'],
                     'email' => $_POST['email'],
@@ -126,7 +126,6 @@ class AuthController extends Controller
                     'phone_number' => deformat_phone($_POST['phone_number']),
                 ]);
 
-                $user = User::findBy(['email' => $_POST['email']]);
 
                 Mailer::send(
                     $user->email,
@@ -188,7 +187,7 @@ class AuthController extends Controller
             // Convert TTL from days to seconds
             $ttlInSeconds = $ttlInDays * 86400; // 86400 seconds in a day
 
-            
+
             $madeOn = new DateTime($reset_request->made_on);
 
 
