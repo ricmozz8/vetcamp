@@ -36,7 +36,7 @@ date_default_timezone_set('America/Puerto_Rico');
 
 // Let the router handle all requests
 
-Auth::checkLastLogin(); // fix this (currently broken)
+
 
 include 'routes/web.php';
 

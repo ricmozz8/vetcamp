@@ -68,6 +68,7 @@ class Auth
         $user = self::user();
         if ($user) {
             // convertir last_login a DateTime
+
             $lastLogin = $user->last_login instanceof DateTime ? $user->last_login : new DateTime($user->last_login, new DateTimeZone('UTC'));
             $limit = (new DateTime('now', new DateTimeZone('UTC')))->modify('-2 days');
 
