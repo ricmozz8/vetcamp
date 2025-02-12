@@ -20,10 +20,10 @@ class AcceptedController extends Controller
         
         $approvedApplicants = User::approvedApplicants();
 
+        $sessions = [];
+
         foreach ($approvedApplicants as $user) {
             $sessionId = $user['id_preferred_session'];
-
-
 
             $pictureObj = Application::find($user['id_application'])->getProfilePicture();
             $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
