@@ -9,8 +9,10 @@ class UserApplicationController extends Controller
      * Validates if the current time is within the limit dates.
      *
      * @return boolean True if the current time is within the limit dates, false otherwise.
+     * @throws DateMalformedStringException
+     * @throws ModelNotFoundException
      */
-    private static function validate_time_limit()
+    private static function validate_time_limit(): bool
     {
         $limit_date = LimitDate::find(1);
         $start = new DateTime($limit_date->start_date);
@@ -68,6 +70,9 @@ class UserApplicationController extends Controller
      * the frontend.
      *
      * @return void
+     * @throws DateMalformedStringException
+     * @throws ModelNotFoundException
+     * @throws ViewNotFoundException
      */
     public static function index()
     {
@@ -92,7 +97,11 @@ class UserApplicationController extends Controller
      * This renders the start application view.
      *
      *
+     * @param $method
      * @return void
+     * @throws DateMalformedStringException
+     * @throws ModelNotFoundException
+     * @throws ViewNotFoundException
      */
     public static function basic_data($method)
     {
@@ -147,7 +156,7 @@ class UserApplicationController extends Controller
             $application = Auth::user()->application();
 
             if ($application == null) {
-                $application = Application::create([
+                Application::create([
                     'user_id' => Auth::user()->__get('user_id'),
                     'id_preferred_session' => $section,
                     'status' => 'unsubmitted',
@@ -178,7 +187,7 @@ class UserApplicationController extends Controller
 
             if ($school_address === null) {
                 $newAddress['user_id'] = Auth::user()->__get('user_id');
-                $school_address = SchoolAddress::create($newAddress);
+                SchoolAddress::create($newAddress);
             } else {
                 $school_address->update($newAddress);
             }
@@ -314,28 +323,10 @@ class UserApplicationController extends Controller
      *
      * @return void
      */
-    public static function documents($method)
+    public static function documents(string $method)
     {
 
-        if (!self::validate_time_limit()) {
-            $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
-            redirect('/apply');
-        }
-
-
-        if (!Auth::check()) {
-            redirect('/login');
-        }
-
-        if (Auth::user()->type == 'admin') {
-            redirect('/admin');
-        }
-
-        $application = Auth::user()->application();
-        if ($application === null) {
-            $_SESSION['error'] = 'Por favor complete todos los campos';
-            redirect('/apply/application/basic_info');
-        }
+        $application = self::getApplication();
 
         if ($method === 'POST') {
 
@@ -392,7 +383,7 @@ class UserApplicationController extends Controller
                 Storage::store('private', $destination, file_get_contents($document['tmp_name']));
 
                 $application->update([
-                    "url_{$key}" => $destination
+                    "url_$key" => $destination
                 ]);
             }
 
@@ -415,31 +406,14 @@ class UserApplicationController extends Controller
 
     public static function confirm($method)
     {
-        if (!self::validate_time_limit()) {
-            $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
-            redirect('/apply');
-        }
-
-        if (!Auth::check()) {
-            redirect('/login');
-        }
-
-        if (Auth::user()->type == 'admin') {
-            redirect('/admin');
-        }
-
-        $application = Auth::user()->application();
-        if ($application === null) {
-            $_SESSION['error'] = 'Por favor complete todos los campos';
-            redirect('/apply/application/basic_info');
-        }
+        $application = self::getApplication();
         // submit the application and confirm it here
 
         if ($method === 'POST') {
 
             // Validate here that every information is valid before sumbitting
 
-            $extra_notes = filter_input(INPUT_POST, 'extra_info', FILTER_DEFAULT);
+            $extra_notes = filter_input(INPUT_POST, 'extra_info');
 
             if (empty($extra_notes)) {
                 $extra_notes = '';
@@ -476,5 +450,40 @@ class UserApplicationController extends Controller
                 'application' => $application,
             ], 'Confirmar');
         }
+    }
+
+    /**
+     * Retrieves the current user's application, validating access and ensuring prerequisites are met.
+     *
+     * Redirects the user if the time limit for applications is not valid,
+     * if the user is not logged in, or if the user is an admin attempting to access the frontend.
+     * If no application is found, prompts the user to complete required fields.
+     *
+     * @return Application|null The user's application if found and accessible, or redirects the user.
+     * @throws DateMalformedStringException If date parsing errors occur.
+     * @throws ModelNotFoundException If the required model data is not found.
+     */
+    public static function getApplication(): ?Application
+    {
+        if (!self::validate_time_limit()) {
+            $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
+            redirect('/apply');
+        }
+
+
+        if (!Auth::check()) {
+            redirect('/login');
+        }
+
+        if (Auth::user()->type == 'admin') {
+            redirect('/admin');
+        }
+
+        $application = Auth::user()->application();
+        if ($application === null) {
+            $_SESSION['error'] = 'Por favor complete todos los campos';
+            redirect('/apply/application/basic_info');
+        }
+        return $application;
     }
 }
