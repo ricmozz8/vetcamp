@@ -14,6 +14,15 @@ class BackDashboardController extends Controller
      */
     public static function index()
     {
+
+        if(!Auth::check()){
+            redirect('/login');
+        }
+
+        if(Auth::user()->type !== 'admin')
+        {
+            redirect('/apply');
+        }
         
         // Get registered and applicant stats
         $all_users = count(User::allOf('user'));

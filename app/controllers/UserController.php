@@ -14,6 +14,10 @@ class UserController extends Controller
      */
     public static function index()
     {
+        if (!Auth::check()) {
+            redirect('/login');
+        }
+
         try {
             $userObject = User::find(1);
         } catch (ModelNotFoundException $notFound) {
@@ -36,6 +40,9 @@ class UserController extends Controller
      */
     public static function all()
     {
+        if (!Auth::check()) {
+            redirect('/login');
+        }
         $users = User::allof('user');
         render_view('allUsers', ['users' => $users], 'All Users');
     }
@@ -52,6 +59,9 @@ class UserController extends Controller
      */
     public static function allApplicants()
     {
+        if (!Auth::check()) {
+            redirect('/login');
+        }
         $solicitants = User::allApplicants();
         render_view('allSolicitants', ['solicitants' => $solicitants], 'All Solicitants');
     }
@@ -60,6 +70,10 @@ class UserController extends Controller
 
     public static function update($method)
     {
+        if (!Auth::check()) {
+            redirect('/login');
+        }
+
         if ($method == 'POST') {
             $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
@@ -83,10 +97,13 @@ class UserController extends Controller
             $_SESSION['message'] = 'Perfil actualizado correctamente';
 
             // reload the new user on session
-            Auth::login($user);
+            Auth::refresh();
         }
 
-        redirect('/admin'); // if no referrer returns to admin page
+        if(Auth::user()->type === 'admin')
+            redirect('/');
+        else
+            redirect('/apply');
     }
 
 
