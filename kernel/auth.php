@@ -1,9 +1,12 @@
 <?php
 require_once 'app/models/User.php';
+
 class Auth
 {
 
-    private function __construct() {} // prevent instantiation
+    private function __construct()
+    {
+    } // prevent instantiation
 
     /**
      * Set the user as logged in, and store it in the session
@@ -50,7 +53,7 @@ class Auth
             // if the user is not found, log them out
             self::logout();
             redirect('/login');
-            
+
         }
         return $user;
     }
@@ -109,14 +112,13 @@ class Auth
      */
     public static function guest_only()
     {
-        if (!self::check()) {
-            redirect('/login');
-        }
+        if (self::check()) {
 
-        if (self::user()->type == 'admin') {
-            redirect('/admin');
-        } else {
-            redirect('/apply');
+            if (self::user()->type == 'admin') {
+                redirect('/admin');
+            } else {
+                redirect('/apply');
+            }
         }
     }
 
