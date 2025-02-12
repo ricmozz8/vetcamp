@@ -21,9 +21,12 @@ require_once __DIR__ . '/partials/header.php';
                     Enviar mensaje
                 </button>
             </header>
-            <!-- <p style="color: gray; text-align: center; font-size: 12px; max-width: 700px; margin: auto; padding: 1em">
-                Esta sección está siendo implementada por el momento.
-            </p> --> 
+
+            <?php if (empty($sessions)): ?>
+            <p style="color: gray; text-align: center; font-size: 18px; max-width: 700px; margin: auto; padding: 1em">
+                No hay usuarios aceptados.
+            </p> 
+            <?php endif; ?>
 
             <div class="accepted-grouped">
                 <?php foreach ($sessions as $sessionName => $users): ?>
