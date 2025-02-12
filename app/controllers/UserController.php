@@ -67,12 +67,11 @@ class UserController extends Controller
     }
 
 
-
     public static function update($method)
     {
-        if (!Auth::check()) {
-            redirect('/login');
-        }
+
+        $turnaround_route = Auth::user()->type === 'admin' ? '/admin' : '/apply';
+
 
         if ($method == 'POST') {
             $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
@@ -82,28 +81,44 @@ class UserController extends Controller
 
 
             // validate the user is the logged user
-            if (Auth::user()->__get('user_id') != $user_id) {
+            if (Auth::user()->user_id != $user_id) {
                 $_SESSION['error'] = 'Hubo un error al actualizar el perfil';
                 redirect('/admin');
             }
 
+
             $user = User::find($user_id);
+
+
+            try {
+                $user_with_email = User::findBy(['email' => $email]) ;
+            } catch (ModelNotFoundException $e){
+                $user_with_email = null;
+            }
+
+            if ($user_with_email && $user_with_email->user_id != $user_id) {
+                $_SESSION['error'] = 'Este correo ya está en uso.';
+                redirect($turnaround_route);
+            }
+
+
             $user->update([
                 'email' => $email,
                 'first_name' => $first_name,
                 'last_name' => $last_name
             ]);
 
-            $_SESSION['message'] = 'Perfil actualizado correctamente';
+                $_SESSION['message'] = 'Perfil actualizado correctamente';
 
-            // reload the new user on session
-            Auth::refresh();
+                // reload the new user on session
+                Auth::refresh();
+
+            redirect($turnaround_route);
+
+        } else {
+            redirect($turnaround_route);
         }
 
-        if(Auth::user()->type === 'admin')
-            redirect('/');
-        else
-            redirect('/apply');
     }
 
 
@@ -127,7 +142,6 @@ class UserController extends Controller
     public static function delete($method)
     {
 
-        
 
         if (!Auth::check()) {
             redirect('/login');
@@ -137,16 +151,12 @@ class UserController extends Controller
             redirect('/login');
         }
 
-        
-
 
         if ($method !== 'POST') {
             $_SESSION['error'] = 'Acceso no autorizado';
-            redirect_back();    
+            redirect_back();
         }
 
-
-        
 
         $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
 
@@ -154,13 +164,13 @@ class UserController extends Controller
             $user = User::find($user_id);
         } catch (ModelNotFoundException $notFound) {
             $_SESSION['error'] = 'El usuario no existe.';
-            redirect_back();    
+            redirect_back();
         }
 
 
-        if(Auth::user()->user_id === $user_id) {
+        if (Auth::user()->user_id === $user_id) {
             $_SESSION['error'] = 'No puedes eliminar a ti mismo.';
-            redirect_back();    
+            redirect_back();
         }
 
 
@@ -194,7 +204,7 @@ class UserController extends Controller
 
         $_SESSION['message'] = 'El usuario ha sido eliminado.';
         redirect('/admin/registered');
-        
+
     }
 }
 

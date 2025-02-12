@@ -107,7 +107,7 @@ class Auth
      * If the user is an admin, redirects to /admin.
      * If the user is not an admin, redirects to /apply.
      */
-    public static function only_logged_in()
+    public static function guest_only()
     {
         if (!self::check()) {
             redirect('/login');
@@ -119,4 +119,6 @@ class Auth
             redirect('/apply');
         }
     }
+
+
 }

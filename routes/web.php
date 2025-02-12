@@ -48,8 +48,11 @@ switch ($path) {
     case '/credits':
         HomeController::credits();
         break;
-        
-    
+
+    case '/profile/update':
+        UserController::update($method);
+        break;
+
 
     default:
         abort(404, 'Page was not found');

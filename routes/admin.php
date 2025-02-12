@@ -17,7 +17,21 @@ require_once 'app/controllers/ErrorsController.php';
 require_once 'app/controllers/UserController.php';
 
 
+if (strpos($path, '/admin') === 0) {
+
+    // the user is not logged in
+    if (!Auth::check()) {
+        redirect('/login');
+    }
+
+    // the user is not an admin
+    if(Auth::user()->type !== 'admin') {
+        redirect('/apply');
+    }
+}
+
 switch ($path) {
+
     case '/admin':
         BackDashboardController::index();
         break;
@@ -47,13 +61,9 @@ switch ($path) {
     case '/admin/settings':
         SettingsController::index();
         break;
-    case '/admin/settings/e/approved':
-        SettingsController::updateMessage($method);
-        break;
-    case '/admin/settings/e/rejected':
-        SettingsController::updateMessage($method);
-        break;
     case '/admin/settings/e/all':
+    case '/admin/settings/e/rejected':
+    case '/admin/settings/e/approved':
         SettingsController::updateMessage($method);
         break;
     case '/admin/settings/e/dates':
@@ -68,14 +78,9 @@ switch ($path) {
     case '/admin/delete/all/requests':
         SettingsController::deleteAllRequests($method);
         break;
+    case '/sessions/create':
     case '/sessions/update':
         SettingsController::updateSession($method);
-        break;
-    case '/sessions/create':
-        SettingsController::updateSession($method);
-        break;
-    case '/profile/update':
-        UserController::update($method);
         break;
     case '/admin/dev/errors':
         ErrorsController::index();

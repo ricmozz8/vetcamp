@@ -55,13 +55,7 @@ class AuthController extends Controller
             }
         } else {
             // method is GET
-            if (Auth::check()) {
-                if (Auth::user()->type == 'admin') {
-                    redirect('/admin');
-                } else {
-                    redirect('/apply');
-                }
-            }
+            Auth::guest_only();
 
             render_view('login', [], 'Login');
         }
@@ -69,26 +63,14 @@ class AuthController extends Controller
 
     public static function register()
     {
-        if (Auth::check()) {
-            if (Auth::user()->type == 'admin') {
-                redirect('/admin');
-            } else {
-                redirect('/apply');
-            }
-        }
+        Auth::guest_only();
         // your index view here
         render_view('register', [], 'Register');
     }
 
     public static function registerUser($method)
     {
-        if (Auth::check()) {
-            if (Auth::user()->type == 'admin') {
-                redirect('/admin');
-            } else {
-                redirect('/apply');
-            }
-        }
+        Auth::guest_only();
 
         if ($method == 'POST') {
 
@@ -153,13 +135,7 @@ class AuthController extends Controller
 
     public static function resetPassword()
     {
-        if (Auth::check()) {
-            if (Auth::user()->type == 'admin') {
-                redirect('/admin');
-            } else {
-                redirect('/apply');
-            }
-        }
+        Auth::guest_only();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // take the OTP from the request
@@ -203,13 +179,7 @@ class AuthController extends Controller
 
     public static function changePassword()
     {
-        if (Auth::check()) {
-            if (Auth::user()->type == 'admin') {
-                redirect('/admin');
-            } else {
-                redirect('/apply');
-            }
-        }
+        Auth::guest_only();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
@@ -252,13 +222,7 @@ class AuthController extends Controller
 
     public static function forgotPassword()
     {
-        if (Auth::check()) {
-            if (Auth::user()->type == 'admin') {
-                redirect('/admin');
-            } else {
-                redirect('/apply');
-            }
-        }
+        Auth::guest_only();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // take the email from the request
