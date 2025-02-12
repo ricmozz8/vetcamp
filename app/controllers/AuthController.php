@@ -93,6 +93,11 @@ class AuthController extends Controller
                 redirect('/register');
             }
 
+            if(strlen($password) < 8){
+                $_SESSION['error'] = 'La contraseña debe tener al menos 8 caracteres';
+                redirect('/register');
+            }
+
             // prevent registry for already existing users
             try {
                 User::findBy(['email' => $email]);
