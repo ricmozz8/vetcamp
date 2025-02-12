@@ -11,6 +11,7 @@ class UserController extends Controller
      * Serves the index view.
      *
      * @return void
+     * @throws ViewNotFoundException
      */
     public static function index()
     {
@@ -37,33 +38,19 @@ class UserController extends Controller
      * a comprehensive list of all users to be displayed.
      *
      * @return void
+     * @throws ViewNotFoundException
      */
     public static function all()
     {
         if (!Auth::check()) {
             redirect('/login');
         }
-        $users = User::allof('user');
-        render_view('allUsers', ['users' => $users], 'All Users');
-    }
-
-
-    /**
-     * Retrieves all registered solicitants and renders the 'allSolicitants' view.
-     *
-     * This method fetches all solicitants from the database and
-     * passes them to the 'allSolicitants' view for rendering. It provides
-     * a comprehensive list of all registered solicitants to be displayed.
-     *
-     * @return void
-     */
-    public static function allApplicants()
-    {
-        if (!Auth::check()) {
-            redirect('/login');
+        try {
+            $users = User::allof('user');
+        } catch (Exception $e) {
+            $users = [];
         }
-        $solicitants = User::allApplicants();
-        render_view('allSolicitants', ['solicitants' => $solicitants], 'All Solicitants');
+        render_view('allUsers', ['users' => $users], 'All Users');
     }
 
 
@@ -76,18 +63,23 @@ class UserController extends Controller
         if ($method == 'POST') {
             $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-            $first_name = filter_input(INPUT_POST, 'first_name', FILTER_DEFAULT);
-            $last_name = filter_input(INPUT_POST, 'last_name', FILTER_DEFAULT);
+            $first_name = filter_input(INPUT_POST, 'first_name');
+            $last_name = filter_input(INPUT_POST, 'last_name');
 
 
             // validate the user is the logged user
             if (Auth::user()->user_id != $user_id) {
                 $_SESSION['error'] = 'Hubo un error al actualizar el perfil';
-                redirect('/admin');
+                redirect($turnaround_route);
             }
 
 
-            $user = User::find($user_id);
+            try {
+                $user = User::find($user_id);
+            } catch (ModelNotFoundException $e) {
+                $_SESSION['error'] = 'Hubo un error al actualizar el perfil';
+                redirect($turnaround_route);
+            }
 
 
             try {
@@ -113,31 +105,11 @@ class UserController extends Controller
                 // reload the new user on session
                 Auth::refresh();
 
-            redirect($turnaround_route);
-
-        } else {
-            redirect($turnaround_route);
         }
+        redirect($turnaround_route);
 
     }
 
-
-    public static function new()
-    {
-
-        // how to create a new user with model:
-
-        // $newUser =User::create([
-        //     'email' => 'KZGZM@example.com',
-        //     'password' => password_hash('password', PASSWORD_DEFAULT),
-        //     'first_name' => 'John',
-        //     'last_name' => 'Doe',
-        //     'phone_number' => '1234567890',
-        // ]);
-
-        $newUser = User::find(1) ?? null;
-        echo json_encode($newUser);
-    }
 
     public static function delete($method)
     {
