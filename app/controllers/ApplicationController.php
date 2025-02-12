@@ -13,7 +13,7 @@ class ApplicationController extends Controller
      *
      * @return boolean True if the current time is within the limit dates, false otherwise.
      */
-    private function validate_time_limit(): bool
+    private static function validate_time_limit(): bool
     {
         $limit_date = LimitDate::find(1);
         if (time() > $limit_date->end_date) {
