@@ -41,7 +41,7 @@ class Auth
 
     /**
      * Get the user currently logged in
-     * @return User|null The user if logged in, null otherwise
+     * @return User The user if logged in, null otherwise
      */
     public static function user()
     {
