@@ -201,20 +201,16 @@ require_once __DIR__ . '/partials/header.php';
                 <div class="profile-section-title">
                     <h1>
                         <i class="las la-comment"></i>
-                        Comentarios
+                        Notas
                     </h1>
                 </div>
 
                 <div class="comment-padded">
 
 
-                    <!--                    <p class="disclaimer">-->
-                    <!--                        Todos los comentarios son privados y solo son accesibles-->
-                    <!--                        para los administradores, ningún usuario podrá verlos.-->
-                    <!--                    </p>-->
-
-                    <p class="disclaimer" style="color: #eabd0b">
-                        Esta sección vendrá pronto, se está implementando.
+                    <p class="disclaimer">
+                        Todas las notas son privadas y solo son accesibles
+                        para los administradores, ningún usuario podrá verlos.
                     </p>
 
 
@@ -222,26 +218,38 @@ require_once __DIR__ . '/partials/header.php';
 
                         <!-- SAMPLE COMMENT CARD -->
 
-                        <!--<div class="comment-card">
-                            <div class="comment-info">
-                                <div class="profile-badge">AU</div>
-                                <div class="user-data">
-                                    <h1>User Name</h1>
-                                    <p>10/15/2003 15:00:00</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>Lorem ipsum dolor sit amet adiscpiscing elit consecteur</p>
-                            </div>
+                        <?php foreach ($application->comments() as $comment) { ?>
 
-                        </div>-->
+                            <div class="comment-card">
+                                <?php $comment_user = $comment->user();
+
+                                $full_name = $comment_user->first_name . ' ' . $comment_user->last_name;
+                                $initials = substr($comment_user->first_name, 0, 1) . substr($comment_user->last_name, 0, 1);
+
+
+                                ?>
+                                <div class="comment-info">
+                                    <div class="profile-badge"><?= $initials ?></div>
+                                    <div class="user-data">
+                                        <h1><?= $full_name ?></h1>
+                                        <p><?= get_date_spanish($comment->made_on) ?></p>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <p><?= $comment->comment ?></p>
+                                </div>
+
+                            </div>
+                        <?php } ?>
 
                     </div>
 
-                    <form class="post-comment-form" action="#">
+                    <form class="post-comment-form" action="/admin/request/comment" method="POST">
                         <input type="hidden" name="application_id" value="<?php echo $application->id_application; ?>">
+                        <input type="hidden" name="user_id" value="<?php echo $user->user_id; ?>">
                         <textarea required name="comment" id="" cols="30" rows="10"
-                                  placeholder="Escribe un comentario..."></textarea>
+                                  placeholder="Comenta sobre esta solicitud entre los evaluadores..."></textarea>
+
                         <button class="main-action-bright secondary" type="submit"><i class="las la-paper-plane"></i>
                             Enviar
                         </button>

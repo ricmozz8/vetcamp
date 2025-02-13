@@ -19,7 +19,8 @@ class Model
      *
      * @return void
      */
-    protected function __construct(array $attributes, array $sanitized){
+    protected function __construct(array $attributes, array $sanitized)
+    {
         self::init();
         self::set_attributes($attributes);
         $this->values = $sanitized;
@@ -41,7 +42,7 @@ class Model
             return;
         }
 
-        if (empty(static::$table)){
+        if (empty(static::$table)) {
             static::$table = strtolower(static::class) . 's';
         }
 
@@ -56,18 +57,19 @@ class Model
      *               column, and the value is the value of that column in the
      *               database.
      */
-    public static function all() {
+    public static function all()
+    {
         self::init();
 
         $model_list = [];
-        foreach(DB::select(static::$table, '*') as $model) {
+        foreach (DB::select(static::$table, '*') as $model) {
             $model_list[] = new static($model, self::sanitize($model));
         }
 
         return $model_list;
     }
 
-     /**
+    /**
      * Returns attributes by key (getter function)
      */
     public function __get($key)
@@ -88,18 +90,23 @@ class Model
      *
      * @throws ModelNotFoundException If no records are found with the specified id.
      */
-    public static function findAll(int $id, string $column = null, string $table = null) : Model {
+    public static function findAll(int $id, string $column = null, string $table = null): Model
+    {
         self::init();
 
         $data = DB::whereAll($table ?? static::$table, $column ?? static::$primary_key, $id);
 
+
         if (empty($data)) {
             throw new ModelNotFoundException('There is no record with the id given:  ' . $id);
         } else {
-            return new static($data, self::sanitize($data));
-        }
-        
+            $models = [];
+            foreach ($data as $result) {
+                $models[] = new static($result, self::sanitize($result));
+            }
 
+            return $models;
+        }
     }
 
 
@@ -114,16 +121,17 @@ class Model
      *
      * @throws ModelNotFoundException If the record is not found.
      */
-    public static function find(int $id, string $column = null, string $table = null) : Model {
+    public static function find(int $id, string $column = null, string $table = null): Model
+    {
         self::init();
         $data = DB::where($table ?? static::$table, $column ?? static::$primary_key, $id);
-        
+
         if (empty($data)) {
             throw new ModelNotFoundException('There is no record with the id given: ' . $id);
         } else {
             return new static($data, self::sanitize($data));
         }
-  
+
     }
 
 
@@ -133,18 +141,20 @@ class Model
      * @param array $data An associative array with the column(s) to search as
      *                    the key(s) and the value(s) as the value(s) to match
      *
-     * @return Model The model instance with the matching record.
+     * @return array|Model The model or models with the matching record.
      *
      * @throws ModelNotFoundException If the record is not found.
      */
-    public static function findBy(array $data) : Model {
+    public static function findBy(array $data)
+    {
         self::init();
+
         $data = DB::whereColumns(static::$table, $data);
 
         if (empty($data)) {
             throw new ModelNotFoundException('There is no record with the data given');
         }
-        
+
         return new static($data, self::sanitize($data));
     }
 
@@ -160,26 +170,50 @@ class Model
      *
      * @throws ModelNotFoundException If the record is not found.
      */
-    public static function findLike(array $data): array {
+    public static function findLike(array $data): array
+    {
         self::init();
-    
-        // Llama al método `like` del builder query
+
+
         $results = DB::like(static::$table, $data);
-    
+
         if (empty($results)) {
             throw new ModelNotFoundException('There is no record matching the given data.');
         }
-    
+
         $models = [];
         foreach ($results as $result) {
             $models[] = new static($result, self::sanitize($result));
         }
-    
+
         return $models;
     }
-    
 
-  
+    /**
+     * Gets all records that matches a set of conditions
+     * @param array $data An associative array of columns and desired value
+     * @return array An array of models that matches the passed conditions
+     * @throws ModelNotFoundException if no comments were found
+     */
+    public static function findAllBy(array $data): array
+    {
+        self::init();
+
+        $results = DB::whereAllColumns(static::$table, $data);
+
+        if (empty($results)) {
+            throw new ModelNotFoundException('There is no record matching the given data.');
+        }
+
+        $models = [];
+        foreach ($results as $result) {
+            $models[] = new static($result, self::sanitize($result));
+        }
+
+        return $models;
+    }
+
+
     /**
      * Creates a new model and stores it to the database.
      *
@@ -190,7 +224,7 @@ class Model
     public static function create(array $data)
     {
         $newModel = new static($data, self::sanitize($data));
-        
+
         $stored = $newModel->store();
 
         if ($stored) {
@@ -198,9 +232,9 @@ class Model
         } else {
             throw new Error('Error creating model');
         }
-        
+
     }
-    
+
     /**
      * Sets the value of a model attribute.
      *
@@ -209,7 +243,8 @@ class Model
      *
      * @return bool Returns true if the attribute was successfully set, otherwise false.
      */
-    public function set($attribute, $value) : bool {
+    public function set($attribute, $value): bool
+    {
         if (!array_key_exists($attribute, $this->attributes)) {
             return false;
         }
@@ -233,10 +268,11 @@ class Model
      *
      * @return bool Returns true after updating the attributes.
      */
-    public function update(array $data) : bool {
+    public function update(array $data): bool
+    {
 
         foreach ($data as $key => $value) {
-            if(!array_key_exists($key, $this->attributes)) {
+            if (!array_key_exists($key, $this->attributes)) {
                 continue;
             }
 
@@ -244,11 +280,10 @@ class Model
         }
 
         $this->save();
-    
-        return true;
-        
-    }
 
+        return true;
+
+    }
 
 
     /**
@@ -256,8 +291,8 @@ class Model
      *
      * @return bool Returns true if the record was successfully inserted, otherwise false.
      */
-    public function save() : bool
-    {   
+    public function save(): bool
+    {
         return DB::update(static::$table, $this->values, static::$primary_key, $this->attributes[static::$primary_key]);
     }
 
@@ -267,7 +302,8 @@ class Model
      *
      * @return bool Returns true if the record was successfully inserted, otherwise false.
      */
-    public function store() : bool {
+    public function store(): bool
+    {
         return DB::insert(static::$table, $this->attributes);
     }
 
@@ -285,7 +321,6 @@ class Model
     }
 
 
-
     /**
      * Checks if a record exists in the associated table with the given data.
      *
@@ -294,8 +329,9 @@ class Model
      *
      * @return bool Returns true if the record exists, otherwise false.
      */
-    public static function exists(array $with) : bool{
-        try{
+    public static function exists(array $with): bool
+    {
+        try {
             self::findBy($with);
         } catch (ModelNotFoundException $e) {
             return false;
@@ -313,7 +349,8 @@ class Model
      * @return void
      */
 
-    private function set_attributes(array $data) {
+    private function set_attributes(array $data)
+    {
         foreach ($data as $key => $value) {
             $this->attributes[$key] = $value;
         }
@@ -330,29 +367,26 @@ class Model
      *
      * @return array The sanitized data array with hidden attributes removed.
      */
-    private static function sanitize(array $data) {
-        foreach(static::$hidden as $to_hide) {
+    private static function sanitize(array $data)
+    {
+        foreach (static::$hidden as $to_hide) {
             unset($data[$to_hide]);
         }
         return $data;
     }
 
-    public static function countwithCondition(string $aColumn, $aValue, string $aColumnCondition, $aValueCondition) : int {
+    public static function countwithCondition(string $aColumn, $aValue, string $aColumnCondition, $aValueCondition): int
+    {
         self::init();
         $data = DB::countwithCondition(static::$table, $aColumn, $aValue, $aColumnCondition, $aValueCondition);
-        
+
         if (empty($data)) {
             throw new ModelNotFoundException('There is no record with the id given: ');
         } else {
             return $data;
         }
-  
+
     }
-
-
-    
-    
- 
 
 
 }

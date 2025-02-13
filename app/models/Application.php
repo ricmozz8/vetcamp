@@ -1,6 +1,7 @@
 <?php
 require_once 'Model.php';
 require_once 'User.php';
+require_once 'Comment.php';
 
 define('REQUIRED_DOCUMENTS_AMOUNT', 7);
 
@@ -25,7 +26,7 @@ class Application extends Model
 
     public function __construct(array $attributes, array $sanitized)
     {
-        parent::__construct($attributes,  $sanitized);
+        parent::__construct($attributes, $sanitized);
         $this->status = self::$statusParsings[$this->values['status']];
     }
 
@@ -36,16 +37,16 @@ class Application extends Model
      */
     public function user()
     {
-        return User::find((int) $this->attributes['user_id'], 'user_id', 'users');
+        return User::find((int)$this->attributes['user_id'], 'user_id', 'users');
     }
 
     /**
      * Retrieves the preferred session of the application.
-     * 
+     *
      * If the second argument is true, the method will return a human-readable string
      * containing the title of the session and the start and end dates of the session.
      * If the second argument is false, the method will return an object of class Session.
-     * 
+     *
      * @param boolean $human_readable If true, returns a human-readable string. If false, returns a Session object.
      * @return string|Session Depending on the value of $human_readable.
      */
@@ -63,7 +64,7 @@ class Application extends Model
 
     /**
      * Gives all submitted documents.
-     * 
+     *
      * @return array An array of submitted documents.
      * @note: This will only return the URL of the documents that are submitted to the file system.
      */
@@ -94,14 +95,14 @@ class Application extends Model
 
     /**
      * Retrieves all submitted documents.
-     * 
+     *
      * The documents are returned in an array, where each key is the name of the document
      * and the value is an array with the following keys:
      * - contents: The contents of the file.
      * - name: The name of the file.
      * - size: The size of the file in bytes.
      * - type: The mime type of the file.
-     * 
+     *
      * @return array An array of submitted documents.
      */
     public function getDocuments(): array
@@ -133,9 +134,24 @@ class Application extends Model
         return $document_array;
     }
 
+
+    /**
+     * Gets the application comments
+     * @return Comment[] An array of the comment models that belongs to the Application
+     */
+    public function comments()
+    {
+
+        try {
+            return Comment::findAllBy(['application_id' => $this->id_application]);
+        } catch (ModelNotFoundException $e) {
+            return [];
+        }
+    }
+
     /**
      * Counts the number of documents uploaded by the user in the application.
-     * 
+     *
      * @return int The number of uploaded documents.
      */
     public function documentCount()
@@ -153,7 +169,7 @@ class Application extends Model
 
     /**
      * Given a status in Spanish, returns the corresponding status in English.
-     * 
+     *
      * @param string $statusInSpanish The status in Spanish.
      * @return string The status in English. If the status in Spanish is not found, returns the input string.
      */
@@ -166,11 +182,11 @@ class Application extends Model
 
     /**
      * Determines if the application is complete.
-     * 
+     *
      * @return boolean True if the application is complete, false otherwise.
-     * 
-     * An application is considered complete if it has all the required documents, 
-     * the user's birthdate is not null, the user has a school address, a postal 
+     *
+     * An application is considered complete if it has all the required documents,
+     * the user's birthdate is not null, the user has a school address, a postal
      * address, a physical address, and an id of the preferred session.
      */
     public function isComplete()
@@ -215,11 +231,9 @@ class Application extends Model
     }
 
 
-
-
     /**
      * Deletes all denied user requests.
-     * 
+     *
      * @return array An array of user IDs of the users whose requests were deleted.
      */
     public static function UserisDeniedDeletion()
@@ -244,7 +258,7 @@ class Application extends Model
 
     /**
      * Deletes all user requests.
-     * 
+     *
      * @return array An array of user IDs of the users whose requests were deleted.
      */
     public static function DeletionOfAllApplications()
@@ -266,9 +280,9 @@ class Application extends Model
 
     /**
      * Hard deletes the application.
-     * 
+     *
      * This removes all the documents from the storage and deletes the application from the database.
-     * 
+     *
      * @return bool True if the application was successfully deleted, false otherwise.
      */
     public function hard_delete()
@@ -276,7 +290,7 @@ class Application extends Model
         $documents = $this->getSubmittedDocuments();
 
         foreach ($documents as $key => $value) {
-            try{
+            try {
                 // remove it from the storage
                 Storage::delete('private', $value);
             } catch (FileNotFoundException $e) {
@@ -284,17 +298,25 @@ class Application extends Model
                 ErrorLog::log($e->getMessage(), $e->getFile(), $e->getTraceAsString(), 'warning');
                 continue;
             }
-            
+
         }
+
+        // remove any associated comments
+        $comments = $this->comments();
+
+        foreach ($comments as $comment) {
+            $comment->delete();
+        }
+
         // finally, delete the application record
         return $this->delete();
-        
+
     }
 
 
     /**
      * Checks if the application is submitted.
-     * 
+     *
      * @return boolean True if the application is submitted, false otherwise.
      */
     public function isSubmitted()

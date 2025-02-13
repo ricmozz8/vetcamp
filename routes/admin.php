@@ -97,4 +97,8 @@ switch ($path) {
     case '/mail/user':
         MessagesController::message($method);
         break;
+
+    case '/admin/request/comment':
+        ApplicationController::comment($method);
+        break;
 }

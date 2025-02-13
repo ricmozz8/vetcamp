@@ -3,9 +3,9 @@
 /**
  * This class is used to connect to the database using PDO.
  * The methods defined here will create the base SQL queries needed for simple CRUD operations.
- * 
+ *
  * @author @ricmozz8
- * 
+ *
  */
 final class DB
 {
@@ -67,7 +67,6 @@ final class DB
     }
 
 
-
     /**
      * Execute a SELECT query with a WHERE clause on the database.
      *
@@ -92,6 +91,38 @@ final class DB
 
         $statement = self::$database->prepare($sql);
         $statement->execute();
+        return $statement->fetchAll();
+    }
+
+
+    /**
+     * Gets all records that matches the condition passed in the array
+     * @param string $table The table to be used for the query
+     * @param array $conditions An associative array of column->value
+     * @param string $column The column(s) to select on the query
+     * @return array The matches of the query
+     */
+    public static function whereAllColumns(string $table, array $conditions, string $column = '*'): array
+    {
+        $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ';
+
+        $index = 0;
+        $length = count($conditions);
+        $params = [];
+
+        foreach ($conditions as $key => $value) {
+            $sql .= $key . ' = :' . $key;
+            $params[$key] = $value;
+            if ($index < $length - 1) {
+                $sql .= ' AND ';
+
+            }
+
+            $index++;
+        }
+
+        $statement = self::$database->prepare($sql);
+        $statement->execute($params);
         return $statement->fetchAll();
     }
 
@@ -161,19 +192,20 @@ final class DB
         return [];
     }
 
+
     /**
      * Insert a new record into the specified table.
      *
-     * This method constructs and executes an SQL INSERT statement 
-     * using the provided table name and data array. The keys of the 
-     * data array represent the column names, and the values are the 
+     * This method constructs and executes an SQL INSERT statement
+     * using the provided table name and data array. The keys of the
+     * data array represent the column names, and the values are the
      * corresponding values to be inserted.
      *
      * @param string $table The name of the table to insert the data into.
-     * @param array $data An associative array where keys are column names 
+     * @param array $data An associative array where keys are column names
      *                    and values are the values to be inserted.
-     * 
-     * @return bool Returns true if the record was successfully inserted, 
+     *
+     * @return bool Returns true if the record was successfully inserted,
      *              otherwise false.
      */
     public static function insert(string $table, array $data)
@@ -182,7 +214,6 @@ final class DB
         $columns = implode(", ", array_keys($data));
         $placeholders = ":" . implode(", :", array_keys($data));
         $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
-
 
 
         try {
@@ -259,7 +290,7 @@ final class DB
             return $stmt->execute();
         } catch (PDOException $e) {
             // Handle the exception (you can log it or display a message)
-            echo ($e->getMessage());
+            echo($e->getMessage());
             return false;
         }
     }
@@ -268,8 +299,8 @@ final class DB
     /**
      * Delete a record from the specified table.
      *
-     * This method constructs and executes an SQL DELETE statement using the 
-     * provided table name, column, and value. It deletes the record where 
+     * This method constructs and executes an SQL DELETE statement using the
+     * provided table name, column, and value. It deletes the record where
      * the specified column matches the given value.
      *
      * @param string $table The name of the table to delete the record from.
@@ -389,7 +420,7 @@ final class DB
 
     /**
      * Gets the PDO instance for the database connection.
-     * 
+     *
      * @return PDO The database connection.
      */
     public static function getDatabase(): PDO
@@ -414,7 +445,7 @@ final class DB
         $statement = self::$database->prepare($sql);
         $statement->bindValue(':value', $value, is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR);
         $statement->execute();
-        return (int) $statement->fetchColumn();
+        return (int)$statement->fetchColumn();
     }
 
     /**
@@ -440,6 +471,6 @@ final class DB
         $statement->bindValue(':valueCondition', $valueCondition, is_int($valueCondition) ? PDO::PARAM_INT : PDO::PARAM_STR);
 
         $statement->execute();
-        return (int) $statement->fetchColumn();
+        return (int)$statement->fetchColumn();
     }
 }
