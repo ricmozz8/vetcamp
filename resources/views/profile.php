@@ -209,8 +209,7 @@ require_once __DIR__ . '/partials/header.php';
 
 
                     <p class="disclaimer">
-                        Todas las notas son privadas y solo son accesibles
-                        para los administradores, ningún usuario podrá verlos.
+                        Las notas solo son visibles para ti y los otros evaluadores. Ningún aplicante podrá ver ninguna nota.
                     </p>
 
 
@@ -237,10 +236,10 @@ require_once __DIR__ . '/partials/header.php';
                                         </div>
                                     </div>
                                     <?php if ($comment_user->user_id === Auth::user()->user_id) { ?>
-                                    <div class="comment-actions">
-                                        <a href="#" class="radio-option"><i class="las la-edit"></i></a>
-                                        <a href="#" class="radio-option-danger"><i class="las la-trash"></i></a>
-                                    </div>
+                                        <div class="comment-actions">
+                                            <a href="#" class="radio-option"><i class="las la-edit"></i></a>
+                                            <a href="#" class="radio-option-danger"><i class="las la-trash"></i></a>
+                                        </div>
                                     <?php } ?>
                                 </div>
                                 <div class="comment">
@@ -255,12 +254,19 @@ require_once __DIR__ . '/partials/header.php';
                     <form class="post-comment-form" action="/admin/request/comment" method="POST">
                         <input type="hidden" name="application_id" value="<?php echo $application->id_application; ?>">
                         <input type="hidden" name="user_id" value="<?php echo $user->user_id; ?>">
+
+                        <label for="comment">
+                            <i class="las la-comment"></i>Añade una nota
+                        </label>
                         <textarea required name="comment" id="" cols="30" rows="10"
                                   placeholder="Comenta sobre esta solicitud entre los evaluadores..."></textarea>
 
-                        <button class="main-action-bright secondary" type="submit"><i class="las la-paper-plane"></i>
-                            Enviar
-                        </button>
+                        <div class="comment-form-actions">
+                            <button class="main-action-bright secondary" type="submit"><i
+                                        class="las la-paper-plane"></i>
+                                Comenta
+                            </button>
+                        </div>
                     </form>
 
                 </div>

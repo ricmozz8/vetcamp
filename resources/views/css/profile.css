@@ -83,7 +83,16 @@
 }
 
 .post-comment-form {
-    margin-top: 1em;
+    padding: 1em;
+    border-top: 1px solid var(--bright-shade);
+    border-bottom: 1px solid var(--bright-shade);
+
+}
+
+.comment-form-actions{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 .disclaimer {
@@ -91,6 +100,7 @@
     font-size: .8em;
     color: #343434;
     padding: 3em;
+    border-bottom: 1px solid var(--bright-shade);
 }
 
 .profile-padded {
@@ -98,7 +108,6 @@
 }
 
 .comment-padded {
-    padding: 1em;
     flex: 1 1;
 }
 
@@ -306,7 +315,7 @@
 }
 
 .comment-list{
-    padding: 8px;
+    padding: 1em;
 }
 
 
@@ -361,7 +370,6 @@
     .comment-list {
         max-height: 600px;
         overflow: scroll;
-        padding: 10px;
     }
 
 
