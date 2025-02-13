@@ -228,12 +228,20 @@ require_once __DIR__ . '/partials/header.php';
 
 
                                 ?>
-                                <div class="comment-info">
-                                    <div class="profile-badge"><?= $initials ?></div>
-                                    <div class="user-data">
-                                        <h1><?= $full_name ?></h1>
-                                        <p><?= get_date_spanish($comment->made_on) ?></p>
+                                <div class="comment-head">
+                                    <div class="comment-info">
+                                        <div class="profile-badge"><?= $initials ?></div>
+                                        <div class="user-data">
+                                            <h1><?= $full_name ?></h1>
+                                            <p><?= get_date_spanish($comment->made_on) ?></p>
+                                        </div>
                                     </div>
+                                    <?php if ($comment_user->user_id === Auth::user()->user_id) { ?>
+                                    <div class="comment-actions">
+                                        <a href="#" class="radio-option"><i class="las la-edit"></i></a>
+                                        <a href="#" class="radio-option-danger"><i class="las la-trash"></i></a>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                                 <div class="comment">
                                     <p><?= $comment->comment ?></p>

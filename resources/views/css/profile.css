@@ -29,13 +29,29 @@
 .comment-card {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 1em;
     border: 1px solid #e5e5e5;
     transition: all 0.25s ease;
-    cursor: pointer;
     margin-bottom: 1em;
     border-radius: 8px;
+}
+
+.comment-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e5e5;
+    font-weight: bold;
+    padding: 1em;
+}
+
+.comment{
+    padding: 1em;
+}
+
+.comment-actions{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .comment-card:last-child {
@@ -47,9 +63,6 @@
     font-weight: bold;
 }
 
-.comment-card:hover {
-    background-color: #f8f8f8;
-}
 
 .profile-badge {
     display: flex;
@@ -235,10 +248,26 @@
 }
 
 .radio-option {
-    padding: 10px;
+    padding: 10px 12px;
     border-radius: 20px;
     cursor: pointer;
-    transition: border-color 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+
+.radio-option-danger{
+    padding: 10px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.radio-option:hover {
+   background-color: var(--white-color);
+}
+
+.radio-option-danger:hover {
+    color: var(--danger-color);
+    background-color: #ffefef;
 }
 
 
@@ -279,6 +308,8 @@
 .comment-list{
     padding: 8px;
 }
+
+
 @media print {
     .sidebar {
         display: none;

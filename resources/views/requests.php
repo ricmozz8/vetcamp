@@ -74,7 +74,7 @@ require __DIR__ . '/partials/header.php';
 
 
                             echo "<tr>";
-                            echo "<td><img src=\"$src\" alt=\"Image\" class=\"profile-picture\"></td>";
+                            echo "<td><a href='requests/r?id=$user->user_id'><img src=\"$src\" alt=\"Image\" class=\"profile-picture\"></a> </td>";
                             echo "<td>" . $full_name . "</td>";
                             echo "<td>" . htmlspecialchars($user->email) . "</td>";
                             echo "<td>" . (htmlspecialchars($user->application() ? $user->application()->documentCount() : 0)) . "/7</td>";
