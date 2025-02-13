@@ -85,7 +85,6 @@
 .post-comment-form {
     padding: 1em;
     border-top: 1px solid var(--bright-shade);
-    border-bottom: 1px solid var(--bright-shade);
 
 }
 
@@ -316,6 +315,8 @@
 
 .comment-list{
     padding: 1em;
+    max-height: 500px;
+    overflow: scroll;
 }
 
 
@@ -368,7 +369,7 @@
     }
 
     .comment-list {
-        max-height: 600px;
+        max-height: 950px;
         overflow: scroll;
     }
 
