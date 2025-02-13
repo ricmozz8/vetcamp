@@ -3,6 +3,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+          content="Vetcamp - El campamento donde aprendes divirtiéndote y compartiendo con colegas de la profesión.">
+    <meta name="keywords"
+          content="vetcamp, campamento verano, campamento veterinario, campamento upra, upra vetcamp, vet camp, upra camp, veterinaria, veterinarios, puerto rico, veterinaria puerto rico">
+    <meta name="author" content="Universidad de Puerto Rico, Arecibo">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags (for social media sharing) -->
+    <meta property="og:title" content="<?= $page_title ?? 'Vetcamp' ?>">
+    <meta property="og:description"
+          content="Vetcamp - El campamento donde aprendes divirtiéndote y compartiendo con colegas de la profesión.">
+    <meta property="og:image" content="/<?= asset('seo_banner.png') ?>">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?= $page_title ?? 'Vetcamp' ?>">
+    <meta name="twitter:description"
+          content="Vetcamp - El campamento donde aprendes divirtiéndote y compartiendo con colegas de la profesión.">
+    <meta name="twitter:image" content="/<?= asset('seo_banner.png') ?>">
 
     <!-- Favicon -->
     <link rel="icon" href="/<?= asset("icon.svg") ?>" type="image/x-icon">
