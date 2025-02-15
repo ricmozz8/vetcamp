@@ -1,6 +1,6 @@
 <footer>
         <div>
-                <p>Vetcamp | v0.1.408 (BETA)</p>
+                <p>Vetcamp | v0.2.0 (BETA)</p>
                 <p>&copy; <?php echo date('Y'); ?> | Universidad de Puerto Rico Arecibo</p>
                 <a href="/credits" class="no-deco-action">Créditos</a>
         </div>
