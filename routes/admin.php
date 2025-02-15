@@ -1,18 +1,14 @@
 <?php
 require_once 'app/controllers/UserController.php';
-
 require_once 'app/controllers/BackDashboardController.php';
-
 require_once 'app/controllers/SettingsController.php';
 require_once 'app/controllers/RegisteredController.php';
 require_once 'app/controllers/RequestsController.php';
-
 require_once 'app/controllers/TrackingController.php';
 require_once 'app/controllers/ApplicationController.php';
 require_once 'app/controllers/AcceptedController.php';
-
 require_once 'app/controllers/MessagesController.php';
-
+require_once 'app/controllers/CommentController.php';
 require_once 'app/controllers/ErrorsController.php';
 require_once 'app/controllers/UserController.php';
 
@@ -25,7 +21,7 @@ if (strpos($path, '/admin') === 0) {
     }
 
     // the user is not an admin
-    if(Auth::user()->type !== 'admin') {
+    if (Auth::user()->type !== 'admin') {
         redirect('/apply');
     }
 }
@@ -98,7 +94,19 @@ switch ($path) {
         MessagesController::message($method);
         break;
 
+
+//  COMMENT SECTION
+
     case '/admin/request/comment':
         ApplicationController::comment($method);
         break;
+
+    case '/admin/comment/update':
+        CommentController::manage($method, 'update');
+        break;
+
+    case '/admin/comment/delete':
+        CommentController::manage($method, 'destroy');
+        break;
+
 }

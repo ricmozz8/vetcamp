@@ -65,7 +65,10 @@ if (!isset($selected)) {
 
     <!-- User profile section -->
     <div class="user-profile">
-        <!--<?php echo "<div class='user-avatar' id='userAvatar'><img src='Auth::user()->url_picture;'></div>"; ?>-->
+        <?php
+        $badgeUser = Auth::user();
+        require 'userBadge.php'
+        ?>
         <div class="user-info">
             <a href="#" onclick="openModal('userProfileEditModal')" class="w-fit main-action-bright quaternary-squared">
                 <i class="las la-cog"></i>

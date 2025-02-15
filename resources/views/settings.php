@@ -33,7 +33,7 @@ require __DIR__ . '/modals/editPicturesModal.php';
             <!-- quaternary logo container -->
 
             <header class="header">
-                <h1 class="welcome"> Ajustes </h1>
+                <h1 class="welcome"> Ajustes  </h1>
             </header>
 
             <div class="settings-cards">

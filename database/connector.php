@@ -290,9 +290,12 @@ final class DB
             return $stmt->execute();
         } catch (PDOException $e) {
             // Handle the exception (you can log it or display a message)
-            echo($e->getMessage());
+            ErrorLog::log($e->getMessage(), $e->getCode(), $e->getFile(), $e->getLine());
+            return false;
+        } catch (Error $e) {
             return false;
         }
+
     }
 
 

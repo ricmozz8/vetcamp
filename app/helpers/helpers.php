@@ -138,7 +138,11 @@ function redirect(string $url)
  */
 function redirect_back(string $ifFail = '/')
 {
-    header('Location: ' . $_SERVER['HTTP_REFERER'] ?? $ifFail);
+    if( isset($_SERVER['HTTP_REFERER']))
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    else{
+        redirect($ifFail);
+    }
 }
 
 
