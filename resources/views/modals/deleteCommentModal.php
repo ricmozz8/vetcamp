@@ -1,4 +1,3 @@
-
 <div id=<?= "deleteCommentModal-" . $loop ?> class="modal">
     <div class="modal-content">
         <span class="close-button" onclick=<?= "closeModal('deleteCommentModal-" . $loop . "')" ?>><i
@@ -15,9 +14,9 @@
 
 
             <div class="modal-actions">
-                <a class="main-action-bright" onclick=<?= "closeModal('deleteCommentModal-" . $loop . "')" ?>>Cancelar</a>
-                <button class="main-action-bright danger"
-                        onclick=<?= "closeModal('deleteCommentModal-" . $loop . "')" ?>>Eliminar
+                <a class="main-action-bright"
+                   onclick=<?= "closeModal('deleteCommentModal-" . $loop . "')" ?>>Cancelar</a>
+                <button type="submit" class="main-action-bright danger">Eliminar
                 </button>
             </div>
         </form>
