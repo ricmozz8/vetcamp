@@ -45,13 +45,14 @@ require_once __DIR__ . '/partials/header.php';
                             <p class="flex">Correo: <a class="no-deco-action"
                                                        href="mailto:<?= $user->email ?>"><?= $user->email ?></a></p>
                             <p>Teléfono: <?= format_phone($user->phone_number) ?></p>
+                            <p class="st-badge status-badge-alt-<?= str_replace(' ', '-', strtolower($application->status)) ?>"><?= $application->status ?></p>
                         </div>
                     </section>
 
                     <section class="data-section">
                         <h2><i class="las la-info"></i> Datos básicos</h2>
                         <div class="data-grid">
-                            <div><strong>Dirección Postal</strong>
+                            <div><i class="las la-envelope"></i><strong>Dirección Postal</strong>
                                 <p>
                                     <?= $postal_address->aline1 . " "
                                     . $postal_address->aline2 . " "
@@ -59,7 +60,7 @@ require_once __DIR__ . '/partials/header.php';
                                     . $postal_address->zip_code ?>
                                 </p>
                             </div>
-                            <div><strong>Dirección Física</strong>
+                            <div><i class="las la-home"></i><strong>Dirección Física</strong>
                                 <p>
                                     <?= $physical_address->aline1 . " "
                                     . $physical_address->aline2 . " "
@@ -67,7 +68,7 @@ require_once __DIR__ . '/partials/header.php';
                                     . $physical_address->zip_code ?>
                                 </p>
                             </div>
-                            <div><strong>Escuela de procedencia</strong>
+                            <div><i class="las la-school"></i><strong>Escuela de procedencia</strong>
                                 <p>
                                     <?= $school_address->street . " "
                                     . $school_address->city . " "
@@ -75,14 +76,18 @@ require_once __DIR__ . '/partials/header.php';
                                     ?>
                                 </p>
                             </div>
-                            <div><strong>Fecha de Nacimiento</strong>
+                            <div><i class="las la-calendar"></i><strong>Fecha de Nacimiento</strong>
                                 <p><?= get_date_spanish($user->birthdate) ?></p>
                             </div>
-                            <div><strong>Edad</strong>
+                            <div><i class="las la-baby-carriage"></i><strong>Edad</strong>
                                 <p><?= $user->get_age() ?></p>
                             </div>
-                            <div><strong>Sesión Preferida</strong>
+                            <div><i class="las la-paw"></i><strong>Sesión Preferida</strong>
                                 <p><?= $preferred_session ?></p>
+                            </div>
+
+                            <div><i class="las la-tshirt"></i><strong>Tamaño de ropa</strong>
+                                <p><?= $application->shirt_size ?></p>
                             </div>
                         </div>
                     </section>
@@ -165,7 +170,7 @@ require_once __DIR__ . '/partials/header.php';
                             </h2>
 
                             <div class="flex-min">
-                                <label for="status">Cambiar estado</label>
+                                <label style="min-width: max-content;" for="status">Cambiar estado</label>
                                 <?php
 
                                 echo renderSelect('status', $statuses, $application->status);
@@ -175,10 +180,10 @@ require_once __DIR__ . '/partials/header.php';
 
 
                             <div class="actions">
-                                <a href="#" class="main-action-bright no-deco-action"
+                                <a href="#" class="main-action-bright"
                                    onclick="openModal('exportApplicationModal')">
                                     <i class="las la-download"></i>
-                                    Exportar a Excel
+                                    Descargar copia local
                                 </a>
 
                                 <a href="#" class="main-action-bright secondary" onclick="openModal('messageModal')">
@@ -209,36 +214,43 @@ require_once __DIR__ . '/partials/header.php';
 
 
                     <p class="disclaimer">
-                        Las notas solo son visibles para ti y los otros evaluadores. Ningún aplicante podrá ver ninguna nota.
+                        Las notas solo son visibles para ti y los otros evaluadores. Ningún aplicante podrá ver ninguna
+                        nota.
                     </p>
 
 
                     <div class="comment-list">
 
-                        <!-- SAMPLE COMMENT CARD -->
 
-                        <?php foreach ($application->comments() as $comment) { ?>
+                        <?php
+                        $loop = 1;
+                        foreach ($application->comments() as $comment) { ?>
 
                             <div class="comment-card">
                                 <?php $comment_user = $comment->user();
 
                                 $full_name = $comment_user->first_name . ' ' . $comment_user->last_name;
-                                $initials = substr($comment_user->first_name, 0, 1) . substr($comment_user->last_name, 0, 1);
-
+                                $isUserOP = $comment_user->user_id === Auth::user()->user_id;
 
                                 ?>
                                 <div class="comment-head">
                                     <div class="comment-info">
-                                        <div class="profile-badge"><?= $initials ?></div>
+                                        <?php
+                                        $badgeUser = $comment_user;
+                                        require __DIR__ . '/partials/userBadge.php'
+                                        ?>
                                         <div class="user-data">
                                             <h1><?= $full_name ?></h1>
-                                            <p><?= get_date_spanish($comment->made_on) ?></p>
+                                            <p><?= get_date_spanish($comment->made_on) ?> <?= $comment->edited ? '(Editado)' : '' ?></p>
+
                                         </div>
                                     </div>
-                                    <?php if ($comment_user->user_id === Auth::user()->user_id) { ?>
+                                    <?php if ($isUserOP) { ?>
                                         <div class="comment-actions">
-                                            <a href="#" class="radio-option"><i class="las la-edit"></i></a>
-                                            <a href="#" class="radio-option-danger"><i class="las la-trash"></i></a>
+                                            <a onclick="openModal('editCommentModal-<?= $loop ?>' )" href="#"
+                                               class="radio-option"><i class="las la-edit"></i></a>
+                                            <a onclick="openModal('deleteCommentModal-<?= $loop ?>' )" href="#"
+                                               class="radio-option-danger"><i class="las la-trash"></i></a>
                                         </div>
                                     <?php } ?>
                                 </div>
@@ -247,6 +259,16 @@ require_once __DIR__ . '/partials/header.php';
                                 </div>
 
                             </div>
+
+                            <?php
+                            if ($isUserOP) {
+                                require __DIR__ . '/modals/deleteCommentModal.php';
+                                require __DIR__ . '/modals/editCommentModal.php';
+                            }
+                            $loop++;
+                            ?>
+
+
                         <?php } ?>
 
                     </div>

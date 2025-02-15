@@ -199,6 +199,35 @@ a.nav-danger:hover {
     color: var(--status-pending);
 }
 
+.st-badge{
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: var(--white-color);
+    background-color: var(--secondary-color-default);
+    width: fit-content;
+    margin: 1em 0;
+    transition: all 0.2s ease;
+}
+.status-badge-alt-rechazado{
+    background-color: var(--status-rejected);
+    color: var(--white-color);
+}
+
+.status-badge-alt-aceptado{
+    background-color: var(--status-success);
+    color: var(--white-color);
+}
+
+.status-badge-alt-necesita-cambios{
+    background-color: var(--status-filling);
+    color: var(--white-color);
+}
+
+.status-badge-alt-en-lista-de-espera{
+    background-color: var(--status-pending);
+    color: var(--white-color);
+}
+
 
 .section-head {
     margin: 0 var(--main-margin);

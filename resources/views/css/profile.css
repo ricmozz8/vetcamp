@@ -9,7 +9,6 @@
 }
 
 
-
 .profile-section-title {
     padding: 10px;
     border-bottom: 1px solid #e5e5e5;
@@ -35,7 +34,7 @@
     border-radius: 8px;
 }
 
-.comment-head{
+.comment-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,11 +43,11 @@
     padding: 1em;
 }
 
-.comment{
+.comment {
     padding: 1em;
 }
 
-.comment-actions{
+.comment-actions {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -88,7 +87,7 @@
 
 }
 
-.comment-form-actions{
+.comment-form-actions {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
@@ -174,7 +173,7 @@
 .data-grid,
 .documents-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 10px;
 }
 
@@ -202,7 +201,7 @@
     cursor: pointer;
 }
 
-.status-select{
+.status-select {
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #e5e5e5;
@@ -225,17 +224,17 @@
     font-size: 14px;
 }
 
-.actions-col{
+.actions-col {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.actions-col label{
+.actions-col label {
     font-size: 14px;
 }
 
-.actions-st{
+.actions-st {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -262,7 +261,7 @@
     transition: background-color 0.3s ease;
 }
 
-.radio-option-danger{
+.radio-option-danger {
     padding: 10px 12px;
     border-radius: 20px;
     cursor: pointer;
@@ -270,14 +269,13 @@
 }
 
 .radio-option:hover {
-   background-color: var(--white-color);
+    background-color: var(--white-color);
 }
 
 .radio-option-danger:hover {
     color: var(--danger-color);
     background-color: #ffefef;
 }
-
 
 
 .manage-section {
@@ -313,7 +311,7 @@
     margin-bottom: 10px;
 }
 
-.comment-list{
+.comment-list {
     padding: 1em;
     max-height: 500px;
     overflow: scroll;
@@ -357,6 +355,14 @@
     }
 }
 
+@media only screen and (min-width: 768px) {
+    .data-grid,
+    .documents-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
 @media only screen and (min-width: 1200px) {
     .profile-splited-view {
         display: flex;
@@ -381,6 +387,11 @@
 
     .comment-sidebar {
         flex: .5;
+    }
+
+    .data-grid,
+    .documents-grid {
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
 }

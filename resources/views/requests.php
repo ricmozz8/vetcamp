@@ -34,7 +34,7 @@ require __DIR__ . '/partials/header.php';
                         </button>
                         <div class="search-container">
                             <form method="POST" action="/admin/requests">
-                                <input required value="<?= isset($_POST['search']) ? $_POST['search'] : '' ?>" type="text"
+                                <input required value="<?= $_POST['search'] ?? '' ?>" type="text"
                                        class="search-input" name="search" placeholder="Busca correos, nombres">
                                 <?php if (isset($_POST['search'])): ?>
                                     <a class="no-deco-action" href="/admin/requests"><i class="las la-times"></i></a>
@@ -72,13 +72,16 @@ require __DIR__ . '/partials/header.php';
                             $pictureObj = $user->application()->getProfilePicture();
                             $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
 
+                            $application = $user->application();
+
+
 
                             echo "<tr>";
                             echo "<td><a href='requests/r?id=$user->user_id'><img src=\"$src\" alt=\"Image\" class=\"profile-picture\"></a> </td>";
                             echo "<td>" . $full_name . "</td>";
                             echo "<td>" . htmlspecialchars($user->email) . "</td>";
-                            echo "<td>" . (htmlspecialchars($user->application() ? $user->application()->documentCount() : 0)) . "/7</td>";
-                            echo "<td>" . htmlspecialchars($user->application()->status) . "</td>";
+                            echo "<td>" . (htmlspecialchars($application ? $application->documentCount() : 0)) . "/7</td>";
+                            echo "<td>" . "<p class=\"st-badge status-badge-alt-".  str_replace(' ', '-', strtolower($application->status)) . "\">" . $application->status . "</p>" . "</td>";
                             echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
                             echo "<td>" . '<a class="main-action-bright no-deco-action" href="requests/r?id=' . $user->user_id . '" class="review-link">revisar</a>' . "</td>";
                             echo "<td>" . '<a class="main-action-bright no-deco-action" href="#" onclick="confirmDeleteModal()">' . '<i class="las la-trash"></i> borrar' . '</a>' . '<td/>';
