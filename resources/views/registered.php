@@ -39,7 +39,7 @@ $statusParsing = [
                             <?php if (isset($_POST['search'])): ?>
                                 <a class="no-deco-action" href="/admin/registered"><i class="las la-times"></i></a>
                             <?php endif; ?>
-                            <button type="submit " class="main-action-bright tertiary"><i class="las la-search"></i>
+                            <button type="submit" class="main-action-bright tertiary"><i class="las la-search"></i>
                             </button>
                         </form>
 
