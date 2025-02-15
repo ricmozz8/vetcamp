@@ -206,9 +206,9 @@ a.plain-action:hover {
     margin: 0 auto;
     left: 0;
     right: 0;
-    animation: notification 0.3s ease;
+    animation: notification 0.3s ease-in-out;
     z-index: 800;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-in-out;
     cursor: pointer;
 
 }
@@ -218,6 +218,8 @@ a.plain-action:hover {
     align-items: center;
     gap: 10px;
     font-weight: 600 !important;
+
+    animation: contentSlideUp 0.6s ease-in-out;
 }
 
 .notification-progress {
@@ -225,7 +227,7 @@ a.plain-action:hover {
     bottom: 0;
     left: 0;
     height: 5px;
-    background-color: var(--main-color-default);
+    background: linear-gradient(to right, var(--main-color-darken-1), var(--main-color-default));
     width: 100%;
     animation: progressShrink 5s linear forwards;
     border-radius: 0 0px 7px 7px;
@@ -252,9 +254,11 @@ a.plain-action:hover {
     color: var(--white-color);
     border: 1px solid var(--danger-color);
 
-    .notification-progress{
-        background-color: white;
-    }
+
+}
+
+.notification.error .notification-progress{
+    background: white;
 }
 
 .notification:hover {
@@ -502,6 +506,15 @@ select {
     100% {
         opacity: 1;
         transform: translateY(0px);
+    }
+}
+
+@keyframes contentSlideUp {
+    from {
+        transform: translateY(80%);
+    }
+    to {
+        transform: translateY(0);
     }
 }
 
