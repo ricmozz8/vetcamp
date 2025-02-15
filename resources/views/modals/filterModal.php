@@ -27,7 +27,7 @@
             <div class="actions">
 
                 <a class="main-action-bright quaternary" onclick="closeModal('filterModal')">Cancelar</a>
-                <button class="main-action-bright primary">Aplicar</button>
+                <button type="submit" class="main-action-bright primary">Aplicar</button>
             </div>
         </form>
 
