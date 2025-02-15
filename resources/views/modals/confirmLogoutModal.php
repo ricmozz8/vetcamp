@@ -6,7 +6,9 @@
             <p>Tendrás que iniciar sesión nuevamente para acceder.</p>
         </div>
         <form action="/logout" method="POST">
-            <button class="main-action-bright danger"><i class="las la-sign-out-alt"></i> Salir</button>
+            <div class="modal-actions">
+                <button class="main-action-bright danger"><i class="las la-sign-out-alt"></i> Salir</button>
+            </div>
         </form>
     </div>
 </div>
