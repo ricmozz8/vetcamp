@@ -277,6 +277,7 @@ class ApplicationController extends Controller
                 'user_id' => Auth::user()->__get('user_id')
             ]);
 
+            $_SESSION['message'] = 'Comentario agregado correctamente';
             // send the user back to the application view
             redirect('/admin/requests/r?id=' . $user_id);
 
