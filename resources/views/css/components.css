@@ -305,7 +305,7 @@ a.plain-action:hover {
     text-decoration: none;
     color: var(--dark-text-color);
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     border: none;
     cursor: pointer;
     box-shadow: none;
@@ -322,8 +322,12 @@ a.plain-action:hover {
 }
 
 .back-dash .nav-item.active {
-    background: var(--main-color-default);
+    background: linear-gradient(to right, var(--main-color-darken-1), var(--main-color-default));
     border-radius: 0 27px 27px 0;
+    span{
+        font-weight: bold !important;
+    }
+
 }
 
 /* Navigation and Main Content icons */
