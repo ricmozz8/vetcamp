@@ -19,15 +19,18 @@ function showModal(modalId) {
 }
 
 
-function handleResize() {
-    if (window.matchMedia("(min-width: 768px)").matches) {
-        sidebar.style.display = "flex";
-    } else {
-        sidebar.style.display = "none";
-    }
-}
-
-window.addEventListener("resize", handleResize);
-
-// Initial check
-handleResize();
+/**
+ * Initializes modal click-to-close functionality.
+ * Closes the modal when clicking outside its content.
+ */
+window.onload = function () {
+    let allModals = document.querySelectorAll(".modal");
+    allModals.forEach(modal => {
+        modal.addEventListener("click", function (e) {
+            if (e.target === this) {
+                this.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        });
+    });
+};

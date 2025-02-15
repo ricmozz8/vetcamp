@@ -12,6 +12,7 @@
     justify-content: center;
     z-index: 10;
     transition: all 0.3s ease;
+    animation: blurify .3s ease;
 }
 
 /* remove text selection on modal */
@@ -32,6 +33,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
     min-width: 25dvw;
+    animation: popUpModal .3s ease;
 }
 
 .close-button {
@@ -76,7 +78,7 @@ textarea {
     width: 100%;
     height: 80px;
     padding: 10px;
-    margin: 20px 0;
+    margin: 10px 0;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -166,3 +168,23 @@ textarea {
     display: flex;
 }
 
+@keyframes blurify{
+    from{
+        backdrop-filter: blur(0px);
+        background-color: rgba(0, 0, 0, 0);
+    }
+    to{
+        backdrop-filter: blur(5px);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+}
+
+@keyframes popUpModal{
+    from{
+        transform: scale(0.8) ;
+
+    }
+    to{
+        transform: scale(1);
+    }
+}

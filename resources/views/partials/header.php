@@ -41,6 +41,8 @@
     <script src="<?= web_resource("js/backendDashboard.js") ?>"></script>
     <script src="<?= web_resource("js/backendSidebar.js") ?>"></script>
     <script src="<?= web_resource("js/contextMenu.js") ?>"></script>
+    <script src="<?= web_resource("js/holdPost.js") ?>"></script>
+    <script src="<?= web_resource("js/notifications.js") ?>"></script>
 
 
     <!-- TYPEFACES -->
@@ -48,10 +50,12 @@
     <!-- Parkin Sans & Figtree -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Parkinsans:wght@300..800&display=swap"
+          rel="stylesheet">
 
     <!-- ICONS -->
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
     <!-- PASSWORD VISSIBILITY TOGGLE -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -62,18 +66,24 @@
 
 <?php if (isset($_SESSION['message'])) { ?>
     <div id='notification' class="notification" onclick="closeModal('notification')">
-        <i class="las la-exclamation-circle"></i>
-        <p class="notification-content"><?= $_SESSION['message'] ?> </p>
+        <div class="notification-content">
+            <i class="las la-exclamation-circle"></i>
+            <p class="notification-content"><?= $_SESSION['message'] ?> </p>
+        </div>
+        <span class="notification-progress"></span>
     </div>
-<?php unset($_SESSION['message']);
+    <?php unset($_SESSION['message']);
 } ?>
 
 <?php if (isset($_SESSION['error'])) { ?>
     <div id='notification' class="notification error" onclick="closeModal('notification')">
-        <i class="las la-exclamation-triangle"></i>
-        <p class="notification-content"><?= $_SESSION['error'] ?> </p>
+        <div class="notification-content">
+            <i class="las la-exclamation-triangle"></i>
+            <p class="notification-content"><?= $_SESSION['error'] ?> </p>
+        </div>
+        <span class="notification-progress"></span>
     </div>
-<?php unset($_SESSION['error']);
+    <?php unset($_SESSION['error']);
 } ?>
 
 <!-- beta warning -->
@@ -85,6 +95,7 @@
     <p class="noprint">
         Vetcamp se encuentra en desarrollo,
     </p>
-    <a target="_blank" style="color: white;" class=" no-deco-action" href="https://forms.gle/vh4v4ryUXCHvAVos8">déjanos saber <i style="color: white;" class="las la-external-link-alt"></i></a>
+    <a target="_blank" style="color: white;" class=" no-deco-action" href="https://forms.gle/vh4v4ryUXCHvAVos8">déjanos
+        saber <i style="color: white;" class="las la-external-link-alt"></i></a>
     <p>si presentas algún error con la web.</p>
 </div>

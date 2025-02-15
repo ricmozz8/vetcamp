@@ -9,10 +9,6 @@
 */
 
 @import url("home.css");
-@import url("auth_pages.css");
-@import url("login.css");
-@import url("register.css");
-@import url("forgot_pass.css");
 @import url("pass_reset.css");
 @import url("back_dash.css");
 @import url("backMessageModal.css");
@@ -141,6 +137,10 @@
   box-sizing: border-box;
 }
 
+body {
+  scroll-behavior: smooth;
+}
+
 h1,
 h2,
 h3,
@@ -234,8 +234,34 @@ h6 {
   font-weight: bold;
 }
 
-.disabled{
-  pointer-events: none ! important;
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none !important;
+  color: black !important;
+  cursor: not-allowed;
+  font-weight: bold !important;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.loader, #loader {
+  width: 20px;
+  height: 20px;
+  border: 4px solid rgba(0, 0, 0, 0.18);
+  border-top: 4px solid var(--main-color-default);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 
