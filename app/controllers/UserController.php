@@ -178,6 +178,15 @@ class UserController extends Controller
         redirect('/admin/registered');
 
     }
+
+    public static function edit($method)
+    {
+        if (!Auth::check()) {
+            redirect('/login');
+        }
+
+        render_view('profileEdit', [], 'Tu Perfil');
+    }
 }
 
 

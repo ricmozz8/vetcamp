@@ -8,7 +8,7 @@
         <label class="mini-label" for="extra_info">Esta información es opcional, puedes dejarlo en blanco.</label>
         <div class="modal-actions">
             <a href="#" class="main-action-bright" onclick="closeModal('confirmSubmitApplicationModal')">Cancelar</a>
-            <button class="main-action-bright gradiented">
+            <button type="submit" class="main-action-bright gradiented">
                 <i class="las la-paper-plane"></i>
                 Enviar</button>
         </div>

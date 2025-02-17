@@ -14,7 +14,7 @@ require __DIR__ . '../../partials/header.php';
     </div>
 
     <p class="subtext" style="margin: 1em var(--main-margin); text-align: left;">
-        Nota, si la plataforma no le permite subir documentos, intente reducir su tamaño comprimiéndolos y luego subirlos.</p>
+        Nota: si la plataforma no le permite subir documentos, intente reducir su tamaño comprimiéndolos y luego subirlos. <b style="font-weight: bold">Suba el archivo .mp4 NO suba archivos .zip, .7z, .rar ni parecidos</b> estos formatos no son permitidos.</p>
 
     <p class="warning-box" style="margin: 1em var(--main-margin); text-align: left;">
         Los documentos deben pesar <b style="font-weight: 800;"> menos de 10 MB</b> de lo contrario, la plataforma no
@@ -217,7 +217,7 @@ require __DIR__ . '../../partials/header.php';
             <div class="form-actions">
                 <input type="hidden" name="stage" value="4">
                 <p>Se guardará la información una vez pulses 'siguiente'.</p>
-                <button id="next-button" class="main-action-bright gradiented">Siguiente</button>
+                <button type="submit" id="next-button" class="main-action-bright gradiented">Siguiente</button>
             </div>
         </form>
     </div>
