@@ -70,7 +70,7 @@ class ApplicationController extends Controller
             $_SESSION['error'] = "El usuario no ha sometido su solicitud todavia.";
             redirect('/admin/requests');
         }
-        
+
         $valid_statuses = Application::$statusParsings;
 
 
@@ -113,6 +113,8 @@ class ApplicationController extends Controller
                 $application->update(['status' => $newStatus]);
                 $user_id = $application->user()->user_id;
 
+                Tracking::create(['application_id' => $applicationId, 'user_id' => Auth::user()->__get('user_id'), 'decision' => $newStatus]);
+
             } catch (ModelNotFoundException $e) {
                 ErrorLog::log($e->getMessage(), $e->getFile() . ' on line ' . $e->getLine(), $e->getTraceAsString());
                 $_SESSION['error'] = "No se encontró la solicitud con el ID proporcionado.";
@@ -124,11 +126,10 @@ class ApplicationController extends Controller
             }
 
 
-
             // Redirect to admin requests page
             $_SESSION['message'] = "Estado de la solicitud actualizado correctamente.";
 
-            redirect('/admin/requests/r?id=' . $user_id );
+            redirect('/admin/requests/r?id=' . $user_id);
 
         } else {
             redirect('/admin/requests');
@@ -249,22 +250,23 @@ class ApplicationController extends Controller
      * @param string $method Either GET or POST depending on the server's request method
      * @return void redirects the user to the profile
      */
-    public static function comment(string $method){
+    public static function comment(string $method)
+    {
 
-        if($method === 'POST'){
+        if ($method === 'POST') {
 
             // getting the data from the form
             $comment = filter_input(INPUT_POST, 'comment');
             $application_id = filter_input(INPUT_POST, 'application_id');
             $user_id = filter_input(INPUT_POST, 'user_id');
 
-            if(!$comment){
+            if (!$comment) {
                 $_SESSION['error'] = 'El comentario no puede ser vacío';
                 redirect('/admin');
             }
 
-            if(!$application_id){
-                ErrorLog::log('Tried to pass a null key for application_id to comment function', __FILE__, '' );
+            if (!$application_id) {
+                ErrorLog::log('Tried to pass a null key for application_id to comment function', __FILE__, '');
 
                 // Programming error or the user removed the id from the hidden input, log the error as debug.
                 $_SESSION['error'] = 'Ha ocurrido un error al actualizar el comentario';
