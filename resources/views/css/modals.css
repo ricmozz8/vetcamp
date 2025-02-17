@@ -15,13 +15,9 @@
     animation: blurify .3s ease;
 }
 
-/* remove text selection on modal */
-.modal * {
-    user-select: none; /* Standard syntax */
-}
 
-.modal form{
-    width: 100%;    
+.modal form {
+    width: 100%;
 }
 
 .modal-content {
@@ -66,7 +62,7 @@
     font-size: 18px;
 }
 
-.modal-header-flex{
+.modal-header-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -86,7 +82,7 @@ textarea {
     max-height: 200px;
 }
 
-.mini-label{
+.mini-label {
     font-size: 12px;
     color: #555;
 }
@@ -102,12 +98,12 @@ textarea {
     width: 100%;
 }
 
-.status-info *{
+.status-info * {
     font-weight: bold;
     text-align: right;
 }
 
-.file-view-popup{
+.file-view-popup {
     position: absolute;
     top: 0;
     left: 0;
@@ -122,69 +118,86 @@ textarea {
 
 }
 
-.document-info-topbar{
+.document-info-topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2em;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 0 0;
     margin: 2em 2em 0 2em;
     background-color: var(--main-color-default);
     color: var(--secondary-color-default);
 }
 
-.file-view-popup .file-content{
-    padding: 0 2em 2em 2em ;
+.file-view-popup .file-content {
+    padding: 0 2em 2em 2em;
     flex-direction: column;
     gap: 1em;
     color: var(--secondary-color-default);
-    
+
 }
 
-.file-content embed{
+.file-content embed {
     width: 100%;
     height: 75dvh;
     background-color: var(--white-color);
 
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0 0 10px 10px;
     display: flex;
 }
 
-.file-content img{
+.file-content img {
     width: 100%;
     height: 70dvh;
     object-fit: contain;
     background-color: var(--white-color);
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0 0 10px 10px;
     display: flex;
 }
 
-.file-content video{
+.file-content video {
     width: 100%;
     height: 70dvh;
     object-fit: contain;
     background-color: var(--white-color);
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0 0 10px 10px;
     display: flex;
 }
 
-@keyframes blurify{
-    from{
+.filter-list {
+    display: grid;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    user-select: auto !important;
+}
+
+@keyframes blurify {
+    from {
         backdrop-filter: blur(0px);
         background-color: rgba(0, 0, 0, 0);
     }
-    to{
+    to {
         backdrop-filter: blur(5px);
         background-color: rgba(0, 0, 0, 0.4);
     }
 }
 
-@keyframes popUpModal{
-    from{
-        transform: scale(0.8) ;
+@keyframes popUpModal {
+    from {
+        transform: scale(0.8);
 
     }
-    to{
+    to {
         transform: scale(1);
     }
 }

@@ -160,7 +160,7 @@ $statusParsing = [
 
     </section>
 
-    <?php require __DIR__ . '/modals/filterModal.php'; ?>
+    <?php require __DIR__ . '/modals/filterUsersModal.php'; ?>
 
     <script>
         // close context menu if the user clicks outside of it
