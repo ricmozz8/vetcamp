@@ -22,10 +22,10 @@ require __DIR__ . '../../partials/header.php';
         </div>
 
         <div class="tabs">
-            <span class="tab">Datos básicos</span>
-            <span class="tab active">Contacto</span>
-            <span class="tab">Documentos</span>
-            <span class="tab">Confirmar</span>
+            <a href="/apply/application/basic_info" class="tab">Datos básicos</a>
+            <a href="/apply/application/contact" class="tab active">Contacto</a>
+            <a href="/apply/application/documents" class="tab">Documentos</a>
+            <a href="/apply/application/confirm" class="tab">Confirmar</a>
         </div>
 
 
