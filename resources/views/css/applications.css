@@ -254,7 +254,8 @@ a.nav-danger:hover {
 .progress {
     height: 100%;
     background: linear-gradient(to right, var(--main-color-darken-1), var(--main-color-default));
-    transition: width 0.4s ease;
+    transition: width 1.5s ease;
+    animation: progress 1.5s ease-in-out;
 }
 
 .progress.one {
@@ -653,6 +654,15 @@ form .grid-group {
     }
 
 
+}
+
+@keyframes progress{
+    from{
+        transform: translateX(-100%);
+    }
+    to{
+        transform: translateX(0%);
+    }
 }
 
 /* Tablet */
