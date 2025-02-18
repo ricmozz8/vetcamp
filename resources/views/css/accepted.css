@@ -39,6 +39,7 @@
 .accepted-card-list {
   overflow-y: scroll;
   max-height: 400px;
+  padding: 1em 0;
 }
 
 .accepted-user-card {
