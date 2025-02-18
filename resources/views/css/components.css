@@ -64,7 +64,7 @@ button {
 
 .main-action-bright.quaternary {
     color: var(--secondary-color-default);
-
+    background-color: white;
     box-shadow: none;
     border: 1px solid var(--secondary-color-default);
 }
