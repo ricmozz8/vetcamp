@@ -89,6 +89,9 @@
   --shadow-hard: 0px 6px 15px rgba(0, 0, 0, 0.425);
   --shadow-xl:  15px 15px 150px #d7d7d7;
 
+  --shadow-brand: 10px 10px 77px #ffeaa6;
+  --shadow-error: 10px 10px 77px #f89c9c;
+
   /* margins */
 --main-margin: 4rem;
 }

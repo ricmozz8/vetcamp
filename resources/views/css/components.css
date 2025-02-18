@@ -207,7 +207,7 @@ a.plain-action:hover {
     z-index: 800;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    box-shadow: var(--shadow-xl);
+    box-shadow: var(--shadow-brand);
 
 }
 
@@ -251,6 +251,7 @@ a.plain-action:hover {
     background-color: var(--danger-color);
     color: var(--white-color);
     border: 1px solid var(--danger-color);
+    box-shadow: var(--shadow-error) !important;
 
 
 }
