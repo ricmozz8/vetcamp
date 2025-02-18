@@ -207,6 +207,7 @@ a.plain-action:hover {
     z-index: 800;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    box-shadow: var(--shadow-xl);
 
 }
 
