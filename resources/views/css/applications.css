@@ -647,6 +647,8 @@ form .grid-group {
     font-size: .8em;
     border-radius: 5px;
     animation: simpleFade 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-error);
 }
 
 @keyframes simpleFade {
