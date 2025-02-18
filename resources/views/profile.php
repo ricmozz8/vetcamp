@@ -154,7 +154,7 @@ require_once __DIR__ . '/partials/header.php';
 
                     <?php if ($application->extra_notes) { ?>
                         <section class="extra-notes">
-                            <h2><i class="las la-info-circle"></i>
+                            <h2><i class="las la-comment"></i>
                                 El usuario ha indicado:
                             </h2>
                             <p><?= ucfirst($application->extra_notes) ?></p>

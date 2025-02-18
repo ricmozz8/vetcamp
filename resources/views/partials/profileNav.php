@@ -15,7 +15,7 @@ $user_full_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
                     require 'userBadge.php';
                     ?>
                     <div class="auth-profile-card-name"><?= $user_full_name ?></div>
-                    <i class="las la-caret-down"></i>
+                    <i class="las la-chevron-circle-down"></i>
                 </div>
 
             <?php else : ?>
@@ -37,7 +37,7 @@ $user_full_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
                         require 'userBadge.php';
                     } ?>
                     <div class="auth-profile-card-name"><?= $user_full_name ?></div>
-                    <i class="las la-caret-down"></i>
+                    <i class="las la-chevron-circle-down"></i>
                 </div>
             <?php endif; ?>
         </div>
