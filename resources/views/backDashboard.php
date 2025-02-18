@@ -105,7 +105,7 @@ if ($hour >= 5 && $hour < 12) {
                         <?php
                         foreach ($recent_applications as $application) {
 
-                            if ($application->application()->isComplete() == false) {
+                            if (!$application->application()->isComplete()) {
                                 continue;
                             }
 
