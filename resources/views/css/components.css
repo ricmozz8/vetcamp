@@ -6,13 +6,12 @@ button {
     border-radius: 28px;
     font-size: 1em;
     position: relative;
-    top: 0px;
+    top: 0;
     transition: all 0.25s ease;
     display: block;
     align-items: center;
     gap: 10px;
     border: none;
-    text-decoration: none;
 }
 
 .main-action-bright {
@@ -102,7 +101,6 @@ button {
 .main-action-bright.secondary:hover {
     border: none;
     box-shadow: none;
-    border: none;
 }
 
 .main-action-bright.danger {
@@ -129,7 +127,7 @@ a.plain-action {
 }
 
 a.plain-action:hover {
-    top: 0px;
+    top: 0;
     box-shadow: none;
     border: none;
     filter: brightness(0.8);
@@ -140,7 +138,6 @@ a.plain-action:hover {
     background-color: var(--main-color-default);
     text-align: left;
     font-weight: bold;
-    margin-bottom: 1em;
     box-shadow: var(--shadow-soft);
     margin: auto;
     justify-content: flex-start;
@@ -183,7 +180,7 @@ a.plain-action:hover {
 
 .no-deco-action:hover {
     filter: brightness(0.5);
-    top: 0px;
+    top: 0;
     box-shadow: none;
     border: none;
 }
@@ -230,7 +227,7 @@ a.plain-action:hover {
     background: linear-gradient(to right, var(--main-color-darken-1), var(--main-color-default));
     width: 100%;
     animation: progressShrink 5s linear forwards;
-    border-radius: 0 0px 7px 7px;
+    border-radius: 0 0 7px 7px;
     transition: width 0.2s;
 }
 
@@ -239,7 +236,7 @@ a.plain-action:hover {
         width: 100%;
     }
     to {
-        width: 0%;
+        width: 0;
     }
 }
 
