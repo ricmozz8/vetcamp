@@ -348,8 +348,10 @@ select:focus {
 
 .form-actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin-top: 20px;
+    align-items: center;
+    gap: 10px;
 }
 
 .btn-save,
@@ -707,4 +709,16 @@ form .grid-group {
     .document-section {
         grid-template-columns: 1fr 1fr 1fr;
     }
+
+
+    .
+}
+
+@media only screen and (min-width: 1400px) {
+
+
+    .desk-grid{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .
 }
