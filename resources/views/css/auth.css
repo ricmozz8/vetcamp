@@ -58,6 +58,48 @@ label {
   width: 100%;
 }
 
+.auth-navbar-alt{
+  padding:  15px 2em;
+  border-bottom: 1px solid var(--bright-shade);
+
+}
+
+.nav-container{
+  max-width: 1820px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-profile-card{
+  padding: 10px 5px;
+  border-radius: 8px;
+  border: 1px solid var(--bright-shade);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold !important;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.auth-profile-card:hover{
+  background-color: var(--white-color);
+}
+
+.auth-profile-card-name{
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.user-badge-nav{
+  width: 35px;
+  border-radius: 50%;
+
+}
+
 /* tablet */
 
 @media only screen and (min-width: 768px) {

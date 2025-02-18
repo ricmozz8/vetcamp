@@ -115,9 +115,10 @@
     background-color: var(--white-color);
     z-index: 1;
     animation: fadeIn 0.3s ease;
-    border-radius: 10px;
+    border-radius: 12px;
     flex-direction: column;
     box-shadow: var(--shadow-xl);
+    border: 1px solid var(--bright-shade);
 }
 
 
