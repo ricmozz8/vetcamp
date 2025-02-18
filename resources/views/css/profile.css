@@ -6,7 +6,7 @@
     border-radius: 10px;
     margin-bottom: 1em;
     background-color: white;
-    var(--shadow-xl)
+    box-shadow: var(--shadow-xl);
 }
 
 
