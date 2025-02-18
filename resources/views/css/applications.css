@@ -489,7 +489,7 @@ label[for="file"]:active {
 
 .document-group label {
     font-size: 14px;
-
+    text-align: left;
     margin-bottom: 5px;
 }
 
@@ -630,7 +630,7 @@ form .grid-group {
 
 .error-document{
     padding: 10px;
-
+    margin: 5px 0;
     background-color: var(--danger-color);
     color: white;
     font-weight: bold;

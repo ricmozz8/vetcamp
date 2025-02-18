@@ -220,7 +220,7 @@ require __DIR__ . '../../partials/header.php';
                 <div class="upload-box">
                     <?php if (isset($saved_documents['recommendation_letter'])) { ?>
                         <?php $recommendation = $saved_documents['recommendation_letter']; ?>
-                        <label for="recommendation_letter" formats="pdf" <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                        <label for="recommendation_letter" formats="pdf"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
                         <input accept="application/pdf" value=" <?= $recommendation['name'] ?>" type="file"
                                id="recommendation_letter" name="recommendation_letter" onchange="updateFileName(this)">
                     <?php } else { ?>
