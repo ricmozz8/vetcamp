@@ -73,6 +73,7 @@
     padding: 10px;
     border-radius: 100px;
     background-color: var(--main-color-shade-3);
+    text-transform: uppercase;
 }
 
 .comment-info {
