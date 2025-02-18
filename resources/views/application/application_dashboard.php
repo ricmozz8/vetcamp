@@ -15,7 +15,7 @@ if ($application && $application->isSubmitted()) {
 ?>
 
 <body>
-    <?php require_once(__DIR__ . '../../partials/navbar.php'); ?>
+    <?php require_once(__DIR__ . '../../partials/profileNav.php'); ?>
 
     <div class="application-card">
 

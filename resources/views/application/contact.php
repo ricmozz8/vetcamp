@@ -5,7 +5,7 @@ require __DIR__ . '../../partials/header.php';
 ?>
 
 <body>
-    <?php require_once(__DIR__ . '../../partials/navbar.php'); ?>
+    <?php require_once(__DIR__ . '../../partials/profileNav.php'); ?>
 
 
     <div class=" application_header">

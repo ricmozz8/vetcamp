@@ -89,7 +89,7 @@ class Application extends Model
      */
     public function getProfilePicture()
     {
-        return $this->getDocuments()['picture'];
+        return $this->getDocuments()['picture'] ?? null;
     }
 
 

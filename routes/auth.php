@@ -1,5 +1,6 @@
 <?php
 require_once 'app/controllers/AuthController.php';
+require_once 'app/controllers/UserController.php';
 
 
 
@@ -27,5 +28,8 @@ switch ($path) {
         break;
     case '/check-last-login':
         AuthController::checkLastLogin();
+        break;
+    case '/profile':
+        UserController::edit($method);
         break;
     }
