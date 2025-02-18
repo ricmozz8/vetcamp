@@ -315,6 +315,7 @@ a.plain-action:hover {
     box-shadow: none;
     border-radius: 0 27px 27px 0;
     width: fit-content;
+    transition: all 0.25s ease;
 }
 
 .close-sidebar {
@@ -324,12 +325,16 @@ a.plain-action:hover {
 
 /* Interactive states for nav items */
 .back-dash .nav-item:hover {
-    background: rgba(0, 0, 0, 0.05);
+    transform: scale(1.05);
+    box-shadow: 10px 10px 77px #ffeaa6;
+    padding: 12px 30px;
 }
 
 .back-dash .nav-item.active {
     background: linear-gradient(to right, var(--main-color-darken-1), var(--main-color-default));
-    border-radius: 0 27px 27px 0;
+    transform: scale(1.05);
+    box-shadow: 10px 10px 77px #ffeaa6;
+    padding: 12px 30px;
     span{
         font-weight: bold !important;
     }
