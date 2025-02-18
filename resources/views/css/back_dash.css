@@ -106,6 +106,7 @@
   user-select: none;
   border: 1px solid var(--bright-shade);
   box-shadow: var(--shadow-xl);
+  animation: fadeDown 0.4s ease-in-out;
 }
 
 /* Card header with title and action link */

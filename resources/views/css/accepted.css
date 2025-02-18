@@ -10,6 +10,7 @@
   transition: all 0.2s ease;
   margin: 1em 0;
   box-shadow: 15px 15px 150px #d7d7d7;
+  animation: fadeDown 0.4s ease-in-out;
 }
 
 

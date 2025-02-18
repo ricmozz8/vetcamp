@@ -5,6 +5,7 @@
     background-color: white;
     border: 1px solid var(--bright-shade);
     box-shadow: 15px 15px 150px #d7d7d7;
+    animation: fadeDown 0.4s ease-in-out;
 }
 
 .setting-title{
