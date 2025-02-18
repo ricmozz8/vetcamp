@@ -11,10 +11,6 @@ if (!isset($selected)) {
     <a onclick="closeModal('sidebar')" class=" close-sidebar">
         <i class="las la-times"></i>
     </a>
-    <!-- Logo section -->
-    <a class="sidebar-logo" href="/admin">
-        <img src="/<?= asset('logo/SVG/admin_logo_black.svg'); ?>" alt="">
-    </a>
 
     <!-- Main navigation menu -->
     <nav class="nav-links">
@@ -48,12 +44,6 @@ if (!isset($selected)) {
             <i class="las la-cog"></i>
             <span>Ajustes</span>
         </a>
-        <hr>
-
-        <p class="sidebar-section">
-            <i class="las la-wrench"></i>
-            Developer tools
-        </p>
 
         <a href="/admin/dev/errors" class="nav-item <?php if ($selected == 'errors') {
             echo 'active';
@@ -64,21 +54,7 @@ if (!isset($selected)) {
     </nav>
 
     <!-- User profile section -->
-    <div class="user-profile">
-        <?php
-        $badgeUser = Auth::user();
-        require 'userBadge.php'
-        ?>
-        <div class="user-info">
-            <a href="#" onclick="openModal('userProfileEditModal')" class="w-fit main-action-bright quaternary-squared">
-                <i class="las la-cog"></i>
-                <span>Editar perfil</span>
-            </a>
-            <h3 class="user-name"><?php echo Auth::user()->first_name . ' ' . Auth::user()->last_name; ?></h3>
-            <span class="user-email" id="userEmail"><?php echo Auth::user()->email; ?></span>
-            <a href="#" onclick="openModal('logoutModal')" class="logout">Salir</a>
-        </div>
+    <div class="user-profile ">
+
     </div>
 </aside>
-<?php include(__DIR__ . '../../modals/confirmLogoutModal.php') ?>
-<?php include(__DIR__ . '../../modals/userProfileEditModal.php') ?>

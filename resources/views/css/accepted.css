@@ -4,10 +4,12 @@
 
 .accepted-card {
   padding: 1em;
-  background-color: var(--sidebar-bg);
+  background-color: white;
+  border: 1px solid var(--bright-shade);
   border-radius: 27px;
   transition: all 0.2s ease;
   margin: 1em 0;
+  box-shadow: 15px 15px 150px #d7d7d7;
 }
 
 

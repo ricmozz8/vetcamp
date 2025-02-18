@@ -19,6 +19,7 @@ require __DIR__ . '/modals/editPicturesModal.php';
 
 <body>
     <!--- Define your structure here --->
+    <?php require_once('partials/profileNav.php'); ?>
     <div class="back-dash">
 
         <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>

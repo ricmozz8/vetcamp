@@ -5,7 +5,8 @@
     border: 1px solid #e5e5e5;
     border-radius: 10px;
     margin-bottom: 1em;
-
+    background-color: white;
+    var(--shadow-xl)
 }
 
 
@@ -298,8 +299,7 @@
     display: flex;
     padding: 1em;
     background-color: var(--main-color-shade-3);
-    color: var(--main-color-darken-2);
-    border-radius: 17px;
+    border-radius: 10px;
     flex-direction: column;
     gap: 10px;
     margin: 10px 0;
@@ -307,8 +307,14 @@
 
 .extra-notes h2 {
     font-size: 1.2em;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 10px;
+}
+
+.extra-notes p {
+    font-size: 14px;
+    text-transform: capitalize;
+
 }
 
 .comment-list {

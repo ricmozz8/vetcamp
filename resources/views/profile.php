@@ -7,9 +7,11 @@ require_once __DIR__ . '/partials/header.php';
 
 <body>
 <!-- Main dashboard container -->
+<?php require __DIR__ . '/partials/profileNav.php'; ?>
 <div class="back-dash">
 
     <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
+
 
 
     <!-- Main content area -->

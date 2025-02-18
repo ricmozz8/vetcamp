@@ -28,6 +28,7 @@
   padding-top: 5dvh;
   padding-left: 5dvh;
   padding-right: 5dvh;
+  background: var(--white-color);
 }
 
 
@@ -99,10 +100,12 @@
 
 /* Individual statistic cards */
 .back-dash .stat-card {
-  background: var(--sidebar-bg);
+  background-color: white;
   border-radius: 10px;
   padding: 15px;
   user-select: none;
+  border: 1px solid var(--bright-shade);
+  box-shadow: var(--shadow-xl);
 }
 
 /* Card header with title and action link */
@@ -144,7 +147,6 @@
   display: flex;
   align-items: center;
   padding: 8px;
-  background: var(--white-color);
   border-radius: 8px;
   gap: 8px;
 }
@@ -340,6 +342,8 @@
 }
 
 
+
+
 .context-menu{
   background-color: var(--sidebar-bg);
   width: fit-content;
@@ -384,6 +388,8 @@
     border-radius: 12px;
     overflow: hidden;
     margin: 1em 0;
+    max-width: 1400px;
+    overflow-x: scroll;
     font-size: 14px; /* Adjust font size as needed, default is 1em*/
 }
 
@@ -398,6 +404,8 @@
     font-weight: bold;
     color: #333;
 }
+
+
 
 .error-type-error{
     color: #ff5f5f;

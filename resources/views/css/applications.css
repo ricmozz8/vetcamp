@@ -116,6 +116,8 @@
     z-index: 1;
     animation: fadeIn 0.3s ease;
     border-radius: 10px;
+    flex-direction: column;
+    box-shadow: var(--shadow-xl);
 }
 
 

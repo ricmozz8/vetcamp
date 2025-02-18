@@ -41,7 +41,7 @@
 }
 
 .listed-table{
-  margin: auto;
+  margin: 1em auto;
   max-width: 1200px;
 }
 
@@ -50,6 +50,10 @@
   display: flex;
   gap: 10px;
   align-items: center;
+}
+
+.listed-table tr th{
+  background-color: #f3f3f3;
 }
 
 .listed-table .search-icon {
@@ -64,12 +68,17 @@
   border-collapse: collapse;
   font-size: 14px;
   overflow: scroll;
+  margin: 1em 0;
 }
 .listed-table th,
 .listed-table td {
   text-align: left;
-  padding: 12px 20px;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 15px;
+
+}
+
+.listed-table tr:nth-child(even) {
+  background-color: #f3f3f3;
 }
 
 

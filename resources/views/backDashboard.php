@@ -19,6 +19,8 @@ if ($hour >= 5 && $hour < 12) {
 <body>
     <!-- Main dashboard container -->
 
+    <?php require_once('partials/profileNav.php'); ?>
+
     <div class="back-dash">
         <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
@@ -35,7 +37,7 @@ if ($hour >= 5 && $hour < 12) {
             <header class="header">
 
                 <h1 class="welcome"><?= $greeting ?>, <?= Auth::user()->first_name ?></h1>
-                <button class="main-action-bright" onclick="openModal('massiveEmailModal')">
+                <button class="main-action-bright primary" onclick="openModal('massiveEmailModal')">
                     <i class="las la-envelope"></i>
                     Enviar mensaje
                 </button>
