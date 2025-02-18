@@ -61,10 +61,10 @@ require __DIR__ . '../../partials/header.php';
                     <label for="postal">Dirección de la escuela</label>
                     <?php
                     if (Auth::user()->school_address()) {
-                        $fullPostal = Auth::user()->school_address()->build();
+                        $fullSchool = Auth::user()->school_address()->build();
                     }
                     ?>
-                    <p><?= $fullPostal ?? '' ?></p>
+                    <p><?= $fullSchool ?? '' ?></p>
                 </div>
                 <div class="form-group">
                     <label for="postal">Dirección postal</label>
@@ -80,10 +80,10 @@ require __DIR__ . '../../partials/header.php';
                     <label for="postal">Dirección física</label>
                     <?php
                     if (Auth::user()->physical_address()) {
-                        $fullPostal = Auth::user()->physical_address()->build();
+                        $fullPhysical = Auth::user()->physical_address()->build();
                     }
                     ?>
-                    <p><?= $fullPostal ?? '' ?></p>
+                    <p><?= $fullPhysical ?? '' ?></p>
                 </div>
             </div>
             <div class="grid-group">
