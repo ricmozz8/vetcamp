@@ -21,8 +21,13 @@ $user_full_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
             <?php else : ?>
                 <?php require_once('applicationLogo.php'); ?>
                 <div onclick="toggleDropdown('profile-drop')" class="auth-profile-card" id="drop-profile">
-                    <?php $profile = Auth::user()->application()->getProfilePicture();
-                    $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
+                    <?php
+                    if (Auth::user()->application()) {
+                        $profile = Auth::user()->application()->getProfilePicture();
+                        $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
+                    } else {
+                        $profile = null;
+                    }
 
                     if ($profile) {
                         ?>
