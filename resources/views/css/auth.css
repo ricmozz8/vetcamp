@@ -73,7 +73,7 @@ label {
 
 .auth-profile-card{
   padding: 10px 5px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid var(--bright-shade);
   display: flex;
   align-items: center;
