@@ -31,7 +31,7 @@ require __DIR__ . '/modals/editPicturesModal.php';
 
         <!-- Main content area -->
         <main class="main-content">
-            <!-- quaternary logo container -->
+            <!-- primary logo container -->
 
             <header class="header">
                 <h1 class="welcome"> Ajustes  </h1>
@@ -52,7 +52,7 @@ require __DIR__ . '/modals/editPicturesModal.php';
 
                     <div class="settings-block">
                         <p> Manejar sesiones del campamento </p>
-                        <button class="main-action-bright quaternary" onclick="openModal('sessionEditModal')"> Editar </button>
+                        <button class="main-action-bright primary" onclick="openModal('sessionEditModal')"> Editar </button>
                     </div>
                     <div class="settings-block">
                         <p> Manejar fechas límites de registros </p>
@@ -60,11 +60,11 @@ require __DIR__ . '/modals/editPicturesModal.php';
                     </div>
                     <div class="settings-block">
                         <p> Manejar fotos de la página de inicio </p>
-                        <button class="main-action-bright quaternary" onclick="openModal('editPicturesModal')"> Editar </button>
+                        <button class="main-action-bright primary" onclick="openModal('editPicturesModal')"> Editar </button>
                     </div>
                     <div class="settings-block">
                         <p> Actualizar solicitud escrita </p>
-                        <button class="main-action-bright quaternary"> Editar </button>
+                        <button class="main-action-bright primary"> Editar </button>
                     </div>
                 </div>
 
@@ -79,15 +79,15 @@ require __DIR__ . '/modals/editPicturesModal.php';
                     <dark-text-color>
                         <div class="settings-block">
                             <p> Editar mensaje para aprobados </p>
-                            <button class="main-action-bright quaternary" onclick="openModal('editMessageApproved')"> Editar </button>
+                            <button class="main-action-bright primary" onclick="openModal('editMessageApproved')"> Editar </button>
                         </div>
                         <div class="settings-block">
                             <p> Editar mensaje para denegados </p>
-                            <button class="main-action-bright quaternary" onclick="openModal('editMessageDenied')"> Editar </button>
+                            <button class="main-action-bright primary" onclick="openModal('editMessageDenied')"> Editar </button>
                         </div>
                         <div class="settings-block">
                             <p> Editar mensaje masivo </p>
-                            <button class="main-action-bright quaternary" onclick="openModal('editMessageAll')"> Editar </button>
+                            <button class="main-action-bright primary" onclick="openModal('editMessageAll')"> Editar </button>
                         </div>
                 </div>
 
@@ -102,7 +102,7 @@ require __DIR__ . '/modals/editPicturesModal.php';
                     <dark-text-color>
                         <div class="settings-block">
                             <p> Archivar solicitudes </p>
-                            <button class="main-action-bright quaternary" onclick="openModal('confirmArchiveModal')"> Archivar </button>
+                            <button class="main-action-bright primary" onclick="openModal('confirmArchiveModal')"> Archivar </button>
                         </div>
                         <div class="settings-block">
                             <p> Eliminar todas las solicitudes </p>
@@ -126,7 +126,7 @@ require __DIR__ . '/modals/editPicturesModal.php';
                     <dark-text-color>
                         <div class="settings-block">
                             <p> Crear una cuenta de administrador </p>
-                            <button class="main-action-bright quaternary" onclick="openModal('createAdminModal')"> Crear </button>
+                            <button class="main-action-bright primary" onclick="openModal('createAdminModal')"> Crear </button>
                         </div>
                         <div class="settings-block">
                             <p> Desactivar cuentas que no solicitaron </p>
