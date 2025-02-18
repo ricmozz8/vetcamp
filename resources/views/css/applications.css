@@ -627,6 +627,7 @@ form .grid-group {
     flex-direction: column;
     align-items: center;
     gap: 1em;
+    margin: 1em;
 }
 
 .application_header h1 {
@@ -711,9 +712,10 @@ form .grid-group {
     }
 
     .application_header {
+        padding: 20px;
         flex-direction: row;
         align-items: start;
-        margin: 0 var(--main-margin);
+        margin: 2em var(--main-margin);
     }
 }
 
