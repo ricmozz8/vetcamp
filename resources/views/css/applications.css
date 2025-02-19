@@ -426,17 +426,16 @@ select:focus {
 
 
 .doc-ok {
-    background-color: var(--status-success);
+    color: var(--status-success);
     padding: 5px 8px;
-    color: var(--white-color);
+
     border-radius: 999em;
     font-weight: bold;
 }
 
 .doc-no {
-    background-color: var(--status-rejected);
-    padding: 5px 8px;
-    color: var(--white-color);
+    color: var(--status-rejected);
+    padding: 5px 10px;
     border-radius: 999em;
     font-weight: bold;
 }
