@@ -5,7 +5,8 @@
   padding: 2em 3em;
   gap: 2em;
 
-  border-radius: 17px;
+  border-radius: 10px;
+  border: 1px solid var(--bright-shade);
 
   margin: 3em auto;
   max-width: 700px;
@@ -98,7 +99,7 @@ label {
 
 @media only screen and (min-width: 768px) {
   .auth-form {
-    box-shadow: 0px 20px 60px rgb(219, 219, 219);
+    box-shadow: var(--shadow-xl);
   }
 
   .form-main-actions {
