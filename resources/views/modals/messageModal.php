@@ -1,7 +1,7 @@
 <div id="messageModal" class="modal">
     <div class="modal-content">
         <form action="/mail/user" method="POST">
-            <span class="close-button" onclick="closeModal('messageModal')"><i class="las la-times"></i></span>
+            <span class="close-button" onclick="closeModal('messageModal')"><i class="fas fa-times"></i></span>
             <h2>Enviar mensaje</h2>
             <div class="modal-details">
                 <div>
@@ -16,7 +16,7 @@
             </div>
             <input type="hidden" name="user_id" value=<?=$application->user_id ?> >
             <textarea required name="message" placeholder="Introduce un mensaje aquí..."></textarea>
-            <button class="main-action-bright secondary"><i class="las la-paper-plane"></i> Enviar</button>
+            <button class="main-action-bright secondary"><i class="fas fa-paper-plane"></i> Enviar</button>
         </form>
     </div>
 </div>
