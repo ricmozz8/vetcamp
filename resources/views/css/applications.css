@@ -109,13 +109,14 @@
 
 .profile-dropdown {
     display: none;
-    position: absolute;
-    top: 85px;
-    right: var(--main-margin);
+    position: fixed;
+    top: 69px;
+    right: 0;
+    margin-right: 2em;
     background-color: var(--white-color);
     z-index: 1;
     animation: fadeIn 0.3s ease;
-    border-radius: 10px;
+    border-radius:  0 0 10px 10px;
     flex-direction: column;
     box-shadow: var(--shadow-xl);
     border: 1px solid var(--bright-shade);
@@ -124,7 +125,7 @@
 
 .profile-dropdown a:first-child {
     display: block;
-    border-radius: 10px 10px 0 0;
+    border-radius: 0;
 }
 
 .profile-dropdown a:last-child {
@@ -741,4 +742,12 @@ form .grid-group {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
     .
+}
+
+@media only screen and (min-width: 1500px) {
+    .profile-dropdown {
+        margin-right: 225px;
+    }
+
+
 }

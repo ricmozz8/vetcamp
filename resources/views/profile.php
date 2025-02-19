@@ -34,7 +34,7 @@ require_once __DIR__ . '/partials/header.php';
                     </div>
 
                     <abbr style="display: none" id="open-comment" onclick="toggleCommentSection()"
-                          title="Abrir sección de comentarios">
+                          title="Mostrar sección de comentarios">
                         <a href="#" class="semi-rounded-action"><i class="las la-comment"></i>
                             <?php
                             $comment_count = count($application->comments());
@@ -219,7 +219,7 @@ require_once __DIR__ . '/partials/header.php';
                         Notas
                     </h1>
 
-                    <abbr title="Cerrar sección de comentarios">
+                    <abbr title="Ocultar sección de comentarios">
                         <a href="#" onclick="toggleCommentSection()" class="semi-rounded-action">
                             <i class="las la-eye-slash"></i>
                         </a>

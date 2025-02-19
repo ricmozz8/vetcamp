@@ -64,7 +64,7 @@ label {
 }
 
 .nav-container{
-  max-width: 1820px;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -73,7 +73,7 @@ label {
 
 .auth-profile-card{
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 10px;
   font-weight: bold !important;
   cursor: pointer;
