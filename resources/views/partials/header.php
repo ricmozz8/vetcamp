@@ -88,6 +88,25 @@
     <?php unset($_SESSION['error']);
 } ?>
 
+<?php
+
+/*
+ * Add these accessibility features
+ *
+<a href="#" onclick="openAccessibility()" class="accessibility">
+    <i class="fa-solid fa-person"></i>
+</a>
+
+<div class="accessibility-popup">
+    <h4>Opciones de accesibilidad</h4>
+
+    <div class="accessible-options">
+
+    </div>
+</div>
+*/
+?>
+
 <!-- beta warning -->
 <div class="lower-disclaimer">
     <div class="minicon">

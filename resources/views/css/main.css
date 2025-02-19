@@ -92,6 +92,12 @@
   --shadow-brand: 10px 10px 77px #ffeaa6;
   --shadow-error: 10px 10px 77px #f89c9c;
 
+
+  --accessibility-color: #007BFF;
+  --accessibility-color-shade-1: #0056b3;
+  --accessibility-color-shade-2: #004085;
+  --accessibility-color-shade-3: #002759;
+
   /* margins */
 --main-margin: 4rem;
 }
@@ -103,7 +109,7 @@
 /* Stylizing Scrollbar */
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
   background-color: transparent;
 }
 
@@ -199,6 +205,26 @@ abbr{
 
 .sb{
   justify-content: space-between;
+}
+
+.accessibility{
+  padding: 10px;
+  border-radius: 10px 0 0 10px;
+  font-size: 1.6em;
+  position: fixed;
+  right: 0;
+  bottom: 50%;
+  margin: 0;
+  background-color: var(--accessibility-color);
+  color: white;
+  width: fit-content;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.accessibility:hover{
+  background-color: var(--accessibility-color-shade-1);
 }
 
 
