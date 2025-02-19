@@ -115,21 +115,42 @@ require __DIR__ . '../../partials/header.php';
 </div>
 <script>
 
+    document.addEventListener('DOMContentLoaded', () => {
+        let checkbox = document.getElementById('same_address');
+        checkIfEqual(checkbox);
+    });
+
+    let physical = {
+        'aline1': document.getElementById('physical_aline1'),
+        'aline2': document.getElementById('physical_aline2'),
+        'city': document.getElementById('physical_city'),
+        'zip': document.getElementById('physical_zip'),
+    }
+
+    let postal = {
+        'aline1': document.getElementById('postal_aline1'),
+        'aline2': document.getElementById('postal_aline2'),
+        'city': document.getElementById('postal_city'),
+        'zip': document.getElementById('postal_zip'),
+    }
+
+    function checkIfEqual(checkbox) {
+        if (verifyEqualAddresses(physical, postal)) { // Fixed missing closing parenthesis
+            checkbox.checked = true;
+        } else {
+            checkbox.checked = false;
+        }
+    }
+
+    function verifyEqualAddresses(a1, a2) {
+        return a1.aline1.value === a2.aline1.value &&
+            a1.aline2.value === a2.aline2.value &&
+            a1.city.selectedIndex === a2.city.selectedIndex &&
+            a1.zip.value === a2.zip.value;
+    }
 
     function fillPostal(checkbox) {
-        let physical = {
-            'aline1': document.getElementById('physical_aline1'),
-            'aline2': document.getElementById('physical_aline2'),
-            'city': document.getElementById('physical_city'),
-            'zip': document.getElementById('physical_zip'),
-        }
 
-        let postal = {
-            'aline1': document.getElementById('postal_aline1'),
-            'aline2': document.getElementById('postal_aline2'),
-            'city': document.getElementById('postal_city'),
-            'zip': document.getElementById('postal_zip'),
-        }
 
         if (checkbox.checked) {
             postal.aline1.value = physical.aline1.value;
@@ -146,7 +167,7 @@ require __DIR__ . '../../partials/header.php';
         } else {
             postal.aline1.value = '';
             postal.aline2.value = '';
-            postal.city.selectedIndex =  0;
+            postal.city.selectedIndex = 0;
             postal.zip.value = '';
 
             postal.aline1.className = '';
