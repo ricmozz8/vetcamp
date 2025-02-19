@@ -336,10 +336,30 @@ a.plain-action:hover {
     transform: scale(1.05);
     box-shadow: 10px 10px 77px #ffeaa6;
     padding: 12px 30px;
+    transition: all 0.25s ease;
+
+    animation: navItemHighlight 0.6s ease-in-out;
     span{
         font-weight: bold !important;
     }
 
+}
+
+@keyframes navItemHighlight {
+
+    from{
+        transform: scale(1);
+        box-shadow: 10px 10px 77px transparent;
+        padding: 12px 20px;
+        background: white;
+
+    }
+    to{
+        background: linear-gradient(to right, var(--main-color-darken-1), var(--main-color-default));
+        transform: scale(1.05);
+        box-shadow: 10px 10px 77px #ffeaa6;
+        padding: 12px 30px;
+    }
 }
 
 /* Navigation and Main Content icons */
