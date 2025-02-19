@@ -400,7 +400,7 @@
 .error-table{
     width: 100%;
     border-collapse: collapse;
-    background-color: var(--white-color);
+
     border-radius: 12px;
     overflow: hidden;
     margin: 1em 0;
@@ -412,11 +412,11 @@
 .error-table th, .error-table td {
     padding: 12px 20px;
     text-align: left;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--bright-shade);
 }
 
 .error-table th {
-    background-color: #f9f9f9;
+
     font-weight: bold;
     color: #333;
 }

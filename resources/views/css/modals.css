@@ -26,10 +26,10 @@
     width: 90%;
     max-width: max-content;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 175px rgba(255, 243, 186, 0.46);
     position: relative;
     min-width: 25dvw;
-    animation: popUpModal .3s ease;
+    animation: popUpModal .35s ease;
 }
 
 .close-button {
@@ -199,9 +199,11 @@ textarea {
 @keyframes popUpModal {
     from {
         transform: scale(0.8);
+        box-shadow: 0 0 5px rgba(255, 243, 186, 0.46);
 
     }
     to {
         transform: scale(1);
+        box-shadow: 0 4px 175px rgba(255, 243, 186, 0.46);
     }
 }

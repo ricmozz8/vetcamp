@@ -84,6 +84,9 @@ switch ($path) {
     case '/admin/dev/errors/download':
         ErrorsController::download();
         break;
+    case '/admin/error/clear':
+        ErrorsController::clear();
+        break;
     case '/users/delete':
         UserController::delete($method);
         break;

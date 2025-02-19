@@ -40,4 +40,10 @@ class ErrorsController extends Controller
     }
 
     // define your other methods here
+    public static function clear()
+    {
+        ErrorLog::clear();
+        $_SESSION['message'] = 'Error log cleared';
+        redirect('/admin/dev/errors');
+    }
 }
