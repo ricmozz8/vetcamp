@@ -86,10 +86,10 @@ final class DB
     public static function whereAll(string $table, string $where, string $equal, string $column = '*'): array
     {
 
-        $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ' . $where . ' = ' . $equal;
-
+        $sql = 'SELECT ' . $column . ' FROM ' . self::$database_name . '.' . $table . ' WHERE ' . $where . ' = :equal';
 
         $statement = self::$database->prepare($sql);
+        $statement->bindValue(':equal', $equal, PDO::PARAM_STR);
         $statement->execute();
         return $statement->fetchAll();
     }
