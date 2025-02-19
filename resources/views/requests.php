@@ -9,6 +9,7 @@ require __DIR__ . '/partials/header.php';
 <!--- Define your structure here --->
 <?php require_once('partials/profileNav.php'); ?>
 <div class="back-dash">
+    <script src="<?= web_resource('js/posterTable.js')?>"></script>
 
     <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
@@ -53,51 +54,51 @@ require __DIR__ . '/partials/header.php';
                     <th>Perfil</th>
                     <th>Nombre</th>
                     <th>Correo</th>
-                    <th>Documentos</th>
-                    <th>Estado</th>
-                    <th>Fecha</th>
+                    <th order="down" class="actionable-header" id="order-doc" onclick="toggleDocumentOrder(this)"> Documentos<i id="sort-icon-documents"   class=""></i></th>
+                    <th style="cursor: pointer" onclick="openModal('filterModalRequest')">Estado</th>
+                    <th order="down" class="actionable-header" id="order-date" onclick="toggleDateOrder(this)">Fecha <i id="sort-icon-date"  class=""></i></th>
                     <th>Acción</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
 
-                <?php
-                /*
-                 * TODO: Gotta refactor this, rendering html by echoing it on php is a bad practice. Imperative if we want to include the filters on the table headers.
-                 *
-                 * */
+                <?php foreach ($users as $user):
 
-                // Set locale to Spanish
-
-                // Loop through the users returned by the User::all() method
-                foreach ($users as $user) {
-                    // Get the full name
                     setlocale(LC_TIME, 'es_ES.UTF-8');
                     $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
                     $pictureObj = $user->application()->getProfilePicture();
                     $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
-
                     $application = $user->application();
-
-
-                    echo "<tr>";
-                    echo "<td><a href='requests/r?id=$user->user_id'><img src=\"$src\" alt=\"Image\" class=\"profile-picture\"></a> </td>";
-                    echo "<td>" . $full_name . "</td>";
-                    echo "<td>" . htmlspecialchars($user->email) . "</td>";
-                    echo "<td>" . (htmlspecialchars($application ? $application->documentCount() : 0)) . "/7</td>";
-                    echo "<td>" . "<p class=\"st-badge status-badge-alt-" . str_replace(' ', '-', strtolower($application->status)) . "\">" . $application->status . "</p>" . "</td>";
-                    echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
-                    echo "<td>" . '<a class="main-action-bright no-deco-action" href="requests/r?id=' . $user->user_id . '" class="review-link">revisar</a>' . "</td>";
-                    echo "<td>" . '<a class="main-action-bright no-deco-action" href="#" onclick="">' . '<i class="las la-trash"></i> borrar' . '</a>' . '<td/>';
-                    echo "</tr>";
-                }
                 ?>
+                    <tr>
+                        <td><a href="requests/r?id=<?= $user->user_id ?>"><img src="<?= $src ?>" alt="Image"
+                                                                               class="profile-picture"></a></td>
+                        <td><?= $full_name ?></td>
+                        <td><?= htmlspecialchars($user->email) ?></td>
+                        <td><?= htmlspecialchars($application ? $application->documentCount() : 0) ?>/7</td>
+                        <td>
+                            <p class="st-badge status-badge-alt-<?= str_replace(' ', '-', strtolower($application->status)) ?>">
+                                <?= $application->status ?>
+                            </p>
+                        </td>
+                        <td><?= htmlspecialchars(get_date_spanish($user->created_at)) ?></td>
+                        <td><a class="main-action-bright no-deco-action" href="requests/r?id=<?= $user->user_id ?>"
+                               class="review-link">revisar</a></td>
+                        <td>
+                            <a class="main-action-bright no-deco-action" href="#" onclick="">
+                                <i class="las la-trash"></i> borrar
+                            </a>
+                        </td>
+                    </tr>
+
+                <?php endforeach; ?>
                 </tbody>
             </table>
             <div class="pagination">
                 <?php if ($currentPage > 1): ?>
-                    <a href="?page=<?php echo $currentPage - 1; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>" class="page-number">Anterior</a>
+                    <a href="?page=<?php echo $currentPage - 1; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>"
+                       class="page-number">Anterior</a>
                 <?php endif; ?>
 
                 <?php
@@ -106,32 +107,33 @@ require __DIR__ . '/partials/header.php';
 
                 if ($start > 1) {
                     echo '<a href="?page=1&estado=' . (isset($_GET['estado']) ? $_GET['estado'] : '-1') . '" class="page-number">1</a>';
-                if ($start > 2) {
-                    echo '<span class="page-ellipsis">...</span>';
-                }
+                    if ($start > 2) {
+                        echo '<span class="page-ellipsis">...</span>';
+                    }
                 }
 
-            for ($i = $start; $i <= $end; $i++):
-            ?>
-                <a href="?page=<?php echo $i; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>"
-                    class="page-number <?php echo ($i == $currentPage) ? 'active' : ''; ?>">
-                <?php echo $i; ?>
-                </a>
-            <?php endfor; ?>
+                for ($i = $start; $i <= $end; $i++):
+                    ?>
+                    <a href="?page=<?php echo $i; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>"
+                       class="page-number <?php echo ($i == $currentPage) ? 'active' : ''; ?>">
+                        <?php echo $i; ?>
+                    </a>
+                <?php endfor; ?>
 
-        <?php
-            if ($end < $totalPages) {
-                if ($end < $totalPages - 1) {
-                    echo '<span class="page-ellipsis">...</span>';
+                <?php
+                if ($end < $totalPages) {
+                    if ($end < $totalPages - 1) {
+                        echo '<span class="page-ellipsis">...</span>';
+                    }
+                    echo '<a href="?page=' . $totalPages . '&estado=' . (isset($_GET['estado']) ? $_GET['estado'] : '-1') . '" class="page-number">' . $totalPages . '</a>';
                 }
-                echo '<a href="?page=' . $totalPages . '&estado=' . (isset($_GET['estado']) ? $_GET['estado'] : '-1') . '" class="page-number">' . $totalPages . '</a>';
-            }
-        ?>
+                ?>
 
-    <?php if ($currentPage < $totalPages): ?>
-        <a href="?page=<?php echo $currentPage + 1; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>" class="page-number">Siguiente</a>
-    <?php endif; ?>
-</div>
+                <?php if ($currentPage < $totalPages): ?>
+                    <a href="?page=<?php echo $currentPage + 1; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>"
+                       class="page-number">Siguiente</a>
+                <?php endif; ?>
+            </div>
 
         </div>
 

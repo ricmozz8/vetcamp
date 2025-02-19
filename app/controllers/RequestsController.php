@@ -18,11 +18,8 @@ class RequestsController extends Controller
         if (Auth::user()->type !== 'admin') {
             redirect('/login');
         }
-        $estado = isset($_GET['estado']) && $_GET['estado'] !== '-1' ? (int)$_GET['estado'] : 0;
-        // storing users
-        // $users = User::allApplicants();
-
-        // dd(User::findLike(['first_name' => '%est%']));
+        $application_status = filter_input(INPUT_GET, 's', FILTER_VALIDATE_INT) ?: 0;
+        
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perPage = 6; // Set the number of users per page
@@ -45,10 +42,7 @@ class RequestsController extends Controller
         // filtrar las solicitudes
         foreach ($allApplicants as $user) {
             $application = $user->application();
-            switch ($estado) { 
-                case 0:
-                    $arrayUsers = User::allApplicants();
-                    break;
+            switch ($application_status) {
                 case 1:
                     if($application->status == "Sometida") {
                         $arrayUsers[] = $user;
@@ -78,6 +72,9 @@ class RequestsController extends Controller
                     if($application->status == "En lista de espera") {
                         $arrayUsers[] = $user;
                     }
+                    break;
+                default:
+                    $arrayUsers = User::allApplicants();
                     break;
             }
         }

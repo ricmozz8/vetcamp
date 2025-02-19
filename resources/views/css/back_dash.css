@@ -342,6 +342,21 @@
   outline: none;
 }
 
+.actionable-header{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.actionable-header:hover{
+  text-decoration: underline;
+}
+
+.actionable-header i:hover, .actionable-header i:focus, .actionable-header i{
+  text-decoration: none !important;
+}
 
 
 
