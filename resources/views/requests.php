@@ -32,7 +32,7 @@ require __DIR__ . '/partials/header.php';
                 <div class="table-actions">
                     <?php if (isset($_GET['s'] )|| isset($_GET['doc']) || isset($_GET['date'])) { ?>
                     <a href="/admin/requests" class="main-action-bright">
-                        <i class="fas fa-broom"></i>
+                        <i class="fa-solid fa-filter-circle-xmark"></i>
                         Eliminar filtros
                     </a>
                     <?php } ?>
