@@ -24,7 +24,7 @@ require __DIR__ . '/partials/header.php';
         <?php elseif (Auth::user()->type === 'admin') : ?>
             <div class="hero-buttons">
                 <a class="main-action-bright tertiary" href="/admin">
-                    <i class="las la-cog"></i>
+                    <i class="fas fa-cog"></i>
                     Admin
                 </a>
             </div>
@@ -113,27 +113,27 @@ require __DIR__ . '/partials/header.php';
         <div class="requirement-cards-grid">
             <div class="req-card">
                 <div class="flex-min">
-                    <i class="las la-file-alt"></i>
-                    <i class="las la-play-circle"></i>
+                    <i class="fas fa-file-alt"></i>
+                    <i class="fas fa-play-circle"></i>
                 </div>
                 <h4>Ensayo (Escrito Y Vídeo)</h4>
                 <p>Indicando porqué te interesa participar en el campamento</p>
             </div>
             <div class="req-card">
-                <i class="las la-envelope-open"></i>
+                <i class="fas fa-envelope-open"></i>
                 <h4>Carta de autorización</h4>
                 <p>De tus padres o tutor legal</p>
             </div>
             <div class="req-card">
-                <i class="las la-file"></i>
+                <i class="fas fa-file"></i>
                 <h4>Transcripción de créditos</h4>
             </div>
             <div class="req-card">
-                <i class="las la-portrait"></i>
+                <i class="fas fa-portrait"></i>
                 <h4>Foto 2x2</h4>
             </div>
             <div class="req-card ">
-                <i class="las la-clipboard-list"></i>
+                <i class="fas fa-clipboard-list"></i>
                 <h4>Certificación Estudiantil</h4>
                 <p>Firmada por el encargado y director de la escuela.
                     En caso de que el estudiante sea educado en el hogar, deberá
@@ -143,7 +143,7 @@ require __DIR__ . '/partials/header.php';
 
             </div>
             <div class="req-card">
-                <i class="las la-file-signature"></i>
+                <i class="fas fa-file-signature"></i>
                 <h4>Carta de recomendación</h4>
                 <p>De tu maestro de ciencias</p>
 
