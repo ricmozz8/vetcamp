@@ -26,16 +26,16 @@ require_once __DIR__ . '/partials/header.php';
 
                     <div class="flex-min">
                         <h1>
-                            <i class="las la-clipboard"></i>
+                            <i class="fas fa-clipboard"></i>
                             Solicitud
                         </h1>
                         <a href="/admin/requests"
-                           class=" plain-action"><i class="las la-arrow-left"></i>Volver a las solicitudes</a>
+                           class=" plain-action"><i class="fas fa-arrow-left"></i>Volver a las solicitudes</a>
                     </div>
 
                     <abbr style="display: none" id="open-comment" onclick="toggleCommentSection()"
                           title="Mostrar sección de comentarios">
-                        <a href="#" class="semi-rounded-action"><i class="las la-comment"></i>
+                        <a href="#" class="semi-rounded-action"><i class="fas fa-comment"></i>
                             <?php
                             $comment_count = count($application->comments());
                             if ($comment_count > 0) { ?>
@@ -67,7 +67,7 @@ require_once __DIR__ . '/partials/header.php';
                     </section>
 
                     <section class="data-section">
-                        <h2><i class="las la-info"></i> Datos básicos</h2>
+                        <h2><i class="fas fa-info"></i> Datos básicos</h2>
                         <div class="data-grid">
                             <div></i><strong>Dirección Postal</strong>
                                 <p>
@@ -110,7 +110,7 @@ require_once __DIR__ . '/partials/header.php';
                     </section>
 
                     <section class="data-section">
-                        <h2><i class="las la-file"></i> Documentos subidos</h2>
+                        <h2><i class="fas fa-file"></i> Documentos subidos</h2>
                         <div class="documents-grid">
                             <?php if ($documents['written_essay'] != null) { ?>
                                 <div><a onclick="showModal('fileViewPopup-<?= $documents['written_essay']['name'] ?>')"
@@ -162,7 +162,7 @@ require_once __DIR__ . '/partials/header.php';
 
                     <?php if ($application->extra_notes) { ?>
                         <section class="extra-notes">
-                            <h2><i class="las la-comment"></i>
+                            <h2><i class="fas fa-comment"></i>
                                 El usuario ha indicado:
                             </h2>
                             <p><?= ucfirst($application->extra_notes) ?></p>
@@ -175,7 +175,7 @@ require_once __DIR__ . '/partials/header.php';
                             <input type="hidden" name="application_id"
                                    value="<?php echo $application->id_application; ?>">
                             <h2>
-                                <i class="las la-edit"></i>
+                                <i class="fas fa-edit"></i>
                                 Manejar Solicitud
                             </h2>
 
@@ -192,16 +192,16 @@ require_once __DIR__ . '/partials/header.php';
                             <div class="actions">
                                 <a href="#" class="main-action-bright"
                                    onclick="openModal('exportApplicationModal')">
-                                    <i class="las la-download"></i>
+                                    <i class="fas fa-download"></i>
                                     Descargar copia local
                                 </a>
 
                                 <a href="#" class="main-action-bright secondary" onclick="openModal('messageModal')">
-                                    <i class="las la-envelope"></i>
+                                    <i class="fas fa-envelope"></i>
                                     Enviar Mensaje
                                 </a>
 
-                                <button class="main-action-bright primary" type="submit"><i class="las la-save"></i>
+                                <button class="main-action-bright primary" type="submit"><i class="fas fa-save"></i>
                                     Guardar
                                 </button>
                             </div>
@@ -215,13 +215,13 @@ require_once __DIR__ . '/partials/header.php';
 
                 <div class="profile-section-title sb">
                     <h1>
-                        <i class="las la-comment"></i>
+                        <i class="fas fa-comment"></i>
                         Notas
                     </h1>
 
                     <abbr title="Ocultar sección de comentarios">
                         <a href="#" onclick="toggleCommentSection()" class="semi-rounded-action">
-                            <i class="las la-eye-slash"></i>
+                            <i class="fas fa-eye-slash"></i>
                         </a>
                     </abbr>
                 </div>
@@ -264,9 +264,9 @@ require_once __DIR__ . '/partials/header.php';
                                     <?php if ($isUserOP) { ?>
                                         <div class="comment-actions">
                                             <a onclick="openModal('editCommentModal-<?= $loop ?>' )" href="#"
-                                               class="radio-option"><i class="las la-edit"></i></a>
+                                               class="radio-option"><i class="fas fa-edit"></i></a>
                                             <a onclick="openModal('deleteCommentModal-<?= $loop ?>' )" href="#"
-                                               class="radio-option-danger"><i class="las la-trash"></i></a>
+                                               class="radio-option-danger"><i class="fas fa-trash"></i></a>
                                         </div>
                                     <?php } ?>
                                 </div>
@@ -294,7 +294,7 @@ require_once __DIR__ . '/partials/header.php';
                         <input type="hidden" name="user_id" value="<?php echo $user->user_id; ?>">
 
                         <label for="comment" style="display: flex; align-items: center; gap: 5px">
-                            <i class="las la-comment"></i>
+                            <i class="fas fa-comment"></i>
                             <p>Añade una nota</p>
                         </label>
                         <textarea required name="comment" id="" cols="30" rows="10"
@@ -302,7 +302,7 @@ require_once __DIR__ . '/partials/header.php';
 
                         <div class="comment-form-actions">
                             <button class="main-action-bright secondary" type="submit"><i
-                                        class="las la-paper-plane"></i>
+                                        class="fas fa-paper-plane"></i>
                                 Comenta
                             </button>
                         </div>
