@@ -1,7 +1,7 @@
 <div id="clearLogModal" class="modal">
     <div class="modal-content">
         <span class="close-button" onclick="closeModal('clearLogModal')"><i class="las la-times"></i></span>
-        <h2>Clear error log?</h2>
+        <h2>Clear crash reports?</h2>
         <p>This action can't be reversed.</p>
         <p style="max-width: 500px; margin: 10px auto" class="warning-box">Please delete only if storage issues are present. This operation is only for
         web admins only.</p>
