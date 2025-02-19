@@ -308,7 +308,7 @@
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  gap: 20ppx;
+  gap: 20px;
 }
 
 /* Session edit line styling */
@@ -317,7 +317,7 @@
   justify-content: space-around;
   flex-direction: row;
   align-items: center;
-  padding: 12px 0px;
+  padding: 12px 0;
   gap: 40px;
 }
 
@@ -327,7 +327,7 @@
   justify-content: space-around;
   flex-direction: row;
   align-items: center;
-  padding: 12px 0px;
+  padding: 12px 0;
   gap: 10px;
 }
 
