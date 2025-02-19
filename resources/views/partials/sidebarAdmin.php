@@ -49,7 +49,7 @@ if (!isset($selected)) {
             echo 'active';
         } ?>">
             <i class="las la-bug"></i>
-            <span>Error log</span>
+            <span>Crash reports</span>
         </a>
     </nav>
 
