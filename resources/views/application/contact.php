@@ -148,6 +148,12 @@ require __DIR__ . '../../partials/header.php';
             postal.aline2.value = '';
             postal.city.selectedIndex =  0;
             postal.zip.value = '';
+
+            postal.aline1.className = '';
+            postal.aline2.className = '';
+            postal.city.className = '';
+            postal.zip.className = '';
+
         }
     }
 </script>
