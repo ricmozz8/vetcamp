@@ -6,6 +6,7 @@ require __DIR__ . '../../partials/header.php';
 
 <body>
 <?php require_once(__DIR__ . '../../partials/profileNav.php'); ?>
+<script src="<?= web_resource("js/fileupload.js") ?>"></script>
 
 
 <div class="application_header">

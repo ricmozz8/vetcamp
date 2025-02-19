@@ -1,4 +1,4 @@
-<select required name="<?= isset($citylabel) ? $citylabel : 'city' ?>" id="school_city">
+<select required name="<?= $citylabel ?? 'city' ?>" id="<?= $citylabel ?? '' ?>" class="form-control">
     <option value="">Seleccione una ciudad</option>
     <option <?php echo $city == 'Adjuntas' ? 'selected' : '' ?> value="Adjuntas">Adjuntas</option>
     <option <?php echo $city == 'Aguada' ? 'selected' : '' ?> value="Aguada">Aguada</option>

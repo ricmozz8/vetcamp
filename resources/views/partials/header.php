@@ -34,7 +34,7 @@
 
     <!-- JAVASCRIPT -->
     <script src="<?= web_resource("js/homeCarrousel.js") ?>"></script>
-    <script src="<?= web_resource("js/fileupload.js") ?>"></script>
+
     <script src="<?= web_resource("js/modals.js") ?>"></script>
     <script src="<?= web_resource("js/dropdowns.js") ?>"></script>
     <script src="<?= web_resource("js/passwordShow.js") ?>"></script>
