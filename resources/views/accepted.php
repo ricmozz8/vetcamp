@@ -11,7 +11,7 @@ require_once __DIR__ . '/partials/header.php';
     <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
     <a onclick="openModal('sidebar')" href="#" class="openSidebar">
-        <i class="las la-bars"></i>
+        <i class="fas fa-bars"></i>
     </a>
 
 
@@ -19,7 +19,7 @@ require_once __DIR__ . '/partials/header.php';
         <header class="header">
             <h1 class="welcome"> Aceptados </h1>
             <button class="main-action-bright" onclick="openModal('massiveEmailModal')">
-                <i class="las la-envelope"></i>
+                <i class="fas fa-envelope"></i>
                 Enviar mensaje
             </button>
         </header>
@@ -37,12 +37,12 @@ require_once __DIR__ . '/partials/header.php';
                         <div>
                             <h2 class="accepted-card-title"><?= htmlspecialchars($sessionName) ?></h2>
                             <p>
-                                <i class="las la-users"></i>
+                                <i class="fas fa-users"></i>
                                 <?= count($users) ?>/14 estudiantes
                             </p>
                         </div>
                         <button class="main-action-bright">
-                            <i class="las la-envelope"></i>
+                            <i class="fas fa-envelope"></i>
                             Enviar correo
                         </button>
                     </div>

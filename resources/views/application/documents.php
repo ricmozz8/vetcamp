@@ -10,7 +10,7 @@ require __DIR__ . '../../partials/header.php';
 
 <div class="application_header">
     <h1 class="">Solicitud</h1>
-    <a href="/apply/application/contact" class="main-action-bright secondary"><i class="las la-arrow-left"></i>Atrás</a>
+    <a href="/apply/application/contact" class="main-action-bright secondary"><i class="fas fa-arrow-left"></i>Atrás</a>
 </div>
 
 <p class="subtext" style="margin: 1em var(--main-margin); text-align: left;">
@@ -51,14 +51,14 @@ require __DIR__ . '../../partials/header.php';
                     <?php if (isset($saved_documents['written_application'])) { ?>
 
                         <?php $written_application = $saved_documents['written_application']; ?>
-                        <label formats="pdf" for="written_application"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                        <label formats="pdf" for="written_application"> <span> <i class="fas fa-edit"></i> Editar archivo</span></label>
                         <input accept="application/pdf" value=" <?= $written_application['name'] ?>" type="file"
                                id="written_application" name="written_application" onchange="updateFileName(this)">
 
 
                     <?php } else { ?>
 
-                        <label formats="pdf" for="written_application"> <i class="las la-file-upload"></i> <span> Subir archivo</span></label>
+                        <label formats="pdf" for="written_application"> <i class="fas fa-file-upload"></i> <span> Subir archivo</span></label>
                         <input accept="application/pdf" type="file" id="written_application" name="written_application"
                                onchange="updateFileName(this)">
 
@@ -70,7 +70,7 @@ require __DIR__ . '../../partials/header.php';
                     <?php if (isset($saved_documents['written_application'])) { ?>
                         <a href="#" onclick="showModal('fileViewPopup-<?= $written_application['name'] ?>')"
                            class="btn-download">
-                            <i class="las la-eye"></i> Visualizar
+                            <i class="fas fa-eye"></i> Visualizar
                         </a>
                     <?php } ?>
                 </div>
@@ -82,11 +82,11 @@ require __DIR__ . '../../partials/header.php';
                 <div class="upload-box">
                     <?php if (isset($saved_documents['transcript'])) { ?>
                         <?php $transcript = $saved_documents['transcript']; ?>
-                        <label formats="pdf" for="transcript"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                        <label formats="pdf" for="transcript"> <span> <i class="fas fa-edit"></i> Editar archivo</span></label>
                         <input accept="application/pdf" value=" <?= $transcript['name'] ?>" type="file" id="transcript"
                                name="transcript" onchange="updateFileName(this)">
                     <?php } else { ?>
-                        <label formats="pdf" for="transcript"><i class="las la-file-upload"></i>
+                        <label formats="pdf" for="transcript"><i class="fas fa-file-upload"></i>
                             <span> Subir archivo</span></label>
                         <input accept="application/pdf" type="file" id="transcript" name="transcript"
                                onchange="updateFileName(this)">
@@ -97,7 +97,7 @@ require __DIR__ . '../../partials/header.php';
                     <?php if (isset($saved_documents['transcript'])) { ?>
                         <a href="#" onclick="showModal('fileViewPopup-<?= $transcript['name'] ?>')"
                            class="btn-download">
-                            <i class="las la-eye"></i> Visualizar
+                            <i class="fas fa-eye"></i> Visualizar
                         </a>
                     <?php } ?>
                 </div>
@@ -111,11 +111,11 @@ require __DIR__ . '../../partials/header.php';
                     <?php if (isset($saved_documents['written_essay'])) { ?>
                         <?php $written_essay = $saved_documents['written_essay']; ?>
                         <label formats="pdf" for="written_essay"> <span> <i
-                                        class="las la-edit"></i> Editar archivo</span></label>
+                                        class="fas fa-edit"></i> Editar archivo</span></label>
                         <input accept="application/pdf" value=" <?= $written_essay['name'] ?>" type="file"
                                id="written_essay" name="written_essay" onchange="updateFileName(this)">
                     <?php } else { ?>
-                        <label formats="pdf" for="written_essay"><i class="las la-file-upload"></i>
+                        <label formats="pdf" for="written_essay"><i class="fas fa-file-upload"></i>
                             <span> Subir archivo</span></label>
                         <input accept="application/pdf" type="file" id="written_essay" name="written_essay"
                                onchange="updateFileName(this)">
@@ -126,7 +126,7 @@ require __DIR__ . '../../partials/header.php';
                     <?php if (isset($saved_documents['written_essay'])) { ?>
                         <a href="#" onclick="showModal('fileViewPopup-<?= $written_essay['name'] ?>')"
                            class="btn-download">
-                            <i class="las la-eye"></i> Visualizar
+                            <i class="fas fa-eye"></i> Visualizar
                         </a>
                     <?php } ?>
                 </div>
@@ -141,11 +141,11 @@ require __DIR__ . '../../partials/header.php';
                     <?php if (isset($saved_documents['picture'])) { ?>
                         <?php $picture = $saved_documents['picture']; ?>
                         <label formats="png,jpeg,jpg" for="picture"> <span> <i
-                                        class="las la-edit"></i> Editar archivo</span></label>
+                                        class="fas fa-edit"></i> Editar archivo</span></label>
                         <input accept="image/*" value=" <?= $picture['name'] ?>" type="file" id="picture" name="picture"
                                onchange="updateFileName(this)">
                     <?php } else { ?>
-                        <label formats="png,jpeg,jpg" for="picture"> <i class="las la-file-upload"></i> <span> Subir archivo</span></label>
+                        <label formats="png,jpeg,jpg" for="picture"> <i class="fas fa-file-upload"></i> <span> Subir archivo</span></label>
                         <input accept="image/*" type="file" id="picture" name="picture" onchange="updateFileName(this)">
                     <?php } ?>
                 </div>
@@ -153,7 +153,7 @@ require __DIR__ . '../../partials/header.php';
                     <label>Foto 2x2 (PNG, JPEG, JPG)</label>
                     <?php if (isset($saved_documents['picture'])) { ?>
                         <a href="#" onclick="showModal('fileViewPopup-<?= $picture['name'] ?>')" class="btn-download">
-                            <i class="las la-eye"></i> Visualizar
+                            <i class="fas fa-eye"></i> Visualizar
                         </a>
                     <?php } ?>
                 </div>
@@ -167,11 +167,11 @@ require __DIR__ . '../../partials/header.php';
 
                     <?php if (isset($saved_documents['video_essay'])) { ?>
                         <?php $video_essay = $saved_documents['video_essay']; ?>
-                        <label formats="mp4" for="video_essay"><span> <i class="las la-edit"></i> Editar archivo</span></label>
+                        <label formats="mp4" for="video_essay"><span> <i class="fas fa-edit"></i> Editar archivo</span></label>
                         <input accept="video/*" value=" <?= $video_essay['name'] ?>" type="file" id="video_essay"
                                name="video_essay" onchange="updateFileName(this)">
                     <?php } else { ?>
-                        <label formats="mp4" for="video_essay"> <i class="las la-file-upload"></i>
+                        <label formats="mp4" for="video_essay"> <i class="fas fa-file-upload"></i>
                             <span> Subir archivo</span></label>
                         <input accept="video/*" type="file" id="video_essay" name="video_essay"
                                onchange="updateFileName(this)">
@@ -182,7 +182,7 @@ require __DIR__ . '../../partials/header.php';
                     <?php if (isset($saved_documents['video_essay'])) { ?>
                         <a href="#" onclick="showModal('fileViewPopup-<?= $video_essay['name'] ?>')"
                            class="btn-download">
-                            <i class="las la-eye"></i> Visualizar
+                            <i class="fas fa-eye"></i> Visualizar
                         </a>
                     <?php } ?>
                 </div>
@@ -194,11 +194,11 @@ require __DIR__ . '../../partials/header.php';
                 <div class="upload-box">
                     <?php if (isset($saved_documents['authorization_letter'])) { ?>
                         <?php $authorization = $saved_documents['authorization_letter']; ?>
-                        <label formats="pdf" for="authorization_letter"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                        <label formats="pdf" for="authorization_letter"> <span> <i class="fas fa-edit"></i> Editar archivo</span></label>
                         <input accept="application/pdf" value=" <?= $authorization['name'] ?>" type="file"
                                id="authorization_letter" name="authorization_letter" onchange="updateFileName(this)">
                     <?php } else { ?>
-                        <label formats="pdf" for="authorization_letter"><i class="las la-file-upload"></i> <span> Subir archivo</span>
+                        <label formats="pdf" for="authorization_letter"><i class="fas fa-file-upload"></i> <span> Subir archivo</span>
                         </label>
                         <input accept="application/pdf" type="file" id="authorization_letter"
                                name="authorization_letter" onchange="updateFileName(this)">
@@ -209,7 +209,7 @@ require __DIR__ . '../../partials/header.php';
                     <?php if (isset($saved_documents['authorization_letter'])) { ?>
                         <a href="#" onclick="showModal('fileViewPopup-<?= $authorization['name'] ?>')"
                            class="btn-download">
-                            <i class="las la-eye"></i> Visualizar
+                            <i class="fas fa-eye"></i> Visualizar
                         </a>
                     <?php } ?>
                 </div>
@@ -220,11 +220,11 @@ require __DIR__ . '../../partials/header.php';
                 <div class="upload-box">
                     <?php if (isset($saved_documents['recommendation_letter'])) { ?>
                         <?php $recommendation = $saved_documents['recommendation_letter']; ?>
-                        <label for="recommendation_letter" formats="pdf"> <span> <i class="las la-edit"></i> Editar archivo</span></label>
+                        <label for="recommendation_letter" formats="pdf"> <span> <i class="fas fa-edit"></i> Editar archivo</span></label>
                         <input accept="application/pdf" value=" <?= $recommendation['name'] ?>" type="file"
                                id="recommendation_letter" name="recommendation_letter" onchange="updateFileName(this)">
                     <?php } else { ?>
-                        <label for="recommendation_letter" formats="pdf"> <i class="las la-file-upload"></i> <span> Subir archivo</span>
+                        <label for="recommendation_letter" formats="pdf"> <i class="fas fa-file-upload"></i> <span> Subir archivo</span>
                         </label>
                         <input accept="application/pdf" type="file" id="recommendation_letter"
                                name="recommendation_letter" onchange="updateFileName(this)">
@@ -235,7 +235,7 @@ require __DIR__ . '../../partials/header.php';
                     <?php if (isset($saved_documents['recommendation_letter'])) { ?>
                         <a href="#" onclick="showModal('fileViewPopup-<?= $recommendation['name'] ?>')"
                            class="btn-download">
-                            <i class="las la-eye"></i> Visualizar
+                            <i class="fas fa-eye"></i> Visualizar
                         </a>
                     <?php } ?>
                 </div>

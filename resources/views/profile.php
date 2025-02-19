@@ -26,16 +26,16 @@ require_once __DIR__ . '/partials/header.php';
 
                     <div class="flex-min">
                         <h1>
-                            <i class="las la-clipboard"></i>
+                            <i class="fas fa-clipboard"></i>
                             Solicitud
                         </h1>
                         <a href="/admin/requests"
-                           class=" plain-action"><i class="las la-arrow-left"></i>Volver a las solicitudes</a>
+                           class=" plain-action"><i class="fas fa-arrow-left"></i>Volver a las solicitudes</a>
                     </div>
 
                     <abbr style="display: none" id="open-comment" onclick="toggleCommentSection()"
                           title="Abrir sección de comentarios">
-                        <a href="#" class="semi-rounded-action"><i class="las la-comment"></i>
+                        <a href="#" class="semi-rounded-action"><i class="fas fa-comment"></i>
                             <?php
                             $comment_count = count($application->comments());
                             if ($comment_count > 0) { ?>
@@ -67,9 +67,9 @@ require_once __DIR__ . '/partials/header.php';
                     </section>
 
                     <section class="data-section">
-                        <h2><i class="las la-info"></i> Datos básicos</h2>
+                        <h2><i class="fas fa-info"></i> Datos básicos</h2>
                         <div class="data-grid">
-                            <div><i class="las la-envelope"></i><strong>Dirección Postal</strong>
+                            <div></i><strong>Dirección Postal</strong>
                                 <p>
                                     <?= $postal_address->aline1 . " "
                                     . $postal_address->aline2 . " "
@@ -77,7 +77,7 @@ require_once __DIR__ . '/partials/header.php';
                                     . $postal_address->zip_code ?>
                                 </p>
                             </div>
-                            <div><i class="las la-home"></i><strong>Dirección Física</strong>
+                            <div><strong>Dirección Física</strong>
                                 <p>
                                     <?= $physical_address->aline1 . " "
                                     . $physical_address->aline2 . " "
@@ -85,7 +85,7 @@ require_once __DIR__ . '/partials/header.php';
                                     . $physical_address->zip_code ?>
                                 </p>
                             </div>
-                            <div><i class="las la-school"></i><strong>Escuela de procedencia</strong>
+                            <div><strong>Escuela de procedencia</strong>
                                 <p>
                                     <?= $school_address->street . " "
                                     . $school_address->city . " "
@@ -93,74 +93,67 @@ require_once __DIR__ . '/partials/header.php';
                                     ?>
                                 </p>
                             </div>
-                            <div><i class="las la-calendar"></i><strong>Fecha de Nacimiento</strong>
+                            <div><strong>Fecha de Nacimiento</strong>
                                 <p><?= get_date_spanish($user->birthdate) ?></p>
                             </div>
-                            <div><i class="las la-baby-carriage"></i><strong>Edad</strong>
+                            <div><strong>Edad</strong>
                                 <p><?= $user->get_age() ?></p>
                             </div>
-                            <div><i class="las la-paw"></i><strong>Sesión Preferida</strong>
+                            <div><strong>Sesión Preferida</strong>
                                 <p><?= $preferred_session ?></p>
                             </div>
 
-                            <div><i class="las la-tshirt"></i><strong>Tamaño de ropa</strong>
+                            <div><strong>Tamaño de ropa</strong>
                                 <p><?= $application->shirt_size ?></p>
                             </div>
                         </div>
                     </section>
 
                     <section class="data-section">
-                        <h2><i class="las la-file"></i> Documentos subidos</h2>
+                        <h2><i class="fas fa-file"></i> Documentos subidos</h2>
                         <div class="documents-grid">
                             <?php if ($documents['written_essay'] != null) { ?>
                                 <div><a onclick="showModal('fileViewPopup-<?= $documents['written_essay']['name'] ?>')"
-                                        class="no-deco-action w-fit" href="#"><i
-                                                class="las la-file-alt"></i>Ensayo
+                                        class="no-deco-action w-fit" href="#">Ensayo
                                         Escrito</a></div>
                             <?php } ?>
 
                             <?php if ($documents['video_essay'] != null) { ?>
                                 <div><a onclick="showModal('fileViewPopup-<?= $documents['video_essay']['name'] ?>')"
-                                        class="no-deco-action w-fit" href="#"><i
-                                                class="las la-file-alt"></i>Ensayo
+                                        class="no-deco-action w-fit" href="#">Ensayo
                                         en Video</a></div>
                             <?php } ?>
 
                             <?php if ($documents['authorization_letter'] != null) { ?>
                                 <div>
                                     <a onclick="showModal('fileViewPopup-<?= $documents['authorization_letter']['name'] ?>')"
-                                       class="no-deco-action w-fit" href="#"><i
-                                                class="las la-file-alt"></i>Carta
+                                       class="no-deco-action w-fit" href="#">Carta
                                         de Autorización</a></div>
                             <?php } ?>
 
                             <?php if ($documents['transcript'] != null) { ?>
                                 <div><a onclick="showModal('fileViewPopup-<?= $documents['transcript']['name'] ?>')"
-                                        class="no-deco-action w-fit" href="#"><i
-                                                class="las la-file-alt"></i>Transcripción
+                                        class="no-deco-action w-fit" href="#">Transcripción
                                         de créditos</a></div>
                             <?php } ?>
 
                             <? if ($documents['written_application'] != null) { ?>
                                 <div>
                                     <a onclick="showModal('fileViewPopup-<?= $documents['written_application']['name'] ?>')"
-                                       class="no-deco-action w-fit" href="#"><i
-                                                class="las la-file-alt"></i>Solicitud
+                                       class="no-deco-action w-fit" href="#">Solicitud
                                         Escrita</a></div>
                             <? } ?>
 
                             <? if ($documents['picture'] != null) { ?>
                                 <div><a onclick="showModal('fileViewPopup-<?= $documents['picture']['name'] ?>')"
-                                        class="no-deco-action w-fit" href="#"><i
-                                                class="las la-file-alt"></i>Foto
+                                        class="no-deco-action w-fit" href="#">Foto
                                         2x2</a></div>
                             <? } ?>
 
                             <? if ($documents['recommendation_letter'] != null) { ?>
                                 <div>
                                     <a onclick="showModal('fileViewPopup-<?= $documents['recommendation_letter']['name'] ?>')"
-                                       class="no-deco-action w-fit" href="#"><i
-                                                class="las la-file-alt"></i>Carta
+                                       class="no-deco-action w-fit" href="#">Carta
                                         de recomendación</a></div>
                             <? } ?>
 
@@ -169,7 +162,7 @@ require_once __DIR__ . '/partials/header.php';
 
                     <?php if ($application->extra_notes) { ?>
                         <section class="extra-notes">
-                            <h2><i class="las la-comment"></i>
+                            <h2><i class="fas fa-comment"></i>
                                 El usuario ha indicado:
                             </h2>
                             <p><?= ucfirst($application->extra_notes) ?></p>
@@ -182,7 +175,7 @@ require_once __DIR__ . '/partials/header.php';
                             <input type="hidden" name="application_id"
                                    value="<?php echo $application->id_application; ?>">
                             <h2>
-                                <i class="las la-edit"></i>
+                                <i class="fas fa-edit"></i>
                                 Manejar Solicitud
                             </h2>
 
@@ -199,16 +192,16 @@ require_once __DIR__ . '/partials/header.php';
                             <div class="actions">
                                 <a href="#" class="main-action-bright"
                                    onclick="openModal('exportApplicationModal')">
-                                    <i class="las la-download"></i>
+                                    <i class="fas fa-download"></i>
                                     Descargar copia local
                                 </a>
 
                                 <a href="#" class="main-action-bright secondary" onclick="openModal('messageModal')">
-                                    <i class="las la-envelope"></i>
+                                    <i class="fas fa-envelope"></i>
                                     Enviar Mensaje
                                 </a>
 
-                                <button class="main-action-bright primary" type="submit"><i class="las la-save"></i>
+                                <button class="main-action-bright primary" type="submit"><i class="fas fa-save"></i>
                                     Guardar
                                 </button>
                             </div>
@@ -222,13 +215,13 @@ require_once __DIR__ . '/partials/header.php';
 
                 <div class="profile-section-title sb">
                     <h1>
-                        <i class="las la-comment"></i>
+                        <i class="fas fa-comment"></i>
                         Notas
                     </h1>
 
                     <abbr title="Cerrar sección de comentarios">
                         <a href="#" onclick="toggleCommentSection()" class="semi-rounded-action">
-                            <i class="las la-download" style="transform: rotate(-90deg)"></i>
+                            <i class="fas fa-eye-slash"></i>
                         </a>
                     </abbr>
                 </div>
@@ -271,9 +264,9 @@ require_once __DIR__ . '/partials/header.php';
                                     <?php if ($isUserOP) { ?>
                                         <div class="comment-actions">
                                             <a onclick="openModal('editCommentModal-<?= $loop ?>' )" href="#"
-                                               class="radio-option"><i class="las la-edit"></i></a>
+                                               class="radio-option"><i class="fas fa-edit"></i></a>
                                             <a onclick="openModal('deleteCommentModal-<?= $loop ?>' )" href="#"
-                                               class="radio-option-danger"><i class="las la-trash"></i></a>
+                                               class="radio-option-danger"><i class="fas fa-trash"></i></a>
                                         </div>
                                     <?php } ?>
                                 </div>
@@ -300,15 +293,16 @@ require_once __DIR__ . '/partials/header.php';
                         <input type="hidden" name="application_id" value="<?php echo $application->id_application; ?>">
                         <input type="hidden" name="user_id" value="<?php echo $user->user_id; ?>">
 
-                        <label for="comment">
-                            <i class="las la-comment"></i>Añade una nota
+                        <label for="comment" style="display: flex; align-items: center; gap: 5px">
+                            <i class="fas fa-comment"></i>
+                            <p>Añade una nota</p>
                         </label>
                         <textarea required name="comment" id="" cols="30" rows="10"
                                   placeholder="Comenta sobre esta solicitud entre los evaluadores..."></textarea>
 
                         <div class="comment-form-actions">
                             <button class="main-action-bright secondary" type="submit"><i
-                                        class="las la-paper-plane"></i>
+                                        class="fas fa-paper-plane"></i>
                                 Comenta
                             </button>
                         </div>

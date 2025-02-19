@@ -1,8 +1,8 @@
 <div id="userProfileEditModal" class="modal">
     <div class="modal-content">
-        <span class="close-button" onclick="closeModal('userProfileEditModal')"><i class="las la-times"></i></span>
+        <span class="close-button" onclick="closeModal('userProfileEditModal')"><i class="fas fa-times"></i></span>
         <h2>
-            <i class="las la-user"></i>
+            <i class="fas fa-user"></i>
             Editar perfil
         </h2>
 
@@ -28,7 +28,7 @@
             <div class="modal-actions">
 
                 <a class="main-action-bright" onclick="closeModal('userProfileEditModal')">Cancelar</a>
-                <button type="submit" class="main-action-bright gradiented"> <i class="las la-save"></i> Guardar</button>
+                <button type="submit" class="main-action-bright gradiented"> <i class="fas fa-save"></i> Guardar</button>
 
             </div>
         </form>

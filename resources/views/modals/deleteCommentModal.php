@@ -1,9 +1,9 @@
 <div id=<?= "deleteCommentModal-" . $loop ?> class="modal">
     <div class="modal-content">
         <span class="close-button" onclick=<?= "closeModal('deleteCommentModal-" . $loop . "')" ?>><i
-                    class="las la-times"></i></span>
+                    class="fas fa-times"></i></span>
         <h2>
-            <i class="las la-comment"></i>
+            <i class="fas fa-trash"></i>
             Eliminar nota
         </h2>
         <p>¿Seguro que quieres borrar esta nota?</p>

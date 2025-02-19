@@ -76,8 +76,8 @@ label {
   border-radius: 30px;
   border: 1px solid var(--bright-shade);
   display: flex;
-  align-items: center;
-  gap: 5px;
+  align-items: baseline;
+  gap: 10px;
   font-weight: bold !important;
   cursor: pointer;
   transition: all 0.25s ease;

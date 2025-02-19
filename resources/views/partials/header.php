@@ -57,6 +57,8 @@
     <link rel="stylesheet"
           href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- PASSWORD VISSIBILITY TOGGLE -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -67,7 +69,7 @@
 <?php if (isset($_SESSION['message'])) { ?>
     <div id='notification' class="notification" onclick="closeModal('notification')">
         <div class="notification-content">
-            <i class="las la-exclamation-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
             <p class="notification-content"><?= $_SESSION['message'] ?> </p>
         </div>
         <span class="notification-progress"></span>
@@ -78,7 +80,7 @@
 <?php if (isset($_SESSION['error'])) { ?>
     <div id='notification' class="notification error" onclick="closeModal('notification')">
         <div class="notification-content">
-            <i class="las la-exclamation-triangle"></i>
+            <i class="fas fa-exclamation-triangle"></i>
             <p class="notification-content"><?= $_SESSION['error'] ?> </p>
         </div>
         <span class="notification-progress"></span>
@@ -96,6 +98,6 @@
         Vetcamp se encuentra en desarrollo,
     </p>
     <a target="_blank" style="color: white;" class=" no-deco-action" href="https://forms.gle/vh4v4ryUXCHvAVos8">déjanos
-        saber <i style="color: white;" class="las la-external-link-alt"></i></a>
+        saber <i style="color: white;" class="fas fa-external-link-alt"></i></a>
     <p>si presentas algún error con la web.</p>
 </div>

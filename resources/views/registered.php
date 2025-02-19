@@ -16,7 +16,7 @@ $statusParsing = [
 
     <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
     <a onclick="openModal('sidebar')" href="#" class="openSidebar">
-        <i class="las la-bars">
+        <i class="fas fa-bars">
         </i>
     </a>
 
@@ -30,7 +30,7 @@ $statusParsing = [
                 <h2 class="welcome">Usuarios</h2>
                 <div class="table-actions">
                     <button class="main-action-bright tertiary" onclick="openModal('filterModal')">
-                        <i class="las la-filter"></i>
+                        <i class="fas fa-filter"></i>
                         Filtrar
                     </button>
                     <div class="search-container">
@@ -38,9 +38,9 @@ $statusParsing = [
                             <input required value="<?= isset($_POST['search']) ? $_POST['search'] : '' ?>" type="text"
                                    class="search-input" name="search" placeholder="Busca correos, nombres">
                             <?php if (isset($_POST['search'])): ?>
-                                <a class="no-deco-action" href="/admin/registered"><i class="las la-times"></i></a>
+                                <a class="no-deco-action" href="/admin/registered"><i class="fas fa-times"></i></a>
                             <?php endif; ?>
-                            <button type="submit" class="main-action-bright tertiary"><i class="las la-search"></i>
+                            <button type="submit" class="main-action-bright tertiary"><i class="fas fa-search"></i>
                             </button>
                         </form>
 
@@ -79,10 +79,10 @@ $statusParsing = [
                     echo "<tr>";
                     echo "<td>" . $full_name . "</td>";
                     echo "<td>" . htmlspecialchars($user->email) . "</td>";
-                    echo "<td class='status-badge'>" . '<i class="las la-dot-circle" style="color: ' . $statusColor . '" > </i>' . htmlspecialchars($status) . "</td>";
+                    echo "<td class='status-badge'>" . '<i class="fas fa-dot-circle" style="color: ' . $statusColor . '" > </i>' . htmlspecialchars($status) . "</td>";
                     echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
-                    // echo '<td>' . '<a id="manage-user-button" href="#" onclick="openContextMenu(event, \'manage-user\')" class="w-fit main-action-bright quaternary-squared">' . '<i class="las la-ellipsis-v"></i>' . '</a>' . '</td>';
-                    echo '<td>' . '<a onclick="openModal(\'confirmDeleteUserModal-' . $loop++ . '\')" class="main-action-bright no-deco-action" href="#' . '" class="review-link"> <i class="las la-trash"></i> borrar</a>' . "</td>";
+                    // echo '<td>' . '<a id="manage-user-button" href="#" onclick="openContextMenu(event, \'manage-user\')" class="w-fit main-action-bright quaternary-squared">' . '<i class="fas fa-ellipsis-v"></i>' . '</a>' . '</td>';
+                    echo '<td>' . '<a onclick="openModal(\'confirmDeleteUserModal-' . $loop++ . '\')" class="main-action-bright no-deco-action" href="#' . '" class="review-link"> <i class="fas fa-trash"></i> borrar</a>' . "</td>";
                     echo "</tr>";
                 }
 
@@ -130,15 +130,15 @@ $statusParsing = [
 
             <!-- <div id="manage-user" class="context-menu manage-user">
                 <a href="#">
-                    <i class="las la-times"></i>
+                    <i class="fas fa-times"></i>
                     Desactivar
                 </a>
                 <a class="nav-danger" href="#">
-                    <i class="las la-trash"></i>
+                    <i class="fas fa-trash"></i>
                     Eliminar
                 </a>
                 <a href="#">
-                    <i class="las la-lock"></i>
+                    <i class="fas fa-lock"></i>
                     Restablecer Contraseña
                 </a>
             </div> -->

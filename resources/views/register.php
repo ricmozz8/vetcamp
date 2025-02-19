@@ -16,7 +16,7 @@ require __DIR__ . '/partials/header.php';
         <form action="/register/new" method="POST" class="auth-form"> <!-- Update -->
             <!-- Page Title -->
             <h1>
-                <i class="las la-arrow-right"></i>
+                <i class="fas fa-arrow-right"></i>
                 Regístrate
             </h1>
             <?php
@@ -128,7 +128,7 @@ require __DIR__ . '/partials/header.php';
                 <div class="form-main-action">
                     <button type="submit" class="main-action-bright gradiented">
                         Regístrate
-                        <i class="las la-arrow-right"></i>
+                        <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
 

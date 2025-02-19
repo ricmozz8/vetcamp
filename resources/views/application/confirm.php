@@ -11,7 +11,7 @@ require __DIR__ . '../../partials/header.php';
 <div class="application_header">
     <h1>Solicitud</h1>
     <a href="/apply/application/documents" class="main-action-bright secondary"><i
-                class="las la-arrow-left"></i>Atrás</a>
+                class="fas fa-arrow-left"></i>Atrás</a>
 </div>
 
 
@@ -35,7 +35,7 @@ require __DIR__ . '../../partials/header.php';
         <div class="desk-grid">
 
             <div class="grid-group">
-                <h3 class="valid-title"> <i class="las la-phone"></i> Contacto</h3>
+                <h3 class="valid-title"> <i class="fas fa-phone"></i> Contacto</h3>
                 <div class="form-group">
                     <label for="first_name">Nombre</label>
                     <p><?= Auth::user()->first_name ?? '' ?></p>
@@ -56,7 +56,7 @@ require __DIR__ . '../../partials/header.php';
 
 
             <div class="grid-group">
-                <h3 class="valid-title"><i class="las la-home"></i> Direcciones</h3>
+                <h3 class="valid-title"><i class="fas fa-home"></i> Direcciones</h3>
                 <div class="form-group">
                     <label for="postal">Dirección de la escuela</label>
                     <?php
@@ -87,7 +87,7 @@ require __DIR__ . '../../partials/header.php';
                 </div>
             </div>
             <div class="grid-group">
-                <h3 class="valid-title"><i class="las la-paw"></i> Campamento</h3>
+                <h3 class="valid-title"><i class="fas fa-paw"></i> Campamento</h3>
                 <div class="form-group">
                     <label for="session">Sesión preferida</label>
                     <?php if (Auth::user()->application()) {
@@ -118,69 +118,69 @@ require __DIR__ . '../../partials/header.php';
             </div>
 
             <div class="grid-group">
-                <h3 class="valid-title"><i class="las la-file"></i> Documentos</h3>
+                <h3 class="valid-title"><i class="fas fa-file"></i> Documentos</h3>
                 <div class="form-group">
 
                     <!-- File submission check -->
                     <p class="file-submitted">
                         <?php if ($application->url_written_application !== null && $application->url_written_application !== '') { ?>
-                            <span class="doc-ok"><i class="las la-check-circle"></i></span>
+                            <span class="doc-ok"><i class="fas fa-check-circle"></i></span>
                         <?php } else { ?>
-                            <span class="doc-no"><i class="las la-times"></i></span>
+                            <span class="doc-no"><i class="fas fa-times"></i></span>
                         <?php } ?>
                         Aplicación escrita
                     </p>
 
                     <p class="file-submitted">
                         <?php if ($application->url_transcript !== null && $application->url_transcript !== '') { ?>
-                            <span class="doc-ok"><i class="las la-check-circle"></i></span>
+                            <span class="doc-ok"><i class="fas fa-check-circle"></i></span>
                         <?php } else { ?>
-                            <span class="doc-no"><i class="las la-times"></i></span>
+                            <span class="doc-no"><i class="fas fa-times"></i></span>
                         <?php } ?>
                         Transcripción de crédito
                     </p>
 
                     <p class="file-submitted">
                         <?php if ($application->url_video_essay !== null && $application->url_video_essay !== '') { ?>
-                            <span class="doc-ok"><i class="las la-check-circle"></i></span>
+                            <span class="doc-ok"><i class="fas fa-check-circle"></i></span>
                         <?php } else { ?>
-                            <span class="doc-no"><i class="las la-times"></i></span>
+                            <span class="doc-no"><i class="fas fa-times"></i></span>
                         <?php } ?>
                         Ensayo en video
                     </p>
 
                     <p class="file-submitted">
                         <?php if ($application->url_written_essay !== null && $application->url_written_essay !== '') { ?>
-                            <span class="doc-ok"><i class="las la-check-circle"></i></span>
+                            <span class="doc-ok"><i class="fas fa-check-circle"></i></span>
                         <?php } else { ?>
-                            <span class="doc-no"><i class="las la-times"></i></span>
+                            <span class="doc-no"><i class="fas fa-times"></i></span>
                         <?php } ?>
                         Ensayo escrito
                     </p>
 
                     <p class="file-submitted">
                         <?php if ($application->url_authorization_letter !== null && $application->url_authorization_letter !== '') { ?>
-                            <span class="doc-ok"><i class="las la-check-circle"></i></span>
+                            <span class="doc-ok"><i class="fas fa-check-circle"></i></span>
                         <?php } else { ?>
-                            <span class="doc-no"><i class="las la-times"></i></span>
+                            <span class="doc-no"><i class="fas fa-times"></i></span>
                         <?php } ?>
                         Carta de autorización
                     </p>
 
                     <p class="file-submitted">
                         <?php if ($application->url_recommendation_letter !== null && $application->url_recommendation_letter !== '') { ?>
-                            <span class="doc-ok"><i class="las la-check-circle"></i></span>
+                            <span class="doc-ok"><i class="fas fa-check-circle"></i></span>
                         <?php } else { ?>
-                            <span class="doc-no"><i class="las la-times"></i></span>
+                            <span class="doc-no"><i class="fas fa-times"></i></span>
                         <?php } ?>
                         Carta de recomendación
                     </p>
 
                     <p class="file-submitted">
                         <?php if ($application->url_picture !== null && $application->url_picture !== '') { ?>
-                            <span class="doc-ok"><i class="las la-check-circle"></i></span>
+                            <span class="doc-ok"><i class="fas fa-check-circle"></i></span>
                         <?php } else { ?>
-                            <span class="doc-no"><i class="las la-times"></i></span>
+                            <span class="doc-no"><i class="fas fa-times"></i></span>
                         <?php } ?>
                         Foto
                     </p>
@@ -194,7 +194,7 @@ require __DIR__ . '../../partials/header.php';
             <input type="hidden" name="stage" value="confirm">
 
             <a href="#" onclick="openModal('confirmSubmitApplicationModal')" class="main-action-bright gradiented">
-                <i class="las la-arrow-right"></i>
+                <i class="fas fa-arrow-right"></i>
                 Someter</a>
 
             <?php require_once __DIR__ . '../../modals/confirmSubmitApplicationModal.php'; ?>

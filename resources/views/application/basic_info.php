@@ -11,7 +11,7 @@ require __DIR__ . '../../partials/header.php';
 <div class="application_header">
     <h1 class="">Solicitud</h1>
     <a class="main-action-bright secondary" onclick="openModal('confirmExitApplicationModal')" href="#"><i
-                class="las la-home"></i>Inicio</a>
+                class="fas fa-home"></i>Inicio</a>
 </div>
 
 

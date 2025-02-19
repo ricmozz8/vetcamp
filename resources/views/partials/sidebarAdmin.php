@@ -9,7 +9,7 @@ if (!isset($selected)) {
 
     <!-- Close sidebar button -->
     <a onclick="closeModal('sidebar')" class=" close-sidebar">
-        <i class="las la-times"></i>
+        <i class="fas fa-times"></i>
     </a>
 
     <!-- Main navigation menu -->
@@ -17,38 +17,38 @@ if (!isset($selected)) {
         <a href="/admin" class="nav-item <?php if ($selected == 'start') {
             echo 'active';
         } ?>">
-            <i class="las la-home"></i>
+            <i class="fas fa-home"></i>
             <span>Inicio</span>
         </a>
         <a href="/admin/requests" class="nav-item <?php if ($selected == 'requests') {
             echo 'active';
         } ?>">
-            <i class="las la-id-badge"></i>
+            <i class="fas fa-id-badge"></i>
             <span>Solicitudes</span>
         </a>
         <a href="/admin/registered" class="nav-item <?php if ($selected == 'registered') {
             echo 'active';
         } ?>">
-            <i class="las la-user-friends"></i>
+            <i class="fas fa-user-friends"></i>
             <span>Usuarios</span>
         </a>
         <a href="/admin/accepted" class="nav-item <?php if ($selected == 'accepted') {
             echo 'active';
         } ?>">
-            <i class="las la-check"></i>
+            <i class="fas fa-check"></i>
             <span>Aceptados</span>
         </a>
         <a href="/admin/settings" class="nav-item <?php if ($selected == 'settings') {
             echo 'active';
         } ?>">
-            <i class="las la-cog"></i>
+            <i class="fas fa-cog"></i>
             <span>Ajustes</span>
         </a>
 
         <a href="/admin/dev/errors" class="nav-item <?php if ($selected == 'errors') {
             echo 'active';
         } ?>">
-            <i class="las la-bug"></i>
+            <i class="fas fa-bug"></i>
             <span>Crash reports</span>
         </a>
     </nav>

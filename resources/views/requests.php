@@ -14,7 +14,7 @@ require __DIR__ . '/partials/header.php';
     <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
     <a onclick="openModal('sidebar')" href="#" class="openSidebar">
-        <i class="las la-bars">
+        <i class="fas fa-bars">
         </i>
     </a>
 
@@ -31,7 +31,7 @@ require __DIR__ . '/partials/header.php';
                 </div>
                 <div class="table-actions">
                     <button onclick="openModal('filterModalRequest')" class="main-action-bright tertiary">
-                        <i class="las la-filter"></i>
+                        <i class="fas fa-filter"></i>
                         Filtrar
                     </button>
                     <div class="search-container">
@@ -39,9 +39,9 @@ require __DIR__ . '/partials/header.php';
                             <input required value="<?= $_POST['search'] ?? '' ?>" type="text"
                                    class="search-input" name="search" placeholder="Busca correos, nombres">
                             <?php if (isset($_POST['search'])): ?>
-                                <a class="no-deco-action" href="/admin/requests"><i class="las la-times"></i></a>
+                                <a class="no-deco-action" href="/admin/requests"><i class="fas fa-times"></i></a>
                             <?php endif; ?>
-                            <button type="submit" class="main-action-bright tertiary"><i class="las la-search"></i>
+                            <button type="submit" class="main-action-bright tertiary"><i class="fas fa-search"></i>
                             </button>
                         </form>
 
@@ -87,7 +87,7 @@ require __DIR__ . '/partials/header.php';
                                class="review-link">revisar</a></td>
                         <td>
                             <a class="main-action-bright no-deco-action" href="#" onclick="">
-                                <i class="las la-trash"></i> borrar
+                                <i class="fas fa-trash"></i> borrar
                             </a>
                         </td>
                     </tr>

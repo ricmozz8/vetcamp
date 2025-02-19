@@ -43,15 +43,15 @@ function getArrow(filter) {
     let params = new URLSearchParams(window.location.search);
     let order = params.get(filter);
 
-    let icon_class_name = 'las la-sort-down';
+    let icon_class_name = 'fas fa-sort-down';
 
     if (order) {
         switch (order) {
             case 'asc':
-                icon_class_name = 'las la-sort-up';
+                icon_class_name = 'fas fa-sort-up';
                 break;
             case 'desc':
-                icon_class_name = 'las la-sort-down';
+                icon_class_name = 'fas fa-sort-down';
                 break;
         }
     }
@@ -89,11 +89,11 @@ function toggleTableOrder(clicked, icon) {
     if (order === 'down') {
         query_order = 'asc';
         clicked.setAttribute('order', 'up');
-        icon.className = 'las la-sort-up';
+        icon.className = 'fas fa-sort-up';
     } else if (order === 'up') {
         query_order = 'desc';
         clicked.setAttribute('order', 'down');
-        icon.className = 'las la-sort-down';
+        icon.className = 'fas fa-sort-down';
     }
 
     return query_order;

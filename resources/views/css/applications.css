@@ -404,7 +404,7 @@ select:focus {
     color: var(--white-color);
     cursor: pointer;
     font-size: 14px;
-
+    gap: 10px;
     border-radius: 5px;
     background-color: transparent;
     border: 1px solid var(--bright-shade);
@@ -448,7 +448,9 @@ select:focus {
     align-items: center;
     justify-content: center;
     font-weight: 600;
+    gap: 10px;
     cursor: pointer;
+    padding: 10px 20px;
     color: var(--secondary-color-default);
 
 }

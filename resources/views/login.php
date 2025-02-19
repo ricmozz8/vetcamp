@@ -16,7 +16,7 @@ require __DIR__ . '/partials/header.php';
             <form action="/login" method="POST" class="auth-form">
                 <!-- Page Title -->
                 <h1>
-                    <i class="las la-user"></i>
+                    <i class="fas fa-user"></i>
                     Inicia sesión
 
                 </h1>

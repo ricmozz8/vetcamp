@@ -29,7 +29,7 @@ if ($hour >= 5 && $hour < 12) {
         <div class="main-content">
 
             <a onclick="openModal('sidebar')" href="#" class="openSidebar">
-                <i class="las la-bars">
+                <i class="fas fa-bars">
                 </i>
             </a>
 
@@ -38,7 +38,7 @@ if ($hour >= 5 && $hour < 12) {
 
                 <h1 class="welcome"><?= $greeting ?>, <?= Auth::user()->first_name ?></h1>
                 <button class="main-action-bright primary" onclick="openModal('massiveEmailModal')">
-                    <i class="las la-envelope"></i>
+                    <i class="fas fa-envelope"></i>
                     Enviar mensaje
                 </button>
             </header>
@@ -50,7 +50,7 @@ if ($hour >= 5 && $hour < 12) {
                 <div class="stat-card">
                     <div class="stat-header">
                         <h2 class="stat-title">
-                            <i class="las la-id-badge"></i>
+                            <i class="fas fa-id-badge"></i>
                             Solicitantes
                         </h2>
 
@@ -65,7 +65,7 @@ if ($hour >= 5 && $hour < 12) {
                 <div class="stat-card">
                     <div class="stat-header">
                         <h2 class="stat-title">
-                            <i class="las la-user-friends"></i>
+                            <i class="fas fa-user-friends"></i>
                             Registrados
 
                         </h2>
@@ -81,7 +81,7 @@ if ($hour >= 5 && $hour < 12) {
                 <div class="stat-card">
                     <div class="stat-header">
                         <h2 class="stat-title">
-                            <i class="las la-paw"></i>
+                            <i class="fas fa-paw"></i>
                             Interesados en el campamento
 
                         </h2>
