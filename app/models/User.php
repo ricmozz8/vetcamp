@@ -64,7 +64,7 @@ class User extends Model
         return  $apply;
     }
 
-    
+
     /**
      * This returns a list of users that have not yet submitted an application (interested in applying).
      */
@@ -99,7 +99,8 @@ class User extends Model
         try {
             $type = 'user';
             $users = self::allof($type);
-            $applications = Application::all();
+            $applications = Application::all(); 
+                 
             $applicationsByUserId = [];
 
             foreach ($applications as $application) {
@@ -107,13 +108,15 @@ class User extends Model
             }
 
             $result = [];
-
+            
             foreach ($users as $user) {
                 try {
                     $userApplication = $user->application();
 
 
-                    // including applications that have been submitted
+
+            
+                    // including applications that ha   ve been submitted
                     if ( $userApplication !== null && $userApplication->isSubmitted()) {
                         $result[] = $user;
                     }
@@ -121,7 +124,6 @@ class User extends Model
                     continue;
                 }
             }
-
             return $result;
         } catch (Exception $e) {
             ErrorLog::log($e->getMessage(), $e->getFile(), $e->getTraceAsString(), 'error');

@@ -29,7 +29,7 @@ require __DIR__ . '/partials/header.php';
 
                 </div>
                 <div class="table-actions">
-                    <button onclick="openModal('filterApplicationsModal')" class="main-action-bright tertiary">
+                    <button onclick="openModal('filterModalRequest')" class="main-action-bright tertiary">
                         <i class="las la-filter"></i>
                         Filtrar
                     </button>
@@ -97,7 +97,7 @@ require __DIR__ . '/partials/header.php';
             </table>
             <div class="pagination">
                 <?php if ($currentPage > 1): ?>
-                    <a href="?page=<?php echo $currentPage - 1; ?>" class="page-number">Anterior</a>
+                    <a href="?page=<?php echo $currentPage - 1; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>" class="page-number">Anterior</a>
                 <?php endif; ?>
 
                 <?php
@@ -105,38 +105,39 @@ require __DIR__ . '/partials/header.php';
                 $end = min($totalPages, $currentPage + 2);
 
                 if ($start > 1) {
-                    echo '<a href="?page=1" class="page-number">1</a>';
-                    if ($start > 2) {
-                        echo '<span class="page-ellipsis">...</span>';
-                    }
+                    echo '<a href="?page=1&estado=' . (isset($_GET['estado']) ? $_GET['estado'] : '-1') . '" class="page-number">1</a>';
+                if ($start > 2) {
+                    echo '<span class="page-ellipsis">...</span>';
+                }
                 }
 
-                for ($i = $start; $i <= $end; $i++):
-                    ?>
-                    <a href="?page=<?php echo $i; ?>"
-                       class="page-number <?php echo ($i == $currentPage) ? 'active' : ''; ?>">
-                        <?php echo $i; ?>
-                    </a>
-                <?php endfor; ?>
+            for ($i = $start; $i <= $end; $i++):
+            ?>
+                <a href="?page=<?php echo $i; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>"
+                    class="page-number <?php echo ($i == $currentPage) ? 'active' : ''; ?>">
+                <?php echo $i; ?>
+                </a>
+            <?php endfor; ?>
 
-                <?php
-                if ($end < $totalPages) {
-                    if ($end < $totalPages - 1) {
-                        echo '<span class="page-ellipsis">...</span>';
-                    }
-                    echo '<a href="?page=' . $totalPages . '" class="page-number">' . $totalPages . '</a>';
+        <?php
+            if ($end < $totalPages) {
+                if ($end < $totalPages - 1) {
+                    echo '<span class="page-ellipsis">...</span>';
                 }
-                ?>
+                echo '<a href="?page=' . $totalPages . '&estado=' . (isset($_GET['estado']) ? $_GET['estado'] : '-1') . '" class="page-number">' . $totalPages . '</a>';
+            }
+        ?>
 
-                <?php if ($currentPage < $totalPages): ?>
-                    <a href="?page=<?php echo $currentPage + 1; ?>" class="page-number">Siguiente</a>
-                <?php endif; ?>
-            </div>
+    <?php if ($currentPage < $totalPages): ?>
+        <a href="?page=<?php echo $currentPage + 1; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>" class="page-number">Siguiente</a>
+    <?php endif; ?>
+</div>
+
         </div>
 
     </main>
 </div>
-<?php require __DIR__ . '/modals/filterApplicationsModal.php'; ?>
+<?php require __DIR__ . '/modals/filterModalRequest.php'; ?>
 
 <!-- Footer with copyright information -->
 <?php require_once('partials/footer.php'); ?>
