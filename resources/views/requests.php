@@ -30,6 +30,12 @@ require __DIR__ . '/partials/header.php';
 
                 </div>
                 <div class="table-actions">
+                    <?php if (isset($_GET['s'] )|| isset($_GET['doc']) || isset($_GET['date'])) { ?>
+                    <a href="/admin/requests" class="main-action-bright">
+                        <i class="las la-broom"></i>
+                        Eliminar filtros
+                    </a>
+                    <?php } ?>
                     <button onclick="openModal('filterModalRequest')" class="main-action-bright tertiary">
                         <i class="fas fa-filter"></i>
                         Filtrar
