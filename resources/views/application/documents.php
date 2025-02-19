@@ -15,7 +15,7 @@ require __DIR__ . '../../partials/header.php';
 
 <p class="subtext" style="margin: 1em var(--main-margin); text-align: left;">
     Nota: si la plataforma no le permite subir documentos, intente reducir su tamaño comprimiéndolos y luego subirlos.
-    <b style="font-weight: bold">Suba el archivo .mp4 NO suba archivos .zip, .7z, .rar ni parecidos</b> estos formatos
+    <b style="font-weight: bold">Suba el archivo en el formato especificado NO suba archivos .zip, .7z, .rar ni parecidos</b> estos formatos
     no son permitidos.</p>
 
 <p class="warning-box" style="margin: 1em var(--main-margin); text-align: left;">
