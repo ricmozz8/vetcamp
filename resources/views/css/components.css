@@ -324,6 +324,22 @@ a.plain-action:hover {
     display: none;
 }
 
+.semi-rounded-action{
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1.4em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.semi-rounded-action:hover{
+    background-color: var(--bright-shade);
+}
+
 /* Interactive states for nav items */
 .back-dash .nav-item:hover {
     transform: scale(1.05);

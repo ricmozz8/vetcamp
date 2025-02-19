@@ -18,7 +18,18 @@
     display: flex;
     align-items: center;
     gap: 10px;
+
 }
+
+.mini-badge{
+    font-size: .7em;
+    background-color: var(--main-color-default);
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 100px;
+
+}
+
 
 .profile-section-title h1 {
     font-size: 1.6em;

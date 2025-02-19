@@ -193,6 +193,14 @@ input::placeholder{
   color: var(--white-color-shade-3);
 }
 
+abbr{
+  text-decoration: none;
+}
+
+.sb{
+  justify-content: space-between;
+}
+
 
 .top-lbl {
   padding: 5px;

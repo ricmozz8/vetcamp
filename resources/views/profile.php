@@ -13,7 +13,6 @@ require_once __DIR__ . '/partials/header.php';
     <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
 
-
     <!-- Main content area -->
     <div class="main-content">
 
@@ -23,13 +22,29 @@ require_once __DIR__ . '/partials/header.php';
 
             <div class="profile-wrapper">
 
-                <div class="profile-section-title">
-                    <h1>
-                        <i class="las la-clipboard"></i>
-                        Solicitud
-                    </h1>
-                    <a href="/admin/requests"
-                       class=" plain-action"><i class="las la-arrow-left"></i>Volver a las solicitudes</a>
+                <div class="profile-section-title sb">
+
+                    <div class="flex-min">
+                        <h1>
+                            <i class="las la-clipboard"></i>
+                            Solicitud
+                        </h1>
+                        <a href="/admin/requests"
+                           class=" plain-action"><i class="las la-arrow-left"></i>Volver a las solicitudes</a>
+                    </div>
+
+                    <abbr style="display: none" id="open-comment" onclick="toggleCommentSection()"
+                          title="Abrir sección de comentarios">
+                        <a href="#" class="semi-rounded-action"><i class="las la-comment"></i>
+                            <?php
+                            $comment_count = count($application->comments());
+                            if ($comment_count > 0) { ?>
+                                <span class="mini-badge">
+                                <?= $comment_count ?>
+                            </span>
+                            <?php } ?>
+                        </a>
+                    </abbr>
                 </div>
 
 
@@ -203,13 +218,19 @@ require_once __DIR__ . '/partials/header.php';
 
 
             </div>
-            <div class="comment-sidebar">
+            <div class="comment-sidebar" id="comment-section">
 
-                <div class="profile-section-title">
+                <div class="profile-section-title sb">
                     <h1>
                         <i class="las la-comment"></i>
                         Notas
                     </h1>
+
+                    <abbr title="Cerrar sección de comentarios">
+                        <a href="#" onclick="toggleCommentSection()" class="semi-rounded-action">
+                            <i class="las la-download" style="transform: rotate(-90deg)"></i>
+                        </a>
+                    </abbr>
                 </div>
 
                 <div class="comment-padded">
@@ -304,6 +325,27 @@ require_once __DIR__ . '/partials/header.php';
     <?php require(__DIR__ . '/modals/fileViewPopup.php'); ?>
 <?php } ?>
 
+<script>
+    let comment_section = document.getElementById('comment-section');
+    let open_comment = document.getElementById('open-comment');
+
+    let comment_opened = true;
+
+    function toggleCommentSection() {
+        if (comment_opened) {
+            comment_section.style.display = 'none';
+            comment_opened = false;
+            open_comment.style.display = 'block';
+
+        } else {
+            comment_section.style.display = 'block';
+            comment_opened = true;
+            open_comment.style.display = 'none';
+        }
+
+
+    }
+</script>
 
 
 <?php include('modals/messageModal.php') ?>
