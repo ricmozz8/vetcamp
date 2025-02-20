@@ -60,7 +60,8 @@ require __DIR__ . '/partials/header.php';
                         // Set locale to Spanish
 
                         // Loop through the users returned by the User::all() method
-                        foreach ($users as $user) {
+                        foreach ($users as $user) 
+                        {
                             // Get the full name
                             setlocale(LC_TIME, 'es_ES.UTF-8');
                             $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
@@ -76,7 +77,7 @@ require __DIR__ . '/partials/header.php';
                             echo "<td>" . htmlspecialchars($user->application()->status) . "</td>";
                             echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
                             echo "<td>" . '<a class="main-action-bright no-deco-action" href="requests/r?id=' . $user->user_id . '" class="review-link">revisar</a>' . "</td>";
-                            echo "<td>" . '<a class="main-action-bright no-deco-action" href="#" onclick="confirmDeleteModal()">' . '<i class="las la-trash"></i> borrar' . '</a>' . '<td/>';
+                            echo "<td>" . '<a class="main-action-bright no-deco-action" href="#" onclick="confirmDeleteApplicationModal(event, ' . $user->user_id . ')"\><i class="las la-trash"></i> borrar</a>' . "</td>";
                             echo "</tr>";
                         }
                         ?>

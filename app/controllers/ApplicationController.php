@@ -83,6 +83,31 @@ class ApplicationController extends Controller
             'Aplicación'
         );
     }
+    /**
+     * Deletes an application given its ID
+     *
+     * This function is called through an AJAX POST request from the admin dashboard.
+     * It deletes the application with the given ID and all its associated documents.
+     * Redirects to the request list page after deletion.
+     *
+     * @param string $request_method The HTTP request method used to call this function.
+     *
+     * @return void
+     */
+    public static function deleteApplication ($request_method)
+    {
+        if ($request_method !== 'POST') {
+            $_SESSION['error'] = 'Método no permitido.';
+            redirect('/admin/requests');
+        }
+        $application = Application::find($_POST['application_id']);
+        $application->hard_delete();
+        echo "Delete application method called with request method: $request_method";
+        echo "Application ID: " . $_POST['application_id'];
+        redirect('/admin/requests');
+    }
+
+
     public static function updateStatus($request_method)
     {
         if ($request_method === 'POST') {

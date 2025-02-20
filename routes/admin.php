@@ -68,6 +68,8 @@ switch ($path) {
     case '/admin/delete/all/requests':
         SettingsController::deleteAllRequests($method);
         break;
+    case '/admin/delete/application':
+        ApplicationController::deleteApplication($method);
     case '/sessions/update':
         SettingsController::updateSession($method);
         break;
