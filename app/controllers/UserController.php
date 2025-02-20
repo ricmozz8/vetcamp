@@ -57,7 +57,7 @@ class UserController extends Controller
     public static function update($method)
     {
 
-        $turnaround_route = '/profile';
+        $turnaround_route = Auth::user()->type === 'admin' ? '/admin' : '/apply';
 
 
         if ($method == 'POST') {

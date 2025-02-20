@@ -113,7 +113,7 @@ class ApplicationController extends Controller
                 $application->update(['status' => $newStatus]);
                 $user_id = $application->user()->user_id;
 
-//                Tracking::create(['application_id' => $applicationId, 'user_id' => Auth::user()->__get('user_id'), 'decision' => $newStatus]);
+                Tracking::create(['application_id' => $applicationId, 'user_id' => Auth::user()->__get('user_id'), 'decision' => $newStatus]);
 
             } catch (ModelNotFoundException $e) {
                 ErrorLog::log($e->getMessage(), $e->getFile() . ' on line ' . $e->getLine(), $e->getTraceAsString());
