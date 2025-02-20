@@ -13,7 +13,7 @@ class User extends Model
 
     /**
      * Initializes a new instance of the User class
-     * 
+     *
      * @param array $attributes The attributes of the user
      * @param array $sanitized The sanitized values of the user
      */
@@ -25,7 +25,7 @@ class User extends Model
 
     /**
      * Sends an email to the user with the given message
-     * 
+     *
      * @param string $message The message to send to the user
      * @return void
      */
@@ -37,7 +37,7 @@ class User extends Model
 
     /**
      * Returns the sanitized values of the user model
-     * 
+     *
      * @return array An associative array with the sanitized values of the user
      */
     public function get_values()
@@ -47,7 +47,7 @@ class User extends Model
 
     /**
      * Finds the application that belongs to the user
-     * 
+     *
      * @return Application The application instance
      */
     public function application()
@@ -61,7 +61,7 @@ class User extends Model
             return null;
         }
 
-        return  $apply;
+        return $apply;
     }
 
 
@@ -99,8 +99,8 @@ class User extends Model
         try {
             $type = 'user';
             $users = self::allof($type);
-            $applications = Application::all(); 
-                 
+            $applications = Application::all();
+
             $applicationsByUserId = [];
 
             foreach ($applications as $application) {
@@ -108,16 +108,14 @@ class User extends Model
             }
 
             $result = [];
-            
+
             foreach ($users as $user) {
                 try {
                     $userApplication = $user->application();
 
 
-
-            
                     // including applications that ha   ve been submitted
-                    if ( $userApplication !== null && $userApplication->isSubmitted()) {
+                    if ($userApplication !== null && $userApplication->isSubmitted()) {
                         $result[] = $user;
                     }
                 } catch (ModelNotFoundException $notFound) {
@@ -132,39 +130,47 @@ class User extends Model
     }
 
     public static function approvedApplicants()
-{
-    try {
-        $type = 'user';
-        $users = self::allof($type);
-        $applications = Application::all();
+    {
+        try {
+            $type = 'user';
+            $users = self::allof($type);
+            $applications = Application::all();
 
-        $approvedApplicants = [];
+            $approvedApplicants = [];
 
-        foreach ($users as $user) {
-            try {
-                $application = $user->application();
+            foreach ($users as $user) {
+                try {
+                    $application = $user->application();
 
-                if ($application && trim(strtolower($application->status)) === 'aceptado') {
-                    $approvedApplicants[] = [
-                        'user_id' => $user->user_id,
-                        'id_application' => $application->id_application,
-                        'id_preferred_session' => $application->id_preferred_session,
-                    ];
+                    if ($application && trim(strtolower($application->status)) === 'aceptado') {
+                        $approvedApplicants[] = [
+                            'user_id' => $user->user_id,
+                            'id_application' => $application->id_application,
+                            'id_preferred_session' => $application->id_preferred_session,
+                        ];
+                    }
+                } catch (ModelNotFoundException $notFound) {
+                    continue;
                 }
-            } catch (ModelNotFoundException $notFound) {
-                continue;
             }
+
+            //var_dump($approvedApplicants); // Verificar la lista final
+            //exit;
+
+            return $approvedApplicants;
+        } catch (Exception $e) {
+            throw new Exception("An error occurred: " . $e->getMessage());
         }
-
-        //var_dump($approvedApplicants); // Verificar la lista final
-        //exit;
-
-        return $approvedApplicants;
-    } catch (Exception $e) {
-        throw new Exception("An error occurred: " . $e->getMessage());
     }
-}
-    
+
+    /**
+     * Returns the full name of the user with the first and last name appended
+     * @return string The users name and last name as a single string
+     */
+    public function full_name(): string
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 
 
     /**
