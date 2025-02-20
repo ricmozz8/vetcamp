@@ -17,7 +17,7 @@ class AcceptedController extends Controller
         if (Auth::user()->type != 'admin') {
             redirect('/login');
         }
-        
+
         $approvedApplicants = User::approvedApplicants();
 
         $sessions = [];

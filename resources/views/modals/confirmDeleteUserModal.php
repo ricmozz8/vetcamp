@@ -33,7 +33,6 @@
         <?php } else { ?>
             <form action="/users/delete" method="POST">
                 <input type="hidden" name="user_id" value="<?= $user->user_id ?>">
-
                 <div class="modal-actions">
                     <a class="main-action-bright" onclick=<?= "closeModal('confirmDeleteUserModal-" . $loop . "')" ?>>Cancelar</a>
                     <button class="main-action-bright danger" onclick=<?= "closeModal('confirmDeleteUserModal-" . $loop . "')" ?>>Eliminar</button>

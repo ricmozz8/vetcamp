@@ -1,12 +1,16 @@
 <?php
 require_once 'app/controllers/UserController.php';
+
 require_once 'app/controllers/BackDashboardController.php';
+
 require_once 'app/controllers/SettingsController.php';
 require_once 'app/controllers/RegisteredController.php';
 require_once 'app/controllers/RequestsController.php';
+
 require_once 'app/controllers/TrackingController.php';
 require_once 'app/controllers/ApplicationController.php';
 require_once 'app/controllers/AcceptedController.php';
+
 require_once 'app/controllers/MessagesController.php';
 require_once 'app/controllers/CommentController.php';
 require_once 'app/controllers/ErrorsController.php';
@@ -27,7 +31,6 @@ if (strpos($path, '/admin') === 0) {
 }
 
 switch ($path) {
-
     case '/admin':
         BackDashboardController::index();
         break;
@@ -57,8 +60,8 @@ switch ($path) {
     case '/admin/settings':
         SettingsController::index();
         break;
-    case '/admin/settings/e/all':
     case '/admin/settings/e/rejected':
+    case '/admin/settings/e/all':
     case '/admin/settings/e/approved':
         SettingsController::updateMessage($method);
         break;
@@ -74,7 +77,11 @@ switch ($path) {
     case '/admin/delete/all/requests':
         SettingsController::deleteAllRequests($method);
         break;
+    case '/admin/delete/application':
+        ApplicationController::deleteApplication($method);
+        break;
     case '/sessions/create':
+
     case '/sessions/update':
         SettingsController::updateSession($method);
         break;
