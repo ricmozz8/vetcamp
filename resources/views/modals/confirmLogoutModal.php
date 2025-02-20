@@ -7,7 +7,7 @@
         </div>
         <form action="/logout" method="POST">
             <div class="modal-actions">
-                <button class="main-action-bright danger"><i class="fas fa-sign-out-alt"></i> Salir</button>
+                <button type="submit" class="main-action-bright danger"><i class="fas fa-sign-out-alt"></i> Salir</button>
             </div>
         </form>
     </div>

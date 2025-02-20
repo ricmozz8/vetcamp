@@ -282,6 +282,17 @@ a.plain-action:hover {
     background-color: white;
 }
 
+.badge{
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: var(--main-color-default);
+    color: var(--secondary-color-default);
+    font-weight: 600;
+    font-size: 1em;
+    width: fit-content;
+}
+
+
 /* Logo container - houses branding elements */
 .back-dash .logo-container {
     display: flex;
@@ -334,6 +345,7 @@ a.plain-action:hover {
     gap: 10px;
     cursor: pointer;
     transition: all 0.25s ease;
+    width: fit-content;
 }
 
 .semi-rounded-action:hover{
@@ -485,6 +497,61 @@ select {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid var(--white-color-shade-1);
+}
+
+.simple-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 1em 0;
+    padding: 1em;
+
+}
+
+.simple-form h2{
+    font-weight: 500;
+
+}
+
+.setting-flex-action{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 1em 0;
+    padding: 1em;
+}
+.setting-flex-action h3{
+    font-weight: 600;
+}
+
+.section-divider{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    border-bottom: 1px solid black;
+    margin: 1em 0;
+    font-weight: 600;
+}
+
+.section-divider *{
+    font-weight: 600;
+}
+
+.danger-section {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    color: var(--danger-color);
+    border-bottom: 1px solid var(--danger-color);
+    margin: 1em 0;
+    font-weight: 600;
+}
+
+.danger-section h4{
+    font-weight: 600;
 }
 
 /*******************************
