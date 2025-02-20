@@ -325,16 +325,35 @@ require_once __DIR__ . '/partials/header.php';
 
     let comment_opened = true;
 
+    // this saves the option when the user wants to close the comment section (always hide)
+    document.addEventListener('DOMContentLoaded', function () {
+
+        if (document.cookie.includes('prefers_closed_comments=true')) {
+            comment_opened = false;
+            open_comment.style.display = 'block';
+            comment_section.style.display = 'none';
+
+        } else {
+            comment_opened = true;
+            open_comment.style.display = 'none';
+            comment_section.style.display = 'block';
+            document.cookie = "prefers_closed_comments=false; path=/";
+        }
+        
+    })
+
     function toggleCommentSection() {
         if (comment_opened) {
             comment_section.style.display = 'none';
             comment_opened = false;
             open_comment.style.display = 'block';
+            document.cookie = "prefers_closed_comments=true; path=/";
 
         } else {
             comment_section.style.display = 'block';
             comment_opened = true;
             open_comment.style.display = 'none';
+            document.cookie = "prefers_closed_comments=false; path=/";
         }
 
 
