@@ -52,6 +52,8 @@ switch ($path) {
     case '/profile/update':
         UserController::update($method);
         break;
+    case '/fatal':
+        render_view('fatal');
 
 
     default:

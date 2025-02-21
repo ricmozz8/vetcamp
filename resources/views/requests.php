@@ -75,13 +75,16 @@ require __DIR__ . '/partials/header.php';
                         </thead>
                         <tbody>
 
-                        <?php foreach ($users as $user):
+                        <?php
+                        $loop = 1;
+                        foreach ($users as $user):
 
                             setlocale(LC_TIME, 'es_ES.UTF-8');
                             $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
                             $pictureObj = $user->application()->getProfilePicture();
                             $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
                             $application = $user->application();
+
                             ?>
                             <tr>
                                 <td><a href="/admin/p?user=<?= $user->user_id ?>&from=requests"><img src="<?= $src ?>"
@@ -92,29 +95,30 @@ require __DIR__ . '/partials/header.php';
                                 <td class="selectable"><?= htmlspecialchars($user->email) ?></td>
                                 <td><?= htmlspecialchars($application ? $application->documentCount() : 0) ?>/7</td>
                                 <td>
-                                    <p class="st-badge status-badge-alt-<?= str_replace(' ', '-', strtolower($application->status)) ?>">
-                                        <?= $application->status ?>
-                                    </p>
+                                    <p class="st-badge status-badge-alt-<?= str_replace(' ', '-', strtolower($application->status)) ?>"><?= $application->status ?></p>
                                 </td>
                                 <td><?= htmlspecialchars(get_date_spanish($user->created_at)) ?></td>
                                 <td><a
-                                       href="requests/r?id=<?= $user->user_id ?>"
-                                       class="review-link"><i class="fas fa-eye"></i>revisar</a></td>
+                                            href="requests/r?id=<?= $user->user_id ?>"
+                                            class="review-link"><i class="fas fa-eye"></i>revisar</a></td>
                                 <td>
-                                    <a class="review-link danger" href="#" onclick="">
+                                    <a class="review-link danger" href="#"
+                                       onclick="openModal('confirmDeleteApplicationModal-<?= $loop ?>')">
                                         <i class="fas fa-trash"></i> borrar
                                     </a>
                                 </td>
                             </tr>
-
+                            <?php $loop++; ?>
                         <?php endforeach; ?>
+
+
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="pagination">
                 <?php if ($currentPage > 1): ?>
-                    <a href="?page=<?php echo $currentPage - 1; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>"
+                    <a href="?page=<?php echo $currentPage - 1; ?>&estado=<?php echo $_GET['estado'] ?? '-1'; ?>"
                        class="page-number">Anterior</a>
                 <?php endif; ?>
 
@@ -123,7 +127,7 @@ require __DIR__ . '/partials/header.php';
                 $end = min($totalPages, $currentPage + 2);
 
                 if ($start > 1) {
-                    echo '<a href="?page=1&estado=' . (isset($_GET['estado']) ? $_GET['estado'] : '-1') . '" class="page-number">1</a>';
+                    echo '<a href="?page=1&estado=' . ($_GET['estado'] ?? '-1') . '" class="page-number">1</a>';
                     if ($start > 2) {
                         echo '<span class="page-ellipsis">...</span>';
                     }
@@ -131,7 +135,7 @@ require __DIR__ . '/partials/header.php';
 
                 for ($i = $start; $i <= $end; $i++):
                     ?>
-                    <a href="?page=<?php echo $i; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>"
+                    <a href="?page=<?php echo $i; ?>&estado=<?php echo $_GET['estado'] ?? '-1'; ?>"
                        class="page-number <?php echo ($i == $currentPage) ? 'active' : ''; ?>">
                         <?php echo $i; ?>
                     </a>
@@ -142,17 +146,26 @@ require __DIR__ . '/partials/header.php';
                     if ($end < $totalPages - 1) {
                         echo '<span class="page-ellipsis">...</span>';
                     }
-                    echo '<a href="?page=' . $totalPages . '&estado=' . (isset($_GET['estado']) ? $_GET['estado'] : '-1') . '" class="page-number">' . $totalPages . '</a>';
+                    echo '<a href="?page=' . $totalPages . '&estado=' . ($_GET['estado'] ?? '-1') . '" class="page-number">' . $totalPages . '</a>';
                 }
                 ?>
 
                 <?php if ($currentPage < $totalPages): ?>
-                    <a href="?page=<?php echo $currentPage + 1; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>"
+                    <a href="?page=<?php echo $currentPage + 1; ?>&estado=<?php echo $_GET['estado'] ?? '-1'; ?>"
                        class="page-number">Siguiente</a>
                 <?php endif; ?>
             </div>
 
         </div>
+
+        <?php
+        $loop = 1;
+        foreach ($users as $user): ?>
+            <?php require __DIR__ . "/modals/confirmDeleteApplicationModal.php";
+
+            $loop++;
+            ?>
+        <?php endforeach; ?>
 
     </main>
 </div>

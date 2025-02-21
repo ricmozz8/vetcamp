@@ -93,6 +93,7 @@ class ApplicationController extends Controller
             'Solicitud'
         );
     }
+
     /**
      * Deletes an application given its ID
      *
@@ -104,19 +105,26 @@ class ApplicationController extends Controller
      *
      * @return void
      */
-    public static function deleteApplication ($request_method)
+    public static function deleteApplication(string $request_method)
     {
-        if ($request_method !== 'POST') {
-            $_SESSION['error'] = 'Método no permitido.';
-            redirect('/admin/requests');
+        if ($request_method === "POST") {
+
+            $application_id = filter_input(INPUT_POST, 'application_id', FILTER_VALIDATE_INT);
+            try {
+
+                $application = Application::find($application_id);
+                $application->hard_delete();
+
+            } catch (ModelNotFoundException $e) {
+
+                $_SESSION['error'] = 'Solicitud no encontrada.';
+
+            }
         }
-        $application = Application::find($_POST['application_id']);
-        $application->hard_delete();
-        echo "Delete application method called with request method: $request_method";
-        echo "Application ID: " . $_POST['application_id'];
+
+        $_SESSION['message'] = 'Solicitud eliminada correctamente.';
         redirect('/admin/requests');
     }
-
 
 
     public static function updateStatus($request_method)
@@ -233,7 +241,6 @@ class ApplicationController extends Controller
                     $statusMap = array_flip(Application::$statusParsings);
                     // Translate the final decision
                     $finalDecision = $statusMap[$application->status] ?? 'Desconocido';
-
 
 
                     // Write to the CSV file

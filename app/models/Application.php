@@ -2,6 +2,7 @@
 require_once 'Model.php';
 require_once 'User.php';
 require_once 'Comment.php';
+require_once 'Tracking.php';
 
 define('REQUIRED_DOCUMENTS_AMOUNT', 7);
 
@@ -301,6 +302,13 @@ class Application extends Model
 
         }
 
+        // remove all evaluations for this application
+        $evaluations = $this->tracking();
+
+        foreach ($evaluations as $evaluation) {
+            $evaluation->delete();
+        }
+
         // remove any associated comments
         $comments = $this->comments();
 
@@ -311,6 +319,15 @@ class Application extends Model
         // finally, delete the application record
         return $this->delete();
 
+    }
+
+    public function tracking(){
+
+        try{
+            return Tracking::findAllBy(['application_id' => $this->__get('id_application')]);
+        } catch (ModelNotFoundException $e) {
+            return [];
+        }
     }
 
 
