@@ -107,16 +107,16 @@ $statusParsing = [
                                     <?= htmlspecialchars($status) ?>
                                 </td>
                                 <td><?= htmlspecialchars(get_date_spanish($user->created_at)) ?></td>
-                                <td><a class="main-action-bright no-deco-action"
+                                <td><a
                                        href="/admin/registered/r?id=<?= $user->user_id ?>&action=active"
                                        class="review-link">Activar</a>
                                 </td>
-                                <td><a class="main-action-bright no-deco-action"
+                                <td><a
                                        href="/admin/registered/r?id=<?= $user->user_id ?>&action=disabled"
                                        class="review-link">Desactivar</a>
                                 </td>
                                 <td><a onclick="openModal('confirmDeleteUserModal-<?= $loop++ ?>')"
-                                       class="main-action-bright no-deco-action" href="#" class="review-link"><i
+                                       class="review-link danger" href="#" class="review-link"><i
                                                 class="fas fa-trash"></i> borrar</a></td>
                             </tr>
                         <?php } ?>

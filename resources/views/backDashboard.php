@@ -105,25 +105,25 @@ if ($hour >= 5 && $hour < 12) {
 
                     <div class="recent-list">
                         <?php
-                        foreach ($recent_applications as $application) {
+                        foreach ($recent_applications as $user) {
 
-                            if (!$application->application()->isComplete()) {
+                            if (!$user->application()->isComplete()) {
                                 continue;
                             }
 
 
                             // Get the full name
-                            $full_name = htmlspecialchars($application->first_name . ' ' . $application->last_name . ' ');
-                            $pictureObj = $application->application()->getProfilePicture();
+                            $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name . ' ');
+                            $pictureObj = $user->application()->getProfilePicture();
                             $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
 
-                            echo "<div class='recent-application'>";
-                            echo "<img src=\"$src\" alt=\"Image\" class=\"profile-picture\">";
-                            echo "<td>" . $full_name . "</td>";
-                            echo "<td>" . htmlspecialchars($application->email) . "</td>";
-                            echo "</div>";
-                        }
-                        ?>
+                            ?>
+                            <div class='recent-application'>
+                                <a href="/admin/p?user=<?= $user->user_id ?>"><img  src="<?php echo $src; ?>" alt="Image" class="profile-picture"></a>
+                                <td><?php echo $full_name; ?></td>
+                                <td><?php echo htmlspecialchars($user->email); ?></td>
+                            </div>
+                            <?php } ?>
                     </div>
 
                     <div class="button-container">

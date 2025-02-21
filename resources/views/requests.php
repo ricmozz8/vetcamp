@@ -97,11 +97,11 @@ require __DIR__ . '/partials/header.php';
                                     </p>
                                 </td>
                                 <td><?= htmlspecialchars(get_date_spanish($user->created_at)) ?></td>
-                                <td><a class="main-action-bright no-deco-action"
+                                <td><a
                                        href="requests/r?id=<?= $user->user_id ?>"
-                                       class="review-link">revisar</a></td>
+                                       class="review-link"><i class="fas fa-eye"></i>revisar</a></td>
                                 <td>
-                                    <a class="main-action-bright no-deco-action" href="#" onclick="">
+                                    <a class="review-link danger" href="#" onclick="">
                                         <i class="fas fa-trash"></i> borrar
                                     </a>
                                 </td>

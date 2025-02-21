@@ -39,6 +39,23 @@
   background-color: transparent;
 }
 
+.review-link{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+.review-link:hover{
+  text-decoration: underline;
+}
+
+.review-link.danger{
+  color: var(--danger-color);
+}
+
 .listed-table{
   margin: 1em auto;
   max-width: 1200px;
