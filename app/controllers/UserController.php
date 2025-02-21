@@ -448,6 +448,10 @@ class UserController extends Controller
             // method is GET
             try {
                 $user = User::find($userId);
+
+                if($user->__get('user_id') == Auth::user()->__get('user_id')){
+                    redirect('/profile');
+                }
             } catch (ModelNotFoundException $notFound) {
                 $_SESSION['error'] = 'El usuario no existe.';
                 redirect('/admin' . $from);

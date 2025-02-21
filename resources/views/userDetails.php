@@ -54,13 +54,14 @@ if (!$isAdmin) {
                 <p class="badge">
                     <span class="badge">Admin</span>
                 </p>
-            <?php } ?>
+            <?php } else { ?>
 
 
             <div class="flex-min">
-                <p class="flex-min"><i class="fas fa-phone"></i> +1 <?= format_phone($user->phone_number) ?>
+                <p class="flex-min"><i class="fas fa-phone"></i> +1 <?= format_phone($user->phone_number ?? '') ?>
                 </p>
             </div>
+            <?php } ?>
 
             <br>
             <?php if ($user->application() && $user->application()->status !== 'Sin subir') { ?>
