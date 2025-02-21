@@ -14,10 +14,10 @@
 
             <input type="hidden" name="application_id" value="<?= $user->application()->id_application ?>">
 
-            <div class="modal-actions">
+        <div class="modal-actions">
                 <a class="main-action-bright"
                    onclick=<?= "closeModal('confirmDeleteApplicationModal-" . $loop . "')" ?>>Cancelar</a>
-                <button class="main-action-bright danger"
+                <button type="submit" class="main-action-bright danger"
                         onclick=<?= "closeModal('confirmDeleteApplicationModal-" . $loop . "')" ?>>Eliminar
                 </button>
             </div>
