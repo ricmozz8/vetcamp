@@ -101,7 +101,7 @@ $statusParsing = [
                                     </a>
                                 </td>
                                 <td><?= $full_name ?></td>
-                                <td><?= htmlspecialchars($user->email) ?></td>
+                                <td class="selectable"><?= htmlspecialchars($user->email) ?></td>
                                 <td class="status-badge">
                                     <i class="fas fa-dot-circle" style="color: <?= $statusColor ?>"></i>
                                     <?= htmlspecialchars($status) ?>

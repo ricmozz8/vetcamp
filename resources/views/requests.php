@@ -89,7 +89,7 @@ require __DIR__ . '/partials/header.php';
                                                                                                      class="profile-picture"></a>
                                 </td>
                                 <td><?= $full_name ?></td>
-                                <td><?= htmlspecialchars($user->email) ?></td>
+                                <td class="selectable"><?= htmlspecialchars($user->email) ?></td>
                                 <td><?= htmlspecialchars($application ? $application->documentCount() : 0) ?>/7</td>
                                 <td>
                                     <p class="st-badge status-badge-alt-<?= str_replace(' ', '-', strtolower($application->status)) ?>">
