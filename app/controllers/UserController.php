@@ -2,6 +2,7 @@
 require_once 'Controller.php';
 require_once 'app/models/User.php';
 
+const CONFIRMATION_TEXT = 'borrar mi cuenta';
 
 class UserController extends Controller
 {
@@ -83,8 +84,8 @@ class UserController extends Controller
 
 
             try {
-                $user_with_email = User::findBy(['email' => $email]) ;
-            } catch (ModelNotFoundException $e){
+                $user_with_email = User::findBy(['email' => $email]);
+            } catch (ModelNotFoundException $e) {
                 $user_with_email = null;
             }
 
@@ -100,10 +101,10 @@ class UserController extends Controller
                 'last_name' => $last_name
             ]);
 
-                $_SESSION['message'] = 'Perfil actualizado correctamente';
+            $_SESSION['message'] = 'Perfil actualizado correctamente';
 
-                // reload the new user on session
-                Auth::refresh();
+            // reload the new user on session
+            Auth::refresh();
 
         }
         redirect($turnaround_route);
@@ -125,7 +126,6 @@ class UserController extends Controller
 
 
         if ($method !== 'POST') {
-            $_SESSION['error'] = 'Acceso no autorizado';
             redirect_back();
         }
 
@@ -179,6 +179,10 @@ class UserController extends Controller
 
     }
 
+    /**
+     * Shows the form to edit the profile
+     * @throws ViewNotFoundException if the view file was not found
+     */
     public static function edit($method)
     {
         if (!Auth::check()) {
@@ -186,6 +190,93 @@ class UserController extends Controller
         }
 
         render_view('profileEdit', [], 'Tu Perfil');
+    }
+
+    public static function passwordChange($method)
+    {
+        if (!Auth::check()) {
+            redirect('/login');
+        }
+
+        $turnaround_route = '/profile';
+
+        if ($method == 'POST') {
+            $old_password = filter_input(INPUT_POST, 'old_password');
+            $new_password = filter_input(INPUT_POST, 'new_password');
+            $confirm_password = filter_input(INPUT_POST, 'confirm_new_password');
+
+            // check that all inputs were passed
+            if ($old_password == null || $new_password == null || $confirm_password == null) {
+                $_SESSION['error'] = 'Por favor, rellene todos los campos';
+                redirect($turnaround_route);
+            }
+
+            // check if the password confirmation and the new password are the same
+            if ($new_password !== $confirm_password) {
+                $_SESSION['error'] = 'Las contraseñas no coinciden';
+                redirect($turnaround_route);
+            }
+
+            if (strlen($new_password) < 8) {
+                $_SESSION['error'] = 'La contraseña debe tener al menos 8 caracteres';
+                redirect($turnaround_route);
+            }
+
+            if (!password_verify($old_password, Auth::user()->__get('password'))) {
+                // the user entered their wrong password
+                $_SESSION['error'] = 'Contraseña actual incorrecta';
+                redirect($turnaround_route);
+            }
+
+            // passed all checks, update the user
+
+            Auth::user()->update(['password' => password_hash($new_password, PASSWORD_DEFAULT)]);
+            Auth::refresh();
+
+            $_SESSION['message'] = 'Contraseña actualizada';
+        }
+
+        redirect($turnaround_route);
+    }
+
+    /**
+     * Operation for when the users choose to delete their account from the site.
+     * @param $method string Either GET or POST depending on the request. This method will only
+     * accept the POST method. Since it is a DELETE method.
+     *
+     *
+     **/
+    public static function destroy($method)
+    {
+
+
+        $turnaround_route = '/profile';
+
+        if ($method === 'POST') {
+
+            $confirmation_text = filter_input(INPUT_POST, 'confirmation_text');
+
+            if (!$confirmation_text || strtolower($confirmation_text) !== CONFIRMATION_TEXT) {
+                $_SESSION['error'] = 'Por favor, escribe "borrar mi cuenta" en el campo de texto';
+                redirect($turnaround_route);
+            }
+
+            // verify if the user is an admin or regular user
+            try {
+                Auth::user()->purge();
+                $_SESSION['message'] = 'Tu cuenta ha sido eliminada';
+            } catch (Exception $e) {
+                ErrorLog::log($e->getMessage(), $e->getFile() . ' on line ' . $e->getLine(), $e->getTraceAsString());
+                $_SESSION['error'] = 'Hubo un error al eliminar tu cuenta';
+                redirect($turnaround_route);
+
+            }
+            // The Auth provider will log out the user automatically when the user is not found
+            // if the account was not deleted then the turnaround will return to the profile
+            Auth::user();
+
+
+        }
     }
 }
 

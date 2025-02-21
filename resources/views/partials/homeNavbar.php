@@ -8,7 +8,7 @@
             <div class="flex no-mobile">
                 <p style="text-wrap: nowrap;">¡Hola, <?= Auth::user()->first_name ?>!</p>
                 <?php if (Auth::user()->type === 'admin'): ?>
-                    <a class="main-action-bright tertiary" href="/admin">Panel de Administrador</a>
+                    <a class="main-action-bright tertiary" href="/admin"><i class="fas fa-cog"></i></a>
                 <?php else: ?>
                     <a class="main-action-bright tertiary" href="/apply">¡Solicita!</a>
                 <?php endif; ?>

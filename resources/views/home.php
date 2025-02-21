@@ -156,7 +156,7 @@ require __DIR__ . '/partials/header.php';
         <div class="logo-special-titled">
             <img class="icon-small-vt" src=<?= asset('logo/SVG/vetcamp-icon-white.svg') ?> alt="Vetcamp Verano 2023">
             <h3>10 Años</h3>
-            <p>Formando la nueva generación de apasionados a la medicina veterinaria.</p>
+            <p>Formando la nueva generación de veterinarios en Puerto Rico.</p>
         </div>
 
         <div class="tilted-images-scroller">

@@ -2,7 +2,7 @@
 
     <a href="/profile" class="">
         <i class="fas fa-user"></i>
-        Tu cuenta
+        Mi cuenta
     </a>
     <a onclick="openModal('logoutModal')" href="#" class="nav-danger">
         <i class="fas fa-sign-out-alt"></i>

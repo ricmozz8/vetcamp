@@ -4,6 +4,9 @@ require_once 'Application.php';
 require_once 'SchoolAddress.php';
 require_once 'PostalAddress.php';
 require_once 'PhysicalAddress.php';
+require_once 'Comment.php';
+require_once 'Tracking.php';
+
 
 class User extends Model
 {
@@ -162,6 +165,84 @@ class User extends Model
             throw new Exception("An error occurred: " . $e->getMessage());
         }
     }
+
+    /**
+     * This will delete every instance of this user on the database
+     * */
+    public function purge()
+    {
+
+        if ($this->type === 'admin') {
+
+            // admins contain comments and evaluations, nothing more
+            foreach ($this->comments() as $comment) {
+                $comment->delete();
+            }
+
+            foreach ($this->evaluations() as $evaluation) {
+                $evaluation->delete();
+            }
+
+        } else{
+            // The regular users contain physical, postal and school addresses, also the application if exists
+            if($this->application() !== null){
+                $this->application()->hard_delete();
+            }
+            if($this->school_address() !== null){
+                $this->school_address()->delete();
+            }
+            if($this->postal_address() !== null){
+                $this->postal_address()->delete();
+            }
+            if($this->physical_address() !== null){
+                $this->physical_address()->delete();
+            }
+
+        }
+
+        return $this->delete();
+
+    }
+
+    /**
+     * @return array the array of this users comments
+     * @throws Error if the method was called on non-admin users
+     */
+    public function comments(): array
+    {
+
+        if ($this->type !== 'admin') {
+            throw new Error('This method can only be called by admins');
+        }
+
+        try {
+            $comments = Comment::findAllBy(['user_id' => $this->__get('user_id')]);
+        } catch (ModelNotFoundException $e) {
+            return [];
+        }
+        return $comments;
+
+    }
+
+    /**
+     * @return array The evaluations the user made
+     * @throws Error if the method was called on a non-admin user
+     */
+    public function evaluations()
+    {
+        if ($this->type !== 'admin') {
+            throw new Error('This method can only be called by admins');
+        }
+
+        try {
+            $evaluations = Tracking::findAllBy(['user_id' => $this->__get('user_id')]);
+        } catch (ModelNotFoundException $e) {
+            return [];
+        }
+        return $evaluations;
+
+    }
+
 
     /**
      * Returns the full name of the user with the first and last name appended

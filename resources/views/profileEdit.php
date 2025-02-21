@@ -103,18 +103,18 @@ $isAdmin = Auth::user()->type === 'admin';
         <form class="simple-form" action="/profile/password/change" method="post">
             <h2>Cambiar contraseña</h2>
             <div class="form-group">
-                <label for="current-password">Contraseña actual</label>
-                <input required type="password" name="current-password" id="current-password"
+                <label for="old_password">Contraseña actual <i class="fas fa-eye password-toggle pt-1" onclick="togglePassword('old_password', 'pt-1')"></i></label>
+                <input required type="password" name="old_password" id="old_password" class="old-password"
                        placeholder="Contraseña Actual">
             </div>
             <div class="form-group">
-                <label for="new-password">Crea una contraseña (Mínimo 8 caracteres)</label>
-                <input required pattern=".{8,}" type="password" name="new-password" id="new-password"
+                <label for="new_password">Crea una contraseña (Mínimo 8 caracteres) <i class="fas fa-eye password-toggle pt-2" onclick="togglePassword('new_password', 'pt-2')"></i></label>
+                <input required pattern=".{8,}" type="password" name="new_password" id="new_password" class="new-password"
                        placeholder="Nueva contraseña">
             </div>
             <div class="form-group">
-                <label for="confirm-new-password">Crea una contraseña</label>
-                <input required pattern=".{8,}" type="password" name="confirm-new-password" id="confirm-new-password"
+                <label for="confirm_new_password">Confirma la nueva contraseña <i class="fas fa-eye password-toggle pt-3"  onclick="togglePassword('confirm_new_password', 'pt-3')"></i></label>
+                <input required pattern=".{8,}" type="password" name="confirm_new_password" class="confirm-pass" id="confirm_new_password"
                        placeholder="Confirma la nueva contraseña">
             </div>
 

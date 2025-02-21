@@ -32,4 +32,10 @@ switch ($path) {
     case '/profile':
         UserController::edit($method);
         break;
+    case '/profile/password/change':
+        UserController::passwordChange($method);
+        break;
+    case '/profile/u/delete':
+        UserController::destroy($method);
+        break;
     }

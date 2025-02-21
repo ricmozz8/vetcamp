@@ -15,10 +15,10 @@
                 asignen una nueva, y se perderán todos los datos.
             </p>
         <?php } ?>
-        <form action="/user/delete" method="POST">
+        <form action="/profile/u/delete" method="POST">
             <div class="form-group">
                 <label for="confirmation-text">Escribe 'borrar mi cuenta' para confirmar la acción</label>
-                <input type="text" required name="confirmation-text" id="confirmation-text" placeholder="Escribe 'borrar mi cuenta'"/>
+                <input type="text" required name="confirmation_text" id="confirmation-text" placeholder="Escribe 'borrar mi cuenta'"/>
 
             </div>
             <div class="modal-actions">
