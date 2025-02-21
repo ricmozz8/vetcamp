@@ -115,7 +115,7 @@ class User extends Model
 
 
                     // including applications that ha   ve been submitted
-                    if ($userApplication !== null && $userApplication->isSubmitted()) {
+                    if ($userApplication !== null && $userApplication->isSubmitted() && $user->status === "active") {
                         $result[] = $user;
                     }
                 } catch (ModelNotFoundException $notFound) {
@@ -142,7 +142,7 @@ class User extends Model
                 try {
                     $application = $user->application();
 
-                    if ($application && trim(strtolower($application->status)) === 'aceptado') {
+                    if ($application && trim(strtolower($application->status)) === 'aceptado' && $user->status === "active") {
                         $approvedApplicants[] = [
                             'user_id' => $user->user_id,
                             'id_application' => $application->id_application,
