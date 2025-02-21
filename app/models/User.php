@@ -205,7 +205,7 @@ class User extends Model
     }
 
     /**
-     * @return array the array of this users comments
+     * @return array the array of these users comments
      * @throws Error if the method was called on non-admin users
      */
     public function comments(): array

@@ -160,6 +160,10 @@ h6 {
   font-family: var(--display-font-family), sans-serif;
 }
 
+strong{
+  font-weight: bold;
+}
+
 input[type="checkbox"] {
   cursor: pointer;
   width: 15px;

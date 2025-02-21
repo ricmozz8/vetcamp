@@ -2,7 +2,8 @@
 require_once 'Controller.php';
 require_once 'app/models/User.php';
 
-const CONFIRMATION_TEXT = 'borrar mi cuenta';
+const DELETE_USER_CONFIRMATION_TEXT = 'borrar mi cuenta';
+const RESCIND_APPLICATION_CONFIRMATION_TEXT = 'borrar mi solicitud';
 
 class UserController extends Controller
 {
@@ -256,7 +257,7 @@ class UserController extends Controller
 
             $confirmation_text = filter_input(INPUT_POST, 'confirmation_text');
 
-            if (!$confirmation_text || strtolower($confirmation_text) !== CONFIRMATION_TEXT) {
+            if (!$confirmation_text || strtolower($confirmation_text) !== DELETE_USER_CONFIRMATION_TEXT) {
                 $_SESSION['error'] = 'Por favor, escribe "borrar mi cuenta" en el campo de texto';
                 redirect($turnaround_route);
             }
@@ -277,6 +278,156 @@ class UserController extends Controller
 
 
         }
+    }
+
+    /** Generic controller for change actions on profile edit view
+     * @param string $action Must correspond to the user data (phone, physical, postal and school)
+     * @param string $method Either GET/POST
+     * @throws ViewNotFoundException if the passed action is invalid
+     */
+    public static function change(string $action, string $method)
+    {
+        if (!in_array($action, ['phone', 'physical', 'postal', 'school']))
+            throw new ViewNotFoundException("Invalid option '$action' for this method");
+
+        $message = '';
+
+        if ($method === 'POST') {
+
+            if ($action === 'phone') {
+                $new_phone = filter_input(INPUT_POST, 'phone_number');
+
+                if (empty($new_phone)) {
+                    $_SESSION['error'] = 'El teléfono no puede estar vacío';
+
+                } else {
+                    Auth::user()->update(['phone_number' => $new_phone]);
+                    $message = 'Teléfono actualizado exitosamente';
+                }
+
+
+            } else if ($action === 'physical') {
+
+                $aline1 = filter_input(INPUT_POST, 'physical_aline1');
+                $aline2 = filter_input(INPUT_POST, 'physical_aline2');
+                $city = filter_input(INPUT_POST, 'physical_city');
+                $zip = filter_input(INPUT_POST, 'physical_zip');
+
+                if (empty($aline1) || empty($city) || empty($zip)) {
+                    $_SESSION['error'] = 'Por favor rellene todos los campos';
+                } else {
+                    $physical_address = Auth::user()->physical_address();
+
+                    if (!$physical_address) {
+                        PhysicalAddress::create([
+                            'user_id' => Auth::user()->__get('user_id'),
+                            'aline1' => $aline1,
+                            'aline2' => $aline2,
+                            'city' => $city,
+                            'zip_code' => $zip
+                        ]);
+
+                    } else {
+                        $physical_address->update([
+                            'aline1' => $aline1,
+                            'aline2' => $aline2,
+                            'city' => $city,
+                            'zip_code' => $zip,
+                        ]);
+                    }
+
+                    $message = 'Dirección física actualizada exitosamente';
+                }
+
+            } else if ($action === 'postal') {
+                $aline1 = filter_input(INPUT_POST, 'postal_aline1');
+                $aline2 = filter_input(INPUT_POST, 'postal_aline2');
+                $city = filter_input(INPUT_POST, 'postal_city');
+                $zip = filter_input(INPUT_POST, 'postal_zip');
+                if (empty($aline1) || empty($city) || empty($zip)) {
+                    $_SESSION['error'] = 'Por favor rellene todos los campos';
+                } else {
+                    $postal_address = Auth::user()->postal_address();
+                    if (!$postal_address) {
+                        PostalAddress::create([
+                            'user_id' => Auth::user()->__get('user_id'),
+                            'aline1' => $aline1,
+                            'aline2' => $aline2,
+                            'city' => $city,
+                            'zip_code' => $zip
+                        ]);
+                    } else {
+                        $postal_address->update([
+                            'aline1' => $aline1,
+                            'aline2' => $aline2,
+                            'city' => $city,
+                            'zip_code' => $zip,
+
+                        ]);
+                    }
+                    $message = 'Dirección postal actualizada exitosamente';
+                }
+            } else if ($action === 'school') {
+
+                $school_type = filter_input(INPUT_POST, 'schoolType');
+                $street = filter_input(INPUT_POST, 'school_aline1');
+                $city = filter_input(INPUT_POST, 'school_city');
+                $zip = filter_input(INPUT_POST, 'school_zip');
+
+                if (empty($school_type) || empty($street) || empty($city) || empty($zip)) {
+                    $_SESSION['error'] = 'Por favor rellene todos los campos';
+                } else {
+                    $school_address = Auth::user()->school_address();
+
+                    if (!$school_address) {
+                        SchoolAddress::create([
+                            'user_id' => Auth::user()->__get('user_id'),
+                            'school_type' => $school_type,
+                            'street' => $street,
+                            'city' => $city,
+                            'zip_code' => $zip
+                        ]);
+                    } else {
+                        $school_address->update([
+                            'school_type' => $school_type,
+                            'street' => $street,
+                            'city' => $city,
+                            'zip_code' => $zip,
+                        ]);
+                    }
+                }
+                $message = 'Dirección de la escuela actualizada exitosamente';
+
+            }
+
+        }
+
+        if ($message !== '')
+            $_SESSION['message'] = $message;
+
+        redirect('/profile');
+
+
+    }
+
+    public static function rescindApplication($method)
+    {
+
+        if ($method == 'POST') {
+
+            $confirmation_text = filter_input(INPUT_POST, 'confirmation_text');
+
+            if ($confirmation_text !== RESCIND_APPLICATION_CONFIRMATION_TEXT)
+                $_SESSION['error'] = 'Por favor, escribe "borrar mi solicitud" en el campo de texto';
+            else {
+                Auth::user()->application()->hard_delete();
+            }
+
+            $_SESSION['message'] = 'Tu solicitud ha sido eliminada';
+
+        }
+
+        redirect('/profile');
     }
 }
 

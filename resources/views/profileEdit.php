@@ -5,6 +5,11 @@ require_once __DIR__ . '/partials/header.php';
 
 
 $isAdmin = Auth::user()->type === 'admin';
+
+if (!$isAdmin) {
+    $application = Auth::user()->application();
+    $hasPhoto = $application !== null && $application->url_picture !== null;
+}
 ?>
 <body>
 <!--- Define your structure here --->
@@ -15,7 +20,7 @@ $isAdmin = Auth::user()->type === 'admin';
     <div class="big-actions">
 
         <?php
-        if ($isAdmin || !Auth::user()->application()) {
+        if ($isAdmin || !$hasPhoto) {
             $badgeUser = Auth::user();
             require 'partials/userBadge.php';
         } else { // the user has profile picture
@@ -42,7 +47,20 @@ $isAdmin = Auth::user()->type === 'admin';
                     <span class="badge">Admin</span>
                 </p>
 
-            <?php } ?>
+            <?php } else { ?>
+                <div class="flex-min">
+                    <p class="flex-min"><i class="fas fa-phone"></i> +1 <?= format_phone(Auth::user()->phone_number) ?>
+                    </p>
+                    <a onclick="openModal('phoneNumberEditModal')" href="#" class="semi-rounded-action"><i
+                                class="fas fa-pencil"></i></a>
+                </div>
+
+            <?php }
+            require __DIR__ . '/modals/phoneNumberEditModal.php';
+            require __DIR__ . '/modals/postalEditModal.php';
+            require __DIR__ . '/modals/physicalEditModal.php';
+            require __DIR__ . '/modals/schoolEditModal.php';
+            ?>
         </div>
     </div>
 
@@ -58,7 +76,7 @@ $isAdmin = Auth::user()->type === 'admin';
                 <div class="grid-data-box-header">
 
                     <h2>Dirección Postal</h2>
-                    <span class="semi-rounded-action"><i id="edit-icon" class="fas fa-pencil"></i></span>
+                    <span onclick="openModal('postalEditModal')" class="semi-rounded-action"><i id="edit-icon" class="fas fa-pencil"></i></span>
                 </div>
                 <?php if (Auth::user()->postal_address()) { ?>
                     <p class="composed-address"><?= Auth::user()->postal_address()->build() ?></p>
@@ -69,7 +87,7 @@ $isAdmin = Auth::user()->type === 'admin';
                 <div class="grid-data-box-header">
 
                     <h2>Dirección Física</h2>
-                    <span class="semi-rounded-action"><i id="edit-icon" class="fas fa-pencil"></i></span>
+                    <span onclick="openModal('physicalEditModal')" class="semi-rounded-action"><i id="edit-icon" class="fas fa-pencil"></i></span>
                 </div>
                 <?php if (Auth::user()->physical_address()) { ?>
                     <p class="composed-address"><?= Auth::user()->physical_address()->build() ?></p>
@@ -80,7 +98,7 @@ $isAdmin = Auth::user()->type === 'admin';
                 <div class="grid-data-box-header">
 
                     <h2>Dirección de la escuela</h2>
-                    <span class="semi-rounded-action"><i id="edit-icon" class="fas fa-pencil"></i></span>
+                    <span onclick="openModal('schoolEditModal')" class="semi-rounded-action"><i id="edit-icon" class="fas fa-pencil"></i></span>
                 </div>
                 <?php if (Auth::user()->school_address()) { ?>
                     <p class="composed-address"><?= Auth::user()->school_address()->build() ?></p>
@@ -103,18 +121,25 @@ $isAdmin = Auth::user()->type === 'admin';
         <form class="simple-form" action="/profile/password/change" method="post">
             <h2>Cambiar contraseña</h2>
             <div class="form-group">
-                <label for="old_password">Contraseña actual <i class="fas fa-eye password-toggle pt-1" onclick="togglePassword('old_password', 'pt-1')"></i></label>
+                <label for="old_password">Contraseña actual <i class="fas fa-eye password-toggle pt-1"
+                                                               onclick="togglePassword('old_password', 'pt-1')"></i></label>
                 <input required type="password" name="old_password" id="old_password" class="old-password"
                        placeholder="Contraseña Actual">
             </div>
             <div class="form-group">
-                <label for="new_password">Crea una contraseña (Mínimo 8 caracteres) <i class="fas fa-eye password-toggle pt-2" onclick="togglePassword('new_password', 'pt-2')"></i></label>
-                <input required pattern=".{8,}" type="password" name="new_password" id="new_password" class="new-password"
+                <label for="new_password">Crea una contraseña (Mínimo 8 caracteres) <i
+                            class="fas fa-eye password-toggle pt-2"
+                            onclick="togglePassword('new_password', 'pt-2')"></i></label>
+                <input required pattern=".{8,}" type="password" name="new_password" id="new_password"
+                       class="new-password"
                        placeholder="Nueva contraseña">
             </div>
             <div class="form-group">
-                <label for="confirm_new_password">Confirma la nueva contraseña <i class="fas fa-eye password-toggle pt-3"  onclick="togglePassword('confirm_new_password', 'pt-3')"></i></label>
-                <input required pattern=".{8,}" type="password" name="confirm_new_password" class="confirm-pass" id="confirm_new_password"
+                <label for="confirm_new_password">Confirma la nueva contraseña <i
+                            class="fas fa-eye password-toggle pt-3"
+                            onclick="togglePassword('confirm_new_password', 'pt-3')"></i></label>
+                <input required pattern=".{8,}" type="password" name="confirm_new_password" class="confirm-pass"
+                       id="confirm_new_password"
                        placeholder="Confirma la nueva contraseña">
             </div>
 
@@ -126,7 +151,7 @@ $isAdmin = Auth::user()->type === 'admin';
 
         <span class="danger-section">
             <h4 class="flex-min"><i class="fas fa-circle-exclamation"></i>Cambios irreversibles</h4>
-            <p>Tenga cuidado al accionar las opciones a continuación, pues pueden causar la eliminación de datos de forma irreversible.</p>
+            <p>Tenga cuidado al accionar las opciones a continuación, pues pueden causar la <strong>eliminación de datos de forma irreversible.</strong></p>
         </span>
 
         <div class="danger-actions-group">
@@ -137,10 +162,12 @@ $isAdmin = Auth::user()->type === 'admin';
             </div>
             <?php if (!$isAdmin && Auth::user()->application()) { ?>
                 <div class="setting-flex-action">
-                    <h3>Eliminar solicitud</h3>
-                    <a href="#" class="main-action-bright danger"><i class="fas fa-trash"></i>Eliminar</a>
+                    <h3>Rescindir solicitud</h3>
+                    <a onclick="openModal('confirmRemoveApplicationModal')" href="#" class="main-action-bright danger"><i class="fas fa-trash"></i>Eliminar</a>
                 </div>
-            <?php } ?>
+            <?php }
+            require __DIR__ . '/modals/confirmRemoveApplicationModal.php';
+            ?>
         </div>
     </div>
 
