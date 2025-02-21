@@ -124,12 +124,17 @@ class Storage
     }
 
 
-    public static function check_free()
+    /**
+     * Checks the free disk space and renders an error view if space is below a specified threshold.
+     * @param float|int $threshold the minimum bytes required for the system to run. Default is 60
+     * @return void
+     */
+    public static function check_free($threshold = 100 * 1024 * 1024)
     {
         $free = disk_free_space(".");
 
-        if ($free == 0) {
-            render_view('fatal', ['reason' => 'disk'], 'Fatal');
+        if ($free <= 60 * 1024 * 1024) {
+            render_view('fatal', ['reason' => 'disk'], 'Error grave');
         }
 
     }

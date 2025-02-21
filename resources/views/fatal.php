@@ -38,29 +38,37 @@ require_once __DIR__ . '/partials/header.php';
     }
 
     .centerme{
-        margin-top: 25dvh;
+        margin-top: 15dvh;
         justify-content: center;
+        text-align: left;
+        text-wrap: nowrap;
 
     }
 
     .centerme p{
         font-family: monospace !important;
+        user-select: all !important;
+
     }
 
 </style>
 <!--- Define your structure here --->
 
 <div class="all-centered">
-    <img draggable="false" class="fatal-icon" src="<?= asset('/logo/svg/vet-error.svg') ?>" alt="Vetcamp fatal error">
+    <img draggable="false" class="fatal-icon" src="/<?= asset('/logo/svg/fatal-icon.svg') ?>" alt="Vetcamp fatal error">
 
     <h3>¡Oh no!</h3>
-    <h4>¡Ha ocurrido un error fatal!</h4>
+    <h4>Nos hemos encontrado con un problema</h4>
 
-    <p>Nos encontramos trabajando en el asunto y lo resolveremos en breve.</p>
+    <p>No te preocupes, esto no ha sido tu culpa. Nos encontramos trabajando en el asunto y lo resolveremos en breve.</p>
 
     <div class="flex-min centerme">
-        <img class="small-reason" src="<?= asset('/logo/svg/code-nd00.svg') ?>" alt="">
-        <p>Could not ensure byte allocation</p>
+        <img class="small-reason" src="/<?= asset('/logo/svg/code-nd00.svg') ?>" alt="">
+        <strong>Datos técnicos:</strong>
+        <?php if($reason === 'disk') { ?>
+        <p>Could not ensure byte allocation on current server disk, please free or move the current location.
+        </p>
+        <?php } ?>
     </div>
 </div>
 </body>
