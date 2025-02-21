@@ -2,7 +2,7 @@
 
 /**
  * This class will handle storage of files in various locations on the Storage folder
- * 
+ *
  */
 class Storage
 {
@@ -67,7 +67,7 @@ class Storage
     public static function get($disk, $path)
     {
         self::setDisk($disk);
-        $file_path =  'storage/' . $disk . '/' . $path;
+        $file_path = 'storage/' . $disk . '/' . $path;
 
         if (file_exists($file_path) && is_readable($file_path)) {
             // get the name and size
@@ -121,5 +121,15 @@ class Storage
 
         // delete the file
         unlink($file_path);
+    }
+
+
+    public static function check_free()
+    {
+        $free = disk_free_space(".");
+        if ($free == 0) {
+            render_view('fatal', ['reason' => 'disk'], 'Fatal');
+        }
+
     }
 }

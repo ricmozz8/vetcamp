@@ -35,7 +35,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8');
 date_default_timezone_set('America/Puerto_Rico');
 
 // Let the router handle all requests
-
+Storage::check_free();
 
 
 include 'routes/web.php';

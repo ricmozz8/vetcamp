@@ -53,8 +53,8 @@ switch ($path) {
         UserController::update($method);
         break;
     case '/fatal':
-        render_view('fatal');
-
+        render_view('fatal', [], '¡Oh no!');
+        break;
 
     default:
         abort(404, 'Page was not found');
