@@ -187,6 +187,10 @@ class UserController extends Controller
 
         render_view('profileEdit', [], 'Tu Perfil');
     }
+
+    public static function changeStatus($id) {
+        echo "hello world";
+    }
 }
 
 

@@ -260,4 +260,9 @@ class User extends Model
         $interval = $birth_date->diff($current_date);
         return $interval->y;
     }
+
+    public static function updateStatus(string $table, array $data, string $where, string $equal)
+    {
+        return DB::update($table, $data, $where, $equal);
+    }
 }

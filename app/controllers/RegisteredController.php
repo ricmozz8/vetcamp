@@ -68,5 +68,21 @@ class RegisteredController extends Controller
         ], 'Usuarios');
     }
 
+    public static function changeStatus($id, $action) {
+        if($id){
+            $user = User::find($id);
+            //evitar un query sin sentido
+            if ($action === $user->status) {
+                $_SESSION['error'] = "Ya el usuario tiene ese estado.";
+                redirect('/admin/registered');
+            }
+        } 
+        else {
+            RegisteredController::index();
+        }
+        
+        User::updateStatus('users', ['status' => $action], 'user_id', $id);
+        RegisteredController::index();
+    }
     // define your other methods here
 }

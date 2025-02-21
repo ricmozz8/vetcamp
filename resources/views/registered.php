@@ -82,6 +82,8 @@ $statusParsing = [
                     echo "<td class='status-badge'>" . '<i class="fas fa-dot-circle" style="color: ' . $statusColor . '" > </i>' . htmlspecialchars($status) . "</td>";
                     echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
                     // echo '<td>' . '<a id="manage-user-button" href="#" onclick="openContextMenu(event, \'manage-user\')" class="w-fit main-action-bright quaternary-squared">' . '<i class="fas fa-ellipsis-v"></i>' . '</a>' . '</td>';
+                    echo '<td><a class="main-action-bright no-deco-action" href="/admin/registered/r?id=' . $user->user_id . '&action=active" class="review-link">Activar</a></td>';
+                    echo '<td><a class="main-action-bright no-deco-action" href="/admin/registered/r?id=' . $user->user_id . '&action=disabled" class="review-link">Desactivar</a></td>';
                     echo '<td>' . '<a onclick="openModal(\'confirmDeleteUserModal-' . $loop++ . '\')" class="main-action-bright no-deco-action" href="#' . '" class="review-link"> <i class="fas fa-trash"></i> borrar</a>' . "</td>";
                     echo "</tr>";
                 }
