@@ -429,6 +429,31 @@ class UserController extends Controller
 
         redirect('/profile');
     }
+
+    public static function details($userId, $from, $method)
+    {
+
+        if (!$userId)
+            redirect_back();
+
+
+        if ($method == 'POST') {
+        } else {
+            // method is GET
+            $user = User::find($userId);
+
+            if (!in_array($from, ['registered', 'requests'])){
+                $from = '';
+            } else {
+                $from = '/'.$from;
+            }
+
+
+            render_view('userDetails', ['user' => $user, 'from'=>$from], 'Perfil de ' . $user->first_name);
+        }
+
+        redirect('/');
+    }
 }
 
 

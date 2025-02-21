@@ -24,7 +24,6 @@ $statusParsing = [
     <main class="main-content">
         <!-- Secondary logo container -->
 
-
         <div class="listed-table">
             <div class="header">
                 <h2 class="welcome">Usuarios</h2>
@@ -52,6 +51,7 @@ $statusParsing = [
                 <thead>
                 <tr>
 
+                    <th>Perfil</th>
                     <th>Nombre</th>
                     <th>Correo</th>
                     <th>Estado</th>
@@ -66,35 +66,61 @@ $statusParsing = [
                 // Loop through the users returned by the User::all() method
                 $loop = 1;
                 foreach ($users as $user) {
-                    // Get the full name
-                    $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
-                    $status = htmlspecialchars($user->status);
-                    $statusColor = $status === 'active' ? '#11df11' : '#df1111';
+                // Get the full name
+                $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
+                $status = htmlspecialchars($user->status);
+                $statusColor = $status === 'active' ? '#11df11' : '#df1111';
 
-                    if (isset($statusParsing[$status])) {
-                        $status = $statusParsing[$status];
-                    }
-
-
-                    echo "<tr>";
-                    echo "<td>" . $full_name . "</td>";
-                    echo "<td>" . htmlspecialchars($user->email) . "</td>";
-                    echo "<td class='status-badge'>" . '<i class="fas fa-dot-circle" style="color: ' . $statusColor . '" > </i>' . htmlspecialchars($status) . "</td>";
-                    echo "<td>" . htmlspecialchars(get_date_spanish($user->created_at)) . "</td>";
-                    // echo '<td>' . '<a id="manage-user-button" href="#" onclick="openContextMenu(event, \'manage-user\')" class="w-fit main-action-bright quaternary-squared">' . '<i class="fas fa-ellipsis-v"></i>' . '</a>' . '</td>';
-                    echo '<td><a class="main-action-bright no-deco-action" href="/admin/registered/r?id=' . $user->user_id . '&action=active" class="review-link">Activar</a></td>';
-                    echo '<td><a class="main-action-bright no-deco-action" href="/admin/registered/r?id=' . $user->user_id . '&action=disabled" class="review-link">Desactivar</a></td>';
-                    echo '<td>' . '<a onclick="openModal(\'confirmDeleteUserModal-' . $loop++ . '\')" class="main-action-bright no-deco-action" href="#' . '" class="review-link"> <i class="fas fa-trash"></i> borrar</a>' . "</td>";
-                    echo "</tr>";
+                if (isset($statusParsing[$status])) {
+                    $status = $statusParsing[$status];
                 }
 
 
                 ?>
+                <tr>
+                    <td>
+                        <a href="/admin/p?user=<?=$user->__get('user_id')?>&from=registered">
+                            <?php
+                            $application = $user->application();
+                            $hasPhoto = $application && $application->url_picture;
+
+                            if($hasPhoto){
+                                $profile = $application->getProfilePicture();
+                                $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
+                                ?>
+                                <img src="<?=$src ?>" alt="Foto de perfil de <?= $full_name ?>" class="profile-picture">
+                            <?php } else {
+                                $badgeUser = $user;
+                                require __DIR__ . '/partials/userBadge.php';
+                            }
+
+                            ?>
+                        </a>
+                    </td>
+                    <td><?= $full_name ?></td>
+                    <td><?= htmlspecialchars($user->email) ?></td>
+                    <td class="status-badge">
+                        <i class="fas fa-dot-circle" style="color: <?= $statusColor ?>"></i>
+                        <?= htmlspecialchars($status) ?>
+                    </td>
+                    <td><?= htmlspecialchars(get_date_spanish($user->created_at)) ?></td>
+                    <td><a class="main-action-bright no-deco-action"
+                           href="/admin/registered/r?id=<?= $user->user_id ?>&action=active"
+                           class="review-link">Activar</a>
+                    </td>
+                    <td><a class="main-action-bright no-deco-action"
+                           href="/admin/registered/r?id=<?= $user->user_id ?>&action=disabled" class="review-link">Desactivar</a>
+                    </td>
+                    <td><a onclick="openModal('confirmDeleteUserModal-<?= $loop++ ?>')"
+                           class="main-action-bright no-deco-action" href="#" class="review-link"><i
+                                    class="fas fa-trash"></i> borrar</a></td>
+                </tr>
+                <?php } ?>
                 </tbody>
             </table>
             <div class="pagination">
                 <?php if ($currentPage > 1): ?>
-                    <a href="?page=<?php echo $currentPage - 1; ?>" class="page-number">Anterior</a>
+                <a href="?page=<?php echo $currentPage - 1; ?>" class="page-number">Anterior</a>
                 <?php endif; ?>
 
                 <?php
@@ -102,31 +128,33 @@ $statusParsing = [
                 $end = min($totalPages, $currentPage + 2);
 
                 if ($start > 1) {
-                    echo '<a href="?page=1" class="page-number">1</a>';
-                    if ($start > 2) {
-                        echo '<span class="page-ellipsis">...</span>';
-                    }
+                echo '<a href="?page=1" class="page-number">1</a>';
+                if ($start > 2) {
+                echo '<span class="page-ellipsis">...</span>';
+                }
                 }
 
-                for ($i = $start; $i <= $end; $i++):
-                    ?>
-                    <a href="?page=<?php echo $i; ?>"
-                       class="page-number <?php echo ($i == $currentPage) ? 'active' : ''; ?>">
-                        <?php echo $i; ?>
-                    </a>
+                for ($i = $start;
+                $i <= $end;
+                $i++):
+                ?>
+                <a href="?page=<?php echo $i; ?>"
+                   class="page-number <?php echo ($i == $currentPage) ? 'active' : ''; ?>">
+                    <?php echo $i; ?>
+                </a>
                 <?php endfor; ?>
 
                 <?php
                 if ($end < $totalPages) {
-                    if ($end < $totalPages - 1) {
-                        echo '<span class="page-ellipsis">...</span>';
-                    }
-                    echo '<a href="?page=' . $totalPages . '" class="page-number">' . $totalPages . '</a>';
+                if ($end < $totalPages - 1) {
+                echo '<span class="page-ellipsis">...</span>';
+                }
+                echo '<a href="?page=' . $totalPages . '" class="page-number">' . $totalPages . '</a>';
                 }
                 ?>
 
                 <?php if ($currentPage < $totalPages): ?>
-                    <a href="?page=<?php echo $currentPage + 1; ?>" class="page-number">Siguiente</a>
+                <a href="?page=<?php echo $currentPage + 1; ?>" class="page-number">Siguiente</a>
                 <?php endif; ?>
             </div>
 
@@ -154,9 +182,9 @@ $statusParsing = [
         // Loop through the users returned by the User::all() method
         $loop = 1;
         foreach ($users as $user) {
-            $user_id = $user->user_id;
-            require __DIR__ . '/modals/confirmDeleteUserModal.php';
-            $loop++;
+        $user_id = $user->user_id;
+        require __DIR__ . '/modals/confirmDeleteUserModal.php';
+        $loop++;
         }
 
         ?>

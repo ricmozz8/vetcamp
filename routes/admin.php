@@ -59,6 +59,11 @@ switch ($path) {
         $action = $_GET['action'] ?? null;
         RegisteredController::changeStatus($idToStatus, $action);
         break;
+    case '/admin/p':
+        $userId = $_GET['user'] ?? null;
+        $from = $_GET['from'] ?? null;
+        UserController::details($userId, $from, $method);
+        break;
         
     case '/admin/accepted':
         AcceptedController::index();

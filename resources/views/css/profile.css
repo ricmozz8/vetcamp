@@ -1,14 +1,14 @@
-.big-profile{
+.big-profile {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    margin: 10dvh auto;
+    margin: 5dvh auto;
     align-items: center;
     text-align: center;
     justify-content: center;
 }
 
-.big-actions .profile-badge, .big-actions img{
+.big-actions .profile-badge, .big-actions img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -17,15 +17,15 @@
     margin: 10px auto;
     justify-content: center;
     font-size: 3.3em;
-    transition: all 0.25s ease  ;
+    transition: all 0.25s ease;
 
 }
 
-.user-manage-section{
+.user-manage-section {
     padding: 2em;
 }
 
-.user-data-grid{
+.user-data-grid {
     display: grid;
     grid-template-columns: 1fr;
 
@@ -40,7 +40,7 @@
 
 }
 
-.grid-data-box{
+.grid-data-box {
     padding: 2em;
     display: flex;
     flex-direction: column;
@@ -49,44 +49,46 @@
     margin: 1em;
 
 }
-.grid-data-box-header{
+
+.grid-data-box-header {
     display: flex;
     align-items: baseline;
     gap: 1em;
     justify-content: center;
 }
-.grid-data-box-header i{
+
+.grid-data-box-header i {
     font-size: 1em;
 }
 
-.grid-data-box-header #edit-icon{
+.grid-data-box-header #edit-icon {
     font-size: .7em;
 }
 
-.grid-data-box h2{
+.grid-data-box h2 {
     font-size: 1.3em;
     font-weight: 500;
     margin-bottom: 1em;
 }
 
 
-.big-actions h1{
+.big-actions h1 {
     font-size: 2.1em;
     font-weight: bold;
 }
 
-.profile-user{
+.profile-user {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-.profile-user i{
+.profile-user i {
     font-size: .7em;
 }
 
-.profile-action-group{
+.profile-action-group {
     padding: 2em;
     border-radius: 10px;
 
@@ -95,14 +97,14 @@
     transition: all 0.25s ease;
 }
 
-.profile-header{
+.profile-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1em;
 }
 
-.profile-header h1{
+.profile-header h1 {
     font-size: 1.6em;
     font-weight: 500;
 }
@@ -118,6 +120,11 @@
     box-shadow: var(--shadow-xl);
 }
 
+.no-data-disc{
+    color: gray;
+    font-style: italic;
+
+}
 
 .profile-section-title {
     padding: 10px;
@@ -130,7 +137,7 @@
 
 }
 
-.mini-badge{
+.mini-badge {
     font-size: .7em;
     background-color: var(--main-color-default);
     font-weight: bold;
@@ -183,6 +190,17 @@
     font-weight: bold;
 }
 
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 1em;
+    border-bottom: 1px solid var(--bright-shade);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 
 .profile-badge {
     display: flex;
@@ -194,6 +212,7 @@
     border-radius: 100px;
     background-color: var(--main-color-shade-3);
     text-transform: uppercase;
+    width: fit-content;
 }
 
 .comment-info {
@@ -488,20 +507,20 @@
         grid-template-columns: 1fr 1fr;
     }
 
-    .user-data-grid{
+    .user-data-grid {
         grid-template-columns: 1fr 1fr 1fr;
         background-color: white;
         justify-items: stretch;
         padding: 0;
     }
 
-    .profile-action-group{
+    .profile-action-group {
         background-color: white;
         box-shadow: var(--shadow-xl);
         border: 1px solid var(--bright-shade);
     }
-    
-    .grid-data-box{
+
+    .grid-data-box {
         background-color: white;
         box-shadow: var(--shadow-xl);
         border: 1px solid var(--bright-shade);
@@ -509,7 +528,7 @@
         margin: 0;
     }
 
-    .grid-data-box-header{
+    .grid-data-box-header {
         text-align: left;
         justify-content: start;
         justify-items: start;
@@ -551,7 +570,7 @@
 }
 
 @media only screen and (min-width: 1400px) {
-    .profile-action-group{
+    .profile-action-group {
         border: 1px solid var(--bright-shade);
     }
 }

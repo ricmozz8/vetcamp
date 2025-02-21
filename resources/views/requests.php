@@ -78,7 +78,7 @@ require __DIR__ . '/partials/header.php';
                     $application = $user->application();
                 ?>
                     <tr>
-                        <td><a href="requests/r?id=<?= $user->user_id ?>"><img src="<?= $src ?>" alt="Image"
+                        <td><a href="/admin/p?user=<?= $user->user_id ?>&from=requests"><img src="<?= $src ?>" alt="Image"
                                                                                class="profile-picture"></a></td>
                         <td><?= $full_name ?></td>
                         <td><?= htmlspecialchars($user->email) ?></td>
