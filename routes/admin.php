@@ -64,7 +64,9 @@ switch ($path) {
         $from = $_GET['from'] ?? null;
         UserController::details($userId, $from, $method);
         break;
-        
+    case '/admin/m':
+        UserController::message($method);
+        break;
     case '/admin/accepted':
         AcceptedController::index();
         break;

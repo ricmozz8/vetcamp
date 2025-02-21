@@ -231,6 +231,13 @@ abbr{
   background-color: var(--accessibility-color-shade-1);
 }
 
+.flex-nosp{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+
+}
+
 
 .top-lbl {
   padding: 5px;

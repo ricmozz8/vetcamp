@@ -460,6 +460,34 @@ class UserController extends Controller
 
         redirect('/');
     }
+
+    public static function message($method)
+    {
+        if ($method == 'POST') {
+            $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
+
+            if(!$user_id){
+                $_SESSION['error'] = 'Hubo un error al enviar el mensaje';
+                redirect('/');
+            }
+            $message = filter_input(INPUT_POST, 'message');
+            $subject = 'Mensaje de ' . Auth::user()->first_name . ' de ' . 'Vetcamp';
+
+            try {
+                $user = User::find($user_id);
+                // mail the user
+                Mailer::send($user->email, $subject, $message);
+                $_SESSION['message'] = "Mensaje enviado a $user->email exitosamente";
+            } catch (ModelNotFoundException $notFound) {
+                $_SESSION['error'] = 'El usuario no existe.';
+            } catch (Exception $e) {
+                $_SESSION['error'] = 'Hubo un error al enviar el mensaje';
+            }
+
+            redirect('/admin/p?user=' . $user_id);
+
+        }
+    }
 }
 
 

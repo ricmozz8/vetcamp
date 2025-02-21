@@ -18,6 +18,8 @@ if (!$isAdmin) {
 <div class="section-header">
 
     <a href="/admin<?= $from ?? '' ?>" class="main-action-bright"><i class="las la-arrow-left"></i> Volver</a>
+
+    <a onclick="openModal('singleMessageModal')" href="#" class="main-action-bright secondary" ><i class="fas fa-envelope"></i>Enviar mensaje</a>
 </div>
 
 <div class="big-profile">
@@ -125,12 +127,14 @@ if (!$isAdmin) {
         Usuario registrado por primera vez el <?= get_date_spanish($user->created_at) ?>.
     </p>
 
+
+
 </div>
 
 <?php
 require 'partials/footer.php';
-include(__DIR__ . '/modals/userProfileEditModal.php');
-require __DIR__ . '/modals/confirmDeleteAccountModal.php';
+include(__DIR__ . '/modals/singleMessageModal.php');
+
 ?>
 
 </body>
