@@ -28,6 +28,7 @@
     transition: all 0.2s ease;
     margin-bottom: 45vh;
     user-select: none;
+    animation: fadeUp .75s ease;
 }
 
 .application-deco-banner img {
