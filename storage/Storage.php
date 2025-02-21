@@ -127,6 +127,7 @@ class Storage
     public static function check_free()
     {
         $free = disk_free_space(".");
+
         if ($free == 0) {
             render_view('fatal', ['reason' => 'disk'], 'Fatal');
         }
