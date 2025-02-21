@@ -10,11 +10,18 @@
             <i class="fas fa-cog"></i>
             Administración
         </a>
+
+
+        <a href="#" class="">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Auditoría
+        </a>
+
     <?php } ?>
 
     <a href="/profile" class="">
         <i class="fas fa-user"></i>
-        Mi cuenta
+        Perfil
     </a>
     <a onclick="openModal('logoutModal')" href="#" class="nav-danger">
         <i class="fas fa-sign-out-alt"></i>

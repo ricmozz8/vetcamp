@@ -35,8 +35,8 @@ if (!isset($selected)) {
         <a href="/admin/accepted" class="nav-item <?php if ($selected == 'accepted') {
             echo 'active';
         } ?>">
-            <i class="fas fa-check"></i>
-            <span>Aceptados</span>
+            <i class="fas fa-calendar"></i>
+            <span>Matrícula</span>
         </a>
         <a href="/admin/settings" class="nav-item <?php if ($selected == 'settings') {
             echo 'active';

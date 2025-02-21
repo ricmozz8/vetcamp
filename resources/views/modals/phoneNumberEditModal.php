@@ -5,8 +5,6 @@
             <i class="fas fa-phone"></i>
             Editar teléfono
         </h2>
-
-
         <form action="/profile/phone/update" method="POST">
             <div class="form-group">
                 <label for="phone_number">Número de teléfono</label>
@@ -19,7 +17,5 @@
 
             </div>
         </form>
-
-
     </div>
 </div>
