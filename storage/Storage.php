@@ -133,7 +133,7 @@ class Storage
     {
         $free = disk_free_space(".");
 
-        if ($free <= 60 * 1024 * 1024) {
+        if ($free <= $threshold) {
             render_view('fatal', ['reason' => 'disk'], 'Error grave');
         }
 
