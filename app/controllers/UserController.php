@@ -436,17 +436,23 @@ class UserController extends Controller
         if (!$userId)
             redirect_back();
 
+        if (!in_array($from, ['registered', 'requests'])){
+            $from = '';
+        } else {
+            $from = '/'.$from;
+        }
+
 
         if ($method == 'POST') {
         } else {
             // method is GET
-            $user = User::find($userId);
-
-            if (!in_array($from, ['registered', 'requests'])){
-                $from = '';
-            } else {
-                $from = '/'.$from;
+            try {
+                $user = User::find($userId);
+            } catch (ModelNotFoundException $notFound) {
+                $_SESSION['error'] = 'El usuario no existe.';
+                redirect('/admin' . $from);
             }
+
 
 
             render_view('userDetails', ['user' => $user, 'from'=>$from], 'Perfil de ' . $user->first_name);
