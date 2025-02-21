@@ -9,7 +9,7 @@ require __DIR__ . '/partials/header.php';
 <!--- Define your structure here --->
 <?php require_once('partials/profileNav.php'); ?>
 <div class="back-dash">
-    <script src="<?= web_resource('js/posterTable.js')?>"></script>
+    <script src="<?= web_resource('js/posterTable.js') ?>"></script>
 
     <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
@@ -30,11 +30,11 @@ require __DIR__ . '/partials/header.php';
 
                 </div>
                 <div class="table-actions">
-                    <?php if (isset($_GET['s'] )|| isset($_GET['doc']) || isset($_GET['date'])) { ?>
-                    <a href="/admin/requests" class="main-action-bright">
-                        <i class="fa-solid fa-filter-circle-xmark"></i>
-                        Eliminar filtros
-                    </a>
+                    <?php if (isset($_GET['s']) || isset($_GET['doc']) || isset($_GET['date'])) { ?>
+                        <a href="/admin/requests" class="main-action-bright">
+                            <i class="fa-solid fa-filter-circle-xmark"></i>
+                            Eliminar filtros
+                        </a>
                     <?php } ?>
                     <button onclick="openModal('filterModalRequest')" class="main-action-bright tertiary">
                         <i class="fas fa-filter"></i>
@@ -54,53 +54,64 @@ require __DIR__ . '/partials/header.php';
                     </div>
                 </div>
             </div>
-            <table>
-                <thead>
-                <tr>
-                    <th>Perfil</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th order="down" class="actionable-header" id="order-doc" onclick="toggleDocumentOrder(this)"> Documentos<i id="sort-icon-documents"   class=""></i></th>
-                    <th style="cursor: pointer" onclick="openModal('filterModalRequest')">Estado</th>
-                    <th order="down" class="actionable-header" id="order-date" onclick="toggleDateOrder(this)">Fecha <i id="sort-icon-date"  class=""></i></th>
-                    <th>Acción</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
+            <div class="stat-card">
+                <div class="stat-number">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Perfil</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th order="down" class="actionable-header" id="order-doc"
+                                onclick="toggleDocumentOrder(this)">
+                                Documentos<i id="sort-icon-documents" class=""></i></th>
+                            <th style="cursor: pointer" onclick="openModal('filterModalRequest')">Estado</th>
+                            <th order="down" class="actionable-header" id="order-date" onclick="toggleDateOrder(this)">
+                                Fecha
+                                <i id="sort-icon-date" class=""></i></th>
+                            <th>Acción</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                <?php foreach ($users as $user):
+                        <?php foreach ($users as $user):
 
-                    setlocale(LC_TIME, 'es_ES.UTF-8');
-                    $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
-                    $pictureObj = $user->application()->getProfilePicture();
-                    $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
-                    $application = $user->application();
-                ?>
-                    <tr>
-                        <td><a href="/admin/p?user=<?= $user->user_id ?>&from=requests"><img src="<?= $src ?>" alt="Image"
-                                                                               class="profile-picture"></a></td>
-                        <td><?= $full_name ?></td>
-                        <td><?= htmlspecialchars($user->email) ?></td>
-                        <td><?= htmlspecialchars($application ? $application->documentCount() : 0) ?>/7</td>
-                        <td>
-                            <p class="st-badge status-badge-alt-<?= str_replace(' ', '-', strtolower($application->status)) ?>">
-                                <?= $application->status ?>
-                            </p>
-                        </td>
-                        <td><?= htmlspecialchars(get_date_spanish($user->created_at)) ?></td>
-                        <td><a class="main-action-bright no-deco-action" href="requests/r?id=<?= $user->user_id ?>"
-                               class="review-link">revisar</a></td>
-                        <td>
-                            <a class="main-action-bright no-deco-action" href="#" onclick="">
-                                <i class="fas fa-trash"></i> borrar
-                            </a>
-                        </td>
-                    </tr>
+                            setlocale(LC_TIME, 'es_ES.UTF-8');
+                            $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
+                            $pictureObj = $user->application()->getProfilePicture();
+                            $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
+                            $application = $user->application();
+                            ?>
+                            <tr>
+                                <td><a href="/admin/p?user=<?= $user->user_id ?>&from=requests"><img src="<?= $src ?>"
+                                                                                                     alt="Image"
+                                                                                                     class="profile-picture"></a>
+                                </td>
+                                <td><?= $full_name ?></td>
+                                <td><?= htmlspecialchars($user->email) ?></td>
+                                <td><?= htmlspecialchars($application ? $application->documentCount() : 0) ?>/7</td>
+                                <td>
+                                    <p class="st-badge status-badge-alt-<?= str_replace(' ', '-', strtolower($application->status)) ?>">
+                                        <?= $application->status ?>
+                                    </p>
+                                </td>
+                                <td><?= htmlspecialchars(get_date_spanish($user->created_at)) ?></td>
+                                <td><a class="main-action-bright no-deco-action"
+                                       href="requests/r?id=<?= $user->user_id ?>"
+                                       class="review-link">revisar</a></td>
+                                <td>
+                                    <a class="main-action-bright no-deco-action" href="#" onclick="">
+                                        <i class="fas fa-trash"></i> borrar
+                                    </a>
+                                </td>
+                            </tr>
 
-                <?php endforeach; ?>
-                </tbody>
-            </table>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div class="pagination">
                 <?php if ($currentPage > 1): ?>
                     <a href="?page=<?php echo $currentPage - 1; ?>&estado=<?php echo isset($_GET['estado']) ? $_GET['estado'] : '-1'; ?>"

@@ -43,7 +43,7 @@ require __DIR__ . '/modals/editPicturesModal.php';
             <div class="settings-category-group">
                 <div class="title-group">
                         <span class="colored-icon-setting">
-                        <i class="fas fa-calendar"></i>
+                        <img src="/<?= asset('logo/SVG/vetcamp-icon-black.svg') ?>" alt="vetcamp-icon">
                             </span>
                     <p class="setting-title"> Manejar el campamento </p>
                 </div>
