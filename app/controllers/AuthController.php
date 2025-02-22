@@ -28,7 +28,7 @@ class AuthController extends Controller
 
             if (isset($email) && isset($password)) {
                 try {
-                    $user = User::findBy(['email' => $email, 'status' => 'active']);
+                    $user = User::findBy(['email' => strtolower($email), 'status' => 'active']);
                 } catch (ModelNotFoundException $e) {
                     // User was not found
                     $_SESSION['error'] = 'Credenciales Incorrectas, intente de nuevo';
@@ -87,13 +87,14 @@ class AuthController extends Controller
             $last_name = filter_input(INPUT_POST, 'last_name', FILTER_DEFAULT);
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
             $password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
+            $phone_number = filter_input(INPUT_POST, 'phone_number', FILTER_DEFAULT);
 
             if (!$first_name || !$last_name || !$email || !$password) {
                 $_SESSION['error'] = 'Por favor llene todos los campos';
                 redirect('/register');
             }
 
-            if(strlen($password) < 8){
+            if (strlen($password) < 8) {
                 $_SESSION['error'] = 'La contraseña debe tener al menos 8 caracteres';
                 redirect('/register');
             }
@@ -106,11 +107,11 @@ class AuthController extends Controller
             } catch (ModelNotFoundException $e) {
                 // User was not found, this means we can register the new user.
                 User::create([
-                    'first_name' => $_POST['first_name'],
-                    'last_name' => $_POST['last_name'],
-                    'email' => $_POST['email'],
-                    'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
-                    'phone_number' => deformat_phone($_POST['phone_number']),
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'email' => strtolower($email),
+                    'password' => password_hash($password, PASSWORD_DEFAULT),
+                    'phone_number' => deformat_phone($phone_number),
                 ]);
                 $user = User::findBy(['email' => $email]);
 

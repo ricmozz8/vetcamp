@@ -97,9 +97,9 @@ class UserController extends Controller
 
 
             $user->update([
-                'email' => $email,
-                'first_name' => $first_name,
-                'last_name' => $last_name
+                'email' => strtolower($email),
+                'first_name' => ucfirst(strtolower($first_name)),
+                'last_name' => ucfirst(strtolower($last_name))
             ]);
 
             $_SESSION['message'] = 'Perfil actualizado correctamente';
@@ -436,10 +436,10 @@ class UserController extends Controller
         if (!$userId)
             redirect_back();
 
-        if (!in_array($from, ['registered', 'requests'])){
+        if (!in_array($from, ['registered', 'requests'])) {
             $from = '';
         } else {
-            $from = '/'.$from;
+            $from = '/' . $from;
         }
 
 
@@ -449,7 +449,7 @@ class UserController extends Controller
             try {
                 $user = User::find($userId);
 
-                if($user->__get('user_id') == Auth::user()->__get('user_id')){
+                if ($user->__get('user_id') == Auth::user()->__get('user_id')) {
                     redirect('/profile');
                 }
             } catch (ModelNotFoundException $notFound) {
@@ -458,8 +458,7 @@ class UserController extends Controller
             }
 
 
-
-            render_view('userDetails', ['user' => $user, 'from'=>$from], 'Perfil de ' . $user->first_name);
+            render_view('userDetails', ['user' => $user, 'from' => $from], 'Perfil de ' . $user->first_name);
         }
 
         redirect('/');
@@ -470,7 +469,7 @@ class UserController extends Controller
         if ($method == 'POST') {
             $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
 
-            if(!$user_id){
+            if (!$user_id) {
                 $_SESSION['error'] = 'Hubo un error al enviar el mensaje';
                 redirect('/');
             }
