@@ -19,11 +19,14 @@ $postal_address = Auth::user()->postal_address();
                 <label for="postal_aline2">Línea de calle 2</label>
                 <input type="text" name="postal_aline2" id="postal_aline2" value="<?= $postal_address->aline2 ?? '' ?>">
             </div>
+            <div class="form-group">
+                <label for="postal_city">Ciudad</label>
             <?php
             $city = $postal_address->city ?? '';
             $citylabel = 'postal_city';
             require __DIR__ . '/../application/cityselector.php';
             ?>
+            </div>
             <div class="form-group">
                 <label for="postal_zip">Código postal</label>
                 <input type="number" name="postal_zip" id="postal_zip" value="<?= $postal_address->zip_code ?? '' ?>" required>

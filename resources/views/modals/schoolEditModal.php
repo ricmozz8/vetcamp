@@ -13,16 +13,21 @@ $school_address = Auth::user()->school_address();
         <form action="/profile/school/update" method="POST">
             <div class="form-group">
                 <label for="school_aline1">Línea de calle 1</label>
-                <input type="text" name="school_aline1" id="school_aline1" value="<?= $school_address->street ?? '' ?>" required>
+                <input type="text" name="school_aline1" id="school_aline1" value="<?= $school_address->street ?? '' ?>"
+                       required>
             </div>
-            <?php
-            $city = $school_address->city ?? '';
-            $citylabel = 'school_city';
-            require __DIR__ . '/../application/cityselector.php';
-            ?>
+            <div class="form-group">
+                <label for="postal_city">Ciudad</label>
+                <?php
+                $city = $school_address->city ?? '';
+                $citylabel = 'school_city';
+                require __DIR__ . '/../application/cityselector.php';
+                ?>
+            </div>
             <div class="form-group">
                 <label for="school_zip">Código postal</label>
-                <input type="number" name="school_zip" id="school_zip" value="<?= $school_address->zip_code ?? '' ?>" required>
+                <input type="number" name="school_zip" id="school_zip" value="<?= $school_address->zip_code ?? '' ?>"
+                       required>
             </div>
 
             <div class="form-group">
@@ -41,10 +46,9 @@ $school_address = Auth::user()->school_address();
             </div>
 
 
-
             <div class="modal-actions">
                 <a class="main-action-bright" onclick="closeModal('schoolEditModal')">Cancelar</a>
-                <button type="submit" class="main-action-bright primary"> <i class="fas fa-save"></i> Guardar</button>
+                <button type="submit" class="main-action-bright primary"><i class="fas fa-save"></i> Guardar</button>
 
             </div>
         </form>

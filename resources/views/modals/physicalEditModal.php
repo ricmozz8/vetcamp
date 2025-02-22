@@ -19,11 +19,14 @@ $physical_address = Auth::user()->physical_address();
                 <label for="physical_aline2">Línea de calle 2</label>
                 <input type="text" name="physical_aline2" id="physical_aline2" value="<?= $physical_address->aline2 ?? '' ?>">
             </div>
+            <div class="form-group">
+                <label for="postal_city">Ciudad</label>
             <?php
                 $city = $physical_address->city ?? '';
                 $citylabel = 'physical_city';
                 require __DIR__ . '/../application/cityselector.php';
             ?>
+            </div>
             <div class="form-group">
                 <label for="physical_zip">Código postal</label>
                 <input type="number" name="physical_zip" id="physical_zip" value="<?= $physical_address->zip_code ?? '' ?>" required>
