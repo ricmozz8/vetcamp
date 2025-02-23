@@ -107,14 +107,8 @@ $statusParsing = [
                                     <?= htmlspecialchars($status) ?>
                                 </td>
                                 <td><?= htmlspecialchars(get_date_spanish($user->created_at)) ?></td>
-                                <td><a
-                                       href="/admin/registered/r?id=<?= $user->user_id ?>&action=active"
-                                       class="review-link">Activar</a>
-                                </td>
-                                <td><a
-                                       href="/admin/registered/r?id=<?= $user->user_id ?>&action=disabled"
-                                       class="review-link">Desactivar</a>
-                                </td>
+                                <td><a href="#" class="review-link" onclick="confirmChangeStatus(<?= $user->user_id ?>, 'active')">Activar</a></td>
+                                <td><a href="#" class="review-link" onclick="confirmChangeStatus(<?= $user->user_id ?>, 'disabled')">Desactivar</a></td>
                                 <td><a onclick="openModal('confirmDeleteUserModal-<?= $loop++ ?>')"
                                        class="review-link danger" href="#" class="review-link"><i
                                                 class="fas fa-trash"></i> borrar</a></td>
@@ -183,19 +177,8 @@ $statusParsing = [
     </main>
 
     <!-- modals -->
-    <section>
-        <?php
-        // Loop through the users returned by the User::all() method
-        $loop = 1;
-        foreach ($users as $user) {
-            $user_id = $user->user_id;
-            require __DIR__ . '/modals/confirmDeleteUserModal.php';
-            $loop++;
-        }
+    <?php require_once __DIR__ . '/modals/confirmChangeUserModal.php'; ?>
 
-        ?>
-
-    </section>
 
     <?php require __DIR__ . '/modals/filterUsersModal.php'; ?>
 
