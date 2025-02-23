@@ -17,7 +17,7 @@ require_once __DIR__ . '/partials/header.php';
 
     <main class="main-content">
         <header class="header">
-            <h1 class="welcome"> Aceptados </h1>
+            <h1 class="welcome"> Matrícula </h1>
             <button class="main-action-bright" onclick="openModal('massiveEmailModal')">
                 <i class="fas fa-envelope"></i>
                 Enviar mensaje
@@ -35,13 +35,13 @@ require_once __DIR__ . '/partials/header.php';
                 <div class="accepted-card">
                     <div class="accepted-card-header">
                         <div>
-                            <h2 class="accepted-card-title"><?= htmlspecialchars($sessionName) ?></h2>
+                            <h2 class="accepted-card-title">Sesión <?= htmlspecialchars($sessionName) ?></h2>
                             <p>
                                 <i class="fas fa-users"></i>
                                 <?= count($users) ?>/14 estudiantes
                             </p>
                         </div>
-                        <button class="main-action-bright">
+                        <button class="main-action-bright secondary">
                             <i class="fas fa-envelope"></i>
                             Enviar correo
                         </button>
@@ -52,9 +52,11 @@ require_once __DIR__ . '/partials/header.php';
                         <?php else: ?>
                             <?php foreach ($users as $user): ?>
                                 <div class="accepted-user-card">
+                                    <a href="/admin/p?user=<?= $user['user_id'] ?>">
                                     <img src="<?= $user['profile_picture'] ?>"
                                          alt="Imagen de <?= $user['full_name'] ?>">
-                                    <h3><?= $user['full_name'] . '<a class="main-action-bright no-deco-action" href="requests/r?id=' . $user['user_id'] . '" class="review-link">revisar</a>' ?></h3>
+                                    </a>
+                                    <h3><?= $user['full_name'] ?></h3>
                                 </div>
                             <?php endforeach; ?>
                         <?php endif; ?>

@@ -24,7 +24,11 @@ $user_full_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
                     <?php
                     if (Auth::user()->application()) {
                         $profile = Auth::user()->application()->getProfilePicture();
-                        $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
+                        $src = '';
+                        if ($profile) {
+                            $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
+                        }
+
                     } else {
                         $profile = null;
                     }

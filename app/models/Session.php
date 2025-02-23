@@ -1,5 +1,6 @@
 <?php
 require_once 'Model.php';
+require_once 'Enrollment.php';
 
 class Session extends Model{
 
@@ -18,6 +19,16 @@ class Session extends Model{
     public function formatted()
     {
         return $this->title . ' (' . get_date_spanish($this->start_date, false, false) . ' al ' . get_date_spanish($this->end_date) . ')';
+    }
+
+    public function students(){
+
+        try{
+            $enrollment = Enrollment::findAllBy(['session_id' => $this->__get('session_id')]);
+        } catch (ModelNotFoundException $e) {
+            return [];
+        }
+
     }
     
 }

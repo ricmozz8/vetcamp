@@ -28,7 +28,7 @@
 
         <?php if ($user->user_id == Auth::user()->user_id) { ?>
             <div class="">
-                <p>No puedes eliminar tu propia cuenta.</p>
+                <p class="flex-nosp">Si deseas eliminar tu cuenta, acceda <a class="no-deco-action" href="/profile#del">su perfil.</a></p>
             </div>
         <?php } else { ?>
             <form action="/users/delete" method="POST">

@@ -156,7 +156,7 @@ if (!$isAdmin) {
 
         <div class="danger-actions-group">
             <div class="setting-flex-action">
-                <h3>Eliminar cuenta</h3>
+                <h3 id="del">Eliminar cuenta</h3>
                 <a onclick="openModal('confirmDeleteAccountModal')" href="#" class="main-action-bright danger"><i
                             class="fas fa-trash"></i>Eliminar</a>
             </div>
