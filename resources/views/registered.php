@@ -177,9 +177,19 @@ $statusParsing = [
     </main>
 
     <!-- modals -->
+    <section>
+        <?php
+        // Loop through the users returned by the User::all() method
+        $loop = 1;
+        foreach ($users as $user) {
+            $user_id = $user->user_id;
+            require __DIR__ . '/modals/confirmDeleteUserModal.php';
+            $loop++;
+        }
+        ?>
+    </section>
+
     <?php require_once __DIR__ . '/modals/confirmChangeUserModal.php'; ?>
-
-
     <?php require __DIR__ . '/modals/filterUsersModal.php'; ?>
 
     <script>
