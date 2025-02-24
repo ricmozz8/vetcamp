@@ -1,43 +1,36 @@
-<!-- Main popup container with the form -->
-<div class="message-popup" id="limitDateEditModal" style="display: none">
-    <!-- Close button in the top-right corner -->
-    <!-- <img src="https://img.icons8.com/?size=100&id=71200&format=png&color=1A1A1A" alt="Close" class="close-icon" id="closePopup"> -->
-    <a href="#" class="plain-action" id="closePopup" onclick="closeModal('limitDateEditModal')"><i class="las la-times"></i></a>
-
-
-    <!-- Popup title -->
-    <h2 class="message-title">Manejar fechas límite</h2>
-    <br>
-    <h3> Establezca las fechas límite para registrarse al campamento. </h3>
-
-
-
-    <form action="settings/e/dates" style="width: 100%;" method="POST">
-        <!-- Main modal area -->
-        <div class="session-modal-area">
-            <!-- Session modification area -->
-            <div class="session-modal-edit-area">
-
-                <!-- Individual line area -->
-                <div class="session-modal-dates">
-                    <label for="startDate">Inicio:</label>
-                    <input value="<?= $limit_dates->start_date ?>" class="session-edit-input" type="date" name="startDate" />
-
-                    <label for="endDate">Cierre:</label>
-                    <input value="<?= $limit_dates->end_date ?>" class="session-edit-input" type="date" name="endDate" />
-                </div>
-
+<div id="limitDateEditModal" class="modal">
+    <div class="modal-content">
+    
+        <!-- Botón de cerrar -->
+        <span class="close-button" onclick="closeModal('limitDateEditModal')">
+          <i class="fas fa-times"></i>
+        </span>
+       <!-- Título de la ventana -->
+        <h2>
+            <i class="fas fa-calendar"></i>
+            Manejar fechas límite
+        </h2>
+        
+        <form action="settings/e/dates" method="POST">
+    
+            <div class="form-group">
+                <label for="startDate">Fecha de inicio</label>
+                <input type="date" name="startDate" id="startDate" value="<?= $limit_dates->start_date ?>" required>
             </div>
-        </div>
 
-        <!-- Buttons area -->
-        <div class="modal-actions">
-            <!-- Cancel button -->
-            <a href="#" class="secondary main-action-bright" onclick="closeModal('limitDateEditModal')">Cancelar</a>
+            <div class="form-group">
+                <label for="endDate">Fecha de cierre</label>
+                <input type="date" name="endDate" id="endDate" value="<?= $limit_dates->end_date ?>" required>
+            </div>
 
-            <!-- Save button -->
-            <button class="primary main-action-bright" onclick="closeModal('limitDateEditModal')">Guardar</button>
-        </div>
-    </form>
-
+            <div class="modal-actions">
+                <a class="main-action-bright" onclick="closeModal('limitDateEditModal')">Cancelar</a>
+                <button type="submit" class="main-action-bright primary"> 
+                    <i class="fas fa-save"></i> 
+                    Guardar
+                </button>
+            </div>
+          
+        </form>
+    </div>
 </div>
