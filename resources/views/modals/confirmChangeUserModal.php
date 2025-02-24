@@ -1,3 +1,7 @@
+<form id="changeStatusForm" method="POST" action="/admin/registered/changestatus">
+    <input type="hidden" name="user_id" id="changeStatusUserId">
+    <input type="hidden" name="action" id="changeStatusAction">
+</form>
 <div id="confirmChangeUserModal" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close-button" onclick="closeModal('confirmChangeUserModal')"><i class="fas fa-times"></i></span>
@@ -6,19 +10,22 @@
         <p>El estado del usuario cambiará en la base de datos.</p>
         <div class="modal-actions">
             <a href="#" class="main-action-bright" onclick="closeModal('confirmChangeUserModal')">Cancelar</a>
-            <a href="#" id="confirmChangeStatusButton" class="main-action-bright gradiented">
-                <i class="fas fa-paper-plane"></i> Aceptar
-            </a>
+            <button type="button" class="main-action-bright gradiented" onclick="submitChangeStatus()">
+            <i class="fa-solid fa-pen"></i> Aceptar
+            </button>
         </div>
     </div>
 </div>
+
 <script>
     function confirmChangeStatus(userId, action) {
-        // Almacena temporalmente los valores en el botón de confirmación
-        const confirmButton = document.getElementById('confirmChangeStatusButton');
-        confirmButton.href = `/admin/registered/r?id=${userId}&action=${action}`;
-
-        // Muestra el modal
+        document.getElementById('changeStatusUserId').value = userId;
+        document.getElementById('changeStatusAction').value = action;
         openModal('confirmChangeUserModal');
-    }
+}
+
+function submitChangeStatus() {
+    document.getElementById('changeStatusForm').submit();
+}
+
 </script>

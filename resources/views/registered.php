@@ -107,8 +107,9 @@ $statusParsing = [
                                     <?= htmlspecialchars($status) ?>
                                 </td>
                                 <td><?= htmlspecialchars(get_date_spanish($user->created_at)) ?></td>
-                                <td><a href="#" class="review-link" onclick="confirmChangeStatus(<?= $user->user_id ?>, 'active')">Activar</a></td>
-                                <td><a href="#" class="review-link" onclick="confirmChangeStatus(<?= $user->user_id ?>, 'disabled')">Desactivar</a></td>
+                                <td><a href="#" class="review-link" onclick="confirmChangeStatus(<?= htmlspecialchars($user->user_id) ?>, 'active')">Activar</a></td>
+                                <td><a href="#" class="review-link" onclick="confirmChangeStatus(<?= htmlspecialchars($user->user_id) ?>, 'disabled')">Desactivar</a></td>
+
                                 <td><a onclick="openModal('confirmDeleteUserModal-<?= $loop++ ?>')"
                                        class="review-link danger" href="#" class="review-link"><i
                                                 class="fas fa-trash"></i> borrar</a></td>

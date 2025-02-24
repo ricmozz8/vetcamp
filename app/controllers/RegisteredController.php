@@ -68,7 +68,11 @@ class RegisteredController extends Controller
         ], 'Usuarios');
     }
 
-    public static function changeStatus($id, $action) {
+    public static function changeStatus($request_method) {
+        if ($request_method === "POST") {
+            $id = isset($_POST['user_id']) ? $_POST['user_id'] : null;
+            $action = isset($_POST['action']) ? $_POST['action'] : null;
+        }
         if($id){
             $user = User::find($id);
             //evitar un query sin sentido
