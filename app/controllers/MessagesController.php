@@ -103,7 +103,7 @@ class MessagesController extends Controller
         switch ($type) {
             case 'all':
                 $users = User::allof('user');
-                $typeEs = 'usuarios';
+                $typeEs = 'usuarios';       
                 break;
             case 'approved':
                 foreach ($applications as $application) {
