@@ -29,7 +29,7 @@ class AcceptedController extends Controller
             $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
 
             // Agregar la información formateada
-            $sessions['Sesion '. $sessionId][] = [
+            $sessions[$sessionId][] = [
                 'user_id'   => $user['user_id'],
                 'full_name' => User::find($user['user_id'])->first_name . ' ' . User::find($user['user_id'])->last_name,
                 'profile_picture' => $src,
