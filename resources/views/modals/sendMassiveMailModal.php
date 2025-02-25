@@ -5,15 +5,16 @@
         <h2>Enviar mensaje masivo</h2>
         <div class="modal-details">
             <form action="/mail" method="POST">
-                <div class="modal-header-flex">
-                    <select required name="type" id="select-type">
-                        <option value="approved">Aprobados</option>
+                <div class="form-group">
+                    <label for="user_type">Por estado</label>
+                    <select required name="user_type" id="select-type">
+                        <option value="approved">Aceptados</option>
                         <option value="denied">Rechazados</option>
                         <option value="waitlist">En lista de espera</option>
+                        <option value="applicants">Solicitantes</option>
+                        <option value="interested">Interesados</option>
                         <option value="all">Todos</option>
                     </select>
-                    <label for="predef-msg">Utilizar mensaje predefinido</label>
-                    <input type="checkbox" name="predef-msg" id="">
                 </div>
 
                 <textarea required name="message" placeholder="Introduce un mensaje aquí..."></textarea>
