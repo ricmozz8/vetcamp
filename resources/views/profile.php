@@ -362,6 +362,7 @@ require_once __DIR__ . '/partials/header.php';
 
 
 <?php include('modals/messageModal.php') ?>
+<?php include('modals/exportApplicationModal.php') ?>
 
 
 <?php include('partials/footer.php') ?>

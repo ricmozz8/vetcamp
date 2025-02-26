@@ -133,6 +133,13 @@
 .listed-table .page-number:hover {
   background-color: #f5f5f5;
 }
+
+.listed-table .page-number.active {
+  background-color: var(--secondary-color-default);
+  color: var(--white-color);
+  font-weight: bold;
+
+}
 .profile-picture{
     width: 40px;
     height: 40px;

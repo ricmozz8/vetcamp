@@ -323,4 +323,53 @@ class ApplicationController extends Controller
         }
 
     }
+
+    public static function download($method)
+    {
+        if ($method === 'POST') {
+            $user_id = filter_input(INPUT_POST, 'id');
+            try {
+                $user = User::find($user_id);
+                $application = $user->application();
+
+            } catch (ModelNotFoundException $e) {
+                $_SESSION['error'] = 'La solicitud no existe.';
+                redirect('/admin/requests');
+            }
+
+            $documents = $application->getDocuments();
+
+
+            // compress all files to a zip called 'request_export_DATE_user_email_.zip'
+            $zip = new ZipArchive();
+            $filename = 'export_' . date('Y_m_d') . '_' . $user->__get('first_name') . '_' . str_replace(' ', '_', $user->__get('last_name')) . '.zip';
+
+            if ($zip->open($filename, ZipArchive::CREATE) !== TRUE) {
+                $_SESSION['error'] = 'Error al exportar el archivo';
+                ErrorLog::log('There was an error trying to export an application', __FILE__, '');
+            }
+
+            foreach ($documents as $document) {
+                $zip->addFromString($document['name'], $document['contents']);
+            }
+
+            $zip->close();
+
+            // serve the zip file to download
+            header('Content-Type: application/zip');
+            header("Content-Disposition: attachment; filename=" . basename($filename));
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . filesize($filename));
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            header('Pragma: public');
+            header('Expires: 0');
+            readfile($filename);
+            unlink($filename);
+
+            
+        }
+
+        redirect_back();
+
+    }
 }

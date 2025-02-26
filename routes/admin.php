@@ -82,6 +82,10 @@ switch ($path) {
     case '/admin/requests/track':
         TrackingController::TrackingEvaluation($method);
         break;
+
+    case '/admin/requests/download':
+        ApplicationController::download($method);
+        break;
     case '/admin/delete/rejected/requests':
         SettingsController::deleteRejectedRequests($method);
         break;

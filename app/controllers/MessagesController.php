@@ -139,7 +139,7 @@ class MessagesController extends Controller
                 break;
             case 'interested':
                 foreach ($applications as $application) {
-                    if (!$application->isComplete()) {
+                    if (!$application->isComplete() && $application->status === Application::$statusParsings['unsubmitted']) {
                         $users[] = $application->user();
                     }
                 }
