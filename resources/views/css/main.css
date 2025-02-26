@@ -207,6 +207,46 @@ abbr{
   text-decoration: none;
 }
 
+/*ACCESSIBILITY CLASSES*/
+
+body.contrasted{
+  background-color: black !important;
+  color: white !important;
+}
+
+body.contrasted *{
+  background-color: black !important;
+  color: white !important;
+
+}
+
+body.contrasted *:not(i) {
+  color: white !important;
+
+}
+
+body.contrasted a, body.contrasted button{
+  background-color: white !important;
+  color: black !important;
+}
+
+.body.contrasted .main-action-bright{
+  background-color: white !important;
+  color: black !important;
+}
+
+body.readable{
+  font-family: 'Open-Dyslexic', tahoma, arial, sans-serif !important;
+  font-weight: bold;
+
+}
+
+body.readable *:not(i) {
+  font-family: 'Open-Dyslexic', tahoma, arial, sans-serif !important;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
 .sb{
   justify-content: space-between;
 }
@@ -216,19 +256,39 @@ abbr{
   border-radius: 10px 0 0 10px;
   font-size: 1.6em;
   position: fixed;
-  right: 0;
-  bottom: 50%;
-  margin: 0;
-  background-color: var(--accessibility-color);
-  color: white;
+
   width: fit-content;
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 1000;
+  height: fit-content;
+  border: 3px solid transparent;
 }
 
 .accessibility:hover{
-  background-color: var(--accessibility-color-shade-1);
+    filter: brightness(.8);
+}
+
+.accessibility.contrast{
+  background-color: var(--secondary-color-default);
+  color: var(--white-color);
+  top: 43%;
+  right: 0;
+
+
+}
+
+.accessibility.active{
+  border: 3px solid magenta;
+}
+
+.accessibility.font{
+  background-color: var(--main-color-default);
+  color: var(--secondary-color-default);
+  top: 50%;
+  right: 0;
+
+
 }
 
 .flex-nosp{
