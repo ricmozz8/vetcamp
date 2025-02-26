@@ -52,7 +52,7 @@ require_once __DIR__ . '/partials/header.php';
                         <?php else: ?>
                             <?php foreach ($users as $user): ?>
                                 <div class="accepted-user-card">
-                                    <a href="/admin/p?user=<?= $user['user_id'] ?>">
+                                    <a href="/admin/p?user=<?= $user['user_id'] ?>&from=accepted">
                                     <img src="<?= $user['profile_picture'] ?>"
                                          alt="Imagen de <?= $user['full_name'] ?>">
                                     </a>
