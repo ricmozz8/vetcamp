@@ -20,7 +20,6 @@ class RegisteredController extends Controller
         }
 
         $users_status = filter_input(INPUT_GET, 's', FILTER_VALIDATE_INT) ?: 0;
-        echo $users_status;
 
 
 
@@ -29,20 +28,6 @@ class RegisteredController extends Controller
         $users = User::allof('user');
 
         $s = filter_input(INPUT_GET, 'search', FILTER_DEFAULT);
-
-        if (!empty($s)) {
-            $searchTerm = $s . "%";
-
-            try {
-                $users = User::findLike([
-                    'first_name' => $searchTerm,
-                    'last_name' => $searchTerm,
-                    'email' => $searchTerm
-                ]);
-            } catch (ModelNotFoundException $notFound) {
-                $users = [];
-            }
-        }
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perPage = 7; // Set the number of users per page
@@ -77,6 +62,20 @@ class RegisteredController extends Controller
         }
 
         $users = array_slice($arrayUsers, $offset, $perPage);
+
+        if (!empty($s)) {
+            $searchTerm = $s . "%";
+
+            try {
+                $users = User::findLike([
+                    'first_name' => $searchTerm,
+                    'last_name' => $searchTerm,
+                    'email' => $searchTerm
+                ]);
+            } catch (ModelNotFoundException $notFound) {
+                $users = [];
+            }
+        }
 
         // your index view here
         render_view('registered', [
