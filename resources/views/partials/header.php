@@ -93,15 +93,15 @@
 } ?>
 
 <abbr title="Mostrar una fuente más legible">
-<a id="icon-read" href="#" class="accessibility font">
+<span id="icon-read" class="accessibility font">
     <i class="fa-solid fa-font"></i>
-</a>
+</span>
 </abbr>
 
 <abbr title="Mostrar colores de alto contraste">
-<a id="icon-contrast" href="#"  class="accessibility contrast">
+<span id="icon-contrast"   class="accessibility contrast">
     <i class="fa-solid fa-circle-half-stroke"></i>
-</a>
+</span>
 </abbr>
 
 

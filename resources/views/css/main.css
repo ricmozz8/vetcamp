@@ -209,19 +209,21 @@ abbr{
 
 /*ACCESSIBILITY CLASSES*/
 
-body.contrasted{
+body.contrasted:not(i){
   background-color: black !important;
   color: white !important;
 }
 
-body.contrasted *{
-  background-color: black !important;
-  color: white !important;
-
-}
 
 body.contrasted *:not(i) {
+  background-color: black !important;
   color: white !important;
+
+
+}
+
+body.contrasted img{
+  filter: grayscale(1) contrast(1.5);
 
 }
 
@@ -402,6 +404,11 @@ body.readable *:not(i) {
   border-top: 4px solid var(--main-color-default);
   border-radius: 50%;
   animation: spin 1s linear infinite;
+}
+.footer-icon{
+  width: 30px;
+  margin-bottom: 1em;
+
 }
 
 @keyframes spin {
