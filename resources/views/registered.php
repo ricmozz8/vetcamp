@@ -33,10 +33,10 @@ $statusParsing = [
                         Filtrar
                     </button>
                     <div class="search-container">
-                        <form method="POST" action="/admin/registered">
-                            <input required value="<?= isset($_POST['search']) ? $_POST['search'] : '' ?>" type="text"
+                        <form method="GET" action="/admin/registered">
+                            <input required value="<?= $_GET['search'] ?? '' ?>" type="text"
                                    class="search-input" name="search" placeholder="Busca correos, nombres">
-                            <?php if (isset($_POST['search'])): ?>
+                            <?php if (isset($_GET['search'])): ?>
                                 <a class="no-deco-action" href="/admin/registered"><i class="fas fa-times"></i></a>
                             <?php endif; ?>
                             <button type="submit" class="main-action-bright tertiary"><i class="fas fa-search"></i>

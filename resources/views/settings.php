@@ -62,10 +62,6 @@ require __DIR__ . '/modals/editPicturesModal.php';
                     <p> Manejar fotos de la página de inicio </p>
                     <button class="main-action-bright primary" onclick="openModal('editPicturesModal')"> Editar</button>
                 </div>
-                <div class="settings-block">
-                    <p> Actualizar solicitud escrita </p>
-                    <button class="main-action-bright primary"> Editar</button>
-                </div>
             </div>
 
 
@@ -85,6 +81,11 @@ require __DIR__ . '/modals/editPicturesModal.php';
                     <div class="settings-block">
                         <p> Editar mensaje para denegados </p>
                         <button class="main-action-bright primary" onclick="openModal('editMessageDenied')"> Editar
+                        </button>
+                    </div>
+                    <div class="settings-block">
+                        <p> Editar mensaje para los interesados </p>
+                        <button class="main-action-bright primary" onclick="openModal('')"> Editar
                         </button>
                     </div>
                     <div class="settings-block">

@@ -26,7 +26,7 @@
     <meta name="twitter:image" content="/<?= asset('seo_banner.png') ?>">
 
     <!-- Favicon -->
-    <link rel="icon" href="/<?= asset("icon.svg") ?>" type="image/x-icon">
+    <link rel="icon" href="/icon.svg" type="image/x-icon">
 
     <!-- CSS -->
 

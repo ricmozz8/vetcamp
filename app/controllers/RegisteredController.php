@@ -19,14 +19,33 @@ class RegisteredController extends Controller
             redirect('/login');
         }
 
+
+
+        // Filtering users
+        // storing users
+        $users = User::allof('user');
+
+        $s = filter_input(INPUT_GET, 'search', FILTER_DEFAULT);
+
+        if (!empty($s)) {
+            $searchTerm = $s . "%";
+
+            try {
+                $users = User::findLike([
+                    'first_name' => $searchTerm,
+                    'last_name' => $searchTerm,
+                    'email' => $searchTerm
+                ]);
+            } catch (ModelNotFoundException $notFound) {
+                $users = [];
+            }
+        }
+
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perPage = 7; // Set the number of users per page
 
-        // Get all users
-        $allUsers = User::allof('user');
-
         // Calculate total pages
-        $totalUsers = count($allUsers);
+        $totalUsers = count($users);
         $totalPages = ceil($totalUsers / $perPage);
 
         // Ensure the current page is within bounds
@@ -34,29 +53,8 @@ class RegisteredController extends Controller
 
         // Get the slice of users for the current page
         $offset = ($page - 1) * $perPage;
-        $users = array_slice($allUsers, $offset, $perPage);
+        $users = array_slice($users, $offset, $perPage);
 
-        // Filtering users
-        // storing users
-        $users = User::allof('user');
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $s = filter_input(INPUT_POST, 'search', FILTER_DEFAULT);
-            if (!empty($s)) {
-                $searchTerm = $s . "%";
-
-                try {
-                    $users = User::findLike([
-                        'first_name' => $searchTerm,
-                        'last_name' => $searchTerm,
-                        'email' => $searchTerm
-                    ]);
-                } catch (ModelNotFoundException $notFound) {
-
-                    $_SESSION['error'] = 'No se encontraron resultados';
-                    redirect('/admin/registered');
-                }
-            }
-        }
 
 
         // your index view here
