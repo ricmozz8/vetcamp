@@ -62,13 +62,28 @@ require __DIR__ . '/partials/header.php';
                             <th>Perfil</th>
                             <th>Nombre</th>
                             <th>Correo</th>
-                            <th order="down" class="actionable-header" id="order-doc"
-                                onclick="toggleDocumentOrder(this)">
-                                Documentos<i id="sort-icon-documents" class=""></i></th>
+                            <th class="actionable-header" id="order-doc">
+                                <?php
+                                    $queryParams = $_GET;
+                                    $queryParams['doc'] = isset($queryParams['doc']) && $queryParams['doc'] === 'asc' ? 'desc' : 'asc';
+                                    $queryString = http_build_query($queryParams);
+                                ?>
+                                <a href="?<?= $queryString ?>"><strong>Documentos</strong> <?= isset($_GET['doc']) && $_GET['doc'] === 'asc' ? '↓' : '↑' ?></a>
+                            </th>
+
+
                             <th style="cursor: pointer" onclick="openModal('filterModalRequest')">Estado</th>
-                            <th order="down" class="actionable-header" id="order-date" onclick="toggleDateOrder(this)">
-                                Fecha
-                                <i id="sort-icon-date" class=""></i></th>
+                            <th class="actionable-header" id="order-date">
+                            <?php
+                                $queryParams = $_GET;
+                                $queryParams['order'] = $order === 'asc' ? 'desc' : 'asc';
+                                $queryString = http_build_query($queryParams);
+                            ?>
+                            <a href="?<?= $queryString ?>"><strong>Fecha</strong><?= $order === 'asc' ? '↓' : '↑' ?></a>
+
+                            </th>
+
+
                             <th>Acción</th>
                             <th></th>
                         </tr>
