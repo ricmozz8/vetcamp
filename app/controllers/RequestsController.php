@@ -22,7 +22,6 @@ class RequestsController extends Controller
         $order = isset($_GET['order']) && in_array($_GET['order'], ['asc', 'desc']) ? $_GET['order'] : 'desc';
         $doc_order = isset($_GET['doc']) && in_array($_GET['doc'], ['asc', 'desc']) ? $_GET['doc'] : null;
         $s = filter_input(INPUT_GET, 'search', FILTER_DEFAULT);
-        var_dump($s);
 
 
         $application_status = filter_input(INPUT_GET, 's', FILTER_VALIDATE_INT) ?: 0;
