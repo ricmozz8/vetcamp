@@ -42,10 +42,10 @@ require __DIR__ . '/partials/header.php';
                     </button>
                     <div class="search-container">
                         <form method="GET" action="/admin/requests">
-                            <input required value="<?= $_POST['search'] ?? '' ?>" type="text"
+                            <input required value="<?= $_GET['search'] ?? '' ?>" type="text"
                                    class="search-input" name="search" placeholder="Busca correos, nombres">
-                            <?php if (isset($_POST['search'])): ?>
-                                <a class="no-deco-action" href="/admin/requests"><i class="fas fa-times"></i></a>
+                            <?php if (isset($_GET['search'])): ?>
+                                <a class="no-deco-action" href="/admin/registered"><i class="fas fa-times"></i></a>
                             <?php endif; ?>
                             <button type="submit" class="main-action-bright tertiary"><i class="fas fa-search"></i>
                             </button>
