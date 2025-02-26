@@ -41,7 +41,7 @@ require __DIR__ . '/partials/header.php';
                         Filtrar
                     </button>
                     <div class="search-container">
-                        <form method="POST" action="/admin/requests">
+                        <form method="GET" action="/admin/requests">
                             <input required value="<?= $_POST['search'] ?? '' ?>" type="text"
                                    class="search-input" name="search" placeholder="Busca correos, nombres">
                             <?php if (isset($_POST['search'])): ?>
