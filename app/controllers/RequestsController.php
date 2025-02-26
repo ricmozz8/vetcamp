@@ -21,7 +21,7 @@ class RequestsController extends Controller
 
         $order = isset($_GET['order']) && in_array($_GET['order'], ['asc', 'desc']) ? $_GET['order'] : 'desc';
         $doc_order = isset($_GET['doc']) && in_array($_GET['doc'], ['asc', 'desc']) ? $_GET['doc'] : null;
-
+        $s = filter_input(INPUT_GET, 'search', FILTER_DEFAULT);
 
 
         $application_status = filter_input(INPUT_GET, 's', FILTER_VALIDATE_INT) ?: 0;
@@ -105,6 +105,21 @@ class RequestsController extends Controller
 
 
         $users = array_slice($arrayUsers, $offset, $perPage);
+
+
+        if (!empty($s)) {
+            $searchTerm = $s . "%";
+
+            try {
+                $users = User::findLike([
+                    'first_name' => $searchTerm,
+                    'last_name' => $searchTerm,
+                    'email' => $searchTerm
+                ]);
+            } catch (ModelNotFoundException $notFound) {
+                $users = [];
+            }
+        }
 
         render_view('requests', [
             "users" => $users,
