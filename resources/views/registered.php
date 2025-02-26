@@ -57,7 +57,15 @@ $statusParsing = [
                             <th>Nombre</th>
                             <th>Correo</th>
                             <th>Estado</th>
-                            <th>Fecha</th>
+                            <th class="actionable-header" id="order-date">
+                            <?php
+                                $queryParams = $_GET;
+                                $queryParams['order'] = $order === 'asc' ? 'desc' : 'asc';
+                                $queryString = http_build_query($queryParams);
+                            ?>
+                            <a href="?<?= $queryString ?>"><strong>Fecha</strong><?= $order === 'asc' ? '↓' : '↑' ?></a>
+
+                            </th>
                             <!-- <th></th> -->
                             <th></th>
 

@@ -29,6 +29,8 @@ class RegisteredController extends Controller
 
         $s = filter_input(INPUT_GET, 'search', FILTER_DEFAULT);
 
+        $order = isset($_GET['order']) && in_array($_GET['order'], ['asc', 'desc']) ? $_GET['order'] : 'desc';
+
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perPage = 7; // Set the number of users per page
 
@@ -61,6 +63,13 @@ class RegisteredController extends Controller
             }
         }
 
+        // Ordenar por fecha
+        usort($arrayUsers, function ($a, $b) use ($order) {
+            $dateA = strtotime($a->created_at);
+            $dateB = strtotime($b->created_at);
+            return $order === 'asc' ? $dateA - $dateB : $dateB - $dateA;
+        });
+
         $users = array_slice($arrayUsers, $offset, $perPage);
 
         if (!empty($s)) {
@@ -82,7 +91,8 @@ class RegisteredController extends Controller
             "users" => $users,
             'selected' => 'registered',
             'currentPage' => $page,
-            'totalPages' => $totalPages
+            'totalPages' => $totalPages,
+            'order' => $order
         ], 'Usuarios');
     }
 
