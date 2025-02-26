@@ -1,5 +1,6 @@
 <?php
 require_once 'Controller.php';
+require_once 'app/models/Application.php';
 
 class MessagesController extends Controller
 {
@@ -22,22 +23,19 @@ class MessagesController extends Controller
         } else if ($method === 'POST') {
 
             $message = filter_input(INPUT_POST, 'message', FILTER_DEFAULT);
-            $type = filter_input(INPUT_POST, 'type', FILTER_DEFAULT);
+            $type = filter_input(INPUT_POST, 'user_type', FILTER_DEFAULT);
 
             if (!$message || !$type) {
                 $_SESSION['error'] = 'Por favor llene todos los campos';
                 redirect('/admin');
             }
 
-            if ($type === 'all') {
-                self::mailAllUsers($message);
-
-                $_SESSION['message'] = 'Correo electronico enviado a todos los usuarios';
-                redirect('/admin');
-            } else {
-                $_SESSION['error'] = 'No se ha implementado esta funcionalidad';
+            if (!in_array($type, ['all', 'approved', 'denied', 'waitlist', 'applicants', 'interested'])) {
+                $_SESSION['error'] = 'Hubo un error al enviar el correo';
                 redirect('/admin');
             }
+
+            self::mailAllUsers($message, $type);
         }
     }
 
@@ -91,25 +89,90 @@ class MessagesController extends Controller
      *
      * @return void
      */
-    private static function mailAllUsers($message)
+    private static function mailAllUsers($message, $type)
     {
-        $users = User::all();
+        $applications = Application::all();
+        $users = [];
+        $typeEs = '';
 
-        // splitting the array of users into chunks of 30 to avoid spam flagging
-        $mail_queue = array_chunk($users, 30);
-
-        // sending the emails in a loop
-        foreach ($mail_queue as $queue) {
-            // adding a 1 second delay between each batch of 30 emails to avoid spam flagging
-            sleep(1);
-
-            // sending the email to all the users in the current batch
-            foreach ($queue as $user) {
-                Mailer::send($user->email, 'Mensaje del administrador', $message);
-            }
+        if (empty($applications)) {
+            $_SESSION['error'] = 'No hay solicitudes para enviar el correo';
+            redirect('/admin');
         }
 
+        switch ($type) {
+            case 'all':
+                $users = User::allof('user');
+                $typeEs = 'usuarios';       
+                break;
+            case 'approved':
+                foreach ($applications as $application) {
+                    if ($application->status === Application::$statusParsings['approved']) {
+                        $users[] = $application->user();
+                    }
+                }
+                $typeEs = 'aceptados';
+                break;
+            case 'denied':
+                foreach ($applications as $application) {
+                    if ($application->status === Application::$statusParsings['denied']) {
+                        $users[] = $application->user();
+                    }
+                }
+                $typeEs = 'rechazados';
+                break;
+            case 'applicants':
+                foreach ($applications as $application) {
+                    if ($application->status === Application::$statusParsings['submitted']) {
+                        $users[] = $application->user();
+                    }
+                }
+                $typeEs = 'solicitantes';
+                break;
+            case 'waitlist':
+                foreach ($applications as $application) {
+                    if ($application->status === Application::$statusParsings['waitlist']) {
+                        $users[] = $application->user();
+                    }
+                }
+                $typeEs = 'de la lista de espera';
+                break;
+            case 'interested':
+                foreach ($applications as $application) {
+                    if (!$application->isComplete()) {
+                        $users[] = $application->user();
+                    }
+                }
+                $typeEs = 'interesados';
+                break;
+            default:
+                break;
+        }
 
+        if (empty($users)) {
+            $_SESSION['error'] = 'No hay ' . $typeEs . ' para enviar el correo';
+            redirect('/admin');
+        }
+
+        // splitting the array of users into chunks of 30 to avoid spam flagging
+        $mail_list = [];
+
+        foreach ($users as $user) {
+            $mail_list[] = $user->email;
+        }
+
+        $mail_queue = array_chunk($mail_list, 30);
+
+
+
+        foreach ($mail_queue as $chunk) {
+            $chunk_listed = implode(', ', $chunk);
+
+            Mailer::send($chunk_listed, 'Mensaje de ' . Auth::user()->first_name . ' en ' . 'Vetcamp', $message);
+        }
+
+        $_SESSION['message'] = 'Correo electrónico enviado a todos los ' . $typeEs . '.';
+        redirect('/admin');
     }
 
 

@@ -26,7 +26,7 @@ function validateExt(fileName, accept, input) {
 
     if(fileName === undefined || fileName === '') return false;
 
-    let ext = fileName.split('.').pop();
+    let ext = fileName.split('.').pop().toLowerCase();
     let error_exists = document.querySelector('#error-' + input.id)
     if (!accept.includes(ext)) {
 
