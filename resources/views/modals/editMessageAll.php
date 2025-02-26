@@ -1,4 +1,4 @@
-<!-- genericPopup -->
+<!-- genericPopup (modal) -->
 <div id="editMessageAll" class="modal">
     <div class="modal-content">
     

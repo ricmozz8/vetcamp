@@ -1,4 +1,3 @@
-<!-- Main popup container with the form -->
 <div id="editMessageDenied" class="modal">
     <div class="modal-content">
     

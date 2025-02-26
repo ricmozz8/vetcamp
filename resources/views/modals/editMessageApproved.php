@@ -1,4 +1,4 @@
-<!-- ELIMINE LOS COMENTARIOS AL IMPLEMENTAR -->
+
 <div id="editMessageApproved" class="modal">
     <div class="modal-content">
     
@@ -8,7 +8,7 @@
         </span>
        <!-- Título de la ventana -->
         <h2>
-            <i class="fas fa-envelope"></i>
+            <i class="las la-envelope"></i>
             Editar mensaje predeterminado para aceptados
         </h2>
         
