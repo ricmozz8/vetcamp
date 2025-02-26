@@ -132,28 +132,35 @@ require __DIR__ . '/partials/header.php';
                 </div>
             </div>
             <div class="pagination">
+                <?php
+                    // Construir la base de la URL con los filtros actuales
+                    $queryParams = $_GET;
+                    unset($queryParams['page']); // Quitamos 'page' para reemplazarlo con el correcto
+                    $queryString = http_build_query($queryParams);
+                    $baseUrl = "?$queryString"; // Base con los filtros actuales
+                ?>
+
                 <?php if ($currentPage > 1): ?>
-                    <a href="?page=<?php echo $currentPage - 1; ?>&estado=<?php echo $_GET['estado'] ?? '-1'; ?>"
-                       class="page-number">Anterior</a>
+                    <a href="<?= $baseUrl . '&page=' . ($currentPage - 1) ?>" class="page-number">Anterior</a>
                 <?php endif; ?>
 
                 <?php
-                $start = max(1, $currentPage - 2);
-                $end = min($totalPages, $currentPage + 2);
+                    $start = max(1, $currentPage - 2);
+                    $end = min($totalPages, $currentPage + 2);
 
-                if ($start > 1) {
-                    echo '<a href="?page=1&estado=' . ($_GET['estado'] ?? '-1') . '" class="page-number">1</a>';
-                    if ($start > 2) {
-                        echo '<span class="page-ellipsis">...</span>';
+                    if ($start > 1) {
+                        echo '<a href="' . $baseUrl . '&page=1" class="page-number">1</a>';
+                        if ($start > 2) {
+                            echo '<span class="page-ellipsis">...</span>';
+                        }
                     }
-                }
 
                 for ($i = $start; $i <= $end; $i++):
-                    ?>
-                    <a href="?page=<?php echo $i; ?>&estado=<?php echo $_GET['estado'] ?? '-1'; ?>"
-                       class="page-number <?php echo ($i == $currentPage) ? 'active' : ''; ?>">
-                        <?php echo $i; ?>
-                    </a>
+                ?>
+                <a href="<?= $baseUrl . '&page=' . $i ?>"
+                    class="page-number <?= ($i == $currentPage) ? 'active' : ''; ?>">
+                    <?= $i; ?>
+                </a>
                 <?php endfor; ?>
 
                 <?php
@@ -161,13 +168,12 @@ require __DIR__ . '/partials/header.php';
                     if ($end < $totalPages - 1) {
                         echo '<span class="page-ellipsis">...</span>';
                     }
-                    echo '<a href="?page=' . $totalPages . '&estado=' . ($_GET['estado'] ?? '-1') . '" class="page-number">' . $totalPages . '</a>';
+                    echo '<a href="' . $baseUrl . '&page=' . $totalPages . '" class="page-number">' . $totalPages . '</a>';
                 }
                 ?>
 
                 <?php if ($currentPage < $totalPages): ?>
-                    <a href="?page=<?php echo $currentPage + 1; ?>&estado=<?php echo $_GET['estado'] ?? '-1'; ?>"
-                       class="page-number">Siguiente</a>
+                    <a href="<?= $baseUrl . '&page=' . ($currentPage + 1) ?>" class="page-number">Siguiente</a>
                 <?php endif; ?>
             </div>
 

@@ -19,6 +19,9 @@ class RegisteredController extends Controller
             redirect('/login');
         }
 
+        $users_status = filter_input(INPUT_GET, 's', FILTER_VALIDATE_INT) ?: 0;
+        echo $users_status;
+
 
 
         // Filtering users
@@ -53,9 +56,27 @@ class RegisteredController extends Controller
 
         // Get the slice of users for the current page
         $offset = ($page - 1) * $perPage;
-        $users = array_slice($users, $offset, $perPage);
+        $arrayUsers = [];
 
+        foreach ($users as $user) {
+            switch ($users_status) {
+                case 1:
+                    if($user->status == "active") {
+                        $arrayUsers[] = $user;
+                    }
+                    break;
+                case 2:
+                    if($user->status == "disabled") { 
+                        $arrayUsers[] = $user;
+                    }
+                    break;    
+                default:
+                    $arrayUsers = User::allof('user');
+                    break;
+            }
+        }
 
+        $users = array_slice($arrayUsers, $offset, $perPage);
 
         // your index view here
         render_view('registered', [
@@ -70,6 +91,8 @@ class RegisteredController extends Controller
         if ($request_method === "POST") {
             $id = isset($_POST['user_id']) ? $_POST['user_id'] : null;
             $action = isset($_POST['action']) ? $_POST['action'] : null;
+        } else {
+            $id = null;
         }
         if($id){
             $user = User::find($id);

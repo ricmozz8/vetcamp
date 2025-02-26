@@ -120,44 +120,46 @@ $statusParsing = [
                 </div>
             </div>
             <div class="pagination">
-                <?php if ($currentPage > 1): ?>
-                    <a href="?page=<?php echo $currentPage - 1; ?>" class="page-number">Anterior</a>
-                <?php endif; ?>
-
                 <?php
-                $start = max(1, $currentPage - 2);
-                $end = min($totalPages, $currentPage + 2);
-
-                if ($start > 1) {
-                    echo '<a href="?page=1" class="page-number">1</a>';
-                    if ($start > 2) {
-                        echo '<span class="page-ellipsis">...</span>';
+                    // Obtener los parámetros de la URL y conservarlos
+                    $queryParams = $_GET;
+    
+                    if ($currentPage > 1) {
+                        $queryParams['page'] = $currentPage - 1;
+                        echo '<a href="?' . http_build_query($queryParams) . '" class="page-number">Anterior</a>';
                     }
-                }
 
-                for ($i = $start;
-                     $i <= $end;
-                     $i++):
-                    ?>
-                    <a href="?page=<?php echo $i; ?>"
-                       class="page-number <?php echo ($i == $currentPage) ? 'active' : ''; ?>">
-                        <?php echo $i; ?>
-                    </a>
-                <?php endfor; ?>
+                    $start = max(1, $currentPage - 2);
+                    $end = min($totalPages, $currentPage + 2);
 
-                <?php
-                if ($end < $totalPages) {
-                    if ($end < $totalPages - 1) {
-                        echo '<span class="page-ellipsis">...</span>';
+                    if ($start > 1) {
+                        $queryParams['page'] = 1;
+                        echo '<a href="?' . http_build_query($queryParams) . '" class="page-number">1</a>';
+                        if ($start > 2) {
+                            echo '<span class="page-ellipsis">...</span>';
+                        }
                     }
-                    echo '<a href="?page=' . $totalPages . '" class="page-number">' . $totalPages . '</a>';
-                }
+
+                    for ($i = $start; $i <= $end; $i++) {
+                        $queryParams['page'] = $i;
+                        echo '<a href="?' . http_build_query($queryParams) . '" class="page-number ' . ($i == $currentPage ? 'active' : '') . '">' . $i . '</a>';
+                    }
+
+                    if ($end < $totalPages) {
+                        if ($end < $totalPages - 1) {
+                            echo '<span class="page-ellipsis">...</span>';
+                        }
+                        $queryParams['page'] = $totalPages;
+                        echo '<a href="?' . http_build_query($queryParams) . '" class="page-number">' . $totalPages . '</a>';
+                    }
+
+                    if ($currentPage < $totalPages) {
+                        $queryParams['page'] = $currentPage + 1;
+                        echo '<a href="?' . http_build_query($queryParams) . '" class="page-number">Siguiente</a>';
+                    }
                 ?>
-
-                <?php if ($currentPage < $totalPages): ?>
-                    <a href="?page=<?php echo $currentPage + 1; ?>" class="page-number">Siguiente</a>
-                <?php endif; ?>
             </div>
+
 
             <!-- <div id="manage-user" class="context-menu manage-user">
                 <a href="#">

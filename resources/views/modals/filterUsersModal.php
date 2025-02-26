@@ -9,10 +9,14 @@
 
         <form action="">
             <div class="filter-list">
-                <label for="order">Filtro</label>
-                <select name="order" id="order-select">
-                    <option value="">Seleccione una</option>
-                </select>
+            <label for="s">Por Estado</label>
+                <?php $s = $_GET['s'] ?? 0; ?>
+                <?= renderSelect('s',
+                    [
+                        'Seleccione una',
+                        'Activo',
+                        'Desactivo'
+                    ], (int)$s);?>
                 <label for="order">Filtro</label>
                 <select name="order" id="order-select">
                     <option value="">Seleccione una</option>
