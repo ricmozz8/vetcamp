@@ -18,12 +18,13 @@ require_once __DIR__ . '/partials/header.php';
     <main class="main-content">
         <header class="header">
             <h1 class="welcome"> Matrícula </h1>
-            <button class="main-action-bright" onclick="openModal('massiveEmailModal')">
+            <button class="main-action-bright primary" onclick="openModal('massiveEmailModal')">
                 <i class="fas fa-envelope"></i>
                 Enviar mensaje
             </button>
         </header>
 
+        
         <?php if (empty($sessions)): ?>
             <p style="color: gray; text-align: center; font-size: 18px; max-width: 700px; margin: auto; padding: 1em">
                 No hay usuarios aceptados.
