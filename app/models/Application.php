@@ -299,7 +299,6 @@ class Application extends Model
                 ErrorLog::log($e->getMessage(), $e->getFile(), $e->getTraceAsString(), 'warning');
                 continue;
             }
-
         }
 
         // remove all evaluations for this application
@@ -318,12 +317,12 @@ class Application extends Model
 
         // finally, delete the application record
         return $this->delete();
-
     }
 
-    public function tracking(){
+    public function tracking()
+    {
 
-        try{
+        try {
             return Tracking::findAllBy(['application_id' => $this->__get('id_application')]);
         } catch (ModelNotFoundException $e) {
             return [];

@@ -24,6 +24,7 @@ require_once __DIR__ . '/partials/header.php';
             </button>
         </header>
 
+        
         <?php if (empty($sessions)): ?>
             <p style="color: gray; text-align: center; font-size: 18px; max-width: 700px; margin: auto; padding: 1em">
                 No hay usuarios aceptados.
