@@ -1,6 +1,6 @@
 <!-- Session Edit Modal -->
 <div id="sessionEditModal" class="modal">
-    <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
+    <div class="modal-content">
     
         <!-- Close Button -->
         <span class="close-button" onclick="closeModal('sessionEditModal')">
@@ -16,7 +16,7 @@
     
             <?php $session_array = []; ?>
             <?php foreach ($sessions as $index => $session): ?>
-                <div class="form-group" style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ccc;">
+                <div class="form-group" style="display: flex; flex-direction: row; align-items: center; gap: 15px;">
                     <button type="submit" 
                     class="trash-button" 
                     name="delete_session" 
@@ -24,14 +24,8 @@
                     onclick="return confirmDelete(this);" 
                     data-title="<?php echo htmlspecialchars($session->title); ?>">
                     <i class="las la-trash"></i> </button>
-                    <input type="text" name="sessions[<?php echo $index; ?>][title]" id="session_title" value="<?php echo $session->title ?>" required style="flex-grow: 1;">
-                </div>
-                <div class="form-group" style="padding: 10px; border-bottom: 1px solid #ccc;">
-                    <label for="session_start_date">Fecha de inicio</label>
+                    <input type="text" name="sessions[<?php echo $index; ?>][title]" id="session_title" value="<?php echo $session->title ?>" required >
                     <input type="date" name="sessions[<?php echo $index; ?>][start_date]" id="session_start_date" value="<?php echo $session->start_date ?>" required>
-                </div>
-                <div class="form-group" style="padding: 10px; border-bottom: 1px solid #ccc;">
-                    <label for="session_end_date">Fecha de final</label>
                     <input type="date" name="sessions[<?php echo $index; ?>][end_date]" id="session_end_date" value="<?php echo $session->end_date ?>" required>
                 </div>
                 <input type="hidden" name="sessions[<?php echo $index; ?>][id]" value="<?php echo $session->session_id ?>" />
@@ -45,9 +39,10 @@
                 }
                 ?>
             <?php endforeach; ?>
-            <div class="modal-actions" style="padding: 10px; border-top: 1px solid #ccc;">
-                <a href="#" type="button" class="tertiary main-action-bright" onclick="openModal('addSessionsModal')">Crear sesión</a>
-                <a href="#" type="button" class="secondary main-action-bright" onclick="closeModal('sessionEditModal')">Cancelar</a>
+            <div class="modal-actions" style="flex; flex-direction: row; align-items: center; gap: 15px;">
+            <a href="#" type="button" class="secondary main-action-bright" onclick="closeModal('sessionEditModal')" style="background-color: white; color: #333;onmouseover="this.style.color='white'" onmouseout="this.style.color='#333'">Cancelar</a>
+            <a href="#" type="button" class="tertiary main-action-bright" onclick="openModal('addSessionsModal')">Crear sesión</a>
+        
                 <button type="submit" class="main-action-bright primary"> 
                     <i class="fas fa-save"></i> 
                     Guardar
