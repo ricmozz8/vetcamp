@@ -165,7 +165,7 @@ a.plain-action:hover {
 }
 
 .main-action-bright.no-deco-action {
-    background-color: transparent !important;
+    background-color: transparent;
     color: black;
     box-shadow: none;
     border: none;

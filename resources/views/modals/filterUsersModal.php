@@ -9,14 +9,17 @@
 
         <form action="">
             <div class="filter-list">
-                <label for="order">Filtro</label>
-                <select name="order" id="order-select">
-                    <option value="">Seleccione una</option>
-                </select>
-                <label for="order">Filtro</label>
-                <select name="order" id="order-select">
-                    <option value="">Seleccione una</option>
-                </select>
+            <label for="s">Por Estado</label>
+                <?php $s = $_GET['s'] ?? 0; ?>
+                <?= renderSelect('s',
+                    [
+                        'Seleccione una',
+                        'Activo',
+                        'Desactivo'
+                    ], (int)$s);?>
+                <label for="d">Ordenar por fecha</label>
+                <?php $order = $_GET['order'] ?? ''; ?>
+                <?= renderSelect('order', ['' => 'Selecciona una', 'asc' => 'Ascendente', 'desc' => 'Descendente'], $order) ?>
                 <label for="order">Filtro</label>
                 <div class="choice-group">
                     <input type="checkbox" name="order" id="order-select">

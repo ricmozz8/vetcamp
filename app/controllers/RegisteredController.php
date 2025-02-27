@@ -19,14 +19,23 @@ class RegisteredController extends Controller
             redirect('/login');
         }
 
+        $users_status = filter_input(INPUT_GET, 's', FILTER_VALIDATE_INT) ?: 0;
+
+
+
+        // Filtering users
+        // storing users
+        $users = User::allof('user');
+
+        $s = filter_input(INPUT_GET, 'search', FILTER_DEFAULT);
+
+        $order = isset($_GET['order']) && in_array($_GET['order'], ['asc', 'desc']) ? $_GET['order'] : 'desc';
+
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perPage = 7; // Set the number of users per page
 
-        // Get all users
-        $allUsers = User::allof('user');
-
         // Calculate total pages
-        $totalUsers = count($allUsers);
+        $totalUsers = count($users);
         $totalPages = ceil($totalUsers / $perPage);
 
         // Ensure the current page is within bounds
@@ -34,37 +43,56 @@ class RegisteredController extends Controller
 
         // Get the slice of users for the current page
         $offset = ($page - 1) * $perPage;
-        $users = array_slice($allUsers, $offset, $perPage);
+        $arrayUsers = [];
 
-        // Filtering users
-        // storing users
-        $users = User::allof('user');
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $s = filter_input(INPUT_POST, 'search', FILTER_DEFAULT);
-            if (!empty($s)) {
-                $searchTerm = $s . "%";
-
-                try {
-                    $users = User::findLike([
-                        'first_name' => $searchTerm,
-                        'last_name' => $searchTerm,
-                        'email' => $searchTerm
-                    ]);
-                } catch (ModelNotFoundException $notFound) {
-
-                    $_SESSION['error'] = 'No se encontraron resultados';
-                    redirect('/admin/registered');
-                }
+        foreach ($users as $user) {
+            switch ($users_status) {
+                case 1:
+                    if($user->status == "active") {
+                        $arrayUsers[] = $user;
+                    }
+                    break;
+                case 2:
+                    if($user->status == "disabled") { 
+                        $arrayUsers[] = $user;
+                    }
+                    break;    
+                default:
+                    $arrayUsers = User::allof('user');
+                    break;
             }
         }
 
+        // Ordenar por fecha
+        usort($arrayUsers, function ($a, $b) use ($order) {
+            $dateA = strtotime($a->created_at);
+            $dateB = strtotime($b->created_at);
+            return $order === 'asc' ? $dateA - $dateB : $dateB - $dateA;
+        });
+
+        $users = array_slice($arrayUsers, $offset, $perPage);
+
+        if (!empty($s)) {
+            $searchTerm = $s . "%";
+
+            try {
+                $users = User::findLike([
+                    'first_name' => $searchTerm,
+                    'last_name' => $searchTerm,
+                    'email' => $searchTerm
+                ]);
+            } catch (ModelNotFoundException $notFound) {
+                $users = [];
+            }
+        }
 
         // your index view here
         render_view('registered', [
             "users" => $users,
             'selected' => 'registered',
             'currentPage' => $page,
-            'totalPages' => $totalPages
+            'totalPages' => $totalPages,
+            'order' => $order
         ], 'Usuarios');
     }
 
@@ -72,6 +100,8 @@ class RegisteredController extends Controller
         if ($request_method === "POST") {
             $id = isset($_POST['user_id']) ? $_POST['user_id'] : null;
             $action = isset($_POST['action']) ? $_POST['action'] : null;
+        } else {
+            $id = null;
         }
         if($id){
             $user = User::find($id);

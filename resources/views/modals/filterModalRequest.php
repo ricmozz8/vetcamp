@@ -7,7 +7,7 @@
         </h2>
 
 
-        <form action="">
+        <form action="/admin/requests" method="GET">
             <div class="filter-list">
 
                 <label for="s">Por Estado</label>
@@ -24,8 +24,8 @@
                     ], (int)$s);?>
 
                 <label for="d">Ordenar por fecha</label>
-                <?php $date = $_GET['date'] ?? ''; ?>
-                <?= renderSelect('date', ['' => 'Selecciona una', 'asc' => 'Ascendente', 'desc' => 'Descendente'], $date) ?>
+                <?php $order = $_GET['order'] ?? ''; ?>
+                <?= renderSelect('order', ['' => 'Selecciona una', 'asc' => 'Ascendente', 'desc' => 'Descendente'], $order) ?>
 
                 <?php $doc = $_GET['doc'] ?? ''; ?>
                 <label for="d">Documentos Subidos</label>

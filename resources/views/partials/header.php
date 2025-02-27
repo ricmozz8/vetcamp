@@ -26,7 +26,7 @@
     <meta name="twitter:image" content="/<?= asset('seo_banner.png') ?>">
 
     <!-- Favicon -->
-    <link rel="icon" href="/<?= asset("icon.svg") ?>" type="image/x-icon">
+    <link rel="icon" href="/icon.svg" type="image/x-icon">
 
     <!-- CSS -->
 
@@ -43,6 +43,7 @@
     <script src="<?= web_resource("js/contextMenu.js") ?>"></script>
     <script src="<?= web_resource("js/holdPost.js") ?>"></script>
     <script src="<?= web_resource("js/notifications.js") ?>"></script>
+    <script src="<?= web_resource("js/accessibility.js") ?>"></script>
 
 
     <!-- TYPEFACES -->
@@ -52,6 +53,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Parkinsans:wght@300..800&display=swap"
           rel="stylesheet">
+
+    <link href="https://fonts.cdnfonts.com/css/open-dyslexic" rel="stylesheet">
+
 
     <!-- ICONS -->
     <link rel="stylesheet"
@@ -88,26 +92,19 @@
     <?php unset($_SESSION['error']);
 } ?>
 
-<?php
+<abbr title="Mostrar una fuente más legible">
+<span id="icon-read" class="accessibility font">
+    <i class="fa-solid fa-font"></i>
+</span>
+</abbr>
 
-/*
- * Add these accessibility features
- *
-<a href="#" onclick="openAccessibility()" class="accessibility">
-    <i class="fa-solid fa-person"></i>
-</a>
+<abbr title="Mostrar colores de alto contraste">
+<span id="icon-contrast"   class="accessibility contrast">
+    <i class="fa-solid fa-circle-half-stroke"></i>
+</span>
+</abbr>
 
-<div class="accessibility-popup">
-    <h4>Opciones de accesibilidad</h4>
 
-    <div class="accessible-options">
-
-    </div>
-</div>
-*/
-?>
-
-<!-- beta warning -->
 <div class="lower-disclaimer">
     <div class="minicon">
         <img src="/<?= asset("logo/SVG/vetcamp-icon-yellow.svg") ?>" alt="vet-icon">

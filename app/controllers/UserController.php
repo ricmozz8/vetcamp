@@ -436,7 +436,7 @@ class UserController extends Controller
         if (!$userId)
             redirect_back();
 
-        if (!in_array($from, ['registered', 'requests'])) {
+        if (!in_array($from, ['registered', 'requests', 'accepted'])) {
             $from = '';
         } else {
             $from = '/' . $from;

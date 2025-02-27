@@ -1,41 +1,40 @@
-<!-- Main popup container with the form -->
-<div class="message-popup" id="sessionEditModal" style="display: none">
-    <a href="#" class="plain-action" id="closePopup" onclick="closeModal('sessionEditModal')">
-        <i class="las la-times"></i>
-    </a>
-
-    <h2 class="message-title">Manejar sesiones</h2>
-
-    <!-- Message area -->
-    <div class="message-options">
-        <h3> Cambie el título y las fechas de comienzo y final de cada sesión activa.  Recuerde presionar el botón de "Guardar" para preservar los cambios. </h3>
-    </div>
-
-
-    <!-- Form for managing existing sessions -->
-    <form action="/sessions/update" method="POST">
-        <div class="session-modal-edit-area">
+<!-- Session Edit Modal -->
+<div id="sessionEditModal" class="modal">
+    <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
+    
+        <!-- Close Button -->
+        <span class="close-button" onclick="closeModal('sessionEditModal')">
+          <i class="fas fa-times"></i>
+        </span>
+       <!-- Title -->
+        <h2>
+            <i class="fas fa-calendar"></i>
+            Manejar sesiones
+        </h2>
+        
+        <form action="/sessions/update" method="POST">
+    
             <?php $session_array = []; ?>
             <?php foreach ($sessions as $index => $session): ?>
-                <div class="session-modal-edit">
+                <div class="form-group" style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ccc;">
                     <button type="submit" 
                     class="trash-button" 
                     name="delete_session" 
                     value="<?php echo $session->session_id; ?>" 
                     onclick="return confirmDelete(this);" 
                     data-title="<?php echo htmlspecialchars($session->title); ?>">
-                    <script>
-                    function confirmDelete(button) {
-                    const sessionTitle = button.getAttribute('data-title') || "esta sesión";
-                    return confirm(`¿Estás seguro de que deseas eliminar ${sessionTitle}?`);
-                    }
-                    </script>
                     <i class="las la-trash"></i> </button>
-                    <input type="hidden" name="sessions[<?php echo $index; ?>][id]" value="<?php echo $session->session_id ?>" />
-                    <input type="text" class="session-edit-input" name="sessions[<?php echo $index; ?>][title]" value="<?php echo $session->title ?>" />
-                    <input type="date" class="session-edit-input" name="sessions[<?php echo $index; ?>][start_date]" value="<?php echo $session->start_date ?>" />
-                    <input type="date" class="session-edit-input" name="sessions[<?php echo $index; ?>][end_date]" value="<?php echo $session->end_date ?>" />
+                    <input type="text" name="sessions[<?php echo $index; ?>][title]" id="session_title" value="<?php echo $session->title ?>" required style="flex-grow: 1;">
                 </div>
+                <div class="form-group" style="padding: 10px; border-bottom: 1px solid #ccc;">
+                    <label for="session_start_date">Fecha de inicio</label>
+                    <input type="date" name="sessions[<?php echo $index; ?>][start_date]" id="session_start_date" value="<?php echo $session->start_date ?>" required>
+                </div>
+                <div class="form-group" style="padding: 10px; border-bottom: 1px solid #ccc;">
+                    <label for="session_end_date">Fecha de final</label>
+                    <input type="date" name="sessions[<?php echo $index; ?>][end_date]" id="session_end_date" value="<?php echo $session->end_date ?>" required>
+                </div>
+                <input type="hidden" name="sessions[<?php echo $index; ?>][id]" value="<?php echo $session->session_id ?>" />
                 <?php {
                     $session_array[$session->session_id] =
                         [
@@ -46,45 +45,56 @@
                 }
                 ?>
             <?php endforeach; ?>
-        </div>
-
-        <!-- Buttons area -->
-        <div class="modal-actions">
-            <a href="#" type="button" class="tertiary main-action-bright" onclick="openModal('addSessionsModal')">Crear sesión</a>
-            <a href="#" type="button" class="secondary main-action-bright" onclick="closeModal('sessionEditModal')">Cancelar</a>
-            <button type="input" type="hidden" name="" class="primary main-action-bright">Guardar</button>
-        </div>
-    </form>
+            <div class="modal-actions" style="padding: 10px; border-top: 1px solid #ccc;">
+                <a href="#" type="button" class="tertiary main-action-bright" onclick="openModal('addSessionsModal')">Crear sesión</a>
+                <a href="#" type="button" class="secondary main-action-bright" onclick="closeModal('sessionEditModal')">Cancelar</a>
+                <button type="submit" class="main-action-bright primary"> 
+                    <i class="fas fa-save"></i> 
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
 
 
 <!-- Popup for adding a new session -->
-<div class="message-popup" id="addSessionsModal" style="display: none">
-    <a href="#" class="plain-action" id="closePopup" onclick="closeModal('addSessionsModal')">
-        <i class="las la-times"></i>
-    </a>
-
-    <h2 class="message-title">Añadir nueva sesión</h2>
-
-    <div class="message-options">
-        <h3> Escriba un título y establezca las fechas de comienzo y final para crear una sesión nueva. </h3>
-    </div>
-
-
-    <!-- Form for adding a new session -->
-    <form action="/sessions/create" method="POST">
-        <div class="session-modal-edit-area">
-            <div class="session-modal-edit">
-                <input type="text" class="session-edit-input" name="new_sessions[0][title]" placeholder="Título de la nueva sesión" />
-                <input type="date" class="session-edit-input" name="new_sessions[0][start_date]" />
-                <input type="date" class="session-edit-input" name="new_sessions[0][end_date]" />
+<div id="addSessionsModal" class="modal">
+    <div class="modal-content">
+    
+        <!-- Botón de cerrar -->
+        <span class="close-button" onclick="closeModal('addSessionsModal')">
+          <i class="fas fa-times"></i>
+        </span>
+       <!-- Título de la ventana -->
+        <h2>
+            <i class="fas fa-calendar"></i>
+            Añadir nueva sesión
+        </h2>
+        
+        <form action="/sessions/create" method="POST">
+    
+            <div class="form-group" style="padding: 10px; border-bottom: 1px solid #ccc;">
+                <label for="new_session_title">Título de la nueva sesión</label>
+                <input type="text" name="new_sessions[0][title]" id="new_session_title" placeholder="Título de la nueva sesión" required>
             </div>
-        </div>
+            <div class="form-group" style="padding: 10px; border-bottom: 1px solid #ccc;">
+                <label for="new_session_start_date">Fecha de inicio</label>
+                <input type="date" name="new_sessions[0][start_date]" id="new_session_start_date" required>
+            </div>
+            <div class="form-group" style="padding: 10px; border-bottom: 1px solid #ccc;">
+                <label for="new_session_end_date">Fecha de final</label>
+                <input type="date" name="new_sessions[0][end_date]" id="new_session_end_date" required>
+            </div>
 
-        <!-- Buttons area -->
-        <div class="modal-actions">
-            <a href="#" type="button" class="secondary main-action-bright" onclick="closeModal('addSessionsModal')">Cancelar</a>
-            <button type="submit" class="primary main-action-bright">Guardar</button>
-        </div>
-    </form>
+            <div class="modal-actions" style="padding: 10px; border-top: 1px solid #ccc;">
+                <a class="main-action-bright" onclick="closeModal('addSessionsModal')">Cancelar</a>
+                <button type="submit" class="main-action-bright primary"> 
+                    <i class="fas fa-save"></i> 
+                    Guardar
+                </button>
+            </div>
+          
+        </form>
+    </div>
 </div>

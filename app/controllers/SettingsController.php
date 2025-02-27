@@ -190,7 +190,20 @@ class SettingsController extends Controller
         if ($request_method == 'POST') {
 
             // Check if the password and confirm password fields match
-            if ($_POST['password'] !== $_POST['password_confirmation']) {
+
+            $first_name = filter_input(INPUT_POST, 'first_name');
+            $last_name = filter_input(INPUT_POST, 'last_name');
+            $email = filter_input(INPUT_POST, 'email');
+            $password = filter_input(INPUT_POST, 'password');
+            $confirm_password = filter_input(INPUT_POST, 'password_confirmation');
+            $notify_email = filter_input(INPUT_POST, 'notify');
+
+            if ($first_name == null || $last_name == null || $email == null || $password == null || $confirm_password == null) {
+                $_SESSION['error'] = 'Por favor llene todos los campos';
+                redirect('/admin/settings');
+            }
+
+            if ($password !== $confirm_password) {
                 $_SESSION['error'] = 'Las contraseñas no coinciden';
                 redirect('/admin/settings');
             }
@@ -208,13 +221,19 @@ class SettingsController extends Controller
                 'type' => 'admin',
             ]);
 
+            if($notify_email){
+
+                $email_body = "Se te ha registrado como administrador en VETCAMP. Tus credenciales de acceso son: \nCorreo: $user->email \nContraseña: $password\n\nPuedes editar tus datos de acceso en tu perfil.";
+
+                Mailer::send($user->email, 'Vetcamp | Eres administrador', $email_body);
+            }
+
             if ($user) {
                 $_SESSION['message'] = 'Se ha creado el administrador exitosamente';
-                redirect('/admin/settings');
             } else {
                 $_SESSION['error'] = 'Error al crear el administrador';
-                redirect('/admin/settings');
             }
+            redirect('/admin/settings');
         }
         // disallow other request methods only post will be valid
         $_SESSION['error'] = 'Página no encontrada';

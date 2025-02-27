@@ -41,11 +41,11 @@ require __DIR__ . '/partials/header.php';
                         Filtrar
                     </button>
                     <div class="search-container">
-                        <form method="POST" action="/admin/requests">
-                            <input required value="<?= $_POST['search'] ?? '' ?>" type="text"
+                        <form method="GET" action="/admin/requests">
+                            <input required value="<?= $_GET['search'] ?? '' ?>" type="text"
                                    class="search-input" name="search" placeholder="Busca correos, nombres">
-                            <?php if (isset($_POST['search'])): ?>
-                                <a class="no-deco-action" href="/admin/requests"><i class="fas fa-times"></i></a>
+                            <?php if (isset($_GET['search'])): ?>
+                                <a class="no-deco-action" href="/admin/registered"><i class="fas fa-times"></i></a>
                             <?php endif; ?>
                             <button type="submit" class="main-action-bright tertiary"><i class="fas fa-search"></i>
                             </button>
@@ -62,13 +62,28 @@ require __DIR__ . '/partials/header.php';
                             <th>Perfil</th>
                             <th>Nombre</th>
                             <th>Correo</th>
-                            <th order="down" class="actionable-header" id="order-doc"
-                                onclick="toggleDocumentOrder(this)">
-                                Documentos<i id="sort-icon-documents" class=""></i></th>
+                            <th class="actionable-header" id="order-doc">
+                                <?php
+                                    $queryParams = $_GET;
+                                    $queryParams['doc'] = isset($queryParams['doc']) && $queryParams['doc'] === 'asc' ? 'desc' : 'asc';
+                                    $queryString = http_build_query($queryParams);
+                                ?>
+                                <a href="?<?= $queryString ?>"><strong>Documentos</strong> <?= isset($_GET['doc']) && $_GET['doc'] === 'asc' ? '↓' : '↑' ?></a>
+                            </th>
+
+
                             <th style="cursor: pointer" onclick="openModal('filterModalRequest')">Estado</th>
-                            <th order="down" class="actionable-header" id="order-date" onclick="toggleDateOrder(this)">
-                                Fecha
-                                <i id="sort-icon-date" class=""></i></th>
+                            <th class="actionable-header" id="order-date">
+                            <?php
+                                $queryParams = $_GET;
+                                $queryParams['order'] = $order === 'asc' ? 'desc' : 'asc';
+                                $queryString = http_build_query($queryParams);
+                            ?>
+                            <a href="?<?= $queryString ?>"><strong>Fecha</strong><?= $order === 'asc' ? '↓' : '↑' ?></a>
+
+                            </th>
+
+
                             <th>Acción</th>
                             <th></th>
                         </tr>
@@ -117,28 +132,35 @@ require __DIR__ . '/partials/header.php';
                 </div>
             </div>
             <div class="pagination">
+                <?php
+                    // Construir la base de la URL con los filtros actuales
+                    $queryParams = $_GET;
+                    unset($queryParams['page']); // Quitamos 'page' para reemplazarlo con el correcto
+                    $queryString = http_build_query($queryParams);
+                    $baseUrl = "?$queryString"; // Base con los filtros actuales
+                ?>
+
                 <?php if ($currentPage > 1): ?>
-                    <a href="?page=<?php echo $currentPage - 1; ?>&estado=<?php echo $_GET['estado'] ?? '-1'; ?>"
-                       class="page-number">Anterior</a>
+                    <a href="<?= $baseUrl . '&page=' . ($currentPage - 1) ?>" class="page-number">Anterior</a>
                 <?php endif; ?>
 
                 <?php
-                $start = max(1, $currentPage - 2);
-                $end = min($totalPages, $currentPage + 2);
+                    $start = max(1, $currentPage - 2);
+                    $end = min($totalPages, $currentPage + 2);
 
-                if ($start > 1) {
-                    echo '<a href="?page=1&estado=' . ($_GET['estado'] ?? '-1') . '" class="page-number">1</a>';
-                    if ($start > 2) {
-                        echo '<span class="page-ellipsis">...</span>';
+                    if ($start > 1) {
+                        echo '<a href="' . $baseUrl . '&page=1" class="page-number">1</a>';
+                        if ($start > 2) {
+                            echo '<span class="page-ellipsis">...</span>';
+                        }
                     }
-                }
 
                 for ($i = $start; $i <= $end; $i++):
-                    ?>
-                    <a href="?page=<?php echo $i; ?>&estado=<?php echo $_GET['estado'] ?? '-1'; ?>"
-                       class="page-number <?php echo ($i == $currentPage) ? 'active' : ''; ?>">
-                        <?php echo $i; ?>
-                    </a>
+                ?>
+                <a href="<?= $baseUrl . '&page=' . $i ?>"
+                    class="page-number <?= ($i == $currentPage) ? 'active' : ''; ?>">
+                    <?= $i; ?>
+                </a>
                 <?php endfor; ?>
 
                 <?php
@@ -146,13 +168,12 @@ require __DIR__ . '/partials/header.php';
                     if ($end < $totalPages - 1) {
                         echo '<span class="page-ellipsis">...</span>';
                     }
-                    echo '<a href="?page=' . $totalPages . '&estado=' . ($_GET['estado'] ?? '-1') . '" class="page-number">' . $totalPages . '</a>';
+                    echo '<a href="' . $baseUrl . '&page=' . $totalPages . '" class="page-number">' . $totalPages . '</a>';
                 }
                 ?>
 
                 <?php if ($currentPage < $totalPages): ?>
-                    <a href="?page=<?php echo $currentPage + 1; ?>&estado=<?php echo $_GET['estado'] ?? '-1'; ?>"
-                       class="page-number">Siguiente</a>
+                    <a href="<?= $baseUrl . '&page=' . ($currentPage + 1) ?>" class="page-number">Siguiente</a>
                 <?php endif; ?>
             </div>
 
