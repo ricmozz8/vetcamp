@@ -76,8 +76,8 @@ return [
         'mail_mailer'=>'smtp',
         'mail_host'=>'sandbox.smtp.mailtrap.io',
         'mail_port'=>'2525',
-        'mail_username'=>'8c5f52efef456e',
-        'mail_password'=>'3fbe8d1e9965b9',
+        'mail_username'=>'',
+        'mail_password'=>'',
     ]
 ];
 }
