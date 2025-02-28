@@ -1,6 +1,6 @@
 <!-- Session Edit Modal -->
 <div id="sessionEditModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="max-width: 700px;">
     
         <!-- Close Button -->
         <span class="close-button" onclick="closeModal('sessionEditModal')">
@@ -12,11 +12,11 @@
             Manejar sesiones
         </h2>
         
-        <form action="/sessions/update" method="POST">
+        <form style="width: 100%;" action="/sessions/update" method="POST">
     
             <?php $session_array = []; ?>
             <?php foreach ($sessions as $index => $session): ?>
-                <div class="form-group" style="display: flex; flex-direction: row; align-items: center; gap: 15px;">
+                <div class="form-group" style="display: flex; flex-direction: row; align-items: center; gap: 15px; justify-content: space-around;">
                     <button type="submit" 
                     class="trash-button" 
                     name="delete_session" 
@@ -39,9 +39,9 @@
                 }
                 ?>
             <?php endforeach; ?>
-            <div class="modal-actions" style="flex; flex-direction: row; align-items: center; gap: 15px;">
-            <a href="#" type="button" class="secondary main-action-bright" onclick="closeModal('sessionEditModal')" style="background-color: white; color: #333;onmouseover="this.style.color='white'" onmouseout="this.style.color='#333'">Cancelar</a>
-            <a href="#" type="button" class="tertiary main-action-bright" onclick="openModal('addSessionsModal')">Crear sesión</a>
+            <div class="modal-actions" style="flex-direction: row; align-items: center; gap: 15px;">
+            <a href="#" type="button" class=" main-action-bright" onclick="closeModal('sessionEditModal')">Cancelar</a>
+            <a href="#" type="button" class="tertiary main-action-bright" onclick="openModal('addSessionsModal')"> <i class="fas fa-plus"></i>Crear sesión</a>
         
                 <button type="submit" class="main-action-bright primary"> 
                     <i class="fas fa-save"></i> 
@@ -69,20 +69,20 @@
         
         <form action="/sessions/create" method="POST">
     
-            <div class="form-group" style="padding: 10px; border-bottom: 1px solid #ccc;">
+            <div class="form-group">
                 <label for="new_session_title">Título de la nueva sesión</label>
                 <input type="text" name="new_sessions[0][title]" id="new_session_title" placeholder="Título de la nueva sesión" required>
             </div>
-            <div class="form-group" style="padding: 10px; border-bottom: 1px solid #ccc;">
+            <div class="form-group" >
                 <label for="new_session_start_date">Fecha de inicio</label>
                 <input type="date" name="new_sessions[0][start_date]" id="new_session_start_date" required>
             </div>
-            <div class="form-group" style="padding: 10px; border-bottom: 1px solid #ccc;">
+            <div class="form-group" >
                 <label for="new_session_end_date">Fecha de final</label>
                 <input type="date" name="new_sessions[0][end_date]" id="new_session_end_date" required>
             </div>
 
-            <div class="modal-actions" style="padding: 10px; border-top: 1px solid #ccc;">
+            <div class="modal-actions">
                 <a class="main-action-bright" onclick="closeModal('addSessionsModal')">Cancelar</a>
                 <button type="submit" class="main-action-bright primary"> 
                     <i class="fas fa-save"></i> 
