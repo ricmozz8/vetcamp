@@ -75,7 +75,7 @@ require_once __DIR__ . '/partials/header.php';
     <div class="flex-min centerme">
         <img class="small-reason" src="/<?= asset('/logo/svg/code-nd00.svg') ?>" alt="">
         <strong>Datos técnicos:</strong>
-        <?php if ($reason === 'disk') { ?>
+        <?php if (isset($reason) && $reason === 'disk') { ?>
             <p>Could not ensure byte allocation on current server disk, please free or move the current location.
             </p>
         <?php } ?>
