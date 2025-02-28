@@ -61,7 +61,9 @@
     <link rel="stylesheet"
           href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+          integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- PASSWORD VISSIBILITY TOGGLE -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -99,21 +101,25 @@
 </abbr>
 
 <abbr title="Mostrar colores de alto contraste">
-<span id="icon-contrast"   class="accessibility contrast">
+<span id="icon-contrast" class="accessibility contrast">
     <i class="fa-solid fa-circle-half-stroke"></i>
 </span>
 </abbr>
 
 
-<div class="lower-disclaimer">
-    <div class="minicon">
-        <img src="/<?= asset("logo/SVG/vetcamp-icon-yellow.svg") ?>" alt="vet-icon">
-        <p class="alert-text">!</p>
+<?php if (isset($no_demo) && $no_demo) { ?>
+<!--  VETCAMP STABLE 1.0 RELEASE  -->
+<?php } else { ?>
+    <div class="lower-disclaimer">
+        <div class="minicon">
+            <img src="/<?= asset("logo/SVG/vetcamp-icon-yellow.svg") ?>" alt="vet-icon">
+            <p class="alert-text">!</p>
+        </div>
+        <p class="noprint">
+            Vetcamp se encuentra en desarrollo,
+        </p>
+        <a target="_blank" style="color: white;" class=" no-deco-action" href="https://forms.gle/vh4v4ryUXCHvAVos8">déjanos
+            saber <i style="color: white;" class="fas fa-external-link-alt"></i></a>
+        <p>si presentas algún error con la web.</p>
     </div>
-    <p class="noprint">
-        Vetcamp se encuentra en desarrollo,
-    </p>
-    <a target="_blank" style="color: white;" class=" no-deco-action" href="https://forms.gle/vh4v4ryUXCHvAVos8">déjanos
-        saber <i style="color: white;" class="fas fa-external-link-alt"></i></a>
-    <p>si presentas algún error con la web.</p>
-</div>
+<?php }

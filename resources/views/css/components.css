@@ -94,7 +94,7 @@ button {
   background-color: var(--white-color);
 }
 
-.main-action-bright:hover:not(.primary, .secondary, .tertiary, .quaternary) {
+.main-action-bright:hover:not(.primary, .secondary, .tertiary, .quaternary, .no-deco-action, .plain-action) {
   background-color: var(--white-color);
 }
 

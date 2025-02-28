@@ -111,8 +111,9 @@ class Storage
      * @param string $disk The name of the disk to delete the file from.
      * @param string $path The path to the file to delete.
      *
+     * @throws FileNotFoundException
      */
-    public static function delete($disk, $path)
+    public static function delete(string $disk, string $path)
     {
         $file_path = 'storage/' . $disk . '/' . $path;
         if (!file_exists($file_path)) {
@@ -134,7 +135,7 @@ class Storage
         $free = disk_free_space(".");
 
         if ($free <= $threshold) {
-            render_view('fatal', ['reason' => 'disk'], 'Error grave');
+            render_view('fatal', ['reason' => 'disk', 'no_demo'=>true], 'Error grave');
         }
 
     }
