@@ -346,4 +346,15 @@ class User extends Model
     {
         return DB::update($table, $data, $where, $equal);
     }
+
+    public static function sendEmailForReactive($user) 
+    {
+        $user_reactive = ReactiveAccount::create([
+            "user_id" => $user->__get('user_id'),
+            "OTP" => ReactiveAccount::generateOTP()
+        ]);
+
+        
+        Mailer::send($user->email, "La cuenta de Vetcamp está desactivada.", "Contactate con Vetcamp para activarla usando este codigo " . $user_reactive->OTP);
+    }
 }

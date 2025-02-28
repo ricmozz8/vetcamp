@@ -1,6 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once 'app/models/User.php';
+require_once 'app/models/ReactiveAccount.php';
 
 const DELETE_USER_CONFIRMATION_TEXT = 'borrar mi cuenta';
 const RESCIND_APPLICATION_CONFIRMATION_TEXT = 'borrar mi solicitud';
@@ -490,6 +491,49 @@ class UserController extends Controller
             redirect('/admin/p?user=' . $user_id);
 
         }
+    }
+
+    public static function reactiveAccount($method){
+        if ($method == 'POST') {
+            $email = isset($_POST['email']) ? trim($_POST['email']) : null;
+            $codeOTP = isset($_POST['codeOTP']) ? trim($_POST['codeOTP']) : null;
+            
+            if (!$email || !$codeOTP) {
+                $_SESSION['error'] = "Debes ingresar tu correo y el código OTP.";
+                redirect('/reactiveuser');
+            }
+
+            try {
+                $user = User::findBy(['email' => $email]);
+    
+                if (!$user) {
+                    $_SESSION['error'] = "El correo o el código esta incorrecto.";
+                    // 
+                    redirect('/login');
+                }
+    
+                $reactiveAccount = ReactiveAccount::find($user->user_id, 'user_id');
+    
+                if (!$reactiveAccount || $reactiveAccount->OTP !== $codeOTP) {
+                    $_SESSION['error'] = "El correo o el código esta incorrecto.";
+                    redirect('/login');
+                }
+                // Reactivar la cuenta del usuario
+                User::updateStatus('users', ['status' => 'active'], 'user_id', $user->user_id);
+    
+                // Eliminar el fila
+                $reactiveAccount->delete();
+    
+                $_SESSION['message'] = "Tu cuenta ha sido reactivada correctamente.";
+                
+                redirect('/login');
+    
+            } catch (ModelNotFoundException $e) {
+                $_SESSION['error'] = "El correo o el código esta incorrecto.";
+                redirect('/login');
+            }
+        }
+
     }
 }
 
