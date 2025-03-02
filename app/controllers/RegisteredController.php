@@ -1,6 +1,6 @@
 <?php
 require_once 'Controller.php';
-require_once __DIR__ . '/../models/ReactiveAccount.php';
+require_once __DIR__ . '/../models/Activation.php';
 
 class RegisteredController extends Controller
 {
