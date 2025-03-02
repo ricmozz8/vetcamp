@@ -496,7 +496,6 @@ class UserController extends Controller
     public static function reactiveAccount($method){
         if ($method == 'POST') {
             $codeOTP = trim(filter_input(INPUT_POST, 'codeOTP'));
-``
             
             if (!$codeOTP) {
                 $_SESSION['error'] = "Introduce el código OTP.";
