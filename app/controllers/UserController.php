@@ -1,7 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once 'app/models/User.php';
-require_once 'app/models/ReactiveAccount.php';
+require_once 'app/models/Activation.php';
 
 const DELETE_USER_CONFIRMATION_TEXT = 'borrar mi cuenta';
 const RESCIND_APPLICATION_CONFIRMATION_TEXT = 'borrar mi solicitud';
