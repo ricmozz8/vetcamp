@@ -12,8 +12,6 @@ require __DIR__ . '/partials/header.php';
         <p>Se ha enviado un código de restablecimiento a tu correo electrónico</p>
         <div class="input-group">
             <div class="field-wrapper">
-                <label for="email">Introduce tu correo electrónico</label>
-                <input type="text" name="email" id="email">
                 <label for="codeOTP">Introduce el código</label>
                 <input type="text" name="codeOTP" id="codeOTP">
             </div>

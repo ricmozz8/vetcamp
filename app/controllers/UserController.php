@@ -495,30 +495,27 @@ class UserController extends Controller
 
     public static function reactiveAccount($method){
         if ($method == 'POST') {
-            $email = isset($_POST['email']) ? trim($_POST['email']) : null;
             $codeOTP = isset($_POST['codeOTP']) ? trim($_POST['codeOTP']) : null;
             
-            if (!$email || !$codeOTP) {
-                $_SESSION['error'] = "Debes ingresar tu correo y el código OTP.";
+            if (!$codeOTP) {
+                $_SESSION['error'] = "El código OTP.";
                 redirect('/reactiveuser');
             }
-
+            
             try {
-                $user = User::findBy(['email' => $email]);
-    
+                $reactiveAccount = ReactiveAccount::findBy(['OTP' => $codeOTP]);
+                
+                $user = User::find($reactiveAccount->user_id);
                 if (!$user) {
                     $_SESSION['error'] = "El correo o el código esta incorrecto.";
                     // 
                     redirect('/login');
                 }
-    
-                $reactiveAccount = ReactiveAccount::find($user->user_id, 'user_id');
-    
+
                 if (!$reactiveAccount || $reactiveAccount->OTP !== $codeOTP) {
-                    $_SESSION['error'] = "El correo o el código esta incorrecto.";
+                    $_SESSION['error'] = "El código esta incorrecto.";
                     redirect('/login');
                 }
-                // Reactivar la cuenta del usuario
                 User::updateStatus('users', ['status' => 'active'], 'user_id', $user->user_id);
     
                 // Eliminar el fila
@@ -527,11 +524,14 @@ class UserController extends Controller
                 $_SESSION['message'] = "Tu cuenta ha sido reactivada correctamente.";
                 
                 redirect('/login');
-    
+
+                // Si el código OTP es válido, puedes continuar con la lógica aquí.
             } catch (ModelNotFoundException $e) {
-                $_SESSION['error'] = "El correo o el código esta incorrecto.";
-                redirect('/login');
+                // Manejar el caso en el que no se encuentra el OTP
+                $_SESSION['error'] = "El código OTP esta incorrecto.";
+                render_view('reactiveUser', [], 'Reactive');
             }
+
         }
 
     }

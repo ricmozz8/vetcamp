@@ -1,4 +1,4 @@
-CREATE TABLE reactive_useraccount (
+CREATE TABLE activations (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     OTP TEXT NOT NULL,

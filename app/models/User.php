@@ -355,6 +355,6 @@ class User extends Model
         ]);
 
         
-        Mailer::send($user->email, "La cuenta de Vetcamp está desactivada.", "Contactate con Vetcamp para activarla usando este codigo " . $user_reactive->OTP);
+        Mailer::send($user->email, "Habilita tu cuenta de nuevo.", "Tu código de restablecimiento es " . $user_reactive->OTP);
     }
 }

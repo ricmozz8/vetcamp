@@ -4,7 +4,7 @@ require_once 'Model.php';
 class ReactiveAccount extends Model{
 
     // define your methods here
-    protected static $table = 'reactive_useraccount';
+    protected static $table = 'activations';
     protected static $primary_key = 'id';
 
 

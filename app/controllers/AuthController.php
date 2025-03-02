@@ -36,7 +36,6 @@ class AuthController extends Controller
                 }
 
                 if($user->status == "disabled") { 
-                    Auth::guest_only();
                     render_view('reactiveUser', [], 'Reactive');
                 }
 
