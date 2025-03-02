@@ -1,7 +1,7 @@
 <?php
 require_once 'Model.php';
 
-class ReactiveAccount extends Model{
+class Activation extends Model{
 
     // define your methods here
     protected static $table = 'activations';

@@ -349,9 +349,9 @@ class User extends Model
 
     public static function sendEmailForReactive($user) 
     {
-        $user_reactive = ReactiveAccount::create([
+        $user_reactive = Activation::create([
             "user_id" => $user->__get('user_id'),
-            "OTP" => ReactiveAccount::generateOTP()
+            "OTP" => Activation::generateOTP()
         ]);
 
         

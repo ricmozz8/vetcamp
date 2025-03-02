@@ -503,7 +503,7 @@ class UserController extends Controller
             }
             
             try {
-                $reactiveAccount = ReactiveAccount::findBy(['OTP' => $codeOTP]);
+                $reactiveAccount = Activation::findBy(['OTP' => $codeOTP]);
                 
                 $user = User::find($reactiveAccount->user_id);
                 if (!$user) {
