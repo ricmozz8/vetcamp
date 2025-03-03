@@ -13,7 +13,7 @@ require __DIR__ . '/partials/header.php';
         <div class="input-group">
             <div class="field-wrapper">
                 <label for="codeOTP">Introduce el código</label>
-                <input type="text" name="codeOTP" id="codeOTP">
+                <input type="text" name="codeOTP" id="codeOTP" required>
             </div>
         </div>
         <button type="submit" class="main-action-bright gradiented">
