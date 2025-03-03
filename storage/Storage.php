@@ -135,8 +135,51 @@ class Storage
         $free = disk_free_space(".");
 
         if ($free <= $threshold) {
-            render_view('fatal', ['reason' => 'disk', 'no_demo'=>true], 'Error grave');
+            render_view('fatal', ['reason' => 'disk', 'no_demo' => true], 'Error grave');
         }
 
+    }
+
+    /**
+     * Retrieves space information of the current storage disk.
+     *
+     * This function calculates the total, used, and free disk space, as well as the size of the folder
+     * where the script is running. It also computes the percentage of storage used and free space on the disk.
+     *
+     * @return array An array containing the following information:
+     *               - free: The available free space on the disk (in bytes).
+     *               - total: The total disk capacity (in bytes).
+     *               - used: The used disk space (in bytes).
+     *               - storage_percent: The percentage of storage space used by the current folder.
+     *               - total_percent: The percentage of free space remaining on the total disk.
+     *               - folderSize: The size of the current folder (in bytes).
+     */
+    public static function get_space_data(): array
+    {
+        $free = disk_free_space("."); // Get the free disk space
+        $total = disk_total_space("."); // Get the total disk space
+        $used = $total - $free; // Calculate the used disk space
+
+        $folderSize = 0; // Initialize folder size
+        $files = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator('.', FilesystemIterator::SKIP_DOTS)
+        );
+        foreach ($files as $file) {
+            $folderSize += $file->getSize(); // Add the size of each file to the folder size
+        }
+
+        // Calculate percentages
+        $percent_storage = ($total > 0) ? ($folderSize / $total) * 100 : 0;
+        $percent_free = ($free / $total) * 100;
+
+        // Return the space data
+        return [
+            'free' => $free,
+            'total' => $total,
+            'used' => $used,
+            'storage_percent' => round($percent_storage),
+            'total_percent' => round($percent_free),
+            'folderSize' => $folderSize,
+        ];
     }
 }
