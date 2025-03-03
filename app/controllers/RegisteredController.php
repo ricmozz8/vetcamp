@@ -1,5 +1,6 @@
 <?php
 require_once 'Controller.php';
+require_once __DIR__ . '/../models/Activation.php';
 
 class RegisteredController extends Controller
 {
@@ -103,12 +104,16 @@ class RegisteredController extends Controller
         } else {
             $id = null;
         }
+
         if($id){
             $user = User::find($id);
             //evitar un query sin sentido
             if ($action === $user->status) {
                 $_SESSION['error'] = "Ya el usuario tiene ese estado.";
                 redirect('/admin/registered');
+            } else if( $action === 'disabled') { 
+                // Enviarle un email si el status es disabled
+                User::sendEmailForReactive($user);
             }
         } 
         else {

@@ -52,4 +52,7 @@ switch ($path) {
     case '/profile/a/rescind':
         UserController::rescindApplication($method);
         break;
+    case '/reactiveuser':
+        UserController::reactiveAccount($method);
+        break;
 }
