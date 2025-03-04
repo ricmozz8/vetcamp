@@ -405,6 +405,16 @@ body.readable *:not(i) {
   gap: 5px;
 }
 
+.disabled-alt{
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
 .loader, #loader {
   width: 20px;
   height: 20px;
