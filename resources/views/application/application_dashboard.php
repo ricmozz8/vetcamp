@@ -40,7 +40,7 @@ if ($application && $application->isSubmitted()) {
             </p>
 
             <div class="status-actions-centered">
-                <a  href="/apply/application" class="main-action-bright tertiary <?php echo !$can_apply ? 'disabled' : ''; ?> " type="submit">
+                <a  href="/apply/application" class="main-action-bright tertiary <?php echo !$can_apply ? 'disabled-alt' : ''; ?> " type="submit">
                     <?php echo $can_apply ? ($status == 'Sin llenar' ? 'Llenar Solicitud' : 'Editar Solicitud') : 'Las solicitudes están cerradas temporalmente'; ?>
                 </a>
             </div>
