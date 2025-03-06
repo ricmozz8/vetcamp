@@ -1,6 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once 'app/models/User.php';
+require_once 'app/models/Activation.php';
 
 const DELETE_USER_CONFIRMATION_TEXT = 'borrar mi cuenta';
 const RESCIND_APPLICATION_CONFIRMATION_TEXT = 'borrar mi solicitud';
@@ -490,6 +491,49 @@ class UserController extends Controller
             redirect('/admin/p?user=' . $user_id);
 
         }
+    }
+
+    public static function reactiveAccount($method){
+        if ($method == 'POST') {
+            $codeOTP = trim(filter_input(INPUT_POST, 'codeOTP'));
+            
+            if (!$codeOTP) {
+                $_SESSION['error'] = "Introduce el código OTP.";
+                redirect('/reactiveuser');
+            }
+            
+            try {
+                $reactiveAccount = Activation::findBy(['OTP' => $codeOTP]);
+                
+                $user = User::find($reactiveAccount->user_id);
+                if (!$user) {
+                    $_SESSION['error'] = "El correo o el código esta incorrecto.";
+                    // 
+                    redirect('/login');
+                }
+
+                if (!$reactiveAccount || $reactiveAccount->OTP !== $codeOTP) {
+                    $_SESSION['error'] = "El código esta incorrecto.";
+                    redirect('/login');
+                }
+                User::updateStatus('users', ['status' => 'active'], 'user_id', $user->user_id);
+    
+                // Eliminar el fila
+                $reactiveAccount->delete();
+    
+                $_SESSION['message'] = "Tu cuenta ha sido reactivada correctamente.";
+                
+                redirect('/login');
+
+                // Si el código OTP es válido, puedes continuar con la lógica aquí.
+            } catch (ModelNotFoundException $e) {
+                // Manejar el caso en el que no se encuentra el OTP
+                $_SESSION['error'] = "El código OTP esta incorrecto.";
+                render_view('reactiveUser', [], 'Reactive');
+            }
+
+        }
+
     }
 }
 

@@ -13,6 +13,53 @@ require_once __DIR__ . '/partials/header.php';
 
     <!-- Main content area -->
     <div class="main-content">
+
+        <div class="storage-level-box">
+            <h2><i class="fas fa-hard-drive"></i> Storage Level</h2>
+            <p>Current server space and usage on the <code>Storage</code> folder</p>
+
+            <?php if (isset($space) && $space['total_percent'] >= 80): ?>
+            <div class="danger-box">
+                <h2> <i class="fas fa-triangle-exclamation"></i> Caution!</h2>
+                <p>The current server disk is almost full, free or move this installation or the application won't work if it reaches capacity.</p>
+            </div>
+            <?php endif; ?>
+
+            <div class="storage-bar">
+                <div class="storage-bar-fill" style="width: <?= isset($space) ? round($space['storage_percent']) : 0 ?>%;"></div>
+                <div class="storage-bar-fill-other" style="width: <?= isset($space) ? round($space['total_percent']) : 0 ?>%;"></div>
+
+            </div>
+            <p>Using <?= isset($space) ?  sizeReadable($space['folderSize']) : 0 ?>
+                of <?= isset($space) ?  sizeReadable($space['total']) : 0 ?>
+            (<?= round($space['total_percent']) ?>%)
+            </p>
+
+
+            <div class="color-legend">
+                <div class="color-label">
+                    <span class="c-sq square-on-use"></span>
+                    <abbr title="Size of the source code including the storage folder that includes submitted documents">
+                    <p>Using</p>
+                    </abbr>
+                </div>
+                <div class="color-label">
+                    <span class="c-sq square-other-using"></span>
+                    <abbr title="Other files used appart from the source code">
+                    <p>Other files</p>
+                    </abbr>
+                </div>
+                <div class="color-label">
+                    <span class="c-sq square-free"></span>
+
+                    <abbr title="Available space on the server">
+                    <p>Free</p>
+                    </abbr>
+                </div>
+            </div>
+
+
+        </div>
         <p class="warning-box">
             Esta sección es para los desarrolladores, por lo que no tiene que tomar ninguna acción aquí.
             Esta parte se removerá más adelante.

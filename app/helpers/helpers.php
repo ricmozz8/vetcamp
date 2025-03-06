@@ -555,3 +555,15 @@ function sizeToMB($size): string
 {
     return number_format($size / (1024 * 1024), 2) . ' MB';
 }
+
+
+function sizeReadable($size): string
+{
+    $units = ['B', 'KB', 'MB', 'GB', 'TB'];
+    $i = 0;
+    while ($size >= 1024) {
+        $size /= 1024;
+        $i++;
+    }
+    return round($size, 2) . ' ' . $units[$i];
+}

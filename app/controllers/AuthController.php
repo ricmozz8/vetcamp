@@ -28,11 +28,15 @@ class AuthController extends Controller
 
             if (isset($email) && isset($password)) {
                 try {
-                    $user = User::findBy(['email' => strtolower($email), 'status' => 'active']);
+                    $user = User::findBy(['email' => strtolower($email)]);
                 } catch (ModelNotFoundException $e) {
                     // User was not found
                     $_SESSION['error'] = 'Credenciales Incorrectas, intente de nuevo';
                     redirect('/login');
+                }
+
+                if($user->status == "disabled") { 
+                    render_view('reactiveUser', [], 'Reactive');
                 }
 
                 if (password_verify($password, $user->__get('password'))) {

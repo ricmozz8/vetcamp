@@ -151,6 +151,14 @@ body {
   scroll-behavior: smooth;
 }
 
+code{
+  font-family: monospace;
+  font-size: 1.2em;
+  background-color: var(--bright-shade);
+  padding: 0.2em;
+  border-radius: 5px;
+}
+
 h1,
 h2,
 h3,
@@ -395,6 +403,16 @@ body.readable *:not(i) {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.disabled-alt{
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }
 
 .loader, #loader {

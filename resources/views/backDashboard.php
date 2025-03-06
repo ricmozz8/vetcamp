@@ -55,7 +55,7 @@ if ($hour >= 5 && $hour < 12) {
                     </h2>
 
                 </div>
-                <div class="stat-number"><?php echo $all_applicants; ?></div>
+                <div class="stat-number" id="statistical-animate"><?php echo $all_applicants; ?></div>
                 <p class="stat-description">Usuarios que han llenado el formulario, y que han sometido su solicitud para
                     evaluación.</p>
 
@@ -72,7 +72,7 @@ if ($hour >= 5 && $hour < 12) {
                     </h2>
 
                 </div>
-                <div class="stat-number"><?php echo $all_users; ?></div>
+                <div class="stat-number" id="statistical-animate"><?php echo $all_users; ?></div>
                 <p class="stat-description">Usuarios que se han registrado en Vetcamp</p>
 
 
@@ -88,7 +88,7 @@ if ($hour >= 5 && $hour < 12) {
                     </h2>
 
                 </div>
-                <div class="stat-number"><?php echo $interested; ?></div>
+                <div class="stat-number" id="statistical-animate"><?php echo $interested; ?></div>
                 <p class="stat-description">Usuarios que han llenado el formulario, pero que no la han sometido.
                     (Interesados en aplicar)</p>
 
@@ -102,7 +102,7 @@ if ($hour >= 5 && $hour < 12) {
 
             <!-- Recent applications card -->
             <div class="stat-card">
-                <h2 class="stat-title">Solicitudes más recientes</h2>
+                <h2 class="stat-title"><i class="fas fa-clock-rotate-left"></i> Solicitudes más recientes</h2>
                 <br>
 
                 <div class="recent-list">
@@ -123,8 +123,8 @@ if ($hour >= 5 && $hour < 12) {
                         <div class='recent-application'>
                             <a href="/admin/p?user=<?= $user->user_id ?>"><img src="<?php echo $src; ?>" alt="Image"
                                                                                class="profile-picture"></a>
-                            <td><?php echo $full_name; ?></td>
-                            <td><?php echo htmlspecialchars($user->email); ?></td>
+                            <td><a href="/admin/requests/r?id=<?= $user->user_id ?>" class="main-action-bright plain-action"><?php echo $full_name; ?></a></td>
+                            <td>(<?php echo htmlspecialchars($user->email); ?>)</td>
                         </div>
                     <?php } ?>
                 </div>
@@ -136,7 +136,7 @@ if ($hour >= 5 && $hour < 12) {
 
             <!-- Recent registrations card -->
             <div class="stat-card">
-                <h2 class="stat-title">Registros Recientes</h2>
+                <h2 class="stat-title"><i class="fas fa-user-clock"></i> Registros Recientes</h2>
                 <br>
 
                 <div class="recent-list">
@@ -164,7 +164,7 @@ if ($hour >= 5 && $hour < 12) {
                                     ?>
                                 </a>
 
-                                <span class="recent-email"><?php echo $user->email; ?></span>
+                                <a href="/admin/p?user=<?= $user->user_id ?>" class="main-action-bright plain-action"><?php echo $user->email; ?></a>
                             </div>
                             <span class="time-stamp"><?php echo $user->created_at; ?></span>
                             <!-- Will update soon... $user->formatted_created_at -->
@@ -182,6 +182,39 @@ if ($hour >= 5 && $hour < 12) {
         <?php require_once('modals/sendMassiveMailModal.php'); ?>
     </div>
 </div>
+
+<script>    document.addEventListener('DOMContentLoaded', function () {
+        // getting all the numbers with the #statistical-animate id
+        let numbers = document.querySelectorAll('#statistical-animate');
+
+        // animating the numbers with a num animation
+        numbers.forEach(number => {
+            let currentNumber = parseInt(number.innerHTML, 10);
+            if (!isNaN(currentNumber)) {
+                number.innerHTML = 0; // Set the number to 0 before animation
+                setTimeout(() => {
+                    animateValue(number, 0, currentNumber, 500);
+                }, 100); // Delay to allow fade-in
+
+                number.style.transition = "opacity 0.5s"; // Smooth fade-in
+                number.style.opacity = 1; // Fade in
+            }
+        });
+    });
+
+    // credit: https://css-tricks.com/
+    function animateValue(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            obj.innerHTML = Math.floor(progress * (end - start) + start);
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }</script>
 
 
 <?php require_once('partials/footer.php'); ?>
