@@ -493,7 +493,10 @@ class UserController extends Controller
         }
     }
 
-    public static function reactiveAccount($method){
+    /** Reactivate a user
+     * @param string $method Either GET/POST
+     */
+    public static function reactivateUser($method){
         if ($method == 'POST') {
             $codeOTP = trim(filter_input(INPUT_POST, 'codeOTP'));
             
@@ -503,23 +506,23 @@ class UserController extends Controller
             }
             
             try {
-                $reactiveAccount = Activation::findBy(['OTP' => $codeOTP]);
+                $reactive = Activation::findBy(['OTP' => $codeOTP]);
                 
-                $user = User::find($reactiveAccount->user_id);
+                $user = User::find($reactive->user_id);
                 if (!$user) {
                     $_SESSION['error'] = "El correo o el código esta incorrecto.";
                     // 
                     redirect('/login');
                 }
 
-                if (!$reactiveAccount || $reactiveAccount->OTP !== $codeOTP) {
+                if (!$reactive || $reactive->OTP !== $codeOTP) {
                     $_SESSION['error'] = "El código esta incorrecto.";
                     redirect('/login');
                 }
                 User::updateStatus('users', ['status' => 'active'], 'user_id', $user->user_id);
     
                 // Eliminar el fila
-                $reactiveAccount->delete();
+                $reactive->delete();
     
                 $_SESSION['message'] = "Tu cuenta ha sido reactivada correctamente.";
                 
