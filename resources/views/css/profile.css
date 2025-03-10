@@ -201,13 +201,19 @@
 }
 
 .section-header {
+    gap: 1em;
+    padding: 10px;
+    border-bottom: 1px solid var(--bright-shade);
+    margin: 0 auto;
+
+
+}
+
+.align-nav{
+    max-width: 600px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1em;
-    padding: 1em;
-    border-bottom: 1px solid var(--bright-shade);
-    max-width: 1400px;
     margin: 0 auto;
 }
 

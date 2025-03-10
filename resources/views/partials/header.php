@@ -105,21 +105,3 @@
     <i class="fa-solid fa-circle-half-stroke"></i>
 </span>
 </abbr>
-
-
-<?php if (isset($no_demo) && $no_demo) { ?>
-<!--  VETCAMP STABLE 1.0 RELEASE  -->
-<?php } else { ?>
-    <div class="lower-disclaimer">
-        <div class="minicon">
-            <img src="/<?= asset("logo/SVG/vetcamp-icon-yellow.svg") ?>" alt="vet-icon">
-            <p class="alert-text">!</p>
-        </div>
-        <p class="noprint">
-            Vetcamp se encuentra en desarrollo,
-        </p>
-        <a target="_blank" style="color: white;" class=" no-deco-action" href="https://forms.gle/vh4v4ryUXCHvAVos8">déjanos
-            saber <i style="color: white;" class="fas fa-external-link-alt"></i></a>
-        <p>si presentas algún error con la web.</p>
-    </div>
-<?php }

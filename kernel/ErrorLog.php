@@ -52,14 +52,11 @@ class ErrorLog{
      */
     private static function write($log) {
 
-        // Open the file in append mode
-        $file = fopen(ERROR_LOG_PATH . ERROR_LOG_FILE, 'a');
-
+        if(!file_exists(ERROR_LOG_PATH . ERROR_LOG_FILE)) {
+            touch(ERROR_LOG_PATH . ERROR_LOG_FILE);
+        }
         // Write the log message to the file
-        fwrite($file, $log);
-
-        // Close the file
-        fclose($file);
+        file_put_contents(ERROR_LOG_PATH . ERROR_LOG_FILE, $log, FILE_APPEND);
     }
 
     public static function clear() {

@@ -62,10 +62,11 @@ label {
 .auth-navbar-alt{
   padding:  15px 2em;
   border-bottom: 1px solid var(--bright-shade);
+  box-shadow: var(--shadow-xl);
 }
 
 .nav-container{
-  max-width: 1400px;
+  max-width: 1920px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;

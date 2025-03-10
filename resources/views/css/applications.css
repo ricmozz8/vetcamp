@@ -3,11 +3,18 @@
 :root {
     --status-not-filled: #a3a3a3;
     --status-filling: #da9412;
-    --status-filled: #2fff73;
     --status-rejected: #fb1c1c;
     --status-success: #18b94e;
-    --status-pending: #5cd0fc;
+    --status-pending: #4bcdff;
+
+    /*backgrounds*/
+    --status-not-filled-bg: #e2e2e2;
+    --status-filling-bg: #ffe9be;
+    --status-success-bg: #e9ffe0;
+    --status-rejected-bg: #ffc5c5;
+    --status-pending-bg: #beeeff;
 }
+
 
 .auth-navbar {
     display: flex;
@@ -22,13 +29,16 @@
 }
 
 .application-card {
-    background-color: var(--main-color-default);
-    margin: 2em var(--main-margin);
+    background-color: white;
+    border: 1px solid var(--bright-shade);
+    box-shadow: var(--shadow-xl);
     border-radius: 7px;
     transition: all 0.2s ease;
-    margin-bottom: 45vh;
     user-select: none;
     animation: fadeUp .75s ease;
+    max-width: 1000px;
+    margin: 1em;
+    margin-bottom: 3em;
 }
 
 .application-deco-banner img {
@@ -40,53 +50,67 @@
     border-bottom: 1px solid var(--secondary-color-default);
 }
 
-.application-card > * {
-    margin: 0.5em 0;
-}
 
 
-.application-card h3 {
-    font-size: 2.5em;
-    line-height: 1.2em;
-    font-weight: 600;
-    margin-bottom: 0.5em;
-}
 
-.application-card-action {
-    padding: 2dvh;
-}
 
 .application-card-head {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 1em;
     text-align: center;
-    padding: 1em 0;
+    justify-content: space-between;
+    padding: 20px;
+
 }
 
+.application-actions   {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.companion-icon {
+    width: 30px;
+    padding: 5px;
+    background-color: var(--main-color-default);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.application-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 5px;
+
+}
+
+.application-title h2{
+    font-weight: 600;
+    font-size: 1.3em;
+    letter-spacing: -0.03em;
+    text-align: left;
+}
 
 .application-card-copy {
-    max-width: 500px;
-    margin: 0 auto;
+    margin: 2em  auto;
     text-align: center;
+    padding: 1em;
 }
 
 .status-info {
     display: flex;
     align-items: center;
-    padding: 5px 10px;
-    border-radius: 15px;
-    color: var(--white-color);
-    background-color: var(--secondary-color-default);
+    padding: 10px;
+    border-radius: 8px;
     width: fit-content;
     margin: 1em 0;
-    cursor: help;
     transition: all 0.2s ease;
-}
-
-.status-info:hover {
-    background-color: var(--secondary-color-shade-1);
 }
 
 .status-actions {
@@ -113,7 +137,7 @@
     position: absolute;
     top: 69px;
     right: 0;
-    margin-right: 2em;
+    margin-right: 30px;
     background-color: var(--white-color);
     z-index: 1;
     animation: fadeIn 0.3s ease;
@@ -177,30 +201,37 @@ a.nav-danger:hover {
 }
 
 .sin-subir {
+    background-color: var(--status-filling-bg);
     color: var(--status-filling);
 }
 
 .sin-llenar {
+    background-color: var(--status-not-filled-bg);
     color: var(--status-not-filled);
 }
 
 .incompleta, .necesita-cambios {
+    background-color: var(--status-filling-bg);
     color: var(--status-filling);
 }
 
 .sometida {
-    color: var(--status-filled);
+    background-color: var(--status-success-bg);
+    color: var(--status-success);
 }
 
 .rechazado {
+    background-color: var(--status-rejected-bg);
     color: var(--status-rejected);
 }
 
 .aceptado {
+    background-color: var(--status-success-bg);
     color: var(--status-success);
 }
 
 .en-lista-de-espera {
+    background-color: var(--status-pending-bg);
     color: var(--status-pending);
 }
 
@@ -687,9 +718,23 @@ form .grid-group {
 
     .application-form-card {
         margin: 50px var(--main-margin);
-
         padding: 20px;
         border-radius: 8px;
+    }
+
+    .application-actions{
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .application-card{
+        margin: 10em auto;
+    }
+
+    .application-card-head {
+        flex-direction: row;
+        border-bottom: 1px solid var(--bright-shade);
+        padding: 1em;
     }
 
     .form-block {
@@ -734,7 +779,7 @@ form .grid-group {
     }
 
 
-    .
+    
 }
 
 @media only screen and (min-width: 1400px) {
@@ -743,13 +788,5 @@ form .grid-group {
     .desk-grid{
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
-    .
-}
-
-@media only screen and (min-width: 1500px) {
-    .profile-dropdown {
-        margin-right: 225px;
-    }
-
-
+    
 }
