@@ -49,7 +49,7 @@ if (!isset($selected)) {
             echo 'active';
         } ?>">
             <i class="fas fa-bug"></i>
-            <span>Crash reports</span>
+            <span>Developers</span>
         </a>
     </nav>
 

@@ -18,13 +18,14 @@
 
 .modal form {
     width: 100%;
+    margin: auto;
 }
 
 .modal-content {
     background-color: #fff;
     padding: 20px;
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     border-radius: 8px;
     box-shadow: 0 4px 175px rgba(255, 243, 186, 0.46);
     position: relative;

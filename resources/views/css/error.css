@@ -1,3 +1,9 @@
+:root{
+  --color-on-use: #fd6900;
+  --color-other: #ffc033;
+  --color-free: #dedede;
+}
+
 .server-error-body {
   background-color: var(--secondary-color-default);
   color: var(--white-color);
@@ -52,6 +58,72 @@
   display: block;
   margin: 2em auto;
   text-align: center;
+}
+
+.storage-level-box{
+  padding: 2em;
+  border-radius: 10px;
+  border: 1px solid var(--bright-shade);
+  box-shadow: var(--shadow-xl);
+  max-width: 1000px;
+
+}
+
+.storage-level-box h2{
+  font-weight: 600;
+}
+
+.storage-bar{
+  width: 100%;
+  border-radius: 3px;
+  background-color: var(--color-free);
+  margin: 1em 0;
+  display: flex;
+  align-items: center;
+
+}
+
+.storage-bar-fill{
+  background-color: var(--color-on-use);
+  padding: 10px;
+}
+
+.storage-bar-fill-other{
+  background-color: var(--color-other);
+  padding: 10px;
+
+}
+
+
+.color-legend{
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 1em 0;
+}
+
+.color-label{
+  font-size: 1.03rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.c-sq{
+  padding: 5px;
+}
+.square-on-use{
+
+  background-color: var(--color-on-use);
+}
+.square-other-using{
+
+  background-color: var(--color-other);
+}
+
+.square-free{
+  background-color: var(--color-free);
 }
 
 @keyframes spin {

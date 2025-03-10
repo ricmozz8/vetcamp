@@ -140,8 +140,7 @@ require_once __DIR__ . '/partials/header.php';
                             <? if ($documents['written_application'] != null) { ?>
                                 <div>
                                     <a onclick="showModal('fileViewPopup-<?= $documents['written_application']['name'] ?>')"
-                                       class="no-deco-action w-fit" href="#">Solicitud
-                                        Escrita</a></div>
+                                       class="no-deco-action w-fit" href="#">Certificación Estudiantil</a></div>
                             <? } ?>
 
                             <? if ($documents['picture'] != null) { ?>

@@ -31,6 +31,10 @@
 
 }
 
+#statistical-animate{
+  opacity: 0;
+}
+
 
 /*******************************
  * HEADER SECTION
@@ -90,6 +94,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
   margin-bottom: 15px;
+  align-items: start;
 }
 
 .stat-description{
