@@ -37,7 +37,8 @@
     user-select: none;
     animation: fadeUp .75s ease;
     max-width: 1000px;
-    margin: 2em;
+    margin: 1em;
+    margin-bottom: 3em;
 }
 
 .application-deco-banner img {
@@ -93,6 +94,7 @@
     font-weight: 600;
     font-size: 1.3em;
     letter-spacing: -0.03em;
+    text-align: left;
 }
 
 .application-card-copy {
