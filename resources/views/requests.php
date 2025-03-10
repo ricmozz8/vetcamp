@@ -27,6 +27,7 @@ require __DIR__ . '/partials/header.php';
             <div class="header">
                 <div class="flex-min">
                     <h2 class="welcome">Solicitudes</h2>
+                    <a class="main-action-bright" href="#"><i class="fas fa-file-csv"></i> Exportar a Excel</a>
 
                 </div>
                 <div class="table-actions">
