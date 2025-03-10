@@ -17,9 +17,10 @@ if (!$isAdmin) {
 
 <div class="section-header">
 
+    <div class="align-nav">
     <a href="/admin<?= $from ?? '' ?>" class="main-action-bright"><i class="las la-arrow-left"></i> Volver</a>
-
-    <a onclick="openModal('singleMessageModal')" href="#" class="main-action-bright secondary" ><i class="fas fa-envelope"></i>Enviar mensaje</a>
+    <a onclick="openModal('singleMessageModal')" href="#" class="main-action-bright" ><i class="fas fa-paper-plane"></i>Enviar mensaje</a>
+    </div>
 </div>
 
 <div class="big-profile">
@@ -65,9 +66,9 @@ if (!$isAdmin) {
 
             <br>
             <?php if ($user->application() && $user->application()->status !== 'Sin subir') { ?>
-            <a href="/admin/requests/r?id=<?= $user->user_id ?>" class="main-action-bright primary">
-                <i class="fas fa-id-badge "></i>
+            <a target="_blank" href="/admin/requests/r?id=<?= $user->user_id ?>" class="main-action-bright primary">
                 Ver solicitud (<?= $user->application()->status ?>)
+                <i class="fas fa-external-link"></i>
             </a>
             <?php } ?>
         </div>
