@@ -53,6 +53,6 @@ switch ($path) {
         UserController::rescindApplication($method);
         break;
     case '/reactiveuser':
-        UserController::reactiveAccount($method);
+        UserController::reactivateUser($method);
         break;
 }
