@@ -19,13 +19,13 @@
             </div>
 
             <div class="modal-actions">
-                <a class="main-action-bright" onclick="closeModal('confirmDisableAllModal')">Cancelar</a>
-                <button type="submit" class="main-action-bright primary"> 
+                <a class="main-action-bright" onclick="closeModal('confirmDeleteAllApplicationsModal')">Cancelar</a>
+                <button type="submit" class="main-action-bright primary" style="background: red !important; color: white !important;">
                     <i class="las la-lock"></i> 
                     Confirmar
                 </button>
             </div>
-          
+            
         </form>
     </div>
 </div>
