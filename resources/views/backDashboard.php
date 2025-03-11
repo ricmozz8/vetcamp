@@ -45,7 +45,7 @@ if ($hour >= 5 && $hour < 12) {
 
 
         <!-- Statistics grid section -->
-        <div class="stats-grid-3 ">
+        <div class="stats-grid ">
             <!-- Applicants stats card -->
             <div class="stat-card">
                 <div class="stat-header">
@@ -78,21 +78,7 @@ if ($hour >= 5 && $hour < 12) {
 
             </div>
 
-            <!-- Interested users stats card -->
-            <div class="stat-card">
-                <div class="stat-header">
-                    <h2 class="stat-title">
-                        <i class="fas fa-paw"></i>
-                        Interesados en el campamento
-
-                    </h2>
-
-                </div>
-                <div class="stat-number" id="statistical-animate"><?php echo $interested; ?></div>
-                <p class="stat-description">Usuarios que han llenado el formulario, pero que no la han sometido.
-                    (Interesados en aplicar)</p>
-
-            </div>
+        
 
 
         </div>

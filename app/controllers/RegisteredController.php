@@ -59,7 +59,7 @@ class RegisteredController extends Controller
                     }
                     break;    
                 default:
-                    $arrayUsers = User::allof('user');
+                    $arrayUsers = $users;
                     break;
             }
         }

@@ -52,7 +52,7 @@ $statusParsing = [
 
                     </div>
                 </div>
-                <div class="stat-card">
+                <div class="">
                     <div class="stat-number">
                         <table>
                             <thead>
