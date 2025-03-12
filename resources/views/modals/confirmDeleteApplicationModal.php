@@ -12,7 +12,7 @@
 
         <form action="/admin/delete/application" method="POST">
 
-            <input type="hidden" name="application_id" value="<?= $user->application()->id_application ?>">
+            <input type="hidden" name="application_id" value="<?= $application->id_application ?>">
 
         <div class="modal-actions">
                 <a class="main-action-bright"

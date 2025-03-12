@@ -23,6 +23,10 @@
         <i class="fas fa-user"></i>
         Perfil
     </a>
+    <a target="_blank" href="https://forms.gle/vh4v4ryUXCHvAVos8" class="">
+        <i class="fas fa-bug"></i>
+        Reporta un error
+    </a>
     <a onclick="openModal('logoutModal')" href="#" class="nav-danger">
         <i class="fas fa-sign-out-alt"></i>
         Salir

@@ -59,7 +59,7 @@ class RegisteredController extends Controller
                     }
                     break;    
                 default:
-                    $arrayUsers = User::allof('user');
+                    $arrayUsers = $users;
                     break;
             }
         }
@@ -104,24 +104,24 @@ class RegisteredController extends Controller
         } else {
             $id = null;
         }
-
-        if($id){
+    
+        if ($id) {
             $user = User::find($id);
-            //evitar un query sin sentido
+            // Evitar un cambio innecesario
             if ($action === $user->status) {
                 $_SESSION['error'] = "Ya el usuario tiene ese estado.";
                 redirect('/admin/registered');
-            } else if( $action === 'disabled') { 
-                // Enviarle un email si el status es disabled
-                User::sendEmailForReactive($user);
+            } else if ($action === 'disabled') { 
+                // Enviar email si el usuario es deshabilitado
+                User::sendEmailForReactivate($user);
             }
-        } 
-        else {
+    
+            User::updateStatus('users', ['status' => $action], 'user_id', $id);
+        } else {
             RegisteredController::index();
         }
-        
-        User::updateStatus('users', ['status' => $action], 'user_id', $id);
-        RegisteredController::index();
+        redirect('/admin/registered');
     }
+    
     // define your other methods here
 }

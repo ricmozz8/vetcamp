@@ -45,7 +45,7 @@ if ($hour >= 5 && $hour < 12) {
 
 
         <!-- Statistics grid section -->
-        <div class="stats-grid-3 ">
+        <div class="stats-grid ">
             <!-- Applicants stats card -->
             <div class="stat-card">
                 <div class="stat-header">

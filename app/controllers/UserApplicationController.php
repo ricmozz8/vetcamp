@@ -404,6 +404,51 @@ class UserApplicationController extends Controller
         }
     }
 
+    /**
+     * This handles the delete for documents.
+     *
+     * If the method is POST,  get the name document, with name make the path.
+     *
+     * If the method is GET, it renders the document upload view with the application's
+     * current details and all sessions available.
+     *
+     * @param string $method The HTTP method used to access this function.
+     *
+     * @return void
+     */
+    public static function deleteDocuments(string $method)
+    {
+        $application = self::getApplication();
+
+        if ($method === 'POST') {
+            if (!empty($_POST['file_name'])) {
+                // variables needed for the call
+                $fileName = $_POST['file_name'];
+                $disk = "private";
+                $userId = Auth::user()->user_id;
+                $filePath = "documents/submissions/$userId/$fileName";
+
+                try {
+                    Storage::delete($disk, $filePath);
+                } catch (Exception $e) {
+                    $_SESSION['error'] = "Error al eliminar archivo";
+                    redirect('/apply/application/documents');
+                }
+
+            } else {
+                ErrorLog::log("No hay archivo para eliminar.", "app/controller/UserApplicationController.php", '') ;
+            }
+
+            // refresh the user with the new information on the database
+            Auth::refresh();
+
+            $_SESSION['message'] = 'Documento eliminado correctamente';
+            redirect('/apply/application/documents');
+        } else {
+            redirect('/apply/application/documents');
+        }
+    }
+
     public static function confirm($method)
     {
         $application = self::getApplication();
