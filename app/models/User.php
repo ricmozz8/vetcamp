@@ -378,7 +378,12 @@ class User extends Model
         return DB::update($table, $data, $where, $equal);
     }
 
-    public static function sendEmailForReactive($user) 
+    /**
+     * Create an instance to send an email with code validation
+     *
+     * @param $user a user
+     */
+    public static function sendEmailForReactivate($user) 
     {
         $user_reactive = Activation::create([
             "user_id" => $user->__get('user_id'),
