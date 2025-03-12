@@ -30,8 +30,8 @@ class RequestsController extends Controller
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perPage = 6; // Set the number of users per page
         
-        // Get all applicants
-        $allApplicants = User::allApplicants();
+        // Get all applicants with the users included
+        $allApplicants = Application::allWith('users', 'user_id', ['status'=>'status']);
 
         // Calculate total pages
         $totalUsers = count($allApplicants);
@@ -46,55 +46,55 @@ class RequestsController extends Controller
         $arrayUsers = [];
         
         // filtrar las solicitudes
-        foreach ($allApplicants as $user) {
-            $application = $user->application();
+        foreach ($allApplicants as $application) {
+
             switch ($application_status) {
                 case 1:
                     if($application->status == "Sometida") {
-                        $arrayUsers[] = $user;
+                        $arrayUsers[] = $application;
                     }
                     break;
                 case 2:
                     if($application->status == "Necesita Cambios") {
-                        $arrayUsers[] = $user;
+                        $arrayUsers[] = $application;
                     }
                     break;
                 case 3:
                     if($application->status == "Aceptado") {
-                        $arrayUsers[] = $user;
+                        $arrayUsers[] = $application;
                     }
                     break;
                 case 4:
                     if($application->status == "Rechazado") {
-                        $arrayUsers[] = $user;
+                        $arrayUsers[] = $application;
                     }
                     break;
                 case 5:
                     if($application->status == "Incompleta") {
-                        $arrayUsers[] = $user;
+                        $arrayUsers[] = $application;
                     }
                     break;
                 case 6:
                     if($application->status == "En lista de espera") {
-                        $arrayUsers[] = $user;
+                        $arrayUsers[] = $application;
                     }
                     break;
                 default:
-                    $arrayUsers = User::allApplicants();
+                    $arrayUsers = $allApplicants;
                     break;
             }
         }
 
         usort($arrayUsers, function ($a, $b) use ($order, $doc_order) {
-            $dateA = strtotime($a->application()->date_created);
-            $dateB = strtotime($b->application()->date_created);
+            $dateA = strtotime($a->date_created);
+            $dateB = strtotime($b->date_created);
         
             // Ordenar primero por fecha
             $dateComparison = $order === 'asc' ? $dateA - $dateB : $dateB - $dateA;
         
             if ($doc_order) {
-                $docA = $a->application()->documentCount();
-                $docB = $b->application()->documentCount();
+                $docA = $a->documentCount();
+                $docB = $b->documentCount();
                 $docComparison = $doc_order === 'asc' ? $docA - $docB : $docB - $docA;
                 return $docComparison !== 0 ? $docComparison : $dateComparison;
             }

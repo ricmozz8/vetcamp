@@ -90,7 +90,7 @@ class Model
      *
      * @throws ModelNotFoundException If no records are found with the specified id.
      */
-    public static function findAll(int $id, string $column = null, string $table = null): Model
+    public static function findAll(int $id, string $column = null, string $table = null)
     {
         self::init();
 
@@ -235,6 +235,49 @@ class Model
 
     }
 
+    
+    /**
+     * Returns all records from the associated table joined with a specified
+     * table.
+     *
+     * @param string $table The table to join with.
+     * @param string $primary_key The primary key of the table to join with.
+     *
+     * @return array An array of models with the matching records.
+     */
+    public static function allWith(string $table, string $column, array $renames = []) {
+        self::init();
+
+        $result = DB::join(static::$table, $table, $column, $renames);
+
+        foreach ($result as $data) {
+            // can't return a specific static model since the result is a model combination
+            $models[] = new static($data, self::sanitize($data));
+        }
+
+
+        return $models;
+
+    }
+
+    /**
+     * Returns a single record from the associated table joined with a
+     * specified table where the specified column matches the given value.
+     *
+     * @param string $table The table to join with.
+     * @param string $primary_key The primary key of the table to join with.
+     * @param string $column The column to use in the WHERE clause.
+     * @param string $identifier The value to match in the WHERE clause.
+     *
+     * @return Model The model instance with the matching record.
+     */
+    public static function with(string $table, string $primary_key, string $column, string $identifier) {
+        self::init();
+        $result = DB::singleJoin(static::$table, $table, static::$primary_key, $primary_key, $column, $identifier);
+
+        return new Model($result, self::sanitize($result));
+    }
+
     /**
      * Sets the value of a model attribute.
      *
@@ -321,6 +364,8 @@ class Model
     }
 
 
+
+
     /**
      * Checks if a record exists in the associated table with the given data.
      *
@@ -373,6 +418,20 @@ class Model
             unset($data[$to_hide]);
         }
         return $data;
+    }
+
+    /**
+     * Counts the number of records in the associated table.
+     *
+     * This method initializes the model if necessary before performing the count
+     * operation.
+     *
+     * @return int The number of records in the associated table.
+     */
+    public static function count(): int
+    {
+        self::init();
+        return DB::count(static::$table);
     }
 
     public static function countwithCondition(string $aColumn, $aValue, string $aColumnCondition, $aValueCondition): int

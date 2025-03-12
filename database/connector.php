@@ -115,7 +115,6 @@ final class DB
             $params[$key] = $value;
             if ($index < $length - 1) {
                 $sql .= ' AND ';
-
             }
 
             $index++;
@@ -295,7 +294,6 @@ final class DB
         } catch (Error $e) {
             return false;
         }
-
     }
 
 
@@ -359,6 +357,83 @@ final class DB
         } catch (PDOException $e) {
             throw new DatabaseQueryException($e->getMessage(), $sql, $e->getCode(), $e);
         }
+    }
+
+
+    // SQL JOINS
+
+
+    /**
+     * Executes a LEFT JOIN query between two tables on a specified column.
+     *
+     * This method constructs and executes an SQL SELECT statement with a
+     * LEFT JOIN between two tables, using the specified column as the join
+     * condition. It supports renaming columns from the first table in the result
+     * set.
+     *
+     * @param string $table1 The name of the first table to join.
+     * @param string $table2 The name of the second table to join.
+     * @param string $column The column to use as the join condition.
+     * @param array $renames An associative array where keys are column names
+     *                       from the first table, and values are the new names
+     *                       for those columns in the result set.
+     *
+     * @return array The results of the query as an array of associative arrays.
+     */
+
+    public static function join(string $table1, string $table2, string $column, array $renames = []): array
+    {
+
+        $renameString = '';
+        if (!empty($renames)) {
+            $renameStringParts = [];
+            foreach ($renames as $key => $value) {
+                $renameStringParts[] = "`$table1`.`$key` AS `$value`";
+            }
+            $renameString = ', ' . implode(', ', $renameStringParts);
+        }
+
+        $sql = "SELECT *$renameString FROM `$table1` LEFT JOIN `$table2` ON `$table1`.`$column` = `$table2`.`$column`";
+        $statement = self::$database->prepare($sql);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Execute a JOIN query on two tables and return only the first matching result.
+     *
+     * This method prepares and executes a JOIN SQL query on two specified tables
+     * using the provided column names as join conditions. The results of the query
+     * are returned as an associative array, where each key is the name
+     * of a column and the value is the value of the column.
+     *
+     * @param string $table1 The name of the first table to join.
+     * @param string $table2 The name of the second table to join.
+     * @param string $column1 The column from the first table to use in the join condition.
+     * @param string $column2 The column from the second table to use in the join condition.
+     * @param string $where The column name to use in the WHERE clause.
+     * @param string $equal The value to match for the specified column in the WHERE clause.
+     *
+     * @return array The results of the join query as an associative array.
+     */
+    public static function singleJoin(string $table1, string $table2, string $column1, string $column2, string $where, string $equal): array
+    {
+        $sql = "SELECT * FROM :table1 JOIN :table2 ON :column1 = :column2 WHERE :where = :equal";
+        $statement = self::$database->prepare($sql);
+
+        $statement->bindValue(':table1', $table1, PDO::PARAM_STR);
+        $statement->bindValue(':table2', $table2, PDO::PARAM_STR);
+
+        $statement->bindValue(':column1', $column1, PDO::PARAM_STR);
+        $statement->bindValue(':column2', $column2, PDO::PARAM_STR);
+
+        $statement->bindValue(':where', $where, PDO::PARAM_STR);
+        $statement->bindValue(':equal', $equal, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
 
@@ -442,11 +517,11 @@ final class DB
      *
      * @return bool Returns true if a record was successfully deleted, otherwise false.
      */
-    public static function count(string $table, string $column, $value): int
+    public static function count(string $table): int
     {
-        $sql = "SELECT COUNT(*) FROM " . self::$database_name . "." . $table . " WHERE " . $column . " = :value";
+        $sql = "SELECT COUNT(*) FROM " . self::$database_name . "." . $table;
         $statement = self::$database->prepare($sql);
-        $statement->bindValue(':value', $value, is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR);
+
         $statement->execute();
         return (int)$statement->fetchColumn();
     }

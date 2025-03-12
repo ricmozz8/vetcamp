@@ -15,49 +15,48 @@ class BackDashboardController extends Controller
     public static function index()
     {
 
-        if(!Auth::check()){
+        if (!Auth::check()) {
             redirect('/login');
         }
 
-        if(Auth::user()->type !== 'admin')
-        {
+        if (Auth::user()->type !== 'admin') {
             redirect('/apply');
         }
-        
+
+
+
         // Get registered and applicant stats
-        $all_users = count(User::allOf('user'));
-        $all_applicants = count(User::allApplicants());
 
-        // getting all interested users (people with unsubmitted applications)
-        $interested = count(User::interested());
-
-        // Get recent registered users
         $recent_registered = User::allOf('user');
-        usort($recent_registered, function($a, $b) {
+
+        $all_users = count($recent_registered);
+        $recent_applications = User::allApplicants();
+        $all_applicants = count($recent_applications);
+
+
+        usort($recent_registered, function ($a, $b) {
             $timeA = $a->created_at ? strtotime($a->created_at) : 0;
             $timeB = $b->created_at ? strtotime($b->created_at) : 0;
             return $timeB - $timeA;
         });
+
         $recent_registered = array_slice($recent_registered, 0, 5);
 
 
-        // Get recent applications
-        $recent_applications = User::allApplicants();
-       
-
-        usort($recent_applications, function($a, $b) {
+        usort($recent_applications, function ($a, $b) {
             $timeA = $a->application()->created_at ? strtotime($a->application()->created_at) : 0;
             $timeB = $b->application()->created_at ? strtotime($b->application()->created_at) : 0;
             return $timeB - $timeA;
         });
+
         $recent_applications = array_slice($recent_applications, 0, 5);
 
         // excluding unsubmitted applications
-        $recent_applications = array_filter($recent_applications, function($user) {
+        $recent_applications = array_filter($recent_applications, function ($user) {
             return $user->application()->isComplete();
         });
 
-        
+
 
         render_view('backDashboard', [
             'all_users' => $all_users,
@@ -65,7 +64,6 @@ class BackDashboardController extends Controller
             'recent_registered' => $recent_registered,
             'recent_applications' => $recent_applications,
             'selected' => 'start',
-            'interested' => $interested
         ], 'Administración');
     }
 
@@ -89,5 +87,4 @@ class BackDashboardController extends Controller
             return $created_at->format('d/m/Y g:i a');
         }
     }
-
 }
