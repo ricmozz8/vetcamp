@@ -17,6 +17,9 @@ switch ($path) {
     case '/apply/application/documents':
         UserApplicationController::documents($method);
         break;
+    case '/apply/application/deletedocuments':
+        UserApplicationController::deleteDocuments($method);
+        break;
     case '/apply/application/confirm':
         UserApplicationController::confirm($method);
         break;

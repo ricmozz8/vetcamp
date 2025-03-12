@@ -73,6 +73,9 @@ require __DIR__ . '../../partials/header.php';
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
                         </a>
+                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $written_application['name'] ?>')">
+                            <i class="fas fa-trash-alt"></i> Borrar
+                        </a>
                     <?php } ?>
                 </div>
 
@@ -99,6 +102,9 @@ require __DIR__ . '../../partials/header.php';
                         <a href="#" onclick="showModal('fileViewPopup-<?= $transcript['name'] ?>')"
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
+                        </a>
+                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $transcript['name'] ?>')">
+                            <i class="fas fa-trash-alt"></i> Borrar
                         </a>
                     <?php } ?>
                 </div>
@@ -129,6 +135,9 @@ require __DIR__ . '../../partials/header.php';
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
                         </a>
+                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $written_essay['name'] ?>')">
+                            <i class="fas fa-trash-alt"></i> Borrar
+                        </a>
                     <?php } ?>
                 </div>
 
@@ -155,6 +164,9 @@ require __DIR__ . '../../partials/header.php';
                     <?php if (isset($saved_documents['picture'])) { ?>
                         <a href="#" onclick="showModal('fileViewPopup-<?= $picture['name'] ?>')" class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
+                        </a>
+                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $picture['name'] ?>')">
+                            <i class="fas fa-trash-alt"></i> Borrar
                         </a>
                     <?php } ?>
                 </div>
@@ -185,6 +197,9 @@ require __DIR__ . '../../partials/header.php';
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
                         </a>
+                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $video_essay['name'] ?>')">
+                            <i class="fas fa-trash-alt"></i> Borrar
+                        </a>
                     <?php } ?>
                 </div>
 
@@ -212,6 +227,9 @@ require __DIR__ . '../../partials/header.php';
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
                         </a>
+                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $authorization['name'] ?>')">
+                            <i class="fas fa-trash-alt"></i> Borrar
+                        </a>
                     <?php } ?>
                 </div>
             </div>
@@ -238,6 +256,9 @@ require __DIR__ . '../../partials/header.php';
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
                         </a>
+                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $recommendation['name'] ?>')">
+                            <i class="fas fa-trash-alt"></i> Borrar
+                        </a>
                     <?php } ?>
                 </div>
             </div>
@@ -250,13 +271,12 @@ require __DIR__ . '../../partials/header.php';
         </div>
     </form>
 </div>
-
 <!-- including here file view popup -->
 <?php foreach ($saved_documents as $file) { ?>
     <?php require(__DIR__ . '../../modals/fileViewPopup.php'); ?>
 <?php } ?>
 
-
+<?php require_once __DIR__ . '../../modals/confirmDelete.php';?>
 
 <?php require_once(__DIR__ . '../../partials/footer.php'); ?>
 </body>
