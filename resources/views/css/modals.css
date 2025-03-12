@@ -187,6 +187,8 @@ textarea {
     user-select: auto !important;
 }
 
+
+
 @keyframes blurify {
     from {
         backdrop-filter: blur(0px);
