@@ -417,43 +417,37 @@ class UserApplicationController extends Controller
      * @return void
      */
     public static function deleteDocuments(string $method)
-{
-    $application = self::getApplication();
+    {
+        $application = self::getApplication();
 
-    if ($method === 'POST') {
-        if (!empty($_POST['file_name'])) {
-            // variables needed for the call
-            $fileName = $_POST['file_name'];
-            $disk = "private";
-            $userId = Auth::user()->user_id;
-            $filePath = "documents/submissions/$userId/$fileName";
+        if ($method === 'POST') {
+            if (!empty($_POST['file_name'])) {
+                // variables needed for the call
+                $fileName = $_POST['file_name'];
+                $disk = "private";
+                $userId = Auth::user()->user_id;
+                $filePath = "documents/submissions/$userId/$fileName";
 
-            try {
-                Storage::delete($disk, $filePath);
-            } catch (Exception $e) {
-                $_SESSION['error'] = "Error al eliminar archivo: " . $e->getMessage();
-                redirect('/apply/application/documents');
+                try {
+                    Storage::delete($disk, $filePath);
+                } catch (Exception $e) {
+                    $_SESSION['error'] = "Error al eliminar archivo";
+                    redirect('/apply/application/documents');
+                }
+
+            } else {
+                ErrorLog::log("No hay archivo para eliminar.", "app/controller/UserApplicationController.php", '') ;
             }
 
+            // refresh the user with the new information on the database
+            Auth::refresh();
+
+            $_SESSION['message'] = 'Documento eliminado correctamente';
+            redirect('/apply/application/documents');
         } else {
-            echo "No hay archivo para eliminar.";
+            redirect('/apply/application/documents');
         }
-
-        // refresh the user with the new information on the database
-        Auth::refresh();
-
-        $_SESSION['message'] = 'Documento eliminado correctamente';
-        redirect('/apply/application/documents');
-    } else {
-        // method is GET
-        $saved_documents = $application->getDocuments();
-
-        render_view('application/documents', [
-            'application' => $application,
-            'saved_documents' => $saved_documents
-        ], 'Documentos');
     }
-}
 
     public static function confirm($method)
     {
