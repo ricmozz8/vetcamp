@@ -549,8 +549,8 @@ label[for="file"]:active {
 }
 
 .btn-delete {
-    background-color: red;
-    color: white;
+    background-color: var(--danger-color);
+    color: var(--white-color);
     border: none;
     border-radius: 17px;
     padding: 5px 10px;

@@ -73,7 +73,7 @@ require __DIR__ . '../../partials/header.php';
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
                         </a>
-                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $written_application['name'] ?>')">
+                        <a href="#" class="btn-delete" onclick="confirmDeleteSingleDocumentModal('<?= $written_application['name'] ?>')">
                             <i class="fas fa-trash-alt"></i> Borrar
                         </a>
                     <?php } ?>
@@ -103,7 +103,7 @@ require __DIR__ . '../../partials/header.php';
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
                         </a>
-                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $transcript['name'] ?>')">
+                        <a href="#" class="btn-delete" onclick="confirmDeleteSingleDocumentModal('<?= $transcript['name'] ?>')">
                             <i class="fas fa-trash-alt"></i> Borrar
                         </a>
                     <?php } ?>
@@ -135,7 +135,7 @@ require __DIR__ . '../../partials/header.php';
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
                         </a>
-                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $written_essay['name'] ?>')">
+                        <a href="#" class="btn-delete" onclick="confirmDeleteSingleDocumentModal('<?= $written_essay['name'] ?>')">
                             <i class="fas fa-trash-alt"></i> Borrar
                         </a>
                     <?php } ?>
@@ -165,7 +165,7 @@ require __DIR__ . '../../partials/header.php';
                         <a href="#" onclick="showModal('fileViewPopup-<?= $picture['name'] ?>')" class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
                         </a>
-                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $picture['name'] ?>')">
+                        <a href="#" class="btn-delete" onclick="confirmDeleteSingleDocumentModal('<?= $picture['name'] ?>')">
                             <i class="fas fa-trash-alt"></i> Borrar
                         </a>
                     <?php } ?>
@@ -197,7 +197,7 @@ require __DIR__ . '../../partials/header.php';
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
                         </a>
-                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $video_essay['name'] ?>')">
+                        <a href="#" class="btn-delete" onclick="confirmDeleteSingleDocumentModal('<?= $video_essay['name'] ?>')">
                             <i class="fas fa-trash-alt"></i> Borrar
                         </a>
                     <?php } ?>
@@ -227,7 +227,7 @@ require __DIR__ . '../../partials/header.php';
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
                         </a>
-                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $authorization['name'] ?>')">
+                        <a href="#" class="btn-delete" onclick="confirmDeleteSingleDocumentModal('<?= $authorization['name'] ?>')">
                             <i class="fas fa-trash-alt"></i> Borrar
                         </a>
                     <?php } ?>
@@ -256,7 +256,7 @@ require __DIR__ . '../../partials/header.php';
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
                         </a>
-                        <a href="#" class="btn-delete" onclick="confirmDelete('<?= $recommendation['name'] ?>')">
+                        <a href="#" class="btn-delete" onclick="confirmDeleteSingleDocumentModal('<?= $recommendation['name'] ?>')">
                             <i class="fas fa-trash-alt"></i> Borrar
                         </a>
                     <?php } ?>
@@ -276,7 +276,7 @@ require __DIR__ . '../../partials/header.php';
     <?php require(__DIR__ . '../../modals/fileViewPopup.php'); ?>
 <?php } ?>
 
-<?php require_once __DIR__ . '../../modals/confirmDelete.php';?>
+<?php require_once __DIR__ . '../../modals/confirmDeleteSingleDocumentModal.php';?>
 
 <?php require_once(__DIR__ . '../../partials/footer.php'); ?>
 </body>

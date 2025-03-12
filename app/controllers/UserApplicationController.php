@@ -430,9 +430,9 @@ class UserApplicationController extends Controller
 
             try {
                 Storage::delete($disk, $filePath);
-                echo "Archivo eliminado correctamente: $fileName";
             } catch (Exception $e) {
-                echo "Error al eliminar archivo: " . $e->getMessage();
+                $_SESSION['error'] = "Error al eliminar archivo: " . $e->getMessage();
+                redirect('/apply/application/documents');
             }
 
         } else {
@@ -442,7 +442,7 @@ class UserApplicationController extends Controller
         // refresh the user with the new information on the database
         Auth::refresh();
 
-        $_SESSION['message'] = 'Documentos eliminados correctamente';
+        $_SESSION['message'] = 'Documento eliminado correctamente';
         redirect('/apply/application/documents');
     } else {
         // method is GET
