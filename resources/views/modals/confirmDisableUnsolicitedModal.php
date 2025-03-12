@@ -11,7 +11,7 @@
             <i class="las la-lock"></i>
             ¿Desea desactivar las cuentas que no solicitaron?
         </h2>
-        
+         
         <form action="/admin/disable/unsolicited/accounts" method="POST">
     
             <div class="form-group">
@@ -19,7 +19,7 @@
             </div>
 
             <div class="modal-actions">
-                <a class="main-action-bright" onclick="closeModal('confirmDeleteAllApplicationsModal')">Cancelar</a>
+                <a class="main-action-bright" onclick="closeModal('confirmDisableUnsolicitedModal')">Cancelar</a>
                 <button type="submit" class="main-action-bright primary" style="background: red !important; color: white !important;">
                     <i class="las la-lock"></i> 
                     Confirmar
