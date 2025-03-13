@@ -81,9 +81,9 @@
  * Layout and styling for metric displays
  *******************************/
 
- .back-dash .stats-grid-3 {
+ .back-dash .stats-grid-5 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   margin-bottom: 15px;
 }
@@ -91,7 +91,7 @@
 /* Two-column grid layout for statistics */
 .back-dash .stats-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 15px;
   margin-bottom: 15px;
   align-items: start;

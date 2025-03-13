@@ -45,7 +45,7 @@ if ($hour >= 5 && $hour < 12) {
 
 
         <!-- Statistics grid section -->
-        <div class="stats-grid ">
+        <div class="stats-grid-5 ">
             <!-- Applicants stats card -->
             <div class="stat-card">
                 <div class="stat-header">
@@ -53,13 +53,8 @@ if ($hour >= 5 && $hour < 12) {
                         <i class="fas fa-id-badge"></i>
                         Solicitantes
                     </h2>
-
                 </div>
                 <div class="stat-number" id="statistical-animate"><?php echo $all_applicants; ?></div>
-                <p class="stat-description">Usuarios que han llenado el formulario, y que han sometido su solicitud para
-                    evaluación.</p>
-
-
             </div>
 
             <!-- Registered users stats card -->
@@ -68,14 +63,9 @@ if ($hour >= 5 && $hour < 12) {
                     <h2 class="stat-title">
                         <i class="fas fa-user-friends"></i>
                         Registrados
-
                     </h2>
-
                 </div>
                 <div class="stat-number" id="statistical-animate"><?php echo $all_users; ?></div>
-                <p class="stat-description">Usuarios que se han registrado en Vetcamp</p>
-
-
             </div>
 
             <!-- Pending users stats card -->
@@ -84,14 +74,10 @@ if ($hour >= 5 && $hour < 12) {
                     <h2 class="stat-title">
                         <i class="fas fa-paw"></i>
                         Pendientes
-
                     </h2>
-
                 </div>
                 <div class="stat-number" id="statistical-animate"><?php echo $interested; ?></div>
-                <p class="stat-description">Usuarios que han llenado el formulario, pero que no la han sometido.
-                    (Pendientes)</p>
-
+                <p class="stat-description">Usuarios que han llenado el formulario, pero que no la han sometido.</p>
             </div>
 
             <!-- Accepted users stats card -->
@@ -105,22 +91,8 @@ if ($hour >= 5 && $hour < 12) {
 
                 </div>
                 <div class="stat-number" id="statistical-animate"><?php echo $accepted; ?></div>
-                <p class="stat-description">Usuarios que han sido aceptados.</p>
             </div>
 
-            <!-- Denied users stats card -->
-            <div class="stat-card">
-                <div class="stat-header">
-                    <h2 class="stat-title">
-                        <i class="fas fa-times"></i>
-                        Rechazados
-
-                    </h2>
-
-                </div>
-                <div class="stat-number" id="statistical-animate"><?php echo $denied; ?></div>
-                <p class="stat-description">Usuarios que han sido rechazados.</p>
-            </div>
 
           
 

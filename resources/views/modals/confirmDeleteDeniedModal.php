@@ -19,8 +19,8 @@
             </div>
 
             <div class="modal-actions">
-                <a class="danger" onclick="closeModal('confirmDeleteDeniedModal')">Cancelar</a>
-                <button type="submit" class="danger" style="background: red !important; color: white !important;">
+                <a class="main-action-bright" onclick="closeModal('confirmDeleteDeniedModal')">Cancelar</a>
+                <button type="submit" class="main-action-bright danger">
                     <i class="las la-trash"></i> 
                     Confirmar
                 </button>
