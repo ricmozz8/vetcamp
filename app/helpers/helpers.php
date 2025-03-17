@@ -214,7 +214,8 @@ function get_date_spanish($date, $withYear = true, $withMonth = true)
         '12' => 'Diciembre'
     ];
 
-    $day = date('d', strtotime($date));
+    $dateObj = new DateTime($date);
+    $day = $dateObj->format('d');
 
     if (!$withMonth) {
         return $day;
