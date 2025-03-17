@@ -130,4 +130,47 @@ class RequestsController extends Controller
         ], 'Solicitudes');
     }
     // define your other methods here
+
+        /**
+         * Descarga un archivo CSV con todas las solicitudes.
+         *
+         * @return void
+         */
+        public static function downloadCsvApplications() 
+        {
+            $users = User::allApplicants();
+        
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename="solicitudes.csv"');
+        
+            $fp = __DIR__."/../../storage/private/solicitudes.csv";
+        
+            $columns = ['Nombre','Correo','Documentos', 'Estado', 'Registro'];
+        
+            file_put_contents($fp, implode(',', $columns) . "\n", FILE_APPEND);
+        
+            $statusParsing = [
+                'active' => 'Activo',
+                'disabled' => 'Desactivado'
+            ];
+        
+            foreach ($users as $user) 
+            {
+                $application = $user->application();
+                $documentCount = $application->documentCount();
+        
+                $row = [
+                    $user->first_name.' '.$user->last_name,
+                    $user->email,
+                    $documentCount . ' de ' . REQUIRED_DOCUMENTS_AMOUNT, 
+                    $statusParsing[$user->status]??$user->status,
+                    get_date_spanish($user->created_at)
+                ];
+                file_put_contents($fp, implode(',', $row) . "\n", FILE_APPEND);
+            }
+            
+            readfile($fp);
+            unlink($fp);
+            exit;
+        }
 }

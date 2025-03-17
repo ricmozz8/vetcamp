@@ -2,6 +2,7 @@
 <html lang="en">
 <?php
 require_once __DIR__ . '/partials/header.php';
+require_once __DIR__ . '/modals/confirmDownloadUsersModal.php';
 
 $statusParsing = [
     'active' => 'Activo',
@@ -28,11 +29,12 @@ $statusParsing = [
                 <div class="header">
                     <div class="flex-min">
                         <h2 class="welcome">Usuarios</h2>
-                        <a class="main-action-bright" href="#"><i class="fas fa-file-csv"></i> Exportar a Excel</a>
-
                     </div>
-
                     <div class="table-actions">
+                       <button class="main-action-bright tertiary"  style="background-color: green;" onclick="openModal('confirmDownloadUsersModal')">
+                            <i class="fas fa-file-excel"></i>
+                            Exportar
+                        </button>
                         <button class="main-action-bright tertiary" onclick="openModal('filterModal')">
                             <i class="fas fa-filter"></i>
                             Filtrar
@@ -89,8 +91,6 @@ $statusParsing = [
                                     if (isset($statusParsing[$status])) {
                                         $status = $statusParsing[$status];
                                     }
-
-
                                 ?>
                                     <tr>
                                         <td>
@@ -208,17 +208,6 @@ $statusParsing = [
         <?php require_once __DIR__ . '/modals/confirmChangeUserModal.php'; ?>
         <?php require __DIR__ . '/modals/filterUsersModal.php'; ?>
 
-        <script>
-            // close context menu if the user clicks outside of it
-            document.addEventListener('click', function(event) {
-                // check if the user pressed the manage-user-button
-                if (event.target.closest('#manage-user-button') === null) {
-                    if (event.target.closest('.manage-user') === null) {
-                        closeContextMenu('manage-user');
-                    }
-                }
-            });
-        </script>
     </div>
 
     <!-- Footer with copyright information -->

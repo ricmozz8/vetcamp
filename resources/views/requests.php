@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <?php
-require __DIR__ . '/partials/header.php';
+require_once __DIR__ . '/partials/header.php';
+require_once __DIR__ . '/modals/confirmDownloadApplicationsModal.php';
 ?>
 
 
@@ -27,10 +28,12 @@ require __DIR__ . '/partials/header.php';
                 <div class="header">
                     <div class="flex-min">
                         <h2 class="welcome">Solicitudes</h2>
-                        <a class="main-action-bright" href="#"><i class="fas fa-file-csv"></i> Exportar a Excel</a>
-
                     </div>
                     <div class="table-actions">
+                    <button class="main-action-bright tertiary"  style="background-color: green;" onclick="openModal('confirmDownloadApplicationsModal')">
+                            <i class="fas fa-file-excel"></i>
+                            Exportar
+                        </button>
                         <?php if (isset($_GET['s']) || isset($_GET['doc']) || isset($_GET['date'])) { ?>
                             <a href="/admin/requests" class="main-action-bright">
                                 <i class="fa-solid fa-filter-circle-xmark"></i>

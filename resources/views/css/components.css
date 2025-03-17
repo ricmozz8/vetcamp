@@ -15,15 +15,14 @@ button {
 }
 
 .main-action-bright {
-  border: none;
-  color: var(--secondary-color-default);
-
+  border:none;
   padding: 10px 20px;
   font-weight: 600;
   font-size: 1em;
   width: fit-content;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   text-wrap: nowrap;
 }

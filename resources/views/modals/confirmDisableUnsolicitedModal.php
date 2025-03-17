@@ -8,7 +8,7 @@
         </span>
        <!-- Título de la ventana -->
         <h2>
-            <i class="las la-lock"></i>
+            <i class="fas fa-lock"></i>
             ¿Desea desactivar las cuentas que no solicitaron?
         </h2>
          

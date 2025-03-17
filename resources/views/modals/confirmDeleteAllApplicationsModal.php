@@ -8,7 +8,7 @@
         </span>
        <!-- Título de la ventana -->
         <h2>
-            <i class="las la-trash"></i>
+            <i class="fas fa-trash"></i>
             ¿Desea eliminar todas las solicitudes?
         </h2>
         
