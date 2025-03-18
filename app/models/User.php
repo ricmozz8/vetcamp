@@ -166,6 +166,37 @@ class User extends Model
         }
     }
 
+    public static function rejectedApplicants()
+    {
+        try{
+            $type = 'user';
+            $users = self::allof($type);
+            $applications = Application::all();
+        
+            $rejectedApplicants = [];
+        
+            foreach ($users as $user) {
+                try {
+                    $application = $user->application();
+        
+                    if ($application && trim(strtolower($application->status)) === 'rechazado' && $user->status === "active") {
+                        $rejectedApplicants[] = [
+                            'user_id' => $user->user_id,
+                            'id_application' => $application->id_application,
+                            'id_preferred_session' => $application->id_preferred_session,
+                        ];
+                    }
+                } catch (ModelNotFoundException $notFound) {
+                    continue;
+                }
+            }
+        
+            return $rejectedApplicants;
+        } catch (Exception $e) {
+            throw new Exception("An error occurred: " . $e->getMessage());
+        }
+    }
+
     /**
      * This will delete every instance of this user on the database
      * */

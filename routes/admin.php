@@ -118,7 +118,12 @@ switch ($path) {
     case '/mail/user':
         MessagesController::message($method);
         break;
-
+    case'/admin/registered/export-to-csv':
+        RegisteredController::downloadCsvUsers();
+        break;
+    case '/admin/requests/export-to-csv':
+        RequestsController::downloadCsvApplications();
+        break;
 
 //  COMMENT SECTION
 

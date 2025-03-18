@@ -123,5 +123,45 @@ class RegisteredController extends Controller
         redirect('/admin/registered');
     }
     
-    // define your other methods here
+   
+    /**
+     * Descarga un archivo CSV con los datos de los usuarios.
+     *
+     * @return void
+     */
+    public static function downloadCsvUsers() 
+    
+{
+
+        $users = User::all();
+    
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="usuariosRegistrados.csv"');
+          
+        $fp = __DIR__."/../../storage/private/usuariosRegistrados.csv";
+
+       $columns = ['Nombre','Email', 'Estado', 'Fecha'];
+
+       file_put_contents($fp, implode(',', $columns) . "\n", FILE_APPEND);
+
+        $statusParsing = [
+            'active' => 'Activo',
+            'disabled' => 'Desactivado'
+        ];
+
+        foreach ($users as $user) 
+        {
+            $row = [
+                $user->first_name.' '.$user->last_name,
+                $user->email,
+                $statusParsing[$user->status]??$user->status,
+                get_date_spanish($user->created_at)
+            ];
+            file_put_contents($fp, implode(',', $row) . "\n", FILE_APPEND);
+        }
+        readfile($fp);
+        unlink($fp);
+        exit;
+}
+
 }
