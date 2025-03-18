@@ -29,9 +29,6 @@ class BackDashboardController extends Controller
         $denied = count(User::rejectedApplicants());
         $accepted =  count(User::approvedApplicants());
 
-        // getting all interested users (people with unsubmitted applications)
-        $interested = count(User::interested()) - ($accepted + $denied);
-
 
         // Get recent registered users
         $recent_registered = User::allOf('user');
@@ -71,7 +68,6 @@ class BackDashboardController extends Controller
             'recent_registered' => $recent_registered,
             'recent_applications' => $recent_applications,
             'selected' => 'start',
-            'interested' => $interested,
             'accepted' => $accepted,
         ], 'Administración');
     }

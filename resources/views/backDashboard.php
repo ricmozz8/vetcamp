@@ -68,17 +68,6 @@ if ($hour >= 5 && $hour < 12) {
                 <div class="stat-number" id="statistical-animate"><?php echo $all_users; ?></div>
             </div>
 
-            <!-- Pending users stats card -->
-            <div class="stat-card">
-                <div class="stat-header">
-                    <h2 class="stat-title">
-                        <i class="fas fa-paw"></i>
-                        Pendientes
-                    </h2>
-                </div>
-                <div class="stat-number" id="statistical-animate"><?php echo $interested; ?></div>
-                <p class="stat-description">Usuarios que han llenado el formulario, pero que no la han sometido.</p>
-            </div>
 
             <!-- Accepted users stats card -->
             <div class="stat-card">
