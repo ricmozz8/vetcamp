@@ -8,7 +8,7 @@
         </span>
        <!-- Título de la ventana -->
         <h2>
-            <i class="las la-archive"></i>
+            <i class="fas fa-archive"></i>
             ¿Desea archivar las solicitudes?
         </h2>
         
