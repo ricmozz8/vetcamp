@@ -21,7 +21,7 @@
             <div class="modal-actions">
                 <a class="main-action-bright" onclick="closeModal('confirmDeleteAllApplicationsModal')">Cancelar</a>
                 <button type="submit" class="main-action-bright danger">
-                    <i class="las la-trash"></i> 
+                    <i class="fas fa-trash"></i>
                     Confirmar
                 </button>
             </div>

@@ -21,7 +21,7 @@
             <div class="modal-actions">
                 <a class="main-action-bright" onclick="closeModal('confirmArchiveModal')">Cancelar</a>
                 <button type="submit" class="main-action-bright primary"> 
-                    <i class="las la-archive"></i> 
+                    <i class="fas fa-archive"></i>
                     Confirmar
                 </button>
             </div>
