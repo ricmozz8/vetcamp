@@ -153,7 +153,7 @@ class RequestsController extends Controller
             $fp = __DIR__."/../../storage/private/solicitudes.csv";
         
             $columns = ['Nombre','Correo','Documentos Subidos', 'Estado de la solicitud', 'Fecha Subido', 'Video Ensayo',
-                        'Ensayo Escrito', 'Carta de Recomendacion', 'Carta de Autorizacion', 'Transcripcion de creditos', 'Foto'];
+                        'Ensayo Escrito', 'Carta de Recomendacion','Applicacion Escrita','Carta de Autorizacion', 'Transcripcion de creditos', 'Foto'];
         
             file_put_contents($fp, implode(',', $columns) . "\n", FILE_APPEND);
         
