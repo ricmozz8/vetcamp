@@ -5,6 +5,7 @@
  * This class provides methods for sending emails using different mailers.
  */
 
+const REPLY_TO = 'VETCAMP UPRA '  .  '<' . 'vetcamp.arecibo@upr.edu' . '>';
 
 class Mailer{
 
@@ -63,10 +64,21 @@ class Mailer{
      *
      * @return bool Returns true if the email was successfully sent, otherwise false.
      */
-    public static function send($to, $subject, $message): bool
+    public static function send($to, $subject, $message, $from = null): bool
     {
         self::init();
-        return mail($to, $subject, $message);
+
+        if ($from === null) {
+            $from = 'VETCAMP UPRA '  .  '<' . Auth::user()->email . '>';
+        }
+
+        $headers = [
+            'From: ' . $from,
+            'Reply-To: ' . REPLY_TO,
+        ];
+
+
+        return mail($to, $subject, $message, implode("\r\n", $headers));
     }
 
 
