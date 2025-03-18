@@ -21,7 +21,7 @@
             <div class="modal-actions">
                 <a class="main-action-bright" onclick="closeModal('confirmDisableAllModal')">Cancelar</a>
                 <button type="submit" class="main-action-bright danger">
-                    <i class="las la-lock"></i> 
+                    <i class="fas fa-lock"></i> 
                     Confirmar
                 </button>
             </div>
