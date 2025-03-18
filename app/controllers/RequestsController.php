@@ -175,6 +175,7 @@ class RequestsController extends Controller
                     $user->url_video_essay? 'X':' ',
                     $user->url_written_essay? 'X':' ',
                     $user->url_recommendation_letter? 'X':' ',
+                    $user->url_written_application? 'X':' ',
                     $user->url_authorization_letter? 'X':' ',
                     $user->url_transcript? 'X':' ',
                     $user->url_picture? 'X':' ',
