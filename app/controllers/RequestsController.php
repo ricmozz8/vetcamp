@@ -129,23 +129,31 @@ class RequestsController extends Controller
             'order' => $order,
         ], 'Solicitudes');
     }
-    // define your other methods here
+   
+    /**
+     * Exports application data to a CSV file and prompts a download.
+     *
+     * The generated CSV file includes columns for applicant name, email,
+     * document count, application status, submission date, and indicators
+     * for various submitted documents (video essay, written essay,
+     * recommendation letter, authorization letter, transcript, and photo).
+     *
+     * The CSV is stored temporarily and served for download, then deleted.
+     *
+     * @return void
+     */
 
-        /**
-         * Descarga un archivo CSV con todas las solicitudes.
-         *
-         * @return void
-         */
         public static function downloadCsvApplications() 
         {
-            $users = User::allApplicants();
+            $users = Application::allWith('users', 'user_id', ['status'=>'status']);
         
             header('Content-Type: text/csv');
             header('Content-Disposition: attachment; filename="solicitudes.csv"');
         
             $fp = __DIR__."/../../storage/private/solicitudes.csv";
         
-            $columns = ['Nombre','Correo','Documentos', 'Estado', 'Registro'];
+            $columns = ['Nombre','Correo','Documentos Subidos', 'Estado de la solicitud', 'Fecha Subido', 'Video Ensayo',
+                        'Ensayo Escrito', 'Carta de Recomendacion', 'Carta de Autorizacion', 'Transcripcion de creditos', 'Foto'];
         
             file_put_contents($fp, implode(',', $columns) . "\n", FILE_APPEND);
         
@@ -156,16 +164,22 @@ class RequestsController extends Controller
         
             foreach ($users as $user) 
             {
-                $application = $user->application();
-                $documentCount = $application->documentCount();
+                $documentCount = $user->documentCount();
         
                 $row = [
                     $user->first_name.' '.$user->last_name,
                     $user->email,
-                    $documentCount . ' de ' . REQUIRED_DOCUMENTS_AMOUNT, 
+                    $documentCount, 
                     $statusParsing[$user->status]??$user->status,
-                    get_date_spanish($user->created_at)
+                    get_date_spanish($user->created_at),
+                    $user->url_video_essay? 'X':' ',
+                    $user->url_written_essay? 'X':' ',
+                    $user->url_recommendation_letter? 'X':' ',
+                    $user->url_authorization_letter? 'X':' ',
+                    $user->url_transcript? 'X':' ',
+                    $user->url_picture? 'X':' ',
                 ];
+
                 file_put_contents($fp, implode(',', $row) . "\n", FILE_APPEND);
             }
             
