@@ -69,7 +69,7 @@ class Mailer{
         self::init();
 
         if ($from === null) {
-            $from = 'VETCAMP UPRA '  .  '<' . Auth::user()->email . '>';
+            $from = 'VETCAMP UPRA';
         }
 
         $headers = [
