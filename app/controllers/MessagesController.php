@@ -11,33 +11,57 @@ class MessagesController extends Controller
      *
      * @return void
      */
-    public static function mailUsers($method)
-    {
-
+    public static function mailUsers($method) {
         if (!Auth::check() || Auth::user()->type !== 'admin') {
             redirect('');
         }
-
+    
         if ($method === 'GET') {
-            redirect('/admin');
+            $type = filter_input(INPUT_GET, 'user_type', FILTER_DEFAULT);
+    
+            // Check status
+            if (!in_array($type, ['all', 'approved', 'denied', 'waitlist', 'applicants', 'interested'])) {
+                $type = 'all';
+            }
+    
+            try {
+                header('Content-Type: application/json');
+                $message = Message::findBy(['category' => $type]) ?? '';
+                $mensaje = $message->content ?? '';
+                
+                // if empty show a message an user
+                if (empty($mensaje)) {
+                    $_SESSION['error'] = 'No hay un mensaje predefinido disponible.';
+                    echo json_encode(['message' => '', 'error' => $_SESSION['error']]);
+                } else {
+                    echo json_encode(['message' => $mensaje]);
+                }
+                exit;
+    
+            } catch (ModelNotFoundException $e) {
+                header('Content-Type: application/json');
+                echo json_encode(['message' => '', 'error' => 'No hay mensaje predefinido para este estado']);
+                exit;
+            }
         } else if ($method === 'POST') {
-
+            // Aquí manejas el envío del mensaje
             $message = filter_input(INPUT_POST, 'message', FILTER_DEFAULT);
             $type = filter_input(INPUT_POST, 'user_type', FILTER_DEFAULT);
-
+    
             if (!$message || !$type) {
                 $_SESSION['error'] = 'Por favor llene todos los campos';
                 redirect('/admin');
             }
-
+    
             if (!in_array($type, ['all', 'approved', 'denied', 'waitlist', 'applicants', 'interested'])) {
                 $_SESSION['error'] = 'Hubo un error al enviar el correo';
                 redirect('/admin');
             }
-
+    
             self::mailAllUsers($message, $type);
         }
     }
+    
 
     /**
      * Message a particular user
