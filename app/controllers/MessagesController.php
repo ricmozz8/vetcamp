@@ -11,33 +11,49 @@ class MessagesController extends Controller
      *
      * @return void
      */
-    public static function mailUsers($method)
-    {
-
+    public static function mailUsers($method) {
         if (!Auth::check() || Auth::user()->type !== 'admin') {
             redirect('');
         }
-
+    
         if ($method === 'GET') {
-            redirect('/admin');
+            header('Content-Type: application/json');
+    
+            try {
+                // Obtener todos los mensajes de la base de datos
+                $messages = Message::all();
+    
+                // Convertir los objetos en un array asociativo con category como clave
+                $formattedMessages = [];
+                foreach ($messages as $msg) {
+                    $formattedMessages[$msg->category] = $msg->content;
+                }
+    
+                echo json_encode(['messages' => $formattedMessages]);
+                exit;
+            } catch (Exception $e) {
+                echo json_encode(['error' => 'Error al obtener los mensajes']);
+                exit;
+            }
         } else if ($method === 'POST') {
-
+            // Lógica para enviar correos
             $message = filter_input(INPUT_POST, 'message', FILTER_DEFAULT);
             $type = filter_input(INPUT_POST, 'user_type', FILTER_DEFAULT);
-
+    
             if (!$message || !$type) {
                 $_SESSION['error'] = 'Por favor llene todos los campos';
                 redirect('/admin');
             }
-
+    
             if (!in_array($type, ['all', 'approved', 'denied', 'waitlist', 'applicants', 'interested'])) {
                 $_SESSION['error'] = 'Hubo un error al enviar el correo';
                 redirect('/admin');
             }
-
+    
             self::mailAllUsers($message, $type);
         }
     }
+    
 
     /**
      * Message a particular user
