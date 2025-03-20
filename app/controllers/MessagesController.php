@@ -17,34 +17,26 @@ class MessagesController extends Controller
         }
     
         if ($method === 'GET') {
-            $type = filter_input(INPUT_GET, 'user_type', FILTER_DEFAULT);
-    
-            // Check status
-            if (!in_array($type, ['all', 'approved', 'denied', 'waitlist', 'applicants', 'interested'])) {
-                $type = 'all';
-            }
+            header('Content-Type: application/json');
     
             try {
-                header('Content-Type: application/json');
-                $message = Message::findBy(['category' => $type]) ?? '';
-                $mensaje = $message->content ?? '';
-                
-                // if empty show a message an user
-                if (empty($mensaje)) {
-                    $_SESSION['error'] = 'No hay un mensaje predefinido disponible.';
-                    echo json_encode(['message' => '', 'error' => $_SESSION['error']]);
-                } else {
-                    echo json_encode(['message' => $mensaje]);
-                }
-                exit;
+                // Obtener todos los mensajes de la base de datos
+                $messages = Message::all();
     
-            } catch (ModelNotFoundException $e) {
-                header('Content-Type: application/json');
-                echo json_encode(['message' => '', 'error' => 'No hay mensaje predefinido para este estado']);
+                // Convertir los objetos en un array asociativo con category como clave
+                $formattedMessages = [];
+                foreach ($messages as $msg) {
+                    $formattedMessages[$msg->category] = $msg->content;
+                }
+    
+                echo json_encode(['messages' => $formattedMessages]);
+                exit;
+            } catch (Exception $e) {
+                echo json_encode(['error' => 'Error al obtener los mensajes']);
                 exit;
             }
         } else if ($method === 'POST') {
-            // Aquí manejas el envío del mensaje
+            // Lógica para enviar correos
             $message = filter_input(INPUT_POST, 'message', FILTER_DEFAULT);
             $type = filter_input(INPUT_POST, 'user_type', FILTER_DEFAULT);
     

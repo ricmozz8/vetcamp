@@ -49,33 +49,36 @@ document.addEventListener("DOMContentLoaded", function() {
     let checkbox = document.getElementById('predefined-message');
     let messageBox = document.getElementById('message-text');
     let selectType = document.getElementById('select-type');
+    let messagesData = {};
+
+    // only open modal
+    fetch('/mail')
+        .then(response => response.json())
+        .then(data => {
+            if (data.messages) {
+                messagesData = data.messages;
+            } else if (data.error) {
+                console.error('Error al obtener los mensajes:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener los mensajes:', error);
+        });
 
     checkbox.addEventListener('change', function() {
-    if (this.checked) {
-        let userType = selectType.value;
+        if (this.checked) {
+            let userType = selectType.value;
 
-        // Get without refresh
-        fetch(`/mail?user_type=${userType}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    messageBox.value = data.message;
-                } else {
-                    messageBox.value = "";
-                    if (data.error) {
-                        alert(data.error);
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Error al obtener el mensaje:', error);
-                messageBox.value = "Error al cargar el mensaje.";
-            });
-    } else {
-        // clean textarea when change status
-        messageBox.value = '';
-    }
+            if (messagesData.hasOwnProperty(userType)) {
+                messageBox.value = messagesData[userType];
+            } else {
+                messageBox.value = "";
+            }
+        } else {
+            messageBox.value = ''; // clean
+        }
+    });
 });
-});
+
 </script>
 
