@@ -94,13 +94,13 @@
     <?php unset($_SESSION['error']);
 } ?>
 
-<abbr title="Mostrar una fuente más legible">
+<abbr class="noprint" title="Mostrar una fuente más legible">
 <span id="icon-read" class="accessibility font">
     <i class="fa-solid fa-font"></i>
 </span>
 </abbr>
 
-<abbr title="Mostrar colores de alto contraste">
+<abbr class="noprint" title="Mostrar colores de alto contraste">
 <span id="icon-contrast" class="accessibility contrast">
     <i class="fa-solid fa-circle-half-stroke"></i>
 </span>
