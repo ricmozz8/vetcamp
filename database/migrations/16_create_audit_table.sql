@@ -1,4 +1,4 @@
-CREATE TABLE audit (
+CREATE TABLE audits (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     action ENUM('create', 'update', 'delete') NOT NULL,
