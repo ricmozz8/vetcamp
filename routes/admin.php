@@ -16,6 +16,8 @@ require_once 'app/controllers/CommentController.php';
 require_once 'app/controllers/ErrorsController.php';
 require_once 'app/controllers/UserController.php';
 
+require_once 'app/controllers/AuditController.php';
+
 
 if (strpos($path, '/admin') === 0) {
 
@@ -106,12 +108,16 @@ switch ($path) {
     case '/admin/dev/errors/download':
         ErrorsController::download();
         break;
+    case '/admin/audit':
+        AuditController::index($method);
+        break;
     case '/admin/error/clear':
         ErrorsController::clear();
         break;
     case '/users/delete':
         UserController::delete($method);
         break;
+
     case '/mail':
         MessagesController::mailUsers($method);
         break;

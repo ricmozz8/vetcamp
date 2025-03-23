@@ -25,9 +25,8 @@
 /* Main content area - fills remaining space next to sidebar */
 .back-dash .main-content {
   flex: 1;
-  padding-top: 5dvh;
-  padding-left: 5dvh;
-  padding-right: 5dvh;
+  padding: 3em;
+  height: 100vh;
 
 }
 
