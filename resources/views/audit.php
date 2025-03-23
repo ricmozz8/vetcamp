@@ -7,26 +7,20 @@ require_once __DIR__ . '/partials/header.php';
 $testAuditInfo = [
     [
         'user_id' => 1,
-        'action' => 'edit',
-        'field_name' => 'email',
-        'previous_value' => 'old@example.com',
-        'current_value' => 'new@example.com',
+        'action' => 'create',
+        'summary' => 'Created a new administrator user with email "0Ttj3@example.com".',
         'created_at' => '2023-10-01 10:00:00'
     ],
     [
         'user_id' => 2,
         'action' => 'delete',
-        'field_name' => 'user',
-        'previous_value' => 'John Doe',
-        'current_value' => 'N/A',
+        'summary' => 'Removed the user with ID 123.',
         'created_at' => '2023-10-02 11:30:00'
     ],
     [
         'user_id' => 3,
         'action' => 'update',
-        'field_name' => 'role',
-        'previous_value' => 'user',
-        'current_value' => 'admin',
+        'summary' => 'Changed the application status to "Approved" of the user with ID 456.',
         'created_at' => '2023-10-03 14:45:00'
     ]
 ];
@@ -57,32 +51,37 @@ $testAuditInfo = [
 
                 </div>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Usuario</th>
-                                <th>Accion</th>
-                                <th>Campo</th>
-                                <th>Valor anterior</th>
-                                <th>Valor nuevo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($testAuditInfo as $audit) {
-                                echo '<tr>';
-                                echo '<td>' . htmlspecialchars($audit['created_at']) . '</td>';
-                                echo '<td>' . htmlspecialchars($audit['user_id']) . '</td>';
-                                echo '<td>' . htmlspecialchars($audit['action']) . '</td>';
-                                echo '<td>' . htmlspecialchars($audit['field_name']) . '</td>';
-                                echo '<td>' . htmlspecialchars($audit['previous_value']) . '</td>';
-                                echo '<td>' . htmlspecialchars($audit['current_value']) . '</td>';
-                                echo '</tr>';
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                <div class="audit-grid">
+                    <?php foreach ($testAuditInfo as $audit): ?>
+                        <div class="audit-card-<?= $audit['action'] ?>">
+                            <div class="action-icon">
+                                <?php if ($audit['action'] == 'create'): ?>
+                                    <i class="fas fa-user-plus"></i>
+                                <?php elseif ($audit['action'] == 'delete'): ?>
+                                    <i class="fas fa-user-minus"></i>
+                                <?php elseif ($audit['action'] == 'update'): ?>
+                                    <i class="fas fa-user-edit"></i>
+                                <?php endif; ?>
+                            </div>
+                            <div class="card-details">
+                                <div class="card-header">
+                                    <?php
+                                    $badgeUser = Auth::user(); // test only
+                                    require __DIR__ . '/partials/userBadge.php'; ?>
+                                    <h1>Test Admin</h1>
+                                </div>
+
+                                <div class="card-timestamps">
+                                    <p class="timestamp"><?= $audit['created_at'] ?></p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p><?= $audit['summary'] ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
             </div>
     </div>
     </main>

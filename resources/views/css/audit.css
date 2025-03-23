@@ -1,0 +1,85 @@
+
+:root{
+    --edit-color: #ff9500;
+    --delete-color: #ff5f5f;
+    --create-color: #1286d3;
+}
+
+[class^="audit-card-"] {
+    border: 1px solid var(--bright-shade);
+    transition: all 0.2s ease;
+    margin: 1em 0;
+    box-shadow: 15px 15px 150px #d7d7d7;
+    animation: fadeDown 0.4s ease-in-out;
+    padding: 1em;
+    border-radius: 0 0 10px 10px;
+}
+
+.audit-card-edit, .audit-card-update {
+    border-top: 8px solid var(--edit-color);
+}
+
+.audit-card-delete {
+    border-top: 8px solid var(--delete-color);
+}
+
+.audit-card-create {
+    border-top: 8px solid var(--create-color);
+}
+
+.action-icon{
+    font-size: 1.2em;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+
+
+
+
+.card-details{
+    display: flex;
+    align-items:  start;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.card-header{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin: .5em 0;
+   
+}
+
+.card-header h1{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.card-body{
+    padding: 1em;
+    background-color: var(--white-color);
+    margin: 1em 0;
+    border-radius: 10px;
+    font-style: italic;
+    color: rgb(97, 97, 97);
+}
+
+
+.timestamp{
+    font-family: monospace;
+    font-size: 1em;
+
+}
+
+@media only screen and (min-width: 600px) {
+    .card-details{
+        flex-direction: row;
+        align-items: center;
+    }
+    
+}
