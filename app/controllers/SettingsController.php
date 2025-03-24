@@ -1,6 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once 'app/models/Message.php';
+require_once 'app/models/Audit.php';
 require_once 'app/models/LimitDate.php';
 
 class SettingsController extends Controller
@@ -97,6 +98,8 @@ class SettingsController extends Controller
         }
 
         $_SESSION['message'] = 'Se han editado las fechas límite exitosamente';
+        Audit::register('Actualizó las fechas límite', 'update');
+        
         redirect('/admin/settings');
     }
     public static function updateSession($request_method)
@@ -230,6 +233,8 @@ class SettingsController extends Controller
 
             if ($user) {
                 $_SESSION['message'] = 'Se ha creado el administrador exitosamente';
+
+                Audit::register("Creó el administrador {$user->first_name} {$user->last_name} ({$user->email}).", 'create');
             } else {
                 $_SESSION['error'] = 'Error al crear el administrador';
             }
@@ -273,6 +278,9 @@ class SettingsController extends Controller
 
             if (!empty($deletedUsers)) {
                 $_SESSION['message'] = count($deletedUsers) . ' solicitudes denegadas eliminadas exitosamente.';
+
+                // log the action
+                Audit::register('Eliminó ' . count($deletedUsers) . ' solicitudes denegadas.', 'delete');
             } else {
                 $_SESSION['message'] = 'No se encontraron solicitudes denegadas para eliminar.';
             }
@@ -306,6 +314,8 @@ class SettingsController extends Controller
 
             if (!empty($deletedUsers)) {
                 $_SESSION['message'] = count($deletedUsers) . ' solicitudes eliminadas exitosamente.';
+
+                Audit::register('Eliminó todas las ' . count($deletedUsers) . ' solicitudes.', 'delete');
             } else {
                 $_SESSION['message'] = 'No se encontraron solicitudes para eliminar.';
             }
@@ -329,7 +339,19 @@ class SettingsController extends Controller
                 redirect('/admin/settings');
             }
 
-            $user->delete();
+            $delete_id = rand(10000, 99999);
+
+            // finally delete the user
+            $user->update([
+                'deleted_at' => date('Y-m-d H:i:s'),
+                'first_name' => 'deleted',
+                'last_name' => 'user-' . $delete_id,
+                'email' => 'deleted-user-' . $delete_id,
+                'status' => 'disabled',
+                'phone_number' => null,
+                'type' => 'deleted'
+            ]);
+
             $_SESSION['message'] = 'El usuario ha sido eliminado exitosamente.';
             redirect('/admin/settings');
             

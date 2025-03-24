@@ -49,7 +49,7 @@ require_once __DIR__ . '/modals/confirmDownloadApplicationsModal.php';
                                 <input required value="<?= $_GET['search'] ?? '' ?>" type="text"
                                     class="search-input" name="search" placeholder="Busca correos, nombres">
                                 <?php if (isset($_GET['search'])): ?>
-                                    <a class="no-deco-action" href="/admin/registered"><i class="fas fa-times"></i></a>
+                                    <a class="no-deco-action" href="/admin/requests"><i class="fas fa-times"></i></a>
                                 <?php endif; ?>
                                 <button type="submit" class="main-action-bright tertiary"><i class="fas fa-search"></i>
                                 </button>

@@ -104,22 +104,19 @@ class RequestsController extends Controller
         
 
 
-        $users = array_slice($arrayUsers, $offset, $perPage);
+        
 
 
         if (!empty($s)) {
-            $searchTerm = $s . "%";
+            $searchTerm = strtolower($s);
 
-            try {
-                $users = User::findLike([
-                    'first_name' => $searchTerm,
-                    'last_name' => $searchTerm,
-                    'email' => $searchTerm
-                ]);
-            } catch (ModelNotFoundException $notFound) {
-                $users = [];
-            }
+            $users = array_filter($arrayUsers, function ($user) use ($searchTerm) {
+                return strpos($user->first_name, $searchTerm) !== false || strpos($user->last_name, $searchTerm) !== false || strpos($user->email, $searchTerm) !== false;
+            });
+        }  else {
+            $users = array_slice($arrayUsers, $offset, $perPage);
         }
+        
 
         render_view('requests', [
             "users" => $users,

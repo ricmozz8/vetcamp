@@ -12,7 +12,7 @@
         </a>
 
 
-        <a href="#" class="">
+        <a href="/admin/audit" class="">
             <i class="fa-solid fa-clock-rotate-left"></i>
             Auditoría
         </a>

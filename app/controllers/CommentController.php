@@ -1,5 +1,7 @@
 <?php
 require_once 'Controller.php';
+require_once 'app/models/Comment.php';
+require_once 'app/models/Audit.php';
 
 class CommentController extends Controller
 {
@@ -51,8 +53,16 @@ class CommentController extends Controller
             }
 
             // finally we can edit the comment if there is no inconsistencies
-            if ($option === 'destroy')
+            if ($option === 'destroy'){
+
+                // Log the action
+                Audit::register('Eliminó su comentario en la solicitud con ID ' . $comment->application_id . '', 'delete');
+
                 $success = $comment->delete();
+
+                
+                
+            }
             else if ($option === 'update') {
                 $new_comment = filter_input(INPUT_POST, 'comment');
 
@@ -60,6 +70,8 @@ class CommentController extends Controller
                     $_SESSION['error'] = 'El comentario no puede estar vacío';
                     redirect($application_url . $application_user);
                 }
+
+                Audit::register('Actualizó su comentario en una solicitud', 'update');
 
 
                 $success = $comment->update([

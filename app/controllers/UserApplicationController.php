@@ -483,8 +483,8 @@ class UserApplicationController extends Controller
 
             Mailer::send(
                 Auth::user()->email,
-                'Solicitud de Aplicación',
-                'Tu solicitud ha sido sometida correctamente.'
+                'Solicitud Vetcamp ' . date('Y') . ' - Confirmación',
+                'Tu solicitud ha sido sometida correctamente, estaremos evaluando tus datos y nos comunicaremos contigo más adelante. ¡Mucha suerte!'
             );
 
             $_SESSION['message'] = 'Aplicación sometida correctamente';

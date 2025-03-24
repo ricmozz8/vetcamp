@@ -33,6 +33,7 @@ button {
     var(--main-color-darken-1),
     var(--main-color-default)
   );
+  color: var(--secondary-color-default);
 }
 
 .main-action-bright.gradiented {
@@ -178,6 +179,10 @@ a.plain-action:hover {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.underline-action:hover{
+  text-decoration: underline;
 }
 
 .no-deco-action:hover {

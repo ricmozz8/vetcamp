@@ -2,6 +2,7 @@
 require_once 'Controller.php';
 require_once 'app/models/User.php';
 require_once 'app/models/Activation.php';
+require_once 'app/models/Audit.php';
 
 const DELETE_USER_CONFIRMATION_TEXT = 'borrar mi cuenta';
 const RESCIND_APPLICATION_CONFIRMATION_TEXT = 'borrar mi solicitud';
@@ -150,6 +151,7 @@ class UserController extends Controller
 
         if ($user->type === 'admin') {
             // admins has no associated application not addresses
+            Audit::register("Borró al administrador {$user->first_name} {$user->last_name}.", 'delete');
             $user->delete();
             redirect('/admin');
         } else {
@@ -172,8 +174,22 @@ class UserController extends Controller
                 $school_address->delete();
             }
 
+            Audit::register("Borró el usuario {$user->first_name} {$user->last_name} ({$user->email}).", 'delete');
+
+
+            $delete_id = rand(10000, 99999);
+
             // finally delete the user
-            $user->delete();
+            $user->update([
+                'deleted_at' => date('Y-m-d H:i:s'),
+                'first_name' => 'deleted',
+                'last_name' => 'user-' . $delete_id,
+                'email' => 'deleted-user-' . $delete_id,
+                'status' => 'disabled',
+                'phone_number' => null,
+                'type' => 'deleted'
+            ]);
+            
         }
 
         $_SESSION['message'] = 'El usuario ha sido eliminado.';
@@ -449,6 +465,10 @@ class UserController extends Controller
             // method is GET
             try {
                 $user = User::find($userId);
+
+                if ($user->deleted_at)
+                    redirect('/admin' . $from);
+                
 
                 if ($user->__get('user_id') == Auth::user()->__get('user_id')) {
                     redirect('/profile');

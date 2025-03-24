@@ -15,6 +15,9 @@ require_once 'app/controllers/MessagesController.php';
 require_once 'app/controllers/CommentController.php';
 require_once 'app/controllers/ErrorsController.php';
 require_once 'app/controllers/UserController.php';
+require_once 'app/controllers/DocumentController.php';
+
+require_once 'app/controllers/AuditController.php';
 
 
 if (strpos($path, '/admin') === 0) {
@@ -106,26 +109,42 @@ switch ($path) {
     case '/admin/dev/errors/download':
         ErrorsController::download();
         break;
+    case '/admin/audit':
+        AuditController::index($method);
+        break;
+
+    case '/admin/audit/download':
+        AuditController::download();
+        break;
+        // document admin provider
+
+        case '/admin/document':
+            $application = $_GET['a'] ?? null;
+            $document = $_GET['d'] ?? null;
+            DocumentController::index($application, $document);
+            break;
+
     case '/admin/error/clear':
         ErrorsController::clear();
         break;
     case '/users/delete':
         UserController::delete($method);
         break;
+
     case '/mail':
         MessagesController::mailUsers($method);
         break;
     case '/mail/user':
         MessagesController::message($method);
         break;
-    case'/admin/registered/export-to-csv':
+    case '/admin/registered/export-to-csv':
         RegisteredController::downloadCsvUsers();
         break;
     case '/admin/requests/export-to-csv':
         RequestsController::downloadCsvApplications();
         break;
 
-//  COMMENT SECTION
+    //  COMMENT SECTION
 
     case '/admin/request/comment':
         ApplicationController::comment($method);
@@ -138,5 +157,4 @@ switch ($path) {
     case '/admin/comment/delete':
         CommentController::manage($method, 'destroy');
         break;
-
 }
