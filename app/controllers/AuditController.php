@@ -14,7 +14,7 @@ class AuditController extends Controller
      */
     public static function index()
     {
-        $audits = Audit::all();
+        $audits = Audit::allWith('users', 'user_id');
         render_view('audit', ['audits' => $audits], 'Auditoría');
 
     }
