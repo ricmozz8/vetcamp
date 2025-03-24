@@ -1,0 +1,1 @@
+ALTER TABLE `users` CHANGE `type` `type` ENUM('user','admin', 'deleted')  DEFAULT 'user';
