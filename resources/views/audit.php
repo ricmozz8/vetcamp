@@ -52,31 +52,36 @@ $testAuditInfo = [
                 </div>
 
                 <div class="audit-grid">
-                    <?php foreach ($testAuditInfo as $audit): ?>
-                        <div class="audit-card-<?= $audit['action'] ?>">
-                            <div class="action-icon">
-                                <?php if ($audit['action'] == 'create'): ?>
-                                    <i class="fas fa-user-plus"></i>
-                                <?php elseif ($audit['action'] == 'delete'): ?>
-                                    <i class="fas fa-user-minus"></i>
-                                <?php elseif ($audit['action'] == 'update'): ?>
-                                    <i class="fas fa-user-edit"></i>
-                                <?php endif; ?>
-                            </div>
+                    <?php foreach ($audits as $audit): ?>
+                        <div class="audit-card-<?= $audit->action ?>">
+
                             <div class="card-details">
                                 <div class="card-header">
                                     <?php
-                                    $badgeUser = Auth::user(); // test only
+                                    $badgeUser = $audit->user(); // test only
                                     require __DIR__ . '/partials/userBadge.php'; ?>
-                                    <h1>Test Admin</h1>
+                                    <a class="underline-action" href="/admin/p?user=<?= $badgeUser->user_id ?>"><h1 ><?= $badgeUser->full_name() ?></h1></a>
+                                    <?php if (Auth::user()->user_id === $badgeUser->user_id): ?>
+                                        <p class="mini-badge primary">Tú</p>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="card-timestamps">
-                                    <p class="timestamp"><?= $audit['created_at'] ?></p>
+                                <p class="timestamp"><?= $audit->made_on ?></p>
+                                    <div class="action-icon">
+                                        <?php if ($audit->action == 'create'): ?>
+                                            <i class="fas fa-user-plus"></i>
+                                        <?php elseif ($audit->action == 'delete'): ?>
+                                            <i class="fas fa-user-minus"></i>
+                                        <?php elseif ($audit->action == 'update'): ?>
+                                            <i class="fas fa-user-edit"></i>
+                                        <?php endif; ?>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="card-body">
-                                <p><?= $audit['summary'] ?></p>
+                                <p><?= $audit->summary ?></p>
                             </div>
                         </div>
                     <?php endforeach; ?>

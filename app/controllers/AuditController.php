@@ -1,5 +1,7 @@
 <?php
 require_once 'Controller.php';
+require_once 'app/models/Audit.php';
+
 
 class AuditController extends Controller
 {
@@ -12,7 +14,8 @@ class AuditController extends Controller
      */
     public static function index()
     {
-        render_view('audit', [], 'Auditoría');
+        $audits = Audit::all();
+        render_view('audit', ['audits' => $audits], 'Auditoría');
 
     }
 

@@ -4,6 +4,7 @@ require_once 'app/models/Tracking.php';
 require_once 'app/models/Application.php';
 require_once 'app/models/User.php';
 require_once 'app/models/LimitDate.php';
+require_once 'app/models/Audit.php';
 
 class ApplicationController extends Controller
 {
@@ -115,10 +116,11 @@ class ApplicationController extends Controller
                 $application = Application::find($application_id);
                 $application->hard_delete();
 
+                // Log the deletion
+                Audit::register('Se borró la solicitud del usuario ' . $application->user()->email, 'delete');
             } catch (ModelNotFoundException $e) {
 
                 $_SESSION['error'] = 'Solicitud no encontrada.';
-
             }
         }
 
@@ -144,11 +146,9 @@ class ApplicationController extends Controller
             try {
                 // Update application status
                 $application = Application::find($applicationId);
+                $previous_status = $application->status;
                 $application->update(['status' => $newStatus]);
                 $user_id = $application->user()->user_id;
-
-//                Tracking::create(['application_id' => $applicationId, 'user_id' => Auth::user()->__get('user_id'), 'decision' => $newStatus]);
-
             } catch (ModelNotFoundException $e) {
                 ErrorLog::log($e->getMessage(), $e->getFile() . ' on line ' . $e->getLine(), $e->getTraceAsString());
                 $_SESSION['error'] = "No se encontró la solicitud con el ID proporcionado.";
@@ -163,8 +163,14 @@ class ApplicationController extends Controller
             // Redirect to admin requests page
             $_SESSION['message'] = "Estado de la solicitud actualizado correctamente.";
 
-            redirect('/admin/requests/r?id=' . $user_id);
+            // Log the update
+            Audit::register('Se actualizó el estado de la solicitud del usuario ' .
+                $application->user()->email . ' de ' .
+                $previous_status . ' a ' .
+                Application::$statusParsings[$newStatus] . '.', 'update');
 
+
+            redirect('/admin/requests/r?id=' . $user_id);
         } else {
             redirect('/admin/requests');
         }
@@ -313,15 +319,15 @@ class ApplicationController extends Controller
                 'user_id' => Auth::user()->__get('user_id')
             ]);
 
+            Audit::register('Comentario agregado en la solicitud con ID ' . $application_id, 'create');
+
             $_SESSION['message'] = 'Comentario agregado correctamente';
             // send the user back to the application view
             redirect('/admin/requests/r?id=' . $user_id);
-
         } else {
             // GET method not allowed
             redirect('/admin');
         }
-
     }
 
     public static function download($method)
@@ -331,7 +337,6 @@ class ApplicationController extends Controller
             try {
                 $user = User::find($user_id);
                 $application = $user->application();
-
             } catch (ModelNotFoundException $e) {
                 $_SESSION['error'] = 'La solicitud no existe.';
                 redirect('/admin/requests');
@@ -365,11 +370,8 @@ class ApplicationController extends Controller
             header('Expires: 0');
             readfile($filename);
             unlink($filename);
-
-            
         }
 
         redirect_back();
-
     }
 }

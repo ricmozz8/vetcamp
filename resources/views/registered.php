@@ -83,6 +83,11 @@ $statusParsing = [
                                 // Loop through the users returned by the User::all() method
                                 $loop = 1;
                                 foreach ($users as $user) {
+
+                                    if ($user->deleted_at) // ignore deleted users
+                                        continue;
+                                    
+
                                     // Get the full name
                                     $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
                                     $status = htmlspecialchars($user->status);

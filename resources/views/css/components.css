@@ -181,6 +181,10 @@ a.plain-action:hover {
   gap: 10px;
 }
 
+.underline-action:hover{
+  text-decoration: underline;
+}
+
 .no-deco-action:hover {
   filter: brightness(0.5);
   top: 0;

@@ -49,6 +49,10 @@ class Auth
 
         try {
             $user = User::find($_SESSION['user']->user_id, 'user_id');
+            if($user->deleted_at){
+                self::logout();
+                redirect('/login');
+            }
         } catch (ModelNotFoundException $e) {
             // if the user is not found, log them out
             self::logout();

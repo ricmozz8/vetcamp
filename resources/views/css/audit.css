@@ -12,19 +12,19 @@
     box-shadow: 15px 15px 150px #d7d7d7;
     animation: fadeDown 0.4s ease-in-out;
     padding: 1em;
-    border-radius: 0 0 10px 10px;
+    border-radius: 10px;
 }
 
 .audit-card-edit, .audit-card-update {
-    border-top: 8px solid var(--edit-color);
+    border-bottom: 8px solid var(--edit-color);
 }
 
 .audit-card-delete {
-    border-top: 8px solid var(--delete-color);
+    border-bottom: 8px solid var(--delete-color);
 }
 
 .audit-card-create {
-    border-top: 8px solid var(--create-color);
+    border-bottom: 8px solid var(--create-color);
 }
 
 .action-icon{
@@ -50,14 +50,14 @@
 .card-header{
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: .5em;
     margin: .5em 0;
    
 }
 
 .card-header h1{
     font-size: 1.3em;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .card-body{
@@ -70,10 +70,30 @@
 }
 
 
+.card-timestamps{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
 .timestamp{
     font-family: monospace;
     font-size: 1em;
 
+}
+
+.mini-badge{
+    padding: 3px 12px;
+    border-radius: 27px;
+    background-color: gray;
+    font-weight: 600;
+    font-size: 1em;
+    width: fit-content;
+}
+
+.mini-badge.primary{
+    background-color: var(--main-color-default);
+    color: var(--secondary-color-default);
 }
 
 @media only screen and (min-width: 600px) {
