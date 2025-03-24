@@ -128,7 +128,7 @@ require __DIR__ . '../../partials/header.php';
                         <?php } else { ?>
                             <span class="doc-no"><i class="fas fa-times"></i></span>
                         <?php } ?>
-                        Aplicación escrita
+                        Certificación Estudiantil
                     </p>
 
                     <p class="file-submitted">
