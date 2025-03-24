@@ -116,6 +116,7 @@ class RequestsController extends Controller
         }  else {
             $users = array_slice($arrayUsers, $offset, $perPage);
         }
+        
 
         render_view('requests', [
             "users" => $users,
