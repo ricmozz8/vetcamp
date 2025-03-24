@@ -4,10 +4,12 @@ require_once 'User.php';
 require_once 'Comment.php';
 require_once 'Tracking.php';
 
-define('REQUIRED_DOCUMENTS_AMOUNT', 7);
+
 
 class Application extends Model
 {
+
+    const REQUIRED_DOCUMENTS_AMOUNT = 7;
 
 
     protected static $primary_key = 'id_application'; // Primary key
@@ -193,7 +195,7 @@ class Application extends Model
     public function isComplete()
     {
 
-        if ($this->documentCount() !== REQUIRED_DOCUMENTS_AMOUNT) {
+        if ($this->documentCount() !== self::REQUIRED_DOCUMENTS_AMOUNT) {
 
             return false;
         }

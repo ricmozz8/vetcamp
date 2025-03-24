@@ -67,16 +67,12 @@ class ApplicationController extends Controller
             redirect('/admin/requests');
         }
 
-        if ($application->status === 'Sin subir') {
-            $_SESSION['error'] = "El usuario no ha sometido su solicitud todavia.";
-            redirect('/admin/requests');
-        }
+      
 
         $valid_statuses = Application::$statusParsings;
 
 
-        $valid_statuses = array_diff_key(Application::$statusParsings, ['unsubmitted' => 'Sin subir']);
-
+        
         render_view(
             'profile',
             [
@@ -146,9 +142,21 @@ class ApplicationController extends Controller
             try {
                 // Update application status
                 $application = Application::find($applicationId);
+
                 $previous_status = $application->status;
-                $application->update(['status' => $newStatus]);
                 $user_id = $application->user()->user_id;
+
+                if ($application->documentCount() < Application::REQUIRED_DOCUMENTS_AMOUNT) {
+                    $_SESSION['error'] = "No se puede publicar una solicitud con documentos faltantes";
+                    redirect('/admin/requests/r?id=' . $user_id);
+                    return;
+                }
+
+                $application->update(['status' => $newStatus]);
+
+                
+
+
             } catch (ModelNotFoundException $e) {
                 ErrorLog::log($e->getMessage(), $e->getFile() . ' on line ' . $e->getLine(), $e->getTraceAsString());
                 $_SESSION['error'] = "No se encontró la solicitud con el ID proporcionado.";

@@ -15,6 +15,7 @@ require_once 'app/controllers/MessagesController.php';
 require_once 'app/controllers/CommentController.php';
 require_once 'app/controllers/ErrorsController.php';
 require_once 'app/controllers/UserController.php';
+require_once 'app/controllers/DocumentController.php';
 
 require_once 'app/controllers/AuditController.php';
 
@@ -115,6 +116,14 @@ switch ($path) {
     case '/admin/audit/download':
         AuditController::download();
         break;
+        // document admin provider
+
+        case '/admin/document':
+            $application = $_GET['a'] ?? null;
+            $document = $_GET['d'] ?? null;
+            DocumentController::index($application, $document);
+            break;
+
     case '/admin/error/clear':
         ErrorsController::clear();
         break;
