@@ -152,7 +152,16 @@ class UserController extends Controller
         if ($user->type === 'admin') {
             // admins has no associated application not addresses
             Audit::register("Borró al administrador {$user->first_name} {$user->last_name}.", 'delete');
-            $user->delete();
+            $delete_id = rand(10000, 99999);
+            $user->update([
+                'deleted_at' => date('Y-m-d H:i:s'),
+                'first_name' => 'deleted',
+                'last_name' => 'user-' . $delete_id,
+                'email' => 'deleted-user-' . $delete_id,
+                'status' => 'disabled',
+                'phone_number' => null,
+                'type' => 'deleted'
+            ]);
             redirect('/admin');
         } else {
             $application = $user->application();
