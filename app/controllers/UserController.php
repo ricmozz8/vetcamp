@@ -187,6 +187,7 @@ class UserController extends Controller
                 'email' => 'deleted-user-' . $delete_id,
                 'status' => 'disabled',
                 'phone_number' => null,
+                'type' => 'deleted'
             ]);
             
         }
