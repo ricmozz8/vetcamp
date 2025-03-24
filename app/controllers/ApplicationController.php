@@ -146,7 +146,7 @@ class ApplicationController extends Controller
                 $previous_status = $application->status;
                 $user_id = $application->user()->user_id;
 
-                if ($application->documentCount() < Application::REQUIRED_DOCUMENTS_AMOUNT) {
+                if ($application->documentCount() < Application::REQUIRED_DOCUMENTS_AMOUNT && $newStatus == 'submitted') {
                     $_SESSION['error'] = "No se puede publicar una solicitud con documentos faltantes";
                     redirect('/admin/requests/r?id=' . $user_id);
                     return;
