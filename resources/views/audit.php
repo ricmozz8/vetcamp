@@ -45,7 +45,7 @@ $testAuditInfo = [
                     </div>
 
                     <div class="flex-min">
-                        <a href="/admin/audit/download" class="main-action-bright"> <i class="fas fa-download"></i></a>
+                        <a href="/admin/audit/download" class="main-action-bright"> <i class="fas fa-download"></i>Descargar</a>
                     </div>
 
                 </div>
