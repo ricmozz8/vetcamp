@@ -14,13 +14,15 @@
                 <?php $s = $_GET['s'] ?? 0; ?>
                 <?= renderSelect('s',
                     [
+                        
                         'Seleccione una',
                         'Sometida',
                         'Necesita cambios',
                         'Aceptado',
                         'Rechazado',
                         'Incompleta',
-                        'En lista de espera'
+                        'En lista de espera',
+                        'Sin subir',
                     ], (int)$s);?>
 
                 <label for="d">Ordenar por fecha</label>

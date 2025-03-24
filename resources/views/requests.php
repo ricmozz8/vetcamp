@@ -30,16 +30,18 @@ require_once __DIR__ . '/modals/confirmDownloadApplicationsModal.php';
                         <h2 class="welcome">Solicitudes</h2>
                     </div>
                     <div class="table-actions">
-                    <button class="main-action-bright tertiary"  style="background-color: green;" onclick="openModal('confirmDownloadApplicationsModal')">
-                            <i class="fas fa-file-excel"></i>
-                            Exportar
-                        </button>
                         <?php if (isset($_GET['s']) || isset($_GET['doc']) || isset($_GET['date'])) { ?>
                             <a href="/admin/requests" class="main-action-bright">
                                 <i class="fa-solid fa-filter-circle-xmark"></i>
                                 Eliminar filtros
                             </a>
                         <?php } ?>
+
+                        <button class="main-action-bright tertiary" style="background-color: green;" onclick="openModal('confirmDownloadApplicationsModal')">
+                            <i class="fas fa-file-excel"></i>
+                            Exportar
+                        </button>
+
                         <button onclick="openModal('filterModalRequest')" class="main-action-bright tertiary">
                             <i class="fas fa-filter"></i>
                             Filtrar
