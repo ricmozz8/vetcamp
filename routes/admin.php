@@ -111,6 +111,10 @@ switch ($path) {
     case '/admin/audit':
         AuditController::index($method);
         break;
+
+    case '/admin/audit/download':
+        AuditController::download();
+        break;
     case '/admin/error/clear':
         ErrorsController::clear();
         break;
@@ -124,14 +128,14 @@ switch ($path) {
     case '/mail/user':
         MessagesController::message($method);
         break;
-    case'/admin/registered/export-to-csv':
+    case '/admin/registered/export-to-csv':
         RegisteredController::downloadCsvUsers();
         break;
     case '/admin/requests/export-to-csv':
         RequestsController::downloadCsvApplications();
         break;
 
-//  COMMENT SECTION
+    //  COMMENT SECTION
 
     case '/admin/request/comment':
         ApplicationController::comment($method);
@@ -144,5 +148,4 @@ switch ($path) {
     case '/admin/comment/delete':
         CommentController::manage($method, 'destroy');
         break;
-
 }

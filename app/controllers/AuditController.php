@@ -19,5 +19,22 @@ class AuditController extends Controller
 
     }
 
+    public static function download()
+    {
+        // set locale to spanish
+        setlocale(LC_ALL, 'es_ES');
+
+
+        $audits = Audit::all();
+        $csv = 'user_id,action,summary,made_on' . PHP_EOL;
+        foreach ($audits as $audit) {
+            $csv .= $audit->user_id . ',' . $audit->action . ',' . iconv('UTF-8', 'ISO-8859-1//TRANSLIT', $audit->summary) . ',' . $audit->made_on . PHP_EOL;
+        }
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="audits.csv"');
+        echo $csv;
+        exit;
+    }
+
     // define your other methods here
 }
