@@ -16,26 +16,7 @@ class MessagesController extends Controller
             redirect('');
         }
     
-        if ($method === 'GET') {
-            header('Content-Type: application/json');
-    
-            try {
-                // Obtener todos los mensajes de la base de datos
-                $messages = Message::all();
-    
-                // Convertir los objetos en un array asociativo con category como clave
-                $formattedMessages = [];
-                foreach ($messages as $msg) {
-                    $formattedMessages[$msg->category] = $msg->content;
-                }
-    
-                echo json_encode(['messages' => $formattedMessages]);
-                exit;
-            } catch (Exception $e) {
-                echo json_encode(['error' => 'Error al obtener los mensajes']);
-                exit;
-            }
-        } else if ($method === 'POST') {
+        if ($method === 'POST') {
             // Lógica para enviar correos
             $message = filter_input(INPUT_POST, 'message', FILTER_DEFAULT);
             $type = filter_input(INPUT_POST, 'user_type', FILTER_DEFAULT);
@@ -51,7 +32,8 @@ class MessagesController extends Controller
             }
     
             self::mailAllUsers($message, $type);
-        }
+            
+        } 
     }
     
 

@@ -61,6 +61,12 @@ class BackDashboardController extends Controller
         });
 
 
+        // Get all predefined massive messages from the database
+        $messages = Message::all();
+        $formattedMessages = [];
+        foreach ($messages as $msg) {
+            $formattedMessages[$msg->category] = $msg->content;
+        }
 
         render_view('backDashboard', [
             'all_users' => $all_users,
@@ -69,6 +75,7 @@ class BackDashboardController extends Controller
             'recent_applications' => $recent_applications,
             'selected' => 'start',
             'accepted' => $accepted,
+            'messages' => $formattedMessages, 
         ], 'Administración');
     }
 
