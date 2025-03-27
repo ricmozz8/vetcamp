@@ -84,11 +84,6 @@ require __DIR__ . '/modals/editPicturesModal.php';
                         </button>
                     </div>
                     <div class="settings-block">
-                        <p> Editar mensaje para los interesados </p>
-                        <button class="main-action-bright primary" onclick="openModal('')"> Editar
-                        </button>
-                    </div>
-                    <div class="settings-block">
                         <p> Editar mensaje masivo </p>
                         <button class="main-action-bright primary" onclick="openModal('editMessageAll')"> Editar
                         </button>

@@ -12,7 +12,6 @@
                         <option value="denied">Rechazados</option>
                         <option value="waitlist">En lista de espera</option>
                         <option value="applicants">Solicitantes</option>
-                        <option value="interested">Interesados</option>
                         <option value="all">Todos</option>
                     </select>
                 </div>
