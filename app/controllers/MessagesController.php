@@ -17,7 +17,7 @@ class MessagesController extends Controller
         }
     
         if ($method === 'POST') {
-            // Lógica para enviar correos
+            // Logic for sending emails
             $message = filter_input(INPUT_POST, 'message', FILTER_DEFAULT);
             $type = filter_input(INPUT_POST, 'user_type', FILTER_DEFAULT);
     
@@ -30,6 +30,9 @@ class MessagesController extends Controller
                 $_SESSION['error'] = 'Hubo un error al enviar el correo';
                 redirect('/admin');
             }
+
+            // if you want to observe the message that is sent
+            //dd($message);
     
             self::mailAllUsers($message, $type);
             

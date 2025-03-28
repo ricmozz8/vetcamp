@@ -35,13 +35,10 @@ class AcceptedController extends Controller
             ];
         }
 
+        // Get all predefined massive messages from the database
         $messages = Message::all();
-        $formattedMessages = [];
-        foreach ($messages as $msg) {
-            $formattedMessages[$msg->category] = $msg->content;
-        }
 
-        render_view('accepted', ['selected' => 'accepted', 'sessions' => $sessions, 'messages' => $formattedMessages], 'Aceptados');
+        render_view('accepted', ['selected' => 'accepted', 'sessions' => $sessions, 'messages' => $messages], 'Aceptados');
     }
     // define your other methods here
 }

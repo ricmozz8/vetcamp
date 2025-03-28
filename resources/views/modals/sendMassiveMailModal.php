@@ -4,7 +4,7 @@
         <i class="fas fa-envelope"></i>
         <h2>Enviar mensaje masivo</h2>
         <div class="modal-details">
-            <form action="/mail" method="POST">
+            <form action="/mail" method="POST" id="massive-email-form">
                 <div class="form-group">
                     <label for="user_type">Por estado</label>
                     <select required name="user_type" id="select-type">
@@ -17,7 +17,15 @@
                     </select>
                 </div>
 
-                
+                <!-- Generate the text areas with their status -->
+                <?php foreach ($messages as $msg): ?>
+                    <?php $estado = $msg->category; ?>
+                    <textarea name="message_<?php echo $estado; ?>" id="message-<?php echo $estado; ?>" 
+                              placeholder="Introduce un mensaje aquí..." 
+                              class="message-textarea" style="display: none;"><?php echo htmlspecialchars($msg->content); ?></textarea>
+                <?php endforeach; ?>
+
+                <!-- Default text areas -->
                 <textarea required name="message" id="message-text" placeholder="Introduce un mensaje aquí..."></textarea>
                 
                 <div class="form-group flex-min">
@@ -25,57 +33,65 @@
                     <label for="predefined-message">Mensaje predefinido</label>
                 </div>
 
+                <div class="modal-actions">
+                    <a href="#" onclick="closeModal('massiveEmailModal')" class="main-action-bright">Cancelar</a>
+                    <button type="submit" class="main-action-bright primary"><i class="fas fa-paper-plane"></i> Enviar</button>
+                </div>
+            </form>
         </div>
-
-        <div class="modal-actions">
-            <a href="#" onclick="closeModal('massiveEmailModal')" class="main-action-bright">Cancelar</a>
-            <button type="submit" class="main-action-bright primary"><i class="fas fa-paper-plane"></i> Enviar</button>
-        </div>
-        </form>
     </div>
 </div>
 
 <script>
-function resetMessage() {
-    let checkbox = document.getElementById('predefined-message');
-    let messageBox = document.getElementById('message-text');
-
-    checkbox.checked = false;
-    messageBox.value = '';
-}
-
 document.addEventListener("DOMContentLoaded", function() {
     let checkbox = document.getElementById('predefined-message');
     let messageBox = document.getElementById('message-text');
     let selectType = document.getElementById('select-type');
+    let form = document.getElementById('massive-email-form');
+    let predefinedMessages = document.querySelectorAll('.message-textarea');
 
-    // insert message in PHP with JSON
-    let messagesData = <?= isset($messages) ? json_encode($messages, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) : '{}' ?>;
+    function toggleMessage() {
+        let selectedValue = selectType.value;
 
-    function updateCheckboxVisibility() {
-        let hasMessage = messagesData[selectType.value] !== undefined;
-        checkbox.parentElement.style.display = hasMessage ? 'flex' : 'none';
+        // Hidden textarea with predefinedMessages
+        predefinedMessages.forEach(textarea => {
+            textarea.style.display = 'none';
+        });
 
-        // hidden and clean
-        if (!hasMessage) {
+        let predefinedMessage = document.getElementById('message-' + selectedValue);
+        let hasPredefinedMessage = predefinedMessage !== null;
+
+        if (hasPredefinedMessage) {
+            checkbox.parentElement.style.display = 'flex'; // If predefinedMessages
+        } else {
+            checkbox.parentElement.style.display = 'none'; 
+            checkbox.checked = false; 
+        }
+
+        // uncheck and clean 
+        if (hasPredefinedMessage) {
             checkbox.checked = false;
-            messageBox.value = '';
+            messageBox.value = ''; 
+        } else {
+            messageBox.value = ''; 
         }
     }
 
-    updateCheckboxVisibility();
-
     checkbox.addEventListener('change', function() {
-        messageBox.value = this.checked && messagesData[selectType.value] ? messagesData[selectType.value] : "";
-    });
+        let selectedValue = selectType.value;
+        let predefinedMessage = document.getElementById('message-' + selectedValue);
 
-    selectType.addEventListener('change', function() {
-        updateCheckboxVisibility();
-        if (checkbox.checked) {
-            messageBox.value = messagesData[this.value] || "";
+        if (checkbox.checked && predefinedMessage) {
+            // Copy the text a default text areas
+            messageBox.value = predefinedMessage.value; 
+        } else {
+            messageBox.value = '';
         }
     });
+
+    selectType.addEventListener('change', toggleMessage);
+
+    toggleMessage();
 });
+
 </script>
-
-
