@@ -28,14 +28,17 @@ class AcceptedController extends Controller
             $pictureObj = Application::find($user['id_application'])->getProfilePicture();
             $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
 
-            // Agregar la información formateada
             $sessions[$sessionId][] = [
                 'user_id'   => $user['user_id'],
                 'full_name' => User::find($user['user_id'])->first_name . ' ' . User::find($user['user_id'])->last_name,
                 'profile_picture' => $src,
             ];
         }
-        render_view('accepted', ['selected' => 'accepted', 'sessions' => $sessions], 'Aceptados');
+
+        // Get all predefined massive messages from the database
+        $messages = Message::all();
+
+        render_view('accepted', ['selected' => 'accepted', 'sessions' => $sessions, 'messages' => $messages], 'Aceptados');
     }
     // define your other methods here
 }

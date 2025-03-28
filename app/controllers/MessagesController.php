@@ -11,33 +11,34 @@ class MessagesController extends Controller
      *
      * @return void
      */
-    public static function mailUsers($method)
-    {
-
+    public static function mailUsers($method) {
         if (!Auth::check() || Auth::user()->type !== 'admin') {
             redirect('');
         }
-
-        if ($method === 'GET') {
-            redirect('/admin');
-        } else if ($method === 'POST') {
-
+    
+        if ($method === 'POST') {
+            // Logic for sending emails
             $message = filter_input(INPUT_POST, 'message', FILTER_DEFAULT);
             $type = filter_input(INPUT_POST, 'user_type', FILTER_DEFAULT);
-
+    
             if (!$message || !$type) {
                 $_SESSION['error'] = 'Por favor llene todos los campos';
                 redirect('/admin');
             }
-
+    
             if (!in_array($type, ['all', 'approved', 'denied', 'waitlist', 'applicants', 'interested'])) {
                 $_SESSION['error'] = 'Hubo un error al enviar el correo';
                 redirect('/admin');
             }
 
+            // if you want to observe the message that is sent
+            //dd($message);
+    
             self::mailAllUsers($message, $type);
-        }
+            
+        } 
     }
+    
 
     /**
      * Message a particular user
