@@ -66,7 +66,23 @@ require_once __DIR__ . '/partials/header.php';
             <?php endforeach; ?>
         </div>
 
-        <?php require_once('modals/sendMassiveMailModal.php'); ?>
+        <?php require_once('modals/sendMassiveMailModal.php');?>
+
+        <h2>Waiting Users</h2>
+
+        <ul>
+            <?php if (empty($waitingUsers)): ?>
+                <p>No hay estudiantes en espera.</p>
+            <?php else: ?>
+            <?php foreach ($waitingUsers as $user): ?>
+            <li>
+                <?= $user['full_name'] ?>
+                <!-- add any other user info you want to display -->
+            </li>
+             <?php endforeach; ?>
+             <?php endif; ?>
+        </ul>
+
     </main>
 </div>
 

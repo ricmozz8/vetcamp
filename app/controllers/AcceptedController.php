@@ -35,7 +35,8 @@ class AcceptedController extends Controller
                 'profile_picture' => $src,
             ];
         }
-        render_view('accepted', ['selected' => 'accepted', 'sessions' => $sessions], 'Aceptados');
+        $waitingUsers = WaitList::waitQueue();
+        render_view('accepted', ['selected' => 'accepted', 'sessions' => $sessions,'waitingUsers'=>$waitingUsers], 'Aceptados');
     }
     // define your other methods here
 }

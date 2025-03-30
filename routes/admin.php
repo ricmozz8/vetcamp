@@ -16,6 +16,8 @@ require_once 'app/controllers/CommentController.php';
 require_once 'app/controllers/ErrorsController.php';
 require_once 'app/controllers/UserController.php';
 
+require_once 'app/controllers/QueueController.php';
+
 
 if (strpos($path, '/admin') === 0) {
 
@@ -67,6 +69,7 @@ switch ($path) {
         break;
     case '/admin/accepted':
         AcceptedController::index();
+
         break;
     case '/admin/settings':
         SettingsController::index();
