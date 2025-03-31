@@ -44,7 +44,7 @@ class WaitList extends Model
             $application = $user->application();
             
             if ($application && 
-                Application::getStatusInEnglish($application->status) === 'waitlist' && 
+                Application::getStatusInEnglish($application->status) === 'approved' && 
                 !in_array($user->user_id, $usersInSessions)) {
                 
                 $session = null;
@@ -69,5 +69,27 @@ class WaitList extends Model
         return $waitingUsers;
     }
 
-}
+    /**
+     * Adds a user to the waitlist queue if their application is approved but they are not enrolled in their preferred session.
+     *
+     * This function checks if the user's application status is approved and verifies whether they are already
+     * enrolled in their preferred session. If they are not, the user is added to the waitlist queue.
+     *
+     * @param User $user The user to be added to the waitlist.
+     */
 
+    public static function Enqueue($user)
+    {
+        $application = $user->application();
+        if ($application && Application::getStatusInEnglish($application->status) === 'approved') {
+            $session = Session::find($application->id_preferred_session);
+            if (!$session || !$session->students()->where('user_id', $user->user_id)->exists()) {
+                // Add user to waitlist queue
+                $waitList = new WaitList();
+                $waitList->user_id = $user->user_id;
+                $waitList->save();
+            }
+        }
+
+    }
+}
