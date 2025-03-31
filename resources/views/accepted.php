@@ -68,20 +68,34 @@ require_once __DIR__ . '/partials/header.php';
 
         <?php require_once('modals/sendMassiveMailModal.php');?>
 
-        <h2>Waiting Users</h2>
-
-        <ul>
+       <div class="accepted-grouped">
+    <div class="accepted-card centered-card">
+        <div class="accepted-card-header">
+            <div>
+                <h2 class="accepted-card-title">Estudiantes en espera</h2>
+                <p>
+                    <i class="fas fa-users"></i>
+                    <?= count($waitingUsers) ?> estudiantes
+                </p>
+            </div>
+        </div>
+        <div class="accepted-card-list">
             <?php if (empty($waitingUsers)): ?>
-                <p>No hay estudiantes en espera.</p>
+                <p style="text-align: center; color: gray;">No hay estudiantes en espera.</p>
             <?php else: ?>
-            <?php foreach ($waitingUsers as $user): ?>
-            <li>
-                <?= $user['full_name'] ?>
-                <!-- add any other user info you want to display -->
-            </li>
-             <?php endforeach; ?>
-             <?php endif; ?>
-        </ul>
+                <?php foreach ($waitingUsers as $user): ?>
+                    <div class="accepted-user-card">
+                        <a href="/admin/p?user=<?= $user['user_id'] ?>&from=accepted">
+                        <img src="<?= $user['profile_picture'] ?>"
+                             alt="Imagen de <?= $user['full_name'] ?>">
+                        </a>
+                        <h3><?= $user['full_name'] ?></h3>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
 
     </main>
 </div>
