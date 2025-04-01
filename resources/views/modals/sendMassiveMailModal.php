@@ -27,7 +27,7 @@
                 <!-- Default text areas -->
                 <textarea required name="message" id="message-text" placeholder="Introduce un mensaje aquí..."></textarea>
                 
-                <div class="form-group flex-min">
+                <div class=" flex-min">
                     <input type="checkbox" id="predefined-message" name="predefined">
                     <label for="predefined-message">Mensaje predefinido</label>
                 </div>
