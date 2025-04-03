@@ -114,8 +114,9 @@
 
   .centered-card {
     position: absolute;
-    top: 90%;
+    top: 70%;
     left: 60%;
+    right: 20%
     transform: translate(-50%, -50%);
 }
 

@@ -129,9 +129,12 @@ require_once __DIR__ . '/partials/header.php';
 
 
 
-
+</main>
+</div>
 
 <?php require_once('partials/footer.php'); ?>
 </body>
+
+
 
 </html>
