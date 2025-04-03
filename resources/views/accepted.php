@@ -68,7 +68,8 @@ require_once __DIR__ . '/partials/header.php';
 
         <?php require_once('modals/sendMassiveMailModal.php');?>
 
-       <div class="accepted-grouped">
+
+    <div class="accepted-grouped">
     <div class="accepted-card centered-card">
         <div class="accepted-card-header">
             <div>
@@ -97,8 +98,38 @@ require_once __DIR__ . '/partials/header.php';
     </div>
 </div>
 
-    </main>
+<div class="accepted-grouped">
+    <div class="accepted-card">
+        <div class="accepted-card-header">
+            <div>
+                <h2 class="accepted-card-title">Solicitantes actuales</h2>
+                <p>
+                    <i class="fas fa-users"></i>
+                    <?= count($applicants) ?> solicitantes
+                </p>
+            </div>
+        </div>
+        <div class="accepted-card-list">
+            <?php if (empty($applicants)): ?>
+                <p style="text-align: center; color: gray;">No hay solicitantes actuales.</p>
+            <?php else: ?>
+                <?php foreach ($applicants as $applicant): ?>
+                    <div class="accepted-user-card">
+                        <a href="/admin/p?user=<?= $applicant['user_id'] ?>&from=accepted">
+                        <img src="<?= $applicant['profile_picture'] ?>"
+                             alt="Imagen de <?= $applicant['full_name'] ?>">
+                        </a>
+                        <h3><?= $applicant['full_name'] ?></h3>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
+
+
+
+
 
 <?php require_once('partials/footer.php'); ?>
 </body>

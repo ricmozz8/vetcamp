@@ -1,6 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once'app/models/WaitList.php';
+require_once'app/models/Enrollment.php';
 
 class AcceptedController extends Controller
 { 
@@ -62,8 +63,39 @@ class AcceptedController extends Controller
                 'full_name' => User::find($user['user_id'])->first_name . ' ' . User::find($user['user_id'])->last_name,
                 'profile_picture' => $src,
             ];
+
+
         }
-        render_view('accepted', ['selected' => 'accepted', 'sessions' => $sessions,'waitingUsers'=>$waitingUsers], 'Aceptados');
+
+       $user_id = Auth::user()->user_id;
+       $applicants = Enrollment::getCurrentApplicants($user_id);
+
+       $applicantsWithPictures = [];
+       foreach ($applicants as $applicant) {
+           $application = Application::find($applicant['id_application']);
+           
+           $pictureObj = $application->getProfilePicture();
+           $src = '';
+           if ($pictureObj) {
+               $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
+           }
+           
+           $applicantsWithPictures[] = [
+               'user_id' => $applicant['user_id'],
+               'full_name' => User::find($applicant['user_id'])->first_name . ' ' . User::find($applicant['user_id'])->last_name,
+               'profile_picture' => $src,
+           ];
+       }
+
+
+
+       render_view('accepted', [
+        'sessions' => $sessions,
+        'waitingUsers' => $waitingUsersWithPictures,
+        'applicants' => $applicantsWithPictures
+    ], 'Accepted');
+
     }
+
     // define your other methods here
 }
