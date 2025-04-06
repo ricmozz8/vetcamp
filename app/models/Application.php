@@ -22,7 +22,8 @@ class Application extends Model
         'approved' => 'Aceptado',
         'denied' => 'Rechazado',
         'incomplete' => 'Incompleta',
-        'waitlist' => 'En lista de espera'
+        'waitlist' => 'En lista de espera',
+        'enrolled' => 'Matriculado',
     ];
 
     public $status;
