@@ -50,7 +50,7 @@
   background-color: var(--white-color);
   padding: 15px;
   border-radius: 27px;
-  margin: 10px 0;
+
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
@@ -59,11 +59,16 @@
   background-color: var(--white-color-shade-1);
 }
 
+
+
 .accepted-user-card img {
   width: 50px;
   height: 50px;
+
   border-radius: 50%;
   object-fit: cover;
+  display: block;  
+
 }
 
 .multiselect{
@@ -81,6 +86,8 @@
   padding: 15px;
 
 }
+
+
 
 .multiselect-item-info{
   display: flex;
@@ -102,7 +109,8 @@
 }
 
 .profile-main img{
-  width: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
 }
