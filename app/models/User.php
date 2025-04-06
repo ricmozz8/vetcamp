@@ -135,32 +135,21 @@ class User extends Model
     public static function approvedApplicants()
     {
         try {
-            $type = 'user';
-            $users = self::allof($type);
-            $applications = Application::all();
-
+            $applications = Application::allWith('users', 'user_id', ['status' => 'status']);
             $approvedApplicants = [];
 
-            foreach ($users as $user) {
+            foreach ($applications as $user) {
                 try {
-                    $application = $user->application();
-
-                    if ($application && trim(strtolower($application->status)) === 'aceptado' && $user->status === "active") {
-                        $approvedApplicants[] = [
-                            'user_id' => $user->user_id,
-                            'id_application' => $application->id_application,
-                            'id_preferred_session' => $application->id_preferred_session,
-                        ];
+                    if (trim(strtolower($user->status)) === 'aceptado') {
+                        $approvedApplicants[] = $user;
                     }
                 } catch (ModelNotFoundException $notFound) {
                     continue;
                 }
             }
 
-            //var_dump($approvedApplicants); // Verificar la lista final
-            //exit;
-
             return $approvedApplicants;
+
         } catch (Exception $e) {
             throw new Exception("An error occurred: " . $e->getMessage());
         }
@@ -168,17 +157,17 @@ class User extends Model
 
     public static function rejectedApplicants()
     {
-        try{
+        try {
             $type = 'user';
             $users = self::allof($type);
             $applications = Application::all();
-        
+
             $rejectedApplicants = [];
-        
+
             foreach ($users as $user) {
                 try {
                     $application = $user->application();
-        
+
                     if ($application && trim(strtolower($application->status)) === 'rechazado' && $user->status === "active") {
                         $rejectedApplicants[] = [
                             'user_id' => $user->user_id,
@@ -190,7 +179,7 @@ class User extends Model
                     continue;
                 }
             }
-        
+
             return $rejectedApplicants;
         } catch (Exception $e) {
             throw new Exception("An error occurred: " . $e->getMessage());
@@ -213,26 +202,23 @@ class User extends Model
             foreach ($this->evaluations() as $evaluation) {
                 $evaluation->delete();
             }
-
-        } else{
+        } else {
             // The regular users contain physical, postal and school addresses, also the application if exists
-            if($this->application() !== null){
+            if ($this->application() !== null) {
                 $this->application()->hard_delete();
             }
-            if($this->school_address() !== null){
+            if ($this->school_address() !== null) {
                 $this->school_address()->delete();
             }
-            if($this->postal_address() !== null){
+            if ($this->postal_address() !== null) {
                 $this->postal_address()->delete();
             }
-            if($this->physical_address() !== null){
+            if ($this->physical_address() !== null) {
                 $this->physical_address()->delete();
             }
-
         }
 
         return $this->delete();
-
     }
 
     /**
@@ -252,7 +238,6 @@ class User extends Model
             return [];
         }
         return $comments;
-
     }
 
     /**
@@ -271,7 +256,6 @@ class User extends Model
             return [];
         }
         return $evaluations;
-
     }
 
 
@@ -383,14 +367,14 @@ class User extends Model
      *
      * @param $user a user
      */
-    public static function sendEmailForReactivate($user) 
+    public static function sendEmailForReactivate($user)
     {
         $user_reactive = Activation::create([
             "user_id" => $user->__get('user_id'),
             "OTP" => Activation::generateOTP()
         ]);
 
-        
+
         Mailer::send($user->email, "Habilita tu cuenta de nuevo.", "Tu código de restablecimiento es " . $user_reactive->OTP);
     }
 }

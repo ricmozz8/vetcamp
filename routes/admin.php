@@ -116,13 +116,23 @@ switch ($path) {
     case '/admin/audit/download':
         AuditController::download();
         break;
-        // document admin provider
+    // document admin provider
 
-        case '/admin/document':
-            $application = $_GET['a'] ?? null;
-            $document = $_GET['d'] ?? null;
-            DocumentController::index($application, $document);
-            break;
+    case '/admin/document':
+        $application = $_GET['a'] ?? null;
+        $document = $_GET['d'] ?? null;
+        DocumentController::index($application, $document);
+        break;
+    
+    // enroll
+
+    case '/admin/enroll':
+        AcceptedController::enroll($method);
+        break;
+
+    case '/admin/enroll/auto':
+        AcceptedController::autoEnroll($method);
+        break;
 
     case '/admin/error/clear':
         ErrorsController::clear();

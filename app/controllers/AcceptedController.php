@@ -20,22 +20,69 @@ class AcceptedController extends Controller
 
         $approvedApplicants = User::approvedApplicants();
 
-        $sessions = [];
 
-        foreach ($approvedApplicants as $user) {
-            $sessionId = $user['id_preferred_session'];
+        $sessions = []; //change the logic so enrollments are grouped by session
 
-            $pictureObj = Application::find($user['id_application'])->getProfilePicture();
-            $src = "data:" . $pictureObj['type'] . ";base64," . base64_encode($pictureObj['contents']);
+        $sessionObjects = Session::all();
 
-            // Agregar la información formateada
-            $sessions[$sessionId][] = [
-                'user_id'   => $user['user_id'],
-                'full_name' => User::find($user['user_id'])->first_name . ' ' . User::find($user['user_id'])->last_name,
-                'profile_picture' => $src,
-            ];
+        $waitlist = []; // retreive the waitlist here
+
+        foreach ($sessionObjects as $session) {
+            $sessions[$session->title] = [];
         }
-        render_view('accepted', ['selected' => 'accepted', 'sessions' => $sessions], 'Aceptados');
+
+        render_view(
+            'accepted',
+            [
+                'selected' => 'accepted',
+                'approvedPool' => $approvedApplicants,
+                'sessions' => $sessions,
+                'waitlist' => $waitlist
+            ],
+            'Aceptados'
+        );
     }
     // define your other methods here
+
+    public static function enroll($method)
+    {
+
+        if (!Auth::check()) {
+            redirect('/login');
+        }
+        if (Auth::user()->type != 'admin') {
+            redirect('/login');
+        }
+
+        if ($method == 'POST') {
+
+            $session = filter_input(INPUT_POST, 'session');
+            $students = filter_input(INPUT_POST, 'students', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+
+            dd($session, $students); 
+
+            // Enroll the students here
+        } else {
+            redirect('/accepted');
+        }
+    }
+
+    public static function autoEnroll($method)
+    {
+
+        if (!Auth::check()) {
+            redirect('/login');
+        }
+        if (Auth::user()->type != 'admin') {
+            redirect('/login');
+        }
+        if ($method == 'POST') {
+            
+
+            dd('AUTOENROLL THE STUDENTS BASED ON THEIR PREFERRED SESSION HERE');
+
+        } else {
+            redirect('/accepted');
+        }
+    }
 }

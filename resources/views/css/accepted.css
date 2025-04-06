@@ -66,6 +66,52 @@
   object-fit: cover;
 }
 
+.multiselect{
+  max-height: 300px;
+  overflow-y: scroll;
+  background-color: var(--white-color);
+  border-radius: 7px;
+  border: 1px solid var(--bright-shade);
+}
+
+.multiselect-item{
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 15px;
+
+}
+
+.multiselect-item-info{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.profile-main{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.profile-secondary{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px;
+}
+
+.profile-main img{
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-main h1{
+  font-size: 1em;
+  font-weight: 500;
+}
+
 /* tablet */
 
 @media screen and (min-width: 768px) {

@@ -19,6 +19,20 @@ function showModal(modalId) {
 }
 
 
+function openEnrollModal(modalId, session) {
+    document.getElementById(modalId).style.display = "flex";
+    window.scrollTo(0, 0);
+    // hide scroll
+    document.body.style.overflow = "hidden";
+
+    let sessionInput = document.getElementById('session');
+    sessionInput.value = session;
+
+
+
+}
+
+
 /**
  * Initializes modal click-to-close functionality.
  * Closes the modal when clicking outside its content.
