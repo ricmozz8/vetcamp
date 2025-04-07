@@ -477,4 +477,32 @@ class Model
     }
 
 
+    /**
+     * Executes a raw SQL query and returns the result as an instance of the
+     * current model.
+     *
+     * @param string $query The raw SQL query to execute.
+     * @param string $mode The mode of the fetch operation. Can be either 'all'
+     *                     or 'num'. If 'all', the result will be fetched as
+     *                     an associative array. If 'num', the result will be
+     *                     fetched as a numerical array.
+     *
+     * @return Model An instance of the current model containing the result of
+     *               the query.
+     */
+    public static function raw(string $query, string $mode){
+
+        if ($mode == 'all') 
+            $param =  PDO::FETCH_ASSOC;
+        else
+            $param =  PDO::FETCH_NUM;
+     
+
+        self::init();
+        $result = DB::execute_and_fetch($query, []);
+        return new static($result, $result);
+    }
+    
+
+
 }

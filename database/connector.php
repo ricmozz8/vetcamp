@@ -495,10 +495,11 @@ final class DB
      *
      * @return bool Returns true if the query affected at least one row, otherwise false.
      */
-    public static function execute(string $sql, array $data = null): bool
+    public static function execute(string $sql, $param): bool
     {
         $statement = self::$database->prepare($sql);
-        $statement->execute($data);
+        $statement->execute();
+        
         return $statement->rowCount() > 0;
     }
 
@@ -515,7 +516,7 @@ final class DB
      *
      * @return array The results of the query as an array of associative arrays.
      */
-    private static function execute_and_fetch(string $sql, array $data = null): array
+    public static function execute_and_fetch(string $sql, array $data): array
     {
         $statement = self::$database->prepare($sql);
         $statement->execute($data);
