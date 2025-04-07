@@ -438,6 +438,33 @@ final class DB
 
 
     /**
+     * Execute a NATURAL JOIN query on two tables and return all matching results.
+     *
+     * This method prepares and executes a NATURAL JOIN SQL query on two specified tables
+     * without any join conditions. The results of the query are returned as an
+     * array of associative arrays, where each key is the name of a column and the value
+     * is the value of the column.
+     *
+     * @param string $table1 The name of the first table to join.
+     * @param string $table2 The name of the second table to join.
+     *
+     * @return array The results of the join query as an array of associative arrays.
+     */
+    public static function naturalJoin(string $table1, string $table2): array
+    {
+        $sql = "SELECT * FROM :table1 NATURAL JOIN :table2";
+        $statement = self::$database->prepare($sql);
+
+        $statement->bindValue(':table1', $table1, PDO::PARAM_STR);
+        $statement->bindValue(':table2', $table2, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    /**
      * Get all columns from a table.
      *
      * This method constructs and executes an SQL query that returns all columns

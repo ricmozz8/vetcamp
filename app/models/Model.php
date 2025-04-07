@@ -189,6 +189,35 @@ class Model
         return $models;
     }
 
+
+    /**
+     * Returns all records from the associated table joined with a specified
+     * table where the specified column matches the given value.
+     *
+     * @param string $table The table to join with.
+     * @param string $column The column to use in the WHERE clause.
+     * @param array $renames An associative array where keys are column names and
+     *                      values are the new names for those columns.
+     *
+     * @return array The results of the join query as an array of associative arrays.
+     *
+     * @throws ModelNotFoundException If no records are found with the specified id.
+     */
+    public static function conjoined(string $table)
+    {
+        $results = DB::naturalJoin(static::$table, $table);
+
+        if (empty($results)) {
+            throw new ModelNotFoundException('There is no record matching the given data.');
+        } else {
+            foreach ($results as $result) {
+                $models[] = new static($result, self::sanitize($result));
+            }
+        }
+
+        return $models;
+    }
+
     /**
      * Gets all records that matches a set of conditions
      * @param array $data An associative array of columns and desired value
