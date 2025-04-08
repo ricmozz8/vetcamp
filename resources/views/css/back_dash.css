@@ -469,3 +469,41 @@
 .sidebar-section{
   margin: 1em 20px;
 }
+
+/* modal for picture manager */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+
+.image-slot {
+  border: 2px solid #ccc;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: border-color 0.3s;
+}
+
+.image-slot img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.image-slot.selected {
+  border: 4px solid #333;
+}
+
+.modal-note {
+  font-size: 0.9rem;
+  color: #555;
+  background-color: #f8f8f8;
+  border-left: 4px solid #ccc;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+}

@@ -51,12 +51,46 @@ class SettingsController extends Controller
 
         $sessions = Session::all();
 
+        // default images
+        $defaultImages = [
+            1 => 'img/cow-2.jpeg',
+            2 => 'img/doggo-checkup-2.jpeg',
+            3 => 'img/microscopes-2.jpeg',
+            4 => 'img/group-looking-away-2.jpeg',
+        ];
+
+        $customImages = [];
+
+        for ($i = 1; $i <= 4; $i++) {
+            // resources/assets/img/homePage/
+            $pathToAssets = realpath(__DIR__ . '/../../resources/assets/img/homePage');
+            
+            if ($pathToAssets === false) {
+                $customImages[$i] = $defaultImages[$i];
+                continue;
+            }
+
+            // search picture 
+            $pattern = $pathToAssets . "/picture{$i}.*";
+            $files = glob($pattern);
+
+            if (!empty($files)) {
+                $extension = pathinfo($files[0], PATHINFO_EXTENSION);
+                $customImages[$i] = 'img/homePage/picture' . $i . '.' . $extension;
+            } else {
+                $customImages[$i] = $defaultImages[$i];
+            }
+        }
+        // For test path
+        //dd($customImages);
+
 
         render_view('settings', [
             'messages' => $message_array,
             'limit_dates' => $limit_dates,
             'sessions' => $sessions,
-            'selected' => 'settings'
+            'selected' => 'settings',
+            'customImages' => $customImages
         ], 'Ajustes');
     }
 
@@ -361,4 +395,50 @@ class SettingsController extends Controller
             redirect('/login');
         }
     }
+
+    public static function editPictureInHomePage($method)
+    {  
+        if ($method === 'POST') {
+            $selectedPicture = $_POST['selected_slot'] ?? null;
+
+            if (isset($_POST['delete_image']) && $selectedPicture) {
+                $deleted = deleteAssetFileByPattern("img/homePage/picture{$selectedPicture}.*");
+            
+                if ($deleted) {
+                    $_SESSION['message'] = "Imagen eliminada correctamente.";
+                } else {
+                    $_SESSION['error'] = "No se encontró una imagen para eliminar.";
+                }
+            
+                redirect('/admin/settings');
+                return;
+            }
+
+            if (isset($_FILES['uploaded_image']) && $selectedPicture) {
+                $file = $_FILES['uploaded_image'];
+
+                $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+                if (in_array($file['type'], $allowedTypes)) {
+
+                    $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+                    // The name of the file
+                    $filename = 'picture' . $selectedPicture . '.' . $fileExtension;
+                    $relativePath = 'img/homePage/' . $filename;
+
+                    // Save the file
+                    if (storeAsset($relativePath, $file['tmp_name'])) {
+                        $_SESSION['message'] = "Imagen subida con éxito.";
+                    } else {
+                        $_SESSION['error'] = "Error al subir la imagen.";
+                    }
+                } else {
+                    $_SESSION['error'] = "Tipo de archivo no permitido.";
+                }
+            }
+
+            redirect('/admin/settings');
+        }
+    }
+
 }
