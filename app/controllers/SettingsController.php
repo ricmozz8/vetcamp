@@ -399,7 +399,13 @@ class SettingsController extends Controller
     public static function editPictureInHomePage($method)
     {  
         if ($method === 'POST') {
-            $selectedPicture = $_POST['selected_slot'] ?? null;
+            $selectedPicture = (int)($_POST['selected_slot'] ?? 0);
+            // validation of the slot
+            if ($selectedPicture < 1 || $selectedPicture > 4) {
+                $_SESSION['error'] = "Slot inválido.";
+                redirect('/admin/settings');
+                return;
+            }
 
             if (isset($_POST['delete_image']) && $selectedPicture) {
                 $deleted = deleteAssetFileByPattern("img/homePage/picture{$selectedPicture}.*");
@@ -414,31 +420,60 @@ class SettingsController extends Controller
                 return;
             }
 
-            if (isset($_FILES['uploaded_image']) && $selectedPicture) {
-                $file = $_FILES['uploaded_image'];
+            if (!isset($_FILES['uploaded_image']) || $_FILES['uploaded_image']['error'] !== UPLOAD_ERR_OK) {
+                $_SESSION['error'] = "Error al subir la imagen.";
+                redirect('/admin/settings');
+                return;
+            }
+            
+            $maxSize = to_byte_size("8MB");
 
-                $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-                if (in_array($file['type'], $allowedTypes)) {
+            if ($_FILES['uploaded_image']['size'] > $maxSize) {
+                $uploadedSize = sizeReadable($_FILES['uploaded_image']['size']);
+                $_SESSION['error'] = "El archivo excede el tamaño máximo permitido (8 MB). Tamaño recibido: {$uploadedSize}.";
+                redirect('/admin/settings');
+                return;
+            }
 
-                    $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
 
-                    // The name of the file
-                    $filename = 'picture' . $selectedPicture . '.' . $fileExtension;
-                    $relativePath = 'img/homePage/' . $filename;
+            $fileTmp = $_FILES['uploaded_image']['tmp_name'];
+            $fileName = $_FILES['uploaded_image']['name'];
+            // Check extension based on content
+            $fileType = mime_content_type($fileTmp);
+            $allowedTypes = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp'];
 
-                    // Save the file
-                    if (storeAsset($relativePath, $file['tmp_name'])) {
-                        $_SESSION['message'] = "Imagen subida con éxito.";
-                    } else {
-                        $_SESSION['error'] = "Error al subir la imagen.";
-                    }
-                } else {
-                    $_SESSION['error'] = "Tipo de archivo no permitido.";
+            if (!array_key_exists($fileType, $allowedTypes)) {
+                $_SESSION['error'] = "Tipo de archivo no permitido.";
+                redirect('/admin/settings');
+                return;
+            }
+
+            $uploadDir = realpath(__DIR__ . '/../../resources/assets/img/homePage');
+            if (!$uploadDir) {
+                $_SESSION['error'] = "Directorio de destino no válido.";
+                redirect('/admin/settings');
+                return;
+            }
+
+            $ext = $allowedTypes[$fileType];
+            $filePath = $uploadDir . "/picture{$selectedPicture}." . $ext;
+
+            // Delete old version
+            foreach ($allowedTypes as $extToDelete) {
+                $oldFile = $uploadDir . "/picture{$selectedPicture}." . $extToDelete;
+                if (file_exists($oldFile)) {
+                    unlink($oldFile);
                 }
             }
 
+            if (!move_uploaded_file($fileTmp, $filePath)) {
+                $_SESSION['error'] = "No se pudo guardar la imagen.";
+                redirect('/admin/settings');
+                return;
+            }
+
+            $_SESSION['message'] = "Imagen fue subida correctamente.";
             redirect('/admin/settings');
         }
     }
-
 }
