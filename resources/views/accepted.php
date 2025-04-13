@@ -69,21 +69,21 @@ require_once __DIR__ . '/partials/header.php';
 
             <div class="accepted-grouped">
                 <?php $loop = 1; ?>
-                <?php foreach ($sessions as $sessionName => $users) {
+                <?php foreach ($sessions as $session) {
 
                 ?>
                     <div class="accepted-card">
                         <div class="accepted-card-header">
                             <div>
-                                <h2 class="accepted-card-title"><?= htmlspecialchars($sessionName) ?></h2>
+                                <h2 class="accepted-card-title"><?= htmlspecialchars($session['title']) ?></h2>
                                 <p>
                                     <i class="fas fa-users"></i>
-                                    <?= count($users) ?>/14 estudiantes
+                                    <?= count($session['students']) ?>/14 estudiantes
                                 </p>
                             </div>
 
                             <div class="flex-min">
-                                <button onclick="openEnrollModal('enrollStudentsModal', '<?= $loop ?>')" class="main-action-bright primary">
+                                <button onclick="openEnrollModal('enrollStudentsModal', <?= $session['id'] ?>)" class="main-action-bright primary">
                                     <i class="fas fa-user-plus"></i>
                                     Matricular
                                 </button>
@@ -91,10 +91,10 @@ require_once __DIR__ . '/partials/header.php';
                             </div>
                         </div>
                         <div class="accepted-card-list">
-                            <?php if (empty($users)): ?>
+                            <?php if (empty($session['students'])): ?>
                                 <p style=" color: gray;">No hay estudiantes en esta sesión.</p>
                             <?php else: ?>
-                                <?php foreach ($users as $user) {
+                                <?php foreach ($session['students'] as $user) {
                                     $src = '';
 
                                     $profile = $user->getProfilePicture();

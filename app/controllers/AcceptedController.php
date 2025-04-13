@@ -28,7 +28,14 @@ class AcceptedController extends Controller
         $waitlist = []; // retreive the waitlist here
 
         foreach ($sessionObjects as $session) {
-            $sessions[$session->title] = [];
+            $sessions[] = [
+                'id' => $session->session_id,
+                'title' => $session->title,
+                'start_date' => $session->start_date,
+                'end_date' => $session->end_date,
+                'students' => []
+
+            ];
         }
 
         render_view(

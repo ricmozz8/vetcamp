@@ -17,9 +17,8 @@
                 <label for="session">Sesión</label>
                 <select name="session" id="session" required>
                     <option value="" disabled selected>Seleccione una sesión</option>
-                    <?php foreach ($sessions as $sessionName => $users) { ?>
-                        <option value="<?= $loop ?>"><?php echo $sessionName; ?></option>
-                    <?php $loop++; ?>
+                    <?php foreach ($sessions as $session) { ?>
+                        <option value="<?= $session['id'] ?>"><?php echo $session['title']; ?></option>
                     <?php }; ?>
                     <option value="waitlist">Lista de espera</option>
                 </select>
