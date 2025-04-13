@@ -51,12 +51,46 @@ class SettingsController extends Controller
 
         $sessions = Session::all();
 
+        // default images
+        $defaultImages = [
+            1 => 'img/cow-2.jpeg',
+            2 => 'img/doggo-checkup-2.jpeg',
+            3 => 'img/microscopes-2.jpeg',
+            4 => 'img/group-looking-away-2.jpeg',
+        ];
+
+        $customImages = [];
+
+        for ($i = 1; $i <= 4; $i++) {
+            // resources/assets/img/homePage/
+            $pathToAssets = realpath(__DIR__ . '/../../resources/assets/img/homePage');
+            
+            if ($pathToAssets === false) {
+                $customImages[$i] = $defaultImages[$i];
+                continue;
+            }
+
+            // search picture 
+            $pattern = $pathToAssets . "/picture{$i}.*";
+            $files = glob($pattern);
+
+            if (!empty($files)) {
+                $extension = pathinfo($files[0], PATHINFO_EXTENSION);
+                $customImages[$i] = 'img/homePage/picture' . $i . '.' . $extension;
+            } else {
+                $customImages[$i] = $defaultImages[$i];
+            }
+        }
+        // For test path
+        //dd($customImages);
+
 
         render_view('settings', [
             'messages' => $message_array,
             'limit_dates' => $limit_dates,
             'sessions' => $sessions,
-            'selected' => 'settings'
+            'selected' => 'settings',
+            'customImages' => $customImages
         ], 'Ajustes');
     }
 
@@ -359,6 +393,87 @@ class SettingsController extends Controller
         if (!Auth::check() || Auth::user()->type !== 'admin') {
             $_SESSION['error'] = 'Acceso no autorizado.';
             redirect('/login');
+        }
+    }
+
+    public static function editPictureInHomePage($method)
+    {  
+        if ($method === 'POST') {
+            $selectedPicture = (int)($_POST['selected_slot'] ?? 0);
+            // validation of the slot
+            if ($selectedPicture < 1 || $selectedPicture > 4) {
+                $_SESSION['error'] = "Slot inválido.";
+                redirect('/admin/settings');
+                return;
+            }
+
+            if (isset($_POST['delete_image']) && $selectedPicture) {
+                $deleted = deleteAssetFileByPattern("img/homePage/picture{$selectedPicture}.*");
+            
+                if ($deleted) {
+                    $_SESSION['message'] = "Imagen eliminada correctamente.";
+                } else {
+                    $_SESSION['error'] = "No se encontró una imagen para eliminar.";
+                }
+            
+                redirect('/admin/settings');
+                return;
+            }
+
+            if (!isset($_FILES['uploaded_image']) || $_FILES['uploaded_image']['error'] !== UPLOAD_ERR_OK) {
+                $_SESSION['error'] = "Error al subir la imagen.";
+                redirect('/admin/settings');
+                return;
+            }
+            
+            $maxSize = to_byte_size("8MB");
+
+            if ($_FILES['uploaded_image']['size'] > $maxSize) {
+                $uploadedSize = sizeReadable($_FILES['uploaded_image']['size']);
+                $_SESSION['error'] = "El archivo excede el tamaño máximo permitido (8 MB). Tamaño recibido: {$uploadedSize}.";
+                redirect('/admin/settings');
+                return;
+            }
+
+
+            $fileTmp = $_FILES['uploaded_image']['tmp_name'];
+            $fileName = $_FILES['uploaded_image']['name'];
+            // Check extension based on content
+            $fileType = mime_content_type($fileTmp);
+            $allowedTypes = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp'];
+
+            if (!array_key_exists($fileType, $allowedTypes)) {
+                $_SESSION['error'] = "Tipo de archivo no permitido.";
+                redirect('/admin/settings');
+                return;
+            }
+
+            $uploadDir = realpath(__DIR__ . '/../../resources/assets/img/homePage');
+            if (!$uploadDir) {
+                $_SESSION['error'] = "Directorio de destino no válido.";
+                redirect('/admin/settings');
+                return;
+            }
+
+            $ext = $allowedTypes[$fileType];
+            $filePath = $uploadDir . "/picture{$selectedPicture}." . $ext;
+
+            // Delete old version
+            foreach ($allowedTypes as $extToDelete) {
+                $oldFile = $uploadDir . "/picture{$selectedPicture}." . $extToDelete;
+                if (file_exists($oldFile)) {
+                    unlink($oldFile);
+                }
+            }
+
+            if (!move_uploaded_file($fileTmp, $filePath)) {
+                $_SESSION['error'] = "No se pudo guardar la imagen.";
+                redirect('/admin/settings');
+                return;
+            }
+
+            $_SESSION['message'] = "Imagen fue subida correctamente.";
+            redirect('/admin/settings');
         }
     }
 }
