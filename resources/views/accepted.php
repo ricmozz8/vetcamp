@@ -142,25 +142,13 @@ require_once __DIR__ . '/partials/header.php';
                     <?php endif; ?>
                     <?php foreach ($waitlist as $user): ?>
                         <div class="accepted-user-card">
-                            <a href="/admin/p?user=<?= $user->user_id ?>&from=accepted">
+                            <a href="/admin/p?user=<?= $user['user_id'] ?>&from=accepted">
                                 <div class="accepted-user-card-header flex">
-                                    <?php
-                                    $src = "";
-
-                                    $profile = $user->getProfilePicture();
-                                    if ($profile) {
-                                        $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
-
-                                    ?>
-                                        <img src="<?= $src ?>" alt="profile-picture">
-
-                                    <?php } else { ?>
                                         <?php
-                                        $badgeUser = $user;
-                                        require 'partials/userBadge.php';
+                                        //$badgeUser = $user;
+                                        //require 'partials/userBadge.php';
                                         ?>
-                                    <?php } ?>
-                                    <h3 class="accepted-user-card-title"><?= $user->first_name . ' ' . $user->last_name ?></h3>
+                                    <h3 class="accepted-user-card-title"><?= $user['name'] ?></h3>
                                 </div>
                             </a>
                         </div>

@@ -1,5 +1,6 @@
 <?php
 require_once 'Controller.php';
+require_once 'app/models/Waitlist.php';
 
 class AcceptedController extends Controller
 {
@@ -20,23 +21,38 @@ class AcceptedController extends Controller
 
         $approvedApplicants = User::approvedApplicants();
 
-
         $sessions = []; //change the logic so enrollments are grouped by session
 
         $sessionObjects = Session::all();
 
-        $waitlist = []; // retreive the waitlist here
+  
 
-        foreach ($sessionObjects as $session) {
+        foreach ($sessionObjects as $session) 
+        {
             $sessions[] = [
                 'id' => $session->session_id,
                 'title' => $session->title,
                 'start_date' => $session->start_date,
                 'end_date' => $session->end_date,
-                'students' => []
-
+                'students' => $session->students()
             ];
         }
+
+
+        $usersInqueue = Waitlist::allWith('users', 'user_id');
+        //dd($usersInqueue);
+
+        foreach ($usersInqueue as $waitlist) 
+        {
+            //dd($usersInqueue);
+            $waitlists[] = [
+                'id' => $waitlist->id,
+                'user_id' => $waitlist->user_id,
+                'name' => $waitlist->first_name . ' ' . $waitlist->last_name,
+            ];
+        }
+
+        //dd($waitlists);
 
         render_view(
             'accepted',
@@ -44,7 +60,7 @@ class AcceptedController extends Controller
                 'selected' => 'accepted',
                 'approvedPool' => $approvedApplicants,
                 'sessions' => $sessions,
-                'waitlist' => $waitlist
+                'waitlist' => $waitlists
             ],
             'Aceptados'
         );
@@ -66,13 +82,60 @@ class AcceptedController extends Controller
             $session = filter_input(INPUT_POST, 'session');
             $students = filter_input(INPUT_POST, 'students', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
-            dd($session, $students); 
+            //dd($session, $students); 
 
-            // Enroll the students here
+        if ($session == 'waitlist') 
+        {
+            foreach ($students as $student) 
+            {
+               $user = User::find($student);
+               if ($user) 
+               {
+                 Waitlist::create([
+                    'user_id' => $user->user_id,
+
+                 ]);    
+               }
+            }
+
+            redirect('/admin/accepted');
+        } 
+        elseif($session != 'waitlist')
+        {
+            if (is_array($session)) {
+                foreach ($session as $sessionId) 
+                {
+                   foreach ($students as $student)
+                   {
+                     $user = User::find($student);
+                     if ($user) 
+                     {
+                        Enrollment::create([
+                        'user_id' => $user->user_id,
+                        'id_session' => $sessionId
+                        ]);
+                     }
+                   }
+                 }
+            } else {
+                // Handle the case where $session is not an array
+            }
+            redirect('/admin/accepted');
         } else {
-            redirect('/accepted');
+            foreach ($students as $student) 
+            {
+               $user = User::find($student);
+               if ($user) 
+               {
+                Waitlist::create([
+                    'user_id' => $user->user_id,
+                ]);    
+               }
+            }
+            redirect('/admin/accepted');
         }
     }
+}
 
     public static function autoEnroll($method)
     {
@@ -89,7 +152,7 @@ class AcceptedController extends Controller
             dd('AUTOENROLL THE STUDENTS BASED ON THEIR PREFERRED SESSION HERE');
 
         } else {
-            redirect('/accepted');
+            redirect('admin/accepted/enroll');
         }
     }
 }
