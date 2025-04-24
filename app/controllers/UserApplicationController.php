@@ -89,7 +89,8 @@ class UserApplicationController extends Controller
 
         render_view('application/application_dashboard', [
             'has_application' => $has_application,
-            'can_apply' => self::validate_time_limit()
+            'can_apply' => self::validate_time_limit(),
+            'current_status' => $application->status
         ], 'Aplica');
     }
 
@@ -427,12 +428,19 @@ class UserApplicationController extends Controller
                 $disk = "private";
                 $userId = Auth::user()->user_id;
                 $filePath = "documents/submissions/$userId/$fileName";
+                $fileNameWithoutExtension = pathinfo($fileName, PATHINFO_FILENAME);
 
                 try {
                     Storage::delete($disk, $filePath);
+                    $application->update(['url_' . $fileNameWithoutExtension => null]);
                 } catch (Exception $e) {
                     $_SESSION['error'] = "Error al eliminar archivo";
-                    redirect('/apply/application/documents');
+                    //HTTP_REFERER store old URL
+                    if (!empty($_SERVER['HTTP_REFERER'])) {
+                        redirect($_SERVER['HTTP_REFERER']);
+                    } else {
+                        redirect('/apply/application');
+                    }
                 }
 
             } else {
@@ -443,9 +451,16 @@ class UserApplicationController extends Controller
             Auth::refresh();
 
             $_SESSION['message'] = 'Documento eliminado correctamente';
-            redirect('/apply/application/documents');
+
+            //HTTP_REFERER store old URL
+            if (!empty($_SERVER['HTTP_REFERER'])) {
+                redirect($_SERVER['HTTP_REFERER']);
+            } else {
+                redirect('/apply/application');
+            }
+
         } else {
-            redirect('/apply/application/documents');
+            redirect('/apply/application');
         }
     }
 
@@ -531,4 +546,71 @@ class UserApplicationController extends Controller
         }
         return $application;
     }
+
+    public static function requiredDocuments($method)
+    {
+        $application = self::getApplication();
+
+        if ($method === 'POST') {
+            if (empty($_FILES)) {
+                $_SESSION['message'] = 'Debes subir los documentos antes de someter la solicitud.';
+                redirect('/apply/application/confirm');
+            }
+
+            // Get all files
+            $documents = [
+                'medical_plan' => $_FILES['medical_plan'] ?? null,
+                'payment_receipt' => $_FILES['payment_receipt'] ?? null,
+                'liability_waiver' => $_FILES['liability_waiver'] ?? null,
+            ];
+
+            $valid = validate_documents($documents, [
+                'medical_plan' => [
+                    'type' => ['application/pdf'],
+                    'size' => to_byte_size('10MB'),
+                    'required' => false
+                ],
+                'payment_receipt' => [
+                    'type' => ['application/pdf'],
+                    'size' => to_byte_size('10MB'),
+                    'required' => false
+                ],
+                'liability_waiver' => [
+                    'type' => ['application/pdf'],
+                    'size' => to_byte_size('10MB'),
+                    'required' => false
+                ],
+            ]);
+
+            if ($valid['result'] === DOCUMENTS_NOT_VALID) {
+                $_SESSION['error'] = $valid['message'];
+                redirect('/apply/application/required-documents');
+            }
+
+            // save
+            foreach ($valid['validated'] as $key => $document) {
+                $user_id = Auth::user()->__get('user_id');
+                $source_folder = 'documents/submissions/' . $user_id;
+                $extension = pathinfo($document['name'], PATHINFO_EXTENSION);
+                $destination = $source_folder . '/' . $key . '.' . $extension;
+
+                Storage::store('private', $destination, file_get_contents($document['tmp_name']));
+
+                // update
+                $application->update([
+                    "url_$key" => $destination
+                ]);
+            }
+
+            Auth::refresh();
+            $_SESSION['message'] = 'Documentos guardados correctamente';
+            redirect('/apply');
+        } else {
+            $saved_documents = $application->getDocuments();
+            render_view('application/documentRequired', [
+                'application' => $application,
+                'saved_documents' => $saved_documents
+            ], 'documentRequired');
+        }
+    }    
 }
