@@ -25,10 +25,9 @@ class AcceptedController extends Controller
 
         $sessionObjects = Session::all();
 
-  
 
-        foreach ($sessionObjects as $session) 
-        {
+
+        foreach ($sessionObjects as $session) {
             $sessions[] = [
                 'id' => $session->session_id,
                 'title' => $session->title,
@@ -41,9 +40,9 @@ class AcceptedController extends Controller
 
         $usersInqueue = Waitlist::allWith('users', 'user_id');
         //dd($usersInqueue);
+        $waitlists = [];
 
-        foreach ($usersInqueue as $waitlist) 
-        {
+        foreach ($usersInqueue as $waitlist) {
             //dd($usersInqueue);
             $waitlists[] = [
                 'id' => $waitlist->id,
@@ -52,7 +51,10 @@ class AcceptedController extends Controller
             ];
         }
 
+
+
         //dd($waitlists);
+
 
         render_view(
             'accepted',
@@ -84,59 +86,68 @@ class AcceptedController extends Controller
 
             //dd($session, $students); 
 
-        if ($session == 'waitlist') 
-        {
-            foreach ($students as $student) 
-            {
-               $user = User::find($student);
-               if ($user) 
-               {
-                 Waitlist::create([
-                    'user_id' => $user->user_id,
-
-                 ]);    
-               }
-            }
-
-            redirect('/admin/accepted');
-        } 
-        elseif($session != 'waitlist')
-        {
-            if (is_array($session)) {
-                foreach ($session as $sessionId) 
-                {
-                   foreach ($students as $student)
-                   {
-                     $user = User::find($student);
-                     if ($user) 
-                     {
-                        Enrollment::create([
-                        'user_id' => $user->user_id,
-                        'id_session' => $sessionId
+            if ($session == 'waitlist') {
+                foreach ($students as $student) {
+                    $user = User::find($student);
+                    if ($user) {
+                        // Use exists() to check if the user is already in the waitlist
+                        $alreadyInWaitlist = Waitlist::exists([
+                            'user_id' => $user->user_id,
                         ]);
-                     }
-                   }
-                 }
-            } else {
-                // Handle the case where $session is not an array
-            }
-            redirect('/admin/accepted');
-        } else {
-            foreach ($students as $student) 
-            {
-               $user = User::find($student);
-               if ($user) 
-               {
-                Waitlist::create([
-                    'user_id' => $user->user_id,
-                ]);    
-               }
-            }
-            redirect('/admin/accepted');
-        }
-    }
-}
 
+                        if ($alreadyInWaitlist) {
+                            // Skip adding the user if they are already in the waitlist
+                            continue;
+                        } else {
+                            Waitlist::create([
+                                'user_id' => $user->user_id,
+                            ]);
+
+                            $application = Application::findBy([
+                                'user_id' => $user->user_id,
+                            ]);
+
+                            if ($application) {
+                                // Change the status from "approved" to "waitlist"
+                                $application->update([
+                                    'status' => 'waitlist',
+                                ]);
+                            }
+                        }
+                    }
+
+                }
+                redirect('/admin/accepted');
+
+            } elseif ($session != 'waitlist') {
+                if ($session > 0) {
+                    foreach ($students as $student) {
+                        $user = User::find($student);
+                        if ($user) {
+                            Enrollment::create([
+                                'user_id' => $user->user_id,
+                                'session_id' => $session,
+                            ]);
+
+                            // Update the status in the applications table
+                            $application = Application::findBy([
+                                'user_id' => $user->user_id,
+                            ]);
+
+                            if ($application) {
+                                // Change the status to "enrolled"
+                                $application->update([
+                                    'status' => 'enrolled',
+                                ]);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+        redirect('/admin/accepted');
+    }
     public static function autoEnroll($method)
     {
 
@@ -147,7 +158,7 @@ class AcceptedController extends Controller
             redirect('/login');
         }
         if ($method == 'POST') {
-            
+
 
             dd('AUTOENROLL THE STUDENTS BASED ON THEIR PREFERRED SESSION HERE');
 
