@@ -30,7 +30,7 @@ if ($application && $application->isSubmitted()) {
 
                         <?php if ($current_status === 'Aceptado') : ?>
                                 <a href="/apply/requireddocuments" class="" style="margin-right: 1rem;">
-                                    <i class="fas fa-upload"></i> Subir documentos
+                                    <i class="fas fa-upload"></i> Subir documentos finales
                                 </a>
                         <?php endif; ?>
                        

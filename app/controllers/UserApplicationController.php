@@ -419,7 +419,7 @@ class UserApplicationController extends Controller
      */
     public static function deleteDocuments(string $method)
     {
-        $application = self::getApplication();
+        $application = self::getApplication(false);
 
         if ($method === 'POST') {
             if (!empty($_POST['file_name'])) {
@@ -518,14 +518,16 @@ class UserApplicationController extends Controller
      * Redirects the user if the time limit for applications is not valid,
      * if the user is not logged in, or if the user is an admin attempting to access the frontend.
      * If no application is found, prompts the user to complete required fields.
+     * 
+     * @param bool $validate_date If you want to ignore date validation call this function with false.
      *
      * @return Application|null The user's application if found and accessible, or redirects the user.
      * @throws DateMalformedStringException If date parsing errors occur.
      * @throws ModelNotFoundException If the required model data is not found.
      */
-    public static function getApplication(): ?Application
+    public static function getApplication(bool $validate_date = true): ?Application
     {
-        if (!self::validate_time_limit()) {
+        if (!self::validate_time_limit() && $validate_date) {
             $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
             redirect('/apply');
         }
@@ -549,12 +551,12 @@ class UserApplicationController extends Controller
 
     public static function requiredDocuments($method)
     {
-        $application = self::getApplication();
+        $application = self::getApplication(false);
 
         if ($method === 'POST') {
             if (empty($_FILES)) {
                 $_SESSION['message'] = 'Debes subir los documentos antes de someter la solicitud.';
-                redirect('/apply/application/confirm');
+                redirect('/apply');
             }
 
             // Get all files
