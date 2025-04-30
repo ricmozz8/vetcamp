@@ -279,8 +279,6 @@ class Model
 
         $result = DB::join(static::$table, $table, $column, $renames);
 
-        $models = [];
-
         foreach ($result as $data) {
             // can't return a specific static model since the result is a model combination
             $models[] = new static($data, self::sanitize($data));

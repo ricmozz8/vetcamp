@@ -19,10 +19,8 @@ require_once __DIR__ . '/partials/header.php';
             <header class="header">
                 <h1 class="welcome"> Matrícula </h1>
                 <div class="flex-min">
-                    <button onclick="openModal('massiveEmailModal')" class="main-action-bright secondary"><i
-                            class="fas fa-envelope"></i> Enviar mensaje</button>
-                    <button class="main-action-bright primary" onclick="openModal('autoEnrollModal')"><i
-                            class="fas fa-wand-sparkles"></i>Automatricular</button>
+                    <button onclick="openModal('massiveEmailModal')" class="main-action-bright secondary"><i class="fas fa-envelope"></i> Enviar mensaje</button>
+                    <button class="main-action-bright primary" onclick="openModal('autoEnrollModal')"><i class="fas fa-wand-sparkles"></i>Automatricular</button>
 
                 </div>
             </header>
@@ -34,8 +32,7 @@ require_once __DIR__ . '/partials/header.php';
 
                 <div class="accepted-card-list">
                     <?php if (empty($approvedPool)): ?>
-                        <p
-                            style="color: gray; text-align: center; font-size: 18px; max-width: 700px; margin: auto; padding: 1em">
+                        <p style="color: gray; text-align: center; font-size: 18px; max-width: 700px; margin: auto; padding: 1em">
                             No hay usuarios aceptados.
                         </p>
                     <?php endif; ?>
@@ -50,7 +47,7 @@ require_once __DIR__ . '/partials/header.php';
                                     if ($profile) {
                                         $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
 
-                                        ?>
+                                    ?>
                                         <img src="<?= $src ?>" alt="profile-picture">
 
                                     <?php } else { ?>
@@ -59,8 +56,7 @@ require_once __DIR__ . '/partials/header.php';
                                         require 'partials/userBadge.php';
                                         ?>
                                     <?php } ?>
-                                    <h3 class="accepted-user-card-title"><?= $user->first_name . ' ' . $user->last_name ?>
-                                    </h3>
+                                    <h3 class="accepted-user-card-title"><?= $user->first_name . ' ' . $user->last_name ?></h3>
                                 </div>
                             </a>
                         </div>
@@ -74,21 +70,20 @@ require_once __DIR__ . '/partials/header.php';
             <div class="accepted-grouped">
                 <?php $loop = 1; ?>
                 <?php foreach ($sessions as $session) {
-                    ?>
+
+                ?>
                     <div class="accepted-card">
                         <div class="accepted-card-header">
                             <div>
                                 <h2 class="accepted-card-title"><?= htmlspecialchars($session['title']) ?></h2>
                                 <p>
                                     <i class="fas fa-users"></i>
-                                    <?= count(($session['students'])) ?>/14
-                                    estudiantes
+                                    <?= count($session['students']) ?>/14 estudiantes
                                 </p>
                             </div>
 
                             <div class="flex-min">
-                                <button onclick="openEnrollModal('enrollStudentsModal', <?= $session['id'] ?>)"
-                                    class="main-action-bright primary">
+                                <button onclick="openEnrollModal('enrollStudentsModal', <?= $session['id'] ?>)" class="main-action-bright primary">
                                     <i class="fas fa-user-plus"></i>
                                     Matricular
                                 </button>
@@ -102,11 +97,11 @@ require_once __DIR__ . '/partials/header.php';
                                 <?php foreach ($session['students'] as $user) {
                                     $src = '';
 
-                                    $profile = $user->application()->getProfilePicture();
+                                    $profile = $user->getProfilePicture();
                                     if ($profile) {
                                         $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
                                     }
-                                    ?>
+                                ?>
 
                                     <div class="accepted-user-card">
                                         <a href="/admin/p?user=<?= $user->user_id ?>&from=accepted">
@@ -126,8 +121,7 @@ require_once __DIR__ . '/partials/header.php';
                             <?php endif; ?>
                         </div>
                     </div>
-                <?php }
-                ; ?>
+                <?php }; ?>
             </div>
 
             <!-- WAITLIST QUEUE -->
@@ -136,8 +130,7 @@ require_once __DIR__ . '/partials/header.php';
                 <div class="accepted-card-header">
                     <h2 class="accepted-card-title"><i class="fas fa-user-clock"></i> Lista de espera</h2>
                     <div class="flex-min">
-                        <button onclick="openEnrollModal('enrollStudentsModal', 'waitlist')"
-                            class="main-action-bright primary"><i class="fas fa-user-plus"></i> Añadir</button></button>
+                        <button onclick="openEnrollModal('enrollStudentsModal', 'waitlist')" class="main-action-bright primary"><i class="fas fa-user-plus"></i> Añadir</button></button>
                     </div>
                 </div>
 
@@ -149,13 +142,25 @@ require_once __DIR__ . '/partials/header.php';
                     <?php endif; ?>
                     <?php foreach ($waitlist as $user): ?>
                         <div class="accepted-user-card">
-                            <a href="/admin/p?user=<?= $user['user_id'] ?>&from=accepted">
+                            <a href="/admin/p?user=<?= $user->user_id ?>&from=accepted">
                                 <div class="accepted-user-card-header flex">
                                     <?php
-                                    //$badgeUser = $user;
-                                    //require 'partials/userBadge.php';
+                                    $src = "";
+
+                                    $profile = $user->getProfilePicture();
+                                    if ($profile) {
+                                        $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
+
                                     ?>
-                                    <h3 class="accepted-user-card-title"><?= $user['name'] ?></h3>
+                                        <img src="<?= $src ?>" alt="profile-picture">
+
+                                    <?php } else { ?>
+                                        <?php
+                                        $badgeUser = $user;
+                                        require 'partials/userBadge.php';
+                                        ?>
+                                    <?php } ?>
+                                    <h3 class="accepted-user-card-title"><?= $user->first_name . ' ' . $user->last_name ?></h3>
                                 </div>
                             </a>
                         </div>
