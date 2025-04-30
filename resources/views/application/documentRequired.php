@@ -10,7 +10,7 @@ require __DIR__ . '../../partials/header.php';
 
 
 <div class="application_header">
-    <h1 class="">Documentos Requeridos</h1>
+    <h1 class="">Documentos Finales</h1>
     <a href="/apply" class="main-action-bright secondary"><i class="fas fa-arrow-left"></i>Atrás</a>
 </div>
 
@@ -26,7 +26,7 @@ require __DIR__ . '../../partials/header.php';
 </p>
 
 
-<div class="application-form-card">
+<div class="application-form-card" style="margin-top: 7.6rem; margin-bottom: 7.7rem;">
     <!-- Document upload section -->
     <form action="" method="POST" enctype="multipart/form-data">
         <div class="document-section">
