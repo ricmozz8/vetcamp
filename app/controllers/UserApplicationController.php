@@ -76,6 +76,7 @@ class UserApplicationController extends Controller
      */
     public static function index()
     {
+        $currentStatus = "";
 
         if (!Auth::check()) { // checks if the user is logged in
             redirect('/login');
@@ -87,10 +88,14 @@ class UserApplicationController extends Controller
         $application = Auth::user()->application(); // returns null if no application is found
         $has_application = $application ? $application->status : 'Sin llenar';
 
+        if($has_application != 'Sin llenar') {
+            $currentStatus = $application->status;
+        }
+
         render_view('application/application_dashboard', [
             'has_application' => $has_application,
             'can_apply' => self::validate_time_limit(),
-            'current_status' => $application->status
+            'current_status' => $currentStatus
         ], 'Aplica');
     }
 
