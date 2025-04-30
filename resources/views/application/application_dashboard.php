@@ -61,7 +61,7 @@ if ($application && $application->isSubmitted()) {
 
                 <div class="application-card-check-grid">
 
-                    <?php $documents = $application->getSubmittedDocuments(); ?>
+                    <?php $documents = $application ? $application->getSubmittedDocuments() : []; ?>
 
                     <!-- doc-ok or doc-no -->
 
