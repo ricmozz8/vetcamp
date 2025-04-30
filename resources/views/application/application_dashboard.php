@@ -11,7 +11,6 @@ if ($application && $application->isSubmitted()) {
 } else if ($application) {
     $status = $application->status;
 }
-
 ?>
 
 <body>
@@ -28,11 +27,18 @@ if ($application && $application->isSubmitted()) {
                     </div>
 
                     <div class="application-actions">
+
+                        <?php if ($current_status === 'Aceptado') : ?>
+                                <a href="/apply/requireddocuments" class="" style="margin-right: 1rem;">
+                                    <i class="fas fa-upload"></i> Subir documentos finales
+                                </a>
+                        <?php endif; ?>
                        
                         <div
                             class="status-info <?= str_replace(' ', '-', strtolower($status)) ?>">
                             <p class="status"><?php echo $status; ?></p>
                         </div>
+                        
                     </div>
                 </div>
 

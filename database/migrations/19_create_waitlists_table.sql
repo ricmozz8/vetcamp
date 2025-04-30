@@ -7,4 +7,3 @@ create table waitlists
     constraint waitlists_users_user_id_fk
         foreign key (id_user) references users (user_id)
 );
-

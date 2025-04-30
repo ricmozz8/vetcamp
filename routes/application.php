@@ -23,4 +23,7 @@ switch ($path) {
     case '/apply/application/confirm':
         UserApplicationController::confirm($method);
         break;
+    case '/apply/requireddocuments':
+        UserApplicationController::requiredDocuments($method);
+        break;
 }
