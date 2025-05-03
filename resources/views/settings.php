@@ -15,6 +15,7 @@ require __DIR__ . '/modals/createAdminModal.php';
 require __DIR__ . '/modals/confirmDisableUnsolicitedModal.php';
 require __DIR__ . '/modals/confirmDisableAllModal.php';
 require __DIR__ . '/modals/editPicturesModal.php';
+require __DIR__ . '/modals/uploadLiabilityWaiver.php';
 ?>
 
 <body>
@@ -61,6 +62,10 @@ require __DIR__ . '/modals/editPicturesModal.php';
                 <div class="settings-block">
                     <p> Manejar fotos de la página de inicio </p>
                     <button class="main-action-bright primary" onclick="openModal('editPicturesModal')"> Editar</button>
+                </div>
+                <div class="settings-block">
+                    <p> Manejar el archivo de descargo de responsabilidad</p>
+                    <button class="main-action-bright primary" onclick="openModal('uploadLiabilityWaiver')"> Editar</button>
                 </div>
             </div>
 

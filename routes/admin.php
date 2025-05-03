@@ -147,6 +147,10 @@ switch ($path) {
     case '/admin/requests/export-to-csv':
         RequestsController::downloadCsvApplications();
         break;
+    case '/admin/upload-waiver':
+        UserApplicationController::uploadWaiver($method);
+        break;
+
 
     //  COMMENT SECTION
 

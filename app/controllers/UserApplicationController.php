@@ -619,5 +619,34 @@ class UserApplicationController extends Controller
                 'saved_documents' => $saved_documents
             ], 'documentRequired');
         }
-    }    
+    }  
+    
+    public static function uploadWaiver($method)
+    {
+        if ($method === 'POST') { 
+            if (!isset($_FILES['waiver_pdf']) || $_FILES['waiver_pdf']['error'] !== UPLOAD_ERR_OK) {
+                $_SESSION['error'] = 'Error al subir el archivo.';
+                redirect('/admin/settings');
+            }
+
+            $tmpPath = $_FILES['waiver_pdf']['tmp_name'];
+            $fileContents = file_get_contents($tmpPath);
+
+            // save in storage/public
+            Storage::store('public', 'waiver.pdf', $fileContents);
+
+            $_SESSION['message'] = 'Documentos finales guardados correctamente';
+            redirect('/admin/settings');
+        }   
+    }
+
+    public static function downloadWaiver()
+    {
+        $path = 'waiver.pdf';
+        $disk = 'public';
+
+        FileController::getFile($disk, $path);
+        exit;
+    }
+
 }
