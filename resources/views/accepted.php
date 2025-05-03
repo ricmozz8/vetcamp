@@ -21,9 +21,6 @@ require_once __DIR__ . '/partials/header.php';
                 <div class="flex-min">
                     <button onclick="openModal('massiveEmailModal')" class="main-action-bright secondary"><i
                             class="fas fa-envelope"></i> Enviar mensaje</button>
-                    <button class="main-action-bright primary" onclick="openModal('autoEnrollModal')"><i
-                            class="fas fa-wand-sparkles"></i>Automatricular</button>
-
                 </div>
             </header>
 
@@ -161,10 +158,8 @@ require_once __DIR__ . '/partials/header.php';
                     <?php endforeach; ?>
                 </div>
             </div>
-
             <?php require_once('modals/sendMassiveMailModal.php'); ?>
             <?php require_once('modals/enrollStudentsModal.php'); ?>
-            <?php require_once('modals/autoEnrollModal.php'); ?>
         </main>
     </div>
 

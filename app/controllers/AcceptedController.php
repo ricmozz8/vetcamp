@@ -67,7 +67,7 @@ class AcceptedController extends Controller
                 'approvedPool' => $approvedApplicants,
                 'sessions' => $sessions,
                 'waitlist' => $waitlists,
-                'messages' =>  $messages
+                'messages' => $messages
             ],
             'Aceptados'
         );
@@ -113,7 +113,6 @@ class AcceptedController extends Controller
                             ]);
 
                             if ($application) {
-                                // Change the status from "approved" to "waitlist"
                                 $application->update([
                                     'status' => 'waitlist',
                                 ]);
@@ -140,7 +139,6 @@ class AcceptedController extends Controller
                             ]);
 
                             if ($application) {
-                                // Change the status to "enrolled"
                                 $application->update([
                                     'status' => 'enrolled',
                                 ]);
