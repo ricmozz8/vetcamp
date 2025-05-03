@@ -27,9 +27,6 @@ function openEnrollModal(modalId, session) {
 
     let sessionInput = document.getElementById('session');
     sessionInput.value = session;
-
-
-
 }
 
 
