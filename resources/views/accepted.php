@@ -50,7 +50,7 @@ require_once __DIR__ . '/partials/header.php';
                                     if ($profile) {
                                         $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
 
-                                        ?>
+                                    ?>
                                         <img src="<?= $src ?>" alt="profile-picture">
 
                                     <?php } else { ?>
@@ -74,7 +74,7 @@ require_once __DIR__ . '/partials/header.php';
             <div class="accepted-grouped">
                 <?php $loop = 1; ?>
                 <?php foreach ($sessions as $session) {
-                    ?>
+                ?>
                     <div class="accepted-card">
                         <div class="accepted-card-header">
                             <div>
@@ -106,7 +106,7 @@ require_once __DIR__ . '/partials/header.php';
                                     if ($profile) {
                                         $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
                                     }
-                                    ?>
+                                ?>
 
                                     <div class="accepted-user-card">
                                         <a href="/admin/p?user=<?= $user->user_id ?>&from=accepted">
@@ -126,8 +126,7 @@ require_once __DIR__ . '/partials/header.php';
                             <?php endif; ?>
                         </div>
                     </div>
-                <?php }
-                ; ?>
+                <?php }; ?>
             </div>
 
             <!-- WAITLIST QUEUE -->
