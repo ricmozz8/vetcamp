@@ -58,7 +58,7 @@ class AcceptedController extends Controller
 
 
         //dd($waitlists);
-
+        $messages =Message::all();
 
         render_view(
             'accepted',
@@ -91,6 +91,7 @@ class AcceptedController extends Controller
 
             //dd($session, $students); 
 
+           
             if ($session == 'waitlist') {
                 foreach ($students as $student) {
                     $user = User::find($student);
@@ -113,6 +114,7 @@ class AcceptedController extends Controller
                             ]);
 
                             if ($application) {
+                                // Change the status from "approved" to "waitlist"
                                 $application->update([
                                     'status' => 'waitlist',
                                 ]);
@@ -139,6 +141,7 @@ class AcceptedController extends Controller
                             ]);
 
                             if ($application) {
+                                // Change the status to "enrolled"
                                 $application->update([
                                     'status' => 'enrolled',
                                 ]);

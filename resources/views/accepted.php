@@ -47,7 +47,7 @@ require_once __DIR__ . '/partials/header.php';
                                     if ($profile) {
                                         $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
 
-                                    ?>
+                                        ?>
                                         <img src="<?= $src ?>" alt="profile-picture">
 
                                     <?php } else { ?>
@@ -71,11 +71,11 @@ require_once __DIR__ . '/partials/header.php';
             <div class="accepted-grouped">
                 <?php $loop = 1; ?>
                 <?php foreach ($sessions as $session) {
-                ?>
+                    ?>
                     <div class="accepted-card">
                         <div class="accepted-card-header">
                             <div>
-                                <h2 class="accepted-card-title"><?= htmlspecialchars($session['title']) ?></h2>
+                                <h2 class="accepted-card-title"><?= $session['title'] ?></h2>
                                 <p>
                                     <i class="fas fa-users"></i>
                                     <?= count(($session['students'])) ?>/14
@@ -84,11 +84,18 @@ require_once __DIR__ . '/partials/header.php';
                             </div>
 
                             <div class="flex-min">
+                            <?php if (count($session['students']) <= 14): ?>
                                 <button onclick="openEnrollModal('enrollStudentsModal', <?= $session['id'] ?>)"
                                     class="main-action-bright primary">
                                     <i class="fas fa-user-plus"></i>
                                     Matricular
                                 </button>
+                                <?php else: ?>
+                                    <button class="main-action-bright secondary" disabled>
+                                        <i class="fas fa-user-check"></i>    
+                                        Sesión llena
+                                    </button>
+                                <?php endif; ?>
                                 <?php $loop++; ?>
                             </div>
                         </div>
@@ -103,7 +110,7 @@ require_once __DIR__ . '/partials/header.php';
                                     if ($profile) {
                                         $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
                                     }
-                                ?>
+                                    ?>
 
                                     <div class="accepted-user-card">
                                         <a href="/admin/p?user=<?= $user->user_id ?>&from=accepted">
@@ -123,7 +130,8 @@ require_once __DIR__ . '/partials/header.php';
                             <?php endif; ?>
                         </div>
                     </div>
-                <?php }; ?>
+                <?php }
+                ; ?>
             </div>
 
             <!-- WAITLIST QUEUE -->
@@ -158,8 +166,10 @@ require_once __DIR__ . '/partials/header.php';
                     <?php endforeach; ?>
                 </div>
             </div>
+
             <?php require_once('modals/sendMassiveMailModal.php'); ?>
             <?php require_once('modals/enrollStudentsModal.php'); ?>
+            <?php require_once('modals/autoEnrollModal.php'); ?>
         </main>
     </div>
 
