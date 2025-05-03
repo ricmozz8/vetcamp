@@ -25,6 +25,8 @@ class AcceptedController extends Controller
 
         $sessionObjects = Session::all();
 
+        $messages = Message::all();
+
 
 
         foreach ($sessionObjects as $session) {
@@ -64,7 +66,8 @@ class AcceptedController extends Controller
                 'selected' => 'accepted',
                 'approvedPool' => $approvedApplicants,
                 'sessions' => $sessions,
-                'waitlist' => $waitlists
+                'waitlist' => $waitlists,
+                'messages' =>  $messages
             ],
             'Aceptados'
         );
