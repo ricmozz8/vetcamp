@@ -81,7 +81,10 @@ class Application extends Model
             'picture' => $this->attributes['url_picture'],
             'video_essay' => $this->attributes['url_video_essay'],
             'authorization_letter' => $this->attributes['url_authorization_letter'],
-            'recommendation_letter' => $this->attributes['url_recommendation_letter']
+            'recommendation_letter' => $this->attributes['url_recommendation_letter'],
+            'medical_plan' => $this->attributes['url_medical_plan'],
+            'payment_receipt' => $this->attributes['url_payment_receipt'],
+            'liability_waiver' => $this->attributes['url_liability_waiver']
         ]);
     }
 
@@ -196,7 +199,7 @@ class Application extends Model
     public function isComplete()
     {
 
-        if ($this->documentCount() !== self::REQUIRED_DOCUMENTS_AMOUNT) {
+        if ($this->documentCount() < self::REQUIRED_DOCUMENTS_AMOUNT) {
 
             return false;
         }

@@ -40,24 +40,20 @@ require __DIR__ . '/partials/header.php';
         <div class="images-grid-hero no-mobile">
 
             <div class="hero-image hi-1">
-                <img src=<?= asset('img/cow-2.jpeg') ?> alt="Vetcamp Verano 2023">
+                <img src="<?= asset($customImages[1]) ?>" alt="Vetcamp Verano 2023">
             </div>
 
             <div class="top-of-another-images">
-
-                <div class=" hi-2">
-                    <img src=<?= asset('img/doggo-checkup-2.jpeg') ?> alt="Vetcamp Verano 2023">
+                <div class="hi-2">
+                    <img src="<?= asset($customImages[2]) ?>" alt="Vetcamp Verano 2023">
                 </div>
-                <div class="
-                 hi-3">
-                    <img src=<?= asset('img/microscopes-2.jpeg') ?> alt="Vetcamp Verano 2023">
+                <div class="hi-3">
+                    <img src="<?= asset($customImages[3]) ?>" alt="Vetcamp Verano 2023">
                 </div>
-
-
             </div>
 
             <div class="hero-image hi-4">
-                <img src=<?= asset('img/group-looking-away-2.jpeg') ?> alt="Vetcamp Verano 2023">
+                <img src="<?= asset($customImages[4]) ?>" alt="Vetcamp Verano 2023">
             </div>
 
         </div>

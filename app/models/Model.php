@@ -278,6 +278,7 @@ class Model
         self::init();
 
         $result = DB::join(static::$table, $table, $column, $renames);
+        $models = [];
 
         $models = [];
 
