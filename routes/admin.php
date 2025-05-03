@@ -85,6 +85,10 @@ switch ($path) {
     case '/admin/requests/track':
         TrackingController::TrackingEvaluation($method);
         break;
+    
+    case '/admin/settings/editpicture':
+        SettingsController::editPictureInHomePage($method);
+        break;
 
     case '/admin/requests/download':
         ApplicationController::download($method);

@@ -107,11 +107,6 @@ class RequestsController extends Controller
             return $dateComparison;
         });
 
-
-
-
-
-
         if (!empty($s)) {
             $searchTerm = strtolower($s);
 

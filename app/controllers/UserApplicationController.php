@@ -89,7 +89,8 @@ class UserApplicationController extends Controller
 
         render_view('application/application_dashboard', [
             'has_application' => $has_application,
-            'can_apply' => self::validate_time_limit()
+            'can_apply' => self::validate_time_limit(),
+            'current_status' => $application->status
         ], 'Aplica');
     }
 
@@ -418,7 +419,7 @@ class UserApplicationController extends Controller
      */
     public static function deleteDocuments(string $method)
     {
-        $application = self::getApplication();
+        $application = self::getApplication(false);
 
         if ($method === 'POST') {
             if (!empty($_POST['file_name'])) {
@@ -427,12 +428,19 @@ class UserApplicationController extends Controller
                 $disk = "private";
                 $userId = Auth::user()->user_id;
                 $filePath = "documents/submissions/$userId/$fileName";
+                $fileNameWithoutExtension = pathinfo($fileName, PATHINFO_FILENAME);
 
                 try {
                     Storage::delete($disk, $filePath);
+                    $application->update(['url_' . $fileNameWithoutExtension => null]);
                 } catch (Exception $e) {
                     $_SESSION['error'] = "Error al eliminar archivo";
-                    redirect('/apply/application/documents');
+                    //HTTP_REFERER store old URL
+                    if (!empty($_SERVER['HTTP_REFERER'])) {
+                        redirect($_SERVER['HTTP_REFERER']);
+                    } else {
+                        redirect('/apply/application');
+                    }
                 }
 
             } else {
@@ -443,9 +451,16 @@ class UserApplicationController extends Controller
             Auth::refresh();
 
             $_SESSION['message'] = 'Documento eliminado correctamente';
-            redirect('/apply/application/documents');
+
+            //HTTP_REFERER store old URL
+            if (!empty($_SERVER['HTTP_REFERER'])) {
+                redirect($_SERVER['HTTP_REFERER']);
+            } else {
+                redirect('/apply/application');
+            }
+
         } else {
-            redirect('/apply/application/documents');
+            redirect('/apply/application');
         }
     }
 
@@ -503,14 +518,16 @@ class UserApplicationController extends Controller
      * Redirects the user if the time limit for applications is not valid,
      * if the user is not logged in, or if the user is an admin attempting to access the frontend.
      * If no application is found, prompts the user to complete required fields.
+     * 
+     * @param bool $validate_date If you want to ignore date validation call this function with false.
      *
      * @return Application|null The user's application if found and accessible, or redirects the user.
      * @throws DateMalformedStringException If date parsing errors occur.
      * @throws ModelNotFoundException If the required model data is not found.
      */
-    public static function getApplication(): ?Application
+    public static function getApplication(bool $validate_date = true): ?Application
     {
-        if (!self::validate_time_limit()) {
+        if (!self::validate_time_limit() && $validate_date) {
             $_SESSION['error'] = 'Las solicitudes no estan disponibles en este momento.';
             redirect('/apply');
         }
@@ -531,4 +548,71 @@ class UserApplicationController extends Controller
         }
         return $application;
     }
+
+    public static function requiredDocuments($method)
+    {
+        $application = self::getApplication(false);
+
+        if ($method === 'POST') {
+            if (empty($_FILES)) {
+                $_SESSION['message'] = 'Debes subir los documentos antes de someter la solicitud.';
+                redirect('/apply');
+            }
+
+            // Get all files
+            $documents = [
+                'medical_plan' => $_FILES['medical_plan'] ?? null,
+                'payment_receipt' => $_FILES['payment_receipt'] ?? null,
+                'liability_waiver' => $_FILES['liability_waiver'] ?? null,
+            ];
+
+            $valid = validate_documents($documents, [
+                'medical_plan' => [
+                    'type' => ['application/pdf'],
+                    'size' => to_byte_size('10MB'),
+                    'required' => false
+                ],
+                'payment_receipt' => [
+                    'type' => ['application/pdf'],
+                    'size' => to_byte_size('10MB'),
+                    'required' => false
+                ],
+                'liability_waiver' => [
+                    'type' => ['application/pdf'],
+                    'size' => to_byte_size('10MB'),
+                    'required' => false
+                ],
+            ]);
+
+            if ($valid['result'] === DOCUMENTS_NOT_VALID) {
+                $_SESSION['error'] = $valid['message'];
+                redirect('/apply/application/required-documents');
+            }
+
+            // save
+            foreach ($valid['validated'] as $key => $document) {
+                $user_id = Auth::user()->__get('user_id');
+                $source_folder = 'documents/submissions/' . $user_id;
+                $extension = pathinfo($document['name'], PATHINFO_EXTENSION);
+                $destination = $source_folder . '/' . $key . '.' . $extension;
+
+                Storage::store('private', $destination, file_get_contents($document['tmp_name']));
+
+                // update
+                $application->update([
+                    "url_$key" => $destination
+                ]);
+            }
+
+            Auth::refresh();
+            $_SESSION['message'] = 'Documentos guardados correctamente';
+            redirect('/apply');
+        } else {
+            $saved_documents = $application->getDocuments();
+            render_view('application/documentRequired', [
+                'application' => $application,
+                'saved_documents' => $saved_documents
+            ], 'documentRequired');
+        }
+    }    
 }

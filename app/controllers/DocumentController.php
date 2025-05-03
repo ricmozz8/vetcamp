@@ -11,7 +11,10 @@ class DocumentController extends Controller
         'transcript',
         'authorization_letter',
         'recommendation_letter',
-        'picture'
+        'picture',
+        'medical_plan',
+        'payment_receipt',
+        'liability_waiver'
     ]; 
 
     /**

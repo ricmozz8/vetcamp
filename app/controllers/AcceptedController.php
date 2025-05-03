@@ -38,12 +38,16 @@ class AcceptedController extends Controller
             ];
         }
 
+
+        // Get all predefined massive messages from the database
+        $messages = Message::all();
+
         render_view(
             'accepted',
             [
                 'selected' => 'accepted',
                 'approvedPool' => $approvedApplicants,
-                'sessions' => $sessions,
+                'sessions' => $sessions, 'messages' => $messages,
                 'waitlist' => $waitlist
             ],
             'Aceptados'
