@@ -145,7 +145,7 @@ if ($hour >= 5 && $hour < 12) {
                                         $profile = $application->getProfilePicture();
                                         $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
                                         ?>
-                                        <img src="<?= $src ?>" alt="Foto de perfil de <?= $full_name ?>"
+                                        <img src="<?= $src ?>" alt="Foto de perfil de <?= $user->first_name . ' ' . $user->last_name . ' '?>"
                                              class="profile-picture">
                                     <?php } else {
                                         $badgeUser = $user;
