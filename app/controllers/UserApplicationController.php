@@ -623,22 +623,34 @@ class UserApplicationController extends Controller
     
     public static function uploadWaiver($method)
     {
-        if ($method === 'POST') { 
-            if (!isset($_FILES['waiver_pdf']) || $_FILES['waiver_pdf']['error'] !== UPLOAD_ERR_OK) {
-                $_SESSION['error'] = 'Error al subir el archivo.';
+        if ($method === 'POST') {
+            $rules = [
+                'waiver_pdf' => [
+                'required' => true,
+                'type' => ['application/pdf'],
+                'size' => to_byte_size('10MB')
+            ]
+            ];
+
+            $validationResult = validate_documents($_FILES, $rules);
+
+            if ($validationResult['result'] !== DOCUMENTS_VALID) {
+                $_SESSION['error'] = $validationResult['message'] ?? 'Error al subir el archivo.';
                 redirect('/admin/settings');
             }
 
+            $document = $validationResult['validated']['waiver_pdf'];
             $tmpPath = $_FILES['waiver_pdf']['tmp_name'];
             $fileContents = file_get_contents($tmpPath);
 
             // save in storage/public
             Storage::store('public', 'waiver.pdf', $fileContents);
 
-            $_SESSION['message'] = 'Documentos finales guardados correctamente';
+            $_SESSION['message'] = 'Documento de Descargo de Responsabilidad guardado correctamente.';
             redirect('/admin/settings');
-        }   
+        }
     }
+
 
     public static function downloadWaiver()
     {

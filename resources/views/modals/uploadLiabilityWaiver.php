@@ -21,4 +21,26 @@
         </form>
 
     </div>
+    <!-- Deactivate red warning -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const waiverInput = document.getElementById("waiver_pdf");
+        if (waiverInput) {
+            const originalValidateExt = window.validateExt;
+            const originalValidateSize = window.validateSize;
+
+            // for EXT
+            window.validateExt = function(fileName, accept, input) {
+                if (input.id === "waiver_pdf") return true;
+                return originalValidateExt(fileName, accept, input);
+            };
+
+            // for size
+            window.validateSize = function(file, input) {
+                if (input.id === "waiver_pdf") return true;
+                return originalValidateSize(file, input);
+            };
+        }
+    });
+    </script>
 </div>
