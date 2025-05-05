@@ -27,6 +27,8 @@ Homestead.json
 
 storage/private/error_log.txt
 
+/storage/public/waiver.pdf
+
 /.idea
 /.vs
 /.vscode
