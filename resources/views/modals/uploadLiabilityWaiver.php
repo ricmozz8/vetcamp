@@ -13,6 +13,7 @@
                 <span>Seleccionar archivo PDF:</span>
             </label>
             <input type="file" name="waiver_pdf" id="waiver_pdf" accept="application/pdf" style="border-style: solid;" required onchange="updateFileName(this)">
+            <small id="waiver_error" style="color: red; display: none;">Archivo inválido. Debe ser un PDF menor a 10MB.</small>
             <br><br>
 
             <button type="submit" class="main-action-bright primary">
@@ -27,9 +28,10 @@
         const waiverInput = document.getElementById("waiver_pdf");
         if (waiverInput) {
             const originalValidateExt = window.validateExt;
-            const originalValidateSize = window.validateSize;
+            const submitButton = waiverInput.form.querySelector('button[type="submit"]');
+            const errorMessage = document.getElementById("waiver_error");
+            const MAX_SIZE = 10 * 1024 * 1024;
 
-            // for EXT
             window.validateExt = function(fileName, accept, input) {
                 if (input.id === "waiver_pdf") return true;
                 return originalValidateExt(fileName, accept, input);
@@ -40,7 +42,40 @@
                 if (input.id === "waiver_pdf") return true;
                 return originalValidateSize(file, input);
             };
+            function validateFile() {
+            const file = waiverInput.files[0];
+
+            if (!file) {
+                setInvalid();
+                return;
+            }
+
+            const isPDF = file.type === "application/pdf";
+            const isSizeOk = file.size <= MAX_SIZE;
+
+            if (isPDF && isSizeOk) {
+                setValid();
+            } else {
+                setInvalid();
+            }
         }
+
+        function setValid() {
+            waiverInput.style.border = "2px solid green";
+            errorMessage.style.display = "none";
+            submitButton.disabled = false;
+        }
+
+        function setInvalid() {
+            waiverInput.style.border = "2px solid red";
+            errorMessage.style.display = "block";
+            submitButton.disabled = true;
+        }
+
+        waiverInput.addEventListener("change", validateFile);
+            submitButton.disabled = true;
+        }
+         
     });
     </script>
 </div>
