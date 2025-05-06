@@ -645,10 +645,14 @@ class UserApplicationController extends Controller
             // save in storage/public
             Storage::store('public', 'waiver.pdf', $fileContents);
 
+            // test 
+            /*
             Audit::create([
                 'user_id' => Auth::user()->user_id,
                 'action' => 'Actualizó el documento de descargo de responsabilidad'
-            ]);
+            ]);*/
+
+            Audit::register('Actualizó el documento de descargo de responsabilidad', 'update');
 
             $_SESSION['message'] = 'Documento de Descargo de Responsabilidad guardado correctamente.';
             redirect('/admin/settings');
