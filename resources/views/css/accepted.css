@@ -160,6 +160,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
+    align-items: start;
   }
 
   .accepted-card-list {
