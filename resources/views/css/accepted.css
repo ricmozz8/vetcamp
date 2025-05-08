@@ -13,7 +13,6 @@
   animation: fadeDown 0.4s ease-in-out;
 }
 
-
 .accepted-card-header {
   display: flex;
   flex-direction: column;
@@ -59,7 +58,22 @@
   background-color: var(--white-color-shade-1);
 }
 
+.accepted-user-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 
+
+.accepted-user-card img{
+  transition: all 0.2s ease-in-out;
+  border: 3px solid transparent;
+}
+
+
+.accepted-user-card img:hover {
+  border: 3px solid var(--white-color-shade-3);
+}
 
 .accepted-user-card img {
   width: 50px;
@@ -67,11 +81,10 @@
 
   border-radius: 50%;
   object-fit: cover;
-  display: block;  
-
+  display: block;
 }
 
-.multiselect{
+.multiselect {
   max-height: 300px;
   overflow-y: scroll;
   background-color: var(--white-color);
@@ -79,43 +92,40 @@
   border: 1px solid var(--bright-shade);
 }
 
-.multiselect-item{
+.multiselect-item {
   display: flex;
   align-items: center;
   gap: 1em;
   padding: 15px;
-
 }
 
-
-
-.multiselect-item-info{
+.multiselect-item-info {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.profile-main{
+.profile-main {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-.profile-secondary{
+.profile-secondary {
   display: flex;
   flex-direction: column;
   gap: 2px;
   padding: 8px;
 }
 
-.profile-main img{
+.profile-main img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.profile-main h1{
+.profile-main h1 {
   font-size: 1em;
   font-weight: 500;
 }

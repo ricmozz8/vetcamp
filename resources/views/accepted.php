@@ -56,7 +56,10 @@ require_once __DIR__ . '/partials/header.php';
                                         require 'partials/userBadge.php';
                                         ?>
                                     <?php } ?>
-                                    <h3 class="accepted-user-card-title"><?= $user->first_name . ' ' . $user->last_name ?>
+                                    <div class="accepted-user-card-info">
+                                        <h3><?= $user->first_name . ' ' . $user->last_name ?></h3>
+                                        <p><?= $user->email ?></p>
+                                    </div>
                                     </h3>
                                 </div>
                             </a>
@@ -132,7 +135,10 @@ require_once __DIR__ . '/partials/header.php';
                                                 ?>
                                             <?php endif; ?>
                                         </a>
-                                        <h3><?= $user->first_name . ' ' . $user->last_name ?></h3>
+                                        <div class="accepted-user-card-info">
+                                            <h3><?= $user->first_name . ' ' . $user->last_name ?></h3>
+                                            <p><?= $user->email ?></p>
+                                        </div>
                                     </div>
                                 <?php } ?>
                             <?php endif; ?>
@@ -183,7 +189,10 @@ require_once __DIR__ . '/partials/header.php';
                                         require 'partials/userBadge.php';
                                     }
                                     ?>
-                                    <h3 class="accepted-user-card-title"><?= $user->first_name . ' ' . $user->last_name ?></h3>
+                                    <div class="accepted-user-card-info">
+                                        <h3><?= $user->first_name . ' ' . $user->last_name ?></h3>
+                                        <p><?= $user->email ?></p>
+                                    </div>
                                 </div>
                             </a>
                         </div>
