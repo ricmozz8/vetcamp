@@ -183,9 +183,11 @@ require_once __DIR__ . '/partials/header.php';
                                         Enviar Mensaje
                                     </a>
 
+                                    <?php if ($application->status !== 'Matriculado') { ?>
                                     <button class="main-action-bright primary" type="submit"><i class="fas fa-save"></i>
                                         Guardar
                                     </button>
+                                    <?php } ?>
                                 </div>
                             </form>
                         </section>

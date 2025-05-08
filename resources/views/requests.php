@@ -138,9 +138,9 @@ require_once __DIR__ . '/modals/confirmDownloadApplicationsModal.php';
                                                 href="requests/r?id=<?= $application->user_id ?>"
                                                 class="review-link"><i class="fas fa-eye"></i>revisar</a></td>
                                         <td>
-                                            <a class="review-link danger" href="#"
+                                            <a class="main-action-bright danger" style="width: fit-content" href="#"
                                                 onclick="openModal('confirmDeleteApplicationModal-<?= $loop ?>')">
-                                                <i class="fas fa-trash"></i> borrar
+                                                <i class="fas fa-trash-alt"></i>
                                             </a>
                                         </td>
                                     </tr>

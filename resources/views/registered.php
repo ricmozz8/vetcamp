@@ -31,7 +31,7 @@ $statusParsing = [
                         <h2 class="welcome">Usuarios</h2>
                     </div>
                     <div class="table-actions">
-                       <button class="main-action-bright tertiary"  style="background-color: green;" onclick="openModal('confirmDownloadUsersModal')">
+                        <button class="main-action-bright tertiary" style="background-color: green;" onclick="openModal('confirmDownloadUsersModal')">
                             <i class="fas fa-file-excel"></i>
                             Exportar
                         </button>
@@ -70,7 +70,7 @@ $statusParsing = [
                                         $queryParams['order'] = $order === 'asc' ? 'desc' : 'asc';
                                         $queryString = http_build_query($queryParams);
                                         ?>
-                                        <a href="?<?= $queryString ?>"><strong>Fecha</strong><?= $order === 'asc' ? '↓' : '↑' ?></a>
+                                        <a href="?<?= $queryString ?>"><strong>Último inicio de sesión</strong><?= $order === 'asc' ? '↓' : '↑' ?></a>
 
                                     </th>
                                     <!-- <th></th> -->
@@ -86,7 +86,7 @@ $statusParsing = [
 
                                     if ($user->deleted_at) // ignore deleted users
                                         continue;
-                                    
+
 
                                     // Get the full name
                                     $full_name = htmlspecialchars($user->first_name . ' ' . $user->last_name);
@@ -124,13 +124,13 @@ $statusParsing = [
                                             <i class="fas fa-dot-circle" style="color: <?= $statusColor ?>"></i>
                                             <?= htmlspecialchars($status) ?>
                                         </td>
-                                        <td><?= htmlspecialchars(get_date_spanish($user->created_at)) ?></td>
+                                        <td><?= htmlspecialchars(get_date_spanish($user->last_login)) ?></td>
                                         <td><a href="#" class="review-link" onclick="confirmChangeStatus(<?= htmlspecialchars($user->user_id) ?>, 'active')">Activar</a></td>
                                         <td><a href="#" class="review-link" onclick="confirmChangeStatus(<?= htmlspecialchars($user->user_id) ?>, 'disabled')">Desactivar</a></td>
 
                                         <td><a onclick="openModal('confirmDeleteUserModal-<?= $loop++ ?>')"
-                                                class="review-link danger" href="#" class="review-link"><i
-                                                    class="fas fa-trash"></i> borrar</a></td>
+                                                class="main-action-bright danger" href="#" class="review-link"><i
+                                                    class="fas fa-trash-alt"></i> </a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
