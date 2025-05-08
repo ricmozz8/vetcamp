@@ -13,12 +13,6 @@
         <?php $loop = 1; ?>
         <form action="/admin/unenroll" method="POST">
 
-            <div class="flex-min">
-
-                <input type="checkbox" id="select-all-<?= $modal_session_class ?? '' ?>">
-                <label for="select-all">Seleccionar todos</label>
-            </div>
-
             <div class="form-group">
                 <label for="students">Estudiantes</label>
                 <div class="multiselect">

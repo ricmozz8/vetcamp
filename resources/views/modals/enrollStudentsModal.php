@@ -27,6 +27,11 @@
             <div class="form-group">
                 <label for="students">Estudiantes</label>
                 <div class="multiselect">
+                    <?php if (empty($approvedPool)): ?>
+                        <div class="multiselect-item">
+                            <p class="multiselect-item" style=" color: gray;">No hay más estudiantes con solicitudes aprobadas.</p>
+                        </div>
+                    <?php endif; ?>
                     <?php foreach ($approvedPool as $user) {
                     ?>
                         <div class="multiselect-item">

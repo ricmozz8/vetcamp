@@ -1,6 +1,8 @@
 <div id="manageWaitlistModal" class="modal">
     <div class="modal-content">
 
+
+
         <!-- Botón de cerrar -->
         <span class="close-button" onclick="closeModal('manageWaitlistModal')">
             <i class="fas fa-times"></i>
@@ -14,11 +16,6 @@
         <form action="/admin/unenroll" method="POST">
 
             <input type="hidden" name="is_waitlist" value="waitlist">
-            <div class="flex-min">
-
-                <input type="checkbox" id="select-all-waitlist">
-                <label for="select-all">Seleccionar todos</label>
-            </div>
 
             <div class="form-group">
                 <label for="students">Estudiantes</label>

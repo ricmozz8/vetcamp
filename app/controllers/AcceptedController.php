@@ -165,7 +165,7 @@ class AcceptedController extends Controller
                     redirect('/admin/accepted');
                 }
             }
-            $_SESSION['message'] = 'Estudiantes desmatriculados exitosamente.';
+            $_SESSION['message'] = 'Estudiante/s removidos exitosamente.';
         }
 
 
