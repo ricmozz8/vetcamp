@@ -135,7 +135,7 @@ class RegisteredController extends Controller
 
         $users = User::all();
     
-        header('Content-Type: text/csv');
+        header('Content-Type: text/csv; charset=UTF-8');
         header('Content-Disposition: attachment; filename="usuariosRegistrados.csv"');
           
         $fp = __DIR__."/../../storage/private/usuariosRegistrados.csv";

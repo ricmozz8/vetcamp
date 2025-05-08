@@ -275,7 +275,7 @@ class ApplicationController extends Controller
             fclose($file);
 
             // Set headers for file download
-            header('Content-Type: text/csv');
+            header('Content-Type: text/csv; charset=UTF-8');
             header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
             header('Pragma: no-cache');
             header('Expires: 0');
