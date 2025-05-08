@@ -48,7 +48,9 @@ switch ($path) {
     case '/credits':
         HomeController::credits();
         break;
-
+    case '/terms':
+        HomeController::terms();
+        break;
     case '/profile/update':
         UserController::update($method);
         break;

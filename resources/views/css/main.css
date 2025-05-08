@@ -455,6 +455,56 @@ label{
 
 
 
+.optional-modal {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.158);
+  backdrop-filter: blur(53px);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-xl);
+  animation: slideUp 0.5s ease;
+  min-width: 300px;
+  max-width: 100%;
+  display: none;
+}
+
+.optional-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1em;
+}
+
+@media screen and (max-width: 768px) {
+  .optional-modal {
+    bottom: 5px;
+    left: 5px;
+    min-width: 200px;
+    padding: 5px;
+  }
+
+  .optional-modal-content {
+    gap: 5px;
+    padding: 0.5em;
+  }
+}
+
+.optional-modal-content h3{
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.optional-modal-content p{
+  font-size: 0.9em;
+  max-width: 400px;
+}
+
+
+
+
 
 
 @keyframes slideUp {
