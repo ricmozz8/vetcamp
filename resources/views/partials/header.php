@@ -111,7 +111,7 @@
         <h3>Términos y Condiciones</h3>
         <p>Al utilizar este sitio web, aceptas los Términos y Condiciones de Uso, la Política de privacidad y la Política de Cookies.</p>
 
-        <div class="modal-actions">
+        <div class="optional-modal-actions">
             <a onclick="setTermsAccepted()" href="/terms" class="main-action-bright no-deco-action">Ver términos</a>
             <button onclick="setTermsAccepted()" class="main-action-bright primary" onclick="closeModal('terms-modal')">Aceptar</button>
         </div>
