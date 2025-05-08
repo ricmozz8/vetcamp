@@ -81,6 +81,18 @@ if ($hour >= 5 && $hour < 12) {
                 </div>
                 <div class="stat-number" id="statistical-animate"><?php echo $accepted; ?></div>
             </div>
+            <!-- Enrolled users stats card -->
+            <div class="stat-card">
+                <div class="stat-header">
+                    <h2 class="stat-title">
+                        <i class="fas fa-check"></i>
+                        Matriculados
+
+                    </h2>
+
+                </div>
+                <div class="stat-number" id="statistical-animate"><?php echo $enrolled; ?></div>
+            </div>
 
 
           
