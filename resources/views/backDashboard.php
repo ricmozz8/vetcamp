@@ -51,7 +51,7 @@ if ($hour >= 5 && $hour < 12) {
                 <div class="stat-header">
                     <h2 class="stat-title">
                         <i class="fas fa-id-badge"></i>
-                        Solicitantes
+                        Solicitudes Pendientes
                     </h2>
                 </div>
                 <div class="stat-number" id="statistical-animate"><?php echo $all_applicants; ?></div>
