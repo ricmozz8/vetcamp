@@ -51,17 +51,3 @@ The same will work for views.
 
 *PD: Feel free to extend this script to autogenerate files*
 
-## Testing (Disabled)
-In order to run tests you must execute the following command
-under the `tests` folder:
-```bash
-php runtest
-```
-This will run all the tests under the `tests/unit` folder.
-
-### Creating a new test
-You can either create it manually by naming it with the `Test` prefix or by running on the root folder of the project using the following craft command:
-```bash
-
-php craft test <test_name>
-```
