@@ -71,6 +71,8 @@ switch ($path) {
     case '/admin/accepted':
         AcceptedController::index();
         break;
+    case '/admin/accepted/enroll':
+        AcceptedController::enroll($method);
     case '/admin/settings':
         SettingsController::index();
         break;
@@ -85,7 +87,7 @@ switch ($path) {
     case '/admin/requests/track':
         TrackingController::TrackingEvaluation($method);
         break;
-    
+
     case '/admin/settings/editpicture':
         SettingsController::editPictureInHomePage($method);
         break;
@@ -120,13 +122,28 @@ switch ($path) {
     case '/admin/audit/download':
         AuditController::download();
         break;
-        // document admin provider
+    // document admin provider
 
-        case '/admin/document':
-            $application = $_GET['a'] ?? null;
-            $document = $_GET['d'] ?? null;
-            DocumentController::index($application, $document);
-            break;
+    case '/admin/document':
+        $application = $_GET['a'] ?? null;
+        $document = $_GET['d'] ?? null;
+        DocumentController::index($application, $document);
+        break;
+
+    // enroll
+
+    case '/admin/enroll':
+        AcceptedController::enroll($method);
+        break;
+
+    case '/admin/unenroll':
+        AcceptedController::unenroll($method);
+        break;
+
+    case '/admin/sm':
+        MessagesController::sendSessionMail($method);
+        break;
+
 
     case '/admin/error/clear':
         ErrorsController::clear();

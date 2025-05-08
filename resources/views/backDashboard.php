@@ -51,7 +51,7 @@ if ($hour >= 5 && $hour < 12) {
                 <div class="stat-header">
                     <h2 class="stat-title">
                         <i class="fas fa-id-badge"></i>
-                        Solicitantes
+                        Solicitudes Pendientes
                     </h2>
                 </div>
                 <div class="stat-number" id="statistical-animate"><?php echo $all_applicants; ?></div>
@@ -80,6 +80,18 @@ if ($hour >= 5 && $hour < 12) {
 
                 </div>
                 <div class="stat-number" id="statistical-animate"><?php echo $accepted; ?></div>
+            </div>
+            <!-- Enrolled users stats card -->
+            <div class="stat-card">
+                <div class="stat-header">
+                    <h2 class="stat-title">
+                        <i class="fas fa-check"></i>
+                        Matriculados
+
+                    </h2>
+
+                </div>
+                <div class="stat-number" id="statistical-animate"><?php echo $enrolled; ?></div>
             </div>
 
 
@@ -145,7 +157,7 @@ if ($hour >= 5 && $hour < 12) {
                                         $profile = $application->getProfilePicture();
                                         $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
                                         ?>
-                                        <img src="<?= $src ?>" alt="Foto de perfil de <?= $full_name ?>"
+                                        <img src="<?= $src ?>" alt="Foto de perfil de <?= $user->first_name . ' ' . $user->last_name . ' '?>"
                                              class="profile-picture">
                                     <?php } else {
                                         $badgeUser = $user;

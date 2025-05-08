@@ -156,9 +156,16 @@ require_once __DIR__ . '/partials/header.php';
 
                                 <div class="flex-min">
                                     <label style="min-width: max-content;" for="status">Cambiar estado</label>
-                                    <?php
 
-                                    echo renderSelect('status', $statuses, $application->status);
+
+                                    <?php
+                                    $selectOptions = $statuses;
+                                    if ($application->status !== 'Matriculado') {
+                                        unset($selectOptions['enrolled']);
+                                    }
+                                    $selectedValue = $application->status;
+                                    $disabled = $application->status === 'Matriculado';
+                                    echo renderSelect('status', $selectOptions, $selectedValue, [], $disabled);
                                     ?>
                                 </div>
                                 <br><br>
@@ -176,9 +183,11 @@ require_once __DIR__ . '/partials/header.php';
                                         Enviar Mensaje
                                     </a>
 
+                                    <?php if ($application->status !== 'Matriculado') { ?>
                                     <button class="main-action-bright primary" type="submit"><i class="fas fa-save"></i>
                                         Guardar
                                     </button>
+                                    <?php } ?>
                                 </div>
                             </form>
                         </section>

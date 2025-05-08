@@ -73,4 +73,9 @@ class HomeController extends Controller
     {
         render_view('credits', [], 'Créditos');
     }
+
+    public static function terms()
+    {
+        render_view('terms', [], 'Términos y Condiciones de Uso');
+    }
 }

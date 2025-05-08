@@ -189,6 +189,35 @@ class Model
         return $models;
     }
 
+
+    /**
+     * Returns all records from the associated table joined with a specified
+     * table where the specified column matches the given value.
+     *
+     * @param string $table The table to join with.
+     * @param string $column The column to use in the WHERE clause.
+     * @param array $renames An associative array where keys are column names and
+     *                      values are the new names for those columns.
+     *
+     * @return array The results of the join query as an array of associative arrays.
+     *
+     * @throws ModelNotFoundException If no records are found with the specified id.
+     */
+    public static function conjoined(string $table)
+    {
+        $results = DB::naturalJoin(static::$table, $table);
+
+        if (empty($results)) {
+            throw new ModelNotFoundException('There is no record matching the given data.');
+        } else {
+            foreach ($results as $result) {
+                $models[] = new static($result, self::sanitize($result));
+            }
+        }
+
+        return $models;
+    }
+
     /**
      * Gets all records that matches a set of conditions
      * @param array $data An associative array of columns and desired value
@@ -249,6 +278,8 @@ class Model
         self::init();
 
         $result = DB::join(static::$table, $table, $column, $renames);
+        $models = [];
+
         $models = [];
 
         foreach ($result as $data) {
@@ -447,6 +478,34 @@ class Model
         }
 
     }
+
+
+    /**
+     * Executes a raw SQL query and returns the result as an instance of the
+     * current model.
+     *
+     * @param string $query The raw SQL query to execute.
+     * @param string $mode The mode of the fetch operation. Can be either 'all'
+     *                     or 'num'. If 'all', the result will be fetched as
+     *                     an associative array. If 'num', the result will be
+     *                     fetched as a numerical array.
+     *
+     * @return Model An instance of the current model containing the result of
+     *               the query.
+     */
+    public static function raw(string $query, string $mode){
+
+        if ($mode == 'all') 
+            $param =  PDO::FETCH_ASSOC;
+        else
+            $param =  PDO::FETCH_NUM;
+     
+
+        self::init();
+        $result = DB::execute_and_fetch($query, []);
+        return new static($result, $result);
+    }
+    
 
 
 }
