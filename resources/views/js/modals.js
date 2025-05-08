@@ -49,3 +49,10 @@ window.onload = function () {
     document.cookie = "accepted-terms=true; path=/";
   }
 };
+
+
+function setTermsAccepted() {
+  document.cookie = "accepted-terms=true; path=/";
+  let termsModal = document.getElementById("terms-modal");
+  termsModal.style.display = "none";
+}
