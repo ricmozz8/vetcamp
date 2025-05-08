@@ -143,6 +143,13 @@ require_once __DIR__ . '/partials/header.php';
                                 <?php } ?>
                             <?php endif; ?>
                         </div>
+
+                        <?php if (count($session['students']) > 14): ?>
+                            <div class="warning-box">
+                                <i class="fas fa-exclamation"></i>
+                                Tienes más de 14 estudiantes en esta sesión.
+                            </div>
+                        <?php endif; ?>
                     </div>
                 <?php }; ?>
             </div>
