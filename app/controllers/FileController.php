@@ -15,7 +15,7 @@ class FileController extends Controller
     public static function getFile($disk, $path)
     {
         $file_contents = Storage::get($disk, $path);
-        
+
         if ($file_contents === false) {
             // Handling the case when file is not found or not readable
             header("HTTP/1.0 404 Not Found");

@@ -26,4 +26,7 @@ switch ($path) {
     case '/apply/requireddocuments':
         UserApplicationController::requiredDocuments($method);
         break;
+    case '/descargoresponsabilidad':
+        UserApplicationController::downloadWaiver();
+        break;
 }

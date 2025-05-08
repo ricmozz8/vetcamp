@@ -1,6 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once 'app/models/Application.php';
+require_once 'app/models/Audit.php';
 
 class UserApplicationController extends Controller
 {
@@ -88,7 +89,7 @@ class UserApplicationController extends Controller
         $application = Auth::user()->application(); // returns null if no application is found
         $has_application = $application ? $application->status : 'Sin llenar';
 
-        if($has_application != 'Sin llenar') {
+        if ($has_application != 'Sin llenar') {
             $currentStatus = $application->status;
         }
 
@@ -447,9 +448,8 @@ class UserApplicationController extends Controller
                         redirect('/apply/application');
                     }
                 }
-
             } else {
-                ErrorLog::log("No hay archivo para eliminar.", "app/controller/UserApplicationController.php", '') ;
+                ErrorLog::log("No hay archivo para eliminar.", "app/controller/UserApplicationController.php", '');
             }
 
             // refresh the user with the new information on the database
@@ -463,7 +463,6 @@ class UserApplicationController extends Controller
             } else {
                 redirect('/apply/application');
             }
-
         } else {
             redirect('/apply/application');
         }
@@ -619,5 +618,54 @@ class UserApplicationController extends Controller
                 'saved_documents' => $saved_documents
             ], 'documentRequired');
         }
-    }    
+    }
+
+    public static function uploadWaiver($method)
+    {
+        if ($method === 'POST') {
+            $rules = [
+                'waiver_pdf' => [
+                    'required' => true,
+                    'type' => ['application/pdf'],
+                    'size' => to_byte_size('10MB')
+                ]
+            ];
+
+            $validationResult = validate_documents($_FILES, $rules);
+
+            if ($validationResult['result'] !== DOCUMENTS_VALID) {
+                $_SESSION['error'] = $validationResult['message'] ?? 'Error al subir el archivo.';
+                redirect('/admin/settings');
+            }
+
+            $document = $validationResult['validated']['waiver_pdf'];
+            $tmpPath = $_FILES['waiver_pdf']['tmp_name'];
+            $fileContents = file_get_contents($tmpPath);
+
+            // save in storage/public
+            Storage::store('public', 'waiver.pdf', $fileContents);
+
+            // test 
+            /*
+            Audit::create([
+                'user_id' => Auth::user()->user_id,
+                'action' => 'Actualizó el documento de descargo de responsabilidad'
+            ]);*/
+
+            Audit::register('Actualizó el documento de descargo de responsabilidad', 'update');
+
+            $_SESSION['message'] = 'Documento de Descargo de Responsabilidad guardado correctamente.';
+            redirect('/admin/settings');
+        }
+    }
+
+
+    public static function downloadWaiver()
+    {
+        $path = 'waiver.pdf';
+        $disk = 'public';
+
+        FileController::getFile($disk, $path);
+        exit;
+    }
 }

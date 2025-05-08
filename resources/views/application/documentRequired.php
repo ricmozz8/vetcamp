@@ -119,6 +119,10 @@ require __DIR__ . '../../partials/header.php';
                 </div>
                 <div class="check-labeled">
                     <label>Descargo de responsabilidad (PDF)</label>
+                    <a href="/descargoresponsabilidad" class="btn-download" target="_blank">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+
                     <?php if (isset($saved_documents['liability_waiver'])) { ?>
                         <a href="#" onclick="showModal('fileViewPopup-<?= $liability_waiver['name'] ?>')"
                            class="btn-download">
