@@ -159,7 +159,13 @@ require_once __DIR__ . '/partials/header.php';
 
 
                                     <?php
-                                    echo renderSelect('status', $statuses, $application->status, [], $application->status === 'Matriculado'); 
+                                    $selectOptions = $statuses;
+                                    if ($application->status !== 'Matriculado') {
+                                        unset($selectOptions['enrolled']);
+                                    }
+                                    $selectedValue = $application->status;
+                                    $disabled = $application->status === 'Matriculado';
+                                    echo renderSelect('status', $selectOptions, $selectedValue, [], $disabled);
                                     ?>
                                 </div>
                                 <br><br>
