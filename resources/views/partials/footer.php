@@ -1,7 +1,7 @@
 <footer>
     <div>
         <img class="footer-icon" src="/<?= asset('/logo/SVG/vetcamp-icon-black.svg')?>">
-        <p><strong>VETCAMP</strong> | v1.0.0 (Estable)</p>
+        <p><strong>VETCAMP</strong> | v1.2.52 (Versión final)</p>
         <p>&copy; <?php echo date('Y'); ?> | Universidad de Puerto Rico Arecibo</p>
         <a href="/credits" class="no-deco-action">Créditos</a>
     </div>
