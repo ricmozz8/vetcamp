@@ -85,7 +85,7 @@ require_once __DIR__ . '/modals/confirmDownloadApplicationsModal.php';
                                         $queryParams['order'] = $order === 'asc' ? 'desc' : 'asc';
                                         $queryString = http_build_query($queryParams);
                                         ?>
-                                        <a href="?<?= $queryString ?>"><strong>Fecha</strong><?= $order === 'asc' ? '↓' : '↑' ?></a>
+                                        <a href="?<?= $queryString ?>"><strong>Fecha subido</strong><?= $order === 'asc' ? '↓' : '↑' ?></a>
 
                                     </th>
 
