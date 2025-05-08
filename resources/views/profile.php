@@ -156,9 +156,10 @@ require_once __DIR__ . '/partials/header.php';
 
                                 <div class="flex-min">
                                     <label style="min-width: max-content;" for="status">Cambiar estado</label>
-                                    <?php
 
-                                    echo renderSelect('status', $statuses, $application->status);
+
+                                    <?php
+                                    echo renderSelect('status', $statuses, $application->status, [], $application->status === 'Matriculado'); 
                                     ?>
                                 </div>
                                 <br><br>

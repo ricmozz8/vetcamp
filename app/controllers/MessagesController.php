@@ -11,21 +11,22 @@ class MessagesController extends Controller
      *
      * @return void
      */
-    public static function mailUsers($method) {
+    public static function mailUsers($method)
+    {
         if (!Auth::check() || Auth::user()->type !== 'admin') {
             redirect('');
         }
-    
+
         if ($method === 'POST') {
             // Logic for sending emails
             $message = filter_input(INPUT_POST, 'message', FILTER_DEFAULT);
             $type = filter_input(INPUT_POST, 'user_type', FILTER_DEFAULT);
-    
+
             if (!$message || !$type) {
                 $_SESSION['error'] = 'Por favor llene todos los campos';
                 redirect('/admin');
             }
-    
+
             if (!in_array($type, ['all', 'approved', 'denied', 'waitlist', 'applicants', 'interested'])) {
                 $_SESSION['error'] = 'Hubo un error al enviar el correo';
                 redirect('/admin');
@@ -33,12 +34,11 @@ class MessagesController extends Controller
 
             // if you want to observe the message that is sent
             //dd($message);
-    
+
             self::mailAllUsers($message, $type);
-            
-        } 
+        }
     }
-    
+
 
     /**
      * Message a particular user
@@ -104,7 +104,7 @@ class MessagesController extends Controller
         switch ($type) {
             case 'all':
                 $users = User::allof('user');
-                $typeEs = 'usuarios';       
+                $typeEs = 'usuarios';
                 break;
             case 'approved':
                 foreach ($applications as $application) {
@@ -178,4 +178,54 @@ class MessagesController extends Controller
 
 
     // define your other methods here
+
+    public static function sendSessionMail($method)
+    {
+        if ($method === 'POST') {
+            // getting all the form data from the view
+            $session_id = filter_input(INPUT_POST, 'session_id', FILTER_DEFAULT);
+            $message = filter_input(INPUT_POST, 'message', FILTER_DEFAULT);
+
+            if (!$session_id || !$message) {
+                $_SESSION['error'] = 'Por favor complete todos los campos';
+                redirect('/admin');
+            }
+
+            try {
+                $session = Enrollment::findAllBy(['session_id' => $session_id]);
+                $users = [];
+                foreach ($session as $enrollment) {
+                    $users[] = User::find($enrollment->user_id);
+                }
+
+                if(empty($users)) {
+                    $_SESSION['error'] = 'No hay estudiantes matriculados en esta sesión para enviar el correo';
+                    redirect('/admin/accepted');
+                }
+
+                $mail_pool = [];
+
+                foreach ($users as $user) {
+                    $mail_pool[] = $user->email;
+                }
+
+                $mail_queue = array_chunk($mail_pool, 30);
+
+                foreach ($mail_queue as $chunk) {
+                    $chunk_listed = implode(', ', $chunk);
+
+                    Mailer::send($chunk_listed, 'Un Mensaje de Vetcamp', $message);
+                }
+
+                $_SESSION['message'] = 'Correo enviado a todos los estudiantes de la sesión.';
+
+                // getting all enrolled users on that session
+            } catch (ModelNotFoundException $e) {
+                $_SESSION['error'] = 'No hay estudiantes matriculados en esta sesión para enviar el correo';
+                redirect('/admin/accepted');
+            }
+
+            redirect('/admin/accepted');
+        }
+    }
 }

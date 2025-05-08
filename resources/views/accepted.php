@@ -47,7 +47,7 @@ require_once __DIR__ . '/partials/header.php';
                                     if ($profile) {
                                         $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
 
-                                        ?>
+                                    ?>
                                         <img src="<?= $src ?>" alt="profile-picture">
 
                                     <?php } else { ?>
@@ -71,7 +71,7 @@ require_once __DIR__ . '/partials/header.php';
             <div class="accepted-grouped">
                 <?php $loop = 1; ?>
                 <?php foreach ($sessions as $session) {
-                    ?>
+                ?>
                     <div class="accepted-card">
                         <div class="accepted-card-header">
                             <div>
@@ -84,18 +84,26 @@ require_once __DIR__ . '/partials/header.php';
                             </div>
 
                             <div class="flex-min">
-                            <?php if (count($session['students']) <= 14): ?>
+
+                                <!-- UNENROLL MODAL BUTTON -->
+                                <button onclick="openModal('manageSessionModal-<?= $session['id'] ?>')"
+                                    class="main-action-bright plain-action">
+                                    <i class="fas fa-cog"></i>
+                                </button>
+
+                                <!-- MAIL USERS ON SESSION MODAL -->
+                                <button onclick="openModal('sendSessionMailModal-<?= $session['id'] ?>')"
+                                    class="main-action-bright secondary">
+                                    <i class="fas fa-envelope"></i>
+
+                                </button>
+
+                                <!-- ENROLL MODAL BUTTON -->
                                 <button onclick="openEnrollModal('enrollStudentsModal', <?= $session['id'] ?>)"
                                     class="main-action-bright primary">
                                     <i class="fas fa-user-plus"></i>
-                                    Matricular
+
                                 </button>
-                                <?php else: ?>
-                                    <button class="main-action-bright secondary" disabled>
-                                        <i class="fas fa-user-check"></i>    
-                                        Sesión llena
-                                    </button>
-                                <?php endif; ?>
                                 <?php $loop++; ?>
                             </div>
                         </div>
@@ -110,7 +118,7 @@ require_once __DIR__ . '/partials/header.php';
                                     if ($profile) {
                                         $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
                                     }
-                                    ?>
+                                ?>
 
                                     <div class="accepted-user-card">
                                         <a href="/admin/p?user=<?= $user->user_id ?>&from=accepted">
@@ -130,8 +138,7 @@ require_once __DIR__ . '/partials/header.php';
                             <?php endif; ?>
                         </div>
                     </div>
-                <?php }
-                ; ?>
+                <?php }; ?>
             </div>
 
             <!-- WAITLIST QUEUE -->
@@ -140,8 +147,17 @@ require_once __DIR__ . '/partials/header.php';
                 <div class="accepted-card-header">
                     <h2 class="accepted-card-title"><i class="fas fa-user-clock"></i> Lista de espera</h2>
                     <div class="flex-min">
+                        <!-- UNENROLL MODAL BUTTON -->
+                        <button onclick="openModal('manageWaitlistModal')"
+                            class="main-action-bright plain-action">
+                            <i class="fas fa-cog"></i>
+                        </button>
+
+                        </button>
+
                         <button onclick="openEnrollModal('enrollStudentsModal', 'waitlist')"
-                            class="main-action-bright primary"><i class="fas fa-user-plus"></i> Añadir</button></button>
+                            class="main-action-bright primary"><i class="fas fa-user-plus"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -151,15 +167,23 @@ require_once __DIR__ . '/partials/header.php';
                             No hay usuarios en espera.
                         </p>
                     <?php endif; ?>
-                    <?php foreach ($waitlist as $user): ?>
+                    <?php foreach ($waitlist as $application):
+                        $user = $application->user();
+                    ?>
                         <div class="accepted-user-card">
-                            <a href="/admin/p?user=<?= $user['user_id'] ?>&from=accepted">
+                            <a href="/admin/p?user=<?= $application->user_id ?>&from=accepted">
                                 <div class="accepted-user-card-header flex">
                                     <?php
-                                    //$badgeUser = $user;
-                                    //require 'partials/userBadge.php';
+                                    $profile = $application->getProfilePicture();
+                                    if ($profile) {
+                                        $src = "data:" . $profile['type'] . ";base64," . base64_encode($profile['contents']);
+                                        echo "<img src='$src' alt='Imagen de $user->first_name $user->last_name'>";
+                                    } else {
+                                        $badgeUser = $user;
+                                        require 'partials/userBadge.php';
+                                    }
                                     ?>
-                                    <h3 class="accepted-user-card-title"><?= $user['name'] ?></h3>
+                                    <h3 class="accepted-user-card-title"><?= $user->first_name . ' ' . $user->last_name ?></h3>
                                 </div>
                             </a>
                         </div>
@@ -167,13 +191,29 @@ require_once __DIR__ . '/partials/header.php';
                 </div>
             </div>
 
-            <?php require_once('modals/sendMassiveMailModal.php'); ?>
+
             <?php require_once('modals/enrollStudentsModal.php'); ?>
-            <?php require_once('modals/autoEnrollModal.php'); ?>
+            <?php require_once('modals/sendMassiveMailModal.php'); ?>
+
+
+
+
+
         </main>
     </div>
 
     <?php require_once('partials/footer.php'); ?>
+    <?php require_once('modals/manageWaitlistModal.php'); ?>
+    <?php array_walk($sessions, function ($session) {
+        $modal_session_class = "{$session['id']}";
+        require("modals/manageSessionModal.php");
+        require('modals/sendSessionMailModal.php');
+    }); ?>
+
+
+
+
+
 </body>
 
 </html>

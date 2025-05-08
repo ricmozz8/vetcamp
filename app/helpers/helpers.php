@@ -138,9 +138,9 @@ function redirect(string $url)
  */
 function redirect_back(string $ifFail = '/')
 {
-    if( isset($_SERVER['HTTP_REFERER']))
+    if (isset($_SERVER['HTTP_REFERER']))
         header('Location: ' . $_SERVER['HTTP_REFERER']);
-    else{
+    else {
         redirect($ifFail);
     }
 }
@@ -523,7 +523,7 @@ function to_byte_size(string $megabytes)
  * @param array $attributes An associative array of additional HTML attributes for the select element.
  * @return string The generated HTML string for the select element.
  */
-function renderSelect($name, $options, $selectedValue = null, $attributes = []): string
+function renderSelect($name, $options, $selectedValue = null, $attributes = [], $disabled = false): string
 {
 
     // Generate additional attributes as a string
@@ -535,7 +535,7 @@ function renderSelect($name, $options, $selectedValue = null, $attributes = []):
     }
 
     // Start the select tag
-    $html = "<select class='status-select' name='{$name}'{$extraAttributes}>";
+    $html = "<select class='status-select' name='{$name}'{$extraAttributes}" . ($disabled ? 'disabled' : '') . '>';
 
 
     // Add the options
@@ -621,5 +621,3 @@ function deleteAssetFileByPattern(string $relativePattern): bool
 
     return $deleted;
 }
-
-

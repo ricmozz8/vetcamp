@@ -87,7 +87,7 @@ switch ($path) {
     case '/admin/requests/track':
         TrackingController::TrackingEvaluation($method);
         break;
-    
+
     case '/admin/settings/editpicture':
         SettingsController::editPictureInHomePage($method);
         break;
@@ -129,16 +129,21 @@ switch ($path) {
         $document = $_GET['d'] ?? null;
         DocumentController::index($application, $document);
         break;
-    
+
     // enroll
 
     case '/admin/enroll':
         AcceptedController::enroll($method);
         break;
 
-    case '/admin/enroll/auto':
-        AcceptedController::autoEnroll($method);
+    case '/admin/unenroll':
+        AcceptedController::unenroll($method);
         break;
+
+    case '/admin/sm':
+        MessagesController::sendSessionMail($method);
+        break;
+
 
     case '/admin/error/clear':
         ErrorsController::clear();
