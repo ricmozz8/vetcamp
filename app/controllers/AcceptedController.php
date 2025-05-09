@@ -83,6 +83,11 @@ class AcceptedController extends Controller
             $session = filter_input(INPUT_POST, 'session');
             $students = filter_input(INPUT_POST, 'students', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
+            if (empty($students)) {
+                $_SESSION['error'] = 'Por favor seleccione al menos un estudiante.';
+                redirect('/admin/accepted');
+            }
+
             if ($session == 'waitlist') {
                 foreach ($students as $student) {
                     try {
