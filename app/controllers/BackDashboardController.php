@@ -28,7 +28,12 @@ class BackDashboardController extends Controller
         // getting all accepted users
         
         $accepted =  count(User::approvedApplicants());
-        $enrolled = count(Application::findAllBy(['status' => 'enrolled']));
+        try {
+            $enrolled = count(Application::findAllBy(['status' => 'enrolled']));
+        } catch (Exception $e) {
+            $enrolled = 0;
+        }
+        
 
 
         // Get recent registered users
