@@ -349,7 +349,8 @@ class Application extends Model
             'Aceptado',
             'Rechazado',
             'Incompleta',
-            'En lista de espera'
+            'En lista de espera',
+            'Matriculado'
         ]);
     }
 }

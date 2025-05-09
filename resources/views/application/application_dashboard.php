@@ -28,7 +28,7 @@ if ($application && $application->isSubmitted()) {
 
                     <div class="application-actions">
 
-                        <?php if ($current_status === 'Aceptado') : ?>
+                        <?php if ($current_status === 'Aceptado' || $current_status === 'Matriculado') : ?>
                                 <a href="/apply/requireddocuments" class="" style="margin-right: 1rem;">
                                     <i class="fas fa-upload"></i> Subir documentos finales
                                 </a>
