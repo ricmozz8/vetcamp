@@ -36,17 +36,8 @@ class BackDashboardController extends Controller
 
         $all_users = count($recent_registered);
         $recent_applications = User::allApplicants();
-        $statuses = ['submitted', 'unsubmitted'];
-        $applicant_counts = array_map(function($status) {
-            try {
-                return count(Application::findAllBy(['status' => $status]));
-            } catch (Exception $e) {
-                return 0;
-            }
-        }, $statuses);
-
-        list($submitted_applicants, $unsubmitted_applicants) = $applicant_counts;
-        $all_applicants = array_sum($applicant_counts);
+        
+        $all_applicants = count(Application::all());
 
 
         usort($recent_registered, function ($a, $b) {

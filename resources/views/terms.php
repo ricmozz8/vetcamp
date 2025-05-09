@@ -237,7 +237,7 @@ require_once __DIR__ . '/partials/header.php';
         <section>
             <h2>6. Contacto</h2>
             <p>
-                Para más información sobre el uso de cookies, puede comunicarse con el equipo de VetCamp al correo electrónico: <strong>vetcamp.upr@upr.edu</strong>
+                Para más información sobre el uso de cookies, puede comunicarse con el equipo de VetCamp al correo electrónico: <strong>vetcamp.arecibo@upr.edu</strong>
             </p>
         </section>
 
