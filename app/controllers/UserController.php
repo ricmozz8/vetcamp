@@ -453,10 +453,12 @@ class UserController extends Controller
                 }
 
 
-                $enrollment = Enrollment::findBy(['user_id' => $user->user_id]);
-                if ($enrollment) {
-                    $enrollment->delete();
-                } else {
+                try {
+                    $enrollment = Enrollment::findBy(['user_id' => $user->user_id]);
+                    if ($enrollment) {
+                        $enrollment->delete();
+                    }
+                } catch (ModelNotFoundException $e) {
                     $_SESSION['error'] = 'No tienes una solicitud activa.';
                 }
 
