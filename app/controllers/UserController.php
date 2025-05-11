@@ -198,7 +198,7 @@ class UserController extends Controller
                 'phone_number' => null,
                 'type' => 'deleted'
             ]);
-            
+
         }
 
         $_SESSION['message'] = 'El usuario ha sido eliminado.';
@@ -438,19 +438,31 @@ class UserController extends Controller
 
     public static function rescindApplication($method)
     {
-
         if ($method == 'POST') {
-
             $confirmation_text = filter_input(INPUT_POST, 'confirmation_text');
 
-            if ($confirmation_text !== RESCIND_APPLICATION_CONFIRMATION_TEXT)
+            if ($confirmation_text !== RESCIND_APPLICATION_CONFIRMATION_TEXT) {
                 $_SESSION['error'] = 'Por favor, escribe "borrar mi solicitud" en el campo de texto';
-            else {
-                Auth::user()->application()->hard_delete();
+            } else {
+                $user = Auth::user();
+
+
+                $application = $user->application();
+                if ($application) {
+                    $application->hard_delete();
+                }
+
+
+                $enrollment = Enrollment::findBy(['user_id' => $user->user_id]);
+                if ($enrollment) {
+                    $enrollment->delete();
+                } else {
+                    $_SESSION['error'] = 'No tienes una solicitud activa.';
+                }
+
+
+                $_SESSION['message'] = 'Tu solicitud y tu inscripción han sido eliminadas.';
             }
-
-            $_SESSION['message'] = 'Tu solicitud ha sido eliminada';
-
         }
 
         redirect('/profile');
@@ -477,7 +489,7 @@ class UserController extends Controller
 
                 if ($user->deleted_at)
                     redirect('/admin' . $from);
-                
+
 
                 if ($user->__get('user_id') == Auth::user()->__get('user_id')) {
                     redirect('/profile');
@@ -525,18 +537,19 @@ class UserController extends Controller
     /** Reactivate a user
      * @param string $method Either GET/POST
      */
-    public static function reactivateUser($method){
+    public static function reactivateUser($method)
+    {
         if ($method == 'POST') {
             $codeOTP = trim(filter_input(INPUT_POST, 'codeOTP'));
-            
+
             if (!$codeOTP) {
                 $_SESSION['error'] = "Introduce el código OTP.";
                 redirect('/reactiveuser');
             }
-            
+
             try {
                 $reactive = Activation::findBy(['OTP' => $codeOTP]);
-                
+
                 $user = User::find($reactive->user_id);
                 if (!$user) {
                     $_SESSION['error'] = "El correo o el código esta incorrecto.";
@@ -549,12 +562,12 @@ class UserController extends Controller
                     redirect('/login');
                 }
                 User::updateStatus('users', ['status' => 'active'], 'user_id', $user->user_id);
-    
+
                 // Eliminar el fila
                 $reactive->delete();
-    
+
                 $_SESSION['message'] = "Tu cuenta ha sido reactivada correctamente.";
-                
+
                 redirect('/login');
 
                 // Si el código OTP es válido, puedes continuar con la lógica aquí.
