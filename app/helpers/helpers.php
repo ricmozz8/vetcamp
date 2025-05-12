@@ -199,6 +199,11 @@ function session_has(string $key)
  */
 function get_date_spanish($date, $withYear = true, $withMonth = true)
 {
+    // Validate
+    if (empty($date)) {
+        return 'Fecha no registrada.';
+    }
+    
     $months = [
         '01' => 'Enero',
         '02' => 'Febrero',
@@ -214,7 +219,13 @@ function get_date_spanish($date, $withYear = true, $withMonth = true)
         '12' => 'Diciembre'
     ];
 
-    $dateObj = new DateTime($date);
+    // Handle the exception: Internal Server Error
+    try {
+        $dateObj = new DateTime($date);
+    } catch (Exception $e) {
+        return 'Fecha inválida';
+    }
+
     $day = $dateObj->format('d');
 
     if (!$withMonth) {
