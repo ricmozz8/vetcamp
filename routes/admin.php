@@ -95,6 +95,9 @@ switch ($path) {
     case '/admin/requests/download':
         ApplicationController::download($method);
         break;
+    case '/admin/enrollments/download':
+        AcceptedController::exportEnrollments();
+        break;
     case '/admin/delete/rejected/requests':
         SettingsController::deleteRejectedRequests($method);
         break;

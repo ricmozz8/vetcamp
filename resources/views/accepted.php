@@ -19,6 +19,8 @@ require_once __DIR__ . '/partials/header.php';
             <header class="header">
                 <h1 class="welcome"> Matrícula </h1>
                 <div class="flex-min">
+                    <button style="background-color: green;" onclick="openModal('exportEnrollmentsModal')" class="main-action-bright secondary"><i
+                            class="fas fa-file-excel"></i> Exportar</button>
                     <button onclick="openModal('massiveEmailModal')" class="main-action-bright secondary"><i
                             class="fas fa-envelope"></i> Enviar mensaje</button>
                 </div>
@@ -220,6 +222,7 @@ require_once __DIR__ . '/partials/header.php';
 
     <?php require_once('partials/footer.php'); ?>
     <?php require_once('modals/manageWaitlistModal.php'); ?>
+    <?php require_once('modals/exportEnrollmentsModal.php'); ?>
     <?php array_walk($sessions, function ($session) {
         $modal_session_class = "{$session['id']}";
         require("modals/manageSessionModal.php");

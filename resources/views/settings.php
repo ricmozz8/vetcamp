@@ -139,7 +139,7 @@ require __DIR__ . '/modals/uploadLiabilityWaiver.php';
                         <button class="main-action-bright primary" onclick="openModal('createAdminModal')"> Crear
                         </button>
                     </div>
-                    <div class="settings-block">
+                    <!-- <div class="settings-block">
                         <p> Desactivar cuentas que no solicitaron </p>
                         <button class="main-action-bright danger" onclick="openModal('confirmDisableUnsolicitedModal')">
                             Desactivar
@@ -150,7 +150,7 @@ require __DIR__ . '/modals/uploadLiabilityWaiver.php';
                         <button class="main-action-bright danger" onclick="openModal('confirmDisableAllModal')">
                             Desactivar
                         </button>
-                    </div>
+                    </div> -->
             </div>
         </div>
 

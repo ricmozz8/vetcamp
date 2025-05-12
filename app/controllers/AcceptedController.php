@@ -176,4 +176,41 @@ class AcceptedController extends Controller
 
         redirect('/admin/accepted');
     }
+
+    public static function exportEnrollments()
+    {
+
+        $sessions = Session::all();
+
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="matricula.csv"');
+
+        $fp = __DIR__ . "/../../storage/private/matricula.csv";
+
+        $columns = [
+            'Nombre',
+            'Correo',
+            'Sesión'
+        ];
+
+        file_put_contents($fp, implode(',', $columns) . "\n", FILE_APPEND);
+
+        foreach ($sessions as $session) {
+
+            $date_string = get_date_spanish($session->start_date, false, false) . ' al ' . get_date_spanish($session->end_date);
+            foreach ($session->students() as $student) {
+                $row = [
+                    $student->first_name . ' ' . $student->last_name,
+                    $student->email,
+                    $session->title . ' (' . $date_string . ')'
+                ];
+
+                file_put_contents($fp, implode(',', $row) . "\n", FILE_APPEND);
+            }
+        }
+
+        readfile($fp);
+        unlink($fp);
+        exit;
+    }
 }
