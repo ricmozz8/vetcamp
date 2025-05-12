@@ -108,10 +108,8 @@ class UserController extends Controller
 
             // reload the new user on session
             Auth::refresh();
-
         }
         redirect($turnaround_route);
-
     }
 
 
@@ -198,12 +196,10 @@ class UserController extends Controller
                 'phone_number' => null,
                 'type' => 'deleted'
             ]);
-
         }
 
         $_SESSION['message'] = 'El usuario ha sido eliminado.';
         redirect('/admin/registered');
-
     }
 
     /**
@@ -296,13 +292,10 @@ class UserController extends Controller
                 ErrorLog::log($e->getMessage(), $e->getFile() . ' on line ' . $e->getLine(), $e->getTraceAsString());
                 $_SESSION['error'] = 'Hubo un error al eliminar tu cuenta';
                 redirect($turnaround_route);
-
             }
             // The Auth provider will log out the user automatically when the user is not found
             // if the account was not deleted then the turnaround will return to the profile
             Auth::user();
-
-
         }
     }
 
@@ -325,13 +318,10 @@ class UserController extends Controller
 
                 if (empty($new_phone)) {
                     $_SESSION['error'] = 'El teléfono no puede estar vacío';
-
                 } else {
                     Auth::user()->update(['phone_number' => $new_phone]);
                     $message = 'Teléfono actualizado exitosamente';
                 }
-
-
             } else if ($action === 'physical') {
 
                 $aline1 = filter_input(INPUT_POST, 'physical_aline1');
@@ -352,7 +342,6 @@ class UserController extends Controller
                             'city' => $city,
                             'zip_code' => $zip
                         ]);
-
                     } else {
                         $physical_address->update([
                             'aline1' => $aline1,
@@ -364,7 +353,6 @@ class UserController extends Controller
 
                     $message = 'Dirección física actualizada exitosamente';
                 }
-
             } else if ($action === 'postal') {
                 $aline1 = filter_input(INPUT_POST, 'postal_aline1');
                 $aline2 = filter_input(INPUT_POST, 'postal_aline2');
@@ -423,17 +411,13 @@ class UserController extends Controller
                     }
                 }
                 $message = 'Dirección de la escuela actualizada exitosamente';
-
             }
-
         }
 
         if ($message !== '')
             $_SESSION['message'] = $message;
 
         redirect('/profile');
-
-
     }
 
     public static function rescindApplication($method)
@@ -446,20 +430,17 @@ class UserController extends Controller
             } else {
                 $user = Auth::user();
 
-
-                $application = $user->application();
-                if ($application) {
+                try {
+                    $application = $user->application();
                     $application->hard_delete();
+                } catch (ModelNotFoundException $e) {
+                    $_SESSION['error'] = 'No tienes una solicitud hecha';
                 }
-
 
                 try {
                     $enrollment = Enrollment::findBy(['user_id' => $user->user_id]);
-                    if ($enrollment) {
-                        $enrollment->delete();
-                    }
+                    $enrollment->delete();
                 } catch (ModelNotFoundException $e) {
-                    $_SESSION['error'] = 'No tienes una solicitud activa.';
                 }
 
 
@@ -532,7 +513,6 @@ class UserController extends Controller
             }
 
             redirect('/admin/p?user=' . $user_id);
-
         }
     }
 
@@ -578,10 +558,6 @@ class UserController extends Controller
                 $_SESSION['error'] = "El código OTP esta incorrecto.";
                 render_view('reactiveUser', [], 'Reactive');
             }
-
         }
-
     }
 }
-
-
