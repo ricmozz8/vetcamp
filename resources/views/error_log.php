@@ -7,115 +7,118 @@ require_once __DIR__ . '/partials/header.php';
 ?>
 
 <body>
-<?php require_once('partials/profileNav.php'); ?>
-<div class="back-dash">
-    <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
+    <?php require_once('partials/profileNav.php'); ?>
+    <div class="back-dash">
+        <?php require __DIR__ . '/partials/sidebarAdmin.php'; ?>
 
-    <!-- Main content area -->
-    <div class="main-content">
-
-        <div class="storage-level-box">
-            <h2><i class="fas fa-hard-drive"></i> Storage Level</h2>
-            <p>Current server space and usage on the <code>Storage</code> folder</p>
-
-            <?php if (isset($space) && $space['total_percent'] >= 80): ?>
-            <div class="danger-box">
-                <h2> <i class="fas fa-triangle-exclamation"></i> Caution!</h2>
-                <p>The current server disk is almost full, free or move this installation or the application won't work if it reaches capacity.</p>
-            </div>
-            <?php endif; ?>
-
-            <div class="storage-bar">
-                <div class="storage-bar-fill" style="width: <?= isset($space) ? round($space['storage_percent']) : 0 ?>%;"></div>
-                <div class="storage-bar-fill-other" style="width: <?= isset($space) ? round($space['total_percent']) : 0 ?>%;"></div>
-
-            </div>
-            <p>Using <?= isset($space) ?  sizeReadable($space['folderSize']) : 0 ?>
-                of <?= isset($space) ?  sizeReadable($space['total']) : 0 ?>
-            (<?= round($space['total_percent']) ?>%)
+        <!-- Main content area -->
+        <div class="main-content">
+            <p class="warning-box" style="margin-top: 20px; width: fit-content;">
+                <i class="fas fa-triangle-exclamation"></i>
+                Esta sección es para los desarrolladores, por lo que no tiene que tomar ninguna acción aquí.
             </p>
 
+            <div class="storage-level-box">
+                <h2><i class="fas fa-hard-drive"></i> Storage Level</h2>
+                <p>Current server space and usage on the <code>Storage</code> folder</p>
 
-            <div class="color-legend">
-                <div class="color-label">
-                    <span class="c-sq square-on-use"></span>
-                    <abbr title="Size of the source code including the storage folder that includes submitted documents">
-                    <p>Using</p>
-                    </abbr>
-                </div>
-                <div class="color-label">
-                    <span class="c-sq square-other-using"></span>
-                    <abbr title="Other files used appart from the source code">
-                    <p>Other files</p>
-                    </abbr>
-                </div>
-                <div class="color-label">
-                    <span class="c-sq square-free"></span>
+                <?php if (isset($space) && $space['total_percent'] >= 80): ?>
+                    <div class="danger-box">
+                        <h2> <i class="fas fa-triangle-exclamation"></i> Caution!</h2>
+                        <p>The current server disk is almost full, free or move this installation or the application won't work if it reaches capacity.</p>
+                    </div>
+                <?php endif; ?>
 
-                    <abbr title="Available space on the server">
-                    <p>Free</p>
-                    </abbr>
+                <div class="storage-bar">
+                    <div class="storage-bar-fill" style="width: <?= isset($space) ? round($space['storage_percent']) : 0 ?>%;"></div>
+                    <div class="storage-bar-fill-other" style="width: <?= isset($space) ? round($space['total_percent']) : 0 ?>%;"></div>
+
                 </div>
+                <p>Using <?= isset($space) ?  sizeReadable($space['folderSize']) : 0 ?>
+                    of <?= isset($space) ?  sizeReadable($space['total']) : 0 ?>
+                    (<?= round($space['total_percent']) ?>%)
+                </p>
+
+
+                <div class="color-legend">
+                    <div class="color-label">
+                        <span class="c-sq square-on-use"></span>
+                        <abbr title="Size of the source code including the storage folder that includes submitted documents">
+                            <p>Using</p>
+                        </abbr>
+                    </div>
+                    <div class="color-label">
+                        <span class="c-sq square-other-using"></span>
+                        <abbr title="Other files used appart from the source code">
+                            <p>Other files</p>
+                        </abbr>
+                    </div>
+                    <div class="color-label">
+                        <span class="c-sq square-free"></span>
+
+                        <abbr title="Available space on the server">
+                            <p>Free</p>
+                        </abbr>
+                    </div>
+                </div>
+
+
             </div>
 
+            <br>
 
-        </div>
-        <p class="warning-box">
-            Esta sección es para los desarrolladores, por lo que no tiene que tomar ninguna acción aquí.
-            Esta parte se removerá más adelante.
-        </p>
-        <div class="stat-card">
-            <div class="stat-header">
-                <div class="flex-min">
-                    <h2 class="stat-title">
-                        <i class="fas fa-bug"></i>
-                        Crash reports
-                    </h2>
-                    <p>Autogenerated <i>VETCAMP</i> crash report for development purposes. </p>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="flex-min">
+                        <h2 class="stat-title">
+                            <i class="fas fa-bug"></i>
+                            Crash reports
+                        </h2>
+                        <p>Autogenerated <i>VETCAMP</i> crash report for development purposes. </p>
+                    </div>
+
+                    <div class="flex-min">
+
+                        <a target="_blank" class="main-action-bright tertiary" href="/admin/dev/errors/download">
+                            <i class="fas fa-download"></i>
+                            Download
+                        </a>
+                        <a onclick="openModal('clearLogModal')" class="main-action-bright danger" href="#">
+                            <i class="fas fa-broom"></i>
+                        </a>
+                    </div>
                 </div>
+                <div class="stat-number">
 
-                <div class="flex-min">
-
-                    <a target="_blank" class="main-action-bright tertiary" href="/admin/dev/errors/download">
-                        <i class="fas fa-download"></i>
-                        Download
-                    </a>
-                    <a onclick="openModal('clearLogModal')" class="main-action-bright danger" href="#">
-                        <i class="fas fa-broom"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="stat-number">
-
-                <table class="error-table">
-                    <tr>
-                        <th>Type</th>
-                        <th>Date</th>
-                        <th>Error</th>
-                        <th>File</th>
-                        <th>Trace</th>
-                    </tr>
-                    <tbody>
-                    <?php foreach ($errors as $error): ?>
+                    <table class="error-table">
                         <tr>
-                            <td class="error-type-<?= $error['type'] ?>"><?= $error['type'] ?></td>
-                            <td><?= $error['date'] ?></td>
-                            <td><?= $error['error'] ?></td>
-                            <td><?= $error['file'] ?></td>
-                            <td><?= $error['trace'] ?></td>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Error</th>
+                            <th>File</th>
+                            <th>Trace</th>
                         </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
-                <br><br><br>
+                        <tbody>
+                            <?php foreach ($errors as $error): ?>
+                                <tr>
+                                    <td class="error-type-<?= $error['type'] ?>"><?= $error['type'] ?></td>
+                                    <td><?= $error['date'] ?></td>
+                                    <td><?= $error['error'] ?></td>
+                                    <td><?= $error['file'] ?></td>
+                                    <td><?= $error['trace'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    <br><br><br>
+
+                </div>
+
+                <?php require_once __DIR__ . '/modals/clearLogModal.php'; ?>
 
             </div>
-
-            <?php require_once __DIR__ . '/modals/clearLogModal.php'; ?>
-
         </div>
     </div>
-</div>
 </body>
 
 </html>
