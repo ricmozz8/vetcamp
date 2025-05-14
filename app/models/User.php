@@ -153,6 +153,7 @@ class User extends Model
         } catch (Exception $e) {
            return [];
         }
+        
     }
 
     public static function rejectedApplicants()
