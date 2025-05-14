@@ -41,7 +41,7 @@ require __DIR__ . '/partials/header.php'; ?>
         <br>
 
         <p class="subtext">Iconografía por <a style="text-decoration: underline; cursor: pointer;" target="_blank" href="https://icons8.com">Icons8</a></p>
-        <p class="subtext">Github <a style="text-decoration: underline; cursor: pointer;" target="_blank" href="https://github.com/ricmozz8/vetcamp">Github <i class="fas fa-external-link"></i></a></p>
+        <p class="subtext"> <a style="text-decoration: underline; cursor: pointer;" target="_blank" href="https://github.com/ricmozz8/vetcamp">Github <i class="fas fa-external-link"></i></a></p>
 
 
     </div>
