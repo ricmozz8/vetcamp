@@ -64,7 +64,7 @@ class SettingsController extends Controller
         for ($i = 1; $i <= 4; $i++) {
             // resources/assets/img/homePage/
             $pathToAssets = realpath(__DIR__ . '/../../resources/assets/img/homePage');
-            
+
             if ($pathToAssets === false) {
                 $customImages[$i] = $defaultImages[$i];
                 continue;
@@ -106,11 +106,30 @@ class SettingsController extends Controller
     public static function updateMessage($request_method)
     {
         if ($request_method == 'POST') {
-            $message = Message::find($_POST['id']);
+            $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+            $content = filter_input(INPUT_POST, 'content', FILTER_DEFAULT);
+            $category = filter_input(INPUT_POST, 'category', FILTER_DEFAULT);
 
-            // update the message and save it to the database
-            $message->update(['content' => $_POST['content']]);
+            if (!$content || !$category) {
+                $_SESSION['error'] = 'Por favor complete todos los campos';
+                redirect('/admin/settings');
+            }
+
+            try {
+                $message = Message::find($id);
+                // update the message and save it to the database
+                $message->update(['content' => $content]);
+            } catch (ModelNotFoundException $notFound) {
+                // handle here when the message is not found
+                Message::create(
+                    [
+                        'content' => $content,
+                        'category' => $category
+                    ]
+                );
+            }
         }
+
         $_SESSION['message'] = 'Se ha editado el mensaje exitosamente';
         redirect('/admin/settings');
     }
@@ -133,7 +152,7 @@ class SettingsController extends Controller
 
         $_SESSION['message'] = 'Se han editado las fechas límite exitosamente';
         Audit::register('Actualizó las fechas límite', 'update');
-        
+
         redirect('/admin/settings');
     }
     public static function updateSession($request_method)
@@ -258,7 +277,7 @@ class SettingsController extends Controller
                 'type' => 'admin',
             ]);
 
-            if($notify_email){
+            if ($notify_email) {
 
                 $email_body = "Se te ha registrado como administrador en VETCAMP. Tus credenciales de acceso son: \nCorreo: $user->email \nContraseña: $password\n\nPuedes editar tus datos de acceso en tu perfil.";
 
@@ -388,7 +407,6 @@ class SettingsController extends Controller
 
             $_SESSION['message'] = 'El usuario ha sido eliminado exitosamente.';
             redirect('/admin/settings');
-            
         }
         if (!Auth::check() || Auth::user()->type !== 'admin') {
             $_SESSION['error'] = 'Acceso no autorizado.';
@@ -397,7 +415,7 @@ class SettingsController extends Controller
     }
 
     public static function editPictureInHomePage($method)
-    {  
+    {
         if ($method === 'POST') {
             $selectedPicture = (int)($_POST['selected_slot'] ?? 0);
             // validation of the slot
@@ -409,13 +427,13 @@ class SettingsController extends Controller
 
             if (isset($_POST['delete_image']) && $selectedPicture) {
                 $deleted = deleteAssetFileByPattern("img/homePage/picture{$selectedPicture}.*");
-            
+
                 if ($deleted) {
                     $_SESSION['message'] = "Imagen eliminada correctamente.";
                 } else {
                     $_SESSION['error'] = "No se encontró una imagen para eliminar.";
                 }
-            
+
                 redirect('/admin/settings');
                 return;
             }
@@ -425,7 +443,7 @@ class SettingsController extends Controller
                 redirect('/admin/settings');
                 return;
             }
-            
+
             $maxSize = to_byte_size("8MB");
 
             if ($_FILES['uploaded_image']['size'] > $maxSize) {
