@@ -13,11 +13,13 @@ require __DIR__ . '/partials/header.php'; ?>
         <br><br>
 
         <h2>Soporte y Gestión</h2>
-        <p>Laurymar De Jesús</p>
+        <p>Laurymar De Jesús Cruz</p>
+
+        <p>Carlos A. Valle Sandoval</p>
         <p class="subtext">Centro de Tecnologías de la Información (UPRA)</p>
         <br>
 
-        <h2>Desarrolladores</h2>
+        <h2>Desarrollo</h2>
         <p class="subtext">Departamento de Ciencias de Cómputos (UPRA)</p>
         <p>Oscar A. Báez Rico</p>
         <p>Joseph A. Figueroa Romero</p>
@@ -26,22 +28,25 @@ require __DIR__ . '/partials/header.php'; ?>
         <p>André S. Negrón Pérez</p>
         <p>Rosana Rodríguez Berríos</p>
         <br>
-        <h2>Diseñado por</h2>
+        <h2>Diseño y Arquitectura</h2>
         <p>Ricardo L. Morales Crespo</p>
         <a style="text-align: center; margin: auto;" class="main-action-bright no-deco-action" href="/branding">Ver recursos de marca</a>
-        <br>
+        <br><br><br>
 
-    
+
         <h2>Agradecimientos</h2>
         <p>Dra. Rebeka Sanabria León</p>
-        <p class="subtext">Programa de Tecnología Veterinaria (UPRA)</p>
+        <p>Kenializ Rosado Molina</p>
+        <p class="subtext">Departamento de biología (UPRA)</p>
         <p>Dra. Eliana Valenzuela Andrade</p>
+        <p>Prof. Emilio Pérez Arnau</p>
         <p class="subtext">Departamento de Ciencias de Cómputos (UPRA)</p>
 
         <br>
 
         <p class="subtext">Iconografía por <a style="text-decoration: underline; cursor: pointer;" target="_blank" href="https://icons8.com">Icons8</a></p>
-        
+        <p class=""> <a style="text-decoration: underline; cursor: pointer;" target="_blank" href="https://github.com/ricmozz8/vetcamp">Github <i class="fas fa-external-link"></i></a></p>
+
 
     </div>
 

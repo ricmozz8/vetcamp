@@ -16,66 +16,72 @@
             <small id="waiver_error" style="color: red; display: none;">Archivo inválido. Debe ser un PDF menor a 10MB.</small>
             <br><br>
 
-            <button type="submit" class="main-action-bright primary">
-                <i class="las la-upload"></i> Subir archivo
-            </button>
+            <div class="modal-actions">
+                <a target="_blank" href="/descargoresponsabilidad" type="button" class="main-action-bright tertiary">Ver relevo
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+                <button type="submit" class="main-action-bright primary">
+                    <i class="las la-upload"></i> Subir archivo
+                </button>
+            </div>
         </form>
 
     </div>
     <!-- Deactivate red warning -->
     <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const waiverInput = document.getElementById("waiver_pdf");
-        if (waiverInput) {
-            const originalValidateExt = window.validateExt;
-            const submitButton = waiverInput.form.querySelector('button[type="submit"]');
-            const errorMessage = document.getElementById("waiver_error");
-            const MAX_SIZE = 10 * 1024 * 1024;
+        document.addEventListener("DOMContentLoaded", () => {
+            const waiverInput = document.getElementById("waiver_pdf");
+            if (waiverInput) {
+                const originalValidateExt = window.validateExt;
+                const submitButton = waiverInput.form.querySelector('button[type="submit"]');
+                const errorMessage = document.getElementById("waiver_error");
+                const MAX_SIZE = 10 * 1024 * 1024;
 
-            window.validateExt = function(fileName, accept, input) {
-                if (input.id === "waiver_pdf") return true;
-                return originalValidateExt(fileName, accept, input);
-            };
+                window.validateExt = function(fileName, accept, input) {
+                    if (input.id === "waiver_pdf") return true;
+                    return originalValidateExt(fileName, accept, input);
+                };
 
-            // for size
-            window.validateSize = function(file, input) {
-                if (input.id === "waiver_pdf") return true;
-                return originalValidateSize(file, input);
-            };
-            function validateFile() {
-            const file = waiverInput.files[0];
+                // for size
+                window.validateSize = function(file, input) {
+                    if (input.id === "waiver_pdf") return true;
+                    return originalValidateSize(file, input);
+                };
 
-            if (!file) {
-                setInvalid();
-                return;
+                function validateFile() {
+                    const file = waiverInput.files[0];
+
+                    if (!file) {
+                        setInvalid();
+                        return;
+                    }
+
+                    const isPDF = file.type === "application/pdf";
+                    const isSizeOk = file.size <= MAX_SIZE;
+
+                    if (isPDF && isSizeOk) {
+                        setValid();
+                    } else {
+                        setInvalid();
+                    }
+                }
+
+                function setValid() {
+                    waiverInput.style.border = "2px solid green";
+                    errorMessage.style.display = "none";
+                    submitButton.disabled = false;
+                }
+
+                function setInvalid() {
+                    waiverInput.style.border = "2px solid red";
+                    errorMessage.style.display = "block";
+                    submitButton.disabled = true;
+                }
+
+                waiverInput.addEventListener("change", validateFile);
+                submitButton.disabled = true;
             }
 
-            const isPDF = file.type === "application/pdf";
-            const isSizeOk = file.size <= MAX_SIZE;
-
-            if (isPDF && isSizeOk) {
-                setValid();
-            } else {
-                setInvalid();
-            }
-        }
-
-        function setValid() {
-            waiverInput.style.border = "2px solid green";
-            errorMessage.style.display = "none";
-            submitButton.disabled = false;
-        }
-
-        function setInvalid() {
-            waiverInput.style.border = "2px solid red";
-            errorMessage.style.display = "block";
-            submitButton.disabled = true;
-        }
-
-        waiverInput.addEventListener("change", validateFile);
-            submitButton.disabled = true;
-        }
-         
-    });
+        });
     </script>
 </div>
