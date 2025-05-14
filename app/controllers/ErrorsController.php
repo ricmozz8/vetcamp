@@ -18,7 +18,7 @@ class ErrorsController extends Controller
             redirect('/login');
         }
 
-        render_view('error_log', ['errors'=>  ErrorLog::asArray(), 'selected' => 'errors', 'space'=>Storage::get_space_data()], 'Error Log');
+        render_view('error_log', ['errors'=>  array_reverse(ErrorLog::asArray()), 'selected' => 'errors', 'space'=>Storage::get_space_data()], 'Error Log');
 
     }
 
