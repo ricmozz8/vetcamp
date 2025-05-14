@@ -31,7 +31,7 @@ require __DIR__ . '/partials/header.php'; ?>
         <a style="text-align: center; margin: auto;" class="main-action-bright no-deco-action" href="/branding">Ver recursos de marca</a>
         <br>
 
-    
+
         <h2>Agradecimientos</h2>
         <p>Dra. Rebeka Sanabria León</p>
         <p class="subtext">Programa de Tecnología Veterinaria (UPRA)</p>
@@ -41,7 +41,8 @@ require __DIR__ . '/partials/header.php'; ?>
         <br>
 
         <p class="subtext">Iconografía por <a style="text-decoration: underline; cursor: pointer;" target="_blank" href="https://icons8.com">Icons8</a></p>
-        
+        <p class="subtext">Github <a style="text-decoration: underline; cursor: pointer;" target="_blank" href="https://github.com/ricmozz8/vetcamp">Github <i class="fas fa-external-link"></i></a></p>
+
 
     </div>
 
