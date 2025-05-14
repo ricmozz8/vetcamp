@@ -151,7 +151,7 @@ class User extends Model
             return $approvedApplicants;
 
         } catch (Exception $e) {
-            throw new Exception("An error occurred: " . $e->getMessage());
+           return [];
         }
     }
 
