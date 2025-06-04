@@ -73,6 +73,7 @@ switch ($path) {
         break;
     case '/admin/accepted/enroll':
         AcceptedController::enroll($method);
+        break;
     case '/admin/settings':
         SettingsController::index();
         break;
