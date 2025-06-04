@@ -468,6 +468,31 @@ class UserApplicationController extends Controller
         }
     }
 
+    public static function videoEssayLink(string $method)
+    {
+        $application = self::getApplication(false);
+
+        if ($method === 'POST') {
+            $link = filter_input(INPUT_POST, 'video_essay_link', FILTER_SANITIZE_URL);
+
+            if (!empty($link) && filter_var($link, FILTER_VALIDATE_URL)) {
+                $application->update([
+                    'video_essay_link' => $link,
+                    'url_video_essay' => null
+                ]);
+
+                Auth::refresh();
+                $_SESSION['message'] = 'Enlace de video guardado correctamente';
+            } else {
+                $_SESSION['error'] = 'Debes proporcionar un enlace válido.';
+            }
+
+            redirect('/apply/application/documents');
+        } else {
+            redirect('/apply/application/documents');
+        }
+    }
+
     public static function confirm($method)
     {
         $application = self::getApplication();

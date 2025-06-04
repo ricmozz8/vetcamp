@@ -166,7 +166,7 @@ class Application extends Model
         $count = 0;
 
         foreach ($this->attributes as $key => $value) {
-            if (strpos($key, 'url') !== false and $value != null) {
+            if ((strpos($key, 'url') !== false && $value != null) || ($key === 'video_essay_link' && $value != null)) {
                 $count++;
             }
         }

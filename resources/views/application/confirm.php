@@ -141,7 +141,7 @@ require __DIR__ . '../../partials/header.php';
                     </p>
 
                     <p class="file-submitted">
-                        <?php if ($application->url_video_essay !== null && $application->url_video_essay !== '') { ?>
+                        <?php if (($application->url_video_essay !== null && $application->url_video_essay !== '') || ($application->video_essay_link !== null && $application->video_essay_link !== '')) { ?>
                             <span class="doc-ok"><i class="fas fa-check-circle"></i></span>
                         <?php } else { ?>
                             <span class="doc-no"><i class="fas fa-times"></i></span>

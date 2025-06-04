@@ -178,20 +178,19 @@ require __DIR__ . '../../partials/header.php';
             <div class="document-group">
                 <div class="upload-box">
 
-                    <?php if (isset($saved_documents['video_essay'])) { ?>
-                        <?php $video_essay = $saved_documents['video_essay']; ?>
-                        <label formats="mp4" for="video_essay"><span> <i class="fas fa-edit"></i> Editar archivo</span></label>
-                        <input accept="video/*" value=" <?= $video_essay['name'] ?>" type="file" id="video_essay"
-                               name="video_essay" onchange="updateFileName(this)">
-                    <?php } else { ?>
-                        <label formats="mp4" for="video_essay"> <i class="fas fa-file-upload"></i>
-                            <span> Subir archivo</span></label>
-                        <input accept="video/*" type="file" id="video_essay" name="video_essay"
-                               onchange="updateFileName(this)">
-                    <?php } ?>
+                    <input accept="video/*" type="file" id="video_essay" name="video_essay"
+                           onchange="updateFileName(this)" style="display:none">
+                    <a href="#" class="btn-download" onclick="openModal('videoChoiceModal')">
+                        <i class="fas fa-video"></i>
+                        <?php if (isset($saved_documents['video_essay']) || !empty($application->video_essay_link)) { ?>
+                            Cambiar video
+                        <?php } else { ?>
+                            Agregar video
+                        <?php } ?>
+                    </a>
                 </div>
                 <div class="check-labeled">
-                    <label>Ensayo en video (MP4)</label>
+                    <label>Ensayo en video (MP4 o enlace)</label>
                     <?php if (isset($saved_documents['video_essay'])) { ?>
                         <a href="#" onclick="showModal('fileViewPopup-<?= $video_essay['name'] ?>')"
                            class="btn-download">
@@ -199,6 +198,10 @@ require __DIR__ . '../../partials/header.php';
                         </a>
                         <a href="#" class="btn-delete" onclick="confirmDeleteSingleDocumentModal('<?= $video_essay['name'] ?>')">
                             <i class="fas fa-trash-alt"></i> Borrar
+                        </a>
+                    <?php } elseif (!empty($application->video_essay_link)) { ?>
+                        <a href="<?= $application->video_essay_link ?>" target="_blank" class="btn-download">
+                            <i class="fas fa-eye"></i> Ver enlace
                         </a>
                     <?php } ?>
                 </div>
@@ -275,6 +278,8 @@ require __DIR__ . '../../partials/header.php';
 <?php foreach ($saved_documents as $file) { ?>
     <?php require(__DIR__ . '../../modals/fileViewPopup.php'); ?>
 <?php } ?>
+<?php require(__DIR__ . '../../modals/videoLinkModal.php'); ?>
+<?php require(__DIR__ . '../../modals/videoChoiceModal.php'); ?>
 
 <?php require_once __DIR__ . '../../modals/confirmDeleteSingleDocumentModal.php';?>
 
