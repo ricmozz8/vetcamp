@@ -389,9 +389,12 @@ class UserApplicationController extends Controller
 
                 Storage::store('private', $destination, file_get_contents($document['tmp_name']));
 
-                $application->update([
-                    "url_$key" => $destination
-                ]);
+                $data = ["url_$key" => $destination];
+                if ($key === 'video_essay') {
+                    $data['video_essay_link'] = null;
+                }
+
+                $application->update($data);
             }
 
             // refresh the user with the new information on the database

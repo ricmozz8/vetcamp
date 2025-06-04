@@ -192,6 +192,7 @@ require __DIR__ . '../../partials/header.php';
                 <div class="check-labeled">
                     <label>Ensayo en video (MP4 o enlace)</label>
                     <?php if (isset($saved_documents['video_essay'])) { ?>
+                        <?php $video_essay = $saved_documents['video_essay']; ?>
                         <a href="#" onclick="showModal('fileViewPopup-<?= $video_essay['name'] ?>')"
                            class="btn-download">
                             <i class="fas fa-eye"></i> Visualizar
