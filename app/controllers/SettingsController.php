@@ -414,6 +414,52 @@ class SettingsController extends Controller
         }
     }
 
+    /**
+     * Deletes all users without an application.
+     */
+    public static function deleteUsersWithoutApplication($request_method)
+    {
+        if ($request_method !== 'POST') {
+            $_SESSION['error'] = 'Método no permitido.';
+            redirect('/admin/settings');
+        }
+
+        if (!Auth::check() || Auth::user()->type !== 'admin') {
+            $_SESSION['error'] = 'Acceso no autorizado.';
+            redirect('/login');
+        }
+
+        try {
+            $users = User::withoutApplication();
+            $deleted = 0;
+
+            foreach ($users as $user) {
+                $delete_id = rand(10000, 99999);
+                $user->update([
+                    'deleted_at' => date('Y-m-d H:i:s'),
+                    'first_name' => 'deleted',
+                    'last_name' => 'user-' . $delete_id,
+                    'email' => 'deleted-user-' . $delete_id,
+                    'status' => 'disabled',
+                    'phone_number' => null,
+                    'type' => 'deleted'
+                ]);
+                $deleted++;
+            }
+
+            if ($deleted > 0) {
+                $_SESSION['message'] = $deleted . ' usuarios eliminados exitosamente.';
+                Audit::register('Eliminó ' . $deleted . ' usuarios sin solicitud.', 'delete');
+            } else {
+                $_SESSION['message'] = 'No se encontraron usuarios sin solicitud para eliminar.';
+            }
+        } catch (Exception $e) {
+            $_SESSION['error'] = 'Ocurrió un error al eliminar usuarios: ' . $e->getMessage();
+        }
+
+        redirect('/admin/settings');
+    }
+
     public static function editPictureInHomePage($method)
     {
         if ($method === 'POST') {
