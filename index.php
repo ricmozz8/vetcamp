@@ -31,7 +31,10 @@ date_default_timezone_set('America/Puerto_Rico');
 // Let the router handle all requests
 Storage::check_free();
 
-
-include 'routes/web.php';
+if (strpos($_SERVER['REQUEST_URI'], '/api/') === 0) {
+    include 'routes/api.php';
+} else {
+    include 'routes/web.php';
+}
 
 

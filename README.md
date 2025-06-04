@@ -57,3 +57,13 @@ The same will work for views.
 
 *PD: Feel free to extend this script to autogenerate files*
 
+## Mini API
+
+The project exposes a few unauthenticated JSON endpoints under `api/v1`:
+
+- `/api/v1/users/stats` – anonymous counts of user accounts by status
+- `/api/v1/requests/stats` – totals of applications by status
+- `/api/v1/server/status` – basic disk usage metrics
+- `/api/v1/dates` – session and request period information
+
+
