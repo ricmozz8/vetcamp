@@ -162,7 +162,7 @@ require_once __DIR__ . '/modals/confirmDownloadApplicationsModal.php';
                     ?>
 
                     <?php if ($currentPage > 1): ?>
-                        <a href="<?= $baseUrl . '&page=' . ($currentPage - 1) ?>" class="page-number">Anterior</a>
+                        <a href="<?= $baseUrl . '&page=' . ($currentPage - 1) ?>" class="page-number"><i class="fas fa-arrow-left"></i></a>
                     <?php endif; ?>
 
                     <?php
@@ -194,7 +194,7 @@ require_once __DIR__ . '/modals/confirmDownloadApplicationsModal.php';
                     ?>
 
                     <?php if ($currentPage < $totalPages): ?>
-                        <a href="<?= $baseUrl . '&page=' . ($currentPage + 1) ?>" class="page-number">Siguiente</a>
+                        <a href="<?= $baseUrl . '&page=' . ($currentPage + 1) ?>" class="page-number"><i class="fas fa-arrow-right"></i></a>
                     <?php endif; ?>
                 </div>
 
