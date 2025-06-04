@@ -665,6 +665,10 @@ label[for="file"]:active {
 .all_sol table {
   width: 100%;
   border-collapse: collapse;
+  margin: 1em 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .all_sol th,
@@ -678,6 +682,14 @@ label[for="file"]:active {
   background-color: #f9f9f9;
   font-weight: bold;
   color: #333;
+}
+
+.all_sol tbody tr:nth-child(even) {
+  background-color: var(--white-color);
+}
+
+.all_sol tbody tr:hover {
+  background-color: var(--white-color-shade-1);
 }
 
 .all_sol .avatar {

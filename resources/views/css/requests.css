@@ -79,15 +79,16 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
-  overflow: scroll;
   margin: 1em 0;
+  border: 1px solid var(--bright-shade);
+  border-radius: 6px;
+  overflow: hidden;
 }
 .listed-table th,
 .listed-table td {
   text-align: left;
   padding: 15px;
-
-
+  border-bottom: 1px solid var(--bright-shade);
 }
 
 .listed-table td.selectable {
@@ -100,7 +101,17 @@
 
 
 .listed-table th {
+  background-color: #f9f9f9;
   font-weight: bold;
+  color: #333;
+}
+
+.listed-table tbody tr:nth-child(even) {
+  background-color: var(--white-color);
+}
+
+.listed-table tbody tr:hover {
+  background-color: var(--white-color-shade-1);
 }
 .listed-table .avatar {
   width: 30px;
