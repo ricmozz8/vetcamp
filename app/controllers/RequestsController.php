@@ -33,16 +33,6 @@ class RequestsController extends Controller
         // Get all applicants with the users included
         $allApplicants = Application::allWith('users', 'user_id', ['status' => 'status']);
 
-        // Calculate total pages
-        $totalUsers = count($allApplicants);
-        $totalPages = ceil($totalUsers / $perPage);
-
-        // Ensure the current page is within bounds
-        $page = max(1, min($page, $totalPages));
-
-        // Get the slice of users for the current page
-        $offset = ($page - 1) * $perPage;
-
         $arrayUsers = [];
 
         // filtrar las solicitudes
@@ -107,15 +97,23 @@ class RequestsController extends Controller
             return $dateComparison;
         });
 
+        // Filtrar por búsqueda
         if (!empty($s)) {
             $searchTerm = strtolower($s);
-
-            $users = array_filter($arrayUsers, function ($user) use ($searchTerm) {
-                return strpos($user->first_name, $searchTerm) !== false || strpos($user->last_name, $searchTerm) !== false || strpos($user->email, $searchTerm) !== false;
+            $arrayUsers = array_filter($arrayUsers, function ($user) use ($searchTerm) {
+                return strpos(strtolower($user->first_name), $searchTerm) !== false ||
+                    strpos(strtolower($user->last_name), $searchTerm) !== false ||
+                    strpos(strtolower($user->email), $searchTerm) !== false;
             });
-        } else {
-            $users = array_slice($arrayUsers, $offset, $perPage);
         }
+
+        // Calcular paginación después de filtrar
+        $totalUsers = count($arrayUsers);
+        $totalPages = max(1, ceil($totalUsers / $perPage));
+        $page = max(1, min($page, $totalPages));
+        $offset = ($page - 1) * $perPage;
+
+        $users = array_slice($arrayUsers, $offset, $perPage);
 
 
         render_view('requests', [

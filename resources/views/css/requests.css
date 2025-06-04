@@ -118,27 +118,21 @@
   text-decoration: underline;
 }
 .listed-table .pagination {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-
+  margin-top: 16px;
 }
 .listed-table .page-number {
-  margin: 0 4px;
-  padding: 8px 12px;
   border: 1px solid var(--bright-shade);
-  border-radius: 4px;
-  text-decoration: none;
+  border-radius: 6px;
 }
-.listed-table .page-number:hover {
-  background-color: #f5f5f5;
-}
-
+.listed-table .page-number:hover,
 .listed-table .page-number.active {
   background-color: var(--secondary-color-default);
   color: var(--white-color);
   font-weight: bold;
-
+}
+.listed-table .page-ellipsis {
+  color: var(--bright-shade);
+  padding: 6px;
 }
 .profile-picture{
     width: 40px;
