@@ -33,10 +33,8 @@ class ApiController extends Controller
 
     public static function serverStatus()
     {
-        self::connect();
-        $space = Storage::get_space_data();
         header('Content-Type: application/json');
-        echo json_encode($space);
+        echo json_encode(['status' => 'ok']);
         exit;
     }
     public static function userStats()
