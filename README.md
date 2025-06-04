@@ -56,4 +56,3 @@ This will generate a controller under the
 The same will work for views.
 
 *PD: Feel free to extend this script to autogenerate files*
-
