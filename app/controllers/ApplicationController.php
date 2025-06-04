@@ -188,21 +188,15 @@ class ApplicationController extends Controller
     {
         try {
             // Set the default file name
-            $filePath = 'solicitudes_archivadas_' . date('Y-m-d_H-i-s') . '.csv';
+            $filePath = 'solicitudes_archivadas_' . date('Y-m-d_H-i-s') . '.zip';
 
-            // Open the CSV file for writing
-            $file = fopen($filePath, 'w');
-            if (!$file) {
-                $_SESSION['error'] = "Error opening file for writing.";
+            // Create the ZIP archive
+            $zip = new ZipArchive();
+            if ($zip->open($filePath, ZipArchive::CREATE) !== true) {
+                $_SESSION['error'] = "Error al crear el archivo ZIP.";
                 redirect('/admin/settings');
                 return;
             }
-
-            // Add UTF-8 BOM for correct encoding
-            fwrite($file, "\xEF\xBB\xBF");
-
-            // Write the CSV header
-            fputcsv($file, ['Nombre', 'Correo', 'Creado En', 'Evaluado En', 'Nombre del Evaluador', 'Decisión Final']);
 
             // Fetch all applications
             $applications = Application::all();
@@ -213,69 +207,32 @@ class ApplicationController extends Controller
             }
             foreach ($applications as $application) {
                 try {
-                    // Get the internal status key (e.g., 'unsubmitted', 'approved', etc.)
                     $internalStatusKey = array_search($application->status, Application::$statusParsings);
-
-                    // Skip if the status is 'unsubmitted' (i.e., 'Sin subir')
                     if ($internalStatusKey === 'unsubmitted') {
-                        //   file_put_contents('debug_log.txt', "Skipping application ID: {$application->id_application} because the status is 'unsubmitted' ('Sin subir')\n", FILE_APPEND);
-                        continue; // Skip this iteration if the status is 'unsubmitted'
+                        continue;
                     }
 
-                    // Get the user data
                     $user = User::find($application->user_id);
                     if (!$user) {
-                        continue; // Skip if user data is missing
+                        continue;
                     }
 
-                    // Prepare user and application data
-                    $userFirstName = $user->first_name ?? 'N/A';
-                    $userLastName = $user->last_name ?? 'N/A';
-                    $applicantEmail = $user->__get('email') ?? 'N/A';
-                    $createdOn = get_date_spanish($application->date_created);
+                    $folder = str_replace(' ', '_', $user->first_name . '_' . $user->last_name) . '_' . str_replace('@', '_', $user->email);
+                    $documents = $application->getDocuments();
 
-                    // Fetch evaluator data
-                    $evaluatedOn = 'N/A';
-                    $evaluatorName = 'N/A';
-                    try {
-                        $evaluator = Tracking::findBy(['application_id' => $application->id_application]);
-                        if ($evaluator) {
-                            $evaluatorUser = User::find($evaluator->__get('user_id'));
-                            if ($evaluatorUser) {
-                                $evaluatorFirstName = $evaluatorUser->first_name ?? 'N/A';
-                                $evaluatorLastName = $evaluatorUser->last_name ?? 'N/A';
-                                $evaluatorName = $evaluatorFirstName . ' ' . $evaluatorLastName;
-                                $evaluatedOn = get_date_spanish($evaluator->__get('made_on'));
-                            }
-                        }
-                    } catch (ModelNotFoundException $e) {
-                        $evaluatedOn = 'N/A';
+                    foreach ($documents as $document) {
+                        $zip->addFromString($folder . '/' . $document['name'], $document['contents']);
                     }
-
-                    $statusMap = array_flip(Application::$statusParsings);
-                    // Translate the final decision
-                    $finalDecision = $statusMap[$application->status] ?? 'Desconocido';
-
-
-                    // Write to the CSV file
-                    fputcsv($file, [
-                        $userFirstName . ' ' . $userLastName,
-                        $applicantEmail,
-                        $createdOn,
-                        $evaluatedOn,
-                        $evaluatorName,
-                        $finalDecision
-                    ]);
                 } catch (Exception $e) {
                     continue;
                 }
             }
 
             // Close the file after all data has been written
-            fclose($file);
+            $zip->close();
 
             // Set headers for file download
-            header('Content-Type: text/csv; charset=UTF-8');
+            header('Content-Type: application/zip');
             header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
             header('Pragma: no-cache');
             header('Expires: 0');
