@@ -85,7 +85,7 @@ if ($application && $application->isSubmitted()) {
                     </div>
 
                     <div class="application-card-check">
-                        <?php if (isset($documents['video_essay'])) { ?>
+                        <?php if (isset($documents['video_essay']) || !empty($application->video_essay_link)) { ?>
                             <span class="doc-ok">
                                 <i class="fas fa-check-circle"></i>
                             </span>
