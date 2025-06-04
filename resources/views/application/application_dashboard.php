@@ -182,6 +182,14 @@ if ($application && $application->isSubmitted()) {
     </div>
 
     <?php require_once(__DIR__ . '../../modals/applicationStatusHelp.php'); ?>
+    <?php require_once(__DIR__ . '../../modals/submitSuccessModal.php'); ?>
+    <?php if (isset($_GET['submit_success']) && $_GET['submit_success'] === 'true') : ?>
+        <script>
+            window.addEventListener('load', function() {
+                openModal('submitSuccessModal');
+            });
+        </script>
+    <?php endif; ?>
     <?php require_once(__DIR__ . '../../partials/footer.php'); ?>
 </body>
 

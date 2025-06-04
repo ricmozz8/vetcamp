@@ -535,7 +535,7 @@ class UserApplicationController extends Controller
             );
 
             $_SESSION['message'] = 'Aplicación sometida correctamente';
-            redirect('/apply');
+            redirect('/apply?submit_success=true');
         } else {
             $application = Auth::user()->application();
             render_view('application/confirm', [

@@ -868,3 +868,8 @@ form .grid-group {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
+.uploaded-info {
+  font-size: 12px;
+  color: var(--status-success);
+  margin-top: 5px;
+}

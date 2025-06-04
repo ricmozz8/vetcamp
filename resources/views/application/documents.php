@@ -200,10 +200,12 @@ require __DIR__ . '../../partials/header.php';
                         <a href="#" class="btn-delete" onclick="confirmDeleteSingleDocumentModal('<?= $video_essay['name'] ?>')">
                             <i class="fas fa-trash-alt"></i> Borrar
                         </a>
+                        <p class="uploaded-info">Archivo cargado</p>
                     <?php } elseif (!empty($application->video_essay_link)) { ?>
                         <a href="<?= $application->video_essay_link ?>" target="_blank" class="btn-download">
                             <i class="fas fa-eye"></i> Ver enlace
                         </a>
+                        <p class="uploaded-info">Enlace guardado</p>
                     <?php } ?>
                 </div>
 
