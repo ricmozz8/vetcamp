@@ -33,7 +33,7 @@ This will start a server on port 8000.
 
 ### Accessing the database
 First, in order to access the database, **you must
-create an `.ENV` file** following the `.ENV.EXAMPLE` located in the root folder of this project.
+create an `.env` file** following the `.env.example` located in the root folder of this project.
 
 ## Creating Models, Views and Controllers
 You may generate automatically models, views
