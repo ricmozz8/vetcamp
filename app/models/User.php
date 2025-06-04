@@ -188,6 +188,34 @@ class User extends Model
     }
 
     /**
+     * Retrieves all users that do not have an application associated.
+     *
+     * @return array Users without an application.
+     */
+    public static function withoutApplication()
+    {
+        try {
+            $users = self::allof('user');
+            $result = [];
+
+            foreach ($users as $user) {
+                try {
+                    $application = $user->application();
+                    if ($application === null) {
+                        $result[] = $user;
+                    }
+                } catch (ModelNotFoundException $notFound) {
+                    $result[] = $user;
+                }
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            return [];
+        }
+    }
+
+    /**
      * This will delete every instance of this user on the database
      * */
     public function purge()
