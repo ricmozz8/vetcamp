@@ -144,7 +144,7 @@ $statusParsing = [
 
                     if ($currentPage > 1) {
                         $queryParams['page'] = $currentPage - 1;
-                        echo '<a href="?' . http_build_query($queryParams) . '" class="page-number">Anterior</a>';
+                        echo '<a href="?' . http_build_query($queryParams) . '" class="page-number"><i class="fas fa-arrow-left"></i></a>';
                     }
 
                     $start = max(1, $currentPage - 2);
@@ -173,7 +173,7 @@ $statusParsing = [
 
                     if ($currentPage < $totalPages) {
                         $queryParams['page'] = $currentPage + 1;
-                        echo '<a href="?' . http_build_query($queryParams) . '" class="page-number">Siguiente</a>';
+                        echo '<a href="?' . http_build_query($queryParams) . '" class="page-number"><i class="fas fa-arrow-right"></i></a>';
                     }
                     ?>
                 </div>

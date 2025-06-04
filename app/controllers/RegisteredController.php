@@ -24,8 +24,7 @@ class RegisteredController extends Controller
 
 
 
-        // Filtering users
-        // storing users
+        // Obtener todos los usuarios
         $users = User::allof('user');
 
         $s = filter_input(INPUT_GET, 'search', FILTER_DEFAULT);
@@ -35,33 +34,35 @@ class RegisteredController extends Controller
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perPage = 7; // Set the number of users per page
 
-        // Calculate total pages
-        $totalUsers = count($users);
-        $totalPages = ceil($totalUsers / $perPage);
-
-        // Ensure the current page is within bounds
-        $page = max(1, min($page, $totalPages));
-
-        // Get the slice of users for the current page
-        $offset = ($page - 1) * $perPage;
         $arrayUsers = [];
 
+        // Filtrar por estado
         foreach ($users as $user) {
             switch ($users_status) {
                 case 1:
-                    if($user->status == "active") {
+                    if ($user->status == 'active') {
                         $arrayUsers[] = $user;
                     }
                     break;
                 case 2:
-                    if($user->status == "disabled") { 
+                    if ($user->status == 'disabled') {
                         $arrayUsers[] = $user;
                     }
-                    break;    
+                    break;
                 default:
-                    $arrayUsers = $users;
+                    $arrayUsers[] = $user;
                     break;
             }
+        }
+
+        // Filtrar por búsqueda
+        if (!empty($s)) {
+            $searchTerm = strtolower($s);
+            $arrayUsers = array_filter($arrayUsers, function ($user) use ($searchTerm) {
+                return strpos(strtolower($user->first_name), $searchTerm) !== false ||
+                    strpos(strtolower($user->last_name), $searchTerm) !== false ||
+                    strpos(strtolower($user->email), $searchTerm) !== false;
+            });
         }
 
         // Ordenar por fecha
@@ -71,21 +72,13 @@ class RegisteredController extends Controller
             return $order === 'asc' ? $dateA - $dateB : $dateB - $dateA;
         });
 
+        // Calcular paginación tras filtrar
+        $totalUsers = count($arrayUsers);
+        $totalPages = max(1, ceil($totalUsers / $perPage));
+        $page = max(1, min($page, $totalPages));
+        $offset = ($page - 1) * $perPage;
+
         $users = array_slice($arrayUsers, $offset, $perPage);
-
-        if (!empty($s)) {
-            $searchTerm = $s . "%";
-
-            try {
-                $users = User::findLike([
-                    'first_name' => $searchTerm,
-                    'last_name' => $searchTerm,
-                    'email' => $searchTerm
-                ]);
-            } catch (ModelNotFoundException $notFound) {
-                $users = [];
-            }
-        }
 
         // your index view here
         render_view('registered', [

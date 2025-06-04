@@ -642,3 +642,37 @@ select {
     opacity: 0;
   }
 }
+
+/*
+ * Pagination
+ */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.page-number {
+  padding: 6px 12px;
+  border: 1px solid var(--bright-shade);
+  border-radius: 6px;
+  min-width: 32px;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.page-number:hover,
+.page-number.active {
+  background-color: var(--secondary-color-default);
+  color: var(--white-color);
+  font-weight: bold;
+}
+
+.page-ellipsis {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  color: var(--bright-shade);
+}
