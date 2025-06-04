@@ -118,20 +118,35 @@ require_once __DIR__ . '/partials/header.php';
 
                         <section class="data-section">
                             <h2><i class="fas fa-file"></i> Documentos subidos</h2>
+                            <?php
+                            $hasVideoEssayFile = false;
+                            if ($documents) {
+                                foreach ($documents as $document) {
+                                    if (strpos($document['name'], 'video_essay') === 0) {
+                                        $hasVideoEssayFile = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            ?>
                             <div class="documents-grid">
                                 <?php if ($documents) { ?>
-
                                     <?php foreach ($documents as $document) { ?>
-                                        <div><a target="_blank" href="/admin/document?a=<?= $application->id_application ?>&d=<?= substr($document['name'], 0, strrpos($document['name'], '.')) ?>"
-                                                class="no-deco-action w-fit" href="#">
-                                                    <?= $document['name'] ?>
-                                                </a>
-                                            </div>
-                                    <?php }; ?>
-
-
-                                <?php }; ?>
-
+                                        <div>
+                                            <a target="_blank" href="/admin/document?a=<?= $application->id_application ?>&d=<?= substr($document['name'], 0, strrpos($document['name'], '.')) ?>"
+                                                class="no-deco-action w-fit">
+                                                <?= $document['name'] ?>
+                                            </a>
+                                        </div>
+                                    <?php } ?>
+                                <?php } ?>
+                                <?php if (!$hasVideoEssayFile && !empty($application->video_essay_link)) { ?>
+                                    <div>
+                                        <a target="_blank" href="<?= $application->video_essay_link ?>" class="no-deco-action w-fit">
+                                            Video ensayo (enlace)
+                                        </a>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </section>
 

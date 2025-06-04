@@ -180,7 +180,7 @@ class RequestsController extends Controller
                 $documentCount,
                 $statusParsing[$user->status] ?? $user->status,
                 get_date_spanish($user->created_at),
-                $user->url_video_essay ? 'X' : ' ',
+                ($user->url_video_essay || $user->video_essay_link) ? 'X' : ' ',
                 $user->url_written_essay ? 'X' : ' ',
                 $user->url_recommendation_letter ? 'X' : ' ',
                 $user->url_written_application ? 'X' : ' ',
