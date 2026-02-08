@@ -1,0 +1,10 @@
+name: vetcamp
+php: '7.4'
+secured: false
+aliases: {  }
+services:
+    mariadb:
+        version: '10.11'
+        port: '3306'
+integrations:
+    forge: {  }

@@ -403,9 +403,9 @@ function validate_documents(array $documents, array $rules)
             continue;
         }
 
-        $rules = isset($rules[$key]) ? $rules[$key] : [];
+        $rule = isset($rules[$key]) ? $rules[$key] : [];
 
-        if (empty($rules)) {
+        if (empty($rule)) {
             // there are no rules to validate
             $validDocuments[$key] = $document;
             continue;
@@ -463,20 +463,20 @@ function validate_documents(array $documents, array $rules)
         }
 
 
-        if ($rules['required'] && empty($document['name'])) {
+        if ($rule['required'] && empty($document['name'])) {
             return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $key . ' es obligatorio '];
         }
 
-        if (isset($rules['type']) && !in_array($document['type'], $rules['type'])) {
-            $required_types = str_replace(['image/', 'video/', 'application/'], '', implode(', ', $rules['type']));
+        if (isset($rule['type']) && !in_array($document['type'], $rule['type'])) {
+            $required_types = str_replace(['image/', 'video/', 'application/'], '', implode(', ', $rule['type']));
 
             return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $document['name'] . ' debe ser de tipo ' . $required_types];
         }
 
-        $sizeToMB = sizeToMB($rules['size']);
+        $sizeToMB = sizeToMB($rule['size']);
 
 
-        if ($rules['size'] && $document['size'] > $rules['size']) {
+        if ($rule['size'] && $document['size'] > $rule['size']) {
             return ['result' => DOCUMENTS_NOT_VALID, 'message' => 'El documento ' . $key . ' debe ser menor a ' . $sizeToMB];
         }
 

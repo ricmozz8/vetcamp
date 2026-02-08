@@ -46,7 +46,7 @@ if (isset($argv[2])) {
     $name = $argv[2];
 } else {
     // prompting for the name
-    if ($action != 'server') {
+    if ($action != 'server' && $action != 'migrate') {
         echo "Enter the name for the $action: ";
         $name = trim(fgets(STDIN));
     } else {
@@ -106,6 +106,73 @@ switch ($action) {
         $command = "php -S $h:$name";
         passthru($command);
         break;
+
+    case 'migrate':
+        $config = require __DIR__ . '/bootstrap/config.php';
+        $db = $config['database'];
+
+        $dsn = $db['service'] . ':host=' . $db['host'] . ';port=' . $db['port'] . ';dbname=' . $db['dbname'];
+
+        try {
+            $pdo = new PDO($dsn, $db['user'], $db['pass'], [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ]);
+        } catch (PDOException $e) {
+            echo "Database connection failed: " . $e->getMessage() . "\n";
+            exit(1);
+        }
+
+        $logFile = __DIR__ . '/database/migrations.json';
+        $migrated = [];
+
+        if (file_exists($logFile)) {
+            $migrated = json_decode(file_get_contents($logFile), true) ?: [];
+        }
+
+        $migratedFiles = array_column($migrated, 'file');
+
+        $files = glob(__DIR__ . '/database/migrations/*.sql');
+        $basenames = array_map('basename', $files);
+        natsort($basenames);
+
+        $ran = 0;
+
+        foreach ($basenames as $index => $basename) {
+            if (in_array($basename, $migratedFiles)) {
+                continue;
+            }
+
+            $filePath = __DIR__ . '/database/migrations/' . $basename;
+            $sql = file_get_contents($filePath);
+
+            echo "Migrating: $basename ... ";
+
+            try {
+                $pdo->exec($sql);
+                $migrated[] = [
+                    'file' => $basename,
+                    'migrated_at' => date('Y-m-d H:i:s')
+                ];
+                echo "done.\n";
+                $ran++;
+            } catch (PDOException $e) {
+                echo "FAILED!\n";
+                echo "Error: " . $e->getMessage() . "\n";
+                file_put_contents($logFile, json_encode($migrated, JSON_PRETTY_PRINT));
+                exit(1);
+            }
+        }
+
+        file_put_contents($logFile, json_encode($migrated, JSON_PRETTY_PRINT));
+
+        if ($ran === 0) {
+            echo "Nothing to migrate.\n";
+        } else {
+            echo "\nRan $ran migration(s) successfully.\n";
+        }
+
+        break;
+
     default:
         echo "Unknown action: $action\n";
         break;
