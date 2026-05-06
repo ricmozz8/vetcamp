@@ -111,6 +111,9 @@ switch ($path) {
     case '/admin/delete/no-application-users':
         SettingsController::deleteUsersWithoutApplication($method);
         break;
+    case '/admin/delete/all/applicants':
+        SettingsController::deleteAllApplicants($method);
+        break;
     case '/sessions/create':
 
     case '/sessions/update':

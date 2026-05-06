@@ -15,6 +15,7 @@ require __DIR__ . '/modals/createAdminModal.php';
 require __DIR__ . '/modals/confirmDisableUnsolicitedModal.php';
 require __DIR__ . '/modals/confirmDisableAllModal.php';
 require __DIR__ . '/modals/confirmDeleteNoAppUsersModal.php';
+require __DIR__ . '/modals/confirmDeleteAllApplicantsModal.php';
 require __DIR__ . '/modals/editPicturesModal.php';
 require __DIR__ . '/modals/uploadLiabilityWaiver.php';
 ?>
@@ -143,6 +144,12 @@ require __DIR__ . '/modals/uploadLiabilityWaiver.php';
                     <div class="settings-block">
                         <p> Eliminar cuentas sin solicitud </p>
                         <button class="main-action-bright danger" onclick="openModal('confirmDeleteNoAppUsersModal')">
+                            Borrar
+                        </button>
+                    </div>
+                    <div class="settings-block">
+                        <p> Eliminar todos los usuarios (excepto admins) </p>
+                        <button class="main-action-bright danger" onclick="openModal('confirmDeleteAllApplicantsModal')">
                             Borrar
                         </button>
                     </div>

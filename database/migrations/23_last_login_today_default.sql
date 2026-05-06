@@ -1,0 +1,1 @@
+ALTER TABLE users MODIFY last_login DATE NULL DEFAULT DATE(NOW());

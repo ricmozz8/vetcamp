@@ -460,6 +460,67 @@ class SettingsController extends Controller
         redirect('/admin/settings');
     }
 
+    public static function deleteAllApplicants($request_method)
+    {
+        if ($request_method !== 'POST') {
+            $_SESSION['error'] = 'Método no permitido.';
+            redirect('/admin/settings');
+        }
+
+        if (!Auth::check() || Auth::user()->type !== 'admin') {
+            $_SESSION['error'] = 'Acceso no autorizado.';
+            redirect('/login');
+        }
+
+        try {
+            $users = User::allof('user');
+            $deleted = 0;
+
+            foreach ($users as $user) {
+                $application = $user->application();
+                $postal_address = $user->postal_address();
+                $physical_address = $user->physical_address();
+                $school_address = $user->school_address();
+
+                if ($application !== null) {
+                    $application->hard_delete();
+                }
+                if ($postal_address !== null) {
+                    $postal_address->delete();
+                }
+                if ($physical_address !== null) {
+                    $physical_address->delete();
+                }
+                if ($school_address !== null) {
+                    $school_address->delete();
+                }
+
+                $delete_id = rand(10000, 99999);
+                $user->update([
+                    'deleted_at' => date('Y-m-d H:i:s'),
+                    'first_name' => 'deleted',
+                    'last_name' => 'user-' . $delete_id,
+                    'email' => 'deleted-user-' . $delete_id,
+                    'status' => 'disabled',
+                    'phone_number' => null,
+                    'type' => 'deleted'
+                ]);
+                $deleted++;
+            }
+
+            if ($deleted > 0) {
+                $_SESSION['message'] = $deleted . ' cuentas eliminadas exitosamente.';
+                Audit::register('Eliminó ' . $deleted . ' cuentas de usuarios.', 'delete');
+            } else {
+                $_SESSION['message'] = 'No se encontraron cuentas para eliminar.';
+            }
+        } catch (Exception $e) {
+            $_SESSION['error'] = 'Ocurrió un error al eliminar las cuentas: ' . $e->getMessage();
+        }
+
+        redirect('/admin/settings');
+    }
+
     public static function editPictureInHomePage($method)
     {
         if ($method === 'POST') {

@@ -34,3 +34,5 @@ storage/private/error_log.txt
 /.vscode
 
 /storage/private/documents
+
+database/migrations.json
